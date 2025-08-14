@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      Мобильная система экспресс-анализа патогенов растений
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Мобильная система экспресс-анализа патогенов растений" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="🎯 Суть решения Мобильная платформа для сверхбыстрого обнаружения и количественного анализа ДНК/РНК Phytophthora infestans (и других релевантных патогенов) в метагеномных образцах: Типы образцов: почва, смывы с листьев, растительная ткань Место применения: поле, теплица, овощехранилище (без лаборатории)" />
+<meta property="og:description" content="🎯 Суть решения Мобильная платформа для сверхбыстрого обнаружения и количественного анализа ДНК/РНК Phytophthora infestans (и других релевантных патогенов) в метагеномных образцах: Типы образцов: почва, смывы с листьев, растительная ткань Место применения: поле, теплица, овощехранилище (без лаборатории)" />
+<link rel="canonical" href="https://onsiteseq.github.io/phytophthora" />
+<meta property="og:url" content="https://onsiteseq.github.io/phytophthora" />
+<meta property="og:site_name" content="OnSiteSeq - Секвенирование на месте" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-08T00:00:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Мобильная система экспресс-анализа патогенов растений" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.github.io/phytophthora"},"headline":"Мобильная система экспресс-анализа патогенов растений","dateModified":"2025-01-08T00:00:00+03:00","datePublished":"2025-01-08T00:00:00+03:00","url":"https://onsiteseq.github.io/phytophthora","@type":"BlogPosting","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"🎯 Суть решения Мобильная платформа для сверхбыстрого обнаружения и количественного анализа ДНК/РНК Phytophthora infestans (и других релевантных патогенов) в метагеномных образцах: Типы образцов: почва, смывы с листьев, растительная ткань Место применения: поле, теплица, овощехранилище (без лаборатории)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.github.io/feed.xml" title="OnSiteSeq - Секвенирование на месте" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+  <script type="text/javascript">
+  function updateLogo() {
+    const logo = document.getElementById('theme-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/logo_main_dark.gif';
+    } else {
+      logo.src = '/assets/images/logo/logo_main_white.gif';
+    }
+  }
+
+  // Обновляем логотип при загрузке страницы
+  window.addEventListener('load', function() {
+    updateLogo();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateLogo();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+  <script type="text/javascript">
+  function updateCardImages() {
+    const hivLogos = document.querySelectorAll('.hiv-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    hivLogos.forEach(function(logo) {
+      if (currentTheme === 'dark') {
+        logo.src = '/assets/images/logo/hiv_dark.png';
+      } else {
+        logo.src = '/assets/images/logo/hiv_white.png';
+      }
+    });
+  }
+
+  // Обновляем изображения при загрузке страницы
+  window.addEventListener('load', function() {
+    updateCardImages();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateCardImages();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">На главную</a>
+<h1 class="post-title">Мобильная система экспресс-анализа патогенов растений</h1>
+<p class="post-date text-bold">
+  
+    <span class="text-upcase">Roman Gorbenko</span> / 
+  
+  
+    <span class="text-upcase">January 2025</span>
+  
+
+
+  
+  
+  (95 Words, 
+  1 Minutes)
+  
+
+</p>
+
+<div class="custom-social-share">
+  <a href="https://dzen.ru/share?url=https%3A%2F%2Fonsiteseq.github.io%2Fphytophthora&title=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F+%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0+%D1%8D%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0+%D0%BF%D0%B0%D1%82%D0%BE%D0%B3%D0%B5%D0%BD%D0%BE%D0%B2+%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD%D0%B8%D0%B9" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-dzen" 
+     title="Поделиться в Dzen">
+    <img src="/assets/images/logo/dzen.png" alt="Dzen" class="share-icon">
+    <span class="share-text">Поделиться в Dzen</span>
+  </a>
+  
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fonsiteseq.github.io%2Fphytophthora&text=%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F+%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0+%D1%8D%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0+%D0%BF%D0%B0%D1%82%D0%BE%D0%B3%D0%B5%D0%BD%D0%BE%D0%B2+%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD%D0%B8%D0%B9" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-telegram" 
+     title="Поделиться в Telegram">
+    <img src="/assets/images/logo/telegram.webp" alt="Telegram" class="share-icon">
+    <span class="share-text">Поделиться в Telegram</span>
+  </a>
+</div>
+
+<style>
+.custom-social-share {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.share-dzen:hover {
+  background: #ff6600;
+  color: white;
+  border-color: #ff6600;
+}
+
+.share-telegram:hover {
+  background: #0088cc;
+  color: white;
+  border-color: #0088cc;
+}
+
+.share-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.share-text {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .custom-social-share {
+    justify-content: center;
+  }
+  
+  .share-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .share-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+</style> 
+
+
+  <div class="">
+    
+    <span class="tag">Фермеры</span>
+    
+  </div>
+
+
+<h2 id="-суть-решения">🎯 Суть решения</h2>
+<p><strong>Мобильная платформа</strong> для <strong>сверхбыстрого обнаружения</strong> и <strong>количественного анализа</strong> ДНК/РНК <em>Phytophthora infestans</em> (и других релевантных патогенов) в метагеномных образцах:</p>
+<ul>
+  <li>Типы образцов: почва, смывы с листьев, растительная ткань</li>
+  <li>Место применения: <strong>поле, теплица, овощехранилище</strong> (без лаборатории)</li>
+</ul>
+
+<h2 id="-проблемы-которые-решает">🔥 Проблемы, которые решает</h2>
+<ol>
+  <li><strong>Запоздалая диагностика</strong><br />
+Традиционные методы (визуальный осмотр, ПЦР, посев) занимают <strong>дни</strong> → за это время фитофтороз может уничтожить урожай.</li>
+  <li><strong>Неточность</strong><br />
+Визуальная диагностика на ранних стадиях ненадежна → ложные срабатывания/пропуски угрозы.</li>
+  <li><strong>«Слепое» применение химикатов</strong><br />
+Профилактические обработки «наугад» без подтверждения патогена ведут к:
+    <ul>
+      <li>Лишним затратам на препараты</li>
+      <li>Росту резистентности патогенов</li>
+      <li>Загрязнению среды и продукции</li>
+    </ul>
+  </li>
+  <li><strong>Сложность мониторинга</strong><br />
+Регулярный вывоз образцов в лабораторию для больших площадей <strong>непрактичен и дорог</strong>.</li>
+</ol>
+
+<h2 id="-сценарий-использования">🚀 Сценарий использования</h2>
+<h3 id="1-простой-забор-пробы-на-месте">1. Простой забор пробы (на месте)</h3>
+<ul>
+  <li>Соскоб/смыв с листьев/стеблей</li>
+  <li>Образец почвы из прикорневой зоны</li>
+  <li>Пораженная ткань (для анализа штамма)</li>
+</ul>
+
+<h3 id="2-быстрая-пробоподготовка">2. Быстрая пробоподготовка</h3>
+<ul>
+  <li>Интегрированные <strong>одноразовые картриджи</strong></li>
+  <li>Минимальные шаги → доступно любому пользователю</li>
+</ul>
+
+<h3 id="3-нанопоровое-секвенирование-на-месте">3. Нанопоровое секвенирование (на месте)</h3>
+<ul>
+  <li><strong>Длинные риды</strong> → точная идентификация</li>
+  <li><strong>Прямое секвенирование РНК</strong> → обнаружение активной инфекции без обратной транскрипции</li>
+  <li><strong>Реальное время</strong> → анализ начинается немедленно</li>
+</ul>
+
+<h3 id="4-ai-анализ-в-реальном-времени">4. AI-Анализ в реальном времени</h3>
+<ul>
+  <li><strong>Идентификация патогенов</strong>: ИИ сканирует риды в потоке, ищет сигнатуры <em>P. infestans</em> (и других патогенов, напр. альтернариоза)</li>
+  <li><strong>Количественная оценка</strong>: % ДНК/РНК патогена относительно ДНК растения → оценка стадии заражения</li>
+  <li><strong>Дифференциация штаммов</strong>:
+    <ul>
+      <li>Идентификация вирулентности</li>
+      <li><strong>Ключево: определение устойчивости к фунгицидам</strong> (по известным мутациям)</li>
+    </ul>
+  </li>
+  <li><strong>Раннее обнаружение</strong>: Выявление патогена <strong>до видимых симптомов</strong> (латентная стадия)</li>
+</ul>
+
+<h3 id="5-интуитивный-отчет-на-месте">5. Интуитивный отчет (на месте)</h3>
+<ul>
+  <li>Результат через <strong>30-90 минут</strong> (вместо дней!)</li>
+  <li>Детализированные данные:
+    <ul>
+      <li>Наличие/отсутствие патогена</li>
+      <li>Концентрация</li>
+      <li>Штамм и его свойства (вирулентность, резистентность)</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2025&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main></body>
+</html>

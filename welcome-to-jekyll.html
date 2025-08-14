@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      Welcome to Jekyll!
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Welcome to Jekyll!" />
+<meta name="author" content="gorbenkoteh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated." />
+<meta property="og:description" content="You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated." />
+<link rel="canonical" href="https://onsiteseq.github.io/welcome-to-jekyll" />
+<meta property="og:url" content="https://onsiteseq.github.io/welcome-to-jekyll" />
+<meta property="og:site_name" content="OnSiteSeq - Секвенирование на месте" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-04-19T16:20:36+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Welcome to Jekyll!" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@gorbenkoteh" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.github.io/welcome-to-jekyll"},"headline":"Welcome to Jekyll!","dateModified":"2025-04-19T16:20:36+03:00","datePublished":"2025-04-19T16:20:36+03:00","url":"https://onsiteseq.github.io/welcome-to-jekyll","@type":"BlogPosting","author":{"@type":"Person","name":"gorbenkoteh"},"description":"You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.github.io/feed.xml" title="OnSiteSeq - Секвенирование на месте" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+  <script type="text/javascript">
+  function updateLogo() {
+    const logo = document.getElementById('theme-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/logo_main_dark.gif';
+    } else {
+      logo.src = '/assets/images/logo/logo_main_white.gif';
+    }
+  }
+
+  // Обновляем логотип при загрузке страницы
+  window.addEventListener('load', function() {
+    updateLogo();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateLogo();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+  <script type="text/javascript">
+  function updateCardImages() {
+    const hivLogos = document.querySelectorAll('.hiv-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    hivLogos.forEach(function(logo) {
+      if (currentTheme === 'dark') {
+        logo.src = '/assets/images/logo/hiv_dark.png';
+      } else {
+        logo.src = '/assets/images/logo/hiv_white.png';
+      }
+    });
+  }
+
+  // Обновляем изображения при загрузке страницы
+  window.addEventListener('load', function() {
+    updateCardImages();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateCardImages();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">На главную</a>
+<h1 class="post-title">Welcome to Jekyll!</h1>
+<p class="post-date text-bold">
+  
+  
+    <span class="text-upcase">April 2025</span>
+  
+
+
+  
+  
+  (32 Words, 
+  1 Minutes)
+  
+
+</p>
+
+<div class="custom-social-share">
+  <a href="https://dzen.ru/share?url=https%3A%2F%2Fonsiteseq.github.io%2Fwelcome-to-jekyll&title=Welcome+to+Jekyll%21" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-dzen" 
+     title="Поделиться в Dzen">
+    <img src="/assets/images/logo/dzen.png" alt="Dzen" class="share-icon">
+    <span class="share-text">Поделиться в Dzen</span>
+  </a>
+  
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fonsiteseq.github.io%2Fwelcome-to-jekyll&text=Welcome+to+Jekyll%21" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-telegram" 
+     title="Поделиться в Telegram">
+    <img src="/assets/images/logo/telegram.webp" alt="Telegram" class="share-icon">
+    <span class="share-text">Поделиться в Telegram</span>
+  </a>
+</div>
+
+<style>
+.custom-social-share {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.share-dzen:hover {
+  background: #ff6600;
+  color: white;
+  border-color: #ff6600;
+}
+
+.share-telegram:hover {
+  background: #0088cc;
+  color: white;
+  border-color: #0088cc;
+}
+
+.share-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.share-text {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .custom-social-share {
+    justify-content: center;
+  }
+  
+  .share-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .share-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+</style> 
+
+
+  <div class="">
+    
+  </div>
+
+
+<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>Jekyll requires blog post files to be named according to the following format:</p>
+
+<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+
+<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+
+
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2025&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main></body>
+</html>

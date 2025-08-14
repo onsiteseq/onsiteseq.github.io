@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      OnSiteSeq - Секвенирование на месте
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OnSiteSeq - Секвенирование на месте" />
+<meta name="author" content="gorbenkoteh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики." />
+<meta property="og:description" content="Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики." />
+<link rel="canonical" href="https://onsiteseq.github.io/" />
+<meta property="og:url" content="https://onsiteseq.github.io/" />
+<meta property="og:site_name" content="OnSiteSeq - Секвенирование на месте" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OnSiteSeq - Секвенирование на месте" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@gorbenkoteh" />
+<script type="application/ld+json">
+{"headline":"OnSiteSeq - Секвенирование на месте","url":"https://onsiteseq.github.io/","@type":"WebSite","author":{"@type":"Person","name":"gorbenkoteh"},"description":"Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики.","name":"OnSiteSeq - Секвенирование на месте","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.github.io/feed.xml" title="OnSiteSeq - Секвенирование на месте" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+  <script type="text/javascript">
+  function updateLogo() {
+    const logo = document.getElementById('theme-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/logo_main_dark.gif';
+    } else {
+      logo.src = '/assets/images/logo/logo_main_white.gif';
+    }
+  }
+
+  // Обновляем логотип при загрузке страницы
+  window.addEventListener('load', function() {
+    updateLogo();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateLogo();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+  <script type="text/javascript">
+  function updateCardImages() {
+    const hivLogos = document.querySelectorAll('.hiv-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    hivLogos.forEach(function(logo) {
+      if (currentTheme === 'dark') {
+        logo.src = '/assets/images/logo/hiv_dark.png';
+      } else {
+        logo.src = '/assets/images/logo/hiv_white.png';
+      }
+    });
+  }
+
+  // Обновляем изображения при загрузке страницы
+  window.addEventListener('load', function() {
+    updateCardImages();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateCardImages();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header>
+
+  <ul class="horizontal-list">
+  
+    <li>
+      <a href="aboutonsiteseq">
+        О комплексе
+      </a>
+      &nbsp;&nbsp;
+    </li>
+  
+    <li>
+      <a href="blog">
+        Блог
+      </a>
+      &nbsp;&nbsp;
+    </li>
+  
+    <li>
+      <a href="https://www.abhinav.co">
+        ТГ-канал
+      </a>
+      &nbsp;&nbsp;
+    </li>
+  
+</ul>
+
+  <div class="dashed"></div>
+
+
+  <!-- Логотип с поддержкой переключения темы -->
+  <div class="logo-container">
+    <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" class="main-logo">
+  </div>
+
+  <h1>OnSiteSeq - Секвенирование на месте</h1>
+  
+    <p>Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики.</p>
+  
+</header>
+
+
+
+
+
+  <h2>Реализовано</h2>
+  <ul class="horizontal-list">
+  
+
+    <li class="card">
+      <a href="hiv">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="hiv-logo" src="/assets/images/logo/hiv_white.png" alt="ВИЧ логотип">
+          </div>
+        
+        
+        <span class="header">
+          ВИЧ
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Определение резистентности и суб-типа.
+        </p>
+        
+      </a>
+    </li>
+
+  
+
+    <li class="card">
+      <a href="tuberculosis">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="tuberculosis-logo" src="/assets/images/logo/tub.png" alt="Туберкулёз логотип">
+          </div>
+        
+        
+        <span class="header">
+          Туберкулёз
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Определение резистентности
+        </p>
+        
+      </a>
+    </li>
+
+  
+</ul>
+
+
+
+
+  <h2>В работе. Помощник врача.</h2>
+  <ul class="horizontal-list">
+  
+
+    <li class="card">
+      <a href="sarscov2">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="virus-logo" src="/assets/images/logo/virus.png" alt="Коронавирус логотип">
+          </div>
+        
+        
+        <span class="header">
+          Коронавирус SARS-COV-2
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Определение суб-типа
+        </p>
+        
+      </a>
+    </li>
+
+  
+
+    <li class="card">
+      <a href="staphylococcus">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="staph-logo" src="/assets/images/logo/s.aureas.png" alt="Стафилококк логотип">
+          </div>
+        
+        
+        <span class="header">
+          Золотистой стафилококк (Staphylococcus aureus)
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Определение резистентности
+        </p>
+        
+      </a>
+    </li>
+
+  
+
+    <li class="card">
+      <a href="flu">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="orvi-logo" src="/assets/images/logo/orvi.png" alt="ОРВИ логотип">
+          </div>
+        
+        
+        <span class="header">
+          Классификация причины ОРВИ (поиск вирусных возбудителей)
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Поиск вирусных возбудителей ОРВИ в метагеноме образца, взятого у кровати пациента.
+        </p>
+        
+      </a>
+    </li>
+
+  
+
+    <li class="card">
+      <a href="cold">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="cold-logo" src="/assets/images/logo/orvi.png" alt="ОРЗ логотип">
+          </div>
+        
+        
+        <span class="header">
+          Классификация причины ОРЗ (поиск бактериальных возбудителей).
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Поиск бактериальных возбудителей ОРЗ в метагеноме образца, взятого у кровати пациента.
+        </p>
+        
+      </a>
+    </li>
+
+  
+</ul>
+
+
+
+
+  <h2>В работе. Помощник криминалиста и фермера.</h2>
+  <ul class="horizontal-list">
+  
+
+    <li class="card">
+      <a href="identikit">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="criminal-logo" src="/assets/images/logo/criminal.png" alt="Криминалист логотип">
+          </div>
+        
+        
+        <span class="header">
+          Портрет преступника по ДНК
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Составление портрета преступника из ДНК, выделенной прямо на месте преступления.
+        </p>
+        
+      </a>
+    </li>
+
+  
+
+    <li class="card">
+      <a href="phytophthora">
+        <!-- Добавляем изображения для разных карточек -->
+        
+          <div class="card-image">
+            <img class="farmer-logo" src="/assets/images/logo/fermer.png" alt="Фермер логотип">
+          </div>
+        
+        
+        <span class="header">
+          Определение фитофтороза
+
+          
+
+        </span>
+
+        <hr />
+
+        
+        <p class="body">
+          Определение наличия фитофтороза в метагеноме образца, полученного прямо на месте посева с/х культуры.
+        </p>
+        
+      </a>
+    </li>
+
+  
+</ul>
+
+
+
+
+
+
+
+
+  <footer>
+    <div class="dashed"></div>
+    <div class="custom-footer-container">
+  
+    <div class="footer-item">
+      <div class="footer-item-image">
+        <img src="/assets/images/footer/normativ.webp" alt="Логотип ">
+      </div>
+      
+      <div class="footer-item-text">
+        <p></p>
+        <a href="/normativ">Хотите узнать о законодательстве поддерживающее инновации и персонализированную медицину?</a>
+      </div>
+    </div>
+  
+    <div class="footer-item">
+      <div class="footer-item-image">
+        <img src="/assets/images/footer/quotes.jpg" alt="Логотип Статьи и препринты статей.">
+      </div>
+      
+      <div class="footer-item-text">
+        <p>Статьи и препринты статей.</p>
+        <a href="/citation">Хотите процитировать данную разработку?</a>
+      </div>
+    </div>
+  
+    <div class="footer-item">
+      <div class="footer-item-image">
+        <img src="/assets/images/mfti/mfti.webp" alt="Логотип Проект родился в стенах МФТИ.">
+      </div>
+      
+      <div class="footer-item-text">
+        <p>Проект родился в стенах МФТИ.</p>
+        <a href="/mfti">Хотите узнать какие еще стартапы и открытия появились в МФТИ недавно?</a>
+      </div>
+    </div>
+  
+    <div class="footer-item">
+      <div class="footer-item-image">
+        <img src="/assets/images/ruwiki/ruwiki.jpg" alt="Логотип Материал для сайта = статья для РуВики.">
+      </div>
+      
+      <div class="footer-item-text">
+        <p>Материал для сайта = статья для РуВики.</p>
+        <a href="/ruwiki">Хотите узнать почему мы считаем важным развивать данную энциклопедию?</a>
+      </div>
+    </div>
+  
+    <div class="footer-item">
+      <div class="footer-item-image">
+        <img src="/assets/images/sber/GitVerse.svg" alt="Логотип GitVerse и Cloud.ru.">
+      </div>
+      
+      <div class="footer-item-text">
+        <p>GitVerse и Cloud.ru.</p>
+        <a href="/sber">Хотите узнать как проекты Сбера позволяют обеспечить безопасное хранение и сборку программного обеспечения в этом проекте?</a>
+      </div>
+    </div>
+  
+    <div class="footer-item">
+      <div class="footer-item-image">
+        <img src="/assets/images/gxp/gxp_logo.png" alt="Логотип GxP - при проектировании проекта мы ориентировались на "лучшие практики".">
+      </div>
+      
+      <div class="footer-item-text">
+        <p>GxP - при проектировании проекта мы ориентировались на "лучшие практики".</p>
+        <a href="/gxp">Хотите узнать какие промышленные стандарты мы используем?</a>
+      </div>
+    </div>
+  
+</div>
+  </footer>
+
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2025&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main></body>
+</html>

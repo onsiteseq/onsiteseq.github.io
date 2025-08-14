@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      РуВики
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="РуВики" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="РуВики: Российская онлайн-энциклопедия" />
+<meta property="og:description" content="РуВики: Российская онлайн-энциклопедия" />
+<link rel="canonical" href="https://onsiteseq.github.io/ruwiki" />
+<meta property="og:url" content="https://onsiteseq.github.io/ruwiki" />
+<meta property="og:site_name" content="OnSiteSeq - Секвенирование на месте" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-08T00:00:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="РуВики" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.github.io/ruwiki"},"headline":"РуВики","dateModified":"2025-01-08T00:00:00+03:00","datePublished":"2025-01-08T00:00:00+03:00","url":"https://onsiteseq.github.io/ruwiki","@type":"BlogPosting","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"РуВики: Российская онлайн-энциклопедия","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.github.io/feed.xml" title="OnSiteSeq - Секвенирование на месте" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+  <script type="text/javascript">
+  function updateLogo() {
+    const logo = document.getElementById('theme-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/logo_main_dark.gif';
+    } else {
+      logo.src = '/assets/images/logo/logo_main_white.gif';
+    }
+  }
+
+  // Обновляем логотип при загрузке страницы
+  window.addEventListener('load', function() {
+    updateLogo();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateLogo();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+  <script type="text/javascript">
+  function updateCardImages() {
+    const hivLogos = document.querySelectorAll('.hiv-logo');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    hivLogos.forEach(function(logo) {
+      if (currentTheme === 'dark') {
+        logo.src = '/assets/images/logo/hiv_dark.png';
+      } else {
+        logo.src = '/assets/images/logo/hiv_white.png';
+      }
+    });
+  }
+
+  // Обновляем изображения при загрузке страницы
+  window.addEventListener('load', function() {
+    updateCardImages();
+    
+    // Слушаем изменения темы
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          updateCardImages();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script> 
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">На главную</a>
+<h1 class="post-title">РуВики</h1>
+<p class="post-date text-bold">
+  
+    <span class="text-upcase">Roman Gorbenko</span> / 
+  
+  
+    <span class="text-upcase">January 2025</span>
+  
+
+
+  
+  
+  (21 Words, 
+  1 Minutes)
+  
+
+</p>
+
+<div class="custom-social-share">
+  <a href="https://dzen.ru/share?url=https%3A%2F%2Fonsiteseq.github.io%2Fruwiki&title=%D0%A0%D1%83%D0%92%D0%B8%D0%BA%D0%B8" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-dzen" 
+     title="Поделиться в Dzen">
+    <img src="/assets/images/logo/dzen.png" alt="Dzen" class="share-icon">
+    <span class="share-text">Поделиться в Dzen</span>
+  </a>
+  
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fonsiteseq.github.io%2Fruwiki&text=%D0%A0%D1%83%D0%92%D0%B8%D0%BA%D0%B8" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-telegram" 
+     title="Поделиться в Telegram">
+    <img src="/assets/images/logo/telegram.webp" alt="Telegram" class="share-icon">
+    <span class="share-text">Поделиться в Telegram</span>
+  </a>
+</div>
+
+<style>
+.custom-social-share {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.share-dzen:hover {
+  background: #ff6600;
+  color: white;
+  border-color: #ff6600;
+}
+
+.share-telegram:hover {
+  background: #0088cc;
+  color: white;
+  border-color: #0088cc;
+}
+
+.share-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.share-text {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .custom-social-share {
+    justify-content: center;
+  }
+  
+  .share-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .share-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+</style> 
+
+
+  <div class="">
+    
+    <span class="tag">РуВики</span>
+    
+  </div>
+
+
+<h1 id="рувики-российская-онлайн-энциклопедия">РуВики: Российская онлайн-энциклопедия</h1>
+
+<p><strong>РуВики</strong> — это онлайн-энциклопедия на русском языке и языках народов России, позиционируемая как российский аналог «Википедии».</p>
+
+<h2 id="основные-характеристики">Основные характеристики</h2>
+
+<ul>
+  <li><strong>База знаний:</strong> Изначально базируется на статьях из русскоязычной «Википедии» и постоянно дополняется новыми материалами.</li>
+  <li><strong>Принцип пополнения:</strong> Любой желающий может вносить правки и добавлять контент.</li>
+  <li><strong>Контроль качества:</strong>
+    <ul>
+      <li>Редакция проверяет материалы на соответствие источникам.</li>
+      <li>Профильные специалисты и ученые рецензируют статьи на достоверность и грамотность.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="история-развития-и-функционал">История развития и функционал</h2>
+
+<ul>
+  <li><strong>Запуск:</strong> Проект стартовал в <strong>июне 2023 года</strong> в бета-версии для тестирования платформы и наполнения контента.</li>
+  <li><strong>Версия 2.0:</strong> <strong>С 1 апреля 2024 года</strong> стала доступна обновленная версия «РУВИКИ» 2.0.</li>
+</ul>
+
+<h3 id="ключевые-улучшения-в-рувики-20">Ключевые улучшения в РУВИКИ 2.0</h3>
+
+<ul>
+  <li><strong>Улучшенный интерфейс:</strong>
+    <ul>
+      <li>Настройка режима чтения (светлая/тёмная темы).</li>
+      <li>Регулировка размера шрифта.</li>
+      <li>Настройка ширины сайта.</li>
+    </ul>
+  </li>
+  <li><strong>Аудиоформат:</strong> Возможность прослушивания материалов.</li>
+  <li><strong>Рекомендательная система (для зарегистрированных пользователей):</strong> Предлагает материалы на основе истории просмотров.</li>
+  <li><strong>Функционал для экспертов:</strong>
+    <ul>
+      <li>Квалифицированные авторы могут подтвердить свой статус.</li>
+      <li>Эксперты могут рецензировать материалы под своим именем.</li>
+      <li>Пользователи видят, кто рецензировал статью.</li>
+    </ul>
+  </li>
+  <li><strong>Интеграция ИИ:</strong> Осенью <strong>2024 года</strong> было объявлено о внедрении генеративного ответа на базе ИИ Yandex GPT.</li>
+</ul>
+
+<h2 id="значение-проекта">Значение проекта</h2>
+<p>Мы считаем важным развивать данную энциклопедию.</p>
+
+<h2 id="статьи-написанные-для-проекта-ставшие-частью-рувики">Статьи, написанные для проекта, ставшие частью РуВики:</h2>
+
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2025&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main></body>
+</html>
