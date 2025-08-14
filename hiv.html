@@ -15,10 +15,10 @@
 <meta property="og:title" content="Hiv" />
 <meta name="author" content="Roman Gorbenko" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="XY" />
-<meta property="og:description" content="XY" />
-<link rel="canonical" href="http://localhost:4000/hiv" />
-<meta property="og:url" content="http://localhost:4000/hiv" />
+<meta name="description" content="“Каждая смерть человека с ВИЧ - это несправедливость, иногда нелепость”" />
+<meta property="og:description" content="“Каждая смерть человека с ВИЧ - это несправедливость, иногда нелепость”" />
+<link rel="canonical" href="https://onsiteseq.github.io/hiv" />
+<meta property="og:url" content="https://onsiteseq.github.io/hiv" />
 <meta property="og:site_name" content="OnSiteSeq - Секвенирование на месте" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-01-08T00:00:00+03:00" />
@@ -27,10 +27,10 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@Roman Gorbenko" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/hiv"},"headline":"Hiv","dateModified":"2025-01-08T00:00:00+03:00","datePublished":"2025-01-08T00:00:00+03:00","url":"http://localhost:4000/hiv","@type":"BlogPosting","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"XY","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.github.io/hiv"},"headline":"Hiv","dateModified":"2025-01-08T00:00:00+03:00","datePublished":"2025-01-08T00:00:00+03:00","url":"https://onsiteseq.github.io/hiv","@type":"BlogPosting","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"“Каждая смерть человека с ВИЧ - это несправедливость, иногда нелепость”","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="OnSiteSeq - Секвенирование на месте" />
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.github.io/feed.xml" title="OnSiteSeq - Секвенирование на месте" />
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
@@ -160,11 +160,14 @@
 
   
   
+  (2171 Words, 
+  13 Minutes)
+  
 
 </p>
 
 <div class="custom-social-share">
-  <a href="https://dzen.ru/share?url=http%3A%2F%2Flocalhost%3A4000%2Fhiv&title=Hiv" 
+  <a href="https://dzen.ru/share?url=https%3A%2F%2Fonsiteseq.github.io%2Fhiv&title=Hiv" 
      target="_blank" 
      rel="noopener noreferrer" 
      class="share-btn share-dzen" 
@@ -173,7 +176,7 @@
     <span class="share-text">Поделиться в Dzen</span>
   </a>
   
-  <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fhiv&text=Hiv" 
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fonsiteseq.github.io%2Fhiv&text=Hiv" 
      target="_blank" 
      rel="noopener noreferrer" 
      class="share-btn share-telegram" 
@@ -261,7 +264,220 @@
   </div>
 
 
-<p>XY</p>
+<blockquote>
+  <p>“Каждая смерть человека с ВИЧ - это несправедливость, иногда нелепость”</p>
+</blockquote>
+
+<p>Эта статья начинается с цитаты из подкаста “Одни плюсы. Она очень любила жить: эпизод в память умерших от СПИДа”. Подкаст повествует о трагической смерти пациентов, не принимавших или бросивших принимать АРВТ.</p>
+
+<p>СПИД забирает в нашей стране более 30 тыс. человек каждый год и очевидно, что не все жертвы являются ВИЧ-диссидентами, как герои указанного подкаста. Исследования, проведенные в России, демонстрируют значительную распространенность лекарственной устойчивости ВИЧ-1. Предсказать наличие резистентности и предложить пациенту возможность другой схемы лечения. Не это ли реальный путь хотя бы немного сократить количество жертв эпидемии ВИЧ?</p>
+
+<p>В части <a href="https://dzen.ru/video/watch/671c195ad546f00058a4ecc9">1</a> и <a href="https://dzen.ru/video/watch/671c1d2aaa44f3016c4f7539">2</a> были рассказаны истории возникновения и развития эпидемии ВИЧ, а также представлено рассмотрение вируса с точки зрения молекулярной биологии. В этом выпуске давайте рассмотрим, какие биоинформатические инструменты мы можем применить в контексте изучения ВИЧ-инфекции и какие полезные данные биоинформатики могут вернуть врачам-клиницистам для последующего практического применения.</p>
+
+<hr />
+
+<h3 id="почему-определение-резистентности-вич-это-важно">Почему определение резистентности ВИЧ это важно?</h3>
+
+<p>В 2022 году, по оценкам, 29,8 миллиона человек, живущих с ВИЧ, получили антиретровирусную терапию (АРТ). Из этого числа, по оценкам, 10–15% людей, живущих с ВИЧ, имеют лекарственно-устойчивые штаммы вируса. Перед началом АРТ рекомендуется провести тестирование на устойчивость к антиретровирусным препаратам.</p>
+
+<p>Мониторинг ЛУ-ВИЧ выявляет основные мутации резистентности, которые могут снизить восприимчивость циркулирующих вирусов к препаратам в составе назначаемых комбинаций. Схемы могут различаться в разных странах. Это приводит к изменению тенденций ЛУ-ВИЧ в разных географических точках, особенно для препаратов, нацеленных на интегразу ВИЧ (IN), таких как <strong>Долутегравир (DTG)</strong>, который предоставлен в России препаратами “Тивикай” и “Джулука”. Ситуация с ЛУ-ВИЧ в России представлена в статье. Для достижения целей ЮНЭЙДС 95-95-95 к 2030 году, надежные, быстрые и экономически эффективные методы анализа ЛУ-ВИЧ имеют решающее значение.</p>
+
+<p>Разобравшись с важностью определения ЛУ-ВИЧ, мы приступаем к практической части.</p>
+
+<p>Нам нужно просеквенировать образец вируса ВИЧ, взятый у пациента, чтобы получить последовательность его уникального генома.</p>
+
+<p>Сразу стоит отметить, что речь идет об экспериментальном устройстве <strong>OnSiteSeq</strong> — концепции секвенирования на месте (у кровати/у стола/в поле/на месте преступления), которое разрабатывается в виде проекта как стартап во время моего обучения в МФТИ. Данный проект базируется на существующей технологии портативного нанопорового секвенирования, такой как <strong>Oxford Nanopore MinION</strong>, которая позволяет проводить анализ геномных данных вне стационарных лабораторий.</p>
+
+<p>Компоненты устройства представлены на следующей фотографии.</p>
+
+<p>&lt;img src=”/assets/images/photo/onsiteseq.jpg”alt=”Onsiteseq”&gt;
+(Фотография устройства)</p>
+
+<p>На данном этапе наша цель — провести Dry-run, т.е. шаг получения данных из нанопорового секвенатора будет эмулирован, и мы сразу перейдем к base-calling-у из “сырых данных”.</p>
+
+<hr />
+
+<h3 id="basecalling-с-использованием-dorado">Basecalling с использованием Dorado</h3>
+
+<p>При секвенировании (в нашем случае это секвенирование вируса ВИЧ-1) на выходе из нанопорового секвенатора мы получаем исходные “сырые” данные в формате <strong>POD5</strong>. Эти файлы сами по себе не содержат последовательность нуклеотидов (A, T, C, G), а хранят необработанную информацию — измерения электрического тока, которые прибор фиксирует в реальном времени. Когда молекула ДНК или РНК проходит через нанопору, каждое основание по-своему изменяет ионный ток. Графическое представление этих изменений называется “squiggle” (извилистая линия), и именно эта информация записывается в POD5 файл.</p>
+
+<p>Далее в “игру” вступает <strong>Dorado</strong> — это программа-бейсколлер (basecaller). Его основная и ключевая задача — преобразовать необработанные электрические сигналы (squiggles) из файлов POD5 в последовательность нуклеотидов.</p>
+
+<p>Процесс выглядит так:</p>
+<ol>
+  <li><strong>Входные данные:</strong> <code class="language-plaintext highlighter-rouge">Dorado</code> берет на вход файлы <code class="language-plaintext highlighter-rouge">.pod5</code>, содержащие сырые данные (в нашем случае из программно-аппаратного комплекса OnSiteSeq).</li>
+  <li><strong>Анализ сигнала и искусственный интеллект:</strong> Используя сложные модели машинного обучения, <code class="language-plaintext highlighter-rouge">Dorado</code> анализирует “рисунок” электрического сигнала для каждого отдельного прочтения (рида).</li>
+  <li><strong>Определение нуклеотидов:</strong> Программа сопоставляет характерные изменения тока с конкретными нуклеотидами (A, C, G, T или U для РНК) и определяет их последовательность. Она также присваивает каждому основанию оценку качества (quality score), показывающую, насколько программа “уверена” в своем определении.</li>
+  <li><strong>Выходные данные:</strong> После обработки <code class="language-plaintext highlighter-rouge">Dorado</code> выдает файлы в общепринятых биоинформатических форматах, которые уже содержат расшифрованную последовательность. В нашем случае это будет:
+    <ul>
+      <li>unaligned BAM (<code class="language-plaintext highlighter-rouge">.ubam</code>): Сжатый бинарный формат, являющийся для <code class="language-plaintext highlighter-rouge">Dorado</code> форматом вывода по умолчанию. Unaligned BAM содержит информацию о прочтениях и их качестве, но без информации о положении на референсном геноме.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Суммируем: <code class="language-plaintext highlighter-rouge">Dorado</code> выполняет критически важный шаг “перевода” сигналов о прочтении на язык генетики, предоставляя фактические последовательности для дальнейшей работы: сборки генома, поиска мутаций, определения лекарственной устойчивости и т.д.</p>
+
+<p>Полученные от <code class="language-plaintext highlighter-rouge">Dorado</code> данные последовательно проходят через следующие этапы.</p>
+
+<hr />
+
+<h3 id="этап-контроля-качества-прочтений-и-их-фильтрации">Этап контроля качества прочтений и их фильтрации</h3>
+
+<blockquote>
+  <p><strong>Проблема:</strong> <code class="language-plaintext highlighter-rouge">Dorado</code> может произвести прочтения низкого качества (короткие, с низкой средней точностью). Использование таких прочтений может привести к ошибкам в выравнивании и ложным вариантам.</p>
+
+  <p><strong>Решение:</strong> Добавить шаг фильтрации данных. Поскольку <code class="language-plaintext highlighter-rouge">Dorado</code> выдает нам uBAM, сначала нам нужно использовать инструменты из пакета <strong>samtools</strong> для конвертации данных в FASTQ-формат.</p>
+</blockquote>
+
+<h4 id="подэтап-конвертации-данных">Подэтап конвертации данных</h4>
+
+<p>Для преобразования uBAM-файла в формат FASTQ, требующийся для <strong>minimap2</strong>, будем использовать популярный инструмент <strong>Samtools</strong>. <code class="language-plaintext highlighter-rouge">SAMtools</code> — широко используемый набор утилит командной строки для работы с высокопроизводительными данными секвенирования. Он является краеугольным камнем в биоинформатике для обработки и анализа выравниваний последовательностей, обычно хранящихся в форматах SAM (Sequence Alignment/Map) и BAM (Binary Alignment/Map).</p>
+
+<p>После конвертации BAM в FASTQ с помощью <code class="language-plaintext highlighter-rouge">samtools fastq</code>, отфильтровать прочтения, убрав те, что короче определенной длины (например, &lt; 300 пар оснований) или с низким средним качеством (например, Q-score &lt; 10).</p>
+<blockquote>
+  <p><strong>Результат:</strong> Файл FASTQ, очищенный от “шумных” данных, готовый для выравнивания.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="этап-выравнивания-прочтений-на-референсный-геном-aligns-the-reads-to-the-reference">Этап выравнивания прочтений на референсный геном (aligns the reads to the reference)</h3>
+
+<p>Для выравнивания на референсный геном мы будем использовать <strong>minimap2</strong>. <code class="language-plaintext highlighter-rouge">Minimap2</code> — это быстрый и универсальный инструмент для выравнивания последовательностей ДНК и РНК на референсный геном. Он особенно эффективен для работы с длинными прочтениями, характерными для технологий нанопорового секвенирования, которое применяется в комплексе OnSiteSeq, и способен обрабатывать данные с относительно высоким уровнем ошибок. Благодаря своей скорости и точности, <code class="language-plaintext highlighter-rouge">Minimap2</code> стал стандартом во многих пайплайнах биоинформатического анализа. И для нашей задачи он подходит лучше, чем другие программы этого класса.</p>
+
+<p>Основное предназначение <code class="language-plaintext highlighter-rouge">Minimap2</code> — это картирование (выравнивание) последовательностей из файла с прочтениями (обычно в формате <strong>FASTQ</strong>) на референсную последовательность (в формате <strong>FASTA</strong>). Результатом его работы является файл в формате <strong>SAM</strong> (Sequence Alignment Map) или его бинарной версии <strong>BAM</strong> (Binary Alignment Map), который содержит информацию о том, как и куда было выровнено каждое прочтение.</p>
+
+<hr />
+
+<h3 id="этап-контроля-качества-выравнивания">Этап контроля качества выравнивания</h3>
+
+<blockquote>
+  <p><strong>Проблема:</strong> Недостаточное количество или плохое качество выравнивания может свидетельствовать о проблемах с образцом (низкая вирусная нагрузка, контаминация) или о том, что референсный геном сильно отличается от вируса пациента. Продолжать анализ бессмысленно, если 95% прочтений не выровнялось.</p>
+
+  <p><strong>Решение:</strong> Собрать статистику по файлу BAM после выравнивания.</p>
+
+  <p><strong>Используемые инструменты:</strong> <code class="language-plaintext highlighter-rouge">samtools stats</code> и <code class="language-plaintext highlighter-rouge">samtools coverage</code>.</p>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">samtools stats</code> покажет общую статистику: процент выровненных прочтений, количество прочтений, среднюю длину и т.д.</li>
+  <li><code class="language-plaintext highlighter-rouge">samtools coverage</code> рассчитает глубину и ширину покрытия. Глубина покрытия (coverage depth) — это количество прочтений, покрывающих каждую позицию генома. Ширина покрытия (coverage breadth) — это процент генома, покрытый хотя бы одним прочтением.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Результат:</strong> Отчет, по которому можно оценить успешность выравнивания. Для анализа лекарственной устойчивости критически важно иметь достаточное покрытие (~100x и выше) в ключевых генах (протеаза, обратная транскриптаза, интеграза).</p>
+</blockquote>
+
+<hr />
+
+<h3 id="этап-идентификации-различий-между-референсным-геномом-и-геномом-вируса-выделенного-у-пациента-variant-calling">Этап идентификации различий между референсным геномом и геномом вируса, выделенного у пациента (variant calling)</h3>
+
+<p>На этапе variant calling-а мы будем использовать инструмент <strong>LoFreq</strong>. <code class="language-plaintext highlighter-rouge">LoFreq</code> — это высокочувствительный и быстрый инструмент для поиска генетических вариантов (СНВ/SNV и инделов/indel) в данных секвенирования нового поколения (NGS). Его ключевое отличие от других инструментов, таких как <strong>VarScan 2</strong> или <strong>GATK</strong>, заключается в способности обнаруживать варианты с очень низкой частотой в популяции прочтений. Основная сила <code class="language-plaintext highlighter-rouge">LoFreq</code> заключается в его статистической модели, которая учитывает качество каждого нуклеотида в каждом прочтении. Это позволяет ему отличать настоящие низкочастотные мутации от систематических ошибок секвенирования.</p>
+
+<p><strong>Ключевые особенности:</strong></p>
+
+<ul>
+  <li><strong>Высокая чувствительность:</strong> Способен надежно определять варианты с частотой менее 1%.</li>
+  <li><strong>Статистическая модель ошибок:</strong> Вместо простого подсчета альтернативных аллелей <code class="language-plaintext highlighter-rouge">LoFreq</code> использует качество оснований для построения вероятностной модели.</li>
+  <li><strong>Обработка инделей:</strong> Включает специальные инструменты для коррекции выравниваний вокруг коротких вставок и делеций, что значительно снижает количество ложноположительных результатов.</li>
+  <li><strong>Скорость:</strong> <code class="language-plaintext highlighter-rouge">LoFreq</code> оптимизирован для быстрой работы и поддерживает многопоточность.</li>
+</ul>
+
+<h4 id="под-этап-подготовка-bam-файла-для-lofreq">Под-этап подготовка BAM-файла для LoFreq</h4>
+
+<p>Выравниватели, включая <code class="language-plaintext highlighter-rouge">minimap2</code>, могут оставлять артефакты выравнивания вокруг инделов. <code class="language-plaintext highlighter-rouge">LoFreq</code> имеет встроенные инструменты для исправления этих проблем.</p>
+
+<ul>
+  <li><strong>Перевыравнивание (Viterbi realignment):</strong> Улучшает локальное выравнивание прочтений вокруг потенциальных инделов.</li>
+  <li><strong>Добавление качества инделов (Indel quality):</strong> Добавляет в BAM-файл специальные теги с оценкой качества для вставок и делеций.</li>
+</ul>
+
+<p>Далее необходимо проиндексировать этот новый, подготовленный BAM-файл. В результате работы <code class="language-plaintext highlighter-rouge">LoFreq</code> получается файл <strong>vcf</strong>, содержащий высоконадежный список генетических вариантов, обнаруженных для данного образца генома.</p>
+
+<hr />
+
+<h3 id="этап-фильтрации-vcf-файла">Этап фильтрации VCF-файла</h3>
+
+<blockquote>
+  <p><strong>Проблема:</strong> <code class="language-plaintext highlighter-rouge">LoFreq</code> — высокочувствительный инструмент, но он все равно может выдавать ложноположительные варианты, особенно в регионах с низким покрытием или систематическими ошибками секвенирования.</p>
+
+  <p><strong>Решение:</strong> Применить дополнительную фильтрацию к VCF-файлу на основе аннотаций, которые добавляет сам <code class="language-plaintext highlighter-rouge">LoFreq</code>.</p>
+
+  <p><strong>Используемые инструменты:</strong> <strong>BCFtools</strong> (команда <code class="language-plaintext highlighter-rouge">filter</code>).</p>
+</blockquote>
+
+<p>Что он делает? Отфильтровывает VCF-файл, оставив только варианты, которые соответствуют определенным критериям качества. Например:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">QUAL &gt; 30</code>: Уверенность в варианте выше пороговой.</li>
+  <li><code class="language-plaintext highlighter-rouge">DP &gt; 20</code>: Глубина покрытия в этой точке не менее 20 прочтений.</li>
+  <li><code class="language-plaintext highlighter-rouge">AF &gt; 0.01</code>: Частота аллеля не менее 1% (особенно важно для определения минорных резистентных вариантов).</li>
+</ul>
+
+<blockquote>
+  <p><strong>Результат:</strong> “Очищенный” (<code class="language-plaintext highlighter-rouge">final_variants.vcf</code>)</p>
+</blockquote>
+
+<hr />
+
+<h3 id="этап-запроса-в-локальной-базе-hivdb-о-наличии-и-степени-лекарственной-устойчивости-в-геноме-вируса-выделенного-у-пациента">Этап запроса в локальной базе HIVDB о наличии и степени лекарственной устойчивости в геноме вируса, выделенного у пациента</h3>
+
+<p><strong>sierra-local</strong> — это локальная версия веб-сервиса Sierra Стэнфордского университета, предназначенная для анализа лекарственной устойчивости ВИЧ-1. Инструмент использует последовательность генов вируса (протеазы, обратной транскриптазы, интегразы) для предсказания его чувствительности к антиретровирусным препаратам на основе алгоритмов, разработанных и поддерживаемых в рамках Стэнфордской базы данных по лекарственной устойчивости ВИЧ (HIVDB).</p>
+
+<p>Главное преимущество <code class="language-plaintext highlighter-rouge">sierra-local</code> — возможность проводить анализ локально, в данном случае на самом устройстве OnSiteSeq, не отправляя конфиденциальные данные пациента через интернет.</p>
+
+<h4 id="этап-работы-с-vcf-файлами-от-lofreq">Этап работы с VCF файлами от LoFreq</h4>
+
+<p>Инструмент <code class="language-plaintext highlighter-rouge">sierra-local</code> не принимает на вход файлы в формате VCF. Он предназначен для работы с файлами последовательностей в формате FASTA. Файл VCF, полученный после <code class="language-plaintext highlighter-rouge">LoFreq</code>, содержит только информацию об отличиях (вариантах) от референсного генома. Чтобы использовать его с <code class="language-plaintext highlighter-rouge">sierra-local</code>, необходимо сначала “применить” эти варианты к референсной последовательности и сгенерировать новую, консенсусную последовательность в формате FASTA. Эту задачу эффективно решает инструмент <strong>BCFtools</strong>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">BCFtools</code> — это мощный и широко используемый набор утилит для работы с данными генетических вариантов в формате VCF (Variant Call Format) и его бинарным эквивалентом BCF. Он является частью экосистемы HTSlib, которая также включает <code class="language-plaintext highlighter-rouge">SAMtools</code>, который мы уже использовали. <code class="language-plaintext highlighter-rouge">BCFtools</code> разработан для эффективной обработки больших объемов геномных данных и является краеугольным камнем во многих биоинформатических пайплайнах.</p>
+
+<p><strong>Исходные данные:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">reference.fasta</code>: Референсный геном ВИЧ-1 (будем использовать HXB2), который использовался для выравнивания.</li>
+  <li><code class="language-plaintext highlighter-rouge">final_variants.vcf</code>: Отфильтрованный файл с вариантами от <code class="language-plaintext highlighter-rouge">LoFreq</code>.</li>
+</ul>
+
+<p>Для работы <code class="language-plaintext highlighter-rouge">bcftools consensus</code> требуется, чтобы VCF-файл был сжат с помощью <strong>bgzip</strong> и проиндексирован с помощью <strong>tabix</strong>. Эти утилиты входят в пакет HTSlib и обычно устанавливаются вместе с <code class="language-plaintext highlighter-rouge">BCFtools</code> и <code class="language-plaintext highlighter-rouge">Samtools</code>.</p>
+
+<p>Теперь используем <code class="language-plaintext highlighter-rouge">bcftools consensus</code>, чтобы применить варианты из VCF к референсному геному.</p>
+
+<p>VCF (от LoFreq) ➡️ BCFtools (конвертация в FASTA) ➡️ FASTA (консенсус) ➡️ sierra-local (анализ устойчивости) ➡️ Отчет в формате HTML.</p>
+
+<hr />
+
+<h3 id="этап-определения-суб-типа-вируса-вич-1">Этап определения суб-типа вируса ВИЧ-1</h3>
+
+<p>Ну и в завершении в полученный на прошлом этапе HTML-отчёт добавим также данные о суб-типе вируса. Для этого будем использовать биоинформатический инструмент для классификации субтипов ВИЧ-1 группы М, основанный на методах машинного обучения. Такие инструменты, как правило, используют последовательности гена env или всего генома для точного определения вирусной линии, что имеет важное эпидемиологическое значение.</p>
+
+<p>Итого у нас получился следующий конвейер (пайплайн):</p>
+
+<p>Сырые данные (POD5) ➡️ Dorado ➡️ Прочтения (uBAM) ➡️ (QC 1: Фильтрация прочтений) ➡️ Качественные прочтения (FASTQ) ➡️ minimap2 ➡️ Выравнивание (BAM) ➡️ (QC 2: Оценка выравнивания и покрытия) ➡️ LoFreq (realignment) ➡️ Подготовленный BAM ➡️ LoFreq (variant calling) ➡️ Сырые варианты (VCF) ➡️ (QC 3: Фильтрация вариантов) ➡️ Надежные варианты (VCF) ➡️ BCFtools ➡️ Консенсус (FASTA) ➡️ sierra-local + Субтипирование ➡️ Итоговый отчет (HTML).</p>
+
+<p>Для его запуска будем использовать WMS (Workflow Management System) <strong>Snakemake</strong> с адаптированной графической оболочкой для запуска на 5” сенсорном экране.</p>
+
+<hr />
+
+<h3 id="литература">Литература</h3>
+
+<ol>
+  <li>Osterholzer DA, Goldman M. Dolutegravir: a next-generation integrase inhibitor for treatment of HIV infection. Clin Infect Dis. 2014;59:265–271. doi: 10.1093/cid/ciu221</li>
+  <li>Долутегравир (Dolutegravirum) описание. РЛС. URL: <a href="https://www.rlsnet.ru/active-substance/dolutegravir-3211">https://www.rlsnet.ru/active-substance/dolutegravir-3211</a></li>
+  <li>Кириченко А.А., Киреев Д.Е., Шлыкова А.В., и др. Лекарственная устойчивость ВИЧ-1 у пациентов с вирусологической неэффективностью АРТ в России (2013–2021 гг.). Эпидемиология и инфекционные болезни. URL: <a href="https://epidemiology-journal.ru/ru/archive/article/40779">https://epidemiology-journal.ru/ru/archive/article/40779</a></li>
+  <li>UNAIDS. Understanding fast-track targets, accelerating action to end the AIDS epidemic by 2030. 2015. URL: <a href="https://www.unaids.org/sites/default/files/media_asset/201506_JC2743_Understanding_FastTrack_en.pdf">https://www.unaids.org/sites/default/files/media_asset/201506_JC2743_Understanding_FastTrack_en.pdf</a></li>
+  <li>Oxford Nanopore Technologies. POD5 file format. URL: <a href="https://pod5-file-format.readthedocs.io/en/latest/">https://pod5-file-format.readthedocs.io/en/latest/</a></li>
+  <li>Oxford Nanopore Technologies. Dorado GitHub Repository. URL: <a href="https://github.com/nanoporetech/dorado">https://github.com/nanoporetech/dorado</a></li>
+  <li>Danecek P, Bonfield JK, Liddle J, et al. Twelve years of SAMtools and BCFtools. GigaScience. 2021;10(2):giab008. doi: 10.1093/gigascience/giab008</li>
+  <li>Li H. Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics. 2018;34(18):3094-3100. doi: 10.1093/bioinformatics/bty191</li>
+  <li>Wilm A, Aw PP, Bertrand D, et al. LoFreq: a sequence-quality aware, ultra-sensitive variant caller for uncovering cell-population heterogeneity from high-throughput sequencing data. Nucleic Acids Res. 2012;40(22):11189-11201. doi: 10.1093/nar/gks918</li>
+  <li>Koboldt DC, Zhang Q, Larson DE, et al. VarScan 2: somatic mutation and copy number alteration discovery in cancer by exome sequencing. Genome Res. 2012;22(3):568-576. doi: 10.1101/gr.129684.111</li>
+  <li>McKenna A, Hanna M, Banks E, et al. The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome Res. 2010;20(9):1297-1303. doi: 10.1101/gr.107524.110</li>
+  <li>Rhee SY, Gonzales MJ, Kantor R, Betts BJ, Ravela J, Shafer RW. Human immunodeficiency virus reverse transcriptase and protease sequence database. Nucleic Acids Res. 2003;31(1):298-303. doi: 10.1093/nar/gkg100</li>
+  <li>Chen L, Liu B, Yu X, Yau SS. An effective alignment-free method for HIV-1 subtype classification based on a subsequence natural vector. J Bioinform Comput Biol. 2019;17(05):1950027. doi: 10.1142/S021972001950027X</li>
+  <li>Mölder F, Jablonski KP, Letcher B, et al. Sustainable data analysis with Snakemake. F1000Res. 2021;10:33. doi: 10.12688/f1000research.29032.2</li>
+  <li>Логинова Р. Одни плюсы. Студия “Либо/Либо”. URL: <a href="https://libolibo.ru/plus">https://libolibo.ru/plus</a></li>
+  <li>Runtuwene LR, Kando T, Suzuki Y. On-Site MinION Sequencing. In: Satou K. (eds) The Human Immunodeficiency Virus. Methods in Molecular Biology, vol 1957. Humana, New York, NY. 2019. doi: 10.1007/978-1-4939-9152-2_14</li>
+  <li>Ho JC, Ng GT, Renaud M, Poon AFY. sierra-local: A lightweight standalone application for drug resistance prediction. Journal of Open Source Software. 2019;4(33):1186. doi: 10.21105/joss.01186</li>
+</ol>
 
 
         
