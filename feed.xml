@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-08-15T00:54:21+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">OnSiteSeq - Секвенирование на месте</title><subtitle>Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики.</subtitle><author><name>gorbenkoteh</name></author><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/welcome-to-jekyll" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2025-04-19T16:20:36+03:00</published><updated>2025-04-19T16:20:36+03:00</updated><id>http://localhost:4000/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/welcome-to-jekyll">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.github.io/" rel="alternate" type="text/html" /><updated>2025-08-15T01:59:26+03:00</updated><id>https://onsiteseq.github.io/feed.xml</id><title type="html">OnSiteSeq - Секвенирование на месте</title><subtitle>Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики.</subtitle><author><name>gorbenkoteh</name></author><entry><title type="html">Welcome to Jekyll!</title><link href="https://onsiteseq.github.io/welcome-to-jekyll" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2025-04-19T16:20:36+03:00</published><updated>2025-04-19T16:20:36+03:00</updated><id>https://onsiteseq.github.io/welcome-to-jekyll</id><content type="html" xml:base="https://onsiteseq.github.io/welcome-to-jekyll">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
 
@@ -14,7 +14,7 @@
 &lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;Tom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &apos;Hi, Tom&apos; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>gorbenkoteh</name></author><category term="jekyll" /><category term="update" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">О комплексе. Программная и аппаратная часть</title><link href="http://localhost:4000/aboutonsiteseq" rel="alternate" type="text/html" title="О комплексе. Программная и аппаратная часть" /><published>2025-02-08T00:00:00+03:00</published><updated>2025-02-08T00:00:00+03:00</updated><id>http://localhost:4000/aboutonsiteseq</id><content type="html" xml:base="http://localhost:4000/aboutonsiteseq">&lt;p&gt;Ниже представлено описание основных программных компонентов комплекса с пояснением какие шаги по доработке и импортозамещению были выполнены в рамках данного проекта.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>gorbenkoteh</name></author><category term="jekyll" /><category term="update" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">О комплексе. Программная и аппаратная часть</title><link href="https://onsiteseq.github.io/aboutonsiteseq" rel="alternate" type="text/html" title="О комплексе. Программная и аппаратная часть" /><published>2025-02-08T00:00:00+03:00</published><updated>2025-02-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/aboutonsiteseq</id><content type="html" xml:base="https://onsiteseq.github.io/aboutonsiteseq">&lt;p&gt;Ниже представлено описание основных программных компонентов комплекса с пояснением какие шаги по доработке и импортозамещению были выполнены в рамках данного проекта.&lt;/p&gt;
 
 &lt;h2 id=&quot;snakemake-wms&quot;&gt;Snakemake (WMS)&lt;/h2&gt;
 &lt;ul&gt;
@@ -85,7 +85,7 @@
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Подробнее:&lt;/strong&gt; &lt;a href=&quot;https://nanoporetech.com/&quot;&gt;Здесь&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><category term="О комплексе" /><summary type="html">Ниже представлено описание основных программных компонентов комплекса с пояснением какие шаги по доработке и импортозамещению были выполнены в рамках данного проекта.</summary></entry><entry><title type="html">МФТИ</title><link href="http://localhost:4000/mfti" rel="alternate" type="text/html" title="МФТИ" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/mfti</id><content type="html" xml:base="http://localhost:4000/mfti">&lt;h1 id=&quot;история-создания-и-развития-мфти&quot;&gt;История создания и развития МФТИ&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><category term="О комплексе" /><summary type="html">Ниже представлено описание основных программных компонентов комплекса с пояснением какие шаги по доработке и импортозамещению были выполнены в рамках данного проекта.</summary></entry><entry><title type="html">МФТИ</title><link href="https://onsiteseq.github.io/mfti" rel="alternate" type="text/html" title="МФТИ" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/mfti</id><content type="html" xml:base="https://onsiteseq.github.io/mfti">&lt;h1 id=&quot;история-создания-и-развития-мфти&quot;&gt;История создания и развития МФТИ&lt;/h1&gt;
 
 &lt;h2 id=&quot;идея-и-предыстория-1938-1946&quot;&gt;Идея и предыстория (1938-1946)&lt;/h2&gt;
 &lt;ul&gt;
@@ -173,7 +173,7 @@
 Система RadarSFEMOS для работы в дождь, снег и туман
 &lt;a href=&quot;https://www.cnews.ru/news/line/2025-05-21_v_mfti_sozdali_vsepogodnoe&quot;&gt;Подробнее&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Roman Gorbenko</name></author><category term="МФТИ" /><summary type="html">История создания и развития МФТИ</summary></entry><entry><title type="html">Золотистой стафилококк (Staphylococcus aureus). Определение резистентности</title><link href="http://localhost:4000/staphylococcus" rel="alternate" type="text/html" title="Золотистой стафилококк (Staphylococcus aureus). Определение резистентности" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/staphylococcus</id><content type="html" xml:base="http://localhost:4000/staphylococcus">&lt;p&gt;&lt;strong&gt;Суть:&lt;/strong&gt;  Мобильная платформа для сверхбыстрого обнаружения &lt;em&gt;Staphylococcus aureus&lt;/em&gt; и определения ключевых механизмов антибиотикорезистентности** в клинических образцах (кровь, раневое отделяемое,мазки из носа). Анализ выполняется непосредственно в отделении (реанимация, хирургия, приемный покой).&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>Roman Gorbenko</name></author><category term="МФТИ" /><summary type="html">История создания и развития МФТИ</summary></entry><entry><title type="html">Золотистой стафилококк (Staphylococcus aureus). Определение резистентности</title><link href="https://onsiteseq.github.io/staphylococcus" rel="alternate" type="text/html" title="Золотистой стафилококк (Staphylococcus aureus). Определение резистентности" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/staphylococcus</id><content type="html" xml:base="https://onsiteseq.github.io/staphylococcus">&lt;p&gt;&lt;strong&gt;Суть:&lt;/strong&gt;  Мобильная платформа для сверхбыстрого обнаружения &lt;em&gt;Staphylococcus aureus&lt;/em&gt; и определения ключевых механизмов антибиотикорезистентности** в клинических образцах (кровь, раневое отделяемое,мазки из носа). Анализ выполняется непосредственно в отделении (реанимация, хирургия, приемный покой).&lt;/p&gt;
 
 &lt;h2 id=&quot;проблема-которую-решает-onsiteseq-прт-определения-s-aureus-и-наличия-резистентности&quot;&gt;Проблема, которую решает OnSiteSeq прт определения &lt;em&gt;S. aureus&lt;/em&gt; и наличия резистентности.&lt;/h2&gt;
 
@@ -282,7 +282,7 @@
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Roman Gorbenko</name></author><category term="S.aureus" /><summary type="html">Суть: Мобильная платформа для сверхбыстрого обнаружения Staphylococcus aureus и определения ключевых механизмов антибиотикорезистентности** в клинических образцах (кровь, раневое отделяемое,мазки из носа). Анализ выполняется непосредственно в отделении (реанимация, хирургия, приемный покой).</summary></entry><entry><title type="html">Tuberculosis</title><link href="http://localhost:4000/tuberculosis" rel="alternate" type="text/html" title="Tuberculosis" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/tuberculosis</id><content type="html" xml:base="http://localhost:4000/tuberculosis">&lt;h1 id=&quot;ядро-услуги-экспресс-диагностика-тб-и-полный-профиль-резистентности&quot;&gt;Ядро Услуги: Экспресс-Диагностика ТБ и Полный Профиль Резистентности&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>Roman Gorbenko</name></author><category term="S.aureus" /><summary type="html">Суть: Мобильная платформа для сверхбыстрого обнаружения Staphylococcus aureus и определения ключевых механизмов антибиотикорезистентности** в клинических образцах (кровь, раневое отделяемое,мазки из носа). Анализ выполняется непосредственно в отделении (реанимация, хирургия, приемный покой).</summary></entry><entry><title type="html">Tuberculosis</title><link href="https://onsiteseq.github.io/tuberculosis" rel="alternate" type="text/html" title="Tuberculosis" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/tuberculosis</id><content type="html" xml:base="https://onsiteseq.github.io/tuberculosis">&lt;h1 id=&quot;ядро-услуги-экспресс-диагностика-тб-и-полный-профиль-резистентности&quot;&gt;Ядро Услуги: Экспресс-Диагностика ТБ и Полный Профиль Резистентности&lt;/h1&gt;
 
 &lt;h2 id=&quot;ключевые-технологические-возможности&quot;&gt;Ключевые Технологические Возможности&lt;/h2&gt;
 
@@ -362,7 +362,7 @@
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><category term="обзор" /><category term="туберкулёз" /><summary type="html">Ядро Услуги: Экспресс-Диагностика ТБ и Полный Профиль Резистентности</summary></entry><entry><title type="html">Хотите процитировать данную разработку?</title><link href="http://localhost:4000/citation" rel="alternate" type="text/html" title="Хотите процитировать данную разработку?" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/citation</id><content type="html" xml:base="http://localhost:4000/citation">&lt;p&gt;&lt;strong&gt;Статьи и препринты статей о проекте Onsiteseq публикуются на русском, английском и китайском языке.&lt;/strong&gt; Вы можете использовать один из следующих DOI для цитирования:&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><category term="обзор" /><category term="туберкулёз" /><summary type="html">Ядро Услуги: Экспресс-Диагностика ТБ и Полный Профиль Резистентности</summary></entry><entry><title type="html">Хотите процитировать данную разработку?</title><link href="https://onsiteseq.github.io/citation" rel="alternate" type="text/html" title="Хотите процитировать данную разработку?" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/citation</id><content type="html" xml:base="https://onsiteseq.github.io/citation">&lt;p&gt;&lt;strong&gt;Статьи и препринты статей о проекте Onsiteseq публикуются на русском, английском и китайском языке.&lt;/strong&gt; Вы можете использовать один из следующих DOI для цитирования:&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -380,7 +380,7 @@
 
 &lt;p&gt;&lt;strong&gt;Для цитирования на китайском языке:&lt;/strong&gt;&lt;br /&gt;
 &lt;strong&gt;ChinaXiv&lt;/strong&gt; — это китайская база данных препринтов, управляемая Китайской академией наук (CAS). Запущенная в декабре 2016 года, эта платформа предназначена для представления предварительных научных публикаций, которые ещё не прошли официальный этап рецензирования.&lt;br /&gt;
-&lt;strong&gt;DOI:&lt;/strong&gt; ``&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><category term="Цитирование" /><summary type="html">Статьи и препринты статей о проекте Onsiteseq публикуются на русском, английском и китайском языке. Вы можете использовать один из следующих DOI для цитирования:</summary></entry><entry><title type="html">Экспресс-метагеномная диагностика бактериальных ОРЗ и резистентности у постели больного.</title><link href="http://localhost:4000/cold" rel="alternate" type="text/html" title="Экспресс-метагеномная диагностика бактериальных ОРЗ и резистентности у постели больного." /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/cold</id><content type="html" xml:base="http://localhost:4000/cold">&lt;p&gt;&lt;strong&gt;Суть:&lt;/strong&gt; Быстрая дифференциальная диагностика и определение профиля антибиотикорезистентности бактериальных возбудителей ОРЗ в метагеномном образце (мазок зева/носа, мокрота), взятом непосредственно у кровати пациента.&lt;/p&gt;
+&lt;strong&gt;DOI:&lt;/strong&gt; ``&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><category term="Цитирование" /><summary type="html">Статьи и препринты статей о проекте Onsiteseq публикуются на русском, английском и китайском языке. Вы можете использовать один из следующих DOI для цитирования:</summary></entry><entry><title type="html">Экспресс-метагеномная диагностика бактериальных ОРЗ и резистентности у постели больного.</title><link href="https://onsiteseq.github.io/cold" rel="alternate" type="text/html" title="Экспресс-метагеномная диагностика бактериальных ОРЗ и резистентности у постели больного." /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/cold</id><content type="html" xml:base="https://onsiteseq.github.io/cold">&lt;p&gt;&lt;strong&gt;Суть:&lt;/strong&gt; Быстрая дифференциальная диагностика и определение профиля антибиотикорезистентности бактериальных возбудителей ОРЗ в метагеномном образце (мазок зева/носа, мокрота), взятом непосредственно у кровати пациента.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -511,7 +511,7 @@
       &lt;li&gt;Объективное, доказательное обоснование назначения/неназначения антибиотиков.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><category term="ОРЗ" /><summary type="html">Суть: Быстрая дифференциальная диагностика и определение профиля антибиотикорезистентности бактериальных возбудителей ОРЗ в метагеномном образце (мазок зева/носа, мокрота), взятом непосредственно у кровати пациента.</summary></entry><entry><title type="html">Классификация причины ОРВИ (поиск вирусных возбудителей)</title><link href="http://localhost:4000/flu" rel="alternate" type="text/html" title="Классификация причины ОРВИ (поиск вирусных возбудителей)" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/flu</id><content type="html" xml:base="http://localhost:4000/flu">&lt;p&gt;&lt;strong&gt;Суть:&lt;/strong&gt; Мобильная платформа для &lt;strong&gt;сверхбыстрого обнаружения, идентификации и количественного анализа&lt;/strong&gt; полного спектра вирусных возбудителей ОРВИ в метагеномном образце (мазок из носоглотки/ротоглотки). Забор и анализ выполняются &lt;strong&gt;непосредственно у кровати пациента&lt;/strong&gt; (клиника, дом, приемный покой).&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><category term="ОРЗ" /><summary type="html">Суть: Быстрая дифференциальная диагностика и определение профиля антибиотикорезистентности бактериальных возбудителей ОРЗ в метагеномном образце (мазок зева/носа, мокрота), взятом непосредственно у кровати пациента.</summary></entry><entry><title type="html">Классификация причины ОРВИ (поиск вирусных возбудителей)</title><link href="https://onsiteseq.github.io/flu" rel="alternate" type="text/html" title="Классификация причины ОРВИ (поиск вирусных возбудителей)" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/flu</id><content type="html" xml:base="https://onsiteseq.github.io/flu">&lt;p&gt;&lt;strong&gt;Суть:&lt;/strong&gt; Мобильная платформа для &lt;strong&gt;сверхбыстрого обнаружения, идентификации и количественного анализа&lt;/strong&gt; полного спектра вирусных возбудителей ОРВИ в метагеномном образце (мазок из носоглотки/ротоглотки). Забор и анализ выполняются &lt;strong&gt;непосредственно у кровати пациента&lt;/strong&gt; (клиника, дом, приемный покой).&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -600,7 +600,7 @@
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Roman Gorbenko</name></author><category term="ОРВИ" /><summary type="html">Суть: Мобильная платформа для сверхбыстрого обнаружения, идентификации и количественного анализа полного спектра вирусных возбудителей ОРВИ в метагеномном образце (мазок из носоглотки/ротоглотки). Забор и анализ выполняются непосредственно у кровати пациента (клиника, дом, приемный покой).</summary></entry><entry><title type="html">GxP: Надлежащие практики обеспечения качества</title><link href="http://localhost:4000/gxp" rel="alternate" type="text/html" title="GxP: Надлежащие практики обеспечения качества" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/gxp</id><content type="html" xml:base="http://localhost:4000/gxp">&lt;p&gt;&lt;strong&gt;GxP&lt;/strong&gt; — общая аббревиатура, обозначающая &lt;strong&gt;«надлежащую практику»&lt;/strong&gt; (англ. &lt;em&gt;Good Practice&lt;/em&gt;) обеспечения качества и соответствующие нормативные акты.&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>Roman Gorbenko</name></author><category term="ОРВИ" /><summary type="html">Суть: Мобильная платформа для сверхбыстрого обнаружения, идентификации и количественного анализа полного спектра вирусных возбудителей ОРВИ в метагеномном образце (мазок из носоглотки/ротоглотки). Забор и анализ выполняются непосредственно у кровати пациента (клиника, дом, приемный покой).</summary></entry><entry><title type="html">GxP: Надлежащие практики обеспечения качества</title><link href="https://onsiteseq.github.io/gxp" rel="alternate" type="text/html" title="GxP: Надлежащие практики обеспечения качества" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/gxp</id><content type="html" xml:base="https://onsiteseq.github.io/gxp">&lt;p&gt;&lt;strong&gt;GxP&lt;/strong&gt; — общая аббревиатура, обозначающая &lt;strong&gt;«надлежащую практику»&lt;/strong&gt; (англ. &lt;em&gt;Good Practice&lt;/em&gt;) обеспечения качества и соответствующие нормативные акты.&lt;/p&gt;
 
 &lt;h2 id=&quot;ключевые-аспекты-gxp&quot;&gt;Ключевые аспекты GxP:&lt;/h2&gt;
 &lt;h3 id=&quot;1-значение-аббревиатуры&quot;&gt;1. &lt;strong&gt;Значение аббревиатуры:&lt;/strong&gt;&lt;/h3&gt;
@@ -661,4 +661,217 @@
 
 &lt;h3 id=&quot;4-применение-в-проекте-onsiteseq&quot;&gt;4. &lt;strong&gt;Применение в проекте OnSiteSeq:&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;В проекте &lt;strong&gt;OnSiteSeq&lt;/strong&gt; нашли применение следующие практики GxP:&lt;br /&gt;
-&lt;em&gt;(Здесь будет перечень конкретных практик)&lt;/em&gt;&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><category term="GxP" /><summary type="html">GxP — общая аббревиатура, обозначающая «надлежащую практику» (англ. Good Practice) обеспечения качества и соответствующие нормативные акты.</summary></entry><entry><title type="html">Hiv</title><link href="http://localhost:4000/hiv" rel="alternate" type="text/html" title="Hiv" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>http://localhost:4000/hiv</id><content type="html" xml:base="http://localhost:4000/hiv">&lt;p&gt;XY&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><category term="обзор" /><category term="ВИЧ" /><summary type="html">XY</summary></entry></feed>
+&lt;em&gt;(Здесь будет перечень конкретных практик)&lt;/em&gt;&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><category term="GxP" /><summary type="html">GxP — общая аббревиатура, обозначающая «надлежащую практику» (англ. Good Practice) обеспечения качества и соответствующие нормативные акты.</summary></entry><entry><title type="html">Hiv</title><link href="https://onsiteseq.github.io/hiv" rel="alternate" type="text/html" title="Hiv" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/hiv</id><content type="html" xml:base="https://onsiteseq.github.io/hiv">&lt;blockquote&gt;
+  &lt;p&gt;“Каждая смерть человека с ВИЧ - это несправедливость, иногда нелепость”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Эта статья начинается с цитаты из подкаста “Одни плюсы. Она очень любила жить: эпизод в память умерших от СПИДа”. Подкаст повествует о трагической смерти пациентов, не принимавших или бросивших принимать АРВТ.&lt;/p&gt;
+
+&lt;p&gt;СПИД забирает в нашей стране более 30 тыс. человек каждый год и очевидно, что не все жертвы являются ВИЧ-диссидентами, как герои указанного подкаста. Исследования, проведенные в России, демонстрируют значительную распространенность лекарственной устойчивости ВИЧ-1. Предсказать наличие резистентности и предложить пациенту возможность другой схемы лечения. Не это ли реальный путь хотя бы немного сократить количество жертв эпидемии ВИЧ?&lt;/p&gt;
+
+&lt;p&gt;В части &lt;a href=&quot;https://dzen.ru/video/watch/671c195ad546f00058a4ecc9&quot;&gt;1&lt;/a&gt; и &lt;a href=&quot;https://dzen.ru/video/watch/671c1d2aaa44f3016c4f7539&quot;&gt;2&lt;/a&gt; были рассказаны истории возникновения и развития эпидемии ВИЧ, а также представлено рассмотрение вируса с точки зрения молекулярной биологии. В этом выпуске давайте рассмотрим, какие биоинформатические инструменты мы можем применить в контексте изучения ВИЧ-инфекции и какие полезные данные биоинформатики могут вернуть врачам-клиницистам для последующего практического применения.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;почему-определение-резистентности-вич-это-важно&quot;&gt;Почему определение резистентности ВИЧ это важно?&lt;/h3&gt;
+
+&lt;p&gt;В 2022 году, по оценкам, 29,8 миллиона человек, живущих с ВИЧ, получили антиретровирусную терапию (АРТ). Из этого числа, по оценкам, 10–15% людей, живущих с ВИЧ, имеют лекарственно-устойчивые штаммы вируса. Перед началом АРТ рекомендуется провести тестирование на устойчивость к антиретровирусным препаратам.&lt;/p&gt;
+
+&lt;p&gt;Мониторинг ЛУ-ВИЧ выявляет основные мутации резистентности, которые могут снизить восприимчивость циркулирующих вирусов к препаратам в составе назначаемых комбинаций. Схемы могут различаться в разных странах. Это приводит к изменению тенденций ЛУ-ВИЧ в разных географических точках, особенно для препаратов, нацеленных на интегразу ВИЧ (IN), таких как &lt;strong&gt;Долутегравир (DTG)&lt;/strong&gt;, который предоставлен в России препаратами “Тивикай” и “Джулука”. Ситуация с ЛУ-ВИЧ в России представлена в статье. Для достижения целей ЮНЭЙДС 95-95-95 к 2030 году, надежные, быстрые и экономически эффективные методы анализа ЛУ-ВИЧ имеют решающее значение.&lt;/p&gt;
+
+&lt;p&gt;Разобравшись с важностью определения ЛУ-ВИЧ, мы приступаем к практической части.&lt;/p&gt;
+
+&lt;p&gt;Нам нужно просеквенировать образец вируса ВИЧ, взятый у пациента, чтобы получить последовательность его уникального генома.&lt;/p&gt;
+
+&lt;p&gt;Сразу стоит отметить, что речь идет об экспериментальном устройстве &lt;strong&gt;OnSiteSeq&lt;/strong&gt; — концепции секвенирования на месте (у кровати/у стола/в поле/на месте преступления), которое разрабатывается в виде проекта как стартап во время моего обучения в МФТИ. Данный проект базируется на существующей технологии портативного нанопорового секвенирования, такой как &lt;strong&gt;Oxford Nanopore MinION&lt;/strong&gt;, которая позволяет проводить анализ геномных данных вне стационарных лабораторий.&lt;/p&gt;
+
+&lt;p&gt;Компоненты устройства представлены на следующей фотографии.&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;img src=”/assets/images/photo/onsiteseq.jpg”alt=”Onsiteseq”&amp;gt;
+(Фотография устройства)&lt;/p&gt;
+
+&lt;p&gt;На данном этапе наша цель — провести Dry-run, т.е. шаг получения данных из нанопорового секвенатора будет эмулирован, и мы сразу перейдем к base-calling-у из “сырых данных”.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;basecalling-с-использованием-dorado&quot;&gt;Basecalling с использованием Dorado&lt;/h3&gt;
+
+&lt;p&gt;При секвенировании (в нашем случае это секвенирование вируса ВИЧ-1) на выходе из нанопорового секвенатора мы получаем исходные “сырые” данные в формате &lt;strong&gt;POD5&lt;/strong&gt;. Эти файлы сами по себе не содержат последовательность нуклеотидов (A, T, C, G), а хранят необработанную информацию — измерения электрического тока, которые прибор фиксирует в реальном времени. Когда молекула ДНК или РНК проходит через нанопору, каждое основание по-своему изменяет ионный ток. Графическое представление этих изменений называется “squiggle” (извилистая линия), и именно эта информация записывается в POD5 файл.&lt;/p&gt;
+
+&lt;p&gt;Далее в “игру” вступает &lt;strong&gt;Dorado&lt;/strong&gt; — это программа-бейсколлер (basecaller). Его основная и ключевая задача — преобразовать необработанные электрические сигналы (squiggles) из файлов POD5 в последовательность нуклеотидов.&lt;/p&gt;
+
+&lt;p&gt;Процесс выглядит так:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Входные данные:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; берет на вход файлы &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pod5&lt;/code&gt;, содержащие сырые данные (в нашем случае из программно-аппаратного комплекса OnSiteSeq).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Анализ сигнала и искусственный интеллект:&lt;/strong&gt; Используя сложные модели машинного обучения, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; анализирует “рисунок” электрического сигнала для каждого отдельного прочтения (рида).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Определение нуклеотидов:&lt;/strong&gt; Программа сопоставляет характерные изменения тока с конкретными нуклеотидами (A, C, G, T или U для РНК) и определяет их последовательность. Она также присваивает каждому основанию оценку качества (quality score), показывающую, насколько программа “уверена” в своем определении.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Выходные данные:&lt;/strong&gt; После обработки &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; выдает файлы в общепринятых биоинформатических форматах, которые уже содержат расшифрованную последовательность. В нашем случае это будет:
+    &lt;ul&gt;
+      &lt;li&gt;unaligned BAM (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ubam&lt;/code&gt;): Сжатый бинарный формат, являющийся для &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; форматом вывода по умолчанию. Unaligned BAM содержит информацию о прочтениях и их качестве, но без информации о положении на референсном геноме.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Суммируем: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; выполняет критически важный шаг “перевода” сигналов о прочтении на язык генетики, предоставляя фактические последовательности для дальнейшей работы: сборки генома, поиска мутаций, определения лекарственной устойчивости и т.д.&lt;/p&gt;
+
+&lt;p&gt;Полученные от &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; данные последовательно проходят через следующие этапы.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;этап-контроля-качества-прочтений-и-их-фильтрации&quot;&gt;Этап контроля качества прочтений и их фильтрации&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Проблема:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; может произвести прочтения низкого качества (короткие, с низкой средней точностью). Использование таких прочтений может привести к ошибкам в выравнивании и ложным вариантам.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Решение:&lt;/strong&gt; Добавить шаг фильтрации данных. Поскольку &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorado&lt;/code&gt; выдает нам uBAM, сначала нам нужно использовать инструменты из пакета &lt;strong&gt;samtools&lt;/strong&gt; для конвертации данных в FASTQ-формат.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;подэтап-конвертации-данных&quot;&gt;Подэтап конвертации данных&lt;/h4&gt;
+
+&lt;p&gt;Для преобразования uBAM-файла в формат FASTQ, требующийся для &lt;strong&gt;minimap2&lt;/strong&gt;, будем использовать популярный инструмент &lt;strong&gt;Samtools&lt;/strong&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SAMtools&lt;/code&gt; — широко используемый набор утилит командной строки для работы с высокопроизводительными данными секвенирования. Он является краеугольным камнем в биоинформатике для обработки и анализа выравниваний последовательностей, обычно хранящихся в форматах SAM (Sequence Alignment/Map) и BAM (Binary Alignment/Map).&lt;/p&gt;
+
+&lt;p&gt;После конвертации BAM в FASTQ с помощью &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samtools fastq&lt;/code&gt;, отфильтровать прочтения, убрав те, что короче определенной длины (например, &amp;lt; 300 пар оснований) или с низким средним качеством (например, Q-score &amp;lt; 10).&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Результат:&lt;/strong&gt; Файл FASTQ, очищенный от “шумных” данных, готовый для выравнивания.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;этап-выравнивания-прочтений-на-референсный-геном-aligns-the-reads-to-the-reference&quot;&gt;Этап выравнивания прочтений на референсный геном (aligns the reads to the reference)&lt;/h3&gt;
+
+&lt;p&gt;Для выравнивания на референсный геном мы будем использовать &lt;strong&gt;minimap2&lt;/strong&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Minimap2&lt;/code&gt; — это быстрый и универсальный инструмент для выравнивания последовательностей ДНК и РНК на референсный геном. Он особенно эффективен для работы с длинными прочтениями, характерными для технологий нанопорового секвенирования, которое применяется в комплексе OnSiteSeq, и способен обрабатывать данные с относительно высоким уровнем ошибок. Благодаря своей скорости и точности, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Minimap2&lt;/code&gt; стал стандартом во многих пайплайнах биоинформатического анализа. И для нашей задачи он подходит лучше, чем другие программы этого класса.&lt;/p&gt;
+
+&lt;p&gt;Основное предназначение &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Minimap2&lt;/code&gt; — это картирование (выравнивание) последовательностей из файла с прочтениями (обычно в формате &lt;strong&gt;FASTQ&lt;/strong&gt;) на референсную последовательность (в формате &lt;strong&gt;FASTA&lt;/strong&gt;). Результатом его работы является файл в формате &lt;strong&gt;SAM&lt;/strong&gt; (Sequence Alignment Map) или его бинарной версии &lt;strong&gt;BAM&lt;/strong&gt; (Binary Alignment Map), который содержит информацию о том, как и куда было выровнено каждое прочтение.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;этап-контроля-качества-выравнивания&quot;&gt;Этап контроля качества выравнивания&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Проблема:&lt;/strong&gt; Недостаточное количество или плохое качество выравнивания может свидетельствовать о проблемах с образцом (низкая вирусная нагрузка, контаминация) или о том, что референсный геном сильно отличается от вируса пациента. Продолжать анализ бессмысленно, если 95% прочтений не выровнялось.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Решение:&lt;/strong&gt; Собрать статистику по файлу BAM после выравнивания.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Используемые инструменты:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samtools stats&lt;/code&gt; и &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samtools coverage&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samtools stats&lt;/code&gt; покажет общую статистику: процент выровненных прочтений, количество прочтений, среднюю длину и т.д.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;samtools coverage&lt;/code&gt; рассчитает глубину и ширину покрытия. Глубина покрытия (coverage depth) — это количество прочтений, покрывающих каждую позицию генома. Ширина покрытия (coverage breadth) — это процент генома, покрытый хотя бы одним прочтением.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Результат:&lt;/strong&gt; Отчет, по которому можно оценить успешность выравнивания. Для анализа лекарственной устойчивости критически важно иметь достаточное покрытие (~100x и выше) в ключевых генах (протеаза, обратная транскриптаза, интеграза).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;этап-идентификации-различий-между-референсным-геномом-и-геномом-вируса-выделенного-у-пациента-variant-calling&quot;&gt;Этап идентификации различий между референсным геномом и геномом вируса, выделенного у пациента (variant calling)&lt;/h3&gt;
+
+&lt;p&gt;На этапе variant calling-а мы будем использовать инструмент &lt;strong&gt;LoFreq&lt;/strong&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt; — это высокочувствительный и быстрый инструмент для поиска генетических вариантов (СНВ/SNV и инделов/indel) в данных секвенирования нового поколения (NGS). Его ключевое отличие от других инструментов, таких как &lt;strong&gt;VarScan 2&lt;/strong&gt; или &lt;strong&gt;GATK&lt;/strong&gt;, заключается в способности обнаруживать варианты с очень низкой частотой в популяции прочтений. Основная сила &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt; заключается в его статистической модели, которая учитывает качество каждого нуклеотида в каждом прочтении. Это позволяет ему отличать настоящие низкочастотные мутации от систематических ошибок секвенирования.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ключевые особенности:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Высокая чувствительность:&lt;/strong&gt; Способен надежно определять варианты с частотой менее 1%.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Статистическая модель ошибок:&lt;/strong&gt; Вместо простого подсчета альтернативных аллелей &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt; использует качество оснований для построения вероятностной модели.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Обработка инделей:&lt;/strong&gt; Включает специальные инструменты для коррекции выравниваний вокруг коротких вставок и делеций, что значительно снижает количество ложноположительных результатов.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Скорость:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt; оптимизирован для быстрой работы и поддерживает многопоточность.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;под-этап-подготовка-bam-файла-для-lofreq&quot;&gt;Под-этап подготовка BAM-файла для LoFreq&lt;/h4&gt;
+
+&lt;p&gt;Выравниватели, включая &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimap2&lt;/code&gt;, могут оставлять артефакты выравнивания вокруг инделов. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt; имеет встроенные инструменты для исправления этих проблем.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Перевыравнивание (Viterbi realignment):&lt;/strong&gt; Улучшает локальное выравнивание прочтений вокруг потенциальных инделов.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Добавление качества инделов (Indel quality):&lt;/strong&gt; Добавляет в BAM-файл специальные теги с оценкой качества для вставок и делеций.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Далее необходимо проиндексировать этот новый, подготовленный BAM-файл. В результате работы &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt; получается файл &lt;strong&gt;vcf&lt;/strong&gt;, содержащий высоконадежный список генетических вариантов, обнаруженных для данного образца генома.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;этап-фильтрации-vcf-файла&quot;&gt;Этап фильтрации VCF-файла&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Проблема:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt; — высокочувствительный инструмент, но он все равно может выдавать ложноположительные варианты, особенно в регионах с низким покрытием или систематическими ошибками секвенирования.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Решение:&lt;/strong&gt; Применить дополнительную фильтрацию к VCF-файлу на основе аннотаций, которые добавляет сам &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt;.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Используемые инструменты:&lt;/strong&gt; &lt;strong&gt;BCFtools&lt;/strong&gt; (команда &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filter&lt;/code&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Что он делает? Отфильтровывает VCF-файл, оставив только варианты, которые соответствуют определенным критериям качества. Например:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QUAL &amp;gt; 30&lt;/code&gt;: Уверенность в варианте выше пороговой.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DP &amp;gt; 20&lt;/code&gt;: Глубина покрытия в этой точке не менее 20 прочтений.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AF &amp;gt; 0.01&lt;/code&gt;: Частота аллеля не менее 1% (особенно важно для определения минорных резистентных вариантов).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Результат:&lt;/strong&gt; “Очищенный” (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final_variants.vcf&lt;/code&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;этап-запроса-в-локальной-базе-hivdb-о-наличии-и-степени-лекарственной-устойчивости-в-геноме-вируса-выделенного-у-пациента&quot;&gt;Этап запроса в локальной базе HIVDB о наличии и степени лекарственной устойчивости в геноме вируса, выделенного у пациента&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;sierra-local&lt;/strong&gt; — это локальная версия веб-сервиса Sierra Стэнфордского университета, предназначенная для анализа лекарственной устойчивости ВИЧ-1. Инструмент использует последовательность генов вируса (протеазы, обратной транскриптазы, интегразы) для предсказания его чувствительности к антиретровирусным препаратам на основе алгоритмов, разработанных и поддерживаемых в рамках Стэнфордской базы данных по лекарственной устойчивости ВИЧ (HIVDB).&lt;/p&gt;
+
+&lt;p&gt;Главное преимущество &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sierra-local&lt;/code&gt; — возможность проводить анализ локально, в данном случае на самом устройстве OnSiteSeq, не отправляя конфиденциальные данные пациента через интернет.&lt;/p&gt;
+
+&lt;h4 id=&quot;этап-работы-с-vcf-файлами-от-lofreq&quot;&gt;Этап работы с VCF файлами от LoFreq&lt;/h4&gt;
+
+&lt;p&gt;Инструмент &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sierra-local&lt;/code&gt; не принимает на вход файлы в формате VCF. Он предназначен для работы с файлами последовательностей в формате FASTA. Файл VCF, полученный после &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt;, содержит только информацию об отличиях (вариантах) от референсного генома. Чтобы использовать его с &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sierra-local&lt;/code&gt;, необходимо сначала “применить” эти варианты к референсной последовательности и сгенерировать новую, консенсусную последовательность в формате FASTA. Эту задачу эффективно решает инструмент &lt;strong&gt;BCFtools&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BCFtools&lt;/code&gt; — это мощный и широко используемый набор утилит для работы с данными генетических вариантов в формате VCF (Variant Call Format) и его бинарным эквивалентом BCF. Он является частью экосистемы HTSlib, которая также включает &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SAMtools&lt;/code&gt;, который мы уже использовали. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BCFtools&lt;/code&gt; разработан для эффективной обработки больших объемов геномных данных и является краеугольным камнем во многих биоинформатических пайплайнах.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Исходные данные:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reference.fasta&lt;/code&gt;: Референсный геном ВИЧ-1 (будем использовать HXB2), который использовался для выравнивания.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final_variants.vcf&lt;/code&gt;: Отфильтрованный файл с вариантами от &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoFreq&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Для работы &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bcftools consensus&lt;/code&gt; требуется, чтобы VCF-файл был сжат с помощью &lt;strong&gt;bgzip&lt;/strong&gt; и проиндексирован с помощью &lt;strong&gt;tabix&lt;/strong&gt;. Эти утилиты входят в пакет HTSlib и обычно устанавливаются вместе с &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BCFtools&lt;/code&gt; и &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Samtools&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Теперь используем &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bcftools consensus&lt;/code&gt;, чтобы применить варианты из VCF к референсному геному.&lt;/p&gt;
+
+&lt;p&gt;VCF (от LoFreq) ➡️ BCFtools (конвертация в FASTA) ➡️ FASTA (консенсус) ➡️ sierra-local (анализ устойчивости) ➡️ Отчет в формате HTML.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;этап-определения-суб-типа-вируса-вич-1&quot;&gt;Этап определения суб-типа вируса ВИЧ-1&lt;/h3&gt;
+
+&lt;p&gt;Ну и в завершении в полученный на прошлом этапе HTML-отчёт добавим также данные о суб-типе вируса. Для этого будем использовать биоинформатический инструмент для классификации субтипов ВИЧ-1 группы М, основанный на методах машинного обучения. Такие инструменты, как правило, используют последовательности гена env или всего генома для точного определения вирусной линии, что имеет важное эпидемиологическое значение.&lt;/p&gt;
+
+&lt;p&gt;Итого у нас получился следующий конвейер (пайплайн):&lt;/p&gt;
+
+&lt;p&gt;Сырые данные (POD5) ➡️ Dorado ➡️ Прочтения (uBAM) ➡️ (QC 1: Фильтрация прочтений) ➡️ Качественные прочтения (FASTQ) ➡️ minimap2 ➡️ Выравнивание (BAM) ➡️ (QC 2: Оценка выравнивания и покрытия) ➡️ LoFreq (realignment) ➡️ Подготовленный BAM ➡️ LoFreq (variant calling) ➡️ Сырые варианты (VCF) ➡️ (QC 3: Фильтрация вариантов) ➡️ Надежные варианты (VCF) ➡️ BCFtools ➡️ Консенсус (FASTA) ➡️ sierra-local + Субтипирование ➡️ Итоговый отчет (HTML).&lt;/p&gt;
+
+&lt;p&gt;Для его запуска будем использовать WMS (Workflow Management System) &lt;strong&gt;Snakemake&lt;/strong&gt; с адаптированной графической оболочкой для запуска на 5” сенсорном экране.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;литература&quot;&gt;Литература&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Osterholzer DA, Goldman M. Dolutegravir: a next-generation integrase inhibitor for treatment of HIV infection. Clin Infect Dis. 2014;59:265–271. doi: 10.1093/cid/ciu221&lt;/li&gt;
+  &lt;li&gt;Долутегравир (Dolutegravirum) описание. РЛС. URL: &lt;a href=&quot;https://www.rlsnet.ru/active-substance/dolutegravir-3211&quot;&gt;https://www.rlsnet.ru/active-substance/dolutegravir-3211&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Кириченко А.А., Киреев Д.Е., Шлыкова А.В., и др. Лекарственная устойчивость ВИЧ-1 у пациентов с вирусологической неэффективностью АРТ в России (2013–2021 гг.). Эпидемиология и инфекционные болезни. URL: &lt;a href=&quot;https://epidemiology-journal.ru/ru/archive/article/40779&quot;&gt;https://epidemiology-journal.ru/ru/archive/article/40779&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;UNAIDS. Understanding fast-track targets, accelerating action to end the AIDS epidemic by 2030. 2015. URL: &lt;a href=&quot;https://www.unaids.org/sites/default/files/media_asset/201506_JC2743_Understanding_FastTrack_en.pdf&quot;&gt;https://www.unaids.org/sites/default/files/media_asset/201506_JC2743_Understanding_FastTrack_en.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Oxford Nanopore Technologies. POD5 file format. URL: &lt;a href=&quot;https://pod5-file-format.readthedocs.io/en/latest/&quot;&gt;https://pod5-file-format.readthedocs.io/en/latest/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Oxford Nanopore Technologies. Dorado GitHub Repository. URL: &lt;a href=&quot;https://github.com/nanoporetech/dorado&quot;&gt;https://github.com/nanoporetech/dorado&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Danecek P, Bonfield JK, Liddle J, et al. Twelve years of SAMtools and BCFtools. GigaScience. 2021;10(2):giab008. doi: 10.1093/gigascience/giab008&lt;/li&gt;
+  &lt;li&gt;Li H. Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics. 2018;34(18):3094-3100. doi: 10.1093/bioinformatics/bty191&lt;/li&gt;
+  &lt;li&gt;Wilm A, Aw PP, Bertrand D, et al. LoFreq: a sequence-quality aware, ultra-sensitive variant caller for uncovering cell-population heterogeneity from high-throughput sequencing data. Nucleic Acids Res. 2012;40(22):11189-11201. doi: 10.1093/nar/gks918&lt;/li&gt;
+  &lt;li&gt;Koboldt DC, Zhang Q, Larson DE, et al. VarScan 2: somatic mutation and copy number alteration discovery in cancer by exome sequencing. Genome Res. 2012;22(3):568-576. doi: 10.1101/gr.129684.111&lt;/li&gt;
+  &lt;li&gt;McKenna A, Hanna M, Banks E, et al. The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome Res. 2010;20(9):1297-1303. doi: 10.1101/gr.107524.110&lt;/li&gt;
+  &lt;li&gt;Rhee SY, Gonzales MJ, Kantor R, Betts BJ, Ravela J, Shafer RW. Human immunodeficiency virus reverse transcriptase and protease sequence database. Nucleic Acids Res. 2003;31(1):298-303. doi: 10.1093/nar/gkg100&lt;/li&gt;
+  &lt;li&gt;Chen L, Liu B, Yu X, Yau SS. An effective alignment-free method for HIV-1 subtype classification based on a subsequence natural vector. J Bioinform Comput Biol. 2019;17(05):1950027. doi: 10.1142/S021972001950027X&lt;/li&gt;
+  &lt;li&gt;Mölder F, Jablonski KP, Letcher B, et al. Sustainable data analysis with Snakemake. F1000Res. 2021;10:33. doi: 10.12688/f1000research.29032.2&lt;/li&gt;
+  &lt;li&gt;Логинова Р. Одни плюсы. Студия “Либо/Либо”. URL: &lt;a href=&quot;https://libolibo.ru/plus&quot;&gt;https://libolibo.ru/plus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Runtuwene LR, Kando T, Suzuki Y. On-Site MinION Sequencing. In: Satou K. (eds) The Human Immunodeficiency Virus. Methods in Molecular Biology, vol 1957. Humana, New York, NY. 2019. doi: 10.1007/978-1-4939-9152-2_14&lt;/li&gt;
+  &lt;li&gt;Ho JC, Ng GT, Renaud M, Poon AFY. sierra-local: A lightweight standalone application for drug resistance prediction. Journal of Open Source Software. 2019;4(33):1186. doi: 10.21105/joss.01186&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Roman Gorbenko</name></author><category term="обзор" /><category term="ВИЧ" /><summary type="html">“Каждая смерть человека с ВИЧ - это несправедливость, иногда нелепость”</summary></entry></feed>
