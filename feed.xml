@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.github.io/" rel="alternate" type="text/html" /><updated>2025-08-16T22:17:35+03:00</updated><id>https://onsiteseq.github.io/feed.xml</id><title type="html">OnSiteSeq - Секвенирование на месте</title><subtitle>Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики.</subtitle><author><name>gorbenkoteh</name></author><entry><title type="html">Welcome to Jekyll!</title><link href="https://onsiteseq.github.io/welcome-to-jekyll" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2025-04-19T16:20:36+03:00</published><updated>2025-04-19T16:20:36+03:00</updated><id>https://onsiteseq.github.io/welcome-to-jekyll</id><content type="html" xml:base="https://onsiteseq.github.io/welcome-to-jekyll">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.github.io/" rel="alternate" type="text/html" /><updated>2025-08-16T22:41:48+03:00</updated><id>https://onsiteseq.github.io/feed.xml</id><title type="html">OnSiteSeq - Секвенирование на месте</title><subtitle>Инновационная платформа для секвенирования ДНК у кровати пациента, у стола врача и в полевых условиях. Объединяем нанопоровое секвенирование, искусственный интеллект и GPU-вычисления для создания рутинных методов молекулярной диагностики.</subtitle><author><name>gorbenkoteh</name></author><entry><title type="html">Welcome to Jekyll!</title><link href="https://onsiteseq.github.io/welcome-to-jekyll" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2025-04-19T16:20:36+03:00</published><updated>2025-04-19T16:20:36+03:00</updated><id>https://onsiteseq.github.io/welcome-to-jekyll</id><content type="html" xml:base="https://onsiteseq.github.io/welcome-to-jekyll">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
 
@@ -85,6 +85,54 @@
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Подробнее:&lt;/strong&gt; &lt;a href=&quot;https://nanoporetech.com/&quot;&gt;Здесь&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;аппаратная-часть&quot;&gt;Аппаратная часть&lt;/h2&gt;
+
+&lt;h3 id=&quot;вычислительное-cpugpu-ядро&quot;&gt;Вычислительное CPU/GPU ядро&lt;/h3&gt;
+
+&lt;p&gt;В основе вычислительного ядра OnSiteSeq лежит &lt;strong&gt;NVIDIA Jеtson AGX Xaviеr&lt;/strong&gt;. Данная плата имеет следующие характеристики:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;GРU:&lt;/strong&gt; 512-ядерный NVIDIА Vоltа с тензорными ядрами&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;СРU:&lt;/strong&gt; 8-ядерный 64-битный процессор NVIDIА Саrmеl&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ОЗУ:&lt;/strong&gt; 16 ГБ LРDDR4Х (256-битная шина)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;хранение-данных&quot;&gt;Хранение данных&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Накопители:&lt;/strong&gt; SanDisk 64GB Mobile Extreme Pro microSDXC под операционную систему, Samsung 970 EVO Plus 1TB M.2 (2280), NVMe SSD под данные.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;секвенатор&quot;&gt;Секвенатор&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Нанопорус (Россия)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Прибор Нанопорус представляет собой аналог секвенатора &lt;strong&gt;MinION&lt;/strong&gt; от Oxford Nanopore, однако отечественные разработчики улучшили электронику и создали собственный корпус прибора, который позволяет работать в более широком диапазоне температур. Это повышает стабильность работы нанопор и процесса секвенирования в целом.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;связь&quot;&gt;Связь&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;4g модем&lt;/strong&gt; для получения обновлений при работе в режиме “У кровати / в поле”&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Wi-Fi модем&lt;/strong&gt; для получения обновлений&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;другие-элементы-устройства&quot;&gt;Другие элементы устройства&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Защитный кейс-чехол&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Сенсорный экран с контролером&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;USB-hub&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><category term="О комплексе" /><summary type="html">Ниже представлено описание основных программных компонентов комплекса с пояснением какие шаги по доработке и импортозамещению были выполнены в рамках данного проекта.</summary></entry><entry><title type="html">МФТИ</title><link href="https://onsiteseq.github.io/mfti" rel="alternate" type="text/html" title="МФТИ" /><published>2025-01-08T00:00:00+03:00</published><updated>2025-01-08T00:00:00+03:00</updated><id>https://onsiteseq.github.io/mfti</id><content type="html" xml:base="https://onsiteseq.github.io/mfti">&lt;h1 id=&quot;история-создания-и-развития-мфти&quot;&gt;История создания и развития МФТИ&lt;/h1&gt;
 
 &lt;h2 id=&quot;идея-и-предыстория-1938-1946&quot;&gt;Идея и предыстория (1938-1946)&lt;/h2&gt;
