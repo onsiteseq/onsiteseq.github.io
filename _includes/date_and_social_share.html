@@ -1,0 +1,46 @@
+<p class="post-date text-bold">
+  {% if page.author %}
+    <span class="text-upcase">{{ page.author }}</span> / 
+  {% endif %}
+  {% if page.date %}
+    <span class="text-upcase">{{ page.date | date: "%B %Y"}}</span>
+  {% endif %}
+
+{% if site.theme_config.show_reading_time == true %}
+  {% capture words %}
+  {{ content | number_of_words | minus: 180 }}
+  {% endcapture %}
+  {% unless words contains '-' %}
+  {{ words | strip | prepend: '(' | append: ' Words, ' }}
+  {{ words | plus: 180 | divided_by: 180 | append: ' Minutes)' }}
+  {% endunless %}
+{% endif %}
+</p>
+
+<div class="custom-social-share">
+  <a href="https://dzen.ru/share?url={{ page.url | absolute_url | url_encode }}&title={{ page.title | url_encode }}" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-dzen" 
+     title="Поделиться в Dzen">
+    <img src="/assets/images/logo/dzen.png" alt="Dzen" class="share-icon">
+    <span class="share-text">Поделиться в Dzen</span>
+  </a>
+  
+  <a href="https://t.me/share/url?url={{ page.url | absolute_url | url_encode }}&text={{ page.title | url_encode }}" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="share-btn share-telegram" 
+     title="Поделиться в Telegram">
+    <img src="/assets/images/logo/telegram.webp" alt="Telegram" class="share-icon">
+    <span class="share-text">Поделиться в Telegram</span>
+  </a>
+</div>
+
+{% if site.theme_config.show_tags == true %}
+  <div class="">
+    {% for tag in page.tags %}
+    <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+{% endif %}

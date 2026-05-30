@@ -1,0 +1,56 @@
+title: OnSiteSeq
+author: Roman Gorbenko
+url: https://onsiteseq.io # root address of the site
+tagline: "AI medtech платформа для управления контейнеризованными биоинформатическими пайплайнами. Определение лекарственной устойчивости, субтипа патогена и многое другое. Работа по стандартам <a href=\"/gxp\">GxP, GLP, ALCOA+</a>."
+description: > # description of the site (multiple lines allowed)
+  Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.
+
+permalink: /:slug
+
+favicon: "./logo.png" # relative path to site's favicon
+
+twitter:
+    username: gorbenkoteh # update or delete this
+    card: summary_large_image
+
+#theme: moonwalk # if you are using GitHub Pages, change it to remote_theme: abhinavs/moonwalk
+remote_theme: abhinavs/moonwalk
+
+theme_config:
+  appearance: "dark" # can be "light", "dark" or "auto"
+  appearance_toggle: true # if appearance can be switched by user
+  back_home_text: "На главную" # customize text for homepage link in post layout
+  date_format: "%Y-%m-%d" # customize how date is formatted
+  show_description: true # show blog description
+  show_navbar: true # show horizontal navbar
+  show_footer: true # show footer links in home page,add in _data/home.yml
+  show_copyright: true # show copyright notice in footer
+  # following keys are using to create home layout
+  show_components: true # show component cards (Edge, Desktop, Cloud)
+  show_projects: true # show projects as cards, add in _data/home.yml
+  show_blog: false # show blog posts added in _posts
+  show_old_projects: true # show old projects as cards, add in _data/home.yml
+  show_criminal: true # show criminal projects as cards, add in _data/home.yml
+  show_misc_list: false # show generic vertical list for misc details, add _data/home.yml
+  show_reading_time: true # show number of words and reading time in the blog posts
+  show_tags: true # show tags in a blog posts
+  # options for "home" page
+  home:
+    title_components: Описание компонентов
+    title_projects: Реализованные пейплайны
+    title_misc_list: Details
+    title_blog: Blog
+    title_old_projects: Пейплайны в работе. Помощники врача.
+    title_criminal: Пейплайны в работе. Помощники фермера и криминалиста.
+
+soopr:
+  publish_token: "" # sign up at https://www.soopr.co to get your publish token and personalize share and reaction options
+
+highlighter: rouge
+
+sass:
+  style: :compressed
+
+plugins:
+  - jekyll-feed
+  - jekyll-soopr-seo-tag

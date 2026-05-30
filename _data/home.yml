@@ -1,0 +1,99 @@
+navbar_entries:
+  - title: О платформе
+    url: aboutonsiteseq
+
+  - title: Контакты
+    url: contact
+
+  - title: Вход в Облако
+    url: https://cloud.onsiteseq.io
+
+component_entries:
+  - title: OnSiteSeq Edge
+    url: edge
+    desc: Автономный программно-аппаратный комплекс. Секвенирование у кровати пациента, в регионах крайнего севера и на выезде. Архитектура arm64, GPU Nvidia Jetson AGX.
+    image: /assets/images/logo/icon_edge.svg
+
+  - title: OnSiteSeq Desktop
+    url: desktop
+    desc: Система управления пайплайнами Cockpit для рабочего компьютера врача или исследователя. Работает автономно или в паре с Edge. Архитектура x86.
+    image: /assets/images/logo/icon_desktop.svg
+
+  - title: OnSiteSeq Cloud
+    url: cloud
+    desc: Версия Cockpit для запуска в облачных провайдерах. Доступна по адресу cloud.onsiteseq.io. Архитектура x86.
+    image: /assets/images/logo/icon_cloud.svg
+
+project_entries:
+  - title: ВИЧ
+    url: hiv
+    desc: Определение лекарственной устойчивости и субтипа ВИЧ-1
+    image: /assets/images/logo/hiv_white.png
+
+  - title: Туберкулёз
+    url: tuberculosis
+    desc: Определение лекарственной устойчивости и линий Mycobacterium tuberculosis
+    image: /assets/images/logo/tub.png
+
+old_project_entries:
+  - title: Коронавирус SARS-COV-2
+    url: sarscov2
+    desc: Определение субтипа
+    image: /assets/images/logo/virus.png
+
+  - title: Золотистой стафилококк (Staphylococcus aureus)
+    url: staphylococcus
+    desc: Определение резистентности
+    image: /assets/images/logo/s.aureas.png
+
+  - title: Классификация причины ОРВИ (поиск вирусных возбудителей)
+    url: flu
+    desc: Поиск вирусных возбудителей ОРВИ в метагеноме образца, взятого у кровати пациента.
+    image: /assets/images/logo/orvi.png
+
+  - title: Классификация причины ОРЗ (поиск бактериальных возбудителей).
+    url: cold
+    desc: Поиск бактериальных возбудителей ОРЗ в метагеноме образца, взятого у кровати пациента.
+    image: /assets/images/logo/orvi.png
+
+criminal_entries:
+  - title: Портрет преступника по ДНК
+    url: identikit
+    desc: Составление портрета преступника из ДНК, выделенной прямо на месте преступления.
+    image: /assets/images/logo/criminal.png
+
+  - title: Определение фитофтороза
+    url: phytophthora
+    desc: Определение наличия фитофтороза в метагеноме образца, полученного прямо на месте посева с/х культуры.
+    image: /assets/images/logo/fermer.png
+
+footer_entries:
+  - title: Хотите узнать о законодательстве поддерживающее инновации и персонализированную медицину?
+    url: normativ
+    image: /assets/images/footer/normativ.webp
+    description: ""
+
+  - title: Хотите процитировать данную разработку?
+    url: citation
+    image: /assets/images/footer/quotes.jpg
+    description: "Статьи и препринты статей."
+
+  - title: Хотите узнать какие еще стартапы и открытия появились в МФТИ недавно?
+    url: mfti
+    image: /assets/images/mfti/mfti.webp
+    description: "Проект родился в стенах МФТИ."
+
+  - title: Хотите узнать почему мы считаем важным развивать данную энциклопедию?
+    url: ruwiki
+    image: /assets/images/ruwiki/ruwiki.jpg
+    description: "Материал для сайта = статья для РуВики."
+
+  - title: Хотите узнать как проекты Сбера позволяют обеспечить безопасное хранение и сборку программного обеспечения в этом проекте?
+    url: sber
+    image: /assets/images/sber/GitVerse.svg
+    description: "GitVerse и Cloud.ru."
+
+  - title: Хотите узнать какие промышленные стандарты мы используем?
+    url: gxp
+    image: /assets/images/gxp/gxp_logo.png
+    description: "GxP - при проектировании проекта мы ориентировались на \"лучшие практики\"."
