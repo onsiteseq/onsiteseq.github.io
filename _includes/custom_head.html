@@ -1,0 +1,69 @@
+{% comment %}
+  Placeholder to allow defining custom head. You can put favicons and other custom header fields here
+{% endcomment %}
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
