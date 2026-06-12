@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="rod_grad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#81c784"/>
+      <stop offset="100%" stop-color="#2e7d32"/>
+    </radialGradient>
+    <radialGradient id="spore_grad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#a5d6a7"/>
+      <stop offset="100%" stop-color="#1b5e20"/>
+    </radialGradient>
+    <radialGradient id="rod_highlight" cx="40%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#c8e6c9" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#2e7d32" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Rod body (bacillus) === -->
+  <rect x="22" y="36" width="52" height="28" rx="14" ry="14" fill="url(#rod_grad)"/>
+  <rect x="22" y="36" width="52" height="28" rx="14" ry="14" fill="url(#rod_highlight)"/>
+  <!-- Cell wall outline -->
+  <rect x="22" y="36" width="52" height="28" rx="14" ry="14"
+        fill="none" stroke="#1b5e20" stroke-width="1.8" opacity="0.6"/>
+
+  <!-- Nucleoid (DNA region) -->
+  <ellipse cx="50" cy="50" rx="14" ry="7" fill="#1b5e20" opacity="0.25"/>
+
+  <!-- === Subterminal spore (right end) === -->
+  <ellipse cx="83" cy="50" rx="12" ry="15" fill="url(#spore_grad)"/>
+  <ellipse cx="83" cy="50" rx="12" ry="15"
+           fill="none" stroke="#1b5e20" stroke-width="1.8" opacity="0.7"/>
+  <!-- Spore coat layers -->
+  <ellipse cx="83" cy="50" rx="8.5" ry="11" fill="none" stroke="#388e3c" stroke-width="1" opacity="0.5"/>
+  <ellipse cx="83" cy="50" rx="5" ry="7" fill="#1b5e20" opacity="0.3"/>
+
+  <!-- === Peritrichous flagella === -->
+  <!-- Left side -->
+  <path d="M30 36 Q22 22 14 24" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+  <path d="M38 36 Q34 18 28 16" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+  <path d="M30 64 Q22 78 14 76" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+  <path d="M38 64 Q34 82 28 84" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+  <!-- Right side (on rod, not spore) -->
+  <path d="M56 36 Q60 20 68 18" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+  <path d="M56 64 Q60 80 68 82" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+  <!-- Far left -->
+  <path d="M22 46 Q8 40 6 30" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M22 54 Q8 60 6 70" fill="none" stroke="#388e3c" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+</svg>

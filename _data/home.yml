@@ -36,36 +36,46 @@ project_entries:
     image: /assets/images/logo/tub.png
 
 old_project_entries:
+  - title: Клостридии (C. difficile)
+    url: cdifficile
+    desc: Определение лекарственной устойчивости и токсигенности Clostridioides difficile — возбудитель антибиотик-ассоциированного колита
+    image: /assets/images/logo/icon_cdifficile.svg
+
+  - title: Гонорея (N. gonorrhoeae)
+    url: gonorrhoeae
+    desc: Определение лекарственной устойчивости Neisseria gonorrhoeae — приоритетный патоген ВОЗ по АМР
+    image: /assets/images/logo/icon_gonorrhoeae.svg
+
   - title: Коронавирус SARS-COV-2
     url: sarscov2
-    desc: Определение субтипа
-    image: /assets/images/logo/virus.png
+    desc: Определение варианта (субтипа) и устойчивости к противовирусным препаратам
+    image: /assets/images/logo/icon_sarscov2.svg
 
-  - title: Золотистой стафилококк (Staphylococcus aureus)
+  - title: Золотистый стафилококк (S. aureus)
     url: staphylococcus
-    desc: Определение резистентности
-    image: /assets/images/logo/s.aureas.png
+    desc: Определение MRSA/VRSA и полного профиля AMR Staphylococcus aureus — ведущего возбудителя нозокомиальных инфекций
+    image: /assets/images/logo/icon_staphylococcus.svg
 
-  - title: Классификация причины ОРВИ (поиск вирусных возбудителей)
+  - title: ОРВИ (вирусные возбудители)
     url: flu
-    desc: Поиск вирусных возбудителей ОРВИ в метагеноме образца, взятого у кровати пациента.
-    image: /assets/images/logo/orvi.png
+    desc: Метагеномная идентификация вирусных возбудителей ОРВИ — грипп A/B, RSV, риновирус, коронавирусы, аденовирус и др.
+    image: /assets/images/logo/icon_flu.svg
 
-  - title: Классификация причины ОРЗ (поиск бактериальных возбудителей).
+  - title: ОРЗ (бактериальные возбудители)
     url: cold
-    desc: Поиск бактериальных возбудителей ОРЗ в метагеноме образца, взятого у кровати пациента.
-    image: /assets/images/logo/orvi.png
+    desc: Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам — S. pneumoniae, H. influenzae, K. pneumoniae и др.
+    image: /assets/images/logo/icon_cold.svg
 
 criminal_entries:
   - title: Портрет преступника по ДНК
     url: identikit
-    desc: Составление портрета преступника из ДНК, выделенной прямо на месте преступления.
-    image: /assets/images/logo/criminal.png
+    desc: Предсказание внешности, происхождения и возраста по ДНК с места преступления — Forensic DNA Phenotyping на основе нанопорового секвенирования
+    image: /assets/images/logo/icon_identikit.svg
 
-  - title: Определение фитофтороза
+  - title: Фитофтороз и патогены растений
     url: phytophthora
-    desc: Определение наличия фитофтороза в метагеноме образца, полученного прямо на месте посева с/х культуры.
-    image: /assets/images/logo/fermer.png
+    desc: Метагеномная идентификация патогенов растений и устойчивости к фунгицидам — P. infestans, Fusarium, Botrytis и др. Прямо в поле.
+    image: /assets/images/logo/icon_phytophthora.svg
 
 footer_entries:
   - title: Хотите узнать о законодательстве поддерживающее инновации и персонализированную медицину?
@@ -88,10 +98,10 @@ footer_entries:
     image: /assets/images/ruwiki/ruwiki.jpg
     description: "Материал для сайта = статья для РуВики."
 
-  - title: Хотите узнать как проекты Сбера позволяют обеспечить безопасное хранение и сборку программного обеспечения в этом проекте?
+  - title: Хотите узнать как GitVerse обеспечивает хранение кода и CI/CD в этом проекте?
     url: sber
-    image: /assets/images/sber/GitVerse.svg
-    description: "GitVerse и Cloud.ru."
+    image: /assets/images/gitverse/GitVerse.svg
+    description: "Репозиторий и CI/CD на GitVerse."
 
   - title: Хотите узнать какие промышленные стандарты мы используем?
     url: gxp

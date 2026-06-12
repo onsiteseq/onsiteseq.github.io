@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="gc1" cx="38%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#f08080"/>
+      <stop offset="100%" stop-color="#b22222"/>
+    </radialGradient>
+    <radialGradient id="gc2" cx="62%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#f08080"/>
+      <stop offset="100%" stop-color="#b22222"/>
+    </radialGradient>
+    <radialGradient id="gb1" cx="38%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ffd0d0" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ff6666" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gb2" cx="62%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ffd0d0" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ff6666" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer membrane ring — left coccus -->
+  <circle cx="36" cy="52" r="24" fill="none" stroke="#8b0000" stroke-width="2.5" stroke-dasharray="4 2" opacity="0.5"/>
+  <!-- Left diplococcus body -->
+  <ellipse cx="36" cy="52" rx="20" ry="21" fill="url(#gc1)"/>
+  <!-- Left highlight -->
+  <ellipse cx="36" cy="52" rx="20" ry="21" fill="url(#gb1)"/>
+  <!-- Left indent (kidney shape) -->
+  <ellipse cx="55" cy="52" rx="6" ry="10" fill="#8b0000" opacity="0.25"/>
+
+  <!-- Outer membrane ring — right coccus -->
+  <circle cx="64" cy="52" r="24" fill="none" stroke="#8b0000" stroke-width="2.5" stroke-dasharray="4 2" opacity="0.5"/>
+  <!-- Right diplococcus body -->
+  <ellipse cx="64" cy="52" rx="20" ry="21" fill="url(#gc2)"/>
+  <!-- Right highlight -->
+  <ellipse cx="64" cy="52" rx="20" ry="21" fill="url(#gb2)"/>
+  <!-- Right indent (kidney shape) -->
+  <ellipse cx="45" cy="52" rx="6" ry="10" fill="#8b0000" opacity="0.25"/>
+
+  <!-- Pili / surface appendages — left -->
+  <line x1="18" y1="38" x2="10" y2="28" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="14" y1="48" x2="4"  y2="44" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="20" y1="64" x2="11" y2="72" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="30" y1="72" x2="26" y2="83" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <!-- Pili — right -->
+  <line x1="82" y1="38" x2="90" y2="28" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="86" y1="48" x2="96" y2="44" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="80" y1="64" x2="89" y2="72" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="70" y1="72" x2="74" y2="83" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <!-- Top pili -->
+  <line x1="36" y1="31" x2="32" y2="20" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="64" y1="31" x2="68" y2="20" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="50" y1="29" x2="50" y2="16" stroke="#c0392b" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Nucleoid dots inside each coccus -->
+  <ellipse cx="33" cy="50" rx="6" ry="5" fill="#7b0000" opacity="0.35"/>
+  <ellipse cx="67" cy="50" rx="6" ry="5" fill="#7b0000" opacity="0.35"/>
+</svg>
