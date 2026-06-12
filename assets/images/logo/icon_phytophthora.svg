@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="sp_g" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#a5d6a7"/>
+      <stop offset="100%" stop-color="#2e7d32"/>
+    </radialGradient>
+    <radialGradient id="sp2_g" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#c8e6c9"/>
+      <stop offset="100%" stop-color="#388e3c"/>
+    </radialGradient>
+    <radialGradient id="sp_hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#f1f8e9" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#2e7d32" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stem_g" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#558b2f"/>
+      <stop offset="100%" stop-color="#33691e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- === Main sporangiophore stem === -->
+  <path d="M50 92 Q50 75 50 60" stroke="url(#stem_g)" stroke-width="3.5"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Branch left 1 === -->
+  <path d="M50 72 Q40 65 32 58" stroke="#558b2f" stroke-width="2.8"
+        stroke-linecap="round" fill="none"/>
+  <!-- Branch right 1 -->
+  <path d="M50 72 Q60 65 68 58" stroke="#558b2f" stroke-width="2.8"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Sub-branch left-left === -->
+  <path d="M32 58 Q24 52 18 44" stroke="#558b2f" stroke-width="2"
+        stroke-linecap="round" fill="none"/>
+  <!-- Sub-branch left-right -->
+  <path d="M32 58 Q36 50 36 40" stroke="#558b2f" stroke-width="2"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Sub-branch right-left === -->
+  <path d="M68 58 Q64 50 64 40" stroke="#558b2f" stroke-width="2"
+        stroke-linecap="round" fill="none"/>
+  <!-- Sub-branch right-right -->
+  <path d="M68 58 Q76 52 82 44" stroke="#558b2f" stroke-width="2"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Centre top branch === -->
+  <path d="M50 60 Q50 50 50 38" stroke="#558b2f" stroke-width="2.2"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Sporangia (lemon/pear-shaped with papilla) === -->
+
+  <!-- Centre top sporangium -->
+  <ellipse cx="50" cy="28" rx="9" ry="12" fill="url(#sp_g)"/>
+  <ellipse cx="50" cy="28" rx="9" ry="12" fill="url(#sp_hl)"/>
+  <ellipse cx="50" cy="28" rx="9" ry="12" fill="none" stroke="#2e7d32" stroke-width="1.4" opacity="0.7"/>
+  <!-- Papilla (apex nipple) -->
+  <ellipse cx="50" cy="17" rx="3" ry="2.5" fill="#1b5e20" opacity="0.7"/>
+
+  <!-- Left-left sporangium -->
+  <ellipse cx="14" cy="36" rx="7.5" ry="10" fill="url(#sp2_g)"
+           transform="rotate(-20 14 36)"/>
+  <ellipse cx="14" cy="36" rx="7.5" ry="10" fill="url(#sp_hl)"
+           transform="rotate(-20 14 36)"/>
+  <ellipse cx="14" cy="36" rx="7.5" ry="10" fill="none" stroke="#2e7d32" stroke-width="1.2"
+           opacity="0.7" transform="rotate(-20 14 36)"/>
+  <ellipse cx="10" cy="29" rx="2.5" ry="2" fill="#1b5e20" opacity="0.7"
+           transform="rotate(-20 10 29)"/>
+
+  <!-- Left-right sporangium -->
+  <ellipse cx="36" cy="30" rx="7" ry="10" fill="url(#sp_g)"/>
+  <ellipse cx="36" cy="30" rx="7" ry="10" fill="url(#sp_hl)"/>
+  <ellipse cx="36" cy="30" rx="7" ry="10" fill="none" stroke="#2e7d32" stroke-width="1.2" opacity="0.7"/>
+  <ellipse cx="36" cy="20.5" rx="2.5" ry="2" fill="#1b5e20" opacity="0.7"/>
+
+  <!-- Right-left sporangium -->
+  <ellipse cx="64" cy="30" rx="7" ry="10" fill="url(#sp_g)"/>
+  <ellipse cx="64" cy="30" rx="7" ry="10" fill="url(#sp_hl)"/>
+  <ellipse cx="64" cy="30" rx="7" ry="10" fill="none" stroke="#2e7d32" stroke-width="1.2" opacity="0.7"/>
+  <ellipse cx="64" cy="20.5" rx="2.5" ry="2" fill="#1b5e20" opacity="0.7"/>
+
+  <!-- Right-right sporangium -->
+  <ellipse cx="86" cy="36" rx="7.5" ry="10" fill="url(#sp2_g)"
+           transform="rotate(20 86 36)"/>
+  <ellipse cx="86" cy="36" rx="7.5" ry="10" fill="url(#sp_hl)"
+           transform="rotate(20 86 36)"/>
+  <ellipse cx="86" cy="36" rx="7.5" ry="10" fill="none" stroke="#2e7d32" stroke-width="1.2"
+           opacity="0.7" transform="rotate(20 86 36)"/>
+  <ellipse cx="90" cy="29" rx="2.5" ry="2" fill="#1b5e20" opacity="0.7"
+           transform="rotate(20 90 29)"/>
+
+  <!-- === Zoospores (released spores) — small dots near base === -->
+  <circle cx="38" cy="85" r="3" fill="#66bb6a" opacity="0.6"/>
+  <circle cx="50" cy="88" r="2.5" fill="#66bb6a" opacity="0.5"/>
+  <circle cx="62" cy="85" r="3" fill="#66bb6a" opacity="0.6"/>
+  <circle cx="44" cy="82" r="2" fill="#81c784" opacity="0.5"/>
+  <circle cx="57" cy="82" r="2" fill="#81c784" opacity="0.5"/>
+</svg>
