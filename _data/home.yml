@@ -78,6 +78,11 @@ old_project_entries:
     desc: Определение лекарственной устойчивости Plasmodium falciparum (артемизинин) через локусные графы
     image: /assets/images/logo/icon_plasmodium.png
 
+  - title: Грипп
+    url: influenza
+    desc: Выявление антигенного сдвига (рекомбинации сегментов) и определение устойчивости вируса гриппа через пангеномные графы
+    image: /assets/images/logo/icon_influenza.png
+
 criminal_entries:
   - title: Портрет преступника по ДНК
     url: identikit
