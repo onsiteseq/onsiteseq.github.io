@@ -35,6 +35,17 @@ project_entries:
     desc: Определение лекарственной устойчивости и линий Mycobacterium tuberculosis
     image: /assets/images/logo/tub.png
 
+  - title: Малярия
+    url: plasmodium
+    desc: Определение лекарственной устойчивости Plasmodium falciparum (артемизинин) через локусные графы
+    image: /assets/images/logo/icon_plasmodium.png
+
+oncology_entries:
+  - title: Вирус папилломы человека (ВПЧ)
+    url: hpv
+    desc: Генотипирование ВПЧ высокого риска, определение статуса интеграции в геном и метилирование-триаж для профилактики рака шейки матки — от главной причины к ключевому элементу профилактики
+    image: /assets/images/logo/icon_hpv.svg
+
 old_project_entries:
   - title: Клостридии (C. difficile)
     url: cdifficile
