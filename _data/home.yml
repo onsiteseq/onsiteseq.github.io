@@ -83,6 +83,11 @@ old_project_entries:
     desc: Выявление антигенного сдвига (рекомбинации сегментов) и определение устойчивости вируса гриппа через пангеномные графы
     image: /assets/images/logo/icon_influenza.png
 
+  - title: Helicobacter pylori
+    url: helicobacter
+    desc: Преодоление экстремальной рекомбинации с помощью пангеномных графов для подбора индивидуальной эрадикационной терапии
+    image: /assets/images/logo/icon_helicobacter.png
+
 criminal_entries:
   - title: Портрет преступника по ДНК
     url: identikit
