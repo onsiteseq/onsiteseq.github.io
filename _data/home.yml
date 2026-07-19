@@ -35,10 +35,6 @@ project_entries:
     desc: Определение лекарственной устойчивости и линий Mycobacterium tuberculosis
     image: /assets/images/logo/tub.png
 
-  - title: Малярия
-    url: plasmodium
-    desc: Определение лекарственной устойчивости Plasmodium falciparum (артемизинин) через локусные графы
-    image: /assets/images/logo/icon_plasmodium.png
 
 oncology_entries:
   - title: Вирус папилломы человека (ВПЧ)
@@ -76,6 +72,11 @@ old_project_entries:
     url: cold
     desc: Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам — S. pneumoniae, H. influenzae, K. pneumoniae и др.
     image: /assets/images/logo/icon_cold.svg
+
+  - title: Малярия
+    url: plasmodium
+    desc: Определение лекарственной устойчивости Plasmodium falciparum (артемизинин) через локусные графы
+    image: /assets/images/logo/icon_plasmodium.png
 
 criminal_entries:
   - title: Портрет преступника по ДНК
