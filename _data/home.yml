@@ -34,7 +34,10 @@ project_entries:
     url: tuberculosis
     desc: Определение лекарственной устойчивости и линий Mycobacterium tuberculosis
     image: /assets/images/logo/tub.png
-
+  - title: Сифилис
+    url: syphilis
+    desc: Определение макролидной резистентности и генотипирование Treponema pallidum
+    image: /assets/images/logo/icon_syphilis.svg
 
 oncology_entries:
   - title: Вирус папилломы человека (ВПЧ)
@@ -52,6 +55,11 @@ old_project_entries:
     url: gonorrhoeae
     desc: Определение лекарственной устойчивости Neisseria gonorrhoeae — приоритетный патоген ВОЗ по АМР
     image: /assets/images/logo/icon_gonorrhoeae.svg
+
+  - title: Хламидиоз (C. trachomatis)
+    url: chlamydia
+    desc: Генотипирование сероваров (A–L) и определение резистентности к макролидам и фторхинолонам — самая распространённая бактериальная ИППП в мире
+    image: /assets/images/logo/chlamydia.png
 
   - title: Коронавирус SARS-COV-2
     url: sarscov2
