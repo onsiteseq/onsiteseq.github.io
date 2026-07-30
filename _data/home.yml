@@ -72,6 +72,11 @@ old_project_entries:
     desc: Генотипирование сероваров (A–L) и определение резистентности к макролидам и фторхинолонам — самая распространённая бактериальная ИППП в мире
     image: /assets/images/logo/chlamydia.png
 
+  - title: Микоплазмоз (M. genitalium)
+    url: mycoplasma
+    desc: Диагностика резистентности Mycoplasma genitalium к макролидам и фторхинолонам перед терапией — быстро развивающаяся МЛУ, часто пропускаемый возбудитель ИППП
+    image: /assets/images/logo/icon_mycoplasma.svg
+
   - title: Коронавирус SARS-COV-2
     url: sarscov2
     desc: Определение варианта (субтипа) и устойчивости к противовирусным препаратам
