@@ -36,15 +36,15 @@ permalink: /phytophthora/
 
 | Патоген | Заболевание | Ключевые культуры |
 | :--- | :--- | :--- |
-| **Phytophthora infestans** | Фитофтороз (поздний ожог) | Картофель, томат |
-| **Phytophthora sojae** | Корневая гниль сои | Соя |
-| **Fusarium oxysporum** | Фузариозное увядание | Томат, огурец, зерновые |
-| **Fusarium graminearum** | Фузариоз колоса | Пшеница, ячмень |
-| **Alternaria solani** | Ранний ожог, альтернариоз | Картофель, томат |
-| **Botrytis cinerea** | Серая гниль | Виноград, земляника, овощи |
-| **Pythium spp.** | Корневые гнили, демпинг-офф | Сеянцы, рассада |
-| **Plasmopara viticola** | Мучнистая роса (ложная) | Виноград |
-| **Peronospora spp.** | Ложная мучнистая роса | Подсолнечник, лук |
+| **[Phytophthora infestans](/phytophthora-infestans/)** | Фитофтороз (поздний ожог) | Картофель, томат |
+| **[Phytophthora sojae](/phytophthora-sojae/)** | Корневая гниль сои | Соя |
+| **[Fusarium oxysporum](/fusarium-oxysporum/)** | Фузариозное увядание | Томат, огурец, зерновые |
+| **[Fusarium graminearum](/fusarium-graminearum/)** | Фузариоз колоса | Пшеница, ячмень |
+| **[Alternaria solani](/alternaria-solani/)** | Ранний ожог, альтернариоз | Картофель, томат |
+| **[Botrytis cinerea](/botrytis-cinerea/)** | Серая гниль | Виноград, земляника, овощи |
+| **[Pythium spp.](/pythium/)** | Корневые гнили, демпинг-офф | Сеянцы, рассада |
+| **[Plasmopara viticola](/plasmopara-viticola/)** | Мучнистая роса (ложная) | Виноград |
+| **[Peronospora spp.](/peronospora/)** | Ложная мучнистая роса | Подсолнечник, лук |
 
 ---
 
