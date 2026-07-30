@@ -5,6 +5,7 @@ permalink: /staphylococcus/
 ---
 
 <div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <img src="/assets/images/logo/icon_staphylococcus.svg" alt="Staphylococcus aureus" style="max-height: 120px; margin-bottom: 1rem;">
   <h1>Определение MRSA/VRSA и полного профиля AMR Staphylococcus aureus</h1>
   <p style="font-size: 1.2em; color: #555;">Геномный надзор за золотистым стафилококком — ведущим возбудителем нозокомиальных инфекций и приоритетным патогеном ВОЗ</p>
 </div>
@@ -42,6 +43,16 @@ permalink: /staphylococcus/
 | **mecC** | Дивергентный вариант mecA (LA-MRSA CC130) | **MRSA** — детектируется стандартными тестами хуже |
 | **blaZ** | β-лактамаза | Устойчивость к пенициллину (>95% изолятов) |
 
+### Типы SCCmec и эпидемиологические категории MRSA
+
+Кассета SCCmec — геномный остров, несущий mecA/mecC. Её тип определяет происхождение штамма и тактику работы с ним:
+
+| Категория | SCCmec | Типичные клоны | Особенности |
+| :--- | :--- | :--- | :--- |
+| **HA-MRSA** (госпитальный) | I, II, III | CC5, CC8 (ST239) | Мультирезистентность, ОРИТ, длительные вспышки в стационаре |
+| **CA-MRSA** (внебольничный) | IV, V | CC8/USA300, CC80 | Часто PVL+, тяжёлые кожные инфекции у здоровых людей |
+| **LA-MRSA** (ассоциированный со скотом) | V, XI (mecC) | CC398, CC130 | Контакт с животными; mecC не детектируется экспресс-тестами на mecA |
+
 ### Гликопептиды — последняя линия при MRSA
 
 | Ген | Фенотип | Значение |
@@ -70,6 +81,7 @@ permalink: /staphylococcus/
 | :--- | :--- | :--- |
 | **Оксациллин** | Пенициллиназоустойчивый β-лактам | Суррогатный маркер MRSA (если R → MRSA) |
 | **Ванкомицин** | Гликопептид | Золотой стандарт лечения MRSA |
+| **Цефтаролин / Цефтобипрол** | Цефалоспорин V поколения | Единственные β-лактамы, активные против MRSA (сродство к PBP2a) |
 | **Линезолид** | Оксазолидинон | Альтернатива при непереносимости ванкомицина |
 | **Даптомицин** | Липопептид | Бактериемия и эндокардит при MRSA |
 | **Триметоприм/сульфаметоксазол** | Антифолат | Внебольничная MRSA-инфекция кожи |
@@ -93,6 +105,19 @@ permalink: /staphylococcus/
 
 ---
 
+## 🏥 Клинические сценарии применения
+
+| Сценарий | Что решает пайплайн |
+| :--- | :--- |
+| **Бактериемия / сепсис в ОРИТ** | MRSA/MSSA за часы — выбор между ванкомицином и оксациллином не «вслепую» |
+| **Предоперационный скрининг** | Назальное носительство S. aureus → деколонизация мупироцином + хлоргексидин до операции |
+| **Некротизирующая пневмония** | Детекция PVL+ CA-MRSA — экстренная эскалация терапии |
+| **Инфекция импланта / катетера** | Биоплёнка (ica+) → комбинация с рифампицином, решение о замене импланта |
+| **Неудача ванкомицина** | Подозрение на hVISA/VISA — своевременная смена на линезолид или даптомицин |
+| **Деколонизация не сработала** | mupA → высокоуровневая резистентность к мупироцину, смена схемы |
+
+---
+
 ## ⚙️ Версии и ML-модели
 
 ### Основной инструмент
@@ -107,7 +132,7 @@ permalink: /staphylococcus/
 | :--- | :--- |
 | **SA-Res-Detector** | Предсказание AMR-фенотипа по WGS (все классы антибиотиков) |
 | **SA-Virulence-Classifier** | Классификация вирулентного профиля (PVL+/-, биоплёнка+/-) |
-| **SA-Typер** | In silico MLST и SCCmec-типирование (CC8/USA300, CC5, CC22, CC398) |
+| **SA-Typer** | In silico MLST, spa-typing и SCCmec-типирование (CC8/USA300, CC5, CC22, CC398) |
 
 Обучение на геномах из **PATRIC/BV-BRC** (>10 000 геномов S. aureus), **EUCAST** и данных российских стационаров.
 
@@ -121,7 +146,7 @@ permalink: /staphylococcus/
 | **2. Выравнивание (Mapping)** | `minimap2 2.26`, `samtools` (Референс: S. aureus MRSA252 / USA300) |
 | **3. Поиск мутаций (Variant Calling)** | `clair3 >=1.0.4`, `medaka` |
 | **4. Детекция генов AMR и вирулентности** | `AMRFinderPlus` (NCBI), `abricate` (CARD, Resfinder, VFDB) |
-| **5. SCCmec и MLST-типирование** | `sccmec` (SCCmecFinder), `mlst` (PubMLST схема S. aureus) |
+| **5. SCCmec, MLST и spa-типирование** | `sccmec` (SCCmecFinder), `mlst` (PubMLST схема S. aureus), `spaTyper` |
 | **6. ML-инференс** | `PyTorch`, `pandas`, `scikit-learn` |
 
 ---
@@ -140,6 +165,7 @@ permalink: /staphylococcus/
 
 * 📄 [ВОЗ — Глобальный список приоритетных патогенов по AMR](https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.12)
 * 📄 [CARD — Comprehensive Antibiotic Resistance Database](https://card.mcmaster.ca/)
+* 📄 [BV-BRC — Bacterial and Viral Bioinformatics Resource Center (>10 000 геномов S. aureus)](https://www.bv-brc.org/)
 * 📄 [SCCmecFinder — типирование кассеты SCCmec](https://www.genomicepidemiology.org/services/)
 * 📄 [PubMLST S. aureus MLST Database](https://pubmlst.org/organisms/staphylococcus-aureus)
 * 📄 [EUCAST — Клинические точки отсечения для S. aureus](https://www.eucast.org/)
