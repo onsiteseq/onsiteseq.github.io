@@ -77,6 +77,11 @@ old_project_entries:
     desc: Диагностика резистентности Mycoplasma genitalium к макролидам и фторхинолонам перед терапией — быстро развивающаяся МЛУ, часто пропускаемый возбудитель ИППП
     image: /assets/images/logo/icon_mycoplasma.svg
 
+  - title: Менингококк (N. meningitidis)
+    url: meningitidis
+    desc: Серогруппирование и определение резистентности Neisseria meningitidis у постели пациента — молниеносный менингит, где каждый час критичен
+    image: /assets/images/logo/icon_meningitidis.svg
+
   - title: Коронавирус SARS-COV-2
     url: sarscov2
     desc: Определение варианта (субтипа) и устойчивости к противовирусным препаратам
