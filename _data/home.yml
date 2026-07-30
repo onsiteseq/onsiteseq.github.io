@@ -56,6 +56,11 @@ old_project_entries:
     desc: Полный профиль AMR и детекция карбапенемаз (OXA-23, NDM, VIM) — приоритетный патоген ВОЗ категории «критический», главная угроза ОРИТ
     image: /assets/images/logo/acinetobacter.png
 
+  - title: Pseudomonas aeruginosa (CRPA)
+    url: pseudomonas
+    desc: Полный AMR-профиль, детекция МБЛ (VIM, NDM) и насосов эффлюкса (MexAB) — мастер адаптации, ключевой патоген ОРИТ и муковисцидоза
+    image: /assets/images/logo/pseudomonas.png
+
   - title: Гонорея (N. gonorrhoeae)
     url: gonorrhoeae
     desc: Определение лекарственной устойчивости Neisseria gonorrhoeae — приоритетный патоген ВОЗ по АМР
