@@ -51,6 +51,11 @@ old_project_entries:
     desc: Определение лекарственной устойчивости и токсигенности Clostridioides difficile — возбудитель антибиотик-ассоциированного колита
     image: /assets/images/logo/icon_cdifficile.svg
 
+  - title: Acinetobacter baumannii (CRAB)
+    url: acinetobacter
+    desc: Полный профиль AMR и детекция карбапенемаз (OXA-23, NDM, VIM) — приоритетный патоген ВОЗ категории «критический», главная угроза ОРИТ
+    image: /assets/images/logo/acinetobacter.png
+
   - title: Гонорея (N. gonorrhoeae)
     url: gonorrhoeae
     desc: Определение лекарственной устойчивости Neisseria gonorrhoeae — приоритетный патоген ВОЗ по АМР
