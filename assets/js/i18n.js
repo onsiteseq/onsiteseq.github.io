@@ -777,6 +777,7 @@
   /* ── IDENTIKIT ── */
   EN['/identikit/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_identikit.svg" alt="Forensic DNA Phenotyping" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Forensic DNA Phenotyping — DNA Portrait from a Crime Scene</h1>' +
     '<p style="font-size:1.2em;color:#555">Predicting eye, hair, skin colour, biogeographic ancestry, and age from trace DNA amounts — right at the crime scene</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -793,7 +794,7 @@
       ['<strong>Biogeographic ancestry</strong>', 'AIMs panel + PCA', 'Continent >95% accuracy; sub-population ~80%'],
       ['<strong>Biological age</strong>', 'Epigenetic clocks (DNA methylation)', 'Error ±3–5 years'],
       ['<strong>Biological sex</strong>', 'Amelogenin (AMEL X/Y)', '100% with sufficient coverage'],
-      ['<strong>Kinship</strong>', 'IBD segment analysis', '1st–2nd degree (investigative genealogy)']
+      ['<strong>Kinship</strong>', 'IBD segment analysis (low-pass WGS + imputation of ~600k SNPs)', '1st–3rd degree (investigative genealogy)']
     ]) + '<hr>' +
     '<h2>🎯 Key SNP Markers and Genes</h2>' +
     '<h3>HIrisPlex-S System (eye, hair, skin colour)</h3>' +
@@ -806,12 +807,33 @@
       ['<strong>TYR</strong>', 'rs1042602', 'Skin pigmentation'],
       ['<strong>KITLG</strong>', 'rs12821256', 'Light hair']
     ]) +
+    '<h3>mtDNA and Y-chromosome Haplogroups</h3>' +
+    '<p>Long nanopore reads cover the entire mitochondrial genome and deterministic regions of the Y chromosome, enabling uniparental lineage assignment:</p>' +
+    tbl(['Marker', 'Lineage', 'Investigative value'], [
+      ['<strong>Mitochondrial DNA (mtDNA)</strong>', 'Maternal', 'Haplogroup (H, U, T, J, K, etc.) — narrows the search; useful for degraded samples with little nuclear DNA'],
+      ['<strong>Y chromosome (Y-SNP)</strong>', 'Paternal', 'Haplogroup (R1a, R1b, N, I, etc.) — narrows the search to a male lineage'],
+      ['<strong>Y-STR</strong>', 'Paternal', 'Compatibility with classical Y-STR databases']
+    ]) +
+    '<p>Haplogroups do not identify a person directly, but drastically reduce the search space and are used to exclude lineages in investigative genealogy.</p>' +
     '<h3>Epigenetic Age</h3>' +
     tbl(['Model', 'Markers', 'Applicability'], [
       ['<strong>Horvath clock</strong>', '353 CpG sites', 'Universal — all tissues'],
       ['<strong>Hannum clock</strong>', '71 CpG sites', 'Blood'],
       ['<strong>DNAmAge (blood/saliva)</strong>', '>800 CpG', 'Most accurate for forensics']
     ]) + '<hr>' +
+    '<h2>🆚 FDP Among Forensic Methods</h2>' +
+    tbl(['Method', 'What it provides', 'When to use'], [
+      ['<strong>STR profiling (CODIS/national DB)</strong>', 'Database identification', 'A suspect exists or the profile is already in a database; FDP does not replace STR'],
+      ['<strong>FDP (HIrisPlex-S + AIMs)</strong>', 'Probabilistic appearance portrait', 'Database is silent, no suspects — a description is needed to guide the search'],
+      ['<strong>Nanopore WGS (low coverage)</strong>', 'Haplogroups, kinship, full SNP profile', 'Investigative genealogy, complex mixtures, unidentified remains']
+    ]) +
+    '<p>FDP complements classical STR analysis rather than replacing it: the portrait guides the investigation, but legal identification still comes from STR profile matching.</p><hr>' +
+    '<h2>⚠️ Limitations and Boundaries</h2>' +
+    '<ul><li><strong>DNA mixtures</strong> — with traces from 2+ donors, a portrait is built only after mixture deconvolution; at donor ratios worse than 1:10, interpretation of the minor component is unreliable.</li>' +
+    '<li><strong>Low template DNA (LT-DNA)</strong> — below ~100 pg of DNA, allele drop-out is possible; the report must state coverage for every marker.</li>' +
+    '<li><strong>Degraded DNA</strong> — fragmentation below 150 bp is critical for amplicon schemes; long nanopore reads partially compensate via a WGS approach.</li>' +
+    '<li><strong>Probabilistic nature</strong> — FDP outputs categories with probabilities ("brown eyes, P=0.87"), not a photograph; the result is intelligence, not evidence.</li>' +
+    '<li><strong>Population calibration</strong> — models are trained on specific cohorts; error is higher for admixed populations, which is stated in the report.</li></ul><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq FDP Pipeline</strong>', '🟡 In development']]) +
     tbl(['Model', 'Target Task'], [
@@ -831,17 +853,24 @@
     '<h2>⚖️ Legal and Ethical Context</h2>' +
     tbl(['Aspect', 'Regulatory Framework'], [
       ['<strong>Legal basis (Russia)</strong>', 'Federal Law-73 "On State Forensic Expert Activity"; Federal Law-144 "On Operational Investigation Activity"'],
-      ['<strong>Genomic database</strong>', 'Federal DNA Database (FDBD) Rospotrebnadzor / MVD'],
+      ['<strong>Genomic database</strong>', 'Federal DNA Database (FDBD) — maintained by the MVD of Russia (Forensic Centre)'],
       ['<strong>Personal data</strong>', 'Federal Law-152; biometric data — special category'],
       ['<strong>International standards</strong>', 'ENFSI DNA Working Group; ISO/IEC 17025'],
       ['<strong>Probabilistic interpretation</strong>', 'All FDP results are <strong>probabilistic</strong>, not deterministic. Used to guide investigation — not as evidence']
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>Netherlands (Erasmus MC)</strong> — developers of the HIrisPlex-S system; FDP already applied in criminal investigations in Europe, Australia, USA.</li>' +
-    '<li><strong>Russia</strong> — Federal Law-242-FZ (2022) expanded the use of genomic technologies in forensics; MVD interest in mobile DNA laboratories is documented.</li>' +
+    '<li><strong>Russia</strong> — the Federal DNA Database (FDBD) operated by the MVD is in place; mobile DNA laboratories and point-of-care trace analysis are an area of active interest for law enforcement.</li>' +
     '<li><strong>Investigative genealogy</strong> — methodology for finding relatives of an unknown person via genomic databases (as in the Golden State Killer case, USA). Requires separate legal regulation in Russia.</li></ul><hr>' +
+    '<h2>🗺 Roadmap</h2>' +
+    '<ul><li><strong>Generative facial reconstruction</strong> — moving from categorical traits to a composite facial image (Parabon Snapshot-class solutions) from whole-genome data.</li>' +
+    '<li><strong>ML-based mixture deconvolution</strong> — automatic separation of 2–3 donor profiles from a metagenomic trace.</li>' +
+    '<li><strong>FDBD integration</strong> — automatic matching of STR profiles obtained from nanopore data against the federal database.</li>' +
+    '<li><strong>ISO/IEC 17025 validation</strong> — interlaboratory comparisons and method accreditation for forensic use.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://hirisplex.erasmusmc.nl/">HIrisPlex-S — online EVC prediction system (Erasmus MC)</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=HIrisPlex-S+system+eye+hair+skin">HIrisPlex-S — original publication (PubMed)</a></li>' +
+    '<li>📄 <a href="https://www.visage-h2020.eu/">VISAGE — EU consortium for genomic appearance reconstruction</a></li>' +
     '<li>📄 <a href="https://enfsi.eu/working-groups/dna/">ENFSI DNA Working Group — forensic genomics standards</a></li>' +
     '<li>📄 <a href="https://www.internationalgenome.org/">1000 Genomes Project</a></li>' +
     '<li>📄 <a href="https://www.hagsc.org/hgdp/">HGDP — Human Genome Diversity Project</a></li></ul>';
