@@ -9,6 +9,10 @@ layout: default
         <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
       </a>
       {% include horizontal_list.html collection=site.data.home.navbar_entries %}
+      <button id="lang-toggle" title="Switch language / Переключить язык"
+        style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+        🌐 EN
+      </button>
     </nav>
     <div class="dashed"></div>
   {% endif %}
@@ -16,12 +20,12 @@ layout: default
   <div class="hero">
     <h1 class="hero-title">{{ site.title }}</h1>
     {% if site.tagline %}
-      <p class="hero-tagline">{{ site.tagline }}</p>
+      <p class="hero-tagline" id="i18n-tagline">{{ site.tagline }}</p>
     {% endif %}
     <div class="hero-actions">
       <a href="https://dzen.ru/intermsofbioinformatics" target="_blank" rel="noopener"
          style="display:inline-flex; align-items:center; justify-content:space-between; gap:0.8em; padding:0.55em 1.2em; background:#6b5ce7; color:#fff; font-weight:600; font-size:1em; text-decoration:none; border-radius:8px; min-width:320px; max-width:480px; box-sizing:border-box;">
-        <span>Новости, видео, блог проекта на Дзен</span>
+        <span id="i18n-dzen-text">Новости, видео, блог проекта на Дзен</span>
         <img src="/assets/images/logo/dzen.png" alt="Дзен" width="36" height="36" style="width:36px; height:36px; object-fit:contain; flex-shrink:0;">
       </a>
     </div>
@@ -32,28 +36,35 @@ layout: default
 
 {% if site.theme_config.show_components == true %}
   <section class="home-section">
-    <h2 class="section-title">{{ site.theme_config.home.title_components }}</h2>
+    <h2 class="section-title" id="i18n-sec-components">{{ site.theme_config.home.title_components }}</h2>
     {% include card_list.html collection=site.data.home.component_entries %}
   </section>
 {% endif %}
 
 {% if site.theme_config.show_projects == true %}
   <section class="home-section">
-    <h2 class="section-title">{{ site.theme_config.home.title_projects }}</h2>
+    <h2 class="section-title" id="i18n-sec-projects">{{ site.theme_config.home.title_projects }}</h2>
     {% include card_list.html collection=site.data.home.project_entries %}
+  </section>
+{% endif %}
+
+{% if site.theme_config.show_oncology == true %}
+  <section class="home-section">
+    <h2 class="section-title" id="i18n-sec-oncology">{{ site.theme_config.home.title_oncology }}</h2>
+    {% include card_list.html collection=site.data.home.oncology_entries %}
   </section>
 {% endif %}
 
 {% if site.theme_config.show_old_projects == true %}
   <section class="home-section">
-    <h2 class="section-title">{{ site.theme_config.home.title_old_projects }}</h2>
+    <h2 class="section-title" id="i18n-sec-old">{{ site.theme_config.home.title_old_projects }}</h2>
     {% include card_list.html collection=site.data.home.old_project_entries %}
   </section>
 {% endif %}
 
 {% if site.theme_config.show_criminal == true %}
   <section class="home-section">
-    <h2 class="section-title">{{ site.theme_config.home.title_criminal }}</h2>
+    <h2 class="section-title" id="i18n-sec-criminal">{{ site.theme_config.home.title_criminal }}</h2>
     {% include card_list.html collection=site.data.home.criminal_entries %}
   </section>
 {% endif %}
@@ -92,3 +103,5 @@ layout: default
     </div>
   </footer>
 {% endif %}
+
+<script src="/assets/js/i18n.js"></script>

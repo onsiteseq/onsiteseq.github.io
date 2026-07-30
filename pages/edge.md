@@ -73,5 +73,6 @@ OnSiteSeq Edge — автономный программно-аппаратны�
 
 * [OnSiteSeq TUB — Туберкулёз](/tuberculosis/)
 * [OnSiteSeq HIV — ВИЧ-1](/hiv/)
+* [OnSiteSeq Rice — Пирикуляриоз риса](/rice/) 🟡 В разработке
 
 Список будет пополняться новыми решениями.
