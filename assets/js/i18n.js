@@ -1001,6 +1001,7 @@
       'hpv':          ['Human Papillomavirus (HPV)', 'High-risk HPV genotyping, host-genome integration status and methylation triage for cervical cancer prevention — from the root cause to the key element of prevention'],
       'cdifficile':   ['C. difficile (Clostridia)', 'Drug resistance and toxigenicity determination of Clostridioides difficile — causative agent of antibiotic-associated colitis'],
       'gonorrhoeae':  ['Gonorrhoea (N. gonorrhoeae)', 'Drug resistance determination of Neisseria gonorrhoeae — WHO priority AMR pathogen'],
+      'mycoplasma':   ['Mycoplasma genitalium', 'Pre-treatment resistance testing of M. genitalium to macrolides and fluoroquinolones — rapidly emerging multidrug resistance, frequently missed STI pathogen'],
       'sarscov2':     ['Coronavirus SARS-CoV-2', 'Variant (subtype) and antiviral drug resistance determination'],
       'staphylococcus': ['S. aureus (Staphylococcus)', 'MRSA/VRSA and full AMR profile determination — leading nosocomial pathogen'],
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
