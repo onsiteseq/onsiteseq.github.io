@@ -8,6 +8,12 @@ REMOTE_HOST="91.188.212.199"
 REMOTE_PORT="2222"
 REMOTE_PATH="/var/www/onsiteseq/"
 
+# Добавляем vendored bundle в PATH, чтобы не зависеть от глобального Bundler
+VENDOR_BUNDLE_BIN="$(find "$SCRIPT_DIR/vendor/bundle" -maxdepth 3 -type d -name bin 2>/dev/null | head -n1)"
+if [ -n "$VENDOR_BUNDLE_BIN" ]; then
+    export PATH="$VENDOR_BUNDLE_BIN:$PATH"
+fi
+
 # Права на ключ (SSH требует 600)
 chmod 600 "$SSH_KEY"
 
