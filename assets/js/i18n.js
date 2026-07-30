@@ -983,7 +983,8 @@
       'Реализованные пейплайны': 'Implemented Pipelines',
       'Онкология. Пейплайны в работе.': 'Oncology. Pipelines in Development.',
       'Пейплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
-      'Пейплайны в работе. Помощники фермера и криминалиста.': 'Pipelines in Development. Agriculture & Forensics.'
+      'Пейплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
+      'Пейплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
     },
     navLinks: {
       'О платформе': 'About Platform',
@@ -1005,7 +1006,16 @@
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
       'cold':         ['Bacterial ARI', 'Metagenomic identification of bacterial respiratory pathogens and AMR — S. pneumoniae, H. influenzae, K. pneumoniae, etc.'],
       'identikit':    ['DNA Forensic Portrait', 'Appearance, ancestry and age prediction from crime scene DNA — Forensic DNA Phenotyping via nanopore sequencing'],
-      'phytophthora': ['Phytophthora & Plant Pathogens', 'Metagenomic identification of plant pathogens and fungicide resistance — P. infestans, Fusarium, Botrytis, etc. Right in the field.']
+      'phytophthora': ['Phytophthora & Plant Pathogens', 'Metagenomic identification of plant pathogens and fungicide resistance — P. infestans, Fusarium, Botrytis, etc. Right in the field.'],
+      'phytophthora-infestans': ['Late Blight (Phytophthora infestans)', 'Late blight of potato and tomato — resistance markers for metalaxyl, CAA fungicides and strobilurins'],
+      'phytophthora-sojae': ['Soybean Root Rot (Phytophthora sojae)', 'Soybean root and stem rot — race monitoring and resistance to phenylamides and CAA'],
+      'fusarium-oxysporum': ['Fusarium Wilt (Fusarium oxysporum)', 'Wilt of tomato, cucumber and cereals — detection of formae speciales (f. sp.) and benzimidazole resistance'],
+      'fusarium-graminearum': ['Fusarium Head Blight (Fusarium graminearum)', 'Head blight of wheat and barley — DON/zearalenone mycotoxins, resistance to azoles and carbendazim'],
+      'alternaria-solani': ['Early Blight (Alternaria solani)', 'Early blight of potato and tomato — resistance to QoI (strobilurins) and SDHI fungicides'],
+      'botrytis-cinerea': ['Grey Mould (Botrytis cinerea)', 'Grey mould of grape, strawberry and vegetables — full fungicide multidrug resistance profile'],
+      'pythium': ['Pythium spp.', 'Root rots and seedling damping-off — differentiation from Fusarium/Rhizoctonia, mefenoxam resistance'],
+      'plasmopara-viticola': ['Grape Downy Mildew (Plasmopara viticola)', 'Downy mildew of grapevine — resistance to QoI, CAA and phenylamides'],
+      'peronospora': ['Downy Mildew (Peronospora spp.)', 'Downy mildew of sunflower and onion — race monitoring and phenylamide resistance']
     },
     footer: {
       'normativ': 'Want to learn about legislation supporting innovation and personalised medicine?',
@@ -1047,7 +1057,7 @@
     if (dz) dz.textContent = HOME.dzenText;
 
     /* Section titles */
-    ['components', 'projects', 'oncology', 'old', 'criminal'].forEach(function (k) {
+    ['components', 'projects', 'oncology', 'old', 'farmer', 'criminal'].forEach(function (k) {
       var el = document.getElementById('i18n-sec-' + k);
       if (el) {
         var ru = el.textContent.trim();

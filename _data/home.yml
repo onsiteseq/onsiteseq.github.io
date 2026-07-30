@@ -107,16 +107,57 @@ old_project_entries:
     desc: Преодоление экстремальной рекомбинации с помощью пангеномных графов для подбора индивидуальной эрадикационной терапии
     image: /assets/images/logo/icon_helicobacter.png
 
+farmer_entries:
+  - title: Фитофтороз (Phytophthora infestans)
+    url: phytophthora-infestans
+    desc: Поздний ожог картофеля и томата — маркеры устойчивости к металаксилу, CAA-фунгицидам и стробилуринам
+    image: /assets/images/logo/icon_phytophthora_infestans.svg
+
+  - title: Корневая гниль сои (Phytophthora sojae)
+    url: phytophthora-sojae
+    desc: Корневая и стеблевая гниль сои — мониторинг рас и устойчивости к фениламидам и CAA
+    image: /assets/images/logo/icon_phytophthora_sojae.svg
+
+  - title: Фузариозное увядание (Fusarium oxysporum)
+    url: fusarium-oxysporum
+    desc: Увядание томата, огурца и зерновых — детекция специализированных форм (f. sp.) и бензимидазол-резистентности
+    image: /assets/images/logo/icon_fusarium_oxysporum.svg
+
+  - title: Фузариоз колоса (Fusarium graminearum)
+    url: fusarium-graminearum
+    desc: Фузариоз колоса пшеницы и ячменя — микотоксины ДОН/зеараленон, устойчивость к азолам и карбендазиму
+    image: /assets/images/logo/icon_fusarium_graminearum.svg
+
+  - title: Ранний ожог (Alternaria solani)
+    url: alternaria-solani
+    desc: Альтернариоз картофеля и томата — устойчивость к QoI (стробилуринам) и SDHI-фунгицидам
+    image: /assets/images/logo/icon_alternaria_solani.svg
+
+  - title: Серая гниль (Botrytis cinerea)
+    url: botrytis-cinerea
+    desc: Серая гниль винограда, земляники и овощей — полный профиль мультирезистентности к фунгицидам
+    image: /assets/images/logo/icon_botrytis_cinerea.svg
+
+  - title: Питиум (Pythium spp.)
+    url: pythium
+    desc: Корневые гнили и демпинг-офф рассады — отличие от Fusarium/Rhizoctonia, устойчивость к мефеноксаму
+    image: /assets/images/logo/icon_pythium.svg
+
+  - title: Милдью винограда (Plasmopara viticola)
+    url: plasmopara-viticola
+    desc: Ложная мучнистая роса винограда — устойчивость к QoI, CAA и фениламидам
+    image: /assets/images/logo/icon_plasmopara_viticola.svg
+
+  - title: Ложная мучнистая роса (Peronospora spp.)
+    url: peronospora
+    desc: Ложная мучнистая роса подсолнечника и лука — мониторинг рас и фениламид-резистентности
+    image: /assets/images/logo/icon_peronospora.svg
+
 criminal_entries:
   - title: Портрет преступника по ДНК
     url: identikit
     desc: Предсказание внешности, происхождения и возраста по ДНК с места преступления — Forensic DNA Phenotyping на основе нанопорового секвенирования
     image: /assets/images/logo/icon_identikit.svg
-
-  - title: Фитофтороз и патогены растений
-    url: phytophthora
-    desc: Метагеномная идентификация патогенов растений и устойчивости к фунгицидам — P. infestans, Fusarium, Botrytis и др. Прямо в поле.
-    image: /assets/images/logo/icon_phytophthora.svg
 
 footer_entries:
   - title: Хотите узнать о законодательстве поддерживающее инновации и персонализированную медицину?
