@@ -34,10 +34,6 @@ project_entries:
     url: tuberculosis
     desc: Определение лекарственной устойчивости и линий Mycobacterium tuberculosis
     image: /assets/images/logo/tub.png
-  - title: Сифилис
-    url: syphilis
-    desc: Определение макролидной резистентности и генотипирование Treponema pallidum
-    image: /assets/images/logo/icon_syphilis.svg
 
 oncology_entries:
   - title: Вирус папилломы человека (ВПЧ)
@@ -46,6 +42,11 @@ oncology_entries:
     image: /assets/images/logo/icon_hpv.svg
 
 old_project_entries:
+  - title: Сифилис
+    url: syphilis
+    desc: Определение макролидной резистентности и генотипирование Treponema pallidum
+    image: /assets/images/logo/icon_syphilis.svg
+
   - title: Клостридии (C. difficile)
     url: cdifficile
     desc: Определение лекарственной устойчивости и токсигенности Clostridioides difficile — возбудитель антибиотик-ассоциированного колита

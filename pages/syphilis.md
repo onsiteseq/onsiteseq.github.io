@@ -29,8 +29,8 @@ permalink: /syphilis/
 
 | Платформа | Статус доступности |
 | :--- | :--- |
-| **OnSiteSeq Cockpit Edge** | 🟢 **Доступно** |
-| **OnSiteSeq Cockpit Desktop** | 🟢 **Доступно** |
+| **OnSiteSeq Cockpit Edge** | 🟡 **В разработке** |
+| **OnSiteSeq Cockpit Desktop** | 🟡 **В разработке** |
 | **OnSiteSeq Cockpit Cloud** | 🔴 Не доступно |
 
 ---
