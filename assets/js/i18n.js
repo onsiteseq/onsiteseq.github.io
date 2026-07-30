@@ -654,6 +654,7 @@
   /* ── STAPHYLOCOCCUS ── */
   EN['/staphylococcus/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_staphylococcus.svg" alt="Staphylococcus aureus" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>MRSA/VRSA and Full AMR Profile Determination of Staphylococcus aureus</h1>' +
     '<p style="font-size:1.2em;color:#555">Genomic surveillance of S. aureus — a leading nosocomial pathogen and WHO priority AMR organism</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -668,6 +669,13 @@
       ['<strong>mecA</strong>', 'Modified PBP2a — insensitive to β-lactams', '<strong>MRSA</strong> — resistance to all β-lactams'],
       ['<strong>mecC</strong>', 'Divergent mecA variant (LA-MRSA CC130)', '<strong>MRSA</strong> — detected less well by standard tests'],
       ['<strong>blaZ</strong>', 'β-lactamase', 'Penicillin resistance (>95% of isolates)']
+    ]) +
+    '<h3>SCCmec types and epidemiological MRSA categories</h3>' +
+    '<p>The SCCmec cassette is a genomic island carrying mecA/mecC. Its type indicates the strain\'s origin and informs the response:</p>' +
+    tbl(['Category', 'SCCmec', 'Typical clones', 'Features'], [
+      ['<strong>HA-MRSA</strong> (hospital)', 'I, II, III', 'CC5, CC8 (ST239)', 'Multidrug resistance, ICU, prolonged hospital outbreaks'],
+      ['<strong>CA-MRSA</strong> (community)', 'IV, V', 'CC8/USA300, CC80', 'Often PVL+, severe skin infections in healthy people'],
+      ['<strong>LA-MRSA</strong> (livestock)', 'V, XI (mecC)', 'CC398, CC130', 'Animal contact; mecC is missed by mecA rapid tests']
     ]) +
     '<h3>Glycopeptides — last resort for MRSA</h3>' +
     tbl(['Gene', 'Phenotype', 'Significance'], [
@@ -684,6 +692,17 @@
       ['<strong>rpoB</strong> (mutations)', 'Altered RNA polymerase', 'Rifampicin'],
       ['<strong>mupA</strong>', 'Altered isoleucyl-tRNA synthetase', 'Mupirocin (high-level) — decolonisation failure'],
       ['<strong>cfr</strong>', '23S rRNA methylase', 'Linezolid, chloramphenicol']
+    ]) +
+    '<h3>Antibiotic profile in the report</h3>' +
+    tbl(['Antibiotic', 'Class', 'Role in S. aureus'], [
+      ['<strong>Oxacillin</strong>', 'Penicillinase-stable β-lactam', 'Surrogate MRSA marker (R → MRSA)'],
+      ['<strong>Vancomycin</strong>', 'Glycopeptide', 'Gold standard for MRSA treatment'],
+      ['<strong>Ceftaroline / Ceftobiprole</strong>', '5th-generation cephalosporin', 'The only β-lactams active against MRSA (PBP2a affinity)'],
+      ['<strong>Linezolid</strong>', 'Oxazolidinone', 'Alternative in vancomycin intolerance'],
+      ['<strong>Daptomycin</strong>', 'Lipopeptide', 'MRSA bacteraemia and endocarditis'],
+      ['<strong>Clindamycin</strong>', 'Lincosamide', 'MRSA SSTI (D-test for inducible resistance)'],
+      ['<strong>Rifampicin</strong>', 'Ansamycin', 'Biofilm, combination therapy'],
+      ['<strong>Mupirocin</strong>', 'Topical antibiotic', 'Decolonisation of MRSA carriers']
     ]) + '<hr>' +
     '<h2>☣️ Virulence Factors</h2>' +
     tbl(['Gene', 'Factor', 'Clinical Significance'], [
@@ -692,6 +711,15 @@
       ['<strong>hla</strong>', 'α-toxin (haemolysin)', 'Tissue necrosis, erythrocyte destruction'],
       ['<strong>icaADBC</strong>', 'Biofilm (polysaccharide PIA/PNAG)', 'Implant and catheter-associated infections'],
       ['<strong>sdrCDE, fnbAB</strong>', 'Fibronectin-binding proteins', 'Endothelial adhesion → endocarditis']
+    ]) + '<hr>' +
+    '<h2>🏥 Clinical Use Cases</h2>' +
+    tbl(['Scenario', 'What the pipeline resolves'], [
+      ['<strong>Bacteraemia / ICU sepsis</strong>', 'MRSA/MSSA within hours — vancomycin vs oxacillin chosen knowingly'],
+      ['<strong>Pre-operative screening</strong>', 'Nasal S. aureus carriage → mupirocin + chlorhexidine decolonisation before surgery'],
+      ['<strong>Necrotising pneumonia</strong>', 'PVL+ CA-MRSA detection — urgent therapy escalation'],
+      ['<strong>Implant / catheter infection</strong>', 'Biofilm (ica+) → rifampicin combination, implant replacement decision'],
+      ['<strong>Vancomycin failure</strong>', 'Suspected hVISA/VISA — timely switch to linezolid or daptomycin'],
+      ['<strong>Decolonisation failure</strong>', 'mupA → high-level mupirocin resistance, regimen change']
     ]) + '<hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq SA Pipeline</strong>', '🟡 In development']]) +
@@ -706,7 +734,7 @@
       ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2 2.26</code>, <code>samtools</code> (Reference: S. aureus MRSA252 / USA300)'],
       ['<strong>3. Variant Calling</strong>', '<code>clair3 ≥1.0.4</code>, <code>medaka</code>'],
       ['<strong>4. AMR and virulence gene detection</strong>', '<code>AMRFinderPlus</code> (NCBI), <code>abricate</code> (CARD, Resfinder, VFDB)'],
-      ['<strong>5. SCCmec and MLST typing</strong>', '<code>sccmec</code> (SCCmecFinder), <code>mlst</code> (PubMLST S. aureus)'],
+      ['<strong>5. SCCmec, MLST and spa typing</strong>', '<code>sccmec</code> (SCCmecFinder), <code>mlst</code> (PubMLST S. aureus), <code>spaTyper</code>'],
       ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
@@ -717,7 +745,10 @@
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.12">WHO — Global Priority Pathogen List for AMR</a></li>' +
     '<li>📄 <a href="https://card.mcmaster.ca/">CARD — Comprehensive Antibiotic Resistance Database</a></li>' +
-    '<li>📄 <a href="https://pubmlst.org/organisms/staphylococcus-aureus">PubMLST S. aureus MLST Database</a></li></ul>';
+    '<li>📄 <a href="https://www.bv-brc.org/">BV-BRC — Bacterial and Viral Bioinformatics Resource Center (>10,000 S. aureus genomes)</a></li>' +
+    '<li>📄 <a href="https://www.genomicepidemiology.org/services/">SCCmecFinder — SCCmec cassette typing</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/staphylococcus-aureus">PubMLST S. aureus MLST Database</a></li>' +
+    '<li>📄 <a href="https://www.eucast.org/">EUCAST — clinical breakpoints for S. aureus</a></li></ul>';
 
   /* ── PHYTOPHTHORA ── */
   EN['/phytophthora/'] =
