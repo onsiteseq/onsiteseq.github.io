@@ -566,6 +566,7 @@
   /* ── FLU (ОРВИ) ── */
   EN['/flu/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_flu.svg" alt="OnSiteSeq ARVI panel" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Metagenomic Identification of Viral Respiratory Pathogens</h1>' +
     '<p style="font-size:1.2em;color:#555">Differential diagnosis of influenza A/B, RSV, rhinovirus, coronaviruses and other respiratory viruses — at the bedside</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -578,7 +579,7 @@
     tbl(['Pathogen', 'Clinical Significance'], [
       ['<strong>Influenza A (H1N1pdm09, H3N2)</strong>', 'Leading seasonal pathogen; antiviral therapy — oseltamivir, baloxavir'],
       ['<strong>Influenza B (Victoria / Yamagata)</strong>', 'Second most significant; subtyping important for treatment strategy'],
-      ['<strong>RSV A / RSV B</strong>', 'Leading cause of bronchiolitis in children; indication for nirsevimab'],
+      ['<strong>RSV A / RSV B</strong>', 'Leading cause of bronchiolitis in children; infant prophylaxis — nirsevimab; diagnosis guides isolation in paediatric wards'],
       ['<strong>Rhinovirus A / B / C</strong>', 'Most frequent ARVI pathogen; no specific therapy'],
       ['<strong>SARS-CoV-2</strong>', 'COVID-19; if detected — automatic extension to <a href="/sarscov2/">full CoV-2 pipeline</a>'],
       ['<strong>Seasonal coronaviruses (HCoV-OC43, -229E, -NL63, -HKU1)</strong>', 'COVID-19 differential diagnosis'],
@@ -593,6 +594,13 @@
       ['<strong>PA</strong> (polymerase)', 'I38T / I38F / I38M', 'Baloxavir (Xofluza)'],
       ['<strong>M2</strong> (ion channel)', 'S31N, V27A, A30T', 'Amantadine / Rimantadine (>99% H3N2 and pH1N1 resistant)']
     ]) + '<hr>' +
+    '<h2>🧪 Optimized for the Flongle Flow Cell</h2>' +
+    '<p>The Flongle adapter yields roughly <strong>1 Gb per run</strong> — an order of magnitude less than a full R9.4.1/R10.4.1 cell. For viral metagenomics this is usually sufficient (viral genomes are small), but the protocol must be tuned:</p>' +
+    '<ul><li><strong>Reverse transcription</strong> — all target pathogens are RNA viruses; the library is prepared via an RT step (e.g. Ligation Sequencing Kit with cDNA), which adds 1–2 hours to the protocol.</li>' +
+    '<li><strong>Adaptive sampling (Read Until)</strong> — on-the-fly rejection of human reads raises the viral fraction 3–10×; at typical viral loads (Ct &lt; 30) this is enough for full genomes of influenza (~13.5 kb) or RSV (~15 kb).</li>' +
+    '<li><strong>Host depletion</strong> — saponin treatment of the sample before extraction removes 90–99% of human material.</li>' +
+    '<li><strong>Sensitivity threshold</strong> — reliable detection and subtyping require the virus at ≥ 0.1% of reads (roughly Ct ≤ 30–32); a negative result does not rule out a low-titer infection.</li>' +
+    '<li><strong>Multiplexing</strong> — 2–4 barcoded samples per Flongle keeps per-sample cost at a few thousand rubles.</li></ul><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq ARVI Pipeline</strong>', '🟡 In development']]) +
     tbl(['Model', 'Target Task'], [
@@ -613,7 +621,7 @@
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>WHO</strong> — Global Influenza Surveillance and Response System (GISRS) includes >150 national centres; data on circulating strains determine annual vaccine composition.</li>' +
     '<li><strong>"Blind" antibiotic therapy problem</strong> — antibiotics are prescribed in ~40–60% of ARVI cases in Russia despite viral aetiology. Accurate bedside pathogen identification prevents unnecessary antibiotic use.</li>' +
-    '<li><strong>RSV season</strong> — annual outbreaks overload paediatric hospitals; nirsevimab (Beyfortus) requires confirmed RSV diagnosis.</li></ul><hr>' +
+    '<li><strong>RSV season</strong> — annual outbreaks overload paediatric hospitals; nirsevimab (Beyfortus) is given prophylactically to infants before the season, while fast bedside RSV confirmation drives isolation and cohorting on paediatric wards.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/initiatives/global-influenza-surveillance-and-response-system">WHO — Global Influenza Surveillance and Response System (GISRS)</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/genomes/FLU/">NCBI Influenza Virus Database</a></li>' +
@@ -622,6 +630,7 @@
   /* ── COLD (ОРЗ бактериальные) ── */
   EN['/cold/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_cold.svg" alt="OnSiteSeq ARI panel" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Metagenomic Identification of Bacterial Respiratory Pathogens and Their AMR</h1>' +
     '<p style="font-size:1.2em;color:#555">Differential diagnosis of community-acquired pneumonia and bacterial ARI — at the bedside</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -650,6 +659,13 @@
       ['<strong>gyrA / parC</strong> (mutations)', 'Altered DNA gyrase/topoisomerase IV', 'Fluoroquinolones (levofloxacin, moxifloxacin)'],
       ['<strong>cat / cmr</strong>', 'Chloramphenicol acetyltransferase', 'Chloramphenicol']
     ]) + '<hr>' +
+    '<h2>🧪 Optimized for the Flongle Flow Cell</h2>' +
+    '<p>The Flongle adapter yields roughly <strong>1 Gb per run</strong> — an order of magnitude less than a full R9.4.1/R10.4.1 cell. Bacterial genomes (2–6 Mb) are much larger than viral ones, so host depletion is critical here:</p>' +
+    '<ul><li><strong>Adaptive sampling (Read Until)</strong> — on-the-fly rejection of human reads raises the bacterial fraction 3–10×; the key technology for clinical metagenomics on Flongle.</li>' +
+    '<li><strong>Host depletion</strong> — saponin lysis or differential centrifugation remove 90–99% of human DNA before loading, lifting the pathogen share from ~1% to 50–80% of reads.</li>' +
+    '<li><strong>Sensitivity threshold</strong> — at ~1 Gb, reliable bacterial detection requires the pathogen at ≥ 0.1–1% of the sample; a negative result does not rule out low-titer infection.</li>' +
+    '<li><strong>AMR markers</strong> — resistance genes are reported only at sufficient coverage: a "not detected" call means the sensitivity limit, not confirmed susceptibility; the report states "AMR profile not established" accordingly.</li>' +
+    '<li><strong>Multiplexing</strong> — 2–4 barcoded samples per Flongle keeps per-sample cost at a few thousand rubles.</li></ul><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq ARI Pipeline</strong>', '🟡 In development']]) +
     tbl(['Model', 'Target Task'], [
