@@ -114,7 +114,7 @@ old_project_entries:
 
   - title: Helicobacter pylori
     url: helicobacter
-    desc: Преодоление экстремальной рекомбинации с помощью пангеномных графов для подбора индивидуальной эрадикационной терапии
+    desc: Профиль устойчивости и вирулентности (cagA/vacA) H. pylori из биоптата за день — для подбора индивидуальной эрадикационной терапии
     image: /assets/images/logo/icon_helicobacter.png
 
 farmer_entries:
