@@ -457,6 +457,69 @@
     '<li>📄 <a href="https://card.mcmaster.ca/">CARD — Comprehensive Antibiotic Resistance Database</a></li>' +
     '<li>📄 <a href="https://pubmlst.org/organisms/neisseria-gonorrhoeae">PubMLST N. gonorrhoeae Database</a></li></ul>';
 
+  /* ── H. PYLORI ── */
+  EN['/helicobacter/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_helicobacter.png" alt="Helicobacter pylori" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Drug Resistance Determination of Helicobacter pylori</h1>' +
+    '<p style="font-size:1.2em;color:#555">Genomic resistance and virulence profiling for personalized eradication therapy</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Helicobacter pylori</em> is a Gram-negative bacterium colonizing the gastric mucosa — the leading cause of chronic gastritis and peptic ulcer disease, and a risk factor for gastric cancer (IARC Group 1 carcinogen). Eradication success depends directly on strain susceptibility — above all to clarithromycin and levofloxacin.</p>' +
+    '<p>From nanopore sequencing data our pipeline determines the complete resistance profile and key virulence factors (<em>cagA</em>, <em>vacA</em>) directly from biopsy material, without culture — <em>H. pylori</em> is fastidious and slow-growing, so classical bacteriology takes 7–14 days.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (R10.4.1 chemistry, Dorado SUP). Material: antrum or gastric body biopsy. Optimal: amplicon sequencing of <em>23S rRNA</em> and <em>gyrA</em> loci <strong>or</strong> whole-genome sequencing (WGS) of culture/enriched sample.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the clinician with susceptibility profile for eradication regimens and virulence factor status; QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mutations</h2>' +
+    tbl(['Gene / Locus', 'Key Mutations', 'Antibiotic Class'], [
+      ['<strong>23S rRNA</strong>', 'A2142G, A2143G, A2142C', '<strong>Clarithromycin</strong> (macrolides) — key first-line drug'],
+      ['<strong>gyrA</strong>', 'N87K, D91G/N/Y', '<strong>Levofloxacin</strong> (fluoroquinolones) — rescue therapy'],
+      ['<strong>pbp1A</strong>', 'Multiple amino acid substitutions', '<strong>Amoxicillin</strong> (resistance rare but rising)'],
+      ['<strong>rdxA, frxA</strong>', 'Deletions, nonsense mutations (inactivation)', '<strong>Metronidazole</strong>'],
+      ['<strong>16S rRNA</strong>', 'A926G, A928C', '<strong>Tetracycline</strong>'],
+      ['<strong>rpoB</strong>', 'Point mutations (rif-region cluster)', '<strong>Rifabutin</strong> — third-line therapy'],
+      ['<strong>porD, oorD</strong>', 'Inactivating mutations', '<strong>Furazolidone</strong>']
+    ]) +
+    '<h3>Antibiotic profile in the report</h3>' +
+    tbl(['Antibiotic', 'Place in regimens (Maastricht VI)', 'Clinical Significance'], [
+      ['<strong>Clarithromycin</strong>', 'First-line triple therapy', 'Empirical use not recommended where regional resistance &gt;15% — genotype needed'],
+      ['<strong>Amoxicillin</strong>', 'Component of all regimens', 'Resistance rare; backbone of eradication'],
+      ['<strong>Metronidazole</strong>', 'Triple/quadruple therapy component', 'High background resistance; partly overcome by dose and duration'],
+      ['<strong>Levofloxacin</strong>', 'Second-line (rescue) therapy', 'Resistance rises fast with unjustified fluoroquinolone use'],
+      ['<strong>Tetracycline</strong>', 'Bismuth quadruple therapy', 'Resistance still rare'],
+      ['<strong>Rifabutin</strong>', 'Third-line therapy', 'Reserve after multiple eradication failures']
+    ]) + '<hr>' +
+    '<h2>🧫 Virulence Factors</h2>' +
+    '<p>Beyond resistance, the report includes key virulence factor status — prognostically valuable information for the physician:</p>' +
+    tbl(['Factor', 'Variants', 'Clinical Significance'], [
+      ['<strong>cagA</strong> (cagPAI island)', 'Present / absent', 'cagA+ strains — increased risk of peptic ulcer and gastric cancer'],
+      ['<strong>vacA</strong>', 's1/s2, m1/m2 alleles', 's1/m1 — the most toxigenic variant, associated with severe disease']
+    ]) +
+    '<p>This is where <strong>locus-level graph alignment (OnSiteSeq-PanG)</strong> is truly justified: cagPAI and <em>vacA</em> are hypervariable regions with frequent recombination and deletions, where a single linear reference fails. The graph encodes all known allelic variants of the locus and improves read-mapping completeness in these regions. For conserved resistance genes (23S rRNA, <em>gyrA</em>) standard alignment is used — it is reliable there.</p><hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq HP Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>HP-Res-Detector</strong>', 'Clarithromycin/levofloxacin resistance prediction from genotype'],
+      ['<strong>HP-Vir-Typer</strong>', 'cagA/vacA typing (including PanG graph alignment)']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> (references: 26695 / J99); <strong>OnSiteSeq-PanG</strong> locus pangenome graphs for cagPAI/vacA'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. AMR annotation</strong>', 'Custom mutation database 23S/gyrA/pbp1A/rdxA/frxA/16S/rpoB + <code>AMRFinderPlus</code>'],
+      ['<strong>5. Virulence typing</strong>', 'cagPAI detection, <em>vacA</em> allele typing (s/m regions)'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>WHO, 2017</strong> — clarithromycin-resistant <em>H. pylori</em> is on the WHO Priority Pathogens List (high priority).</li>' +
+    '<li><strong>Russia</strong> — clarithromycin resistance is estimated at 20–30%, above the Maastricht VI threshold (15%): empirical triple therapy without genotyping increasingly fails.</li>' +
+    '<li><strong>Gastric cancer</strong> — <em>H. pylori</em> is an IARC Group 1 carcinogen; cagA/vacA status refines individual risk.</li>' +
+    '<li>The current standard — culture with antibiogram — takes 7–14 days with low isolation success. Our pipeline delivers a <strong>same-day result</strong> directly from biopsy.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://gut.bmj.com/content/71/9/1724">Maastricht VI / Florence Consensus Report (Gut, 2022)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.12">WHO Priority Pathogens List (2017)</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/helicobacter-pylori">PubMLST Helicobacter pylori Database</a></li></ul>';
+
   /* ── C. DIFFICILE ── */
   EN['/cdifficile/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
