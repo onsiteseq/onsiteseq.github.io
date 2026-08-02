@@ -407,6 +407,7 @@
   /* ── GONORRHOEAE ── */
   EN['/gonorrhoeae/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_gonorrhoeae.svg" alt="Neisseria gonorrhoeae" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Drug Resistance Determination of Neisseria gonorrhoeae</h1>' +
     '<p style="font-size:1.2em;color:#555">Genomic surveillance of gonococci — a WHO priority AMR pathogen</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -416,9 +417,11 @@
     '<li><strong>📤 Output:</strong> HTML report for clinician with susceptibility profile for 6 antibiotic classes, and QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
-    '<p>The pipeline analyses seven key genetic determinants of gonococcal resistance:</p>' +
+    '<p>The pipeline analyses nine key genetic determinants of gonococcal resistance. Ceftriaxone resistance is <strong>cumulative</strong>: mosaic <em>penA</em> + <em>mtrR</em> + <em>penB</em> + <em>ponA</em> each add to MIC elevation, so the full profile matters, not a single gene:</p>' +
     tbl(['Gene / Locus', 'Key Mutations', 'Antibiotic Class'], [
-      ['<strong>penA</strong>', 'A501V/T/P/G; mosaic penA (PPNG)', 'Cephalosporins (ceftriaxone, cefixime) — <strong>last-resort antibiotics</strong>'],
+      ['<strong>penA</strong>', 'A501V/T/P/G; mosaic penA (incl. penA-60 of clone FC428)', 'Cephalosporins (ceftriaxone, cefixime) — <strong>last-resort antibiotics</strong>'],
+      ['<strong>penB</strong> (porin PorB)', 'G101K, A102D/N', 'Cephalosporins, penicillins (reduced permeability)'],
+      ['<strong>ponA</strong> (PBP1)', 'L421P', 'Cephalosporins, penicillins (MIC contribution)'],
       ['<strong>gyrA</strong>', 'S91F, D95G/A/N', 'Fluoroquinolones (ciprofloxacin)'],
       ['<strong>parC</strong>', 'S87R, D86N, E91K', 'Fluoroquinolones (ciprofloxacin, ampicillin)'],
       ['<strong>23S rRNA</strong>', 'A2059G, C2611T', 'Macrolides (azithromycin) — <strong>frequent co-resistance</strong>'],
@@ -430,7 +433,8 @@
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq GC Pipeline</strong>', '🟡 In development']]) +
     tbl(['Model', 'Target Task'], [
       ['<strong>GC-Res-Detector</strong>', 'AMR phenotype prediction from WGS (all antibiotic classes)'],
-      ['<strong>GC-Typer</strong>', 'In silico MLST (PubMLST NG-MAST / MLST scheme) + GASP typing']
+      ['<strong>GC-Typer</strong>', 'In silico MLST (PubMLST NG-MAST / MLST scheme) + GASP typing'],
+      ['<strong>GC-NG-STAR</strong>', 'NG-STAR typing — the GASP AMR surveillance standard (penA/mtrR/porB/ponA/gyrA/parC/23S profile)']
     ]) + '<hr>' +
     '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
     tbl(['Pipeline Stage', 'Libraries and Tools'], [
@@ -438,14 +442,17 @@
       ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2 2.26</code>, <code>samtools</code> (Reference: N. gonorrhoeae FA1090)'],
       ['<strong>3. Variant Calling</strong>', '<code>clair3 ≥1.0.4</code>, <code>medaka</code>'],
       ['<strong>4. AMR gene detection</strong>', '<code>AMRFinderPlus</code> (NCBI), <code>abricate</code> (CARD, Resfinder)'],
-      ['<strong>5. MLST typing</strong>', '<code>mlst</code> (PubMLST N. gonorrhoeae scheme)'],
+      ['<strong>5. MLST typing</strong>', '<code>mlst</code> (PubMLST N. gonorrhoeae scheme) + <strong>NG-STAR</strong> typing (GASP standard)'],
       ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>WHO GASP</strong> — Global Antimicrobial Surveillance Programme for gonorrhoea monitors resistance trends in >70 countries; ceftriaxone MIC elevation is the critical signal.</li>' +
     '<li><strong>Russia</strong> — Data from NICD suggest fluoroquinolone resistance exceeds 50% in many regions; azithromycin co-resistance is rising.</li>' +
-    '<li><strong>XDR gonorrhoea</strong> — Extensively drug-resistant strains (resistant to ceftriaxone + azithromycin) detected in Japan, UK, Australia — a global public health emergency.</li></ul><hr>' +
+    '<li><strong>XDR gonorrhoea</strong> — Extensively drug-resistant strains (resistant to ceftriaxone + azithromycin) detected in Japan, UK, Australia — a global public health emergency.</li>' +
+    '<li><strong>Clone FC428</strong> — a globally spreading ceftriaxone-resistant clone carrying mosaic <em>penA-60</em>; its detection is flagged in the report as an epidemiological alarm marker.</li>' +
+    '<li><strong>Treatment shift</strong> — since 2020 (CDC) first-line therapy is ceftriaxone 500 mg IM monotherapy; azithromycin was dropped from dual regimens due to rising macrolide resistance. Zoliflodacin — the first new antigonococcal class in decades — has completed a successful phase III trial, and the pipeline resistance profile is ready to extend to it.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
+    '<p>Related STI pipelines: 🧬 <a href="/syphilis/">Syphilis (T. pallidum)</a> · 🧬 <a href="/mycoplasma/">Mycoplasma genitalium</a></p>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240041530">WHO — Global AMR surveillance of Neisseria gonorrhoeae</a></li>' +
     '<li>📄 <a href="https://card.mcmaster.ca/">CARD — Comprehensive Antibiotic Resistance Database</a></li>' +
     '<li>📄 <a href="https://pubmlst.org/organisms/neisseria-gonorrhoeae">PubMLST N. gonorrhoeae Database</a></li></ul>';
