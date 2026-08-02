@@ -520,6 +520,107 @@
     '<li>📄 <a href="https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.12">WHO Priority Pathogens List (2017)</a></li>' +
     '<li>📄 <a href="https://pubmlst.org/organisms/helicobacter-pylori">PubMLST Helicobacter pylori Database</a></li></ul>';
 
+  /* ── INFLUENZA (штаммовый мониторинг) ── */
+  EN['/influenza/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_influenza.png" alt="Influenza virus" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Influenza Strain Monitoring and Antigenic Shift Detection</h1>' +
+    '<p style="font-size:1.2em;color:#555">Subtyping, segment reassortment tracking and antiviral resistance profiling</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><strong>Influenza virus</strong> combines a high point-mutation rate (antigenic drift) with the ability to swap whole genome segments during co-infection — <strong>reassortment</strong>, whose consequence is antigenic shift and the emergence of new pandemic strains. Subtyping alone is not enough: the origin of each of the 8 segments matters.</p>' +
+    '<p>The pipeline performs whole-genome influenza analysis: HA/NA subtyping, reconstruction of all segments, reassortant detection and antiviral resistance profiling. Segment ancestry is tracked with <strong>locus-level graph alignment (OnSiteSeq-PanG)</strong>: the graph encodes the history of known segments and shows which "historical pieces" the patient\'s virus is assembled from. Subtyping and segment assembly use mature standard tools (IRMA, CDC).</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: naso-/oropharyngeal swab, virus culture. Optimal: WGS of all 8 segments (multiplex PCR).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report with subtype (H1N1pdm09, H3N2, Victoria/Yamagata), Nextclade assignment, reassortant segment information and resistance profile.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Key Markers and Resistance</h2>' +
+    tbl(['Marker', 'Significance', 'Drug Class'], [
+      ['<strong>Hemagglutinin (HA)</strong>', 'H-antigen typing (H1, H3, H5...). Primary vaccine target; matched against the season\'s vaccine strains', '—'],
+      ['<strong>Neuraminidase (NA)</strong>', 'N-antigen typing (N1, N2). Mutations H275Y, E119V, R292K', '<strong>Oseltamivir, Zanamivir</strong> (neuraminidase inhibitors)'],
+      ['<strong>Polymerase (PA)</strong>', 'Mutations I38T/F/M', '<strong>Baloxavir</strong> (PA endonuclease inhibitor)'],
+      ['<strong>M2 protein</strong>', 'S31N mutation (>99% of H3N2 and pH1N1 resistant)', '<strong>Amantadine, Rimantadine</strong> — reference only']
+    ]) + '<hr>' +
+    '<h2>💉 Vaccinology and Surveillance</h2>' +
+    '<p>Subtyping and antigenic analysis data feed directly into <strong>WHO GISRS</strong> (>150 national centres) for seasonal vaccine strain selection. Local monitoring of circulating strains contributes to the global system and provides early warning of vaccine-epidemic strain mismatch. A separate track is <strong>highly pathogenic avian influenza (H5N1, H5N8) monitoring</strong>: detection of reassortants with avian-origin segments in humans is an epidemiological alarm signal.</p>' +
+    '<p>For metagenomic differential diagnosis of influenza vs other respiratory viruses (RSV, rhinovirus, SARS-CoV-2) see the <a href="/flu/">OnSiteSeq ARVI pipeline</a>.</p><hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Flu-Track Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>Flu-Subtyper</strong>', 'HA/NA subtyping from WGS (H1N1pdm09/H3N2, B Victoria/Yamagata)'],
+      ['<strong>Flu-Reassort-Detector</strong>', 'Reassortant segment detection (PanG graph alignment)'],
+      ['<strong>Flu-Res-Detector</strong>', 'Oseltamivir and baloxavir resistance prediction']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Assembly and subtyping</strong>', '<code>IRMA</code> (Iterative Refinement Meta-Assembler, CDC)'],
+      ['<strong>3. Alignment (Mapping)</strong>', '<code>minimap2</code> to segment references; <strong>OnSiteSeq-PanG</strong> for segment ancestry analysis'],
+      ['<strong>4. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>5. Clade classification</strong>', '<code>Nextclade</code> (Influenza A/B clades, antigenic match assessment)'],
+      ['<strong>6. Resistance annotation</strong>', 'Custom NA/PA/M2 mutation database + <code>snpEff</code>'],
+      ['<strong>7. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>WHO GISRS</strong> — defines annual vaccine composition from circulating strain data; genomic surveillance is the system\'s foundation.</li>' +
+    '<li><strong>H5N1</strong> — the expanding host range of highly pathogenic avian influenza (birds → mammals → sporadic human cases) makes reassortant monitoring a surveillance priority.</li>' +
+    '<li><strong>Oseltamivir resistance</strong> — the H275Y mutation once drove global fixation of resistant H1N1 (2008–2009 season); continuous monitoring is mandatory.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/initiatives/global-influenza-surveillance-and-response-system">WHO — Global Influenza Surveillance and Response System (GISRS)</a></li>' +
+    '<li>📄 <a href="https://wonder.cdc.gov/amd/flu/irma/">CDC IRMA — Iterative Refinement Meta-Assembler</a></li>' +
+    '<li>📄 <a href="https://nextstrain.org/flu">Nextstrain / Nextclade — Influenza clades</a></li>' +
+    '<li>📄 <a href="https://gisaid.org/">GISAID — global influenza genome database</a></li></ul>';
+
+  /* ── PLASMODIUM ── */
+  EN['/plasmodium/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_plasmodium.png" alt="Plasmodium falciparum" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Drug Resistance Determination of Plasmodium falciparum</h1>' +
+    '<p style="font-size:1.2em;color:#555">Genomic resistance profiling, species identification and verification of imported malaria cases</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Plasmodium falciparum</em> causes the most severe form of malaria. The major threat of recent years is the spread of partial <strong>artemisinin</strong> resistance (first-line therapy) from Southeast Asia into Africa. For Russia malaria is an imported infection: the pipeline\'s task here is <strong>verification of imported cases</strong>, species identification and resistance assessment of the imported strain within hours instead of reference laboratories.</p>' +
+    '<p>The pipeline analyses WHO-validated resistance markers (<em>kelch13</em>, <em>pfcrt</em>, <em>pfmdr1</em>, <em>dhfr</em>, <em>dhps</em>, <em>plasmepsin2/3</em> amplification) and deletions of the diagnostic genes <em>hrp2/hrp3</em>. For hypervariable loci, <strong>locus-level graph alignment (OnSiteSeq-PanG)</strong> reduces reference bias; conserved markers are analysed with standard alignment.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: whole blood (with parasite DNA enrichment or amplicon enrichment of target loci).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report with Plasmodium species, susceptibility profile, <em>hrp2/hrp3</em> status and detected mutations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mutations</h2>' +
+    tbl(['Gene', 'Key Mutations', 'Drug Class / Significance'], [
+      ['<strong>kelch13</strong> (K13)', 'C580Y, R539T, Y493H, M476I (Asia); <strong>R561H</strong> (validated in Africa — Rwanda, Uganda)', '<strong>Artemisinin</strong> — delayed parasite clearance'],
+      ['<strong>pfcrt</strong>', 'K76T', '<strong>Chloroquine</strong>'],
+      ['<strong>pfmdr1</strong>', 'N86Y, Y184F, D1246Y; copy-number amplification', '<strong>Mefloquine, Lumefantrine</strong> (susceptibility modulation)'],
+      ['<strong>dhfr</strong>', 'N51I, C59R, S108N', '<strong>Pyrimethamine</strong>'],
+      ['<strong>dhps</strong>', 'A437G, K540E', '<strong>Sulfadoxine</strong>'],
+      ['<strong>plasmepsin2/3</strong>', 'Copy-number amplification', '<strong>Piperaquine</strong> — ACT partner drug']
+    ]) +
+    '<h3>hrp2/hrp3 deletions — a threat to rapid diagnostics</h3>' +
+    '<p>Deletions of <em>hrp2</em> and <em>hrp3</em> make the parasite "invisible" to HRP2-based rapid diagnostic tests (RDT) — a false-negative result despite real infection. Long nanopore reads detect these deletions directly, without genome assembly. The report includes <em>hrp2/hrp3</em> status with clinical interpretation: when deleted, a negative RDT does not rule out malaria — PCR/microscopy is indicated.</p>' +
+    '<h3>Species identification</h3>' +
+    '<p>Beyond <em>P. falciparum</em>, the pipeline distinguishes <em>P. vivax</em>, <em>P. ovale</em>, <em>P. malariae</em> and the zoonotic <em>P. knowlesi</em> by the 18S rRNA locus — species determines management (for <em>P. vivax/ovale</em>, anti-relapse primaquine therapy with G6PD status is mandatory).</p><hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Malaria Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>Malaria-Res-Detector</strong>', 'Resistance prediction from WHO-validated markers (k13 et al.)'],
+      ['<strong>Malaria-Species-Typer</strong>', 'Plasmodium species identification by 18S rRNA']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> (reference: 3D7); <strong>OnSiteSeq-PanG</strong> for hypervariable loci'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. Resistance annotation</strong>', 'Custom WHO-validated marker database (k13/pfcrt/pfmdr1/dhfr/dhps)'],
+      ['<strong>5. Deletion detection</strong>', 'Coverage analysis of <em>hrp2/hrp3</em> loci from long reads'],
+      ['<strong>6. Species identification</strong>', '<code>minimap2</code> + classification against an 18S rRNA panel'],
+      ['<strong>7. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>WHO, World Malaria Report</strong> — ~250 million cases and ~600 thousand deaths annually; genomic resistance surveillance is named a priority.</li>' +
+    '<li><strong>Africa</strong> — partial artemisinin resistance (marker R561H) confirmed in Rwanda and Uganda: risk of repeating the chloroquine loss scenario.</li>' +
+    '<li><strong>Russia</strong> — malaria is eliminated, but imported cases are registered annually; rapid verification of species and resistance is critical for treatment and containment.</li>' +
+    '<li><strong>hrp2/hrp3 deletions</strong> — the spread of RDT-negative strains undermines confidence in rapid tests in endemic regions.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/teams/global-malaria-programme/reports">WHO — World Malaria Report</a></li>' +
+    '<li>📄 <a href="https://www.who.int/publications/i/item/9789240021068">WHO — K13 molecular markers of artemisinin resistance</a></li>' +
+    '<li>📄 <a href="https://www.wwarn.org/">WWARN — Worldwide Antimalarial Resistance Network</a></li>' +
+    '<li>📄 <a href="https://plasmodb.org/">PlasmoDB — Plasmodium genomics resource</a></li></ul>';
+
   /* ── C. DIFFICILE ── */
   EN['/cdifficile/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +

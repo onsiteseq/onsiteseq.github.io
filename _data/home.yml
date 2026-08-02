@@ -104,12 +104,12 @@ old_project_entries:
 
   - title: Малярия
     url: plasmodium
-    desc: Определение лекарственной устойчивости Plasmodium falciparum (артемизинин) через локусные графы
+    desc: Профиль устойчивости P. falciparum (артемизинин, ACT-партнёры), видовая идентификация и делеции hrp2/hrp3 — верификация завозных случаев
     image: /assets/images/logo/icon_plasmodium.png
 
   - title: Грипп
     url: influenza
-    desc: Выявление антигенного сдвига (рекомбинации сегментов) и определение устойчивости вируса гриппа через пангеномные графы
+    desc: Субтипирование, реассортация сегментов (антигенный сдвиг) и устойчивость к противовирусным — мониторинг штаммов гриппа
     image: /assets/images/logo/icon_influenza.png
 
   - title: Helicobacter pylori
