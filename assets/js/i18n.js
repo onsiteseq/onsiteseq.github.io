@@ -506,6 +506,7 @@
   /* ── SARS-CoV-2 ── */
   EN['/sarscov2/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_sarscov2.svg" alt="SARS-CoV-2" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>SARS-CoV-2 Variant and Antiviral Drug Resistance Determination</h1>' +
     '<p style="font-size:1.2em;color:#555">Nanopore whole-genome sequencing for coronavirus genomic surveillance and personalised treatment selection</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -520,17 +521,23 @@
       ['<strong>D614G</strong>', 'Baseline mutation in all modern variants (increased transmissibility)'],
       ['<strong>N501Y</strong>', 'Alpha, Beta, Gamma, Omicron — increased ACE2 affinity'],
       ['<strong>E484K/A</strong>', 'Beta, Gamma, some Omicron — immune escape from neutralising antibodies'],
-      ['<strong>L452R</strong>', 'Delta — T-cell immune evasion'],
+      ['<strong>L452R</strong>', 'Delta — increased transmissibility and escape from neutralising antibodies'],
       ['<strong>P681H/R</strong>', 'Alpha/Delta — efficient furin cleavage'],
       ['<strong>K417N/T</strong>', 'Beta, Gamma, Omicron BA.1 — immune escape'],
       ['<strong>F486P/V/S</strong>', 'Omicron XBB, JN.1 subvariants — neutralisation escape']
     ]) +
+    '<p>WHO classifies variants by risk level: <strong>VOC</strong> (Variant of Concern — confirmed impact on transmissibility/severity/immune escape), <strong>VOI</strong> (Variant of Interest — potential risk) and <strong>VUM</strong> (Variant Under Monitoring). The pipeline assigns the Pango lineage and automatically maps it to the current WHO category.</p>' +
     '<h3>Antiviral Drug Resistance</h3>' +
     tbl(['Gene', 'Mutations', 'Drug'], [
-      ['<strong>nsp5</strong> (3CLpro)', 'E166V, L50F, A156T, T21I', 'Nirmatrelvir (Paxlovid)'],
-      ['<strong>nsp12</strong> (RdRp)', 'V792I, C799F, C799R', 'Remdesivir'],
-      ['<strong>nsp12</strong> (RdRp)', 'P323L + E802D', 'Molnupiravir / Favipiravir']
+      ['<strong>nsp5</strong> (3CLpro)', 'E166V, L50F, A173V (L50F+E166V combination — strongest)', 'Nirmatrelvir (Paxlovid)'],
+      ['<strong>nsp12</strong> (RdRp)', 'V792I, S759A, E802D (in vitro and in immunocompromised patients)', 'Remdesivir'],
+      ['—', 'No clinically significant markers established', 'Molnupiravir / Favipiravir']
     ]) + '<hr>' +
+    '<h2>⚠️ Limitations and Boundaries</h2>' +
+    '<ul><li><strong>Low viral load</strong> — at Ct > 30–33 the amplicon scheme yields an incomplete genome; the Pango lineage may not resolve. Genome coverage percentage is stated in the report.</li>' +
+    '<li><strong>Classification threshold</strong> — reliable lineage assignment requires ≥80% genome coverage (Nextclade QC standard).</li>' +
+    '<li><strong>Resistance ≠ clinical failure</strong> — carriage of a resistance marker is interpreted in the context of the patient\'s immune status and prior therapy.</li>' +
+    '<li><strong>Rapid database ageing</strong> — variant classification and the resistance mutation database require regular updates (Pango lineages are revised weekly).</li></ul><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq SARS-CoV-2 Pipeline</strong>', '🟡 In development']]) +
     tbl(['Model', 'Target Task'], [
@@ -548,6 +555,7 @@
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>WHO</strong> — SARS-CoV-2 genomic epidemiological surveillance is recognised as a mandatory element of pandemic preparedness.</li>' +
+    '<li><strong>China</strong> — the first viral genome was published by Chinese scientists in January 2020 (Shanghai, Fudan University), enabling the first PCR tests and vaccines. During the "zero-COVID" era, mass testing and genomic surveillance became a state-scale tool in China — an experience that showed the world the value of rapid genomic diagnostics.</li>' +
     '<li><strong>Nirmatrelvir resistance</strong> — E166V mutation documented in clinical cases; with widespread Paxlovid use, resistance monitoring becomes critical.</li>' +
     '<li><strong>Nanopore advantage</strong> — the complete SARS-CoV-2 genome (~30 kb) is sequenced in <strong>4–6 hours</strong> from sample to result, enabling same-day clinical decision-making.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
