@@ -600,7 +600,8 @@
     '<li><strong>Adaptive sampling (Read Until)</strong> — on-the-fly rejection of human reads raises the viral fraction 3–10×; at typical viral loads (Ct &lt; 30) this is enough for full genomes of influenza (~13.5 kb) or RSV (~15 kb).</li>' +
     '<li><strong>Host depletion</strong> — saponin treatment of the sample before extraction removes 90–99% of human material.</li>' +
     '<li><strong>Sensitivity threshold</strong> — reliable detection and subtyping require the virus at ≥ 0.1% of reads (roughly Ct ≤ 30–32); a negative result does not rule out a low-titer infection.</li>' +
-    '<li><strong>Multiplexing</strong> — 2–4 barcoded samples per Flongle keeps per-sample cost at a few thousand rubles.</li></ul><hr>' +
+    '<li><strong>Multiplexing</strong> — 2–4 barcoded samples per Flongle keeps per-sample cost at a few thousand rubles.</li></ul>' +
+    '<p><em>As flow-cell output and ONT chemistry accuracy improve, the same pipelines move to deeper coverage unchanged — sensitivity thresholds are set by run configuration, not hard-coded.</em></p><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq ARVI Pipeline</strong>', '🟡 In development']]) +
     tbl(['Model', 'Target Task'], [
@@ -665,7 +666,8 @@
     '<li><strong>Host depletion</strong> — saponin lysis or differential centrifugation remove 90–99% of human DNA before loading, lifting the pathogen share from ~1% to 50–80% of reads.</li>' +
     '<li><strong>Sensitivity threshold</strong> — at ~1 Gb, reliable bacterial detection requires the pathogen at ≥ 0.1–1% of the sample; a negative result does not rule out low-titer infection.</li>' +
     '<li><strong>AMR markers</strong> — resistance genes are reported only at sufficient coverage: a "not detected" call means the sensitivity limit, not confirmed susceptibility; the report states "AMR profile not established" accordingly.</li>' +
-    '<li><strong>Multiplexing</strong> — 2–4 barcoded samples per Flongle keeps per-sample cost at a few thousand rubles.</li></ul><hr>' +
+    '<li><strong>Multiplexing</strong> — 2–4 barcoded samples per Flongle keeps per-sample cost at a few thousand rubles.</li></ul>' +
+    '<p><em>As flow-cell output and ONT chemistry accuracy improve, the same pipelines move to deeper coverage unchanged — sensitivity thresholds are set by run configuration, not hard-coded.</em></p><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq ARI Pipeline</strong>', '🟡 In development']]) +
     tbl(['Model', 'Target Task'], [
