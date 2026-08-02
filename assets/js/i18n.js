@@ -339,6 +339,7 @@
   /* ── HPV (ONCOLOGY) ── */
   EN['/hpv/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hpv.svg" alt="Human Papillomavirus" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Human Papillomavirus Genotyping and Molecular Triage for Cervical Cancer</h1>' +
     '<p style="font-size:1.2em;color:#555">Our first oncology pipeline — from the root cause (HPV) to the key element of prevention: point-of-care screening</p></div><hr>' +
     '<h2>🧬 Why HPV Is the Entry Point into Oncology</h2>' +
@@ -347,7 +348,9 @@
     '<ul><li><strong>90%</strong> of girls fully vaccinated against HPV by age 15;</li>' +
     '<li><strong>70%</strong> of women screened with a high-performance HPV test (by ages 35 and 45);</li>' +
     '<li><strong>90%</strong> of women with identified disease receive treatment.</li></ul>' +
-    '<p>The second pillar — the "high-performance HPV test" — is the niche where sequencing delivers what classic qPCR screening cannot. This is where OnSiteSeq kicks the door into oncology.</p><hr>' +
+    '<p>The second pillar — the "high-performance HPV test" — is the niche where sequencing delivers what classic qPCR screening cannot. This is where OnSiteSeq kicks the door into oncology.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: cervical swab or self-collected vaginal sample.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — HPV genotype(s), integration status, methylation triage with risk category (low / moderate / high CIN2+ risk); QC report for the bioinformatician.</li></ul><hr>' +
     '<h2>🎯 What the Pipeline Determines: Three Levels of Analysis</h2>' +
     '<p>Unlike qPCR panels that only give a "yes/no" for a few genotypes, nanopore sequencing solves three tasks of differing clinical weight in a single run.</p>' +
     tbl(['Level', 'Task', 'Clinical Significance'], [
@@ -357,6 +360,15 @@
     ]) +
     '<p><strong>The key nanopore advantage:</strong> long reads span the "virus–host" insertion junction in full, and native DNA reading enables methylation calling <strong>without bisulfite conversion and without a separate test</strong>. Illumina and qPCR cannot deliver this in a single run.</p>' +
     '<blockquote>This is not merely a "positive/negative" test, but <strong>risk stratification</strong>: the very transition "from the root cause to the key element of prevention".</blockquote><hr>' +
+    '<h2>💉 HPV and Vaccines: Why Screening Remains Mandatory</h2>' +
+    tbl(['Vaccine', 'Genotypes', 'Share of cervical cancer covered'], [
+      ['<strong>Bivalent</strong> (Cervarix)', '16, 18', '~70%'],
+      ['<strong>Quadrivalent</strong> (Gardasil)', '6, 11, 16, 18', '~70% + genital warts'],
+      ['<strong>Nine-valent</strong> (Gardasil-9)', '6, 11, 16, 18, 31, 33, 45, 52, 58', '~90%']
+    ]) +
+    '<ul><li><strong>Vaccination does not replace screening</strong> — non-vaccine oncogenic types (35, 39, 51, 56, 59, 66, 68) continue to circulate.</li>' +
+    '<li><strong>Sequencing tracks type replacement</strong> — genotype distribution shifts in vaccinated populations, and only a full-type test monitors this dynamic.</li>' +
+    '<li><strong>Co-infections</strong> — qPCR panels often miss multiple infections; nanopore reading sees the full spectrum of types in a sample at once.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     tbl(['Component', 'Status'], [['<strong>OnSiteSeq HPV Pipeline</strong>', '🟡 In development']]) +
@@ -377,6 +389,8 @@
       ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>BioPython</code>, <code>pandas</code>, <code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🌍 Why It Matters: Screening Where There Is None</h2>' +
+    '<ul><li><strong>GLOBOCAN 2020</strong> — about <strong>604,000 new cases</strong> and <strong>342,000 deaths</strong> from cervical cancer worldwide each year; 4th most common cancer in women. Yet it is one of the few fully preventable cancers.</li>' +
+    '<li><strong>Russia</strong> — thousands of new cases annually; incidence is rising in women under 45, where screening coverage is lowest.</li></ul>' +
     '<p>The main barrier to the 90–70–90 strategy is <strong>coverage</strong> (the "70%" pillar). Centralised qPCR laboratories are unavailable in remote regions, and women do not always reach colposcopy.</p>' +
     '<p>This is where the OnSiteSeq <strong>Edge</strong> architecture works:</p>' +
     '<ul><li><strong>Self-sampling</strong> + on-site analysis — WHO recommends self-collection to increase screening coverage;</li>' +
