@@ -37,12 +37,24 @@
 
   /* ── HIV ── */
   EN['/hiv/'] =
-    '<div class="product-header" style="text-align:center;margin-bottom:2rem"><h1>HIV-1 Drug Resistance and Subtype Determination</h1></div><hr>' +
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/hiv.png" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>HIV-1 Drug Resistance and Subtype Determination</h1>' +
+    '<p style="font-size:1.2em;color:#555">Resistance profiling across all ART classes and subtyping — models trained on Russian subtype A6 isolates</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p>Our algorithm delivers a complete sequencing data processing cycle for identifying drug resistance mutations and accurately determining the HIV-1 subtype.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado ML base-caller converts nanopore electrical signals to nucleotide data; POD5/FAST5 → FASTQ).</li>' +
     '<li><strong>📤 Output:</strong> Detailed HTML report for the clinician and an extended report for the bioinformatician.</li></ul><hr>' +
     av('ok', 'ok', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mutations</h2>' +
+    '<p>The pipeline analyses the entire <em>pol</em> gene — all three enzyme targets of antiretroviral therapy. Mutation interpretation follows <strong>Stanford HIVdb</strong> rules — the global standard for genotypic HIV drug resistance interpretation.</p>' +
+    tbl(['Drug Class', 'Gene', 'Key Mutations', 'Drugs'], [
+      ['<strong>NRTI</strong> (nucleoside RT inhibitors)', 'RT', 'M184V/I, K65R, thymidine analogues (M41L, D67N, T215Y/F, K219Q/E)', 'Tenofovir, Lamivudine, Abacavir'],
+      ['<strong>NNRTI</strong> (non-nucleoside RT inhibitors)', 'RT', 'K103N, Y181C, G190A, E138K', 'Efavirenz, Nevirapine, Rilpivirine, Doravirine'],
+      ['<strong>PI</strong> (protease inhibitors)', 'PR', 'D30N, M46I/L, I50V, I54V/M, V82A/F/T, L90M', 'Atazanavir, Darunavir, Lopinavir'],
+      ['<strong>INSTI</strong> (integrase inhibitors)', 'IN', 'Q148H/R/K, G118R, R263K, N155H', 'Dolutegravir, Bictegravir, Raltegravir']
+    ]) +
+    '<p>Integrase inhibitors are the first line of modern ART (dolutegravir is included in Russian clinical guidelines), so monitoring integrase mutations (Q148 + secondary) is of particular importance.</p><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     '<p>We continuously improve our pipeline and machine learning models.</p>' +
     '<h3>Core Tool</h3>' +
@@ -70,6 +82,14 @@
     '<h2>📋 Sample Reports</h2>' +
     '<ul><li>📄 <strong><a href="/reports/hiv/">Sample HTML Report for Clinician</a></strong></li>' +
     '<li>💻 <strong><a href="/reports/hiv/">Detailed Bioinformatics Report</a></strong></li></ul><hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Russia</strong> — over 1 million people live with HIV; <strong>subtype A6</strong> (formerly A-FSU) dominates in Russia and Eastern Europe but is rare in the West. Our <code>HIV-1-M-Env-Rus</code> and <code>HIV-1-Resist-Rus</code> models are trained specifically on Russian isolates — the key difference from Western counterparts tuned to subtype B.</li>' +
+    '<li><strong>WHO</strong> — genotypic drug resistance testing is recommended before ART initiation: transmitted NNRTI resistance exceeds the 10% threshold in several regions.</li>' +
+    '<li><strong>INSTI era</strong> — the shift of first-line therapy to dolutegravir makes integrase mutation surveillance an HIV-DR priority.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://hivdb.stanford.edu/">Stanford HIV Drug Resistance Database (HIVdb)</a></li>' +
+    '<li>📄 <a href="https://www.genomedetective.com/app/typingtool/hiv">REGA HIV-1 Subtyping Tool</a></li>' +
+    '<li>📄 <a href="https://www.who.int/teams/global-hiv-hepatitis-and-stis-programmes/hiv/treatment/hiv-drug-resistance">WHO — HIV Drug Resistance Report</a></li></ul><hr>' +
     '<h2>🔬 Related OnSiteSeq Research</h2>' +
     '<p><strong>Academic research:</strong></p>' +
     '<ul><li>📄 <a href="/assets/pdf/research/OnSiteSeq_Research_HIV_Demography.pdf">HIV and Russia\'s Demographics. Impact Analysis (PDF)</a></li></ul>' +
@@ -81,6 +101,7 @@
   /* ── TUBERCULOSIS ── */
   EN['/tuberculosis/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/tub.png" alt="Mycobacterium tuberculosis" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Drug Resistance and Lineage Determination of Mycobacterium tuberculosis</h1>' +
     '<p style="font-size:1.2em;color:#555">Comprehensive bioinformatics solution for nanopore sequencing analysis of M. tuberculosis</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -88,6 +109,20 @@
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data. Optimised for nanopore reads (R10.4.1 chemistry, High Accuracy basecalling).</li>' +
     '<li><strong>📤 Output:</strong> Detailed clinical HTML report with sensitivity profile for 13 key anti-tuberculosis drugs (RIF, INH, EMB, PZA, BDQ, LZD, etc.) and a QC report for the bioinformatician.</li></ul><hr>' +
     av('ok', 'ok', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mutations</h2>' +
+    '<p>Mutation annotation follows the <strong>WHO catalogue of mutations</strong> in the M. tuberculosis complex (2021; 2023 update) — the international standard for genotypic MTB drug resistance interpretation.</p>' +
+    tbl(['Drug', 'Genes', 'Key Mutations'], [
+      ['<strong>Rifampicin</strong>', '<em>rpoB</em>', 'RRDR cluster, S450L — MDR-TB marker'],
+      ['<strong>Isoniazid</strong>', '<em>katG</em>, <em>inhA</em> promoter, <em>fabG1</em>', 'S315T (katG), C-15T (inhA)'],
+      ['<strong>Ethambutol</strong>', '<em>embB</em>', 'M306V/I, Q497R'],
+      ['<strong>Pyrazinamide</strong>', '<em>pncA</em> (+ promoter)', 'Diverse loss-of-function variants across the gene'],
+      ['<strong>Fluoroquinolones</strong> (levo-/moxifloxacin)', '<em>gyrA</em>, <em>gyrB</em>', 'A90V, D94G/N/Y/A — pre-XDR marker'],
+      ['<strong>Aminoglycosides / Capreomycin</strong>', '<em>rrs</em>, <em>eis</em> promoter, <em>tlyA</em>', 'A1401G (rrs), C-14T (eis)'],
+      ['<strong>Bedaquiline / Clofazimine</strong>', '<em>Rv0678</em>, <em>atpE</em>, <em>pepQ</em>', 'Rv0678 inactivation → BDQ/CFZ cross-resistance'],
+      ['<strong>Linezolid</strong>', '<em>rrl</em>, <em>rplC</em>', 'C154R (rplC)'],
+      ['<strong>Delamanid / Pretomanid</strong>', '<em>ddn</em>, <em>fgd1</em>, <em>fbiA/B/C</em>', 'Loss of prodrug-activation function']
+    ]) +
+    '<p>Special attention goes to <em><strong>Rv0678</strong></em> mutations: new-generation drugs (bedaquiline, clofazimine) are part of modern MDR-TB regimens, and cross-resistance between them via Rv0678 regulator inactivation is a rapidly growing problem.</p><hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     '<p>The pipeline integrates advanced ML architectures including graph neural networks (GNN) and Self-Attention mechanisms.</p>' +
     '<h3>Core Tool</h3>' +
@@ -103,7 +138,7 @@
     tbl(['Pipeline Stage', 'Libraries and Tools'], [
       ['<strong>1. Alignment (Mapping)</strong>', '<code>minimap2 2.26</code>, <code>samtools ≥1.17</code> (Reference: H37Rv)'],
       ['<strong>2. Variant Calling</strong>', 'Neural network <code>clair3 ≥1.0.4</code>'],
-      ['<strong>3. Annotation</strong>', '<code>snpEff 5.1</code>'],
+      ['<strong>3. Annotation</strong>', '<code>snpEff 5.1</code> + WHO mutation catalogue (2023)'],
       ['<strong>4. ML Inference (Lineage &amp; Resistance)</strong>', '<code>PyTorch</code>, <code>torch-geometric</code>, <code>pandas</code>, <code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🖥 Sample Pipeline Card in OnSiteSeq Cockpit</h2>' +
@@ -111,6 +146,14 @@
     '<h2>📋 Sample Reports</h2>' +
     '<ul><li>📄 <strong><a href="/reports/tub">Sample HTML Report for Clinician (Tuberculosis)</a></strong></li>' +
     '<li>💻 <strong><a href="/reports/tub/">Detailed Bioinformatics Report (Tuberculosis)</a></strong></li></ul><hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>WHO, Global TB Report</strong> — ~10.6 million new TB cases annually; Russia is on the list of 30 high <strong>MDR/RR-TB</strong> burden countries.</li>' +
+    '<li><strong>Beijing lineage (L2)</strong> — dominates in Russia and Eurasia and is associated with multidrug resistance and increased transmissibility. Accurate lineage determination (TB-Lineage-Detector) is an epidemiologically significant result, not an academic exercise.</li>' +
+    '<li><strong>New drugs</strong> (bedaquiline, pretomanid, linezolid — BPaL/BPaLM regimens) are rapidly changing the resistance landscape; genotypic surveillance of Rv0678/rrl is a priority for the coming years.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240082410">WHO — Catalogue of mutations in the M. tuberculosis complex (2023)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/teams/global-tuberculosis-programme/tb-reports">WHO — Global Tuberculosis Report</a></li>' +
+    '<li>📄 <a href="https://tbdr.lshtm.ac.uk/">TBProfiler — MTB resistance marker database</a></li></ul><hr>' +
     '<h2>🔬 Related OnSiteSeq Research</h2>' +
     '<p><strong>Research:</strong></p>' +
     '<ul><li>📄 <a href="/assets/pdf/research/OnSiteSeq_Research_Tub_Demography.pdf">Tuberculosis and Russia\'s Demographics. Impact Analysis (PDF)</a></li>' +
