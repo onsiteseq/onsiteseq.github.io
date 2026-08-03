@@ -664,6 +664,36 @@
     '<li>📄 <a href="https://www.wwarn.org/">WWARN — Worldwide Antimalarial Resistance Network</a></li>' +
     '<li>📄 <a href="https://plasmodb.org/">PlasmoDB — Plasmodium genomics resource</a></li></ul>';
 
+  /* ── ASFV (Африканская чума свиней) ── */
+  EN['/asfv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_asfv.svg" alt="African swine fever virus (ASFV)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>African Swine Fever — ASFV</h1>' +
+    '<p style="font-size:1.2em;color:#555">Point-of-care detection at the farm gate: genotyping, low-virulence deletion variants, differentiation from classical swine fever</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><strong>African swine fever virus (ASFV)</strong> is a large enveloped DNA virus of the <em>Asfarviridae</em> family (genome 170–190 kb) causing acute haemorrhagic fever in domestic pigs with lethality up to <strong>100%</strong>. It does not infect humans, but economically it is the most devastating veterinary pathogen of the decade: the 2018–2019 epizootic in China wiped out roughly 40% of the world\'s largest pig herd. With no widely available vaccine, protection rests entirely on early detection and farm biosecurity.</p>' +
+    '<p>Our pipeline performs nanopore sequencing right on the farm or in a veterinary laboratory: confirmation of ASFV DNA, genotyping by the <em>p72</em> gene (<em>B646L</em>) and — critical for the current epizootic situation — <strong>detection of low-virulence deletion variants</strong> (Δ<em>CD2v</em>, Δ<em>MGF360/505</em>) that spread across China in 2020–2021 and mimic chronic infections, defeating routine monitoring approaches.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: EDTA blood, spleen, lymph nodes, tonsils; equipment swabs, feed, drinking water.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the veterinarian — ASFV DNA detection, <em>p72</em> genotype, <em>CD2v</em>/<em>MGF</em>/<em>I177L</em> deletion status, differentiation from classical swine fever (CSF).</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Key Markers</h2>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>B646L (p72)</strong>', 'Major capsid protein — ASFV genotyping (24 known genotypes; <strong>genotype II</strong> circulates in Eurasia)'],
+      ['<strong>E402R (CD2v)</strong>', 'Deletion → loss of hemadsorption; marker of low-virulence "vaccine-like" variants (China, 2020–2021)'],
+      ['<strong>MGF360 / MGF505</strong>', 'Multigene-family deletions → attenuation, chronic course, evasion of monitoring'],
+      ['<strong>I177L</strong>', 'Deletion in the ASFV-G-ΔI177L vaccine strain — marker of vaccine-like origin of an isolate'],
+      ['<strong>CSFV (E2, 5\'UTR)</strong>', 'Differential diagnosis with classical swine fever — clinically indistinguishable at early stages']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>China, 2018–2019</strong> — the epizootic destroyed ~40% of the herd (over 100 million pigs) in the country producing about half of the world\'s pork; the largest livestock catastrophe in history. The virus continues to circulate in the region.</li>' +
+    '<li><strong>Low-virulence variants (2020–2021)</strong> — isolates with <em>CD2v</em>/<em>MGF</em> deletions cause chronic, low-symptom disease; some are linked to unlicensed "vaccine" strains. Their detection requires genomic methods, not single-locus PCR alone.</li>' +
+    '<li><strong>Vaccines</strong> — Vietnam licensed live attenuated vaccines (2022–2023) with restricted use; no globally available vaccine exists, so early detection and quarantine remain the basis of control.</li>' +
+    '<li><strong>Russia</strong> — regular outbreaks in backyard farms and industrial complexes; official surveillance by Rosselkhoznadzor and FGBI "ARRIAH".</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.woah.org/en/disease/african-swine-fever/">WOAH — African Swine Fever</a></li>' +
+    '<li>📄 <a href="https://www.fao.org/animal-health/situation-updates/ASF/en">FAO — EMPRES: global ASF situation updates</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/10497/">NCBI — African swine fever virus genomes</a></li></ul>';
+
   /* ── C. DIFFICILE ── */
   EN['/cdifficile/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
