@@ -1580,6 +1580,47 @@
     '<li><strong>Open repository</strong> — code available to the community at <a href="https://gitverse.ru/onsiteseq">gitverse.ru/onsiteseq</a></li></ul>';
 
   /* ════════════════════════════════════════════════════
+     CHINESE CONTENT MAP  (keyed by window.location.pathname)
+     Fallback: pages without ZH entry show EN, then RU.
+  ════════════════════════════════════════════════════ */
+  var ZH = {};
+
+  /* ── ASFV 非洲猪瘟 ── */
+  ZH['/asfv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_asfv.svg" alt="非洲猪瘟病毒 (ASFV)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>非洲猪瘟 — ASFV</h1>' +
+    '<p style="font-size:1.2em;color:#555">猪场门口即时检测:基因分型、低毒力缺失变异株、与经典猪瘟鉴别</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>非洲猪瘟病毒 (ASFV)</strong> 是非洲猪瘟病毒科 (Asfarviridae) 的大型有囊膜 DNA 病毒(基因组 170–190 kb),引起家猪急性出血热,致死率高达 <strong>100%</strong>。该病毒不感染人,但却是近十年来经济破坏力最强的兽医病原体:2018–2019 年中国的疫情摧毁了全球最大养猪业约 40% 的存栏。由于尚无广泛可用的疫苗,防控完全依赖早期检测与猪场生物安全。</p>' +
+    '<p>我们的流程在猪场或兽医实验室现场进行纳米孔测序:确认 ASFV DNA、基于 <em>p72</em> 基因 (<em>B646L</em>) 进行基因分型,并——对当前疫情形势至关重要——<strong>检测低毒力缺失变异株</strong> (Δ<em>CD2v</em>、Δ<em>MGF360/505</em>)。这类变异株 2020–2021 年在中国扩散,表现为慢性感染,令常规监测手段失效。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:EDTA 抗凝血、脾脏、淋巴结、扁桃体;设备拭子、饲料、饮水。</li>' +
+    '<li><strong>📤 输出:</strong> 面向兽医的 HTML 报告 — ASFV DNA 检测结果、<em>p72</em> 基因型、<em>CD2v</em>/<em>MGF</em>/<em>I177L</em> 缺失状态、与经典猪瘟 (CSF) 的鉴别。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 关键分子标志物</h2>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>B646L (p72)</strong>', '主要衣壳蛋白 — ASFV 基因分型(已知 24 个基因型;欧亚地区流行 <strong>II 型</strong>)'],
+      ['<strong>E402R (CD2v)</strong>', '缺失 → 红细胞吸附丧失;低毒力"类疫苗"变异株标志(中国,2020–2021)'],
+      ['<strong>MGF360 / MGF505</strong>', '多基因家族缺失 → 毒力减弱、慢性经过、逃避监测'],
+      ['<strong>I177L</strong>', '疫苗株 ASFV-G-ΔI177L 的缺失 — 分离株类疫苗来源的标志'],
+      ['<strong>CSFV (E2, 5\'UTR)</strong>', '与经典猪瘟的鉴别诊断 — 早期临床症状无法区分']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>中国,2018–2019</strong> — 疫情摧毁了约 40% 的存栏(超过 1 亿头),而该国产量约占全球猪肉一半,是历史上最大的畜牧业灾难。病毒至今仍在该地区流行。</li>' +
+    '<li><strong>低毒力变异株 (2020–2021)</strong> — 携带 <em>CD2v</em>/<em>MGF</em> 缺失的分离株引起慢性、低症状病程;部分与非法"疫苗"株有关。检测它们需要基因组方法,而非单一位点 PCR。</li>' +
+    '<li><strong>疫苗</strong> — 越南于 2022–2023 年批准了限制性使用的减毒活疫苗;全球尚无广泛可用的疫苗,因此早期检测与隔离仍是防控基础。</li>' +
+    '<li><strong>俄罗斯</strong> — 散养户与工业化猪场均有定期疫情暴发;由俄罗斯联邦动植物卫生监督局 (Rosselkhoznadzor) 和全俄动物健康中心 (ARRIAH) 负责官方监测。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.woah.org/en/disease/african-swine-fever/">WOAH — 非洲猪瘟</a></li>' +
+    '<li>📄 <a href="https://www.fao.org/animal-health/situation-updates/ASF/en">FAO — EMPRES:全球非洲猪瘟疫情动态</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/10497/">NCBI — 非洲猪瘟病毒基因组</a></li></ul>';
+
+  /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
   var HOME = {
@@ -1646,32 +1687,64 @@
   };
 
   /* ════════════════════════════════════════════════════
+     HOME PAGE TRANSLATIONS — CHINESE (partial, falls back to EN)
+  ════════════════════════════════════════════════════ */
+  var ZH_HOME = {
+    tagline: 'AI 医疗科技平台:管理容器化生物信息学分析流程。药物耐药性检测、病原体亚型鉴定等。遵循 <a href="/gxp">GxP、GLP、ALCOA+</a> 标准。',
+    dzenText: '项目新闻、视频与博客(Dzen)',
+    sections: {
+      'Описание компонентов': '平台组件',
+      'Реализованные пейплайны': '已实现的分析流程',
+      'Онкология. Пейплайны в работе.': '肿瘤学 · 开发中的流程',
+      'Пейплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
+      'Пейплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
+      'Пейплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
+    },
+    navLinks: {
+      'О платформе': '关于平台',
+      'Контакты': '联系我们',
+      'Вход в Облако': '云端登录',
+      'Главная': '首页'
+    },
+    cards: {
+      'asfv': ['非洲猪瘟 (ASFV)', '猪场门口数小时出结果 — p72 基因分型、低毒力缺失变异株 (CD2v/MGF)、与经典猪瘟鉴别']
+    }
+  };
+
+  /* ════════════════════════════════════════════════════
      APPLY / RESTORE FUNCTIONS
   ════════════════════════════════════════════════════ */
 
-  function applyNavEN() {
-    var map = HOME.navLinks;
+  function applyNavLang(lang) {
+    var map = Object.assign({}, HOME.navLinks, lang === 'zh' ? ZH_HOME.navLinks : {});
     document.querySelectorAll('.horizontal-list a, .site-nav a').forEach(function (a) {
       var text = a.textContent.replace(/ /g, '').trim();
       if (map[text]) { a.textContent = map[text] + '  '; }
     });
   }
 
-  function applyHomeEN() {
+  function applyHomeLang(lang) {
+    var H = lang === 'zh'
+      ? { tagline: ZH_HOME.tagline, dzenText: ZH_HOME.dzenText,
+          sections: Object.assign({}, HOME.sections, ZH_HOME.sections),
+          cards: Object.assign({}, HOME.cards, ZH_HOME.cards),
+          footer: HOME.footer, footerDesc: HOME.footerDesc }
+      : HOME;
+
     /* Tagline */
     var tg = document.getElementById('i18n-tagline');
-    if (tg) tg.innerHTML = HOME.tagline;
+    if (tg) tg.innerHTML = H.tagline;
 
     /* Dzen button text */
     var dz = document.getElementById('i18n-dzen-text');
-    if (dz) dz.textContent = HOME.dzenText;
+    if (dz) dz.textContent = H.dzenText;
 
     /* Section titles */
     ['components', 'projects', 'oncology', 'old', 'farmer', 'criminal'].forEach(function (k) {
       var el = document.getElementById('i18n-sec-' + k);
       if (el) {
         var ru = el.textContent.trim();
-        if (HOME.sections[ru]) el.textContent = HOME.sections[ru];
+        if (H.sections[ru]) el.textContent = H.sections[ru];
       }
     });
 
@@ -1680,7 +1753,7 @@
       var a = li.querySelector('a');
       if (!a) return;
       var href = (a.getAttribute('href') || '').replace(/^\/+/, '').replace(/\/+$/, '');
-      var info = HOME.cards[href];
+      var info = H.cards[href];
       if (!info) return;
       var header = li.querySelector('.header');
       if (header) header.textContent = info[0];
@@ -1689,47 +1762,50 @@
     });
 
     /* Footer entries */
-    Object.keys(HOME.footer).forEach(function (slug) {
+    Object.keys(H.footer).forEach(function (slug) {
       ['a[href="/' + slug + '"]', 'a[href="' + slug + '"]'].forEach(function (sel) {
         document.querySelectorAll(sel).forEach(function (a) {
           var item = a.closest('.footer-item') || a.parentElement;
-          a.textContent = HOME.footer[slug];
+          a.textContent = H.footer[slug];
           if (item) {
             var p = item.querySelector('p');
-            if (p && HOME.footerDesc[slug] !== undefined) p.textContent = HOME.footerDesc[slug];
+            if (p && H.footerDesc[slug] !== undefined) p.textContent = H.footerDesc[slug];
           }
         });
       });
     });
   }
 
-  function applyEnglish() {
+  function applyLang(lang) {
     var path = window.location.pathname;
 
     /* Nav links (all pages) */
-    applyNavEN();
+    applyNavLang(lang);
 
-    /* Content page */
+    /* Content page — zh falls back to EN when no ZH entry */
     var wrap = document.getElementById('i18n-content');
-    if (wrap && EN[path]) {
+    var pageMap = lang === 'zh' ? ZH : EN;
+    if (wrap && (pageMap[path] || EN[path])) {
       /* Hide Russian post title if present */
       var postTitle = document.getElementById('i18n-post-title');
       if (postTitle) postTitle.style.display = 'none';
-      wrap.innerHTML = EN[path];
+      wrap.innerHTML = pageMap[path] || EN[path];
       return;
     }
 
     /* Home page */
     if (path === '/' || path === '') {
-      applyHomeEN();
+      applyHomeLang(lang);
     }
   }
 
   /* ════════════════════════════════════════════════════
-     LANGUAGE TOGGLE
+     LANGUAGE TOGGLE  (ru → en → zh → ru)
   ════════════════════════════════════════════════════ */
   function toggle() {
-    setLang(getLang() === 'ru' ? 'en' : 'ru');
+    var order = ['ru', 'en', 'zh'];
+    var next = order[(order.indexOf(getLang()) + 1) % order.length];
+    setLang(next);
     location.reload();
   }
 
@@ -1738,13 +1814,15 @@
   ════════════════════════════════════════════════════ */
   window.addEventListener('load', function () {
     var btn = document.getElementById('lang-toggle');
+    var l = getLang();
     if (btn) {
-      var isEN = getLang() === 'en';
-      btn.textContent = isEN ? '🌐 RU' : '🌐 EN';
-      btn.title = isEN ? 'Переключить на русский' : 'Switch to English';
+      var labels = { ru: '🌐 EN', en: '🌐 中文', zh: '🌐 RU' };
+      var titles = { ru: 'Switch to English', en: '切换到中文', zh: 'Переключить на русский' };
+      btn.textContent = labels[l] || labels.ru;
+      btn.title = titles[l] || titles.ru;
       btn.onclick = toggle;
     }
-    if (getLang() === 'en') applyEnglish();
+    if (l === 'en' || l === 'zh') applyLang(l);
   });
 
 })();
