@@ -82,6 +82,11 @@ old_project_entries:
     desc: Серогруппирование и определение резистентности Neisseria meningitidis у постели пациента — молниеносный менингит, где каждый час критичен
     image: /assets/images/logo/icon_meningitidis.svg
 
+  - title: Гепатит B (HBV)
+    url: hbv
+    desc: Генотипирование HBV (A–J), мутации резистентности в полимеразе (YMDD), HBeAg-статус и маркеры риска рака печени — из одного анализа
+    image: /assets/images/logo/icon_hbv.svg
+
   - title: Коронавирус SARS-COV-2
     url: sarscov2
     desc: Определение варианта (субтипа) и устойчивости к противовирусным препаратам

@@ -957,6 +957,59 @@
     '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Peronospora</a></li></ul>';
 
+  /* ── HBV (гепатит B) ── */
+  EN['/hbv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hbv.svg" alt="Hepatitis B virus (HBV)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Genotyping and Drug Resistance of Hepatitis B Virus</h1>' +
+    '<p style="font-size:1.2em;color:#555">HBV genotype, polymerase resistance mutations, HBeAg status and hepatocellular carcinoma risk markers — from a single assay</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><strong>Hepatitis B virus (HBV)</strong> is a hepadnavirus with a partially double-stranded DNA genome (~3.2 kb). Chronic hepatitis B is the leading cause of cirrhosis and hepatocellular carcinoma (HCC) worldwide: WHO estimates ~254 million people live with HBV, and roughly a third of the global burden is in China. Modern nucleos(t)ide analogues (entecavir, tenofovir) have a high resistance barrier, but millions of patients in Asia received lamivudine and adefovir for years — and carry accumulated resistance mutations.</p>' +
+    '<p>From nanopore sequencing data our pipeline determines the <strong>virus genotype (A–J)</strong>, the <strong>reverse transcriptase (polymerase) resistance profile</strong>, preC/BCP mutations driving HBeAg-negative disease, and HBsAg escape mutations — a complete genomic passport of the virus for therapy selection and adjustment.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood plasma/serum. Optimal: amplicon sequencing of <em>pol</em> and preS/S <strong>or</strong> target enrichment with whole-genome coverage.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — HBV genotype, nucleos(t)ide analogue susceptibility profile, preC/BCP and HBsAg-escape status, therapy interpretation.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Mutations and Clinical Markers</h2>' +
+    '<h3>Polymerase (rt domain) resistance</h3>' +
+    tbl(['Mutations', 'Drug', 'Significance'], [
+      ['<strong>rtM204V/I</strong> (YMDD) + rtL180M', '<strong>Lamivudine</strong>, Telbivudine', 'Classic YMDD mutation; also reduces entecavir susceptibility'],
+      ['<strong>rtA181T/V</strong>', 'Lamivudine, <strong>Adefovir</strong>', 'Shared resistance pathway; rtA181T also impairs HBsAg secretion'],
+      ['<strong>rtN236T</strong>', '<strong>Adefovir</strong>', 'Specific marker'],
+      ['<strong>rtI169T + rtT184G + rtS202I/G</strong> or <strong>rtM250V</strong> (on rtL180M+rtM204V background)', '<strong>Entecavir</strong>', 'Resistance develops stepwise in patients with prior lamivudine resistance'],
+      ['<strong>rtA194T</strong>', '<strong>Tenofovir</strong>', 'Rare marker; significance still being clarified']
+    ]) +
+    '<h3>HBeAg status and HCC risk</h3>' +
+    tbl(['Locus', 'Mutations', 'Significance'], [
+      ['<strong>preC</strong> (precore)', '<strong>G1896A</strong> (stop codon)', 'HBeAg-negative chronic hepatitis — a common form in Asia'],
+      ['<strong>BCP</strong> (basal core promoter)', '<strong>A1762T/G1764A</strong>', 'HBeAg-negative disease; associated with increased HCC risk'],
+      ['<strong>S (HBsAg)</strong>', '<strong>G145R</strong> and others in the "a" determinant', 'Vaccine and diagnostic escape — false-negative HBsAg tests'],
+      ['<strong>Genotype</strong>', 'A–J', 'Genotype <strong>C</strong> (dominant in China) — higher HCC risk and slower HBeAg seroconversion than genotype B']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq HBV Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>HBV-Genotyper</strong>', 'HBV genotyping (A–J) from whole-genome data'],
+      ['<strong>HBV-Res-Detector</strong>', 'rt-domain resistance profile interpretation']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> (genotype A–J reference panel)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — accounting for within-host quasispecies diversity'],
+      ['<strong>4. Genotyping</strong>', 'Classification against a reference panel + NCBI HBV genotyping tool (verification)'],
+      ['<strong>5. Resistance annotation</strong>', 'Custom rt/preC/BCP/S mutation database (consensus data and HBVdb)'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>WHO, Global Hepatitis Report 2024</strong> — ~254 million people live with HBV; viral hepatitis claims ~1.3 million lives annually, and mortality is rising. WHO has set the goal of eliminating hepatitis as a public health threat by 2030.</li>' +
+    '<li><strong>China</strong> — carries about a third of the global HBV burden (~70–90 million HBsAg-positive); HBV causes roughly half of the world\'s liver cancer cases. Mass newborn vaccination sharply reduced childhood carriage, but the adult chronic hepatitis cohort is enormous and needs therapy monitoring.</li>' +
+    '<li><strong>The lamivudine legacy</strong> — years of mass use of low-resistance-barrier drugs left millions of patients with accumulated mutations; genotyping before regimen changes prevents sequential therapy failure.</li>' +
+    '<li><strong>HIV/HBV co-infection</strong> — tenofovir is part of ART regimens; see our <a href="/hiv/">OnSiteSeq HIV pipeline</a>.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240091672">WHO — Global Hepatitis Report 2024</a></li>' +
+    '<li>📄 <a href="https://hbvdb.ibcp.fr/">HBVdb — Hepatitis B Virus Database</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/projects/genotyping/formpage.cgi">NCBI HBV Genotyping Tool</a></li></ul>';
+
   /* ── C. DIFFICILE ── */
   EN['/cdifficile/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -1620,6 +1673,64 @@
     '<li>📄 <a href="https://www.fao.org/animal-health/situation-updates/ASF/en">FAO — EMPRES:全球非洲猪瘟疫情动态</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/10497/">NCBI — 非洲猪瘟病毒基因组</a></li></ul>';
 
+  /* ── HBV 乙型肝炎 ── */
+  ZH['/hbv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hbv.svg" alt="乙型肝炎病毒 (HBV)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>乙型肝炎病毒基因分型与耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">HBV 基因型、聚合酶耐药突变、HBeAg 状态与肝细胞癌风险标志物 — 一次检测完成</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>乙型肝炎病毒 (HBV)</strong> 是一种嗜肝 DNA 病毒,基因组为部分双链 DNA(约 3.2 kb)。慢性乙型肝炎是全球肝硬化和肝细胞癌 (HCC) 的首要病因:据世界卫生组织估计,全球约有 2.54 亿 HBV 感染者,其中约三分之一在中国。现代核苷(酸)类似物(恩替卡韦、替诺福韦)具有较高的耐药屏障,但亚洲有数百万患者曾长期服用拉米夫定和阿德福韦——体内已积累耐药突变。</p>' +
+    '<p>我们的流程基于纳米孔测序数据确定<strong>病毒基因型 (A–J)</strong>、<strong>逆转录酶(聚合酶)耐药谱</strong>、导致 HBeAg 阴性病程的 preC/BCP 突变,以及 HBsAg 逃逸突变——为治疗方案的选择与调整提供完整的病毒基因组档案。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血浆/血清。最佳方案:<em>pol</em> 与 preS/S 扩增子测序<strong>或</strong>全基因组覆盖的靶向富集。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — HBV 基因型、核苷(酸)类似物敏感性谱、preC/BCP 与 HBsAg 逃逸状态及治疗解读。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药突变与临床标志物</h2>' +
+    '<h3>聚合酶 (rt 结构域) 耐药</h3>' +
+    tbl(['突变', '药物', '意义'], [
+      ['<strong>rtM204V/I</strong> (YMDD) + rtL180M', '<strong>拉米夫定</strong>、替比夫定', '经典 YMDD 突变;同时降低恩替卡韦敏感性'],
+      ['<strong>rtA181T/V</strong>', '拉米夫定、<strong>阿德福韦</strong>', '共同耐药通路;rtA181T 还会削弱 HBsAg 分泌'],
+      ['<strong>rtN236T</strong>', '<strong>阿德福韦</strong>', '特异性标志物'],
+      ['<strong>rtI169T + rtT184G + rtS202I/G</strong> 或 <strong>rtM250V</strong>(在 rtL180M+rtM204V 背景下)', '<strong>恩替卡韦</strong>', '在既往拉米夫定耐药患者中逐步发展'],
+      ['<strong>rtA194T</strong>', '<strong>替诺福韦</strong>', '罕见标志物;意义尚在明确中']
+    ]) +
+    '<h3>HBeAg 状态与肝癌风险</h3>' +
+    tbl(['位点', '突变', '意义'], [
+      ['<strong>preC</strong>(前核心)', '<strong>G1896A</strong>(终止密码子)', 'HBeAg 阴性慢性肝炎 — 亚洲常见类型'],
+      ['<strong>BCP</strong>(基础核心启动子)', '<strong>A1762T/G1764A</strong>', 'HBeAg 阴性病程;与肝细胞癌风险升高相关'],
+      ['<strong>S (HBsAg)</strong>', '<strong>G145R</strong> 及 "a" 决定簇其他突变', '疫苗与诊断逃逸 — HBsAg 检测假阴性'],
+      ['<strong>基因型</strong>', 'A–J', '<strong>C 型</strong>(中国优势型)— 较 B 型肝癌风险更高、HBeAg 血清学转换更慢']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq HBV Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>HBV-Genotyper</strong>', '基于全基因组数据的 HBV 基因分型 (A–J)'],
+      ['<strong>HBV-Res-Detector</strong>', 'rt 结构域耐药谱解读']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(A–J 基因型参考面板)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — 考虑宿主内准种多样性'],
+      ['<strong>4. 基因分型</strong>', '参考面板分类 + NCBI HBV 分型工具(验证)'],
+      ['<strong>5. 耐药注释</strong>', '自建 rt/preC/BCP/S 突变数据库(基于共识数据与 HBVdb)'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>世界卫生组织《2024 年全球肝炎报告》</strong> — 全球约 2.54 亿人感染 HBV;病毒性肝炎每年夺走约 130 万生命,且死亡率仍在上升。世卫组织提出到 2030 年消除病毒性肝炎这一公共卫生威胁的目标。</li>' +
+    '<li><strong>中国</strong> — 承载着全球约三分之一的 HBV 负担(约 7000–9000 万 HBsAg 阳性者);HBV 导致全球约一半的肝癌病例。新生儿大规模疫苗接种已大幅降低儿童携带率,但成人慢性肝炎群体庞大,亟需治疗监测。</li>' +
+    '<li><strong>拉米夫定的历史遗留</strong> — 低耐药屏障药物的多年广泛使用,使数百万患者积累了耐药突变;调整方案前的基因分型可避免治疗接连失败。</li>' +
+    '<li><strong>HIV/HBV 合并感染</strong> — 替诺福韦是抗逆转录病毒治疗方案的组成部分;请参阅我们的 <a href="/hiv/">OnSiteSeq HIV 流程</a>。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240091672">WHO — 《2024 年全球肝炎报告》</a></li>' +
+    '<li>📄 <a href="https://hbvdb.ibcp.fr/">HBVdb — 乙型肝炎病毒数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/projects/genotyping/formpage.cgi">NCBI HBV 基因分型工具</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -1651,6 +1762,7 @@
       'gonorrhoeae':  ['Gonorrhoea (N. gonorrhoeae)', 'Drug resistance determination of Neisseria gonorrhoeae — WHO priority AMR pathogen'],
       'mycoplasma':   ['Mycoplasma genitalium', 'Pre-treatment resistance testing of M. genitalium to macrolides and fluoroquinolones — rapidly emerging multidrug resistance, frequently missed STI pathogen'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
+      'hbv':          ['Hepatitis B (HBV)', 'HBV genotyping (A–J), polymerase resistance mutations (YMDD), HBeAg status and liver cancer risk markers — from a single assay'],
       'sarscov2':     ['Coronavirus SARS-CoV-2', 'Variant (subtype) and antiviral drug resistance determination'],
       'staphylococcus': ['S. aureus (Staphylococcus)', 'MRSA/VRSA and full AMR profile determination — leading nosocomial pathogen'],
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
@@ -1707,7 +1819,8 @@
       'Главная': '首页'
     },
     cards: {
-      'asfv': ['非洲猪瘟 (ASFV)', '猪场门口数小时出结果 — p72 基因分型、低毒力缺失变异株 (CD2v/MGF)、与经典猪瘟鉴别']
+      'asfv': ['非洲猪瘟 (ASFV)', '猪场门口数小时出结果 — p72 基因分型、低毒力缺失变异株 (CD2v/MGF)、与经典猪瘟鉴别'],
+      'hbv':  ['乙型肝炎 (HBV)', 'HBV 基因分型 (A–J)、聚合酶耐药突变 (YMDD)、HBeAg 状态与肝癌风险标志物 — 一次检测完成']
     }
   };
 
