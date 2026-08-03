@@ -163,6 +163,11 @@ farmer_entries:
     desc: Ложная мучнистая роса подсолнечника и лука — мониторинг рас и фениламид-резистентности
     image: /assets/images/logo/icon_peronospora.svg
 
+  - title: Африканская чума свиней (АЧС, ASFV)
+    url: asfv
+    desc: Детекция ASFV у ворот фермы за часы — генотип по p72, низковирулентные делеционные варианты (CD2v/MGF), отличие от КЧС
+    image: /assets/images/logo/icon_asfv.svg
+
 criminal_entries:
   - title: Портрет преступника по ДНК
     url: identikit

@@ -1331,7 +1331,8 @@
       'botrytis-cinerea': ['Grey Mould (Botrytis cinerea)', 'Grey mould of grape, strawberry and vegetables — full fungicide multidrug resistance profile'],
       'pythium': ['Pythium spp.', 'Root rots and seedling damping-off — differentiation from Fusarium/Rhizoctonia, mefenoxam resistance'],
       'plasmopara-viticola': ['Grape Downy Mildew (Plasmopara viticola)', 'Downy mildew of grapevine — resistance to QoI, CAA and phenylamides'],
-      'peronospora': ['Downy Mildew (Peronospora spp.)', 'Downy mildew of sunflower and onion — race monitoring and phenylamide resistance']
+      'peronospora': ['Downy Mildew (Peronospora spp.)', 'Downy mildew of sunflower and onion — race monitoring and phenylamide resistance'],
+      'asfv': ['African Swine Fever (ASFV)', 'Farm-gate ASFV detection in hours — p72 genotyping, low-virulence deletion variants (CD2v/MGF), differentiation from classical swine fever']
     },
     footer: {
       'normativ': 'Want to learn about legislation supporting innovation and personalised medicine?',
