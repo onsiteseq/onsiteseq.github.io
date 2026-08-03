@@ -694,6 +694,269 @@
     '<li>📄 <a href="https://www.fao.org/animal-health/situation-updates/ASF/en">FAO — EMPRES: global ASF situation updates</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/10497/">NCBI — African swine fever virus genomes</a></li></ul>';
 
+  /* ── phytophthora-infestans ── */
+  EN['/phytophthora-infestans/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_phytophthora_infestans.svg" alt="Phytophthora infestans" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Late Blight — Phytophthora infestans</h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnosis of potato and tomato late blight with a fungicide resistance profile — within hours, right in the field</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Phytophthora infestans</em> is an oomycete (not a true fungus), the causal agent of late blight — the most destructive disease of potato and tomato worldwide. The pathogen exists as two mating types (A1 and A2); their co-occurrence in a population enables the formation of persistent oospores and accelerates the evolution of resistance. In rainy seasons, late blight affects up to 50% of potato plantings in Russia.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of infected tissue directly at the field site. Within a few hours, the agronomist receives confirmation of the pathogen species and — critically for crop protection — a <strong>fungicide resistance profile</strong>: resistance to metalaxyl/mefenoxam is widespread among <em>P. infestans</em> populations in Russia, and spraying an ineffective product is equivalent to losing the crop.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: potato leaf/tuber homogenate, tomato leaves and fruits.</li>' +
+    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>CesA3</strong> (cellulose synthase)', 'G1105S, G1105V', 'Mandipropamid, dimethomorph (CAA fungicides)'],
+      ['<strong>RPA70</strong>', 'V799A', 'CAA fungicides'],
+      ['<strong>—</strong> (polygenic resistance)', 'Population polymorphisms', 'Metalaxyl / Mefenoxam (phenylamides)'],
+      ['<strong>Cytb</strong> (cytochrome b)', 'G143A, F129L', 'Strobilurins / QoI (azoxystrobin, kresoxim-methyl)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Irish Famine (1845–1852)</strong> — <em>P. infestans</em> destroyed nearly the entire potato crop in Ireland, claiming more than 1 million lives.</li>' +
+    '<li><strong>Economics</strong> — global crop losses from late blight are estimated at <strong>$6–7 billion annually</strong>.</li>' +
+    '<li><strong>Metalaxyl resistance</strong> — resistant populations have been recorded in all potato-producing regions of Russia.</li>' +
+    '<li><strong>EUROBLIGHT</strong> — a European network monitoring <em>P. infestans</em> populations, tracking the spread of new clonal lineages and resistant genotypes.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="https://euroblight.net/">EUROBLIGHT — European P. infestans monitoring network</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — pathogen-host interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li></ul>';
+
+  /* ── phytophthora-sojae ── */
+  EN['/phytophthora-sojae/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_phytophthora_sojae.svg" alt="Phytophthora sojae" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Soybean Root and Stem Rot — <em>Phytophthora sojae</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of soybean Phytophthora rot with pathotype determination and a fungicide resistance profile</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Phytophthora sojae</em> is an oomycete, the causal agent of soybean root and stem rot. Pathogen populations exhibit a pronounced <strong>race structure</strong>: pathotypes differ in their ability to overcome soybean <em>Rps</em> resistance genes, so the race composition directly determines which varieties will be infected. Oospores persist in the soil for years, making infested fields a long-term source of infection.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of root tissue and soil wash. Within a few hours, the agronomist receives confirmation of the pathogen species, an estimate of its abundance in the sample, and a <strong>fungicide resistance profile</strong> — for selecting effective seed treatment and seedling protection.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: homogenate of soybean roots and lower stem, soil wash.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>—</strong> (polygenic resistance)', 'Population polymorphisms', 'Metalaxyl / Mefenoxam (phenylamides)'],
+      ['<strong>CesA3</strong> (cellulose synthase)', 'Point substitutions', 'Mandipropamid (CAA fungicides)'],
+      ['<strong>β-tubulin</strong>', 'Point substitutions', 'Ethaboxam (benzamides)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Economics</strong> — global soybean yield losses from <em>P. sojae</em> are estimated at <strong>$1–2 billion annually</strong>.</li>' +
+    '<li><strong>Race evolution</strong> — the widespread use of a limited set of <em>Rps</em> genes in breeding has led to the rapid accumulation of pathotypes that overcome varietal resistance.</li>' +
+    '<li><strong>Russia</strong> — the expansion of soybean acreage in the Amur region and the Far East increases the relevance of soybean Phytophthora rot monitoring.</li>' +
+    '<li><strong>Diagnostics</strong> — metagenomics makes it possible to simultaneously identify the pathogen and assess the race composition of the population without weeks of culturing.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — pathogen-host interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Phytophthora sojae</a></li></ul>';
+
+  /* ── fusarium-oxysporum ── */
+  EN['/fusarium-oxysporum/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_fusarium_oxysporum.svg" alt="Fusarium oxysporum" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Fusarium Wilt — <em>Fusarium oxysporum</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of the soil-borne <em>Fusarium oxysporum</em> complex with forma specialis determination and a fungicide resistance profile</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Fusarium oxysporum</em> is a soil-borne fungus existing as numerous specialized forms (<strong>formae speciales</strong>), each attacking its own crop: <em>f. sp. lycopersici</em> — tomato, <em>f. sp. cucumerinum</em> — cucumber, <em>f. sp. cubense</em> (tropical race TR4) — banana. Thick-walled <strong>chlamydospores</strong> persist in soil for years, and chemical protection is largely ineffective against vascular wilt — which is why early diagnosis of soil and planting material contamination is decisive.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of stem vascular tissue, roots, and soil wash. The metagenomic approach not only confirms the presence of <em>F. oxysporum</em> but also distinguishes it from closely related species in the complex, and yields a <strong>fungicide resistance profile</strong> for seed treatment and spraying.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: homogenate of stem and root vascular tissue (tomato, cucumber, cereals), soil wash.</li>' +
+    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>β-tubulin</strong>', 'E198A, E198K', 'Benzimidazoles (carbendazim, benomyl)'],
+      ['<strong>CYP51</strong> (lanosterol 14α-demethylase)', 'Point substitutions', 'Azoles / DMI (tebuconazole)'],
+      ['<strong>Cytb</strong> (cytochrome b)', 'Native binding-site structure', 'Strobilurins / QoI — intrinsically low sensitivity']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Banana "Panama disease"</strong> — tropical race <em>f. sp. cubense</em> TR4 is devastating banana plantations across Asia, Africa, and Latin America and is considered a global threat to the banana industry.</li>' +
+    '<li><strong>Soil-persistent pathogen</strong> — chlamydospores remain viable in soil for decades; crop rotation does not solve the problem.</li>' +
+    '<li><strong>Chemical protection is largely ineffective</strong> — with vascular wilt, fungicides barely reach the pathogen; early diagnosis and healthy planting material are key.</li>' +
+    '<li><strong>Complex of closely related species</strong> — visual and culture-based diagnostics cannot discriminate pathogen forms; metagenomics provides the answer in a single assay.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — Pathogen-Host Interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Fusarium oxysporum</a></li></ul>';
+
+  /* ── fusarium-graminearum ── */
+  EN['/fusarium-graminearum/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_fusarium_graminearum.svg" alt="Fusarium graminearum" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Fusarium Head Blight (FHB) — <em>Fusarium graminearum</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of Fusarium head blight in wheat and barley with mycotoxin risk assessment and a fungicide resistance profile</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Fusarium graminearum</em> is the causal agent of Fusarium head blight (FHB) in wheat and barley. The threat is twofold: beyond direct yield losses, the fungus <strong>produces mycotoxins</strong> — deoxynivalenol (DON, vomitoxin) and zearalenone, synthesized by the <em>TRI</em> gene cluster. Contaminated grain becomes unfit for food and feed purposes, so diagnostics matters not only for plant protection but also for toxicological control of grain lots.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of kernels and spike tissue. Within a few hours, the agronomist receives confirmation of the pathogen species, an assessment of lot contamination, and a <strong>fungicide resistance profile</strong> — triazoles remain the backbone of head protection, and monitoring their efficacy is critical for planning treatments during flowering.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: homogenate of wheat/barley kernels and spikes.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the agronomist — identified pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<code>CYP51</code> (paralogs <code>FgCYP51A/B/C</code>)', 'Point substitutions, deletions', 'Azoles / DMI (tebuconazole, prothioconazole)'],
+      ['<code>β-tubulin</code>', 'F167Y, E198L, E198Q', 'Benzimidazoles (carbendazim)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>FHB epidemics</strong> — regularly recorded in North America, Europe, and Asia; wet weather during flowering sharply increases infection risk.</li>' +
+    '<li><strong>Mycotoxins</strong> — DON and zearalenone levels in grain are regulated; contaminated lots are rejected regardless of the magnitude of yield losses.</li>' +
+    '<li><strong>Carbendazim resistance</strong> — mass resistance to benzimidazoles has been documented in <em>F. graminearum</em> populations in China.</li>' +
+    '<li><strong>Narrow protection window</strong> — fungicide treatments are effective only during flowering, so rapid diagnostics directly determines the success of head protection.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — Pathogen-Host Interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Fusarium graminearum</a></li></ul>';
+
+  /* ── alternaria-solani ── */
+  EN['/alternaria-solani/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_alternaria_solani.svg" alt="Alternaria solani" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Early Blight — Alternaria solani</h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of early blight in potato and tomato with monitoring of rapidly evolving fungicide resistance</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Alternaria solani</em> is the causal agent of early blight (alternariosis) of potato and tomato. The pathogen infects leaves, stems and tubers, forming characteristic concentric lesions, and reduces yields of solanaceous crops every year. <em>A. solani</em> is a <strong>classic example of rapid evolution of fungicide resistance</strong>: resistance to strobilurins (QoI) spread through populations within just a few years after this class of products was introduced in the 2000s.</p>' +
+    '<p>Our pipeline performs <strong>nanopore metagenomic sequencing</strong> (mNGS) of affected leaf tissue and tubers. Within a few hours the agronomist receives confirmation of the pathogen species and a <strong>fungicide resistance profile</strong> — which is especially important for early blight, where applying strobilurins against a resistant population is useless and only accelerates the selection of resistant genotypes.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: potato leaf/tuber homogenate, tomato leaves and fruits.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the agronomist — identified pathogen, quantitative abundance, fungicide resistance profile and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>Cytb</strong> (cytochrome b)', 'F129L', 'Strobilurins / QoI (azoxystrobin, pyraclostrobin)'],
+      ['<strong>SdhB</strong>', 'H278R, H278Y', 'SDHI (boscalid, fluxapyroxad)'],
+      ['<strong>SdhC</strong>', 'H134R', 'SDHI (boscalid, fluxapyroxad)'],
+      ['<strong>SdhD</strong>', 'D123E', 'SDHI (boscalid, fluxapyroxad)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Speed of evolution</strong> — the F129L mutation in cytochrome b spread through <em>A. solani</em> populations within a few years after the introduction of QoI fungicides in the 2000s.</li>' +
+    '<li><strong>Dual threat</strong> — following strobilurins, resistance to SDHI fungicides (boscalid, fluxapyroxad) is emerging under selection pressure.</li>' +
+    '<li><strong>Hosts</strong> — potato and tomato, key food crops; early blight is recorded annually in all growing regions.</li>' +
+    '<li><strong>Anti-resistance strategy</strong> — monitoring resistance markers makes it possible to rotate fungicide classes and preserve the effectiveness of the products.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — pathogen-host interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Alternaria solani</a></li></ul>';
+
+  /* ── botrytis-cinerea ── */
+  EN['/botrytis-cinerea/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_botrytis_cinerea.svg" alt="Botrytis cinerea" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Gray Mold — Botrytis cinerea</h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnosis of gray mold in grape, strawberry, and vegetables with a comprehensive multidrug-resistance profile</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Botrytis cinerea</em> is the causal agent of gray mold, affecting <strong>more than 200 plant species</strong> and the main pathogen of grape and strawberry both in the field and during storage. FRAC classifies <em>B. cinerea</em> as a <strong>highest-risk resistance pathogen</strong>: multidrug resistance — simultaneous resistance to several fungicide classes — is the norm rather than the exception in field populations.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of infected berries and plant tissue. Within a few hours, the agronomist receives confirmation of the pathogen species and a detailed <strong>fungicide resistance profile</strong> covering both target-gene mutations and activation of efflux systems (BcMrr1) that drive multidrug resistance. Without such a profile, choosing a working gray mold protection program turns into trial-and-error spraying.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Sample material: homogenate of grape/strawberry berries, infected vegetable tissue.</li>' +
+    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>BcCYP51</strong>', 'Multiple mutations + tandem repeats in the promoter', 'Azoles / DMI (tebuconazole)'],
+      ['<strong>BcMrr1</strong>', 'Activating mutations (efflux)', 'Multidrug resistance, including SDHI'],
+      ['<strong>BcSdhB/C/D</strong>', 'H272R, P225L', 'SDHI (boscalid)'],
+      ['<strong>β-tubulin</strong>', 'E198A, F200Y', 'Benzimidazoles (carbendazim, benomyl)'],
+      ['<strong>Cytb</strong> (cytochrome b)', 'G143A', 'Strobilurins / QoI (azoxystrobin)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Extremely broad host range</strong> — more than 200 plant species, from grape and strawberry to tomatoes and ornamental crops.</li>' +
+    '<li><strong>Highest resistance risk</strong> — FRAC classifies <em>B. cinerea</em> as a highest-risk pathogen; strains resistant to 5 or more fungicide classes have been known for a long time.</li>' +
+    '<li><strong>Storage losses</strong> — gray mold remains the leading cause of post-harvest losses of grapes and berries.</li>' +
+    '<li><strong>Efflux-mediated multidrug resistance</strong> — activation of the BcMrr1 transporter confers resistance to several fungicide classes at once, which cannot be predicted from a single target gene.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — pathogen-host interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Botrytis cinerea</a></li></ul>';
+
+  /* ── pythium ── */
+  EN['/pythium/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_pythium.svg" alt="Pythium spp." style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Root Rots and Damping-Off — Pythium spp.</h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic differential diagnosis of seedling root rots — <em>Pythium</em> versus <em>Rhizoctonia</em> and <em>Fusarium</em></p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Pythium spp.</em> are oomycetes (not true fungi) — the causal agents of root rots and damping-off of seedlings and young plants, the main cause of losses in greenhouse and nursery production. Like all oomycetes, <em>Pythium</em> is <strong>insensitive to azoles and most "antifungal" fungicides</strong>: only oomycete-specific compounds work — mefenoxam/metalaxyl, ethaboxam, propamocarb, cyazofamid. A wrong diagnosis means treating with a product that is guaranteed to be ineffective.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of seedling roots and substrate. With the similar symptoms of root rots, substrate metagenomics is the only way to reliably distinguish <em>Pythium</em> from <em>Rhizoctonia</em> and <em>Fusarium</em> in a single assay, without multi-day culturing. Along with species identification, the agronomist receives a <strong>fungicide resistance profile</strong>.</p>' +
+    '<ul><li><strong>📥 Input:</strong> raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: seedling and young-plant root homogenate, substrate, soil wash.</li>' +
+    '<li><strong>📤 Output:</strong> an HTML report for the agronomist — detected pathogens, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>—</strong> (polygenic resistance)', 'Population polymorphisms', 'Mefenoxam / Metalaxyl (phenylamides)'],
+      ['<strong>CesA3</strong> (cellulose synthase)', 'Point substitutions', 'CAA fungicides'],
+      ['<strong>—</strong> (intrinsic insensitivity)', 'Absence of the target (ergosterol)', 'Azoles / DMI — ineffective against oomycetes']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Greenhouses and nurseries</strong> — damping-off can destroy up to 100% of seedlings in an outbreak within a few days.</li>' +
+    '<li><strong>Mefenoxam resistance</strong> — resistant populations of <em>P. irregulare</em> and <em>P. ultimum</em> are widespread in operations with regular phenylamide use.</li>' +
+    '<li><strong>Similar symptoms</strong> — root rots caused by <em>Pythium</em>, <em>Rhizoctonia</em>, and <em>Fusarium</em> are visually indistinguishable yet require different protection.</li>' +
+    '<li><strong>Oomycetes ≠ fungi</strong> — standard "antifungal" products (azoles) do not work against <em>Pythium</em>; correct diagnosis saves treatments.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — Pathogen-Host Interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Pythium</a></li></ul>';
+
+  /* ── plasmopara-viticola ── */
+  EN['/plasmopara-viticola/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_plasmopara_viticola.svg" alt="Plasmopara viticola" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Grapevine Downy Mildew — <em>Plasmopara viticola</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of grapevine downy mildew with monitoring of resistance to QoI and CAA fungicides</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Plasmopara viticola</em> is an oomycete, an obligate biotroph, and the causal agent of grapevine downy mildew — the principal disease of viticulture in temperate climates. The pathogen was introduced into Europe from North America in 1878; the fight against downy mildew led to the invention of Bordeaux mixture, the first fungicide in history. As an obligate parasite, <em>P. viticola</em> cannot be cultured on artificial media, which makes molecular diagnostics the primary tool for its study and monitoring.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of leaves with oil-spot lesions. Within a few hours, the agronomist receives confirmation of the pathogen and a <strong>fungicide resistance profile</strong>: resistance to strobilurins (QoI) is widespread in European populations, and resistance to CAA fungicides has been emerging since 2007 — without molecular monitoring, a vineyard protection program quickly loses its effectiveness.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Sample material: homogenate of a grapevine leaf with oil-spot lesions.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>Cytb</strong> (cytochrome b)', 'G143A', 'Strobilurins / QoI (azoxystrobin)'],
+      ['<strong>PvCesA3</strong> (cellulose synthase)', 'G1105S, G1105V', 'CAA fungicides (mandipropamid, dimethomorph)'],
+      ['<strong>—</strong> (polygenic resistance)', 'Population polymorphisms', 'Metalaxyl (phenylamides)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>1878</strong> — downy mildew was introduced into Europe from North America and within a few decades became the principal threat to European viticulture.</li>' +
+    '<li><strong>Bordeaux mixture</strong> — the fight against downy mildew led to the creation of the first fungicide in the history of agriculture.</li>' +
+    '<li><strong>QoI resistance</strong> — the G143A mutation is widespread in European populations; strobilurins are ineffective without resistance monitoring.</li>' +
+    '<li><strong>CAA resistance</strong> — mutations in <em>PvCesA3</em> were first detected around 2007 and have since been tracked by FRAC as a priority marker.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — Pathogen-Host Interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Plasmopara viticola</a></li></ul>';
+
+  /* ── peronospora ── */
+  EN['/peronospora/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_peronospora.svg" alt="Peronospora spp." style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Downy Mildew — Peronospora spp.</h1>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of onion and sunflower downy mildew with race and fungicide-resistance monitoring</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Peronospora spp.</em> are oomycetes — obligate plant parasites and the causal agents of downy mildew. This group includes <em>P. destructor</em> (onion downy mildew) and <em>Plasmopara halstedii</em> (sunflower downy mildew), a related oomycete from the same family Peronosporaceae. Pathogen populations have a pronounced <strong>race structure</strong>: the composition of circulating races determines which hybrids and varieties will be resistant and which will succumb. Sunflower downy mildew is an important quarantine-significant pathogen in Russia.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of infected leaf tissue. Within a few hours, the agronomist receives confirmation of the pathogen, an estimate of the population\'s race composition, and a <strong>fungicide-resistance profile</strong> — data needed both for protecting the current crop and for breeding resistant hybrids.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Sample material: sunflower/onion leaf homogenate.</li>' +
+    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide-resistance profile, and treatment recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
+      ['<strong>—</strong> (polygenic resistance)', 'Population polymorphisms', 'Metalaxyl / Mefenoxam (phenylamides)'],
+      ['<strong>CesA3</strong> (cellulose synthase)', 'Point substitutions', 'CAA fungicides (mandipropamid)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Quarantine significance</strong> — sunflower downy mildew (<em>P. halstedii</em>) is a quarantine-significant pathogen in Russia; infected seed lots are subject to control.</li>' +
+    '<li><strong>Race structure</strong> — metalaxyl-resistant races of <em>P. halstedii</em> have long been known; race monitoring is essential for breeding resistant sunflower hybrids.</li>' +
+    '<li><strong>Obligate parasites</strong> — these pathogens cannot be cultured on artificial media; metagenomics is the primary method for their identification and typing.</li>' +
+    '<li><strong>Onion crops</strong> — <em>P. destructor</em> causes systemic infection of onion and long-term persistence of the infection in planting material.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — Fungicide Resistance Action Committee</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — Pathogen-Host Interactions database</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — ITS barcoding database for fungi and oomycetes</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Peronospora</a></li></ul>';
+
   /* ── C. DIFFICILE ── */
   EN['/cdifficile/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
