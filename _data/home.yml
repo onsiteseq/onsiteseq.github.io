@@ -87,6 +87,21 @@ old_project_entries:
     desc: Генотипирование HBV (A–J), мутации резистентности в полимеразе (YMDD), HBeAg-статус и маркеры риска рака печени — из одного анализа
     image: /assets/images/logo/icon_hbv.svg
 
+  - title: Гипервирулентная клебсиелла (hvKP)
+    url: hvkp
+    desc: Маркеры вирулентности (rmpA, iucA, peg-344), капсульные типы K1/K2 и конвергенция с карбапенем-резистентностью — абсцесс печени и метастатические инфекции
+    image: /assets/images/logo/icon_hvkp.svg
+
+  - title: СТЛТ (SFTS, Dabie bandavirus)
+    url: sfts
+    desc: Point-of-care mNGS вируса тяжёлой лихорадки с тромбоцитопенией — сегментный анализ L/M/S и дифференциация геморрагических лихорадок в эндемичных районах
+    image: /assets/images/logo/icon_sfts.svg
+
+  - title: Талассемия (HBA/HBB)
+    url: thalassemia
+    desc: "Один тест вместо gap-PCR + MLPA + Sanger: делеции α-кластера, мутации HBB и фазирование cis/trans на длинных прочтениях — скрининг пар и пренатальная диагностика"
+    image: /assets/images/logo/icon_thalassemia.svg
+
   - title: Коронавирус SARS-COV-2
     url: sarscov2
     desc: Определение варианта (субтипа) и устойчивости к противовирусным препаратам
@@ -172,6 +187,11 @@ farmer_entries:
     url: asfv
     desc: Детекция ASFV у ворот фермы за часы — генотип по p72, низковирулентные делеционные варианты (CD2v/MGF), отличие от КЧС
     image: /assets/images/logo/icon_asfv.svg
+
+  - title: Пирикуляриоз риса (Magnaporthe oryzae)
+    url: magnaporthe
+    desc: Самая разрушительная болезнь риса — мониторинг рас и Avr-эффекторов, патотип Triticum (wheat blast), чувствительность к фунгицидам
+    image: /assets/images/logo/icon_magnaporthe.svg
 
 criminal_entries:
   - title: Портрет преступника по ДНК

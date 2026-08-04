@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="mag_stem" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8d9e4a"/>
+      <stop offset="100%" stop-color="#5a6b2a"/>
+    </linearGradient>
+    <radialGradient id="mag_grain" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffe9a8"/>
+      <stop offset="100%" stop-color="#c9a227"/>
+    </radialGradient>
+    <radialGradient id="mag_grain2" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#fff3c4"/>
+      <stop offset="100%" stop-color="#d4af37"/>
+    </radialGradient>
+    <radialGradient id="mag_conid" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#d7ccc8"/>
+      <stop offset="100%" stop-color="#5d4037"/>
+    </radialGradient>
+    <radialGradient id="mag_hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#fffde7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c9a227" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Rice stem === -->
+  <path d="M30 96 Q32 70 38 52" stroke="url(#mag_stem)" stroke-width="3"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Panicle branches === -->
+  <path d="M38 52 Q44 40 52 34" stroke="#8d9e4a" stroke-width="2.2"
+        stroke-linecap="round" fill="none"/>
+  <path d="M38 52 Q36 40 40 30" stroke="#8d9e4a" stroke-width="2.2"
+        stroke-linecap="round" fill="none"/>
+  <path d="M38 52 Q46 48 54 46" stroke="#8d9e4a" stroke-width="2"
+        stroke-linecap="round" fill="none"/>
+  <path d="M38 52 Q32 44 28 36" stroke="#8d9e4a" stroke-width="2"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Rice grains (spikelets) === -->
+  <ellipse cx="54" cy="32" rx="4.5" ry="7.5" fill="url(#mag_grain)"
+           transform="rotate(35 54 32)"/>
+  <ellipse cx="54" cy="32" rx="4.5" ry="7.5" fill="url(#mag_hl)"
+           transform="rotate(35 54 32)"/>
+  <ellipse cx="54" cy="32" rx="4.5" ry="7.5" fill="none" stroke="#8a6d1d"
+           stroke-width="1" opacity="0.7" transform="rotate(35 54 32)"/>
+
+  <ellipse cx="41" cy="26" rx="4.5" ry="7.5" fill="url(#mag_grain2)"
+           transform="rotate(-8 41 26)"/>
+  <ellipse cx="41" cy="26" rx="4.5" ry="7.5" fill="url(#mag_hl)"
+           transform="rotate(-8 41 26)"/>
+  <ellipse cx="41" cy="26" rx="4.5" ry="7.5" fill="none" stroke="#8a6d1d"
+           stroke-width="1" opacity="0.7" transform="rotate(-8 41 26)"/>
+
+  <ellipse cx="58" cy="44" rx="4" ry="6.5" fill="url(#mag_grain)"
+           transform="rotate(70 58 44)"/>
+  <ellipse cx="58" cy="44" rx="4" ry="6.5" fill="url(#mag_hl)"
+           transform="rotate(70 58 44)"/>
+  <ellipse cx="58" cy="44" rx="4" ry="6.5" fill="none" stroke="#8a6d1d"
+           stroke-width="1" opacity="0.7" transform="rotate(70 58 44)"/>
+
+  <ellipse cx="26" cy="32" rx="4" ry="6.5" fill="url(#mag_grain2)"
+           transform="rotate(-30 26 32)"/>
+  <ellipse cx="26" cy="32" rx="4" ry="6.5" fill="url(#mag_hl)"
+           transform="rotate(-30 26 32)"/>
+  <ellipse cx="26" cy="32" rx="4" ry="6.5" fill="none" stroke="#8a6d1d"
+           stroke-width="1" opacity="0.7" transform="rotate(-30 26 32)"/>
+
+  <!-- === Conidiophore === -->
+  <path d="M72 92 Q70 74 71 60" stroke="#6d4c41" stroke-width="2.6"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Conidia (three-celled, pear-shaped) === -->
+  <g transform="rotate(-15 71 46)">
+    <ellipse cx="71" cy="38" rx="4.2" ry="5.5" fill="url(#mag_conid)"/>
+    <ellipse cx="71" cy="47" rx="5.2" ry="6" fill="url(#mag_conid)"/>
+    <ellipse cx="71" cy="56" rx="4.2" ry="5" fill="url(#mag_conid)"/>
+    <line x1="67" y1="43" x2="75" y2="43" stroke="#3e2723" stroke-width="0.9" opacity="0.8"/>
+    <line x1="66.5" y1="52" x2="75.5" y2="52" stroke="#3e2723" stroke-width="0.9" opacity="0.8"/>
+    <ellipse cx="71" cy="47" rx="5.2" ry="18" fill="none" stroke="#3e2723"
+             stroke-width="1.1" opacity="0.6"/>
+  </g>
+
+  <!-- === Released conidia spores === -->
+  <g opacity="0.65">
+    <ellipse cx="86" cy="30" rx="2.6" ry="4" fill="#a1887f" transform="rotate(20 86 30)"/>
+    <line x1="83.8" y1="30" x2="88.2" y2="30" stroke="#4e342e" stroke-width="0.6"
+          transform="rotate(20 86 30)"/>
+    <ellipse cx="90" cy="44" rx="2.2" ry="3.4" fill="#a1887f" transform="rotate(40 90 44)"/>
+    <ellipse cx="82" cy="18" rx="2" ry="3" fill="#bcaaa4" transform="rotate(10 82 18)"/>
+  </g>
+
+  <!-- === Diamond-shaped lesion hint on leaf === -->
+  <path d="M16 78 L24 70 L30 78 L22 86 Z" fill="#d7ccc8" opacity="0.55"/>
+  <path d="M16 78 L24 70 L30 78 L22 86 Z" fill="none" stroke="#8d6e63"
+        stroke-width="0.9" opacity="0.6"/>
+</svg>
