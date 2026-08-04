@@ -1010,6 +1010,227 @@
     '<li>📄 <a href="https://hbvdb.ibcp.fr/">HBVdb — Hepatitis B Virus Database</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/projects/genotyping/formpage.cgi">NCBI HBV Genotyping Tool</a></li></ul>';
 
+  /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
+  EN['/hvkp/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hvkp.svg" alt="Hypervirulent Klebsiella pneumoniae (hvKP)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Hypervirulent Klebsiella pneumoniae (hvKP)</h1>' +
+    '<p style="font-size:1.2em;color:#555">Hypervirulence markers, K1/K2 capsular serotype, MLST and convergence with carbapenem resistance — from a single assay</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><strong>Hypervirulent Klebsiella pneumoniae (hvKP)</strong> is a variant of K. pneumoniae that causes primary pyogenic liver abscesses with metastatic spread (endophthalmitis, meningitis, lung and soft-tissue abscesses) in immunocompetent patients. It is characterised by capsular serotypes <strong>K1/K2</strong>, the dominant sequence type <strong>ST23</strong>, and the hypermucoviscous phenotype (positive string test). The key risk factor is diabetes mellitus.</p>' +
+    '<p>Virulence is determined by a large <strong>pLVPK-type plasmid</strong> (~200 kb): its markers are the capsule regulators <strong>rmpA/rmpA2</strong>, the aerobactin locus (<strong>iucA/iutA</strong> — the most specific hvKP marker), salmochelin <strong>iroB</strong> and the metabolic marker <strong>peg-344</strong>. The plasmid is rich in repeats and IS elements, so short reads cannot assemble it — this is the main advantage of nanopore sequencing: long reads deliver the complete structure of virulence and resistance plasmids, a hybrid/T2T assembly and, simultaneously, MLST, capsular type (wzi, Kaptive) and the resistome.</p>' +
+    '<p>Our pipeline answers the central question of infection control: <strong>convergence of hypervirulence and carbapenem resistance</strong>. Outbreaks of ST11 CR-hvKP (blaKPC-2) with high mortality in Chinese hospitals have shown that tracking such convergent strains is a priority task.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: culture, ascitic/puncture fluid, blood. Optimal: whole-genome sequencing of the isolate or targeted/metagenomic enrichment.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician and epidemiologist — hvKP/cKP verdict, capsular serotype and wzi allele, ST (MLST), pLVPK virulence marker profile, resistome and convergent-risk assessment.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Virulence Markers and Typing</h2>' +
+    '<h3>Virulence plasmid (pLVPK type)</h3>' +
+    tbl(['Marker', 'Function', 'Significance'], [
+      ['<strong>rmpA / rmpA2</strong>', 'Capsule synthesis regulator', 'Hypermucoviscous phenotype; frameshift mutations reduce detection sensitivity'],
+      ['<strong>iucA (iutA)</strong>', 'Aerobactin synthesis', '"Gold standard" hvKP definition — the most specific marker'],
+      ['<strong>peg-344</strong>', 'Metabolic marker', 'Highly specific plasmid marker of hypervirulence'],
+      ['<strong>iroB</strong>', 'Salmochelin cluster', 'Plasmid virulence marker']
+    ]) +
+    '<h3>Typing and convergence with resistance</h3>' +
+    tbl(['Locus', 'Markers', 'Significance'], [
+      ['<strong>wzi / capsular locus</strong>', 'K1, K2 (Kaptive)', 'Capsular serotype — K1/K2 are associated with liver abscesses and endophthalmitis'],
+      ['<strong>MLST</strong>', '<strong>ST23</strong> — classic hvKP; <strong>ST11</strong> — CR-hvKP', 'ST11 CR-hvKP — cause of nosocomial outbreaks in China'],
+      ['<strong>Carbapenemases</strong>', '<strong>blaKPC-2</strong>, <strong>blaNDM</strong>', 'Convergence of hypervirulence and resistance — an infection control priority']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq hvKP Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>hvKP-Classify</strong>', 'Discrimination of hvKP vs classical cKP from the virulence marker panel'],
+      ['<strong>Convergence-Detector</strong>', 'Prediction of convergent strains (virulence + carbapenem resistance)']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> (references: K. pneumoniae chromosome and pLVPK plasmid)'],
+      ['<strong>3. Variant Calling</strong>', '<code>medaka</code>, <code>clair3</code>'],
+      ['<strong>4. Typing</strong>', '<code>mlst</code> (Pasteur/BIGSdb scheme), <code>Kaptive</code> (capsular locus, wzi)'],
+      ['<strong>5. Virulence and resistome annotation</strong>', 'Custom marker database (rmpA/rmpA2, iucA, iroB, peg-344) + carbapenemase database'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Endemic region</strong> — hvKP is endemic to the Asia-Pacific region (China, Taiwan, South Korea), where hvKP liver abscesses are the leading cause of pyogenic liver lesions; the strain is globalising and increasingly detected outside Asia.</li>' +
+    '<li><strong>Convergence with resistance</strong> — outbreaks of ST11 CR-hvKP (blaKPC-2) with high mortality in Chinese hospitals have shown that hypervirulence and carbapenem resistance are combining; tracking such strains is an infection control priority.</li>' +
+    '<li><strong>The mNGS trend</strong> — metagenomic sequencing (mNGS) is widely used in Chinese clinical practice; our pipeline fits this trend, bringing mNGS data to a strain-level conclusion.</li>' +
+    '<li><strong>Clinical significance</strong> — distinguishing hvKP from classical cKP is critical for prognosis: the risk of metastatic endophthalmitis requires urgent ophthalmological care and an active search for metastatic foci.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://pubmlst.org/organisms/klebsiella-spp">PubMLST — Klebsiella spp.</a></li>' +
+    '<li>📄 <a href="https://github.com/klebgenomics/Kaptive">Kaptive — capsular locus typing</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=573">NCBI Taxonomy — Klebsiella pneumoniae</a></li></ul>';
+
+  /* ── SFTS (Dabie bandavirus) ── */
+  EN['/sfts/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_sfts.svg" alt="Dabie bandavirus (SFTSV) and its tick vector" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Diagnosis and Segment Analysis of the Severe Fever with Thrombocytopenia Syndrome Virus (SFTS)</h1>' +
+    '<p style="font-size:1.2em;color:#555">Identification of Dabie bandavirus, complete L/M/S segment analysis, phylogenetics and reassortment tracking — from a single metagenomic assay</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><strong>Dabie bandavirus</strong> (formerly SFTS virus, SFTSV) is a segmented enveloped virus of the <em>Phenuiviridae</em> family (order <em>Bunyavirales</em>), the causative agent of severe fever with thrombocytopenia syndrome. The genome consists of three negative-sense and ambisense single-stranded RNA segments: <strong>L</strong> (~6.3 kb, RNA-dependent RNA polymerase RdRp), <strong>M</strong> (~3.3 kb, glycoproteins Gn/Gc — the main target of neutralising antibodies) and <strong>S</strong> (~1.7 kb, nucleoprotein N and the non-structural protein NSs — an interferon-response antagonist, encoded in ambisense orientation). The virus is transmitted mainly by the tick <em>Haemaphysalis longicornis</em>; foci are located in eastern and central China (Henan, Shandong, Anhui, Hubei, Jiangsu provinces), as well as Japan and South Korea.</p>' +
+    '<p>The clinical picture is fever, thrombocytopenia, leukopenia, gastrointestinal symptoms, haemorrhages and multi-organ failure; case fatality reaches 10–30% in different case series. Human-to-human transmission through contact with the blood and secretions of patients has been described (including among medical staff and family members). There is no specific therapy and no licensed vaccine; ribavirin is ineffective, favipiravir was studied in Japan.</p>' +
+    '<p>In the acute phase viraemia is high, and the virus is confidently detected by direct sequencing: it is clinical metagenomic sequencing (mNGS), widely deployed in China, that most often yields the diagnosis of SFTS in cases of unclear fever. Our pipeline implements <strong>point-of-care nanopore mNGS in a district hospital of an endemic region</strong>: long reads cover entire segments almost completely, making it possible not only to identify the virus but also to perform L/M/S segment analysis, phylogenetics and tracking of segment reassortment between lineages, and to differentiate SFTS from other haemorrhagic fevers and rickettsioses. A MinION with a Flongle adapter gives fast time-to-answer and field deployment in a county hospital setting.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma/serum or whole blood in the acute phase. Optimal: metagenomic sequencing with ribosomal RNA/host background depletion <strong>or</strong> targeted enrichment of the L/M/S segments.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — identification of Dabie bandavirus, coverage and consensuses of the L/M/S segments, genetic lineage and signs of reassortment, and a differential panel of other fever pathogens.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Genomic Markers and Clinical Significance</h2>' +
+    '<h3>Segment analysis</h3>' +
+    tbl(['Segment', 'Proteins', 'Significance'], [
+      ['<strong>L</strong> (~6.3 kb)', 'RdRp', 'Basis of phylogenetics and genotyping; the viral replication machinery'],
+      ['<strong>M</strong> (~3.3 kb)', 'Gn/Gc', 'Neutralisation and antigenicity; target of vaccine design and serology'],
+      ['<strong>S</strong> (~1.7 kb)', 'N', 'Main target of molecular and serological diagnostics'],
+      ['<strong>S</strong> (ambisense)', 'NSs', 'Virulence factor: interferon-response antagonist; associated with disease severity']
+    ]) +
+    '<h3>Evolution and differential diagnosis</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>Segment reassortment</strong>', 'Exchange of L/M/S segments between virus lineages — a key evolutionary mechanism of bunyaviruses; discordant segment phylogeny = sign of reassortment'],
+      ['<strong>HFRS (hantaviruses)</strong>', 'Haemorrhagic fever with renal syndrome — the most important item of the differential panel in the same area'],
+      ['<strong>CCHF</strong>', 'Crimean-Congo haemorrhagic fever — a tick-borne nairovirus with overlapping clinical presentation and epidemiology'],
+      ['<strong>Rickettsioses</strong>', 'Tick-borne rickettsioses (including spotted fevers) — a frequent cause of "unclear fever after a tick bite"'],
+      ['<strong>Leptospirosis</strong>', 'Fever with thrombocytopenia and multi-organ involvement — considered in the metagenomic report'],
+      ['<strong>Haemophagocytic syndrome (HLH)</strong>', 'A severe complication of SFTS; it is important to distinguish virus-associated HLH from primary HLH']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq SFTS Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>SFTS-Classifier</strong>', 'Identification of Dabie bandavirus and assignment of reads to the L/M/S segments'],
+      ['<strong>SFTS-Reassort</strong>', 'Reassortment detection from discordance of segment phylogenies'],
+      ['<strong>FeverDiff-Panel</strong>', 'Pathogen differentiation in the "unclear fever" panel (hantaviruses, rickettsiae, leptospires)']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Host background depletion</strong>', '<code>minimap2</code> against the human genome + filtering'],
+      ['<strong>3. Alignment (Mapping)</strong>', '<code>minimap2</code> (reference panel of L/M/S segments + differential panel)'],
+      ['<strong>4. Consensus (Variant/Consensus Calling)</strong>', '<code>clair3</code>, <code>medaka</code> — segment consensuses accounting for quasispecies diversity'],
+      ['<strong>5. Phylogenetics</strong>', 'Multiple alignment (<code>mafft</code>), phylogenetic analysis (<code>IQ-TREE</code>), Nextclade-like lineage classification; comparison of segment trees for reassortment detection'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>WHO priority</strong> — SFTS is on the WHO R&D Blueprint priority list: diseases with epidemic potential for which no effective countermeasures exist (no specific therapy and no licensed vaccine).</li>' +
+    '<li><strong>Endemic foci</strong> — thousands of SFTS cases are registered annually in China; the disease circulates steadily in the eastern and central provinces, as well as in Japan and South Korea, where fatal outbreaks have occurred.</li>' +
+    '<li><strong>Vector range expansion</strong> — <em>Haemaphysalis longicornis</em> is capable of parthenogenesis alongside sexual reproduction, which accelerates its spread; the tick has already been introduced into the USA and Australia. The virus itself has not yet become established outside East Asia, but the expanding vector range demands diagnostic readiness.</li>' +
+    '<li><strong>Nosocomial risk</strong> — human-to-human transmission through contact with the blood and secretions of patients has been described (cases among medical staff and families), so rapid point-of-care diagnostics directly affects anti-epidemic measures.</li>' +
+    '<li><strong>mNGS as a standard</strong> — clinical metagenomic sequencing is widely deployed in China, and it is mNGS that most often detects SFTSV in unclear fever; the nanopore platform makes this approach accessible at the district-hospital level in endemic regions.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/teams/blueprint">WHO — R&D Blueprint for Action to Prevent Epidemics</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1936904/">NCBI Taxonomy — Dabie bandavirus</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/vspb/">CDC — Viral Special Pathogens Branch</a></li></ul>';
+
+  /* ── RICE BLAST (Magnaporthe oryzae) ── */
+  EN['/magnaporthe/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_magnaporthe.svg" alt="Magnaporthe oryzae" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Rice Blast — Magnaporthe oryzae</h1>' +
+    '<p style="font-size:1.2em;color:#555">Field diagnostics of rice blast with Avr-effector and fungicide-sensitivity profiles — in hours, right on the rice field</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Magnaporthe oryzae</em> (syn. <em>Pyricularia oryzae</em>) is an ascomycete, the causative agent of rice blast — the most devastating rice disease in the world. Annual yield losses from blast are estimated at 10–30% — enough grain to feed tens of millions of people. China, the largest rice producer in the world, regards rice blast as threat No. 1 for rice cultivation.</p>' +
+    '<p>The species includes several pathotypes: the rice pathotype (<em>Oryza</em>) and the <em>Triticum</em> pathotype — the causative agent of "wheat blast", which emerged in South America and was introduced into Bangladesh (2016) and Africa. Differentiation of pathotypes is critical for quarantine control.</p>' +
+    '<p>The pathogen population evolves very fast: resistant rice varieties (with <strong>Pi</strong> genes) are "broken" within a few years. This is why constant monitoring of races and the effector repertoire right in the field is needed. Avirulence genes (<strong>Avr</strong> effectors: <em>Avr-Pita</em>, <em>Avr-Pik</em>, <em>Avr-Piz-t</em>, <em>Avr-Pii</em> and others) determine which Pi genes still work against the local race. Effector genes often lie in subtelomeric regions among repeats and transposons — short reads resolve them poorly, whereas <strong>ONT long reads deliver complete assembly and phasing</strong> of these loci.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic and targeted nanopore sequencing</strong> of affected rice leaves and nodes directly in the field (Flongle chips). Within a few hours the agronomist receives species and pathotype identification, the <strong>Avr-effector profile</strong> (a recommendation for choosing a resistant variety), the <strong>fungicide-sensitivity profile</strong> (a recommendation for the fungicide programme) and data for monitoring the migration of pathogen lineages.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: affected rice leaves and nodes, tissue homogenate.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the agronomist — species and pathotype of the causative agent, Avr-effector profile, fungicide sensitivity and crop-protection recommendations.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🧩 Pipeline Architecture</h2>' +
+    '<ol><li><strong>Species and pathotype identification</strong> — classification of reads against reference databases; differentiation of the rice pathotype (<em>Oryza</em>) and the wheat pathotype (<em>Triticum</em>, wheat blast).</li>' +
+    '<li><strong>De novo assembly on long reads</strong> — full-length reconstruction of subtelomeric Avr-effector loci inaccessible to short reads.</li>' +
+    '<li><strong>Avr-effector profiling</strong> — allelic composition of <em>Avr-Pita</em>, <em>Avr-Pik</em>, <em>Avr-Piz-t</em>, <em>Avr-Pii</em> and other avirulence genes → prediction of the functionality of varietal Pi genes.</li>' +
+    '<li><strong>Fungicide target screening</strong> — search for polymorphisms in the target genes of MBI, DMI and kasugamycin.</li>' +
+    '<li><strong>Phylogenetics and lineage monitoring</strong> — tracking the migration of races and clonal lineages between regions.</li></ol>' +
+    '<p>The entire pipeline is implemented in <strong>Snakemake</strong> and distributed as a Docker container via the <code>harbor.onsiteseq.io</code> registry.</p><hr>' +
+    '<h2>🎯 Fungicide Resistance Markers</h2>' +
+    tbl(['Target gene', 'Mechanism', 'Fungicide (class)'], [
+      ['<strong>Scytalone dehydratase</strong> (melanin biosynthesis)', 'Target polymorphisms', 'Carpropamid and others (MBI-D)'],
+      ['<strong>CYP51</strong> (sterol 14α-demethylase)', 'Target polymorphisms', 'Triazoles (DMI: tebuconazole, propiconazole)'],
+      ['<strong>Ribosomal targets</strong>', 'Target polymorphisms', 'Kasugamycin (antibiotic, widely used in Asia)'],
+      ['<strong>Cytb</strong> (cytochrome b)', 'Sensitivity monitoring', 'Strobilurins / QoI (azoxystrobin)']
+    ]) +
+    '<p>The pipeline monitors sensitivity to MBI, DMI, kasugamycin and strobilurins from target-gene sequencing data. Please note: the classic QoI mutation <strong>G143A</strong> is atypical for <em>M. oryzae</em> — its cytochrome b carries an intron next to codon 143, so interpretation relies on a complete target analysis rather than a single codon.</p><hr>' +
+    '<h2>🌾 Race and Avr-Effector Monitoring</h2>' +
+    tbl(['Avirulence gene', 'Corresponding rice resistance gene', 'Practical significance'], [
+      ['<strong>Avr-Pita</strong>', 'Pi-ta', 'Loss of the Avr-Pita allele → varieties with Pi-ta lose resistance'],
+      ['<strong>Avr-Pik</strong>', 'Pik', 'The Avr-Pik allelic series determines the spectrum of working Pik alleles'],
+      ['<strong>Avr-Piz-t</strong>', 'Piz-t', 'Monitoring resistance erosion of varieties with Piz-t'],
+      ['<strong>Avr-Pii</strong>', 'Pii', 'Assessment of Pii effectiveness against the local population']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Food security</strong> — rice blast destroys 10–30% of the world rice harvest annually, and rice is the staple food for half of humanity.</li>' +
+    '<li><strong>China</strong> — the largest rice producer in the world; rice blast there is threat No. 1 for rice cultivation, and intensive monitoring of pathogen populations is underway.</li>' +
+    '<li><strong>Wheat blast</strong> — the <em>Triticum</em> pathotype as a quarantine threat: after South America it was introduced into Bangladesh (2016) and Africa; rapid pathotype differentiation is required at borders.</li>' +
+    '<li><strong>Climate-driven range expansion</strong> — warming is shifting the boundaries of rice-blast risk zones into new rice-growing regions.</li>' +
+    '<li><strong>Rapid erosion of varietal resistance</strong> — resistant varieties are "broken" within a few years, so field race monitoring must be continuous.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Magnaporthe oryzae</a></li>' +
+    '<li>📄 <a href="https://www.fao.org/">FAO — Food and Agriculture Organization of the UN (rice)</a></li>' +
+    '<li>📄 <a href="https://www.irri.org/">IRRI — International Rice Research Institute</a></li></ul>';
+
+  /* ── THALASSEMIA ── */
+  EN['/thalassemia/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_thalassemia.svg" alt="Thalassemia — inherited haemoglobinopathies" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Diagnosis of Thalassemias and Inherited Haemoglobinopathies</h1>' +
+    '<p style="font-size:1.2em;color:#555">HBA cluster deletions, HBB mutations and their phasing — one long-read assay instead of the gap-PCR + MLPA + Sanger combination</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><strong>Thalassemias</strong> are inherited disorders of haemoglobin globin-chain synthesis: <strong>α-thalassemia</strong> (the <em>HBA1/HBA2</em> gene cluster on chromosome 16) and <strong>β-thalassemia</strong> (the <em>HBB</em> gene on chromosome 11). Severe forms — Hb H disease, Hb Bart\'s hydrops fetalis (the --/-- state of the α genes) and β-thalassemia major with lifelong transfusion dependence and iron overload — form one of the most significant burdens of inherited disease in the world.</p>' +
+    '<p>Thalassemia diagnostics has historically been fragmented: α-deletions are caught by gap-PCR, deletions and duplications by MLPA, and point mutations of <em>HBB</em> by Sanger sequencing. The reason lies in the genetics of the locus itself: in <strong>α-thalassemia</strong>, <strong>large deletions</strong> predominate (--SEA, -α3.7, -α4.2, --MED, --THAI and others), and the <em>HBA</em> cluster contains highly homologous duplicates and pseudogenes, so short-read NGS fundamentally cannot resolve this region. In <strong>β-thalassemia</strong>, point mutations of <em>HBB</em> form the basis — in China most often CD41-42 (-TTCT), IVS-II-654 (C&gt;T), CD17 (A&gt;T), -28 (A&gt;G) and CD71-72.</p>' +
+    '<p><strong>Oxford Nanopore long reads</strong> solve the task in a single assay — LR-PCR amplicons across the <em>HBA/HBB</em> loci or targeted enrichment / adaptive sampling allow: (1) direct detection of large deletions and determination of their exact breakpoints, (2) resolution of <em>HBA1/HBA2</em> homology, (3) phasing of mutations (cis/trans), (4) simultaneous detection of <em>HBB</em> point variants. Published studies show complete agreement of the ONT approach with the gap-PCR/MLPA/Sanger combination — while replacing 3–4 separate tests with one.</p>' +
+    '<p>Our pipeline delivers a unified genomic passport: α-deletions and non-deletional variants, <em>HBB</em> mutations, haplotype phasing and a ready-made interpretation for genetic counselling.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: genomic DNA from blood (including chorionic villi / amniocentesis for prenatal diagnosis). Optimal: long-read amplicons (LR-PCR) of the <em>HBA</em> and <em>HBB</em> loci <strong>or</strong> targeted enrichment / adaptive sampling.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — genotype at the α and β loci (deletions, point variants, phasing), interpretation of carrier status and risks for the couple, and a conclusion for prenatal / preimplantation (PGT-M) diagnosis.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Detectable Variants and Clinical Markers</h2>' +
+    '<h3>α-thalassemia: deletions and non-deletional variants of the HBA cluster</h3>' +
+    tbl(['Variant', 'Type', 'Significance'], [
+      ['<strong>--SEA</strong>', 'α⁰ deletion', 'The most frequent α⁰ deletion in Southeast Asia and Southern China; carrier status in both partners — risk of Hb Bart\'s hydrops fetalis'],
+      ['<strong>-α3.7</strong>', 'α⁺ deletion', 'The most frequent α deletion in the world; the -α3.7/-- combination — Hb H disease'],
+      ['<strong>-α4.2</strong>', 'α⁺ deletion', 'A frequent α⁺ deletion; clinically significant in combination with α⁰ deletions'],
+      ['<strong>--MED, --THAI</strong> and others', 'α⁰ deletions', 'Regional variants; exact breakpoints are determined by direct reading of long reads'],
+      ['<strong>Hb Constant Spring</strong> (HBA2:c.427T&gt;C)', 'Non-deletional', 'An elongated unstable α-globin; a frequent component of non-deletional Hb H disease'],
+      ['<strong>Hb Quong Sze</strong> and others', 'Non-deletional', 'Rare non-deletional variants not detectable by gap-PCR']
+    ]) +
+    '<h3>β-thalassemia and haemoglobinopathies (HBB gene)</h3>' +
+    tbl(['Variant', 'Type', 'Significance'], [
+      ['<strong>CD41-42 (-TTCT)</strong>', 'β⁰', 'The most frequent β-thalassemia mutation in China'],
+      ['<strong>IVS-II-654 (C&gt;T)</strong>', 'β⁺', 'Second most frequent in China; splicing defect'],
+      ['<strong>CD17 (A&gt;T)</strong>', 'β⁰', 'A frequent nonsense mutation in Southern China'],
+      ['<strong>-28 (A&gt;G)</strong>', 'β⁺', 'Promoter mutation, mild phenotype'],
+      ['<strong>CD71-72 (+A)</strong>', 'β⁰', 'A frequent variant in Southeast Asia'],
+      ['<strong>Hb E</strong> (HBB:c.79G&gt;A)', 'Structural variant + β⁺', 'A very frequent mutation in Southeast Asia; the Hb E/β-thalassemia combination is a severe disease'],
+      ['<strong>HPFH / δβ-thalassemia deletions</strong>', 'Large deletions', 'Hereditary persistence of fetal haemoglobin; compensates the severity of β-thalassemia, important for prognosis']
+    ]) +
+    '<h3>Phasing (cis/trans)</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>Haplotype phasing of the α/β loci</strong>', 'Long reads determine whether mutations lie on the same or on different chromosomes — critical for prognosis (e.g. cis- vs trans-position of two α⁺ defects)']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Thalassemia Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>THAL-SV-Caller</strong>', 'Classification of HBA-cluster deletions/duplications from the coverage profile and split-reads'],
+      ['<strong>THAL-Interpreter</strong>', 'Interpretation of the α+β genotype: carrier status, phenotype severity, risk for the couple']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> (homologous HBA/HBB cluster, specialised locus references)'],
+      ['<strong>3. Variant Calling (SNV/Indel)</strong>', '<code>clair3</code>, <code>medaka</code> — point variants and small indels of HBB, non-deletional α variants'],
+      ['<strong>4. CNV/SV analysis (deletions)</strong>', 'Specialised module: coverage profile + split-reads; <code>Sniffles2</code>, <code>cuteSV</code> — exact deletion breakpoints'],
+      ['<strong>5. Phasing</strong>', '<code>WhatsHap</code> — cis/trans configuration of variants from long reads'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>WHO</strong> — haemoglobinopathies (thalassemias and sickle-cell disease) are classified as a growing global burden of inherited disease: hundreds of thousands of children are born annually with severe forms, and migration of carriers expands the demand for diagnostics beyond the traditional regions.</li>' +
+    '<li><strong>The carrier belt</strong> — the Mediterranean, the Middle East, South and Southeast Asia. In Southern China (Guangxi, Guangdong, Yunnan, Hainan) carrier frequency locally reaches ~10–20% — thalassemias are among the leading inherited diseases of the region.</li>' +
+    '<li><strong>Prevention programmes</strong> — Cyprus and Sardinia have almost eliminated the birth of children with severe forms through mass couple screening and prenatal diagnosis; China runs state programmes of pre-pregnancy couple screening, and the experience of Guangxi is considered exemplary.</li>' +
+    '<li><strong>The diagnostic gap</strong> — routine diagnostics requires the gap-PCR + MLPA + Sanger combination (several different tests per patient); a single long-read assay reduces cost, time and the risk of missing a rare variant, especially in prenatal diagnosis and PGT-M.</li>' +
+    '<li><strong>Differential diagnosis</strong> — microcytic anaemia in thalassemia carriers is often mistaken for iron deficiency; molecular confirmation prevents erroneous iron therapy.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/">WHO — facts on haemoglobinopathies and thalassemias</a></li>' +
+    '<li>📄 <a href="http://www.ithanet.eu/db/ithagenes">IthaGenes — haemoglobin variant database (IthaNet)</a></li>' +
+    '<li>📄 <a href="https://globin.bx.psu.edu/hbvar/">HbVar — database of haemoglobin variants and thalassemias</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/gene/3043">NCBI Gene — HBB</a></li></ul>';
+
   /* ── C. DIFFICILE ── */
   EN['/cdifficile/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -1731,6 +1952,446 @@
     '<li>📄 <a href="https://hbvdb.ibcp.fr/">HBVdb — 乙型肝炎病毒数据库</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/projects/genotyping/formpage.cgi">NCBI HBV 基因分型工具</a></li></ul>';
 
+  /* ── 结核病 (tuberculosis) ── */
+  ZH['/tuberculosis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/tub.png" alt="结核分枝杆菌 (Mycobacterium tuberculosis)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>结核分枝杆菌耐药性与谱系鉴定</h1>' +
+    '<p style="font-size:1.2em;color:#555">面向结核分枝杆菌纳米孔测序分析的综合生物信息学解决方案</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>我们的算法提供完整的纳米孔测序数据处理流程,用于检测耐药突变并准确鉴定结核病原体的遗传谱系。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据。针对纳米孔读长优化(R10.4.1 化学体系,高精度碱基识别)。</li>' +
+    '<li><strong>📤 输出:</strong> 详细的临床 HTML 报告,涵盖 13 种关键抗结核药物(利福平、异烟肼、乙胺丁醇、吡嗪酰胺、贝达喹啉、利奈唑胺等)的敏感性谱,以及面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟢 <strong>可用</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟢 <strong>可用</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与突变</h2>' +
+    '<p>突变注释遵循 <strong>WHO 突变目录</strong>(结核分枝杆菌复合群,2021 年;2023 年更新)— 结核分枝杆菌基因型耐药解读的国际标准。</p>' +
+    tbl(['药物', '基因', '关键突变'], [
+      ['<strong>利福平</strong>', '<em>rpoB</em>', 'RRDR 簇,S450L — MDR-TB 标志物'],
+      ['<strong>异烟肼</strong>', '<em>katG</em>、<em>inhA</em> 启动子、<em>fabG1</em>', 'S315T (katG)、C-15T (inhA)'],
+      ['<strong>乙胺丁醇</strong>', '<em>embB</em>', 'M306V/I、Q497R'],
+      ['<strong>吡嗪酰胺</strong>', '<em>pncA</em>(+ 启动子)', '遍布全基因的多种功能缺失变异'],
+      ['<strong>氟喹诺酮类</strong>(左氧氟沙星/莫西沙星)', '<em>gyrA</em>、<em>gyrB</em>', 'A90V、D94G/N/Y/A — pre-XDR 标志物'],
+      ['<strong>氨基糖苷类 / 卷曲霉素</strong>', '<em>rrs</em>、<em>eis</em> 启动子、<em>tlyA</em>', 'A1401G (rrs)、C-14T (eis)'],
+      ['<strong>贝达喹啉 / 氯法齐明</strong>', '<em>Rv0678</em>、<em>atpE</em>、<em>pepQ</em>', 'Rv0678 失活 → BDQ/CFZ 交叉耐药'],
+      ['<strong>利奈唑胺</strong>', '<em>rrl</em>、<em>rplC</em>', 'C154R (rplC)'],
+      ['<strong>德拉马尼 / 普托马尼</strong>', '<em>ddn</em>、<em>fgd1</em>、<em>fbiA/B/C</em>', '前体药物激活功能丧失']
+    ]) +
+    '<p>特别关注 <em><strong>Rv0678</strong></em> 突变:新一代药物(贝达喹啉、氯法齐明)是现代 MDR-TB 方案的组成部分,通过 Rv0678 调控因子失活产生的交叉耐药是一个快速增长的问题。</p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<p>流程集成了先进的 ML 架构,包括图神经网络 (GNN) 和自注意力 (Self-Attention) 机制。</p>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '当前版本'], [['<strong>OnSiteSeq Tuberculosis Pipeline</strong>', '<code>1.0</code>']]) +
+    '<h3>机器学习模型</h3>' +
+    tbl(['模型', '版本', '说明与更新日志'], [
+      ['<strong>TB-Lineage-Detector</strong>', '<code>v2</code>', '<a href="/ml/tb-lineage-detector/">基于向量的谱系分类</a>'],
+      ['<strong>TB-Res-Detector</strong>', '<code>v2</code>', '<a href="/ml/tb-res-detector/">用于耐药预测的图神经网络</a>']
+    ]) + '<hr>' +
+    '<h2>📚 论文与会议</h2>' +
+    '<ul><li><strong>NGS-2026</strong> — <a href="/conferences/ngs-2026/">会议页面</a></li></ul><hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 比对 (Mapping)</strong>', '<code>minimap2 2.26</code>、<code>samtools ≥1.17</code>(参考序列:H37Rv)'],
+      ['<strong>2. 变异检测</strong>', '神经网络 <code>clair3 ≥1.0.4</code>'],
+      ['<strong>3. 注释</strong>', '<code>snpEff 5.1</code> + WHO 突变目录 (2023)'],
+      ['<strong>4. 机器学习推理(谱系与耐药)</strong>', '<code>PyTorch</code>、<code>torch-geometric</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🖥 OnSiteSeq Cockpit 中的流程卡片示例</h2>' +
+    '<p><img src="/assets/images/cockpit/cockpit_tub.JPG" alt="Cockpit 中的 OnSiteSeq TUB 流程卡片"></p><hr>' +
+    '<h2>📋 报告示例</h2>' +
+    '<ul><li>📄 <strong><a href="/reports/tub">临床医生 HTML 报告示例(结核病)</a></strong></li>' +
+    '<li>💻 <strong><a href="/reports/tub/">详细生物信息学报告(结核病)</a></strong></li></ul><hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO《全球结核病报告》</strong> — 每年约有 1060 万新发结核病例;俄罗斯位列 30 个 <strong>MDR/RR-TB</strong> 高负担国家名单。</li>' +
+    '<li><strong>北京基因型 (L2)</strong> — 在俄罗斯和欧亚地区占主导地位,与多重耐药和更高的传播力相关。准确的谱系鉴定 (TB-Lineage-Detector) 是具有流行病学意义的结果,而非学术练习。</li>' +
+    '<li><strong>新药</strong>(贝达喹啉、普托马尼、利奈唑胺 — BPaL/BPaLM 方案)正迅速改变耐药格局;对 Rv0678/rrl 的基因型监测是未来几年的重点。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240082410">WHO — 结核分枝杆菌复合群突变目录 (2023)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/teams/global-tuberculosis-programme/tb-reports">WHO — 全球结核病报告</a></li>' +
+    '<li>📄 <a href="https://tbdr.lshtm.ac.uk/">TBProfiler — 结核分枝杆菌耐药标志物数据库</a></li></ul><hr>' +
+    '<h2>🔬 OnSiteSeq 相关研究</h2>' +
+    '<p><strong>研究:</strong></p>' +
+    '<ul><li>📄 <a href="/assets/pdf/research/OnSiteSeq_Research_Tub_Demography.pdf">结核病与俄罗斯人口状况:影响分析 (PDF)</a></li>' +
+    '<li>📄 <a href="/assets/pdf/research/OnSiteSeq_Research_Tub_Multy_Drug_Resistance.pdf">结核分枝杆菌多重耐药分析 (PDF)</a></li></ul>';
+
+  /* ── 幽门螺杆菌 (helicobacter) ── */
+  ZH['/helicobacter/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_helicobacter.png" alt="幽门螺杆菌 (Helicobacter pylori)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>幽门螺杆菌耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">基于基因组的耐药与毒力谱分析,用于个体化根除治疗</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>幽门螺杆菌 (Helicobacter pylori)</em> 是一种定植于胃黏膜的革兰阴性细菌 — 慢性胃炎和消化性溃疡的首要病因,也是胃癌的危险因素(IARC 1 类致癌物)。根除成功率直接取决于菌株的敏感性 — 尤其是对克拉霉素和左氧氟沙星的敏感性。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,直接从活检样本中确定完整的耐药谱和关键毒力因子(<em>cagA</em>、<em>vacA</em>),无需培养 — 幽门螺杆菌生长缓慢且培养条件苛刻,传统细菌学方法需要 7–14 天。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别(R10.4.1 化学体系,Dorado SUP)后的原始 <code>FASTQ</code> 数据。样本:胃窦或胃体活检组织。最佳方案:<em>23S rRNA</em> 与 <em>gyrA</em> 位点扩增子测序<strong>或</strong>培养物/富集样本的全基因组测序 (WGS)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,包含根除方案的敏感性谱和毒力因子状态;面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与突变</h2>' +
+    tbl(['基因 / 位点', '关键突变', '抗生素类别'], [
+      ['<strong>23S rRNA</strong>', 'A2142G、A2143G、A2142C', '<strong>克拉霉素</strong>(大环内酯类)— 一线关键药物'],
+      ['<strong>gyrA</strong>', 'N87K、D91G/N/Y', '<strong>左氧氟沙星</strong>(氟喹诺酮类)— 补救治疗'],
+      ['<strong>pbp1A</strong>', '多种氨基酸替换', '<strong>阿莫西林</strong>(耐药罕见但在上升)'],
+      ['<strong>rdxA、frxA</strong>', '缺失、无义突变(失活)', '<strong>甲硝唑</strong>'],
+      ['<strong>16S rRNA</strong>', 'A926G、A928C', '<strong>四环素</strong>'],
+      ['<strong>rpoB</strong>', '点突变(rif 区域簇)', '<strong>利福布汀</strong> — 三线治疗'],
+      ['<strong>porD、oorD</strong>', '失活突变', '<strong>呋喃唑酮</strong>']
+    ]) +
+    '<h3>报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '方案中的地位(马斯特里赫特 VI)', '临床意义'], [
+      ['<strong>克拉霉素</strong>', '一线三联疗法', '区域耐药率 &gt;15% 时不推荐经验性使用 — 需要基因分型'],
+      ['<strong>阿莫西林</strong>', '所有方案的组成成分', '耐药罕见;根除治疗的基石'],
+      ['<strong>甲硝唑</strong>', '三联/四联疗法组成成分', '背景耐药率高;可通过剂量与疗程部分克服'],
+      ['<strong>左氧氟沙星</strong>', '二线(补救)治疗', '不合理使用氟喹诺酮会导致耐药快速上升'],
+      ['<strong>四环素</strong>', '铋剂四联疗法', '耐药仍罕见'],
+      ['<strong>利福布汀</strong>', '三线治疗', '多次根除失败后的储备用药']
+    ]) + '<hr>' +
+    '<h2>🧫 毒力因子</h2>' +
+    '<p>除耐药性外,报告还包含关键毒力因子状态 — 对医生具有预后价值的信息:</p>' +
+    tbl(['因子', '变异型', '临床意义'], [
+      ['<strong>cagA</strong>(cagPAI 岛)', '存在 / 缺失', 'cagA+ 菌株 — 消化性溃疡和胃癌风险升高'],
+      ['<strong>vacA</strong>', 's1/s2、m1/m2 等位基因', 's1/m1 — 毒性最强的变异型,与重症疾病相关']
+    ]) +
+    '<p>这正是<strong>位点级图比对 (OnSiteSeq-PanG)</strong> 真正发挥价值之处:cagPAI 和 <em>vacA</em> 是高变区域,频繁发生重组和缺失,单一线性参考序列在此失效。图结构编码了该位点所有已知的等位基因变异,提高了这些区域的读段比对完整性。对于保守的耐药基因(23S rRNA、<em>gyrA</em>)则使用标准比对 — 在这些区域标准比对是可靠的。</p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq HP Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>HP-Res-Detector</strong>', '基于基因型预测克拉霉素/左氧氟沙星耐药性'],
+      ['<strong>HP-Vir-Typer</strong>', 'cagA/vacA 分型(包括 PanG 图比对)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(参考序列:26695 / J99);cagPAI/vacA 位点的 <strong>OnSiteSeq-PanG</strong> 泛基因组图'],
+      ['<strong>3. 变异检测</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. AMR 注释</strong>', '自建 23S/gyrA/pbp1A/rdxA/frxA/16S/rpoB 突变数据库 + <code>AMRFinderPlus</code>'],
+      ['<strong>5. 毒力分型</strong>', 'cagPAI 检测、<em>vacA</em> 等位基因分型(s/m 区域)'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO,2017</strong> — 克拉霉素耐药幽门螺杆菌被列入 WHO 优先病原体清单(高优先级)。</li>' +
+    '<li><strong>俄罗斯</strong> — 克拉霉素耐药率估计为 20–30%,超过马斯特里赫特 VI 阈值 (15%):不做基因分型的经验性三联疗法越来越频繁地失败。</li>' +
+    '<li><strong>胃癌</strong> — 幽门螺杆菌是 IARC 1 类致癌物;cagA/vacA 状态可细化个体风险评估。</li>' +
+    '<li>当前标准方法 — 培养加药敏试验 — 需要 7–14 天且分离成功率低。我们的流程可<strong>当天出具结果</strong>,直接来自活检样本。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://gut.bmj.com/content/71/9/1724">马斯特里赫特 VI / 佛罗伦萨共识报告 (Gut, 2022)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.12">WHO 优先病原体清单 (2017)</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/helicobacter-pylori">PubMLST 幽门螺杆菌数据库</a></li></ul>';
+
+  /* ── 新型冠状病毒 SARS-CoV-2 ── */
+  ZH['/sarscov2/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_sarscov2.svg" alt="SARS-CoV-2" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>SARS-CoV-2 变异株与抗病毒药物耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">用于冠状病毒基因组监测与个体化治疗选择的纳米孔全基因组测序</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>SARS-CoV-2</em> 是冠状病毒科 (<em>Coronaviridae</em>) 的一种 RNA 病毒,为 COVID-19 的病原体。自 2020 年以来,病毒持续进化:接连出现的变异株(Alpha → Delta → Omicron 及其亚型)表现出不断增强的免疫逃逸能力和不断变化的抗病毒药物敏感性。<strong>已记录到具有临床意义的奈玛特韦 (Paxlovid) 耐药性</strong> — <em>nsp5</em> 基因(3CL 蛋白酶)突变。</p>' +
+    '<p>我们的流程采用 <strong>ARTIC</strong> 方案(扩增子法,纳米孔)进行全基因组测序,并自动提供:基因组变异株/谱系、刺突蛋白突变谱,以及四种抗病毒药物的敏感性评估。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 碱基识别(Dorado,R10.4.1 化学体系)后的原始 <code>FASTQ</code> 数据。采用 ARTIC V4.1 / V5.3 引物方案的扩增子测序。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告(变异株、S 蛋白突变、耐药谱)和面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 关键突变与基因</h2>' +
+    '<h3>变异株鉴定 — S 基因(刺突蛋白)</h3>' +
+    tbl(['突变', '意义'], [
+      ['<strong>D614G</strong>', '所有现代变异株的基础突变(传播力增强)'],
+      ['<strong>N501Y</strong>', 'Alpha、Beta、Gamma、Omicron — ACE2 亲和力增强'],
+      ['<strong>E484K/A</strong>', 'Beta、Gamma、部分 Omicron — 逃逸中和抗体'],
+      ['<strong>L452R</strong>', 'Delta — 传播力增强并逃逸中和抗体'],
+      ['<strong>P681H/R</strong>', 'Alpha/Delta — 高效 furin 切割'],
+      ['<strong>K417N/T</strong>', 'Beta、Gamma、Omicron BA.1 — 免疫逃逸'],
+      ['<strong>F486P/V/S</strong>', 'Omicron XBB、JN.1 亚型 — 逃逸中和作用']
+    ]) +
+    '<p>WHO 按风险等级对变异株进行分类:<strong>VOC</strong>(需关注的变异株 — 已证实影响传播力/严重程度/免疫逃逸)、<strong>VOI</strong>(感兴趣的变异株 — 潜在风险)和 <strong>VUM</strong>(监测中的变异株)。流程会给出 Pango 谱系,并自动映射到当前的 WHO 类别。</p>' +
+    '<h3>抗病毒药物耐药性</h3>' +
+    tbl(['基因', '突变', '药物'], [
+      ['<strong>nsp5</strong> (3CLpro)', 'E166V、L50F、A173V(L50F+E166V 组合 — 最强)', '奈玛特韦 (Paxlovid)'],
+      ['<strong>nsp12</strong> (RdRp)', 'V792I、S759A、E802D(体外及免疫功能低下患者中)', '瑞德西韦'],
+      ['—', '尚未确立具有临床意义的标志物', '莫努匹拉韦 / 法匹拉韦']
+    ]) + '<hr>' +
+    '<h2>⚠️ 局限与边界</h2>' +
+    '<ul><li><strong>低病毒载量</strong> — Ct &gt; 30–33 时扩增子方案只能获得不完整的基因组;Pango 谱系可能无法判定。报告中会注明基因组覆盖度百分比。</li>' +
+    '<li><strong>分类阈值</strong> — 可靠的谱系判定需要 ≥80% 的基因组覆盖度(Nextclade 质控标准)。</li>' +
+    '<li><strong>耐药 ≠ 临床失败</strong> — 携带耐药标志物的解读需结合患者的免疫状态和既往治疗。</li>' +
+    '<li><strong>数据库快速老化</strong> — 变异株分类和耐药突变数据库需要定期更新(Pango 谱系每周修订)。</li></ul><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq SARS-CoV-2 Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CoV2-Variant-Classifier</strong>', '基于全基因组测序的 Pango 变异株/谱系分类(类 Nextclade,离线)'],
+      ['<strong>CoV2-Res-Detector</strong>', '抗病毒药物耐药性预测']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 引物修剪 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>(ARTIC 引物 V4.1/V5.3)'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2 2.26</code>、<code>samtools ≥1.17</code>(参考序列:NC_045512.2)'],
+      ['<strong>3. 一致序列组装</strong>', '<code>medaka</code>、<code>bcftools</code>、<code>htslib</code>'],
+      ['<strong>4. 变异株/谱系判定</strong>', '<code>nextclade</code>、<code>pangolin</code>(本地、定期更新的数据库)'],
+      ['<strong>5. 耐药注释</strong>', '自建 nsp5/nsp12/S 突变数据库 + <code>snpEff</code>'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO</strong> — SARS-CoV-2 基因组流行病学监测被公认为大流行防范的必要组成部分。</li>' +
+    '<li><strong>中国</strong> — 首个病毒基因组由中国科学家于 2020 年 1 月发表(上海,复旦大学),使首批 PCR 检测和疫苗成为可能。在"动态清零"时期,大规模检测与基因组监测在中国成为国家规模的工具 — 这一经验向世界展示了快速基因组诊断的价值。</li>' +
+    '<li><strong>奈玛特韦耐药</strong> — E166V 突变已在临床病例中记录;随着 Paxlovid 的广泛使用,耐药监测变得至关重要。</li>' +
+    '<li><strong>纳米孔优势</strong> — 完整的 SARS-CoV-2 基因组(约 30 kb)从样本到结果仅需 <strong>4–6 小时</strong>,可实现当天临床决策。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://artic.network/ncov-2019">ARTIC Network — SARS-CoV-2 纳米孔测序方案</a></li>' +
+    '<li>📄 <a href="https://clades.nextstrain.org/">Nextclade — SARS-CoV-2 变异株分类</a></li>' +
+    '<li>📄 <a href="https://covdb.stanford.edu/">Stanford CoVDB — 抗病毒耐药突变数据库</a></li></ul>';
+
+  /* ── 高毒力肺炎克雷伯菌 (hvKP) ── */
+  ZH['/hvkp/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hvkp.svg" alt="高毒力肺炎克雷伯菌 (hvKP)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>高毒力肺炎克雷伯菌 (hvKP)</h1>' +
+    '<p style="font-size:1.2em;color:#555">高毒力标志物、K1/K2 荚膜血清型、MLST 分型与碳青霉烯耐药性汇聚 — 一次检测完成</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>高毒力肺炎克雷伯菌 (hvKP)</strong> 是肺炎克雷伯菌的一种变异型,可在免疫功能正常的患者中引起原发性化脓性肝脓肿并发生转移性播散(眼内炎、脑膜炎、肺及软组织脓肿)。其特征为荚膜血清型 <strong>K1/K2</strong>、优势序列型 <strong>ST23</strong> 以及高黏液表型(拉丝试验阳性)。关键危险因素是糖尿病。</p>' +
+    '<p>毒力由大型 <strong>pLVPK 型质粒</strong>(约 200 kb)决定:其标志物包括荚膜调控因子 <strong>rmpA/rmpA2</strong>、气杆菌素位点(<strong>iucA/iutA</strong> — hvKP 最具特异性的标志物)、沙门菌素 <strong>iroB</strong> 和代谢标志物 <strong>peg-344</strong>。该质粒富含重复序列与插入序列元件,短读长无法完整组装 — 这正是纳米孔测序的核心优势:长读长可解析毒力与耐药质粒的完整结构,实现混合/T2T 组装,并同时获得 MLST、荚膜分型 (wzi、Kaptive) 和耐药组。</p>' +
+    '<p>我们的流程回答感染控制的核心问题:<strong>高毒力与碳青霉烯耐药性的汇聚</strong>。中国医院中高致死率的 ST11 CR-hvKP (blaKPC-2) 暴发表明,追踪此类汇聚型菌株是优先任务。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:培养物、腹水/穿刺液、血液。最佳方案:分离株全基因组测序或靶向/宏基因组富集。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生与流行病学专家的 HTML 报告 — hvKP/cKP 判定、荚膜血清型与 wzi 等位基因、ST (MLST)、pLVPK 质粒毒力标志物谱、耐药组及汇聚风险评估。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 毒力标志物与分型</h2>' +
+    '<h3>毒力质粒 (pLVPK 型)</h3>' +
+    tbl(['标志物', '功能', '意义'], [
+      ['<strong>rmpA / rmpA2</strong>', '荚膜合成调控因子', '高黏液表型;移码突变会降低检测灵敏度'],
+      ['<strong>iucA (iutA)</strong>', '气杆菌素合成', 'hvKP 判定的"金标准" — 最具特异性的标志物'],
+      ['<strong>peg-344</strong>', '代谢标志物', '高毒力的质粒特异性标志物'],
+      ['<strong>iroB</strong>', '沙门菌素簇', '质粒毒力标志物']
+    ]) +
+    '<h3>分型与耐药性汇聚</h3>' +
+    tbl(['位点', '标志物', '意义'], [
+      ['<strong>wzi / 荚膜位点</strong>', 'K1、K2 (Kaptive)', '荚膜血清型 — K1/K2 与肝脓肿及眼内炎相关'],
+      ['<strong>MLST</strong>', '<strong>ST23</strong> — 经典 hvKP;<strong>ST11</strong> — CR-hvKP', 'ST11 CR-hvKP — 中国院内暴发的原因'],
+      ['<strong>碳青霉烯酶</strong>', '<strong>blaKPC-2</strong>、<strong>blaNDM</strong>', '高毒力与耐药性汇聚 — 感染控制的重点']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq hvKP Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>hvKP-Classify</strong>', '基于毒力标志物组合区分 hvKP 与经典 cKP'],
+      ['<strong>Convergence-Detector</strong>', '汇聚型菌株预测(毒力 + 碳青霉烯耐药)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(参考序列:肺炎克雷伯菌染色体与 pLVPK 质粒)'],
+      ['<strong>3. 变异检测</strong>', '<code>medaka</code>、<code>clair3</code>'],
+      ['<strong>4. 分型</strong>', '<code>mlst</code>(Pasteur/BIGSdb 方案)、<code>Kaptive</code>(荚膜位点、wzi)'],
+      ['<strong>5. 毒力与耐药组注释</strong>', '自建标志物数据库 (rmpA/rmpA2、iucA、iroB、peg-344) + 碳青霉烯酶数据库'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>流行区域</strong> — hvKP 在亚太地区(中国、台湾、韩国)呈地方性流行,当地 hvKP 肝脓肿是化脓性肝病变的首要病因;该菌株正在全球化,在亚洲以外检出的频率越来越高。</li>' +
+    '<li><strong>与耐药性的汇聚</strong> — 中国医院中高致死率的 ST11 CR-hvKP (blaKPC-2) 暴发表明,高毒力与碳青霉烯耐药正在合流;追踪此类菌株是感染控制的重点。</li>' +
+    '<li><strong>mNGS 趋势</strong> — 宏基因组测序 (mNGS) 在中国临床实践中广泛应用;我们的流程契合这一趋势,将 mNGS 数据提升到菌株水平的结论。</li>' +
+    '<li><strong>临床意义</strong> — 区分 hvKP 与经典 cKP 对预后至关重要:转移性眼内炎风险需要紧急眼科处理并积极寻找转移灶。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://pubmlst.org/organisms/klebsiella-spp">PubMLST — 克雷伯菌属</a></li>' +
+    '<li>📄 <a href="https://github.com/klebgenomics/Kaptive">Kaptive — 荚膜位点分型</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=573">NCBI Taxonomy — 肺炎克雷伯菌</a></li></ul>';
+
+  /* ── 发热伴血小板减少综合征 (SFTS) ── */
+  ZH['/sfts/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_sfts.svg" alt="大别班达病毒 (SFTSV) 及其蜱媒" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>发热伴血小板减少综合征 (SFTS) 病毒的诊断与节段分析</h1>' +
+    '<p style="font-size:1.2em;color:#555">大别班达病毒鉴定、L/M/S 节段完整分析、系统发育与节段重配追踪 — 一次宏基因组分析完成</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>大别班达病毒 (Dabie bandavirus)</strong>(旧称 SFTS 病毒,SFTSV)是白纤病毒科 (<em>Phenuiviridae</em>,布尼亚病毒目 <em>Bunyavirales</em>) 的一种分节段有囊膜病毒,为发热伴血小板减少综合征的病原体。基因组由三条负链/双义单链 RNA 节段组成:<strong>L</strong>(约 6.3 kb,RNA 依赖的 RNA 聚合酶 RdRp)、<strong>M</strong>(约 3.3 kb,糖蛋白 Gn/Gc — 中和抗体的主要靶标)和 <strong>S</strong>(约 1.7 kb,核蛋白 N 和非结构蛋白 NSs — 干扰素应答拮抗剂,以双义方向编码)。病毒主要由长角血蜱 (<em>Haemaphysalis longicornis</em>) 传播;疫源地位于中国东部和中部(河南、山东、安徽、湖北、江苏等省)以及日本和韩国。</p>' +
+    '<p>临床表现为发热、血小板减少、白细胞减少、胃肠道症状、出血和多器官功能障碍;不同观察系列的病死率可达 10–30%。已有通过接触患者血液和分泌物发生人际传播的报道(包括医务人员和家庭成员)。目前无特异性治疗和获批疫苗;利巴韦林无效,法匹拉韦曾在日本进行研究。</p>' +
+    '<p>疾病急性期病毒载量高,病毒可通过直接测序可靠检出:在中国广泛应用的临床宏基因组测序 (mNGS) 最常为不明原因发热带来 SFTS 诊断。我们的流程实现了<strong>流行区县级医院的床旁纳米孔 mNGS</strong>:长读长几乎可以完整覆盖整个节段,不仅能鉴定病毒,还能进行 L/M/S 节段分析、系统发育分析及谱系间节段重配追踪,并将 SFTS 与其他出血热和立克次体病相鉴别。配备 Flongle 适配器的 MinION 可快速给出结果,适合在县级医院现场部署。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:急性期血浆/血清或全血。最佳方案:去除核糖体 RNA/宿主背景的宏基因组测序<strong>或</strong>针对 L/M/S 节段的靶向富集。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 大别班达病毒鉴定、L/M/S 节段覆盖度与一致序列、遗传谱系与重配迹象,以及与其他发热病原体的鉴别。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 基因组标志物与临床意义</h2>' +
+    '<h3>节段分析</h3>' +
+    tbl(['节段', '蛋白', '意义'], [
+      ['<strong>L</strong>(约 6.3 kb)', 'RdRp', '系统发育与基因分型的基础;病毒复制装置'],
+      ['<strong>M</strong>(约 3.3 kb)', 'Gn/Gc', '中和作用与抗原性;疫苗设计与血清学的靶标'],
+      ['<strong>S</strong>(约 1.7 kb)', 'N', '分子与血清学诊断的主要靶标'],
+      ['<strong>S</strong>(双义)', 'NSs', '毒力因子:干扰素应答拮抗剂;与疾病严重程度相关']
+    ]) +
+    '<h3>进化与鉴别诊断</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>节段重配</strong>', '病毒谱系间 L/M/S 节段交换 — 布尼亚病毒进化的关键机制;节段系统发育不一致 = 重配信号'],
+      ['<strong>HFRS(汉坦病毒)</strong>', '肾综合征出血热 — 同一分布区内最重要的鉴别诊断'],
+      ['<strong>CCHF</strong>', '克里米亚-刚果出血热 — 蜱传内罗病毒,临床与流行病学特征重叠'],
+      ['<strong>立克次体病</strong>', '蜱传立克次体病(包括斑点热)— "蜱叮咬后不明原因发热"的常见原因'],
+      ['<strong>钩端螺旋体病</strong>', '发热伴血小板减少和多器官受累 — 纳入宏基因组报告考量'],
+      ['<strong>噬血细胞综合征 (HLH)</strong>', 'SFTS 的严重并发症;需区分病毒相关性 HLH 与原发性 HLH']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq SFTS Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>SFTS-Classifier</strong>', '大别班达病毒鉴定及读段向 L/M/S 节段的归属'],
+      ['<strong>SFTS-Reassort</strong>', '基于节段系统发育不一致性检测重配'],
+      ['<strong>FeverDiff-Panel</strong>', '"不明原因发热"病原鉴别(汉坦病毒、立克次体、钩端螺旋体)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 宿主背景去除</strong>', '<code>minimap2</code> 比对人类基因组 + 过滤'],
+      ['<strong>3. 比对 (Mapping)</strong>', '<code>minimap2</code>(L/M/S 节段参考面板 + 鉴别诊断面板)'],
+      ['<strong>4. 一致序列生成</strong>', '<code>clair3</code>、<code>medaka</code> — 考虑准种多样性的节段一致序列'],
+      ['<strong>5. 系统发育</strong>', '多序列比对(<code>mafft</code>)、系统发育分析(<code>IQ-TREE</code>)、类 Nextclade 谱系分类;比较各节段树以检测重配'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>世卫组织优先事项</strong> — SFTS 已列入世卫组织 R&D Blueprint 优先清单:具有流行潜力且缺乏有效应对措施的疾病(尚无特异性治疗和获批疫苗)。</li>' +
+    '<li><strong>流行区</strong> — 中国每年报告数千例 SFTS;疾病在东部和中部省份以及日本、韩国持续流行,当地曾发生致死性暴发。</li>' +
+    '<li><strong>媒介分布区扩张</strong> — 长角血蜱除有性生殖外还能孤雌生殖,加速其扩散;该蜱已传入美国和澳大利亚。病毒本身尚未在东亚以外立足,但媒介分布区的扩张要求诊断能力做好准备。</li>' +
+    '<li><strong>院内感染风险</strong> — 已有通过接触患者血液和分泌物发生人际传播的报道(医务人员和家庭成员均有病例),因此快速的床旁诊断直接影响防疫措施。</li>' +
+    '<li><strong>mNGS 成为标准</strong> — 中国已广泛应用临床宏基因组测序,mNGS 最常为不明原因发热检出 SFTSV;纳米孔平台使这一方法可在流行区县级医院落地。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/teams/blueprint">WHO — 预防流行病 R&D Blueprint</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1936904/">NCBI Taxonomy — 大别班达病毒</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/vspb/">CDC — 特殊病毒病原体部门</a></li></ul>';
+
+  /* ── 稻瘟病 (Magnaporthe oryzae) ── */
+  ZH['/magnaporthe/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_magnaporthe.svg" alt="稻瘟病菌 (Magnaporthe oryzae)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>稻瘟病 — Magnaporthe oryzae</h1>' +
+    '<p style="font-size:1.2em;color:#555">稻瘟病田间诊断,含 Avr 效应蛋白谱与杀菌剂敏感性分析 — 数小时内完成,就在稻田边</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>Magnaporthe oryzae</em>(异名 <em>Pyricularia oryzae</em>)是一种子囊菌,为稻瘟病 — 全球最具破坏性的水稻病害的病原。稻瘟病每年造成的产量损失估计达 10–30%,这些稻谷本可养活数千万人。中国是全球最大的水稻生产国,将稻瘟病视为水稻生产的头号威胁。</p>' +
+    '<p>该种包含多个致病型:水稻致病型 (<em>Oryza</em>) 和 <em>Triticum</em> 致病型 — "小麦瘟病" (wheat blast) 的病原,最早出现于南美洲,后传入孟加拉国 (2016) 和非洲。致病型的鉴别对检疫防控至关重要。</p>' +
+    '<p>病原群体进化极快:抗病水稻品种(携带 <strong>Pi</strong> 基因)几年内就会被"突破"。因此需要在田间持续监测生理小种和效应蛋白谱。无毒基因(<strong>Avr</strong> 效应蛋白:<em>Avr-Pita</em>、<em>Avr-Pik</em>、<em>Avr-Piz-t</em>、<em>Avr-Pii</em> 等)决定哪些 Pi 基因对当地小种仍然有效。效应蛋白基因常位于亚端粒区,处于重复序列与转座子之中 — 短读长难以解析,而 <strong>ONT 长读长可实现这些位点的完整组装与定相</strong>。</p>' +
+    '<p>我们的流程对感病水稻叶片和节部直接在田间(Flongle 芯片)进行<strong>宏基因组与靶向纳米孔测序</strong>。数小时内,农艺师即可获得病原的种与致病型鉴定、<strong>Avr 效应蛋白谱</strong>(抗病品种选择建议)、<strong>杀菌剂敏感性谱</strong>(杀菌剂方案建议)以及病原谱系迁移监测数据。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:感病水稻叶片与节部、组织匀浆。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 病原的种与致病型、Avr 效应蛋白谱、杀菌剂敏感性与田间防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🧩 流程架构</h2>' +
+    '<ol><li><strong>种与致病型鉴定</strong> — 读段与参考数据库比对分类;鉴别水稻致病型 (<em>Oryza</em>) 与小麦致病型 (<em>Triticum</em>,wheat blast)。</li>' +
+    '<li><strong>长读长从头组装</strong> — 完整重建短读长无法解析的 Avr 效应蛋白亚端粒位点。</li>' +
+    '<li><strong>Avr 效应蛋白分析</strong> — <em>Avr-Pita</em>、<em>Avr-Pik</em>、<em>Avr-Piz-t</em>、<em>Avr-Pii</em> 等无毒基因的等位基因组成 → 预测品种 Pi 基因的有效性。</li>' +
+    '<li><strong>杀菌剂靶标筛查</strong> — 检测 MBI、DMI 和春雷霉素靶标基因中的多态性。</li>' +
+    '<li><strong>系统发育与谱系监测</strong> — 追踪生理小种与克隆谱系的跨区域迁移。</li></ol>' +
+    '<p>整个流程基于 <strong>Snakemake</strong> 实现,以 Docker 容器形式通过 <code>harbor.onsiteseq.io</code> 镜像仓库分发。</p><hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['靶标基因', '机制', '杀菌剂(类别)'], [
+      ['<strong>scytalone 脱水酶</strong>(黑色素生物合成)', '靶标多态性', '环丙酰菌胺等 (MBI-D)'],
+      ['<strong>CYP51</strong>(甾醇 14α-脱甲基化酶)', '靶标多态性', '三唑类 (DMI:戊唑醇、丙环唑)'],
+      ['<strong>核糖体靶标</strong>', '靶标多态性', '春雷霉素(抗生素,在亚洲广泛应用)'],
+      ['<strong>Cytb</strong>(细胞色素 b)', '敏感性监测', '甲氧基丙烯酸酯类 / QoI(嘧菌酯)']
+    ]) +
+    '<p>流程基于靶标基因测序数据对 MBI、DMI、春雷霉素和甲氧基丙烯酸酯类进行敏感性监测。请注意:经典的 QoI 突变 <strong>G143A</strong> 在 <em>M. oryzae</em> 中并不典型 — 其细胞色素 b 在 143 密码子附近含有内含子,因此解读基于对靶标的完整分析,而非单个密码子。</p><hr>' +
+    '<h2>🌾 生理小种与 Avr 效应蛋白监测</h2>' +
+    tbl(['无毒基因', '对应的水稻抗病基因', '实际意义'], [
+      ['<strong>Avr-Pita</strong>', 'Pi-ta', 'Avr-Pita 等位基因丢失 → 携带 Pi-ta 的品种丧失抗性'],
+      ['<strong>Avr-Pik</strong>', 'Pik', 'Avr-Pik 等位基因系列决定有效的 Pik 等位基因范围'],
+      ['<strong>Avr-Piz-t</strong>', 'Piz-t', '监测携带 Piz-t 品种的抗性侵蚀'],
+      ['<strong>Avr-Pii</strong>', 'Pii', '评估 Pii 对当地群体的有效性']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>粮食安全</strong> — 稻瘟病每年摧毁全球 10–30% 的水稻产量,而水稻是世界一半人口的主粮。</li>' +
+    '<li><strong>中国</strong> — 全球最大的水稻生产国;稻瘟病是当地水稻生产的头号威胁,正在开展病原群体的密集监测。</li>' +
+    '<li><strong>Wheat blast</strong> — <em>Triticum</em> 致病型作为检疫性威胁:继南美洲之后传入孟加拉国 (2016) 和非洲;需要在边境快速鉴别致病型。</li>' +
+    '<li><strong>气候驱动的分布区扩张</strong> — 气候变暖正将稻瘟病风险区的边界推向新的水稻种植区。</li>' +
+    '<li><strong>品种抗性的快速侵蚀</strong> — 抗病品种几年内即被"突破",因此田间小种监测必须常态化。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Magnaporthe oryzae</a></li>' +
+    '<li>📄 <a href="https://www.fao.org/">FAO — 联合国粮食及农业组织(水稻)</a></li>' +
+    '<li>📄 <a href="https://www.irri.org/">IRRI — 国际水稻研究所</a></li></ul>';
+
+  /* ── 地中海贫血 (thalassemia) ── */
+  ZH['/thalassemia/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_thalassemia.svg" alt="地中海贫血 — 遗传性血红蛋白病" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>地中海贫血及遗传性血红蛋白病的诊断</h1>' +
+    '<p style="font-size:1.2em;color:#555">HBA 簇缺失、HBB 突变及其定相 — 一项长读长检测替代 gap-PCR + MLPA + Sanger 组合</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>地中海贫血</strong>是血红蛋白珠蛋白链合成的遗传性疾病:<strong>α-地中海贫血</strong>(16 号染色体上的 <em>HBA1/HBA2</em> 基因簇)和 <strong>β-地中海贫血</strong>(11 号染色体上的 <em>HBB</em> 基因)。重型 — Hb H 病、Hb Bart\'s 胎儿水肿(α 基因 --/-- 状态)以及需要终身输血并伴铁过载的重型 β-地中海贫血 — 构成全球最重要的遗传病负担之一。</p>' +
+    '<p>地中海贫血的诊断历来是割裂的:α-缺失用 gap-PCR 检测,缺失与重复用 MLPA,<em>HBB</em> 点突变用 Sanger 测序。根源在于该位点本身的遗传学特点:<strong>α-地中海贫血</strong>以<strong>大片段缺失</strong>为主(--SEA、-α3.7、-α4.2、--MED、--THAI 等),且 <em>HBA</em> 簇含有高度同源的重复序列和假基因,短读长 NGS 原则上无法解析该区域。<strong>β-地中海贫血</strong>则以 <em>HBB</em> 点突变为主 — 在中国最常见的是 CD41-42 (-TTCT)、IVS-II-654 (C&gt;T)、CD17 (A&gt;T)、-28 (A&gt;G) 和 CD71-72。</p>' +
+    '<p><strong>Oxford Nanopore 长读长</strong>用一项检测解决问题 — 针对 <em>HBA/HBB</em> 位点的 LR-PCR 扩增子或靶向富集 / adaptive sampling 可以:(1) 直接检出大片段缺失并确定精确断裂点;(2) 解析 <em>HBA1/HBA2</em> 同源性;(3) 对突变进行定相 (cis/trans);(4) 同时检出 <em>HBB</em> 点变异。已发表研究显示 ONT 方法与 gap-PCR/MLPA/Sanger 组合完全一致 — 用一项检测替代 3–4 项独立检测。</p>' +
+    '<p>我们的流程输出统一的基因组档案:α-缺失与非缺失型变异、<em>HBB</em> 突变、单倍型定相以及面向遗传咨询的现成解读。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液基因组 DNA(包括用于产前诊断的绒毛膜绒毛/羊水)。最佳方案:<em>HBA</em> 与 <em>HBB</em> 位点长读长扩增子 (LR-PCR)<strong>或</strong>靶向富集 / adaptive sampling。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — α 与 β 位点基因型(缺失、点变异、定相)、携带状态与夫妇风险解读、产前/植入前 (PGT-M) 诊断结论。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 可检测变异与临床标志物</h2>' +
+    '<h3>α-地中海贫血:HBA 簇缺失与非缺失型变异</h3>' +
+    tbl(['变异', '类型', '意义'], [
+      ['<strong>--SEA</strong>', 'α⁰ 缺失', '东南亚和中国南方最常见的 α⁰ 缺失;双方携带者 — Hb Bart\'s 胎儿水肿风险'],
+      ['<strong>-α3.7</strong>', 'α⁺ 缺失', '全球最常见的 α 缺失;-α3.7/-- 组合 — Hb H 病'],
+      ['<strong>-α4.2</strong>', 'α⁺ 缺失', '常见的 α⁺ 缺失;与 α⁰ 缺失组合时有临床意义'],
+      ['<strong>--MED、--THAI</strong> 等', 'α⁰ 缺失', '区域性变异;精确断裂点由长读长直接读取确定'],
+      ['<strong>Hb Constant Spring</strong> (HBA2:c.427T&gt;C)', '非缺失型', '延长的异常 α-珠蛋白;非缺失型 Hb H 病的常见成分'],
+      ['<strong>Hb Quong Sze</strong> 等', '非缺失型', 'gap-PCR 无法检出的罕见非缺失型变异']
+    ]) +
+    '<h3>β-地中海贫血与血红蛋白病 (HBB 基因)</h3>' +
+    tbl(['变异', '类型', '意义'], [
+      ['<strong>CD41-42 (-TTCT)</strong>', 'β⁰', '中国最常见的 β-地中海贫血突变'],
+      ['<strong>IVS-II-654 (C&gt;T)</strong>', 'β⁺', '中国第二常见;剪接异常'],
+      ['<strong>CD17 (A&gt;T)</strong>', 'β⁰', '中国南方常见无义突变'],
+      ['<strong>-28 (A&gt;G)</strong>', 'β⁺', '启动子突变,表型较轻'],
+      ['<strong>CD71-72 (+A)</strong>', 'β⁰', '东南亚常见变异'],
+      ['<strong>Hb E</strong> (HBB:c.79G&gt;A)', '结构变异 + β⁺', '东南亚极常见突变;Hb E/β-地中海贫血组合为重型疾病'],
+      ['<strong>HPFH / δβ-地中海贫血缺失</strong>', '大片段缺失', '遗传性胎儿血红蛋白持续存在;可减轻 β-地中海贫血严重程度,对预后重要']
+    ]) +
+    '<h3>定相 (cis/trans)</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>α/β 位点单倍型定相</strong>', '长读长确定突变位于同一条还是不同染色体上 — 对预后至关重要(例如两个 α⁺ 缺陷的顺式与反式位置)']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Thalassemia Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>THAL-SV-Caller</strong>', '基于覆盖度谱和 split-reads 对 HBA 簇缺失/重复进行分类'],
+      ['<strong>THAL-Interpreter</strong>', 'α+β 基因型解读:携带状态、表型严重程度、夫妇风险']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(同源的 HBA/HBB 簇,位点专用参考序列)'],
+      ['<strong>3. 变异检测 (SNV/Indel)</strong>', '<code>clair3</code>、<code>medaka</code> — HBB 点变异与小片段插入缺失、非缺失型 α 变异'],
+      ['<strong>4. CNV/SV 分析(缺失)</strong>', '专用模块:覆盖度谱 + split-reads;<code>Sniffles2</code>、<code>cuteSV</code> — 缺失的精确断裂点'],
+      ['<strong>5. 定相</strong>', '<code>WhatsHap</code> — 基于长读长确定变异的顺/反式构型'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>世卫组织</strong> — 血红蛋白病(地中海贫血和镰状细胞贫血)被列为日益加重的全球遗传病负担:每年有数十万儿童出生时即患重型,携带者迁移使诊断需求扩展到传统地区之外。</li>' +
+    '<li><strong>携带者地带</strong> — 地中海地区、中东、南亚和东南亚。在中国南方(广西、广东、云南、海南),部分地区携带率高达约 10–20% — 地中海贫血是该地区最主要的遗传病之一。</li>' +
+    '<li><strong>预防项目</strong> — 塞浦路斯和撒丁岛通过大规模夫妇筛查和产前诊断几乎消除了重型患儿的出生;中国实施孕前夫妇筛查的国家项目,广西的经验被视为典范。</li>' +
+    '<li><strong>诊断缺口</strong> — 常规诊断需要 gap-PCR + MLPA + Sanger 组合(每位患者需多项不同检测);单一长读长检测降低成本、缩短时间并减少漏检罕见变异的风险,在产前诊断和 PGT-M 中尤为重要。</li>' +
+    '<li><strong>鉴别诊断</strong> — 地中海贫血携带者的小细胞性贫血常被误诊为缺铁性贫血;分子确诊可避免错误的补铁治疗。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/">WHO — 血红蛋白病与地中海贫血资料</a></li>' +
+    '<li>📄 <a href="http://www.ithanet.eu/db/ithagenes">IthaGenes — 血红蛋白变异数据库 (IthaNet)</a></li>' +
+    '<li>📄 <a href="https://globin.bx.psu.edu/hbvar/">HbVar — 血红蛋白变异与地中海贫血数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/gene/3043">NCBI Gene — HBB</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -1763,7 +2424,12 @@
       'mycoplasma':   ['Mycoplasma genitalium', 'Pre-treatment resistance testing of M. genitalium to macrolides and fluoroquinolones — rapidly emerging multidrug resistance, frequently missed STI pathogen'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
       'hbv':          ['Hepatitis B (HBV)', 'HBV genotyping (A–J), polymerase resistance mutations (YMDD), HBeAg status and liver cancer risk markers — from a single assay'],
+      'hvkp':         ['Hypervirulent Klebsiella (hvKP)', 'Virulence markers (rmpA, iucA, peg-344), K1/K2 capsular types and convergence with carbapenem resistance — liver abscess and metastatic infections'],
+      'sfts':         ['SFTS (Dabie bandavirus)', 'Point-of-care mNGS for severe fever with thrombocytopenia syndrome — L/M/S segment analysis and differential diagnosis of haemorrhagic fevers in endemic areas'],
+      'thalassemia':  ['Thalassemia (HBA/HBB)', 'One assay instead of gap-PCR + MLPA + Sanger: α-cluster deletions, HBB mutations and cis/trans phasing on long reads — carrier couple screening and prenatal diagnosis'],
+      'magnaporthe':  ['Rice Blast (Magnaporthe oryzae)', 'The most devastating rice disease — race and Avr-effector monitoring, Triticum pathotype (wheat blast), fungicide sensitivity'],
       'sarscov2':     ['Coronavirus SARS-CoV-2', 'Variant (subtype) and antiviral drug resistance determination'],
+      'helicobacter': ['Helicobacter pylori', 'Resistance and virulence profile (cagA/vacA) of H. pylori from a biopsy in one day — for personalised eradication therapy'],
       'staphylococcus': ['S. aureus (Staphylococcus)', 'MRSA/VRSA and full AMR profile determination — leading nosocomial pathogen'],
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
       'cold':         ['Bacterial ARI', 'Metagenomic identification of bacterial respiratory pathogens and AMR — S. pneumoniae, H. influenzae, K. pneumoniae, etc.'],
@@ -1820,7 +2486,15 @@
     },
     cards: {
       'asfv': ['非洲猪瘟 (ASFV)', '猪场门口数小时出结果 — p72 基因分型、低毒力缺失变异株 (CD2v/MGF)、与经典猪瘟鉴别'],
-      'hbv':  ['乙型肝炎 (HBV)', 'HBV 基因分型 (A–J)、聚合酶耐药突变 (YMDD)、HBeAg 状态与肝癌风险标志物 — 一次检测完成']
+      'hbv':  ['乙型肝炎 (HBV)', 'HBV 基因分型 (A–J)、聚合酶耐药突变 (YMDD)、HBeAg 状态与肝癌风险标志物 — 一次检测完成'],
+      'hvkp': ['高毒力肺炎克雷伯菌 (hvKP)', '毒力标志物 (rmpA、iucA、peg-344)、K1/K2 荚膜血清型与碳青霉烯耐药性汇聚 — 肝脓肿与转移性感染'],
+      'sfts': ['发热伴血小板减少综合征 (SFTS)', '床旁 mNGS 检测发热伴血小板减少综合征 — L/M/S 节段分析与流行区出血热鉴别诊断'],
+      'thalassemia': ['地中海贫血 (HBA/HBB)', '一次检测替代 gap-PCR + MLPA + Sanger:α-簇缺失、HBB 突变与长读长顺/反式定相 — 携带者夫妇筛查与产前诊断'],
+      'magnaporthe': ['稻瘟病 (Magnaporthe oryzae)', '最具破坏性的水稻病害 — 生理小种与 Avr 效应蛋白监测、Triticum 致病型(小麦瘟病)、杀菌剂敏感性'],
+      'tuberculosis': ['结核病', '结核分枝杆菌耐药性与谱系(基因型)鉴定'],
+      'helicobacter': ['幽门螺杆菌 (H. pylori)', '基于基因组的耐药与毒力谱分析,用于个体化根除治疗'],
+      'sarscov2': ['新型冠状病毒 SARS-CoV-2', '变异株(亚型)鉴定与抗病毒药物耐药性检测'],
+      'hiv':  ['HIV(艾滋病病毒)', 'HIV-1 耐药性与亚型鉴定']
     }
   };
 
