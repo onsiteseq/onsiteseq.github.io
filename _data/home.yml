@@ -193,6 +193,11 @@ farmer_entries:
     desc: Самая разрушительная болезнь риса — мониторинг рас и Avr-эффекторов, патотип Triticum (wheat blast), чувствительность к фунгицидам
     image: /assets/images/logo/icon_magnaporthe.svg
 
+  - title: Хуанлунбин цитрусовых (HLB)
+    url: hlb
+    desc: "«Зеленение» цитрусовых — некультивируемый Candidatus Liberibacter asiaticus, переносимый псиллидой: молекулярная детекция, SNP-кластеры и профиль профаг, дифференциация видов CLas/CLaf/CLam"
+    image: /assets/images/logo/icon_hlb.svg
+
 criminal_entries:
   - title: Портрет преступника по ДНК
     url: identikit
