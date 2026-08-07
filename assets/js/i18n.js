@@ -1166,6 +1166,52 @@
     '<li>📄 <a href="https://www.fao.org/">FAO — Food and Agriculture Organization of the UN (rice)</a></li>' +
     '<li>📄 <a href="https://www.irri.org/">IRRI — International Rice Research Institute</a></li></ul>';
 
+  /* ── CITRUS HUANGLONGBING (HLB) ── */
+  EN['/hlb/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hlb.svg" alt="Citrus Huanglongbing (HLB)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Citrus Huanglongbing — <i>Candidatus</i> Liberibacter asiaticus</h1>' +
+    '<p style="font-size:1.2em;color:#555">Field molecular diagnostics of citrus greening with strain typing and prophage profiling — in hours, right in the regional agricultural laboratory</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Candidatus</em> Liberibacter asiaticus (CLas) is a Gram-negative α-proteobacterium, an obligate parasite of citrus phloem and the causative agent of huanglongbing (HLB, citrus greening) — the most devastating disease of world citriculture. The key biological feature of CLas: the pathogen <strong>cannot be cultured on artificial media</strong>, so neither classical microbiology nor rapid microscopic tests work — diagnostics and surveillance are possible <strong>only by molecular methods</strong>.</p>' +
+    '<p>The disease is spread by a vector — the Asian citrus psyllid <em>Diaphorina citri</em> (for the African pathogen species — the African psyllid <em>Trioza erytreae</em>). Characteristic symptoms: <strong>asymmetric blotchy mottling of the leaves</strong> (blotchy mottle), asymmetric underdeveloped fruits that remain green at the peduncle (hence "greening", citrus greening), bitter fruits and premature fruit drop. The tree declines and dies within a few years. <strong>No cure exists</strong> — the only working strategy is early detection → removal of infected trees → psyllid control. That is why the speed and accessibility of diagnostics decide everything.</p>' +
+    '<p>The CLas genome is compact (~1.2 Mb) with a reduced GC content. Its most important feature is the <strong>prophages</strong> (SC1, SC2, types 1/2/3): their composition is used as an epidemiological marker for strain tracking. Strain typing is based on SNP clusters and MLVA loci. Prophage regions and repeat-rich regions assemble poorly from short reads, whereas <strong>ONT long reads deliver complete prophage regions and reliable phylogenetics</strong>. A practical challenge is the low and unevenly distributed bacterial titre in the phloem, so the pipeline relies on targeted enrichment or metagenomic sequencing with host-material depletion. Samples: petioles and midribs of mottled leaves, as well as psyllids.</p>' +
+    '<p>Our pipeline performs <strong>targeted and metagenomic nanopore sequencing</strong> of samples right in the regional agricultural laboratory (Flongle chips). Within a few hours the agronomist receives CLas detection, <strong>species differentiation</strong> of CLas / CLaf (African) / CLam (American) — of direct quarantine significance, <strong>SNP-cluster/lineage determination</strong> and a <strong>prophage profile</strong> (SC1/SC2) for surveillance.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: petioles and midribs of mottled leaves, tissue homogenate, psyllids.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the agronomist and the phytosanitary service — CLas detection, pathogen species (CLas/CLaf/CLam), SNP lineage, prophage profile and recommendations on quarantine measures.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🧩 Pipeline Architecture</h2>' +
+    '<ol><li><strong>Pathogen identification</strong> — minimap2 alignment of reads against a reference panel of CLas / CLaf / CLam; species differentiation, quarantine-relevant identification.</li>' +
+    '<li><strong>Consensus and variant calling</strong> — construction of consensus sequences (medaka / clair3) across the target panel (16S, rplKAJL, rpoB and prophage targets).</li>' +
+    '<li><strong>SNP typing and lineage</strong> — assignment of the sample to a CLas SNP cluster / epidemiological lineage.</li>' +
+    '<li><strong>Prophage profile</strong> — reconstruction of complete prophage regions (SC1, SC2, types 1/2/3) on long reads → an epidemiological marker of strain origin.</li>' +
+    '<li><strong>Phylogenetics and surveillance</strong> — building a phylogenetic tree, tracking strain migration between farms and regions.</li></ol>' +
+    '<p>The entire pipeline is implemented in <strong>Snakemake</strong> and distributed as a Docker container via the <code>harbor.onsiteseq.io</code> registry.</p><hr>' +
+    '<h2>🎯 Diagnostic Target Panel</h2>' +
+    tbl(['Target', 'Type', 'Practical significance'], [
+      ['<strong>16S rRNA</strong>', 'Conserved locus', 'Liberibacter detection at genus and species level'],
+      ['<strong>rplKAJL–rpoB</strong> (ribosomal operon)', 'Gene panel', 'Species differentiation of CLas / CLaf / CLam'],
+      ['<strong>Prophage targets (SC1, SC2)</strong>', 'Prophage regions', 'Epidemiological marker, strain tracking'],
+      ['<strong>SNP panel / MLVA loci</strong>', 'Polymorphisms', 'Strain typing, lineage, outbreak cluster analysis']
+    ]) +
+    '<p>The pipeline differentiates the three huanglongbing pathogen species: Asian (CLas), African (<em>Candidatus</em> Liberibacter africanus, CLaf) and American (<em>Candidatus</em> Liberibacter americanus, CLam) — species discrimination is critical for quarantine decisions, since their ranges and vectors differ.</p><hr>' +
+    '<h2>🦠 Vectors and Monitoring Objects</h2>' +
+    tbl(['Object', 'Role', 'What sequencing provides'], [
+      ['<strong>Leaves with blotchy mottle</strong>', 'Plant diagnostic sample', 'CLas detection in the phloem, strain typing'],
+      ['<strong>Asian psyllid <em>Diaphorina citri</em></strong>', 'Main CLas vector', 'Advance monitoring of vector infection before symptoms appear'],
+      ['<strong>African psyllid <em>Trioza erytreae</em></strong>', 'Vector of CLaf (and of CLas in some regions)', 'Pathogen species differentiation in the vector–plant complex']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>China</strong> — the largest citrus producer in the world; huanglongbing is endemic to southern China (Guangxi, Guangdong, Fujian, Jiangxi), and Guangxi is the main mandarin-producing region. HLB monitoring there is a task of national scale.</li>' +
+    '<li><strong>Florida</strong> — since the mid-2000s HLB has devastated the state citrus industry: orange production collapsed by tens of percent, and the industry has not recovered to this day.</li>' +
+    '<li><strong>Brazil</strong> — the disease pressures the São Paulo citrus belt, the world\'s largest orange-juice export region.</li>' +
+    '<li><strong>No cure and no resistant varieties</strong> — no commercial citrus varieties with full HLB resistance exist, so the entire strategy is built on early detection, tree removal and psyllid control.</li>' +
+    '<li><strong>Quarantine object</strong> — huanglongbing pathogens are quarantine organisms for a number of countries, including the EU; rapid species differentiation at borders and in new foci has direct phytosanitary significance.</li></ul><hr>' +
+    '<h2>🔬 Related Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Candidatus Liberibacter asiaticus</a></li>' +
+    '<li>📄 <a href="https://www.aphis.usda.gov/">USDA APHIS — Citrus Greening / Huanglongbing</a></li>' +
+    '<li>📄 <a href="https://www.cabidigitallibrary.org/">CABI Invasive Species Compendium — huanglongbing datasheet</a></li></ul>';
+
   /* ── THALASSEMIA ── */
   EN['/thalassemia/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -2322,6 +2368,57 @@
     '<li>📄 <a href="https://www.fao.org/">FAO — 联合国粮食及农业组织(水稻)</a></li>' +
     '<li>📄 <a href="https://www.irri.org/">IRRI — 国际水稻研究所</a></li></ul>';
 
+  /* ── 柑橘黄龙病 (hlb) ── */
+  ZH['/hlb/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hlb.svg" alt="柑橘黄龙病 (HLB)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>柑橘黄龙病 — 亚洲韧皮部杆菌 <i>Candidatus</i> Liberibacter asiaticus</h1>' +
+    '<p style="font-size:1.2em;color:#555">柑橘"青果病"的田间分子诊断,含菌株分型与前噬菌体谱分析 — 数小时内完成,就在区域农业实验室</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>亚洲韧皮部杆菌(<em>Candidatus</em> Liberibacter asiaticus,CLas)是一种革兰氏阴性 α-变形菌,为柑橘韧皮部的专性寄生菌,也是黄龙病(HLB,柑橘"青果病")的病原 — 全球柑橘种植业最具破坏性的病害。CLas 的关键生物学特性:病原<strong>无法在人工培养基上培养</strong>,因此经典微生物学方法和快速显微检测均无效 — 诊断与流行病学监测<strong>只能依靠分子方法</strong>。</p>' +
+    '<p>该病由媒介昆虫传播 — 亚洲柑橘木虱 <em>Diaphorina citri</em>(非洲种病原则由非洲木虱 <em>Trioza erytreae</em> 传播)。典型症状:<strong>叶片不对称的斑驳状黄化</strong>(blotchy mottle)、果实不对称发育不良且在果柄处保持绿色(故称"青果病",citrus greening)、果实味苦、提前落果。病树在数年内衰败死亡。<strong>目前无治疗方法</strong> — 唯一有效的策略是:早期检测 → 清除病树 → 防控木虱。因此,诊断的速度与可及性决定一切。</p>' +
+    '<p>CLas 基因组较小(~1.2 Mb),GC 含量偏低。其最重要的特征是<strong>前噬菌体</strong>(SC1、SC2,1/2/3 型):其组成可作为追踪菌株的流行病学标志物。菌株分型基于 SNP 簇和 MLVA 位点。前噬菌体区域和富含重复序列的区域难以用短读长组装,而 <strong>ONT 长读长可获得完整的前噬菌体区域和可靠的系统发育分析</strong>。实际难点在于韧皮部中细菌滴度低且分布不均,因此流程依赖靶向富集或宏基因组测序并去除宿主材料。样本:带斑驳叶片的叶柄与主脉,以及木虱。</p>' +
+    '<p>我们的流程在区域农业实验室(Flongle 芯片)直接对样本进行<strong>靶向与宏基因组纳米孔测序</strong>。数小时内,农艺师即可获得 CLas 检测结果、CLas / CLaf(非洲种)/ CLam(美洲种)的<strong>种间鉴别</strong> — 具有直接检疫意义、<strong>SNP 簇/谱系鉴定</strong>以及用于流行病学监测的<strong>前噬菌体谱</strong>(SC1/SC2)。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:带斑驳叶片的叶柄与主脉、组织匀浆、木虱。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师与植检部门的 HTML 报告 — CLas 检测、病原种 (CLas/CLaf/CLam)、SNP 谱系、前噬菌体谱及检疫措施建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🧩 流程架构</h2>' +
+    '<ol><li><strong>病原鉴定</strong> — 用 minimap2 将读段比对到 CLas / CLaf / CLam 参考面板;种间鉴别,具有检疫意义的鉴定。</li>' +
+    '<li><strong>一致性序列与变异检测</strong> — 基于靶标面板 (16S、rplKAJL、rpoB 及前噬菌体靶标) 构建一致性序列 (medaka / clair3)。</li>' +
+    '<li><strong>SNP 分型与谱系</strong> — 将样本归入 CLas 的 SNP 簇 / 流行病学谱系。</li>' +
+    '<li><strong>前噬菌体谱</strong> — 在长读长上重建完整的前噬菌体区域 (SC1、SC2,1/2/3 型) → 菌株来源的流行病学标志物。</li>' +
+    '<li><strong>系统发育与流行病学监测</strong> — 构建系统发育树,追踪菌株在农场与地区间的迁移。</li></ol>' +
+    '<p>整个流程基于 <strong>Snakemake</strong> 实现,以 Docker 容器形式通过 <code>harbor.onsiteseq.io</code> 镜像仓库分发。</p><hr>' +
+    '<h2>🎯 诊断靶标面板</h2>' +
+    tbl(['靶标', '类型', '实际意义'], [
+      ['<strong>16S rRNA</strong>', '保守位点', '在属和种水平检测韧皮部杆菌'],
+      ['<strong>rplKAJL–rpoB</strong>(核糖体操纵子)', '基因面板', 'CLas / CLaf / CLam 的种间鉴别'],
+      ['<strong>前噬菌体靶标 (SC1、SC2)</strong>', '前噬菌体区域', '流行病学标志物,菌株追踪'],
+      ['<strong>SNP 面板 / MLVA 位点</strong>', '多态性', '菌株分型、谱系、暴发聚集性分析']
+    ]) +
+    '<p>流程可鉴别黄龙病的三种病原:亚洲种 (CLas)、非洲种(<em>Candidatus</em> Liberibacter africanus,CLaf)和美洲种(<em>Candidatus</em> Liberibacter americanus,CLam) — 种间鉴别对检疫决策至关重要,因为它们的分布区和媒介各不相同。</p><hr>' +
+    '<h2>🦠 媒介与监测对象</h2>' +
+    tbl(['对象', '角色', '测序提供的信息'], [
+      ['<strong>带斑驳症状的叶片</strong>', '植物诊断样本', '韧皮部中的 CLas 检测、菌株分型'],
+      ['<strong>亚洲柑橘木虱 <em>Diaphorina citri</em></strong>', 'CLas 的主要媒介', '在症状出现前对媒介带毒情况进行超前监测'],
+      ['<strong>非洲木虱 <em>Trioza erytreae</em></strong>', 'CLaf 的媒介(部分地区也传播 CLas)', '在"媒介–植物"复合体中鉴别病原种']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>中国</strong> — 全球最大的柑橘生产国;黄龙病在中国南方(广西、广东、福建、江西)为地方性流行病,广西是主要的柑橘(宽皮橘)产区。HLB 监测在中国具有全国性意义。</li>' +
+    '<li><strong>佛罗里达</strong> — 自 2000 年代中期以来,HLB 摧毁了该州的柑橘产业:橙子产量下降了数十个百分点,行业至今未能恢复。</li>' +
+    '<li><strong>巴西</strong> — 该病侵袭圣保罗柑橘带,全球最大的橙汁出口区。</li>' +
+    '<li><strong>无治疗方法、无抗病品种</strong> — 目前不存在对 HLB 完全抗病的商业化柑橘品种,因此整个防控策略都建立在早期检测、清除病树和防控木虱之上。</li>' +
+    '<li><strong>检疫性有害生物</strong> — 黄龙病病原是包括欧盟在内多个国家的检疫对象;在边境和新发疫点快速进行种间鉴别具有直接的植物检疫意义。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Candidatus Liberibacter asiaticus</a></li>' +
+    '<li>📄 <a href="https://www.aphis.usda.gov/">USDA APHIS — Citrus Greening / Huanglongbing</a></li>' +
+    '<li>📄 <a href="https://www.cabidigitallibrary.org/">CABI 入侵物种纲要 — 黄龙病资料页</a></li></ul>';
+
   /* ── 地中海贫血 (thalassemia) ── */
   ZH['/thalassemia/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -2428,6 +2525,7 @@
       'sfts':         ['SFTS (Dabie bandavirus)', 'Point-of-care mNGS for severe fever with thrombocytopenia syndrome — L/M/S segment analysis and differential diagnosis of haemorrhagic fevers in endemic areas'],
       'thalassemia':  ['Thalassemia (HBA/HBB)', 'One assay instead of gap-PCR + MLPA + Sanger: α-cluster deletions, HBB mutations and cis/trans phasing on long reads — carrier couple screening and prenatal diagnosis'],
       'magnaporthe':  ['Rice Blast (Magnaporthe oryzae)', 'The most devastating rice disease — race and Avr-effector monitoring, Triticum pathotype (wheat blast), fungicide sensitivity'],
+      'hlb': ['Citrus Huanglongbing (HLB)', 'Citrus greening — unculturable Candidatus Liberibacter asiaticus vectored by psyllids: molecular detection, SNP clusters and prophage profiling, CLas/CLaf/CLam species differentiation'],
       'sarscov2':     ['Coronavirus SARS-CoV-2', 'Variant (subtype) and antiviral drug resistance determination'],
       'helicobacter': ['Helicobacter pylori', 'Resistance and virulence profile (cagA/vacA) of H. pylori from a biopsy in one day — for personalised eradication therapy'],
       'staphylococcus': ['S. aureus (Staphylococcus)', 'MRSA/VRSA and full AMR profile determination — leading nosocomial pathogen'],
@@ -2491,6 +2589,7 @@
       'sfts': ['发热伴血小板减少综合征 (SFTS)', '床旁 mNGS 检测发热伴血小板减少综合征 — L/M/S 节段分析与流行区出血热鉴别诊断'],
       'thalassemia': ['地中海贫血 (HBA/HBB)', '一次检测替代 gap-PCR + MLPA + Sanger:α-簇缺失、HBB 突变与长读长顺/反式定相 — 携带者夫妇筛查与产前诊断'],
       'magnaporthe': ['稻瘟病 (Magnaporthe oryzae)', '最具破坏性的水稻病害 — 生理小种与 Avr 效应蛋白监测、Triticum 致病型(小麦瘟病)、杀菌剂敏感性'],
+      'hlb': ['柑橘黄龙病 (HLB)', '柑橘"青果病" — 由木虱传播、无法人工培养的亚洲韧皮部杆菌 (Candidatus Liberibacter asiaticus):分子检测、SNP 簇与前噬菌体谱分析、CLas/CLaf/CLam 种间鉴别'],
       'tuberculosis': ['结核病', '结核分枝杆菌耐药性与谱系(基因型)鉴定'],
       'helicobacter': ['幽门螺杆菌 (H. pylori)', '基于基因组的耐药与毒力谱分析,用于个体化根除治疗'],
       'sarscov2': ['新型冠状病毒 SARS-CoV-2', '变异株(亚型)鉴定与抗病毒药物耐药性检测'],
