@@ -1010,6 +1010,132 @@
     '<li>📄 <a href="https://hbvdb.ibcp.fr/">HBVdb — Hepatitis B Virus Database</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/projects/genotyping/formpage.cgi">NCBI HBV Genotyping Tool</a></li></ul>';
 
+  /* ── MENINGOCOCCUS (N. meningitidis) ── */
+  EN['/meningitidis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_meningitidis.svg" alt="Neisseria meningitidis" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Serogrouping and Drug Resistance of Neisseria meningitidis</h1>' +
+    '<p style="font-size:1.2em;color:#555">Point-of-care diagnostics at the patient\'s bedside when meningococcal infection is suspected — the fulminant form, where every hour counts</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Neisseria meningitidis</em> (meningococcus) is the causative agent of meningococcal disease: from nasopharyngeal carriage to fulminant meningococcemia, in which only a few hours may pass from the first symptoms to death. <strong>Every hour of delay in diagnosis and therapy increases mortality.</strong> Standard diagnostics — CSF or blood culture — take 1–3 days and are often negative because antibiotic therapy has already been started.</p>' +
+    '<p>The meningococcal genotype determines all further case management: the <strong>serogroup</strong> (A, B, C, W, Y, X) defines the vaccination strategy for contacts, while the <strong>resistance profile</strong> guides the choice of chemoprophylaxis for the outbreak (ciprofloxacin-resistant strains are increasingly reported).</p>' +
+    '<p>Our pipeline provides the complete nanopore data analysis cycle <strong>at the patient\'s bedside</strong>: serogroup determination, drug resistance profile and clonal assignment of the strain — on the same day, without transferring data to external servers.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: CSF, blood, throat swab; optimal — amplicon sequencing of capsular loci and resistance genes or WGS.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the clinician — serogroup, susceptibility profile, chemoprophylaxis recommendation for contacts; QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Serogroups and Resistance Markers</h2>' +
+    '<h3>Capsular loci (serogrouping)</h3>' +
+    tbl(['Locus', 'Serogroup', 'Significance'], [
+      ['<strong>ctrA</strong>', 'All capsulated', 'Universal capsular locus marker, species confirmation'],
+      ['<strong>sacB</strong>', 'A', 'Rare in Russia; dominates the African "meningitis belt"'],
+      ['<strong>synD (siaD-B)</strong>', 'B', 'Predominant serogroup in Russia and Europe; vaccines 4CMenB, MenB-fHbp'],
+      ['<strong>siaD-C</strong>', 'C', 'Second most frequent; conjugate MenC/ACWY vaccines'],
+      ['<strong>synG</strong>', 'W', 'Growing share in Russia and Europe since the 2010s (clone W:cc11)'],
+      ['<strong>synF</strong>', 'Y', 'Growing share, especially in the elderly'],
+      ['<strong>csb</strong>', 'X', 'African "meningitis belt"; no vaccines available']
+    ]) +
+    '<h3>Resistance genes</h3>' +
+    tbl(['Gene / locus', 'Key mutations', 'Antibiotic class'], [
+      ['<strong>penA</strong> (PBP2)', 'Mosaic alleles, F504L, A510V', 'Penicillin (reduced susceptibility)'],
+      ['<strong>gyrA</strong>', 'T91I', 'Ciprofloxacin (contact chemoprophylaxis)'],
+      ['<strong>rpoB</strong>', 'H552Y', 'Rifampicin (contact chemoprophylaxis)'],
+      ['<strong>23S rRNA</strong>', 'C2611T', 'Azithromycin (prophylaxis alternative)']
+    ]) +
+    '<h3>Antibiotic profile in the report</h3>' +
+    tbl(['Antibiotic', 'Use', 'Clinical significance'], [
+      ['<strong>Ceftriaxone</strong>', 'Empirical therapy', 'First-line drug for suspected bacterial meningitis'],
+      ['<strong>Penicillin G</strong>', 'Targeted therapy', 'Drug of choice once a susceptible meningococcus is confirmed'],
+      ['<strong>Ciprofloxacin</strong>', 'Chemoprophylaxis', 'Main drug for contacts; gyrA T91I mutation → switch'],
+      ['<strong>Rifampicin</strong>', 'Chemoprophylaxis', 'Alternative for contacts'],
+      ['<strong>Azithromycin</strong>', 'Chemoprophylaxis', 'Alternative in case of quinolone resistance']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Meningo Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>Meningo-Serogroup</strong>', 'Serogroup determination from the capsular locus directly in raw reads'],
+      ['<strong>Meningo-Res-Detector</strong>', 'Prediction of penicillin and ciprofloxacin resistance'],
+      ['<strong>Meningo-MLST</strong>', 'Clonal complex (cc) determination under the PubMLST scheme for surveillance']
+    ]) +
+    '<p>Training is planned on the <strong>PubMLST Neisseria Database</strong> (>50,000 genomes) and national collections of meningococcal isolates.</p><hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code>, <code>samtools</code> (reference: MC58 / Z2491)'],
+      ['<strong>3. Serogrouping</strong>', 'Custom capsular locus database ctrA/sacB/synD/siaD/synG/synF/csb'],
+      ['<strong>4. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>5. Resistance annotation</strong>', 'Custom mutation database penA/gyrA/rpoB/23S rRNA'],
+      ['<strong>6. MLST typing</strong>', '<code>mlst</code> (Neisseria scheme, PubMLST)']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Fulminant form</strong> — in fulminant meningococcemia death occurs within 6–24 hours of the first symptoms; case fatality reaches 10–15% even with treatment, and up to 50% without.</li>' +
+    '<li><strong>Every hour counts</strong> — each hour of delay in starting adequate therapy statistically increases mortality and the share of severe outcomes (amputations, necrosis, Waterhouse–Friderichsen syndrome).</li>' +
+    '<li><strong>Outbreaks</strong> — outbreaks in closed communities (barracks, dormitories, kindergartens) require urgent chemoprophylaxis of contacts; drug choice depends on strain resistance.</li>' +
+    '<li><strong>Epidemiology in Russia</strong> — serogroups B, C and a growing W dominate; clonal complexes cc11 and cc41/44 circulate.</li>' +
+    '<li><strong>Ciprofloxacin resistance</strong> — resistant strains (gyrA T91I) have been reported in Europe, the USA and Asia, changing outbreak prophylaxis tactics.</li></ul>' +
+    '<p>Standard microbiology gives an answer in 1–3 days, when the question of outbreak chemoprophylaxis has already been decided "blind". Our pipeline returns the serogroup and resistance profile <strong>on the same day</strong> — while it can still change the outcome.</p><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/meningococcal-meningitis">WHO — Meningococcal meningitis (Fact sheet)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/meningococcal/">CDC — Meningococcal Disease</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/neisseria-spp">PubMLST Neisseria Database</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=ciprofloxacin-resistant+Neisseria+meningitidis">PubMed — ciprofloxacin-resistant Neisseria meningitidis</a></li></ul>';
+
+  /* ── MYCOPLASMA GENITALIUM ── */
+  EN['/mycoplasma/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_mycoplasma.svg" alt="Mycoplasma genitalium" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Drug Resistance Determination of Mycoplasma genitalium</h1>' +
+    '<p style="font-size:1.2em;color:#555">Macrolide and fluoroquinolone resistance testing before prescribing therapy — rapidly emerging multidrug resistance of a frequently missed STI pathogen</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Mycoplasma genitalium</em> is the smallest self-replicating bacterium and an underestimated sexually transmitted pathogen: it causes non-gonococcal urethritis in men, cervicitis and pelvic inflammatory disease in women. The bacterium <strong>has no cell wall</strong>, so it is intrinsically resistant to all β-lactams, and standard culture is virtually impossible — in routine STI diagnostics the pathogen is <strong>frequently missed</strong>.</p>' +
+    '<p>The main problem is the speed of resistance growth. Resistance to <strong>azithromycin</strong> already exceeds 50% in a number of countries, yet azithromycin continues to be prescribed "blind" in empirical urethritis regimens. Resistance to <strong>moxifloxacin</strong> — the reserve drug — is spreading in the wake of macrolides. International guidelines (BASHH, Australian STI guidelines) require <strong>resistance testing before therapy</strong> (resistance-guided therapy): a drug can be prescribed only knowing the genotype of the specific strain.</p>' +
+    '<p>Our pipeline analyses nanopore data from amplicon sequencing of key resistance loci (<em>23S rRNA</em>, <em>gyrA</em>, <em>parC</em>) or metagenomic sequencing of a clinical sample and outputs a ready-made therapy regimen.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Optimal: amplicon sequencing of <em>23S rRNA</em>, <em>gyrA</em>, <em>parC</em> loci <strong>or</strong> microbiome sequencing of a swab.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the clinician — macrolide and fluoroquinolone susceptibility profile with a recommended therapy regimen, and a QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mutations</h2>' +
+    '<p>The pipeline analyses the key genetic determinants of <em>M. genitalium</em> resistance:</p>' +
+    tbl(['Gene / locus', 'Key mutations', 'Antibiotic class'], [
+      ['<strong>23S rRNA</strong>', 'A2058G, A2059G', 'Azithromycin (macrolides)'],
+      ['<strong>gyrA</strong>', 'S83I, D87N/Y (E. coli numbering)', 'Moxifloxacin (fluoroquinolones)'],
+      ['<strong>parC</strong>', 'S80I/R, D84N (E. coli numbering)', 'Moxifloxacin (fluoroquinolones)']
+    ]) +
+    '<p>The combination of mutations in <em>gyrA</em> and <em>parC</em> determines the resistance level: a single <em>parC</em> mutation reduces susceptibility, while paired <em>gyrA</em> + <em>parC</em> mutations lead to complete moxifloxacin failure.</p>' +
+    '<h3>Antibiotic profile in the report</h3>' +
+    tbl(['Antibiotic', 'Class', 'Clinical significance'], [
+      ['<strong>Doxycycline</strong>', 'Tetracycline', 'First stage of resistance-guided therapy — reduces bacterial load'],
+      ['<strong>Azithromycin</strong>', 'Macrolide', 'Effective only in the absence of 23S rRNA mutations'],
+      ['<strong>Moxifloxacin</strong>', 'Fluoroquinolone', 'Reserve drug for macrolide resistance; <em>gyrA/parC</em> are checked'],
+      ['<strong>Pristinamycin</strong>', 'Streptogramin', 'Fallback option for multidrug resistance (not available in all countries)'],
+      ['<strong>Minocycline</strong>', 'Tetracycline', 'Alternative for multidrug resistance']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Mgen Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>Mgen-Res-Detector</strong>', 'Prediction of macrolide and fluoroquinolone resistance from the mutation profile'],
+      ['<strong>Mgen-Typing</strong>', 'Strain genotyping and tracking of clonal spread of resistant lineages']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> (reference: M. genitalium G37)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. Resistance annotation</strong>', 'Custom mutation database 23S rRNA/gyrA/parC'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Resistance >50%</strong> — the share of macrolide-resistant <em>M. genitalium</em> strains exceeds 50% in Australia, Western Europe and Japan; dual resistance (macrolides + fluoroquinolones) is rising.</li>' +
+    '<li><strong>Resistance-guided therapy</strong> — prescribing an antibiotic based on a molecular resistance test is recommended by the Australian STI guidelines and BASHH as the standard of care for <em>M. genitalium</em>.</li>' +
+    '<li><strong>Invisible pathogen</strong> — due to the lack of culture and rare inclusion in standard PCR panels, the infection goes undiagnosed for years, leading to chronic urethritis, cervicitis and infertility.</li>' +
+    '<li><strong>Empirical therapy fails</strong> — prescribing azithromycin without a resistance test leads to persistent infection and selection of resistant strains.</li></ul>' +
+    '<p>The current standard is PCR tests detecting individual mutations. Our pipeline delivers the complete genotype of resistance loci within a few hours, right at the point of care.</p><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/std/treatment-guidelines/default.htm">CDC — STI Treatment Guidelines, 2021</a></li>' +
+    '<li>📄 <a href="https://www.bashhguidelines.org/">BASHH Guidelines — UK national guideline on the management of Mycoplasma genitalium</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mycoplasma+genitalium+resistance+guided+therapy">PubMed — Mycoplasma genitalium resistance-guided therapy</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Mycoplasma genitalium</a></li></ul>';
+
   /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
   EN['/hvkp/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -3233,6 +3359,1571 @@
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 气肿疽梭菌(分类学、基因组、Bookshelf)</a></li>' +
     '<li>📄 <a href="https://www.merckvetmanual.com/">Merck Veterinary Manual — 气肿疽(Blackleg)</a></li></ul>';
 
+  /* ── GONORRHOEAE (淋病奈瑟菌) ── */
+  ZH['/gonorrhoeae/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_gonorrhoeae.svg" alt="淋病奈瑟菌 (Neisseria gonorrhoeae)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>淋病奈瑟菌耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">淋球菌基因组监测 — WHO 重点 AMR 病原体</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>淋病奈瑟菌</em>(淋球菌)是淋病的病原体,发病率居细菌性传播感染第二位。WHO 已将其列入<strong>重点 AMR 病原体名单</strong>(高优先级类别):对头孢曲松——最后一种可靠抗生素——耐药的菌株已在世界各地检出,包括俄罗斯。</p>' +
+    '<p>我们的流程提供完整的纳米孔数据分析,在床旁或实验室直接检测耐药突变,无需将数据传输至境外服务器。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别(R10.4.1 化学体系,Dorado SUP)后的原始 <code>FASTQ</code> 数据。最佳方案:<em>penA</em>、<em>gyrA</em>、<em>parC</em>、<em>mtrR</em>、<em>23S rRNA</em> 基因扩增子测序<strong>或</strong>全基因组测序 (WGS)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,涵盖 6 类抗生素的药敏谱,以及面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与突变</h2>' +
+    '<p>流程分析淋球菌耐药的九个关键遗传决定因子。头孢曲松耐药是<strong>累积性</strong>的:镶嵌型 <em>penA</em> + <em>mtrR</em> + <em>penB</em> + <em>ponA</em> 各自推高 MIC,因此完整谱比单个基因更重要:</p>' +
+    tbl(['基因 / 位点', '关键突变', '抗生素类别'], [
+      ['<strong>penA</strong>', 'A501V/T/P/G;镶嵌型 penA(含 FC428 克隆株的 penA-60)', '头孢菌素类(头孢曲松、头孢克肟)— <strong>最后手段抗生素</strong>'],
+      ['<strong>penB</strong>(孔蛋白 PorB)', 'G101K、A102D/N', '头孢菌素类、青霉素类(通透性降低)'],
+      ['<strong>ponA</strong> (PBP1)', 'L421P', '头孢菌素类、青霉素类(影响 MIC)'],
+      ['<strong>gyrA</strong>', 'S91F、D95G/A/N', '氟喹诺酮类(环丙沙星)'],
+      ['<strong>parC</strong>', 'S87R、D86N、E91K', '氟喹诺酮类(环丙沙星、氨苄西林)'],
+      ['<strong>23S rRNA</strong>', 'A2059G、C2611T', '大环内酯类(阿奇霉素)— <strong>常见共同耐药</strong>'],
+      ['<strong>mtrR</strong>', 'A39T、G45D(启动子 -35 缺失)', '多类别 — 外排泵过表达'],
+      ['<strong>rpsJ</strong>', 'V57M', '四环素类(多西环素)'],
+      ['<strong>blaTEM-1</strong>', '存在/缺失 (PPNG)', '青霉素类 — 质粒介导耐药']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq GC Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>GC-Res-Detector</strong>', '基于 WGS 的 AMR 表型预测(全部抗生素类别)'],
+      ['<strong>GC-Typer</strong>', '计算机模拟 MLST(PubMLST NG-MAST / MLST 方案)+ GASP 分型'],
+      ['<strong>GC-NG-STAR</strong>', 'NG-STAR 分型 — GASP AMR 监测标准(penA/mtrR/porB/ponA/gyrA/parC/23S 谱)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2 2.26</code>、<code>samtools</code>(参考序列:N. gonorrhoeae FA1090)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3 ≥1.0.4</code>、<code>medaka</code>'],
+      ['<strong>4. AMR 基因检出</strong>', '<code>AMRFinderPlus</code> (NCBI)、<code>abricate</code> (CARD, Resfinder)'],
+      ['<strong>5. MLST 分型</strong>', '<code>mlst</code>(PubMLST N. gonorrhoeae 方案)+ <strong>NG-STAR</strong> 分型(GASP 标准)'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO GASP</strong> — 淋病全球抗菌药物监测规划覆盖 70 多个国家的耐药趋势;头孢曲松 MIC 升高是关键信号。</li>' +
+    '<li><strong>俄罗斯</strong> — NICD 数据显示许多地区氟喹诺酮耐药率超过 50%;阿奇霉素共同耐药正在上升。</li>' +
+    '<li><strong>XDR 淋病</strong> — 广泛耐药菌株(对头孢曲松 + 阿奇霉素耐药)已在日本、英国、澳大利亚检出 — 全球性公共卫生紧急事件。</li>' +
+    '<li><strong>FC428 克隆株</strong> — 全球传播的头孢曲松耐药克隆株,携带镶嵌型 <em>penA-60</em>;其检出会在报告中标记为流行病学预警信号。</li>' +
+    '<li><strong>治疗方案转变</strong> — 自 2020 年 (CDC) 起,一线治疗为头孢曲松 500 mg 肌注单药;因大环内酯耐药上升,阿奇霉素已退出联合方案。Zoliflodacin——数十年来首个新型抗淋球菌药物类别——已成功完成 III 期临床试验,流程的耐药谱已准备好扩展至该药。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<p>相关性传播感染流程:🧬 <a href="/syphilis/">梅毒 (T. pallidum)</a> · 🧬 <a href="/mycoplasma/">生殖支原体</a></p>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240041530">WHO — 淋病奈瑟菌全球 AMR 监测</a></li>' +
+    '<li>📄 <a href="https://card.mcmaster.ca/">CARD — 综合抗生素耐药数据库</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/neisseria-gonorrhoeae">PubMLST N. gonorrhoeae 数据库</a></li></ul>';
+
+  /* ── HPV (人乳头瘤病毒,肿瘤学) ── */
+  ZH['/hpv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hpv.svg" alt="人乳头瘤病毒 (HPV)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>人乳头瘤病毒基因分型与宫颈癌分子分流</h1>' +
+    '<p style="font-size:1.2em;color:#555">我们的首个肿瘤学流程 — 从病因 (HPV) 到预防的关键环节:床旁筛查</p></div><hr>' +
+    '<h2>🧬 为什么 HPV 是进入肿瘤学的切入点</h2>' +
+    '<p>人乳头瘤病毒 (HPV) 是几乎 100% 宫颈癌病例的<strong>必要病因</strong>,也是相当一部分肛门癌、口咽癌、外阴癌、阴道癌和阴茎癌的病因。这是肿瘤学中罕见的情形:一种癌症拥有单一且明确的感染性驱动因素——这意味着可以通过检测病毒并评估风险,在肿瘤出现之前很久就<strong>预防</strong>它。</p>' +
+    '<p>WHO 设定了<strong>消除宫颈癌</strong>的目标,采用 <strong>90–70–90</strong> 战略:</p>' +
+    '<ul><li><strong>90%</strong> 的女孩在 15 岁前完成 HPV 疫苗全程接种;</li>' +
+    '<li><strong>70%</strong> 的女性接受高性能 HPV 检测筛查(35 岁和 45 岁时);</li>' +
+    '<li><strong>90%</strong> 确诊疾病的女性获得治疗。</li></ul>' +
+    '<p>第二支柱——"高性能 HPV 检测"——正是测序能够提供经典 qPCR 筛查所无法企及之处的领域。OnSiteSeq 由此叩开肿瘤学的大门。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:宫颈拭子或自取阴道样本。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — HPV 基因型、整合状态、甲基化分流及风险类别(CIN2+ 风险:低 / 中 / 高);面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<h2>🎯 流程检测内容:三个分析层级</h2>' +
+    '<p>与仅对少数基因型给出"是/否"答案的 qPCR 试剂盒不同,纳米孔测序在一次运行中解决三项临床权重不同的任务。</p>' +
+    tbl(['层级', '任务', '临床意义'], [
+      ['<strong>1. 基因分型</strong>', '一次检测覆盖全部 14 种高危基因型(16、18、31、33、35、39、45、51、52、56、58、59、66、68)、混合感染与罕见型别', 'HPV-16/18 导致约 70% 的宫颈癌'],
+      ['<strong>2. 整合状态</strong>', '通过嵌合"病毒–人源"读长检测 HPV 基因组整合入宿主基因组', '整合破坏 <em>E2</em> → 癌基因 <em>E6/E7</em> 过表达 — 致癌驱动因素'],
+      ['<strong>3. 甲基化(分流)</strong>', '天然 DNA 直接甲基化检测:宿主基因 <em>CADM1、MAL、FAM19A4/miR124-2</em> 与病毒 <em>L1/L2</em>', '分子分流:无需阴道镜即可区分一过性感染与癌前病变 (CIN2+)']
+    ]) +
+    '<p><strong>纳米孔的关键优势:</strong>长读长完整跨越"病毒–宿主"插入接合处,天然 DNA 读取使甲基化检测<strong>无需亚硫酸氢盐转化、无需单独检测</strong>。Illumina 与 qPCR 无法在单次运行中做到这些。</p>' +
+    '<blockquote>这不仅是一个"阳性/阴性"检测,而是<strong>风险分层</strong>:正是"从病因到预防关键环节"的跨越。</blockquote><hr>' +
+    '<h2>💉 HPV 与疫苗:为何筛查仍然必需</h2>' +
+    tbl(['疫苗', '基因型', '覆盖的宫颈癌比例'], [
+      ['<strong>二价</strong>(Cervarix)', '16、18', '约 70%'],
+      ['<strong>四价</strong>(Gardasil)', '6、11、16、18', '约 70% + 生殖器疣'],
+      ['<strong>九价</strong>(Gardasil-9)', '6、11、16、18、31、33、45、52、58', '约 90%']
+    ]) +
+    '<ul><li><strong>疫苗不能替代筛查</strong> — 非疫苗覆盖的致癌型别(35、39、51、56、59、66、68)仍在流行。</li>' +
+    '<li><strong>测序追踪型别替换</strong> — 接种疫苗人群的基因型分布会发生变化,只有全型别检测才能监测这一动态。</li>' +
+    '<li><strong>混合感染</strong> — qPCR 试剂盒常漏检多重感染;纳米孔读取一次可见样本中的全部型别谱。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq HPV Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>规划中的机器学习模型</h3>' +
+    tbl(['模型', '目标任务'], [
+      ['<strong>HPV-Genotyper</strong>', '基于 L1 的 HPV 基因型分类(沿用 HIV-1-M 亚型架构:CNN + Self-Attention)'],
+      ['<strong>HPV-Integration-Caller</strong>', '基于嵌合读长的整合位点检测与定位'],
+      ['<strong>HPV-Methyl-Triage</strong>', '基于宿主与病毒甲基化模式的 CIN2+ 风险评分']
+    ]) +
+    '<p>计划在开放的 <strong>PaVE (Papillomavirus Episteme, NCBI)</strong> 与 <strong>TCGA-CESC</strong>(甲基化与整合)数据库上训练,并在俄罗斯临床样本上验证。</p><hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(PaVE 参考序列:HPV16 NC_001526 等 + 用于整合检测的 <code>GRCh38</code>)'],
+      ['<strong>3. 基因分型 / 一致性序列</strong>', '<code>medaka</code>、<code>samtools</code>、自建 L1 基因型数据库'],
+      ['<strong>4. 整合检测</strong>', '断裂/嵌合"病毒–宿主"读长搜索(<code>pysam</code>,自研 caller)'],
+      ['<strong>5. 甲基化</strong>', '<code>Dorado</code>(5mC/5hmC 修饰)、<code>modkit</code>'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>BioPython</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 为何重要:在没有筛查的地方做筛查</h2>' +
+    '<ul><li><strong>GLOBOCAN 2020</strong> — 全球每年约 <strong>60.4 万新发</strong>宫颈癌病例和 <strong>34.2 万死亡</strong>;女性第四大常见癌症。然而它是少数可完全预防的癌症之一。</li>' +
+    '<li><strong>俄罗斯</strong> — 每年数千新发病例;45 岁以下女性发病率正在上升,而该人群筛查覆盖率最低。</li></ul>' +
+    '<p>90–70–90 战略的主要障碍是<strong>覆盖率</strong>("70%" 支柱)。偏远地区没有中心化的 qPCR 实验室,女性也未必能去做阴道镜检查。</p>' +
+    '<p>这正是 OnSiteSeq <strong>Edge</strong> 架构发挥作用的地方:</p>' +
+    '<ul><li><strong>自取样</strong> + 现场分析 — WHO 推荐自行采样以提高筛查覆盖率;</li>' +
+    '<li><strong>极北地区与流动医疗队</strong> — 当天出结果,无需冷链运往中心实验室;</li>' +
+    '<li><strong>数据主权</strong> — 患者的基因组数据绝不离开医疗机构边界。</li></ul>' +
+    '<ul><li><strong>WHO,2020</strong> — <a href="https://www.who.int/publications/i/item/9789240014107">消除宫颈癌全球战略</a>。</li>' +
+    '<li><strong>WHO,2021</strong> — HPV DNA 检测被推荐为<strong>首选</strong>筛查方法(取代细胞学/巴氏涂片)。</li>' +
+    '<li><strong>IARC</strong> — HPV 被列为 1 类致癌物。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://pave.niaid.nih.gov/">PaVE — Papillomavirus Episteme (NIAID/NCBI)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/initiatives/cervical-cancer-elimination-initiative">WHO:消除宫颈癌倡议</a></li>' +
+    '<li>📄 <a href="https://portal.gdc.cancer.gov/projects/TCGA-CESC">TCGA-CESC — 宫颈鳞状细胞癌 (GDC)</a></li></ul>';
+
+  /* ── HIV (艾滋病病毒) ── */
+  ZH['/hiv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/hiv.png" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>HIV-1 耐药性与亚型鉴定</h1>' +
+    '<p style="font-size:1.2em;color:#555">覆盖全部 ART 药物类别的耐药谱分析与亚型分型 — 基于俄罗斯 A6 亚型分离株训练的模型</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>我们的算法提供完整的测序数据处理流程,用于识别耐药突变并准确鉴定 HIV-1 亚型。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 机器学习碱基识别器将纳米孔电信号转换为核苷酸数据之后;POD5/FAST5 → FASTQ)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的详细 HTML 报告和面向生物信息分析师的扩展报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟢 <strong>可用</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟢 <strong>可用</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与突变</h2>' +
+    '<p>流程分析整个 <em>pol</em> 基因 — 抗逆转录病毒治疗的全部三个酶靶点。突变解读遵循 <strong>Stanford HIVdb</strong> 规则 — HIV 基因型耐药解读的全球标准。</p>' +
+    tbl(['药物类别', '基因', '关键突变', '药物'], [
+      ['<strong>NRTI</strong>(核苷类逆转录酶抑制剂)', 'RT', 'M184V/I、K65R、胸腺嘧啶类似物突变(M41L、D67N、T215Y/F、K219Q/E)', '替诺福韦、拉米夫定、阿巴卡韦'],
+      ['<strong>NNRTI</strong>(非核苷类逆转录酶抑制剂)', 'RT', 'K103N、Y181C、G190A、E138K', '依非韦伦、奈韦拉平、利匹韦林、多拉韦林'],
+      ['<strong>PI</strong>(蛋白酶抑制剂)', 'PR', 'D30N、M46I/L、I50V、I54V/M、V82A/F/T、L90M', '阿扎那韦、达芦那韦、洛匹那韦'],
+      ['<strong>INSTI</strong>(整合酶抑制剂)', 'IN', 'Q148H/R/K、G118R、R263K、N155H', '多替拉韦、比克替拉韦、拉替拉韦']
+    ]) +
+    '<p>整合酶抑制剂是现代 ART 的一线用药(多替拉韦已纳入俄罗斯临床指南),因此监测整合酶突变(Q148 + 继发突变)尤为重要。</p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<p>我们持续改进分析流程与机器学习模型。</p>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '当前版本'], [['<strong>OnSiteSeq HIV Pipeline</strong>', '<code>1.0</code>']]) +
+    '<h3>机器学习模型</h3>' +
+    tbl(['模型', '版本', '说明与更新日志'], [
+      ['<strong>HIV-1-M-Env-Rus</strong>', '<code>1.0</code>', '<a href="/ml/hiv/">更新日志</a>'],
+      ['<strong>HIV-1-Resist-Rus</strong>', '<code>3</code>', '<a href="/ml/hiv/">更新日志</a>']
+    ]) + '<hr>' +
+    '<h2>📚 论文与会议</h2>' +
+    '<p>我们的工具已在以下学术场所完成验证与展示:</p>' +
+    '<ul><li><strong>MNSK-2026</strong> — <a href="/conferences/mnsk-2026/">会议页面</a></li>' +
+    '<li><strong>MFTI-2026</strong> — <a href="/conferences/mfti-2026/">会议页面</a></li>' +
+    '<li><strong>MSIT-2026</strong> — <a href="/conferences/msit-2026/">会议页面</a></li></ul><hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>由 Snakemake 管理,配合相互隔离的 Conda 环境,确保最大程度可复现。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>Python 3.10</code>、<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对</strong>', '<code>minimap2</code>、<code>samtools</code>'],
+      ['<strong>3. 一致性序列组装</strong>', '<code>medaka 1.11.*</code>、<code>bcftools</code>、<code>htslib</code>'],
+      ['<strong>4. 机器学习预测</strong>', '<code>PyTorch ≥2.0</code>、<code>BioPython</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🖥 OnSiteSeq Cockpit 中的流程卡片示例</h2>' +
+    '<p><img src="/assets/images/cockpit/cockpit_hiv.JPG" alt="Cockpit 中的 OnSiteSeq HIV 流程卡片"></p><hr>' +
+    '<h2>📋 报告示例</h2>' +
+    '<ul><li>📄 <strong><a href="/reports/hiv/">临床医生 HTML 报告示例</a></strong></li>' +
+    '<li>💻 <strong><a href="/reports/hiv/">详细生物信息学报告</a></strong></li></ul><hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>俄罗斯</strong> — 超过 100 万 HIV 感染者;<strong>A6 亚型</strong>(原 A-FSU)在俄罗斯和东欧占主导地位,在西方却很罕见。我们的 <code>HIV-1-M-Env-Rus</code> 与 <code>HIV-1-Resist-Rus</code> 模型专门基于俄罗斯分离株训练 — 这是与针对 B 亚型调优的西方同类产品的关键区别。</li>' +
+    '<li><strong>WHO</strong> — 推荐在启动 ART 前进行基因型耐药检测:多个地区的传播性 NNRTI 耐药已超过 10% 阈值。</li>' +
+    '<li><strong>INSTI 时代</strong> — 一线治疗转向多替拉韦,使整合酶突变监测成为 HIV 耐药工作的重点。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://hivdb.stanford.edu/">Stanford HIV 耐药数据库 (HIVdb)</a></li>' +
+    '<li>📄 <a href="https://www.genomedetective.com/app/typingtool/hiv">REGA HIV-1 亚型分型工具</a></li>' +
+    '<li>📄 <a href="https://www.who.int/teams/global-hiv-hepatitis-and-stis-programmes/hiv/treatment/hiv-drug-resistance">WHO — HIV 耐药报告</a></li></ul><hr>' +
+    '<h2>🔬 OnSiteSeq 相关研究</h2>' +
+    '<p><strong>学术研究:</strong></p>' +
+    '<ul><li>📄 <a href="/assets/pdf/research/OnSiteSeq_Research_HIV_Demography.pdf">HIV 与俄罗斯人口状况:影响分析 (PDF)</a></li></ul>' +
+    '<p><strong>科普视频 (Dzen):</strong></p>' +
+    '<ul><li>🔗 <a href="https://dzen.ru/a/aLys7YzNdXMJdGp8">生物信息学视角:HIV。第 1 部分。俄罗斯及全球 HIV 历史</a></li>' +
+    '<li>🔗 <a href="https://dzen.ru/a/aMgkOlvWQkzOyCcz">生物信息学视角:HIV。第 2 部分。病毒的分子生物学</a></li>' +
+    '<li>🔗 <a href="https://dzen.ru/a/ah6QlqOOiE17QuWX">生物信息学视角:HIV。第 3 部分。耐药性 (HIV-DR)</a></li></ul>';
+
+  /* ── ML/HIV (HIV 机器学习模型) ── */
+  ZH['/ml/hiv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<h1>机器学习模型:OnSiteSeq HIV</h1>' +
+    '<p style="font-size:1.2em;color:#555">面向高精度 HIV-1 基因组监测与耐药预测的深度学习</p></div><hr>' +
+    '<h2>🧠 HIV-1 基因组的创新方法</h2>' +
+    '<p>标准的国外算法(包括美国开发的算法)往往在不反映俄罗斯联邦流行病学特点的数据库上训练。俄罗斯的 HIV-1 流行具有明显的单系起源特征。</p>' +
+    '<p>我们自研的神经网络模型针对本国流行病学特点开发,采用先进的 ML 架构,实现前所未有的诊断准确性。</p><hr>' +
+    '<h2>🧬 HIV-1-M-Env-Rus(版本 1.0)</h2>' +
+    '<p>用于 HIV-1 基因变异分类的专用神经网络模型。解决检测在俄罗斯联邦流行的优势型与重组型病毒这一关键任务。</p>' +
+    '<ul><li><strong>目标区域:</strong> <strong>Env</strong> 基因的核苷酸序列分析。</li>' +
+    '<li><strong>俄罗斯特异性:</strong> 针对超精准检测 <strong>A6</strong> 亚型(占俄罗斯病例 >80%)及 <strong>CRF63_02A6</strong> 等复杂流行重组型优化。</li>' +
+    '<li><strong>架构:</strong> 基于 PyTorch 的深度学习,集成于自动化 Snakemake 数据准备流程。</li>' +
+    '<li><strong>输出:</strong> 分离株属于特定亚型的百分比概率。</li></ul><hr>' +
+    '<h2>🛡️ HIV-1-Resist-Rus(版本 1.0)</h2>' +
+    '<p>预测病毒对主要抗逆转录病毒治疗 (ART) 类别耐药性的旗舰模型。</p>' +
+    '<ul><li><strong>目标基因:</strong> 决定病毒存活的关键基因组区域 — <strong>PR</strong>(蛋白酶)、<strong>RT</strong>(逆转录酶)、<strong>IN</strong>(整合酶)。</li>' +
+    '<li><strong>ID-CNN + Self-Attention 架构:</strong> 一维卷积网络结合注意力机制,使模型能够检测<strong>上位效应 (epistasis)</strong> — 一个突变可增强或抑制另一个突变效应的复杂相互作用。</li>' +
+    '<li><strong>数据库整合:</strong> 模型使用当前全球 (Stanford HIVDB) 与俄罗斯耐药数据库进行校准。</li></ul><hr>' +
+    '<h2>🚀 HIV-1-Resist-Rus(版本 3.0)</h2>' +
+    '<p><strong>重大更新,使系统从研究原型转变为可临床应用的工具。</strong>仓库:<a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
+    '<h3>v3 的变化</h3>' +
+    tbl(['组件', 'v1 / v2', '<strong>v3</strong>'], [
+      ['药物', '1 (DTG) / 14', '<strong>14(全部 ART 类别)</strong>'],
+      ['训练数据集', 'Stanford 中间 CSV + 合成数据', '<strong>37,641 条 LANL 序列</strong>'],
+      ['标注', 'Fold-change ≥3.5', '<strong>Stanford Sierra API(金标准)</strong>'],
+      ['类别分布', '60–92% 耐药(合成)', '<strong>0.8–10.8%(真实世界)</strong>'],
+      ['验证', '内部(验证集划分)', '<strong>356 名患者 — CRIFEM(Rospotrebnadzor)</strong>'],
+      ['平均 AUC(外部)', '约 0.727', '<strong>0.990</strong>']
+    ]) +
+    '<h3>HybridResistanceCNN 架构</h3>' +
+    '<p>三条并行分支:</p>' +
+    '<ul><li><strong>Embedding + CNN ×3</strong> — 氨基酸序列局部模式(RT:240 位 / PR:99 / IN:288)</li>' +
+    '<li><strong>Self-Attention</strong> — 相距遥远位点间的长程上位效应</li>' +
+    '<li><strong>MutationMLP</strong> — 作用于关键位点(K65R、M184V、K103N、G140S 等)的双层感知机</li></ul>' +
+    '<p>三条分支经 Fusion 层合并 → Dropout → Linear → P(耐药) ∈ [0, 1]。</p>' +
+    '<p><strong>关键工程决策:</strong> 针对类别不平衡(≤1% 耐药)的 Focal Loss(α=0.75,γ=2.0)、WeightedRandomSampler、OneCycleLR(80 个 epoch)、基于约登指数的阈值校准。</p>' +
+    '<h3>外部验证结果 — v3</h3>' +
+    '<p>在<strong>CRIFEM(Rospotrebnadzor)的 356 名去标识化患者</strong>(EpidRuSeq 队列)上完成验证。金标准:Stanford HivDB 按药物给出的结论。</p>' +
+    '<blockquote><strong>平均 AUC = 0.990</strong> — 在完全离线模式、不向境外服务器传输任何数据的情况下,达到 Stanford HIV 耐药数据库的准确度。</blockquote>' +
+    tbl(['药物', '类别', 'AUC', 'F1', '灵敏度', '特异度', 'ΔAUC vs v2'], [
+      ['<strong>DRV</strong>', 'PI', '<strong>1.000</strong>', '<strong>1.000</strong>', '<strong>1.000</strong>', '<strong>1.000</strong>', '+0.017'],
+      ['<strong>DTG</strong>', 'INSTI', '<strong>1.000</strong>', '0.800', '<strong>1.000</strong>', '0.994', '+0.272'],
+      ['3TC', 'NRTI', '0.999', '0.964', '0.982', '0.990', '+0.019'],
+      ['RAL', 'INSTI', '0.999', '0.898', '0.957', '0.988', '+0.670'],
+      ['EVG', 'INSTI', '0.999', '0.898', '0.957', '0.988', '+0.178'],
+      ['ABC', 'NRTI', '0.997', '0.957', '0.965', '0.990', '+0.549'],
+      ['ATV/r', 'PI', '0.997', '0.811', '0.938', '0.982', '+0.141'],
+      ['LPV/r', 'PI', '0.997', '0.762', '0.889', '0.988', '+0.210'],
+      ['BIC', 'INSTI', '0.996', '0.500', '0.750', '0.986', '+0.319'],
+      ['TDF', 'NRTI', '0.989', '0.809', '0.826', '0.985', '+0.222'],
+      ['AZT', 'NRTI', '0.987', '0.933', '0.913', '0.997', '+0.161'],
+      ['ETR', 'NNRTI', '0.981', '0.889', '0.941', '0.970', '+0.171'],
+      ['EFV', 'NNRTI', '0.972', '0.879', '0.954', '0.952', '+0.070'],
+      ['NVP', 'NNRTI', '0.949', '0.857', '0.882', '0.958', '+0.041'],
+      ['<strong>平均</strong>', '', '<strong>0.990</strong>', '<strong>0.854</strong>', '<strong>0.925</strong>', '<strong>0.984</strong>', '']
+    ]) +
+    '<p><em>14 种药物中有 12 种超过临床阈值 AUC ≥ 0.90 且灵敏度 ≥ 0.85。</em></p><hr>' +
+    '<h2>⚙️ 技术与 BioMLOps</h2>' +
+    '<ul><li><strong>数据管理 (DVC):</strong> 训练数据集、模型权重与特征提取流程的版本管理。保证实验 100% 可追溯。</li>' +
+    '<li><strong>持续训练:</strong> 由外部数据库(Stanford HIVDB)更新触发的自动化再训练流程,并在留出集上早期发现模型退化。</li>' +
+    '<li><strong>技术栈:</strong> <code>PyTorch (≥2.0)</code>、<code>Snakemake</code>、<code>DVC</code>、<code>BioPython</code>。</li></ul><hr>' +
+    '<blockquote>💡 <strong>科学验证</strong> — 我们模型与 BioMLOps 方法学的有效性已获得学术界认可。成果已在主要会议上展示:<br>' +
+    '• 亚型分类 (HIV-1-M-Env-Rus) — <strong><a href="/conferences/mnsk-2026/">MNSK-2026</a></strong><br>' +
+    '• 耐药预测与 BioMLOps (HIV-1-Resist-Rus) — <strong><a href="/conferences/msit-2026/">MSIT-2026</a></strong></blockquote>';
+
+  /* ── CDIFFICILE (艰难梭菌) ── */
+  ZH['/cdifficile/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<h1>艰难梭菌耐药性与产毒能力检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">CDI 基因组监测 — 抗生素相关性结肠炎的首要病因</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>艰难梭菌</em>(Clostridioides difficile,C. diff)是一种革兰氏阳性产孢厌氧菌,是抗生素相关性腹泻和假膜性结肠炎的首要病因。关键临床问题:<strong>产毒株还是非产毒株</strong>(是否携带 <em>tcdA/tcdB</em> 基因)?</p>' +
+    '<p>我们的流程同时确定:毒素基因谱(tcdA/B/C + 高毒力菌株的 cdtA/B)、抗生素耐药谱,以及用于流行病学分类的 PCR 核糖体分型。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:粪便培养物或富集培养物直接 WGS。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告 — 产毒状态、完整 AMR 谱、核糖体分型;面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 毒素基因与耐药决定因子</h2>' +
+    '<h3>毒素基因 — 关键毒力因子</h3>' +
+    tbl(['基因', '毒素', '临床意义'], [
+      ['<strong>tcdA</strong>', '毒素 A(肠毒素)', '典型 CDI — 肠道损伤、腹泻'],
+      ['<strong>tcdB</strong>', '毒素 B(细胞毒素)', '主要毒力因子 — CDI 诊断必需'],
+      ['<strong>tcdC</strong>', 'tcdA/B 的负调控因子', '缺失 → 毒素过量产生(RT027 特征)'],
+      ['<strong>cdtA / cdtB</strong>', '二元毒素 CDT', '高毒力菌株(RT027、RT078)— 重症与复发性 CDI']
+    ]) +
+    '<h3>抗生素耐药基因</h3>' +
+    tbl(['基因 / 突变', '机制', '抗生素'], [
+      ['<strong>gyrA / gyrB</strong>(Thr82Ile、Asp426Asn)', '促旋酶改变', '氟喹诺酮类(环丙沙星)— 流行克隆株的关键选择压力'],
+      ['<strong>rpoB</strong>(His502Asn、Arg505Lys)', 'RNA 聚合酶改变', '利福昔明(去污染方案)'],
+      ['<strong>tetM / tetW</strong>', '核糖体保护', '四环素类'],
+      ['<strong>ermB</strong>', '23S rRNA 甲基化酶', '大环内酯类、克林霉素'],
+      ['<strong>nimB</strong>', '甲硝唑还原酶', '甲硝唑(CDI 一线治疗)'],
+      ['<strong>vanB</strong>', '细胞壁靶点修饰', '万古霉素(也是一线用药)— 罕见但关键']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq CDI Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CDI-Toxin-Classifier</strong>', '毒素谱分类(tcdA/B+/-、cdtA/B+/-)'],
+      ['<strong>CDI-Res-Detector</strong>', '基于 WGS 的 AMR 表型预测'],
+      ['<strong>CDI-Ribotyper</strong>', '计算机模拟 PCR 核糖体分型(RT027/RT078/RT014 等)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>、<code>samtools</code>(参考序列:C. difficile 630)'],
+      ['<strong>3. 毒素基因检出</strong>', '<code>abricate</code>(VFDB,自建毒素数据库)'],
+      ['<strong>4. AMR 基因</strong>', '<code>AMRFinderPlus</code> (NCBI)、<code>abricate</code> (CARD, Resfinder)'],
+      ['<strong>5. 核糖体分型</strong>', '计算机模拟 PCR + ML 分类器(RT027/RT078)'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO</strong> — 艰难梭菌是全球最严重的抗生素相关性感染威胁之一;RT027/NAP1/BI — 大流行高毒力克隆株。</li>' +
+    '<li><strong>俄罗斯</strong> — CDI 诊断不足;氟喹诺酮类和头孢菌素类的广泛使用推动了流行克隆株的选择。</li>' +
+    '<li><strong>贝洛妥珠单抗 (Zinplava)</strong> — 针对毒素 B 的单克隆抗体,用于预防复发性 CDI;用药指征需要确认毒素 B。</li>' +
+    '<li><strong>其他梭菌</strong> — 参见我们的 <a href="/perfringens/">产气荚膜梭菌</a>流程:分秒必争的气性坏疽、毒素分型 (cpa/cpb/etx/cpe/netB) 与紧急 AMR 谱分析。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789241509763">WHO — 艰难梭菌监测与感染控制</a></li>' +
+    '<li>📄 <a href="https://card.mcmaster.ca/">CARD — 综合抗生素耐药数据库</a></li>' +
+    '<li>📄 <a href="https://www.genomicepidemiology.org/">基因组流行病学中心 — 分型工具</a></li></ul>';
+
+  /* ── STAPHYLOCOCCUS (金黄色葡萄球菌) ── */
+  ZH['/staphylococcus/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_staphylococcus.svg" alt="金黄色葡萄球菌 (Staphylococcus aureus)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>金黄色葡萄球菌 MRSA/VRSA 鉴定与完整 AMR 谱分析</h1>' +
+    '<p style="font-size:1.2em;color:#555">金黄色葡萄球菌基因组监测 — 主要的医院感染病原体,WHO 重点 AMR 病原体</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>金黄色葡萄球菌</em>是一种形成特征性葡萄串状簇的革兰氏阳性球菌。是广谱感染的主要病原体:从皮肤软组织感染(疖、脓肿)到危及生命的<strong>菌血症、感染性心内膜炎、骨髓炎、呼吸机相关性肺炎 (VAP)</strong>。WHO 已将 MRSA 列为重点 AMR 病原体(高优先级类别)。</p>' +
+    '<p>任何金黄色葡萄球菌的关键临床问题:<strong>MRSA 还是 MSSA</strong>。答案决定整个治疗策略。我们的流程给出完整的基因组学答案:mecA/mecC 状态、覆盖全部抗生素类别的完整 AMR 谱、毒力因子(PVL、TSST-1、生物膜)以及菌株分子分型。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:血液、脓液、痰、活检组织、伤口拭子。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告 — MRSA/MSSA 状态、完整 AMR 谱、关键毒力因子、SCCmec 型别;面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与临床表型</h2>' +
+    '<h3>β-内酰胺类 — 关键问题:MRSA 还是 MSSA</h3>' +
+    tbl(['基因', '机制', '表型'], [
+      ['<strong>mecA</strong>', '修饰型 PBP2a — 对 β-内酰胺类不敏感', '<strong>MRSA</strong> — 对所有 β-内酰胺类耐药'],
+      ['<strong>mecC</strong>', 'mecA 趋异变体(LA-MRSA CC130)', '<strong>MRSA</strong> — 标准检测不易检出'],
+      ['<strong>blaZ</strong>', 'β-内酰胺酶', '青霉素耐药(>95% 分离株)']
+    ]) +
+    '<h3>SCCmec 型别与 MRSA 流行病学类别</h3>' +
+    '<p>SCCmec 盒是携带 mecA/mecC 的基因组岛。其型别指示菌株来源并指导应对措施:</p>' +
+    tbl(['类别', 'SCCmec', '典型克隆', '特点'], [
+      ['<strong>HA-MRSA</strong>(医院获得性)', 'I、II、III', 'CC5、CC8 (ST239)', '多重耐药、ICU、迁延的医院暴发'],
+      ['<strong>CA-MRSA</strong>(社区获得性)', 'IV、V', 'CC8/USA300、CC80', '常为 PVL+,健康人群重症皮肤感染'],
+      ['<strong>LA-MRSA</strong>(牲畜相关性)', 'V、XI (mecC)', 'CC398、CC130', '动物接触;mecA 快速检测会漏检 mecC']
+    ]) +
+    '<h3>糖肽类 — MRSA 的最后手段</h3>' +
+    tbl(['基因', '表型', '意义'], [
+      ['<strong>vanA</strong>', '<strong>VRSA</strong>(MIC ≥16 μg/mL)', '罕见但致命 — 绝对紧急情况'],
+      ['<strong>vanB</strong>', 'VRSA(中等)', '罕见'],
+      ['<strong>无 vanA/B + 细胞壁增厚</strong>', '<strong>hVISA/VISA</strong>', '万古霉素异质性耐药(治疗失败时至关重要)']
+    ]) +
+    '<h3>其他抗生素类别</h3>' +
+    tbl(['基因', '突变 / 机制', '抗生素类别'], [
+      ['<strong>ermA / ermB / ermC</strong>', '23S rRNA 甲基化酶', '大环内酯类、林可酰胺类(克林霉素)— MLSB'],
+      ['<strong>tetM / tetK</strong>', '核糖体保护 / 外排', '四环素类'],
+      ['<strong>aac(6\')/aph(2")</strong>', '氨基糖苷修饰', '庆大霉素、妥布霉素'],
+      ['<strong>grlA / gyrA</strong>(突变)', '靶点改变', '氟喹诺酮类(环丙沙星)'],
+      ['<strong>rpoB</strong>(突变)', 'RNA 聚合酶改变', '利福平'],
+      ['<strong>mupA</strong>', '异亮氨酰-tRNA 合成酶改变', '莫匹罗星(高水平)— 去定植失败'],
+      ['<strong>cfr</strong>', '23S rRNA 甲基化酶', '利奈唑胺、氯霉素']
+    ]) +
+    '<h3>报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '类别', '在金黄色葡萄球菌中的作用'], [
+      ['<strong>苯唑西林</strong>', '耐青霉素酶 β-内酰胺', 'MRSA 替代标志物(R → MRSA)'],
+      ['<strong>万古霉素</strong>', '糖肽类', 'MRSA 治疗金标准'],
+      ['<strong>头孢洛林 / 头孢托罗</strong>', '第五代头孢菌素', '唯一对 MRSA 有活性的 β-内酰胺类(PBP2a 亲和力)'],
+      ['<strong>利奈唑胺</strong>', '噁唑烷酮类', '万古霉素不耐受时的替代'],
+      ['<strong>达托霉素</strong>', '脂肽类', 'MRSA 菌血症与心内膜炎'],
+      ['<strong>克林霉素</strong>', '林可酰胺类', 'MRSA 皮肤软组织感染(D 试验检测诱导性耐药)'],
+      ['<strong>利福平</strong>', '安沙霉素类', '生物膜、联合治疗'],
+      ['<strong>莫匹罗星</strong>', '外用抗生素', 'MRSA 携带者去定植']
+    ]) + '<hr>' +
+    '<h2>☣️ 毒力因子</h2>' +
+    tbl(['基因', '因子', '临床意义'], [
+      ['<strong>pvl</strong> (lukSF-PV)', 'PVL(杀白细胞素)', '坏死性肺炎、复发性皮肤脓肿'],
+      ['<strong>tst</strong>', 'TSST-1(中毒性休克综合征毒素-1)', '中毒性休克综合征'],
+      ['<strong>hla</strong>', 'α-毒素(溶血素)', '组织坏死、红细胞破坏'],
+      ['<strong>icaADBC</strong>', '生物膜(多糖 PIA/PNAG)', '植入物与导管相关感染'],
+      ['<strong>sdrCDE、fnbAB</strong>', '纤连蛋白结合蛋白', '内皮黏附 → 心内膜炎']
+    ]) + '<hr>' +
+    '<h2>🏥 临床应用案例</h2>' +
+    tbl(['场景', '流程解决的问题'], [
+      ['<strong>菌血症 / ICU 脓毒症</strong>', '数小时内确定 MRSA/MSSA — 有据可依地选择万古霉素或苯唑西林'],
+      ['<strong>术前筛查</strong>', '鼻腔金黄色葡萄球菌携带 → 术前莫匹罗星 + 氯己定去定植'],
+      ['<strong>坏死性肺炎</strong>', '检出 PVL+ CA-MRSA — 紧急升级治疗'],
+      ['<strong>植入物 / 导管感染</strong>', '生物膜 (ica+) → 联合利福平、决定是否更换植入物'],
+      ['<strong>万古霉素治疗失败</strong>', '疑似 hVISA/VISA — 及时换用利奈唑胺或达托霉素'],
+      ['<strong>去定植失败</strong>', 'mupA → 高水平莫匹罗星耐药,更换方案']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq SA Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>SA-Res-Detector</strong>', '基于 WGS 的 AMR 表型预测(全部抗生素类别)'],
+      ['<strong>SA-Virulence-Classifier</strong>', '毒力谱分类(PVL+/-、生物膜+/-)'],
+      ['<strong>SA-Typer</strong>', '计算机模拟 MLST 与 SCCmec 分型(CC8/USA300、CC5、CC22、CC398)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2 2.26</code>、<code>samtools</code>(参考序列:S. aureus MRSA252 / USA300)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3 ≥1.0.4</code>、<code>medaka</code>'],
+      ['<strong>4. AMR 与毒力基因检出</strong>', '<code>AMRFinderPlus</code> (NCBI)、<code>abricate</code> (CARD, Resfinder, VFDB)'],
+      ['<strong>5. SCCmec、MLST 与 spa 分型</strong>', '<code>sccmec</code> (SCCmecFinder)、<code>mlst</code> (PubMLST S. aureus)、<code>spaTyper</code>'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO,2017</strong> — MRSA 列入重点病原体名单(高优先级类别)。</li>' +
+    '<li><strong>俄罗斯</strong> — 视医院不同,MRSA 占 ICU 医院感染金黄色葡萄球菌的 30–60%。</li>' +
+    '<li><strong>PVL-MRSA</strong> — 携带 <em>pvl</em> 基因的 CC8/USA300 菌株在既往健康的年轻患者中引起坏死性肺炎暴发;俄罗斯已有记录。</li>' +
+    '<li><strong>LA-MRSA CC398</strong> — 牲畜相关性 MRSA;mecC-MRSA 无法被标准 mecA 快速检测发现。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.12">WHO — AMR 全球重点病原体名单</a></li>' +
+    '<li>📄 <a href="https://card.mcmaster.ca/">CARD — 综合抗生素耐药数据库</a></li>' +
+    '<li>📄 <a href="https://www.bv-brc.org/">BV-BRC — 细菌与病毒生物信息资源中心(>10,000 个金黄色葡萄球菌基因组)</a></li>' +
+    '<li>📄 <a href="https://www.genomicepidemiology.org/services/">SCCmecFinder — SCCmec 盒分型</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/staphylococcus-aureus">PubMLST S. aureus MLST 数据库</a></li>' +
+    '<li>📄 <a href="https://www.eucast.org/">EUCAST — 金黄色葡萄球菌临床折点</a></li></ul>';
+
+  /* ── INFLUENZA (流感病毒) ── */
+  ZH['/influenza/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_influenza.png" alt="流感病毒" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>流感毒株监测与抗原转换检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">亚型分型、基因节段重配追踪与抗病毒耐药谱分析</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>流感病毒</strong>兼具高点突变率(抗原漂移)和共感染时交换整个基因组节段的能力——<strong>重配 (reassortment)</strong>,其后果是抗原转换和新大流行毒株的出现。仅靠亚型分型不够:8 个节段中每一个的来源都很重要。</p>' +
+    '<p>流程执行流感全基因组分析:HA/NA 亚型分型、全部节段重建、重配株检测与抗病毒耐药谱分析。节段来源通过<strong>位点级图比对 (OnSiteSeq-PanG)</strong> 追踪:图编码了已知节段的历史,显示患者病毒由哪些"历史片段"组装而成。亚型分型与节段组装使用成熟的标准工具 (IRMA,CDC)。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:鼻咽/口咽拭子、病毒培养物。最佳方案:全部 8 个节段的 WGS(多重 PCR)。</li>' +
+    '<li><strong>📤 输出:</strong> HTML 报告,含亚型(H1N1pdm09、H3N2、Victoria/Yamagata)、Nextclade 归属、重配节段信息与耐药谱。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 关键标志物与耐药</h2>' +
+    tbl(['标志物', '意义', '药物类别'], [
+      ['<strong>血凝素 (HA)</strong>', 'H 抗原分型(H1、H3、H5…)。主要疫苗靶点;与当季疫苗株比对', '—'],
+      ['<strong>神经氨酸酶 (NA)</strong>', 'N 抗原分型(N1、N2)。突变 H275Y、E119V、R292K', '<strong>奥司他韦、扎那米韦</strong>(神经氨酸酶抑制剂)'],
+      ['<strong>聚合酶 (PA)</strong>', '突变 I38T/F/M', '<strong>玛巴洛沙韦</strong>(PA 核酸内切酶抑制剂)'],
+      ['<strong>M2 蛋白</strong>', 'S31N 突变(>99% 的 H3N2 与 pH1N1 耐药)', '<strong>金刚烷胺、金刚乙胺</strong> — 仅供参考']
+    ]) + '<hr>' +
+    '<h2>💉 疫苗学与监测</h2>' +
+    '<p>亚型分型与抗原分析数据直接汇入 <strong>WHO GISRS</strong>(>150 个国家中心),用于季节性疫苗株选择。对流行毒株的本地监测既是对全球体系的贡献,也能对疫苗株与流行株不匹配提供早期预警。另一条独立战线是<strong>高致病性禽流感 (H5N1、H5N8) 监测</strong>:在人源样本中检出携带禽源节段的重配株是流行病学预警信号。</p>' +
+    '<p>流感与其他呼吸道病毒(RSV、鼻病毒、SARS-CoV-2)的宏基因组鉴别诊断,请参阅 <a href="/flu/">OnSiteSeq 急性呼吸道病毒感染流程</a>。</p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Flu-Track Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>Flu-Subtyper</strong>', '基于 WGS 的 HA/NA 亚型分型(H1N1pdm09/H3N2,B 型 Victoria/Yamagata)'],
+      ['<strong>Flu-Reassort-Detector</strong>', '重配节段检测(PanG 图比对)'],
+      ['<strong>Flu-Res-Detector</strong>', '奥司他韦与玛巴洛沙韦耐药预测']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 组装与亚型分型</strong>', '<code>IRMA</code>(迭代优化宏组装器,CDC)'],
+      ['<strong>3. 比对 (Mapping)</strong>', '<code>minimap2</code> 比对至节段参考序列;<strong>OnSiteSeq-PanG</strong> 用于节段来源分析'],
+      ['<strong>4. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>5. 进化枝分类</strong>', '<code>Nextclade</code>(甲/乙型流感进化枝,抗原匹配评估)'],
+      ['<strong>6. 耐药注释</strong>', '自建 NA/PA/M2 突变数据库 + <code>snpEff</code>'],
+      ['<strong>7. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO GISRS</strong> — 根据流行毒株数据确定每年的疫苗组成;基因组监测是该体系的基石。</li>' +
+    '<li><strong>H5N1</strong> — 高致病性禽流感宿主范围不断扩大(鸟类 → 哺乳动物 → 散发人病例),使重配株监测成为监测工作的重点。</li>' +
+    '<li><strong>奥司他韦耐药</strong> — H275Y 突变曾导致耐药性 H1N1 全球固定(2008–2009 季);持续监测必不可少。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/initiatives/global-influenza-surveillance-and-response-system">WHO — 全球流感监测与应对系统 (GISRS)</a></li>' +
+    '<li>📄 <a href="https://wonder.cdc.gov/amd/flu/irma/">CDC IRMA — 迭代优化宏组装器</a></li>' +
+    '<li>📄 <a href="https://nextstrain.org/flu">Nextstrain / Nextclade — 流感进化枝</a></li>' +
+    '<li>📄 <a href="https://gisaid.org/">GISAID — 全球流感基因组数据库</a></li></ul>';
+
+  /* ── PLASMODIUM (疟原虫) ── */
+  ZH['/plasmodium/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_plasmodium.png" alt="恶性疟原虫 (Plasmodium falciparum)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>恶性疟原虫耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">基因组耐药谱分析、虫种鉴定与输入性疟疾病例核实</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>恶性疟原虫</em>引起最严重形式的疟疾。近年来的最大威胁是<strong>青蒿素</strong>(一线治疗)部分耐药从东南亚向非洲扩散。对俄罗斯而言,疟疾是输入性感染:流程在此的任务是<strong>输入病例核实</strong>、虫种鉴定,以及在数小时内(而非转诊参考实验室)评估输入虫株的耐药性。</p>' +
+    '<p>流程分析 WHO 验证的耐药标志物(<em>kelch13</em>、<em>pfcrt</em>、<em>pfmdr1</em>、<em>dhfr</em>、<em>dhps</em>、<em>plasmepsin2/3</em> 扩增)以及诊断基因 <em>hrp2/hrp3</em> 缺失。对高变位点,<strong>位点级图比对 (OnSiteSeq-PanG)</strong> 可降低参考偏倚;保守标志物用标准比对分析。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:全血(经寄生虫 DNA 富集或目标位点扩增子富集)。</li>' +
+    '<li><strong>📤 输出:</strong> HTML 报告,含疟原虫虫种、药敏谱、<em>hrp2/hrp3</em> 状态与检出突变。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与突变</h2>' +
+    tbl(['基因', '关键突变', '药物类别 / 意义'], [
+      ['<strong>kelch13</strong> (K13)', 'C580Y、R539T、Y493H、M476I(亚洲);<strong>R561H</strong>(非洲验证 — 卢旺达、乌干达)', '<strong>青蒿素</strong> — 寄生虫清除延迟'],
+      ['<strong>pfcrt</strong>', 'K76T', '<strong>氯喹</strong>'],
+      ['<strong>pfmdr1</strong>', 'N86Y、Y184F、D1246Y;拷贝数扩增', '<strong>甲氟喹、本芴醇</strong>(敏感性调节)'],
+      ['<strong>dhfr</strong>', 'N51I、C59R、S108N', '<strong>乙胺嘧啶</strong>'],
+      ['<strong>dhps</strong>', 'A437G、K540E', '<strong>磺胺多辛</strong>'],
+      ['<strong>plasmepsin2/3</strong>', '拷贝数扩增', '<strong>哌喹</strong> — ACT 配伍药物']
+    ]) +
+    '<h3>hrp2/hrp3 缺失 — 对快速诊断的威胁</h3>' +
+    '<p><em>hrp2</em> 和 <em>hrp3</em> 缺失会使寄生虫对基于 HRP2 的快速诊断试条 (RDT) "隐形" — 真实感染却出现假阴性结果。纳米孔长读长无需基因组组装即可直接检测这些缺失。报告包含 <em>hrp2/hrp3</em> 状态及临床解读:存在缺失时,RDT 阴性不能排除疟疾 — 应进行 PCR/镜检。</p>' +
+    '<h3>虫种鉴定</h3>' +
+    '<p>除 <em>恶性疟原虫</em>外,流程还可通过 18S rRNA 位点区分 <em>间日疟原虫</em>、<em>卵形疟原虫</em>、<em>三日疟原虫</em>和人兽共患的 <em>诺氏疟原虫</em> — 虫种决定治疗方案(对间日疟/卵形疟,必须结合 G6PD 状态使用伯氨喹抗复发治疗)。</p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Malaria Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>Malaria-Res-Detector</strong>', '基于 WHO 验证标志物 (k13 等) 的耐药预测'],
+      ['<strong>Malaria-Species-Typer</strong>', '基于 18S rRNA 的疟原虫虫种鉴定']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(参考序列:3D7);<strong>OnSiteSeq-PanG</strong> 用于高变位点'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. 耐药注释</strong>', '自建 WHO 验证标志物数据库(k13/pfcrt/pfmdr1/dhfr/dhps)'],
+      ['<strong>5. 缺失检测</strong>', '基于长读长的 <em>hrp2/hrp3</em> 位点覆盖度分析'],
+      ['<strong>6. 虫种鉴定</strong>', '<code>minimap2</code> + 18S rRNA 面板分类'],
+      ['<strong>7. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO《世界疟疾报告》</strong> — 每年约 2.5 亿病例、约 60 万死亡;基因组耐药监测被列为优先事项。</li>' +
+    '<li><strong>非洲</strong> — 卢旺达和乌干达已确认青蒿素部分耐药(标志物 R561H):存在重蹈氯喹失效覆辙的风险。</li>' +
+    '<li><strong>俄罗斯</strong> — 疟疾已消除,但每年仍有输入病例登记;快速核实虫种与耐药性对治疗与防控至关重要。</li>' +
+    '<li><strong>hrp2/hrp3 缺失</strong> — RDT 阴性虫株的传播正在削弱流行区对快速检测的信任。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/teams/global-malaria-programme/reports">WHO — 世界疟疾报告</a></li>' +
+    '<li>📄 <a href="https://www.who.int/publications/i/item/9789240021068">WHO — 青蒿素耐药 K13 分子标志物</a></li>' +
+    '<li>📄 <a href="https://www.wwarn.org/">WWARN — 世界抗疟药耐药网络</a></li>' +
+    '<li>📄 <a href="https://plasmodb.org/">PlasmoDB — 疟原虫基因组学资源</a></li></ul>';
+
+  /* ── FLU (病毒性急性呼吸道感染,宏基因组) ── */
+  ZH['/flu/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_flu.svg" alt="OnSiteSeq 急性呼吸道病毒感染 panel" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>病毒性呼吸道病原体的宏基因组鉴定</h1>' +
+    '<p style="font-size:1.2em;color:#555">甲/乙型流感、RSV、鼻病毒、冠状病毒及其他呼吸道病毒的鉴别诊断 — 就在床旁</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>急性呼吸道病毒感染 (ARVI) 由数十种临床表现几乎无法区分的病毒引起。快速准确的病原体鉴定对三项临床任务至关重要:<strong>抗病毒治疗处方</strong>(流感用奥司他韦,COVID-19 用奈玛特韦)、<strong>感染控制</strong>(儿科 RSV 患者隔离)和<strong>流行病学监测</strong>(流感流行毒株监测)。</p>' +
+    '<p>我们的流程采用<strong>宏基因组纳米孔测序 (mNGS)</strong>:样本(鼻咽拭子、肺泡灌洗液)在事先不知病原体的情况下测序 — 同时检出所有病毒。对检出的甲/乙型流感,还会额外确定亚型与抗病毒耐药谱。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:鼻咽拭子 / 鼻咽抽吸物 / 肺泡灌洗液 (BAL)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,含检出的病原体、相对丰度,以及(针对流感)抗病毒耐药谱。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🦠 可检出的病原体</h2>' +
+    tbl(['病原体', '临床意义'], [
+      ['<strong>甲型流感 (H1N1pdm09、H3N2)</strong>', '主要季节性病原体;抗病毒治疗 — 奥司他韦、玛巴洛沙韦'],
+      ['<strong>乙型流感 (Victoria / Yamagata)</strong>', '第二重要;亚型分型对治疗策略很重要'],
+      ['<strong>RSV A / RSV B</strong>', '儿童毛细支气管炎的首要病因;婴儿预防 — 尼塞韦单抗;诊断指导儿科病房隔离'],
+      ['<strong>鼻病毒 A / B / C</strong>', '最常见的 ARVI 病原体;无特异性治疗'],
+      ['<strong>SARS-CoV-2</strong>', 'COVID-19;检出时自动转入 <a href="/sarscov2/">完整 CoV-2 流程</a>'],
+      ['<strong>季节性冠状病毒 (HCoV-OC43、-229E、-NL63、-HKU1)</strong>', 'COVID-19 鉴别诊断'],
+      ['<strong>腺病毒(血清型 B、C、E)</strong>', '集体机构暴发;免疫缺陷患者可致重症'],
+      ['<strong>副流感病毒 (PIV 1–4)</strong>', '儿童喉气管炎("格鲁布")'],
+      ['<strong>偏肺病毒 (hMPV A/B)</strong>', '临床表现类似 RSV;儿科与老年人群重要'],
+      ['<strong>博卡病毒 (HBoV)</strong>', '共同病原体;常见混合感染']
+    ]) + '<hr>' +
+    '<h2>🎯 流感亚型分型与耐药</h2>' +
+    tbl(['基因', '关键突变', '药物'], [
+      ['<strong>NA</strong>(神经氨酸酶)', 'H275Y (N1)、E119V (N2)、R292K', '奥司他韦(达菲)、扎那米韦'],
+      ['<strong>PA</strong>(聚合酶)', 'I38T / I38F / I38M', '玛巴洛沙韦 (Xofluza)'],
+      ['<strong>M2</strong>(离子通道)', 'S31N、V27A、A30T', '金刚烷胺 / 金刚乙胺(>99% 的 H3N2 与 pH1N1 耐药)']
+    ]) + '<hr>' +
+    '<h2>🧪 针对 Flongle 芯片优化</h2>' +
+    '<p>Flongle 适配器单次运行产出约 <strong>1 Gb</strong> — 比完整的 R9.4.1/R10.4.1 芯片低一个数量级。对病毒宏基因组学通常足够(病毒基因组很小),但需要调整实验方案:</p>' +
+    '<ul><li><strong>逆转录</strong> — 所有目标病原体均为 RNA 病毒;文库需经 RT 步骤制备(如 Ligation Sequencing Kit 配 cDNA),使方案增加 1–2 小时。</li>' +
+    '<li><strong>自适应采样 (Read Until)</strong> — 实时剔除人源读长可将病毒比例提高 3–10 倍;在典型病毒载量 (Ct &lt; 30) 下足以获得流感(约 13.5 kb)或 RSV(约 15 kb)的完整基因组。</li>' +
+    '<li><strong>宿主去除</strong> — 提取前用皂苷处理样本,可去除 90–99% 的人源物质。</li>' +
+    '<li><strong>灵敏度阈值</strong> — 可靠检出与亚型分型要求病毒占读长 ≥ 0.1%(约 Ct ≤ 30–32);阴性结果不能排除低滴度感染。</li>' +
+    '<li><strong>多样本混合</strong> — 每张 Flongle 2–4 个条形码样本,可将单样本成本控制在数千卢布。</li></ul>' +
+    '<p><em>随着芯片产出和 ONT 化学体系准确度的提升,相同流程无需改动即可迁移到更深覆盖度 — 灵敏度阈值由运行配置决定,而非硬编码。</em></p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq ARVI Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>RespiVirus-Classifier</strong>', '病毒病原体的宏基因组分类(基于 k-mer 的 CNN)'],
+      ['<strong>Flu-Subtyper</strong>', '基于 WGS 的甲型 (H1N1/H3N2) 与乙型 (Victoria/Yamagata) 流感亚型分型'],
+      ['<strong>Flu-Res-Detector</strong>', '奥司他韦与玛巴洛沙韦耐药预测']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 宿主读长去除</strong>', '<code>minimap2</code>(参考:GRCh38)→ 剔除人源读长'],
+      ['<strong>3. 宏基因组分类</strong>', '<code>Kraken2</code> + <code>Bracken</code>(RefSeq 病毒数据库 + 自建基因组)'],
+      ['<strong>4. 靶向比对</strong>', '<code>minimap2</code> 比对至已检出病原体的参考序列'],
+      ['<strong>5. 流感亚型分型</strong>', '<code>IRMA</code>(迭代优化宏组装器,CDC)'],
+      ['<strong>6. 耐药注释</strong>', '自建 NA/PA/M2 突变数据库 + <code>snpEff</code>'],
+      ['<strong>7. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO</strong> — 全球流感监测与应对系统 (GISRS) 包含 150 多个国家中心;流行毒株数据决定每年的疫苗组成。</li>' +
+    '<li><strong>"盲目"抗生素治疗问题</strong> — 在俄罗斯,约 40–60% 的 ARVI 病例被开了抗生素,尽管病因是病毒。床旁准确鉴定病原体可避免不必要的抗生素使用。</li>' +
+    '<li><strong>RSV 流行季</strong> — 每年的暴发使儿科医院不堪重负;尼塞韦单抗 (Beyfortus) 在流行季前为婴儿预防性接种,而床旁快速确诊 RSV 则指导儿科病房的隔离与分组管理。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/initiatives/global-influenza-surveillance-and-response-system">WHO — 全球流感监测与应对系统 (GISRS)</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/genomes/FLU/">NCBI 流感病毒数据库</a></li>' +
+    '<li>📄 <a href="https://wonder.cdc.gov/amd/flu/irma/">CDC IRMA — 迭代优化宏组装器</a></li></ul>';
+
+  /* ── COLD (细菌性急性呼吸道感染,宏基因组) ── */
+  ZH['/cold/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_cold.svg" alt="OnSiteSeq 细菌性急性呼吸道感染 panel" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>细菌性呼吸道病原体及其 AMR 的宏基因组鉴定</h1>' +
+    '<p style="font-size:1.2em;color:#555">社区获得性肺炎与细菌性急性呼吸道感染的鉴别诊断 — 就在床旁</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>细菌性呼吸道感染需要准确鉴定病原体及其抗生素敏感性谱,以指导合理的经验性治疗。我们的流程采用宏基因组纳米孔测序,同时鉴定病原体并确定其 AMR 谱。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别后的原始 <code>FASTQ</code> 数据。样本:痰、鼻咽拭子、肺泡灌洗液 (BAL)、血培养。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,含检出的病原体与抗生素敏感性谱。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🦠 可检出的病原体</h2>' +
+    tbl(['病原体', '临床意义'], [
+      ['<strong>肺炎链球菌</strong>', '社区获得性肺炎的首要病因;经 PBP2b/2x 突变产生青霉素耐药'],
+      ['<strong>流感嗜血杆菌</strong>', '急性呼吸道感染、中耳炎、鼻窦炎、脑膜炎;BLNAR 菌株(β-内酰胺酶阴性氨苄西林耐药)'],
+      ['<strong>肺炎克雷伯菌</strong>', '医院获得性肺炎;碳青霉烯耐药(KPC、NDM、OXA-48)'],
+      ['<strong>肺炎支原体</strong>', '非典型肺炎;大环内酯耐药(23S rRNA A2063G)'],
+      ['<strong>肺炎衣原体</strong>', '非典型肺炎;培养难以检出'],
+      ['<strong>卡他莫拉菌</strong>', '慢性阻塞性肺病急性加重 (AECB)、中耳炎;BRO 型 β-内酰胺酶'],
+      ['<strong>金黄色葡萄球菌</strong>', '流感后肺炎;MRSA (mecA)'],
+      ['<strong>铜绿假单胞菌</strong>', '囊性纤维化患者的医院获得性肺炎;多重耐药 (MBL)'],
+      ['<strong>嗜肺军团菌</strong>', '军团菌病 — 重症肺炎;需特异性氟喹诺酮治疗']
+    ]) + '<hr>' +
+    '<h2>🎯 关键 AMR 基因</h2>' +
+    tbl(['基因 / 突变', '机制', '抗生素类别'], [
+      ['<strong>pbp1a/2b/2x</strong>(突变)', 'PBP 结合位点改变', '青霉素类、头孢菌素类(肺炎链球菌)'],
+      ['<strong>mecA</strong>', '修饰型 PBP2a', '所有 β-内酰胺类 (MRSA)'],
+      ['<strong>blaKPC / blaNDM / blaOXA-48</strong>', '水解碳青霉烯的 β-内酰胺酶', '碳青霉烯类(肺炎克雷伯菌、铜绿假单胞菌)'],
+      ['<strong>ermB / erm(C)</strong>', '23S rRNA 甲基化酶', '大环内酯类(阿奇霉素、克拉霉素)'],
+      ['<strong>gyrA / parC</strong>(突变)', 'DNA 促旋酶/拓扑异构酶 IV 改变', '氟喹诺酮类(左氧氟沙星、莫西沙星)'],
+      ['<strong>cat / cmr</strong>', '氯霉素乙酰转移酶', '氯霉素']
+    ]) + '<hr>' +
+    '<h2>🧪 针对 Flongle 芯片优化</h2>' +
+    '<p>Flongle 适配器单次运行产出约 <strong>1 Gb</strong> — 比完整的 R9.4.1/R10.4.1 芯片低一个数量级。细菌基因组(2–6 Mb)远大于病毒,因此宿主去除在此至关重要:</p>' +
+    '<ul><li><strong>自适应采样 (Read Until)</strong> — 实时剔除人源读长可将细菌比例提高 3–10 倍;是 Flongle 临床宏基因组学的关键技术。</li>' +
+    '<li><strong>宿主去除</strong> — 皂苷裂解或差速离心可在上机前去除 90–99% 的人源 DNA,将病原体占比从约 1% 提升至读长的 50–80%。</li>' +
+    '<li><strong>灵敏度阈值</strong> — 在约 1 Gb 产出下,可靠检出细菌要求病原体占样本 ≥ 0.1–1%;阴性结果不能排除低滴度感染。</li>' +
+    '<li><strong>AMR 标志物</strong> — 耐药基因仅在覆盖度足够时报告:"未检出"意味着灵敏度极限,而非确认敏感;报告中相应注明"AMR 谱未确定"。</li>' +
+    '<li><strong>多样本混合</strong> — 每张 Flongle 2–4 个条形码样本,可将单样本成本控制在数千卢布。</li></ul>' +
+    '<p><em>随着芯片产出和 ONT 化学体系准确度的提升,相同流程无需改动即可迁移到更深覆盖度 — 灵敏度阈值由运行配置决定,而非硬编码。</em></p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq ARI Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>BactResp-Classifier</strong>', '细菌病原体的宏基因组分类(基于 k-mer)'],
+      ['<strong>BactResp-Res-Detector</strong>', '基于宏基因组数据的 AMR 表型预测']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 宿主读长去除</strong>', '<code>minimap2</code>(参考:GRCh38)'],
+      ['<strong>3. 宏基因组分类</strong>', '<code>Kraken2</code> + <code>Bracken</code>(RefSeq 细菌数据库)'],
+      ['<strong>4. AMR 基因检出</strong>', '<code>AMRFinderPlus</code> (NCBI)、<code>abricate</code> (CARD, Resfinder)'],
+      ['<strong>5. MLST 分型</strong>', '<code>mlst</code>(已检出菌种的 PubMLST 方案)'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO AMR 行动计划</strong> — 社区获得性肺炎是全球 AMR 相关死亡的主要原因之一。</li>' +
+    '<li><strong>俄罗斯</strong> — 急性呼吸道感染的经验性抗生素治疗常在未鉴定病原体的情况下开具;床旁 mNGS 可实现靶向治疗并减少抗生素滥用。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://card.mcmaster.ca/">CARD — 综合抗生素耐药数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/">NCBI AMRFinderPlus</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/">PubMLST — 多位点序列分型数据库</a></li></ul>';
+
+  /* ── 植物病原体的宏基因组鉴定 (phytophthora, обзорная) ── */
+  ZH['/phytophthora/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<h1>植物病原体的宏基因组鉴定与杀菌剂抗性</h1>' +
+    '<p style="font-size:1.2em;color:#555">植物保护的纳米孔测序 — 致病疫霉、镰刀菌、灰葡萄孢等。就在田间。</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>由卵菌(疫霉属 Phytophthora)、真菌(镰刀菌属、灰葡萄孢、链格孢属)和细菌(假单胞菌属、果胶杆菌属)引起的植物病害给农业造成巨大的经济损失。我们的流程可在田间直接快速鉴定植物病原体及其杀菌剂抗性谱 — 从采样到结果仅需数小时。</p>' +
+    '<ul><li><strong>📥 输入:</strong> ITS 扩增子测序 (ITS1/ITS2) 或全宏基因组的原始 <code>FASTQ</code> 数据。样本:感病叶片、根系、果实组织。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的报告,含鉴定出的病原体、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🌿 可检出的植物病原体</h2>' +
+    tbl(['病原体', '病害', '经济意义'], [
+      ['<strong>Phytophthora infestans</strong>', '马铃薯和番茄晚疫病', '马铃薯最具破坏性的病原;曾引发爱尔兰大饥荒'],
+      ['<strong>Fusarium oxysporum / graminearum</strong>', '镰刀菌枯萎病、穗腐病', '霉菌毒素污染 (DON、ZEN) — 食品安全威胁'],
+      ['<strong>Botrytis cinerea</strong>', '灰霉病', '侵染 200 多种植物;严重的采后损失'],
+      ['<strong>Alternaria alternata / solani</strong>', '早疫病、叶斑病', '马铃薯、番茄、谷类作物'],
+      ['<strong>Plasmopara viticola</strong>', '葡萄霜霉病', '葡萄栽培的关键病原'],
+      ['<strong>Peronospora / Bremia</strong>', '蔬菜霜霉病', '菠菜、生菜、洋葱'],
+      ['<strong>Pythium ultimum</strong>', '根腐病、幼苗猝倒病', '温室与大田作物'],
+      ['<strong>Rhizoctonia solani</strong>', '根腐与茎腐病', '马铃薯、谷类作物、甜菜'],
+      ['<strong>Sclerotinia sclerotiorum</strong>', '白霉病(菌核病)', '油菜、向日葵、蔬菜']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '关键突变', '杀菌剂类别 (FRAC)'], [
+      ['<strong>CesA3</strong>(纤维素合酶)', 'G1105S、V1109L', 'CAA — 双炔酰菌胺、烯酰吗啉 (FRAC 40)'],
+      ['<strong>CYP51</strong>(甾醇 14α-脱甲基化酶)', 'Y137F、G460S、L50S', 'DMI — 戊唑醇、丙环唑 (FRAC 3)'],
+      ['<strong>BcSdhB / BcSdhC / BcSdhD</strong>', 'H272Y/R/L、N230I', 'SDHI — 啶酰菌胺、氟唑菌酰胺 (FRAC 7)'],
+      ['<strong>Cytb</strong>(细胞色素 b)', 'G143A、F129L', 'QoI — 嘧菌酯、肟菌酯 (FRAC 11)'],
+      ['<strong>β-微管蛋白</strong>', 'E198A/K/G、F200Y', 'MBC — 多菌灵、甲基硫菌灵 (FRAC 1)'],
+      ['<strong>PiORP1</strong>(致病疫霉氧化固醇受体)', 'V1109L、G1105S', '对羧酸酰胺类杀菌剂的抗性']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Phyto Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>PlantPath-Classifier</strong>', '基于 ITS 的植物病原体宏基因组分类'],
+      ['<strong>FungRes-Detector</strong>', '杀菌剂抗性预测 (CYP51、SDHI、QoI 靶标)'],
+      ['<strong>Phyto-Subtyper</strong>', '致病疫霉基因型的分子分型']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>'],
+      ['<strong>2. ITS 扩增子处理</strong>', '<code>minimap2</code>、自定义 ITS1/ITS2 引物修剪'],
+      ['<strong>3. 分类学分类</strong>', '<code>Kraken2</code> + <code>Bracken</code>(UNITE ITS 数据库 + 自定义卵菌数据)'],
+      ['<strong>4. 杀菌剂抗性突变检测</strong>', '<code>clair3</code> / <code>medaka</code> + 自定义 FRAC 突变数据库'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>FRAC(杀菌剂抗性行动委员会)</strong> — 监测杀菌剂抗性的国际工作组;作用机制 (MoA) 分类与交互抗性分组是全球标准。</li>' +
+    '<li><strong>UNITE ITS 数据库</strong> — 全球真菌 ITS 条形码参考数据库(超过 40 万条真菌序列)。</li>' +
+    '<li><strong>俄罗斯</strong> — 马铃薯晚疫病(致病疫霉)在不利年份每年造成 20–30% 的产量损失;快速抗性基因分型可实现靶向杀菌剂施用。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌鉴定 ITS 数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/">NCBI 病原体检测</a></li></ul>';
+
+  /* ── 马铃薯晚疫病 (phytophthora-infestans) ── */
+  ZH['/phytophthora-infestans/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_phytophthora_infestans.svg" alt="致病疫霉 (Phytophthora infestans)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>晚疫病 — 致病疫霉 Phytophthora infestans</h1>' +
+    '<p style="font-size:1.2em;color:#555">马铃薯与番茄晚疫病的宏基因组诊断,含杀菌剂抗性谱 — 数小时内完成,就在田间</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>致病疫霉(<em>Phytophthora infestans</em>)是一种卵菌(并非真正的真菌),为晚疫病的病原 — 全球马铃薯和番茄最具破坏性的病害。病原存在两种交配型 (A1 和 A2);它们在群体中共存时可形成持久存活的卵孢子,并加速抗性进化。在多雨季节,俄罗斯多达 50% 的马铃薯种植区受晚疫病侵害。</p>' +
+    '<p>我们的流程在田间直接对感病组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认,以及对作物保护至关重要的<strong>杀菌剂抗性谱</strong>:俄罗斯致病疫霉群体中对甲霜灵/精甲霜灵的抗性普遍存在,喷施无效药剂等同于损失收成。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:马铃薯叶片/块茎匀浆、番茄叶片与果实。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>CesA3</strong>(纤维素合酶)', 'G1105S、G1105V', '双炔酰菌胺、烯酰吗啉 (CAA 杀菌剂)'],
+      ['<strong>RPA70</strong>', 'V799A', 'CAA 杀菌剂'],
+      ['<strong>—</strong>(多基因抗性)', '群体多态性', '甲霜灵 / 精甲霜灵(苯基酰胺类)'],
+      ['<strong>Cytb</strong>(细胞色素 b)', 'G143A、F129L', '甲氧基丙烯酸酯类 / QoI(嘧菌酯、醚菌酯)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>爱尔兰大饥荒 (1845–1852)</strong> — 致病疫霉摧毁了爱尔兰几乎全部马铃薯收成,夺去超过 100 万人的生命。</li>' +
+    '<li><strong>经济</strong> — 晚疫病造成的全球作物损失估计为<strong>每年 60–70 亿美元</strong>。</li>' +
+    '<li><strong>甲霜灵抗性</strong> — 在俄罗斯所有马铃薯产区均已记录到抗性群体。</li>' +
+    '<li><strong>EUROBLIGHT</strong> — 监测致病疫霉群体的欧洲网络,追踪新克隆谱系与抗性基因型的传播。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="https://euroblight.net/">EUROBLIGHT — 欧洲致病疫霉监测网络</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li></ul>';
+
+  /* ── 大豆根腐病 (phytophthora-sojae) ── */
+  ZH['/phytophthora-sojae/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_phytophthora_sojae.svg" alt="大豆疫霉 (Phytophthora sojae)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>大豆根腐与茎腐病 — <em>Phytophthora sojae</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">大豆疫霉根腐病的宏基因组诊断,含致病型鉴定与杀菌剂抗性谱</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>大豆疫霉(<em>Phytophthora sojae</em>)是一种卵菌,为大豆根腐与茎腐病的病原。病原群体具有明显的<strong>生理小种结构</strong>:各致病型在克服大豆 <em>Rps</em> 抗病基因的能力上各不相同,因此小种组成直接决定哪些品种会被侵染。卵孢子可在土壤中存活多年,使受侵染田块成为长期的侵染源。</p>' +
+    '<p>我们的流程对根组织与土壤洗液进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认、其在样本中的丰度估计以及<strong>杀菌剂抗性谱</strong> — 用于选择有效的种子处理与幼苗保护方案。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:大豆根部与茎基部匀浆、土壤洗液。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>—</strong>(多基因抗性)', '群体多态性', '甲霜灵 / 精甲霜灵(苯基酰胺类)'],
+      ['<strong>CesA3</strong>(纤维素合酶)', '点突变', '双炔酰菌胺 (CAA 杀菌剂)'],
+      ['<strong>β-微管蛋白</strong>', '点突变', 'Ethaboxam(苯甲酰胺类)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>经济</strong> — 大豆疫霉造成的全球大豆产量损失估计为<strong>每年 10–20 亿美元</strong>。</li>' +
+    '<li><strong>小种进化</strong> — 育种中广泛使用有限的 <em>Rps</em> 基因组合,导致能够克服品种抗性的致病型迅速积累。</li>' +
+    '<li><strong>俄罗斯</strong> — 阿穆尔州和远东地区大豆种植面积的扩大,使大豆疫霉根腐病监测日益重要。</li>' +
+    '<li><strong>诊断</strong> — 宏基因组学可在无需数周培养的情况下同时鉴定病原并评估群体的小种组成。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Phytophthora sojae</a></li></ul>';
+
+  /* ── 镰刀菌枯萎病 (fusarium-oxysporum) ── */
+  ZH['/fusarium-oxysporum/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_fusarium_oxysporum.svg" alt="尖孢镰刀菌 (Fusarium oxysporum)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>镰刀菌枯萎病 — <em>Fusarium oxysporum</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">土传尖孢镰刀菌复合体的宏基因组诊断,含专化型鉴定与杀菌剂抗性谱</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>尖孢镰刀菌(<em>Fusarium oxysporum</em>)是一种土传真菌,以众多专化型(<strong>formae speciales</strong>)形式存在,各自侵染特定作物:<em>f. sp. lycopersici</em> — 番茄、<em>f. sp. cucumerinum</em> — 黄瓜、<em>f. sp. cubense</em>(热带小种 TR4)— 香蕉。厚壁<strong>厚垣孢子</strong>可在土壤中存活多年,化学防治对维管束枯萎病基本无效 — 因此土壤和种植材料带菌情况的早期诊断具有决定性意义。</p>' +
+    '<p>我们的流程对茎部维管束组织、根系与土壤洗液进行<strong>宏基因组纳米孔测序</strong> (mNGS)。宏基因组方法不仅能确认尖孢镰刀菌的存在,还能将其与复合体中的近缘种区分开,并提供用于种子处理与喷施的<strong>杀菌剂抗性谱</strong>。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:茎部与根部维管束组织匀浆(番茄、黄瓜、谷类)、土壤洗液。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>β-微管蛋白</strong>', 'E198A、E198K', '苯并咪唑类(多菌灵、苯菌灵)'],
+      ['<strong>CYP51</strong>(羊毛甾醇 14α-脱甲基化酶)', '点突变', '唑类 / DMI(戊唑醇)'],
+      ['<strong>Cytb</strong>(细胞色素 b)', '天然结合位点结构', '甲氧基丙烯酸酯类 / QoI — 固有敏感性低']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>香蕉"巴拿马病"</strong> — 热带小种 <em>f. sp. cubense</em> TR4 正在摧毁亚洲、非洲和拉丁美洲的香蕉种植园,被视为全球香蕉产业的威胁。</li>' +
+    '<li><strong>土壤持久性病原</strong> — 厚垣孢子在土壤中可存活数十年;轮作无法解决问题。</li>' +
+    '<li><strong>化学防治基本无效</strong> — 对于维管束枯萎病,杀菌剂几乎无法到达病原;早期诊断与健康种植材料是关键。</li>' +
+    '<li><strong>近缘种复合体</strong> — 形态学和培养诊断无法区分病原专化型;宏基因组学一次检测即可给出答案。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Fusarium oxysporum</a></li></ul>';
+
+  /* ── 小麦赤霉病 (fusarium-graminearum) ── */
+  ZH['/fusarium-graminearum/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_fusarium_graminearum.svg" alt="禾谷镰刀菌 (Fusarium graminearum)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>小麦赤霉病 (FHB) — <em>Fusarium graminearum</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">小麦和大麦赤霉病的宏基因组诊断,含霉菌毒素风险评估与杀菌剂抗性谱</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>禾谷镰刀菌(<em>Fusarium graminearum</em>)是小麦和大麦赤霉病 (FHB) 的病原。威胁是双重的:除直接产量损失外,该真菌还<strong>产生霉菌毒素</strong> — 脱氧雪腐镰刀菌烯醇 (DON,呕吐毒素) 和玉米赤霉烯酮,由 <em>TRI</em> 基因簇合成。受污染的谷物不再适合食用和饲用,因此诊断不仅关乎植物保护,也关乎粮批的毒理学控制。</p>' +
+    '<p>我们的流程对籽粒和穗部组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认、粮批污染评估以及<strong>杀菌剂抗性谱</strong> — 三唑类仍是穗部保护的骨干药剂,监测其有效性对规划花期施药至关重要。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:小麦/大麦籽粒与穗部匀浆。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 鉴定出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<code>CYP51</code>(旁系同源基因 <code>FgCYP51A/B/C</code>)', '点突变、缺失', '唑类 / DMI(戊唑醇、丙硫菌唑)'],
+      ['<code>β-微管蛋白</code>', 'F167Y、E198L、E198Q', '苯并咪唑类(多菌灵)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>FHB 大流行</strong> — 在北美、欧洲和亚洲定期记录;花期多雨天气会急剧增加侵染风险。</li>' +
+    '<li><strong>霉菌毒素</strong> — 谷物中 DON 和玉米赤霉烯酮含量受到监管;无论产量损失大小,受污染粮批都会被拒收。</li>' +
+    '<li><strong>多菌灵抗性</strong> — 在中国禾谷镰刀菌群体中已记录到对苯并咪唑类的大规模抗性。</li>' +
+    '<li><strong>狭窄的保护窗口</strong> — 杀菌剂处理仅在花期有效,因此快速诊断直接决定穗部保护的成败。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Fusarium graminearum</a></li></ul>';
+
+  /* ── 早疫病 (alternaria-solani) ── */
+  ZH['/alternaria-solani/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_alternaria_solani.svg" alt="茄链格孢 (Alternaria solani)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>早疫病 — 茄链格孢 Alternaria solani</h1>' +
+    '<p style="font-size:1.2em;color:#555">马铃薯和番茄早疫病的宏基因组诊断,监测快速进化的杀菌剂抗性</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>茄链格孢(<em>Alternaria solani</em>)是马铃薯和番茄早疫病(链格孢病)的病原。病原侵染叶片、茎和块茎,形成特征性的同心轮纹病斑,每年都降低茄科作物产量。茄链格孢是<strong>杀菌剂抗性快速进化的经典案例</strong>:2000 年代甲氧基丙烯酸酯类 (QoI) 杀菌剂引入后仅数年,抗性就在群体中扩散开来。</p>' +
+    '<p>我们的流程对感病叶片组织与块茎进行<strong>纳米孔宏基因组测序</strong> (mNGS)。数小时内农艺师即可获得病原种的确认与<strong>杀菌剂抗性谱</strong> — 这对早疫病尤为重要:对抗性群体喷施甲氧基丙烯酸酯类毫无作用,只会加速抗性基因型的选择。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:马铃薯叶片/块茎匀浆、番茄叶片与果实。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 鉴定出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>Cytb</strong>(细胞色素 b)', 'F129L', '甲氧基丙烯酸酯类 / QoI(嘧菌酯、吡唑醚菌酯)'],
+      ['<strong>SdhB</strong>', 'H278R、H278Y', 'SDHI(啶酰菌胺、氟唑菌酰胺)'],
+      ['<strong>SdhC</strong>', 'H134R', 'SDHI(啶酰菌胺、氟唑菌酰胺)'],
+      ['<strong>SdhD</strong>', 'D123E', 'SDHI(啶酰菌胺、氟唑菌酰胺)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>进化速度</strong> — 2000 年代 QoI 杀菌剂引入后,细胞色素 b 的 F129L 突变在数年内就在茄链格孢群体中扩散。</li>' +
+    '<li><strong>双重威胁</strong> — 继甲氧基丙烯酸酯类之后,在选择压力下正在出现对 SDHI 杀菌剂(啶酰菌胺、氟唑菌酰胺)的抗性。</li>' +
+    '<li><strong>寄主</strong> — 马铃薯和番茄等关键粮食作物;早疫病每年在所有种植区均有记录。</li>' +
+    '<li><strong>抗性治理策略</strong> — 监测抗性标志物可轮换杀菌剂类别,保持药剂的有效性。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Alternaria solani</a></li></ul>';
+
+  /* ── 灰霉病 (botrytis-cinerea) ── */
+  ZH['/botrytis-cinerea/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_botrytis_cinerea.svg" alt="灰葡萄孢 (Botrytis cinerea)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>灰霉病 — 灰葡萄孢 Botrytis cinerea</h1>' +
+    '<p style="font-size:1.2em;color:#555">葡萄、草莓和蔬菜灰霉病的宏基因组诊断,含全面的多药抗性谱</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>灰葡萄孢(<em>Botrytis cinerea</em>)是灰霉病的病原,可侵染<strong>200 多种植物</strong>,是葡萄和草莓在田间和储藏期的主要病原。FRAC 将灰葡萄孢列为<strong>最高抗性风险病原</strong>:多药抗性 — 同时对多个杀菌剂类别的抗性 — 在田间群体中已是常态而非例外。</p>' +
+    '<p>我们的流程对感病浆果和植物组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认和详尽的<strong>杀菌剂抗性谱</strong>,涵盖靶标基因突变和驱动多药抗性的外排系统 (BcMrr1) 激活。没有这样的谱,灰霉病防治方案的选择就会变成试错式喷施。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:葡萄/草莓浆果匀浆、感病蔬菜组织。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>BcCYP51</strong>', '多重突变 + 启动子区串联重复', '唑类 / DMI(戊唑醇)'],
+      ['<strong>BcMrr1</strong>', '激活突变(外排)', '多药抗性,包括 SDHI'],
+      ['<strong>BcSdhB/C/D</strong>', 'H272R、P225L', 'SDHI(啶酰菌胺)'],
+      ['<strong>β-微管蛋白</strong>', 'E198A、F200Y', '苯并咪唑类(多菌灵、苯菌灵)'],
+      ['<strong>Cytb</strong>(细胞色素 b)', 'G143A', '甲氧基丙烯酸酯类 / QoI(嘧菌酯)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>极广的寄主范围</strong> — 超过 200 种植物,从葡萄、草莓到番茄和观赏作物。</li>' +
+    '<li><strong>最高抗性风险</strong> — FRAC 将灰葡萄孢列为最高风险病原;对 5 个及以上杀菌剂类别具有抗性的菌株早已为人所知。</li>' +
+    '<li><strong>储藏损失</strong> — 灰霉病仍是葡萄和浆果采后损失的首要原因。</li>' +
+    '<li><strong>外排介导的多药抗性</strong> — BcMrr1 转运体的激活可同时赋予对多个杀菌剂类别的抗性,这是单一靶标基因无法预测的。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Botrytis cinerea</a></li></ul>';
+
+  /* ── 腐霉根腐病与猝倒病 (pythium) ── */
+  ZH['/pythium/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_pythium.svg" alt="腐霉属 (Pythium spp.)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>根腐病与猝倒病 — 腐霉属 Pythium spp.</h1>' +
+    '<p style="font-size:1.2em;color:#555">幼苗根腐病的宏基因组鉴别诊断 — 腐霉属与丝核菌属、镰刀菌属的区分</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>腐霉属 (<em>Pythium spp.</em>) 为卵菌(并非真正的真菌)— 是幼苗和幼株根腐病与猝倒病的病原,温室和苗圃生产损失的首要原因。与所有卵菌一样,腐霉<strong>对唑类和大多数"抗真菌"杀菌剂不敏感</strong>:只有卵菌特异性药剂有效 — 精甲霜灵/甲霜灵、ethaboxam、霜霉威、氰霜唑。诊断错误就意味着使用注定无效的药剂。</p>' +
+    '<p>我们的流程对幼苗根系和栽培基质进行<strong>宏基因组纳米孔测序</strong> (mNGS)。在根腐病症状相似的情况下,基质宏基因组学是在一次检测中可靠区分腐霉属与丝核菌属、镰刀菌属的唯一方法,无需多日培养。除物种鉴定外,农艺师还将获得<strong>杀菌剂抗性谱</strong>。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:幼苗与幼株根系匀浆、栽培基质、土壤洗液。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>—</strong>(多基因抗性)', '群体多态性', '精甲霜灵 / 甲霜灵(苯基酰胺类)'],
+      ['<strong>CesA3</strong>(纤维素合酶)', '点突变', 'CAA 杀菌剂'],
+      ['<strong>—</strong>(固有不敏感)', '缺乏靶标(麦角甾醇)', '唑类 / DMI — 对卵菌无效']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>温室与苗圃</strong> — 猝倒病暴发时可在数天内摧毁多达 100% 的幼苗。</li>' +
+    '<li><strong>精甲霜灵抗性</strong> — 在常规使用苯基酰胺类的生产单位中,<em>P. irregulare</em> 和 <em>P. ultimum</em> 的抗性群体广泛存在。</li>' +
+    '<li><strong>症状相似</strong> — 由腐霉属、丝核菌属和镰刀菌属引起的根腐病在视觉上无法区分,却需要不同的防治方案。</li>' +
+    '<li><strong>卵菌 ≠ 真菌</strong> — 标准"抗真菌"药剂(唑类)对腐霉属无效;正确诊断可避免无效施药。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Pythium</a></li></ul>';
+
+  /* ── 葡萄霜霉病 (plasmopara-viticola) ── */
+  ZH['/plasmopara-viticola/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_plasmopara_viticola.svg" alt="葡萄生单轴霉 (Plasmopara viticola)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>葡萄霜霉病 — <em>Plasmopara viticola</em></h1>' +
+    '<p style="font-size:1.2em;color:#555">葡萄霜霉病的宏基因组诊断,监测对 QoI 和 CAA 杀菌剂的抗性</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>葡萄生单轴霉(<em>Plasmopara viticola</em>)是一种卵菌、专性活体寄生菌,为葡萄霜霉病的病原 — 温带气候区葡萄栽培的首要病害。该病 1878 年从北美传入欧洲;对霜霉病的斗争催生了波尔多液 — 历史上第一种杀菌剂。作为专性寄生菌,葡萄生单轴霉无法在人工培养基上培养,这使分子诊断成为研究和监测的主要工具。</p>' +
+    '<p>我们的流程对带"油斑"病斑的叶片进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原确认和<strong>杀菌剂抗性谱</strong>:欧洲群体中对甲氧基丙烯酸酯类 (QoI) 的抗性普遍存在,对 CAA 杀菌剂的抗性自 2007 年起开始出现 — 没有分子监测,葡萄园保护方案会迅速失效。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:带油斑病斑的葡萄叶片匀浆。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>Cytb</strong>(细胞色素 b)', 'G143A', '甲氧基丙烯酸酯类 / QoI(嘧菌酯)'],
+      ['<strong>PvCesA3</strong>(纤维素合酶)', 'G1105S、G1105V', 'CAA 杀菌剂(双炔酰菌胺、烯酰吗啉)'],
+      ['<strong>—</strong>(多基因抗性)', '群体多态性', '甲霜灵(苯基酰胺类)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>1878 年</strong> — 霜霉病从北美传入欧洲,几十年内成为欧洲葡萄栽培的首要威胁。</li>' +
+    '<li><strong>波尔多液</strong> — 对霜霉病的斗争催生了农业史上第一种杀菌剂。</li>' +
+    '<li><strong>QoI 抗性</strong> — G143A 突变在欧洲群体中广泛存在;不进行抗性监测,甲氧基丙烯酸酯类就会失效。</li>' +
+    '<li><strong>CAA 抗性</strong> — <em>PvCesA3</em> 的突变于 2007 年前后首次被发现,此后被 FRAC 列为优先监测标志物。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Plasmopara viticola</a></li></ul>';
+
+  /* ── 霜霉病 (peronospora) ── */
+  ZH['/peronospora/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_peronospora.svg" alt="霜霉属 (Peronospora spp.)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>霜霉病 — Peronospora spp.</h1>' +
+    '<p style="font-size:1.2em;color:#555">洋葱和向日葵霜霉病的宏基因组诊断,含生理小种与杀菌剂抗性监测</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>霜霉属 (<em>Peronospora spp.</em>) 为卵菌 — 专性植物寄生菌,是霜霉病的病原。该组包括 <em>P. destructor</em>(洋葱霜霉病)和 <em>Plasmopara halstedii</em>(向日葵霜霉病,同为霜霉科 Peronosporaceae 的近缘卵菌)。病原群体具有明显的<strong>生理小种结构</strong>:流行小种的组成决定哪些杂交种和品种会抗病、哪些会感病。向日葵霜霉病在俄罗斯是具有检疫意义的重要病原。</p>' +
+    '<p>我们的流程对感病叶片组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原确认、群体小种组成评估和<strong>杀菌剂抗性谱</strong> — 这些数据既是保护当季作物所需,也是选育抗病杂交种所需。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:向日葵/洋葱叶片匀浆。</li>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 杀菌剂抗性标志物</h2>' +
+    tbl(['基因', '突变', '杀菌剂(类别)'], [
+      ['<strong>—</strong>(多基因抗性)', '群体多态性', '甲霜灵 / 精甲霜灵(苯基酰胺类)'],
+      ['<strong>CesA3</strong>(纤维素合酶)', '点突变', 'CAA 杀菌剂(双炔酰菌胺)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>检疫意义</strong> — 向日葵霜霉病 (<em>P. halstedii</em>) 在俄罗斯是具有检疫意义的病原;受侵染的种子批次须接受管制。</li>' +
+    '<li><strong>小种结构</strong> — <em>P. halstedii</em> 的抗甲霜灵小种早已为人所知;小种监测对选育抗病向日葵杂交种必不可少。</li>' +
+    '<li><strong>专性寄生菌</strong> — 这些病原无法在人工培养基上培养;宏基因组学是其鉴定与分型的主要方法。</li>' +
+    '<li><strong>洋葱作物</strong> — <em>P. destructor</em> 引起洋葱的系统性侵染,并使侵染在种植材料中长期存在。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.frac.info/">FRAC — 杀菌剂抗性行动委员会</a></li>' +
+    '<li>📄 <a href="http://www.phi-base.org/">PHI-base — 病原-宿主互作数据库</a></li>' +
+    '<li>📄 <a href="https://unite.ut.ee/">UNITE — 真菌与卵菌 ITS 条形码数据库</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Peronospora</a></li></ul>';
+
+  /* ── DNA 法医画像 (identikit) ── */
+  ZH['/identikit/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_identikit.svg" alt="法医 DNA 表型分型" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>法医 DNA 表型分型 — 来自犯罪现场的 DNA 画像</h1>' +
+    '<p style="font-size:1.2em;color:#555">从微量 DNA 预测眼睛、头发、肤色、生物地理祖源与年龄 — 就在犯罪现场</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>法医 DNA 表型分型 (Forensic DNA Phenotyping, FDP)</strong> 是法医基因组学的一个分支,可从生物痕迹(血液、唾液、毛囊、上皮细胞)生成未知个体的外貌描述 — 无需数据库中已有 DNA 分型。</p>' +
+    '<p>与传统 DNA 分型(用于数据库比对的 STR 分析)不同,FDP <strong>从无到有地创建描述</strong>:即使没有嫌疑人,侦查人员也能获得概率性的表型画像。我们的流程运行于 OnSiteSeq Edge,在现场或移动实验室内完成分析,无需将遗传数据传输到云端。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP) 后的原始 <code>FASTQ</code> 数据。样本:物证上的血液、唾液、毛囊、上皮细胞。</li>' +
+    '<li><strong>📤 输出:</strong> 面向侦查人员的 PDF/HTML 报告 — 每项特征带置信区间的概率性表型画像;含标志物覆盖度数据的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🔍 可判定的特征</h2>' +
+    tbl(['特征', '方法', '准确度'], [
+      ['<strong>眼睛颜色</strong>', 'HIrisPlex-S(41 个 SNP)', 'AUC >0.95(蓝色 vs 棕色)'],
+      ['<strong>头发颜色</strong>', 'HIrisPlex-S', 'AUC ~0.89(黑/深色 vs 浅色 vs 红色)'],
+      ['<strong>肤色</strong>', 'HIrisPlex-S(FST 1–6 量表)', '灵敏度 ~80%'],
+      ['<strong>生物地理祖源</strong>', 'AIMs 面板 + PCA', '洲级准确度 >95%;亚群体 ~80%'],
+      ['<strong>生物学年龄</strong>', '表观遗传时钟(DNA 甲基化)', '误差 ±3–5 岁'],
+      ['<strong>生物学性别</strong>', '牙釉质蛋白基因 (AMEL X/Y)', '覆盖度足够时 100%'],
+      ['<strong>亲缘关系</strong>', 'IBD 片段分析(低深度 WGS + 约 60 万 SNP 填补)', '1–3 级亲缘(侦查系谱学)']
+    ]) + '<hr>' +
+    '<h2>🎯 关键 SNP 标志物与基因</h2>' +
+    '<h3>HIrisPlex-S 系统(眼睛、头发、肤色)</h3>' +
+    tbl(['基因', '关键 SNP', '性状'], [
+      ['<strong>HERC2 / OCA2</strong>', 'rs12913832', '蓝/棕色眼睛的主要开关'],
+      ['<strong>SLC45A2</strong>', 'rs16891982', '肤色与发色(欧洲人浅肤色)'],
+      ['<strong>SLC24A4</strong>', 'rs12896399', '蓝/绿色眼睛色调'],
+      ['<strong>MC1R</strong>', 'rs1805007、rs1805008', '红发、雀斑'],
+      ['<strong>IRF4</strong>', 'rs12203592', '浅色头发、蓝眼睛'],
+      ['<strong>TYR</strong>', 'rs1042602', '皮肤色素沉着'],
+      ['<strong>KITLG</strong>', 'rs12821256', '浅色头发']
+    ]) +
+    '<h3>mtDNA 与 Y 染色体单倍群</h3>' +
+    '<p>长读长纳米孔读段覆盖整个线粒体基因组和 Y 染色体的决定性区域,可实现单亲谱系归属:</p>' +
+    tbl(['标志物', '谱系', '侦查价值'], [
+      ['<strong>线粒体 DNA (mtDNA)</strong>', '母系', '单倍群 (H、U、T、J、K 等) — 缩小搜索范围;对核 DNA 含量低的降解样本有用'],
+      ['<strong>Y 染色体 (Y-SNP)</strong>', '父系', '单倍群 (R1a、R1b、N、I 等) — 将搜索缩小到某一男性谱系'],
+      ['<strong>Y-STR</strong>', '父系', '与经典 Y-STR 数据库兼容']
+    ]) +
+    '<p>单倍群不能直接识别个体,但可大幅缩小搜索空间,并用于侦查系谱学中的谱系排除。</p>' +
+    '<h3>表观遗传年龄</h3>' +
+    tbl(['模型', '标志物', '适用范围'], [
+      ['<strong>Horvath 时钟</strong>', '353 个 CpG 位点', '通用 — 所有组织'],
+      ['<strong>Hannum 时钟</strong>', '71 个 CpG 位点', '血液'],
+      ['<strong>DNAmAge(血液/唾液)</strong>', '>800 个 CpG', '法医应用中最准确']
+    ]) + '<hr>' +
+    '<h2>🆚 FDP 在法医方法中的定位</h2>' +
+    tbl(['方法', '提供什么', '何时使用'], [
+      ['<strong>STR 分型(CODIS/国家数据库)</strong>', '数据库身份识别', '已有嫌疑人或分型已入库;FDP 不能替代 STR'],
+      ['<strong>FDP(HIrisPlex-S + AIMs)</strong>', '概率性外貌画像', '数据库无匹配、无嫌疑人 — 需要描述来指导搜索'],
+      ['<strong>纳米孔 WGS(低覆盖度)</strong>', '单倍群、亲缘关系、完整 SNP 谱', '侦查系谱学、复杂混合样本、身份不明遗骸']
+    ]) +
+    '<p>FDP 是对经典 STR 分析的补充而非替代:画像指导侦查方向,但法律上的身份确认仍来自 STR 分型比对。</p><hr>' +
+    '<h2>⚠️ 局限与边界</h2>' +
+    '<ul><li><strong>DNA 混合样本</strong> — 痕迹来自 2 名及以上供者时,只有先进行混合物拆分才能构建画像;供者比例差于 1:10 时,次要组分的解读不可靠。</li>' +
+    '<li><strong>低模板 DNA (LT-DNA)</strong> — DNA 低于 ~100 pg 时可能出现等位基因丢失;报告必须注明每个标志物的覆盖度。</li>' +
+    '<li><strong>降解 DNA</strong> — 片段低于 150 bp 对扩增子方案是关键问题;长读长纳米孔读段通过 WGS 方法可部分补偿。</li>' +
+    '<li><strong>概率性质</strong> — FDP 输出的是带概率的类别(如"棕色眼睛,P=0.87"),而非照片;结果是侦查情报,而非证据。</li>' +
+    '<li><strong>群体校准</strong> — 模型基于特定队列训练;对混合祖源群体误差更高,报告中会相应注明。</li></ul><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq FDP Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>HIrisPlex-Nano</strong>', '基于 HIrisPlex-S 标志物纳米孔读段的 EVC 预测'],
+      ['<strong>AIM-Classifier</strong>', '生物地理祖源分类(RF + NN 集成)'],
+      ['<strong>EpiAge-Nano</strong>', '基于纳米孔数据 CpG 甲基化的生物学年龄估计']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>(针对降解 DNA 的设置)'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(参考:GRCh38/hg38)'],
+      ['<strong>3. SNP 基因分型</strong>', '<code>clair3</code>、<code>medaka</code>(目标:HIrisPlex-S 与 AIMs 位点)'],
+      ['<strong>4. 甲基化检测</strong>', '<code>modkit</code>(来自天然 DNA 的 Nanopore 5mC 模式)'],
+      ['<strong>5. 性别(牙釉质蛋白基因)</strong>', '自定义 AMEL X/Y 覆盖度脚本'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>scikit-learn</code>(HIrisPlex-S 模型 + AIM 分类器)']
+    ]) + '<hr>' +
+    '<h2>⚖️ 法律与伦理背景</h2>' +
+    tbl(['方面', '规范框架'], [
+      ['<strong>法律依据(俄罗斯)</strong>', '联邦法第 73 号《国家司法鉴定活动法》;联邦法第 144 号《侦查行动法》'],
+      ['<strong>基因组数据库</strong>', '联邦 DNA 数据库 (FDBD) — 由俄罗斯内务部(法医中心)维护'],
+      ['<strong>个人数据</strong>', '联邦法第 152 号;生物识别数据属特殊类别'],
+      ['<strong>国际标准</strong>', 'ENFSI DNA 工作组;ISO/IEC 17025'],
+      ['<strong>概率性解读</strong>', '所有 FDP 结果均为<strong>概率性</strong>而非确定性。用于指导侦查 — 不作为证据']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>荷兰 (Erasmus MC)</strong> — HIrisPlex-S 系统的开发者;FDP 已在欧洲、澳大利亚、美国的刑事侦查中应用。</li>' +
+    '<li><strong>俄罗斯</strong> — 内务部运营的联邦 DNA 数据库 (FDBD) 已建立;移动 DNA 实验室与现场痕迹分析是执法部门积极关注的方向。</li>' +
+    '<li><strong>侦查系谱学</strong> — 通过基因组数据库寻找未知人员亲属的方法(如美国"金州杀手"案)。在俄罗斯需要单独的法律规定。</li></ul><hr>' +
+    '<h2>🗺 路线图</h2>' +
+    '<ul><li><strong>生成式面部重建</strong> — 从类别性状迈向基于全基因组数据的合成面部画像(Parabon Snapshot 类方案)。</li>' +
+    '<li><strong>基于 ML 的混合物拆分</strong> — 从宏基因组痕迹中自动分离 2–3 名供者的分型。</li>' +
+    '<li><strong>FDBD 集成</strong> — 将从纳米孔数据获得的 STR 分型与联邦数据库自动比对。</li>' +
+    '<li><strong>ISO/IEC 17025 验证</strong> — 实验室间比对与方法认证,以用于法医实践。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://hirisplex.erasmusmc.nl/">HIrisPlex-S — 在线 EVC 预测系统 (Erasmus MC)</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=HIrisPlex-S+system+eye+hair+skin">HIrisPlex-S — 原始论文 (PubMed)</a></li>' +
+    '<li>📄 <a href="https://www.visage-h2020.eu/">VISAGE — 欧盟基因组外貌重建联盟</a></li>' +
+    '<li>📄 <a href="https://enfsi.eu/working-groups/dna/">ENFSI DNA 工作组 — 法医基因组学标准</a></li>' +
+    '<li>📄 <a href="https://www.internationalgenome.org/">1000 Genomes Project(千人基因组计划)</a></li>' +
+    '<li>📄 <a href="https://www.hagsc.org/hgdp/">HGDP — 人类基因组多样性计划</a></li></ul>';
+
+  /* ── EDGE 床旁测序一体机 ── */
+  ZH['/edge/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<h1>OnSiteSeq Edge(床旁测序一体机)</h1>' +
+    '<p style="font-size:1.2em;color:#555">用于床旁测序的自主软硬件一体化系统</p></div><hr>' +
+    '<h2>📋 产品介绍</h2>' +
+    '<p>OnSiteSeq Edge 是一套用于床旁测序的自主软硬件一体化系统 (HSC)。从 FASTQ 到临床结论,就在患者床旁或医生办公桌上完成。可用于野外、偏远极地地区,以及任何无法长期接入实验室设备或服务器基础设施的场所。</p><hr>' +
+    '<h2>🔧 关键技术参数</h2>' +
+    tbl(['参数', '数值'], [
+      ['<strong>架构</strong>', 'arm64'],
+      ['<strong>GPU 模块</strong>', 'Nvidia Jetson AGX'],
+      ['<strong>测序仪</strong>', 'Nanoporus(俄罗斯)'],
+      ['<strong>交互界面</strong>', '触摸屏'],
+      ['<strong>打印</strong>', '内置热敏打印机'],
+      ['<strong>通信</strong>', '内置 Wi-Fi/4G 通信模块'],
+      ['<strong>存储</strong>', '内置大容量 NVMe SSD'],
+      ['<strong>容器镜像仓库</strong>', 'harbor.onsiteseq.io(arm64 Docker 镜像)']
+    ]) + '<hr>' +
+    '<h2>⚙️ 功能</h2>' +
+    '<ul><li>内置样本制备工具</li>' +
+    '<li>从内置 Nanoporus 测序仪采集数据</li>' +
+    '<li>由 Nvidia Jetson AGX GPU 模块进行数据处理</li>' +
+    '<li>在内置热敏打印机上打印临床与生物信息学报告</li>' +
+    '<li>OnSiteSeq Cockpit 流程管理系统 — 适配触摸屏的 Edge 版本</li>' +
+    '<li>开放架构 — 持续更新的 arm64 容器应用市场</li></ul><hr>' +
+    '<h2>📷 硬件组成</h2>' +
+    '<p><img src="/assets/images/photo/nvidia_xavier_agx/view.png" alt="OnSiteSeq Edge — 硬件"></p>' +
+    '<p><strong>(A)</strong> Flongle 测序芯片盒 &nbsp; <strong>(B)</strong> Nanoporus 纳米孔 NGS 测序仪 &nbsp; <strong>(C)</strong> 触摸屏 &nbsp; <strong>(D)</strong> 注射式分液器 &nbsp; <strong>(E)</strong> Wi-Fi/4G 通信模块 &nbsp; <strong>(F)</strong> 基于 Nvidia Jetson AGX 的 CPU/GPU &nbsp; <strong>(G)</strong> 扩增仪 &nbsp; <strong>(H)</strong> 热敏打印机</p><hr>' +
+    '<h2>🔬 工作流程</h2>' +
+    '<p><img src="/assets/images/photo/nvidia_xavier_agx/onsiteseq_diagramm.png" alt="OnSiteSeq Edge 工作流程图"></p>' +
+    '<ol><li><strong>样本制备</strong></li>' +
+    '<li><strong>扩增</strong>:使用莫斯科物理技术学院 (MIPT) 的 YourPCR 扩增仪 <strong>(G)</strong></li>' +
+    '<li><strong>样本加载</strong>:通过分液器 <strong>(D)</strong> 将样本注入连接 Nanoporus 测序仪 <strong>(B)</strong> 的 Flongle 测序芯片 <strong>(A)</strong></li>' +
+    '<li><strong>启动测序</strong>:在 MinKNOW 中启动运行</li>' +
+    '<li><strong>碱基识别 (Basecalling)</strong>:在 Dorado 中生成原始读段文件(<code>fastq.gz</code>)</li>' +
+    '<li><strong>启动分析流程</strong>:在 OnSiteSeq Cockpit 中启动,利用 Nvidia Jetson AGX <strong>(F)</strong> 进行 GPGPU 计算</li>' +
+    '<li><strong>查看报告</strong>:在内置屏幕 <strong>(C)</strong> 上查看临床与生物信息学报告</li>' +
+    '<li><strong>打印报告</strong>:在内置热敏打印机 <strong>(H)</strong> 上打印</li></ol><hr>' +
+    '<h2>📦 分析流程</h2>' +
+    '<p>生物信息学工具通过 <a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> 以 arm64 Docker 容器形式分发。目前已提供:</p>' +
+    '<ul><li><a href="/tuberculosis/">OnSiteSeq TUB — 结核病</a></li>' +
+    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1</a></li></ul>' +
+    '<p>更多解决方案将持续加入。</p>';
+
+  /* ── DESKTOP 医生工作站 ── */
+  ZH['/desktop/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<h1>OnSiteSeq Desktop(医生工作站)</h1>' +
+    '<p style="font-size:1.2em;color:#555">面向工作站的生物信息学流程管理系统</p></div><hr>' +
+    '<h2>📋 产品介绍</h2>' +
+    '<p>OnSiteSeq Desktop 是 OnSiteSeq Cockpit 生物信息学流程管理系统的工作站版本,适配医生或研究人员的计算机。可与 OnSiteSeq Edge 配套使用,也可处理其他设备产生的数据。</p><hr>' +
+    '<h2>🔧 关键技术参数</h2>' +
+    tbl(['参数', '数值'], [
+      ['<strong>架构</strong>', 'x86'],
+      ['<strong>目标设备</strong>', '工作站'],
+      ['<strong>容器镜像仓库</strong>', 'harbor.onsiteseq.io(x86 Docker 镜像)']
+    ]) + '<hr>' +
+    '<h2>⚙️ 功能</h2>' +
+    '<ul><li>通过 Cockpit Web 界面管理分析流程</li>' +
+    '<li>可与 OnSiteSeq Edge 配套使用,也可独立运行</li>' +
+    '<li>持续更新的 x86 容器应用市场</li>' +
+    '<li>支持来自任何测序设备的 FASTQ 数据</li></ul><hr>' +
+    '<h2>📦 分析流程</h2>' +
+    '<p>生物信息学工具通过 <a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> 以 x86 Docker 容器形式分发。</p>' +
+    '<ul><li><a href="/tuberculosis/">OnSiteSeq TUB — 结核病</a></li>' +
+    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1</a></li></ul>' +
+    '<p>更多解决方案将持续加入。</p>';
+
+  /* ── CLOUD 云端版 ── */
+  ZH['/cloud/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<h1>OnSiteSeq Cloud(云端版)</h1>' +
+    '<p style="font-size:1.2em;color:#555">云端生物信息学流程管理系统</p></div><hr>' +
+    '<h2>📋 产品介绍</h2>' +
+    '<p>OnSiteSeq Cloud 是 OnSiteSeq Cockpit 流程管理系统的云端版本,适配云服务商环境。访问地址:<a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a>。</p><hr>' +
+    '<h2>🔧 关键技术参数</h2>' +
+    tbl(['参数', '数值'], [
+      ['<strong>架构</strong>', 'x86'],
+      ['<strong>访问地址</strong>', 'cloud.onsiteseq.io'],
+      ['<strong>容器镜像仓库</strong>', 'harbor.onsiteseq.io(x86 Docker 镜像)']
+    ]) + '<hr>' +
+    '<h2>⚙️ 功能</h2>' +
+    '<ul><li>通过浏览器启动分析 — 无需安装任何软件</li>' +
+    '<li>面向云服务商的可扩展架构</li>' +
+    '<li>持续更新的 x86 容器应用市场</li>' +
+    '<li>支持来自任何设备的 FASTQ 数据</li></ul><hr>' +
+    '<h2>🔗 进入云端</h2>' +
+    '<p><a href="https://cloud.onsiteseq.io">→ cloud.onsiteseq.io</a></p><hr>' +
+    '<h2>📦 分析流程</h2>' +
+    '<p>生物信息学工具通过 <a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> 以 x86 Docker 容器形式分发。</p>' +
+    '<ul><li><a href="/tuberculosis/">OnSiteSeq TUB — 结核病</a></li>' +
+    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1</a></li></ul>' +
+    '<p>更多解决方案将持续加入。</p>';
+
+  /* ── COCKPIT 流程管理平台 ── */
+  ZH['/cockpit/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<h1>OnSiteSeq Cockpit(流程管理平台)</h1>' +
+    '<p style="font-size:1.2em;color:#555">用于管理 Snakemake 生物信息学流程的 Web 应用</p></div><hr>' +
+    '<h2>📋 产品介绍</h2>' +
+    '<p>OnSiteSeq Cockpit 是用于管理容器化 Snakemake 生物信息学流程的 Web 应用。在浏览器中启动分析:从 Harbor 目录中选择流程,指定输入的 <code>.fastq.gz</code> 样本,即可获得临床报告与质控 (QC) 报告 — 全程无需命令行。</p><hr>' +
+    '<h2>🖥 部署形态</h2>' +
+    '<h3>Edge</h3><p>面向 OnSiteSeq Edge 软硬件一体机的版本。界面适配触摸屏操作。流程以 <strong>arm64</strong> Docker 容器形式通过 <code>harbor.onsiteseq.io</code> 分发。</p>' +
+    tbl(['参数', '数值'], [
+      ['<strong>架构</strong>', 'arm64'],
+      ['<strong>目标设备</strong>', 'Nvidia Jetson AGX'],
+      ['<strong>容器</strong>', 'arm64 Docker 镜像']
+    ]) +
+    '<h3>Desktop</h3><p>面向医生或研究人员工作站的版本。可独立运行,也可与 OnSiteSeq Edge 配套使用。</p>' +
+    tbl(['参数', '数值'], [
+      ['<strong>架构</strong>', 'x86'],
+      ['<strong>目标设备</strong>', '工作站'],
+      ['<strong>容器</strong>', 'x86 Docker 镜像']
+    ]) +
+    '<h3>Cloud</h3><p>适配云服务商环境的版本。访问地址:<a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a>。</p>' +
+    tbl(['参数', '数值'], [
+      ['<strong>架构</strong>', 'x86'],
+      ['<strong>访问地址</strong>', 'cloud.onsiteseq.io'],
+      ['<strong>容器</strong>', 'x86 Docker 镜像']
+    ]) + '<hr>' +
+    '<h2>⚙️ 技术栈</h2>' +
+    tbl(['层级', '技术'], [
+      ['<strong>前端</strong>', 'Vue 3 + Vite + Pinia + Axios'],
+      ['<strong>后端</strong>', 'Python 3.12 + FastAPI + SQLAlchemy async'],
+      ['<strong>数据库</strong>', 'PostgreSQL 16(asyncpg 驱动)'],
+      ['<strong>数据库迁移</strong>', 'Alembic(异步)'],
+      ['<strong>镜像仓库</strong>', 'Harbor Registry (harbor.onsiteseq.io)'],
+      ['<strong>编排</strong>', 'Docker Compose v2'],
+      ['<strong>前端 Web 服务器</strong>', 'Nginx(Vite 构建的静态资源)']
+    ]) + '<hr>' +
+    '<h2>📸 界面截图</h2>' +
+    '<h3>流程目录</h3><p>可用流程卡片,带有标签、兼容性状态(Edge / Cockpit / Cloud)和启动按钮。一键与 <code>harbor.onsiteseq.io</code> 同步目录。</p>' +
+    '<p><img src="/assets/images/cockpit/cockpit_view.jpg" alt="OnSiteSeq Cockpit 流程目录"></p><hr>' +
+    '<h3>启动分析</h3><p>选择流程、运行名称和输入的 <code>.fastq.gz</code> 样本。系统自动从数据文件夹中检测文件。</p>' +
+    '<p><img src="/assets/images/cockpit/cockpit_run2.jpg" alt="流程启动表单"></p><hr>' +
+    '<h3>结果:临床报告与 QC 报告</h3><p>运行完成后,Cockpit 会显示 Snakemake 各步骤的进度和已生成的报告列表:临床报告(面向医生)和 QC 报告(面向生物信息学专家)。</p>' +
+    '<p><img src="/assets/images/cockpit/cockpit_run6.jpg" alt="运行结果与报告"></p><hr>' +
+    '<h2>🔗 相关组件</h2>' +
+    '<ul><li><a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> — Docker 镜像仓库</li>' +
+    '<li><a href="/aboutonsiteseq/">OnSiteSeq Edge</a> — 软硬件一体化系统</li>' +
+    '<li><a href="/tuberculosis/">OnSiteSeq TUB — 结核病流程</a></li>' +
+    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1 流程</a></li></ul>';
+
+  /* ── CONTACT 联系我们 ── */
+  ZH['/contact/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem"><h1>联系我们</h1></div><hr>' +
+    '<h2>📬 联系方式</h2>' +
+    '<ul><li><strong>Telegram:</strong> <a href="https://t.me/gorbenkoteh">t.me/gorbenkoteh</a></li>' +
+    '<li><strong>电子邮箱:</strong> gorbenko.ra@phystech.edu</li></ul>' +
+    '<h2>📬 更多信息</h2>' +
+    '<ul><li><strong>Dzen(博客、视频、新闻):</strong> <a href="https://dzen.ru/intermsofbioinformatics">dzen.ru/intermsofbioinformatics</a></li>' +
+    '<li><strong>云端版本:</strong> <a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a></li>' +
+    '<li><strong>容器化流程仓库:</strong> <a href="https://harbor.onsiteseq.io">harbor.onsiteseq.io</a></li></ul><hr>';
+
+  /* ── ABOUT 关于平台 ── */
+  ZH['/aboutonsiteseq'] =
+    '<h1>关于平台</h1><hr>' +
+    '<h2>OnSiteSeq Edge(床旁测序一体机)</h2>' +
+    '<p>自主软硬件一体化系统 (HSC)。从 FASTQ 到临床结论,就在患者床旁或医生办公桌上完成。可用于野外、偏远极地地区等场景。</p>' +
+    '<p>内置样本制备工具。数据由内置 Nanoporus 测序仪采集,由 Nvidia Jetson AGX GPU 模块处理。可在内置热敏打印机上打印临床与生物信息学报告。</p>' +
+    '<p>OnSiteSeq Cockpit 生物信息学容器管理系统已适配触摸屏操作。生物信息学工具通过 OnSiteSeq Harbor 以 arm64 Docker 容器形式分发,所有工具均针对 arm64 架构和 GPGPU 计算进行了适配。开放架构,持续更新的 arm64 容器应用市场。</p>' +
+    '<p><a href="/edge/">了解更多 — OnSiteSeq Edge →</a></p><hr>' +
+    '<h2>OnSiteSeq Desktop(医生工作站)</h2>' +
+    '<p>OnSiteSeq Cockpit 生物信息学容器管理系统的工作站版本,适配医生或研究人员的计算机。可与 OnSiteSeq Edge 配套使用,也可处理其他设备产生的数据。生物信息学工具通过 OnSiteSeq Harbor 以 x86 Docker 容器形式分发,持续更新的 x86 容器应用市场。</p>' +
+    '<p><a href="/desktop/">了解更多 — OnSiteSeq Desktop →</a></p><hr>' +
+    '<h2>OnSiteSeq Cloud(云端版)</h2>' +
+    '<p>OnSiteSeq Cockpit 生物信息学容器管理系统的云端版本,适配云服务商环境。可与 OnSiteSeq Edge 配套使用,也可处理其他设备产生的数据。生物信息学工具通过 OnSiteSeq Harbor 以 x86 Docker 容器形式分发,持续更新的 x86 容器应用市场。</p>' +
+    '<p><a href="/cloud/">了解更多 — OnSiteSeq Cloud →</a></p>';
+
+  /* ── MFTI 莫斯科物理技术学院 ── */
+  ZH['/mfti'] =
+    '<h1>莫斯科物理技术学院 (MIPT) — 创新的摇篮</h1>' +
+    '<div style="text-align:center;margin-bottom:2rem"><img src="/assets/images/mfti/mfti.png" alt="莫斯科物理技术学院" style="max-width:100%;border-radius:8px;"></div>' +
+    '<h2>项目诞生于 MIPT</h2>' +
+    '<p><strong>OnSiteSeq</strong> 是在莫斯科物理技术学院 (MIPT,即 Phystech) 孵化的医疗科技 (medtech) 初创项目。这套基于纳米孔测序、自研容器化流程和机器学习模型的传染病基因组监测软硬件一体化系统,是在 "Pusk"(启动)中心的支持和科学导师 <strong>Nikita Sergeyevich Radchenko</strong>(尼基塔·谢尔盖耶维奇·拉德琴科)的指导下创建的。</p><hr>' +
+    '<h2>📰 OnSiteSeq 新闻稿</h2>' +
+    '<h3>MIPT 研究人员研发出用于 HIV-1 耐药性与亚型诊断的国产机器学习模型</h3>' +
+    '<p>研究生 <strong>Roman Gorbenko</strong>(罗曼·戈尔边科,<a href="https://habr.com/ru/users/romangorbenko/articles/">Habr 主页</a>)与其科学导师 <strong>Nikita Radchenko</strong>(尼基塔·拉德琴科)研发了用于 HIV-1 耐药性与亚型诊断的国产机器学习模型。</p>' +
+    '<p>核心成果是实现了两个国外平台的国产化替代:美国 <strong>斯坦福 HIV 耐药数据库 (HIVDB)</strong> 和欧洲网络服务 <strong>COMET</strong>(卢森堡健康研究所)。直到不久前,俄罗斯研究人员仍在无可替代地使用这些平台。</p>' +
+    '<p>在 <strong>俄罗斯消费者权益保护局中央流行病学研究所 (CRIFEM Rospotrebnadzor)</strong> 提供的数据集上进行的外部验证显示,平均 <strong>AUC = 0.990</strong> — 达到了诊断应用所需的临床显著准确度。研发的机器学习模型已在全周期生物信息学流程(从原始基因组读段到临床报告)中完成测试,并部署在专门研发的软硬件一体化系统 <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong> 上。</p><hr>' +
+    '<h2>🔬 MIPT 的其他创新成果</h2>' +
+    '<p>Phystech 在科技前沿积极开展研究。近期部分成果:</p>' +
+    '<p><strong><a href="https://mipt.ru/news/v-mfti-uskorili-modelirovanie-vzryva-atomnogo-yadra-">MIPT 加速原子核爆炸模拟</a></strong><br>数值模拟核过程的新方法,显著提升计算速度。</p>' +
+    '<p><strong><a href="https://www.cnews.ru/news/line/2025-07-30_inzhenery_mfti_podgotovili">MIPT 工程师研制出海洋地震勘探进口替代控制系统</a></strong><br>海洋地质勘探国外控制系统的国产化替代方案。</p>' +
+    '<p><strong><a href="https://habr.com/ru/companies/mipt/articles/855092/">MIPT 为石油与黄金勘探者研发出不受进口限制的软件</a></strong><br>不依赖国外厂商的地质数据解译软件。</p>' +
+    '<p><strong><a href="https://habr.com/ru/companies/mipt/articles/855038/">类脑计算机研发取得进展:俄罗斯科学家研制出柔性人工突触</a></strong><br>类脑计算领域的突破 — 基于新材料的柔性突触。</p>' +
+    '<p><strong><a href="https://habr.com/ru/companies/mipt/articles/855084/">MIPT 研制的 5G 射频模块组件成功通过测试</a></strong><br>国产 5G 射频模块完成完整测试周期,确认符合标准。</p>';
+
+  /* ── CITATION 引用本研究 ── */
+  ZH['/citation'] =
+    '<h2>引用 OnSiteSeq</h2>' +
+    '<img src="/assets/images/publication/mnsk_1.JPG" alt="MNSK-2026 论文集封面" style="max-width:260px; float:right; margin:0 0 1.5rem 2rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);">' +
+    '<p>HIV-1-M-Env-Rus 方法发表于第 64 届国际学生科学大会 (ISSC-2026) 论文集,新西伯利亚国立大学 (NSU),2026 年,第 155 页。</p>' +
+    '<p>🔗 <a href="https://www.nsu.ru/n/issc/collection/">https://www.nsu.ru/n/issc/collection/</a></p>' +
+    '<hr>' +
+    '<p>Gorbenko R. A.《基于 OnSiteSeq 软硬件一体化系统的 HIV-1 耐药性判定与亚型分类》// 第 68 届 MIPT 全俄科学大会("生物与医学物理"分会),2026 年。</p>' +
+    '<p>🔗 <a href="https://conf.mipt.ru/page/conference-materials">https://conf.mipt.ru/page/conference-materials</a></p>';
+
+  /* ── RUWIKI ── */
+  ZH['/ruwiki'] =
+    '<h1>RuWiki 百科</h1>' +
+    '<h2>网站内容 = RuWiki 百科条目</h2>' +
+    '<p>我们认为发展俄语百科全书 RuWiki 十分重要,并积极为其贡献内容。</p>';
+
+  /* ── NORMATIV 法规与创新医疗 ── */
+  ZH['/normativ'] =
+    '<h1>支持创新与个体化医疗的法规</h1>' +
+    '<h2>监管框架</h2>' +
+    '<p><strong>俄罗斯:</strong> <a href="http://www.kremlin.ru/acts/bank/50358">第 145 号总统令《俄罗斯联邦科学技术发展战略》</a></p>' +
+    '<p><strong>国际社会:</strong> <a href="https://news.un.org/en/story/2024/09/1154891">联合国战略:隐形杀手 — 什么是抗微生物药物耐药性?</a></p>';
+
+  /* ── GxP / GLP / ALCOA+ 标准 ── */
+  ZH['/gxp'] =
+    '<h1>GxP:质量保障的"良好规范"标准</h1>' +
+    '<p>在 OnSiteSeq 的开发中,我们严格遵循国际 GxP 标准,确保从样本采集到临床结论的所有环节的质量与数据完整性。</p><hr>' +
+    '<h2>什么是 GxP</h2>' +
+    '<p><strong>GxP</strong> 是"良好 X 规范"标准族的统称,用于规范医疗与制药行业的质量:</p>' +
+    tbl(['标准', '全称', '适用领域'], [
+      ['<strong>GMP</strong>', 'Good Manufacturing Practice(良好生产规范)', '医疗器械生产'],
+      ['<strong>GLP</strong>', 'Good Laboratory Practice(良好实验室规范)', '实验室研究'],
+      ['<strong>GCP</strong>', 'Good Clinical Practice(良好临床规范)', '临床试验'],
+      ['<strong>GDP</strong>', 'Good Distribution Practice(良好流通规范)', '流通分销']
+    ]) + '<hr>' +
+    '<h2>ALCOA+ 与 OnSiteSeq</h2>' +
+    '<p><strong>ALCOA+</strong> 是制药与医疗行业采用的一套数据完整性原则。它确保数据在其生命周期的任何阶段都可靠、真实且可核查。</p>' +
+    '<h3>A — Attributable(可追溯至人)</h3><p><em>谁执行了分析?哪个算法产生了结果?</em></p>' +
+    '<ul><li><strong>设备授权。</strong>使用触摸屏时,医务人员在启动前须完成授权,日志会准确记录流程的启动者。</li>' +
+    '<li><strong>流程、工具与模型版本管理。</strong>OnSiteSeq 生物信息学报告包含所有组件的版本:自研流程、机器学习模型及依赖工具 — 严格遵循可追溯原则。</li></ul>' +
+    '<h3>L — Legible(清晰可读)</h3><p><em>多年以后,医生和审计人员还能读懂这些数据吗?</em></p>' +
+    '<ul><li><strong>双报告体系。</strong>结果分为面向临床医生的<strong>临床报告</strong>和面向专业人员的<strong>生物信息学 QC 报告</strong>。</li>' +
+    '<li><strong>纸质与数字副本。</strong>内置热敏打印机保证现场即时可读;数字 PDF 副本以清晰的文件命名规范保存在 SSD 上。</li></ul>' +
+    '<h3>C — Contemporaneous(同步记录)</h3><p><em>数据是否在产生的那一刻即被记录?</em></p>' +
+    '<ul><li><strong>时间戳。</strong>所有阶段 — 从 GPU 碱基识别到报告输出 — 均实时记录日志。</li>' +
+    '<li><strong>时间同步。</strong>由于 OnSiteSeq Edge 可在野外自主运行,内部时钟不允许用户手动更改;联网时通过 Wi-Fi/4G 模块自动同步。</li></ul>' +
+    '<h3>O — Original(原始性)</h3><p><em>原始数据是否得到保存?</em></p>' +
+    '<ul><li><strong>信号保存。</strong>在 Dorado 机器学习模型将纳米孔电信号转换为核苷酸之前,系统会将原始数据(POD5/FAST5 格式)保存到 SSD。</li>' +
+    '<li><strong>不可变性。</strong>原始读段在基因组组装和分析过程中永远不会被覆盖。</li></ul>' +
+    '<h3>A — Accurate(准确性)</h3><p><em>数据是否可靠?是否有质量控制?</em></p>' +
+    '<ul><li><strong>QC 指标。</strong>生物信息学报告包含关键指标:基因组覆盖度百分比、平均测序深度和盲区。</li>' +
+    '<li><strong>AI 置信度。</strong>临床报告显示神经网络的置信度百分比(例如 B 亚型为 99.98%),医生可据此评估预测的可靠性。</li></ul>' +
+    '<h3>+(Plus,补充原则)</h3>' +
+    tbl(['原则', '在 OnSiteSeq 中的实现'], [
+      ['<strong>Complete(完整性)</strong>', 'OnSiteSeq Cockpit 保存所有运行日志,包括中断或失败的运行(覆盖度 <80% 时状态标记为 "FAIL")'],
+      ['<strong>Consistent(一致性)</strong>', '严格的工作流:扩增和测序在硬件层面完成之前,分析流程无法启动']
+    ]) + '<hr>' +
+    '<h2>俄罗斯与国际标准</h2>' +
+    tbl(['标准', '领域'], [
+      ['<strong>ISO 13485</strong>', '医疗器械质量管理体系'],
+      ['<strong>ISO 14971</strong>', '医疗器械风险管理'],
+      ['<strong>GOST R 52600</strong>', '医疗器械(俄罗斯国家标准)'],
+      ['<strong>第 61 号联邦法</strong>', '药品流通']
+    ]);
+
+  /* ── SBER / GITVERSE 仓库与 CI/CD ── */
+  ZH['/sber'] =
+    '<h1>GitVerse — OnSiteSeq 项目仓库</h1>' +
+    '<h2>什么是 GitVerse</h2>' +
+    '<p><strong>GitVerse</strong> 是俄罗斯 Sber(联邦储蓄银行)推出的代码托管与协作开发平台。功能上对标 GitHub:支持 Git、拉取请求 (pull request)、CI/CD、问题跟踪 (issue) 和代码评审。数据存储在俄罗斯境内的服务器上,符合第 152 号联邦法的要求,保障医疗项目的数据主权。</p>' +
+    '<p><a href="https://gitverse.ru/onsiteseq"><img src="/assets/images/gitverse/gitverse.png" alt="GitVerse 上的 OnSiteSeq 仓库"></a></p>' +
+    '<p><strong>项目仓库:</strong> <a href="https://gitverse.ru/onsiteseq">gitverse.ru/onsiteseq</a></p><hr>' +
+    '<h2>OnSiteSeq 的 CI/CD 流水线</h2>' +
+    '<p>从代码提交到镜像仓库中可用 Docker 容器的整个周期,均通过 GitVerse CI 实现自动化。</p>' +
+    '<h3>流水线阶段</h3>' +
+    tbl(['阶段', '执行内容'], [
+      ['<strong>1. 推送至 GitVerse</strong>', '开发者将代码变更推送到仓库'],
+      ['<strong>2. 代码检查与测试</strong>', '自动化代码检查:linter、流程单元测试'],
+      ['<strong>3. 构建 arm64</strong>', '构建 arm64 架构的 Docker 镜像(OnSiteSeq Edge)'],
+      ['<strong>4. 构建 x86</strong>', '构建 x86 架构的 Docker 镜像(Desktop、Cloud)'],
+      ['<strong>5. 推送 → Harbor</strong>', '将构建完成的镜像发布到 <a href="https://harbor.onsiteseq.io">harbor.onsiteseq.io</a> 仓库'],
+      ['<strong>6. 部署</strong>', '更新通过 OnSiteSeq Cockpit 向用户开放']
+    ]) + '<hr>' +
+    '<h2>GitVerse 对本项目的优势</h2>' +
+    '<ul><li><strong>数据主权</strong> — 源代码存储在俄罗斯境内</li>' +
+    '<li><strong>符合第 152 号联邦法</strong> — 患者个人数据保护</li>' +
+    '<li><strong>与俄罗斯基础设施集成</strong> — Harbor、Cloud.ru</li>' +
+    '<li><strong>多平台构建的 CI/CD</strong> — arm64 与 x86 统一流水线</li>' +
+    '<li><strong>开放仓库</strong> — 代码面向社区开放:<a href="https://gitverse.ru/onsiteseq">gitverse.ru/onsiteseq</a></li></ul>';
+
+  /* ── 脑膜炎奈瑟菌 (meningitidis) ── */
+  ZH['/meningitidis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_meningitidis.svg" alt="脑膜炎奈瑟菌 (Neisseria meningitidis)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>脑膜炎奈瑟菌血清分群与耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">疑似脑膜炎球菌感染时的床旁即时诊断 — 暴发型病程,分秒必争</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>脑膜炎奈瑟菌</em>(脑膜炎球菌)是脑膜炎球菌病的病原体:从鼻咽部携带状态到暴发性脑膜炎球菌血症,后者从出现首批症状到死亡可能仅有数小时。<strong>诊断和治疗每延误一小时,死亡率随之升高。</strong>标准诊断方法——脑脊液或血液培养——需要 1–3 天,且由于已开始的抗生素治疗常呈阴性结果。</p>' +
+    '<p>脑膜炎球菌的基因型决定后续所有病例管理:<strong>血清群</strong>(A、B、C、W、Y、X)决定接触者的疫苗预防策略,而<strong>耐药谱</strong>决定疫源地化学预防药物的选择(环丙沙星耐药株日益增多)。</p>' +
+    '<p>我们的流程在<strong>患者床旁</strong>完成纳米孔数据的完整分析周期:当日确定血清群、耐药谱和菌株克隆归属,数据不传输至外部服务器。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:脑脊液、血液、咽拭子;最佳方案——荚膜位点与耐药基因扩增子测序或全基因组测序 (WGS)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告——血清群、药敏谱、接触者化学预防建议;以及面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 血清群与耐药标志物</h2>' +
+    '<h3>荚膜位点(血清分群)</h3>' +
+    tbl(['位点', '血清群', '意义'], [
+      ['<strong>ctrA</strong>', '所有有荚膜型', '荚膜位点通用标志物,菌种确认'],
+      ['<strong>sacB</strong>', 'A', '在俄罗斯罕见;在非洲"脑膜炎带"占主导'],
+      ['<strong>synD (siaD-B)</strong>', 'B', '俄罗斯和欧洲的主要血清群;疫苗 4CMenB、MenB-fHbp'],
+      ['<strong>siaD-C</strong>', 'C', '第二常见;结合疫苗 MenC/ACWY'],
+      ['<strong>synG</strong>', 'W', '自 2010 年代以来在俄罗斯和欧洲占比上升(W:cc11 克隆)'],
+      ['<strong>synF</strong>', 'Y', '占比上升,尤其在老年人中'],
+      ['<strong>csb</strong>', 'X', '非洲"脑膜炎带",尚无疫苗']
+    ]) +
+    '<h3>耐药基因</h3>' +
+    tbl(['基因 / 位点', '关键突变', '抗生素类别'], [
+      ['<strong>penA</strong> (PBP2)', '镶嵌型等位基因、F504L、A510V', '青霉素(敏感性降低)'],
+      ['<strong>gyrA</strong>', 'T91I', '环丙沙星(接触者化学预防)'],
+      ['<strong>rpoB</strong>', 'H552Y', '利福平(接触者化学预防)'],
+      ['<strong>23S rRNA</strong>', 'C2611T', '阿奇霉素(预防替代方案)']
+    ]) +
+    '<h3>报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '用途', '临床意义'], [
+      ['<strong>头孢曲松</strong>', '经验性治疗', '疑似细菌性脑膜炎的起始用药'],
+      ['<strong>青霉素 G</strong>', '病原靶向治疗', '确认敏感脑膜炎球菌后的首选药物'],
+      ['<strong>环丙沙星</strong>', '化学预防', '接触者的主要用药;gyrA T91I 突变 → 需更换'],
+      ['<strong>利福平</strong>', '化学预防', '接触者的替代方案'],
+      ['<strong>阿奇霉素</strong>', '化学预防', '喹诺酮耐药时的替代方案']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Meningo Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>Meningo-Serogroup</strong>', '直接从原始读长中基于荚膜位点确定血清群'],
+      ['<strong>Meningo-Res-Detector</strong>', '预测对青霉素和环丙沙星的耐药性'],
+      ['<strong>Meningo-MLST</strong>', '按 PubMLST 方案确定克隆复合体 (cc),用于流行病学监测']
+    ]) +
+    '<p>计划基于 <strong>PubMLST 奈瑟菌数据库</strong>(>50,000 个基因组)及国家脑膜炎球菌分离株收藏进行训练。</p><hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>、<code>samtools</code>(参考基因组:MC58 / Z2491)'],
+      ['<strong>3. 血清分群</strong>', '自建荚膜位点数据库 ctrA/sacB/synD/siaD/synG/synF/csb'],
+      ['<strong>4. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>5. 耐药注释</strong>', '自建突变数据库 penA/gyrA/rpoB/23S rRNA'],
+      ['<strong>6. MLST 分型</strong>', '<code>mlst</code>(奈瑟菌方案,PubMLST)']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>暴发型</strong> — 暴发性脑膜炎球菌血症在首批症状出现后 6–24 小时内即可致死;即使接受治疗,病死率仍达 10–15%,未治疗可达 50%。</li>' +
+    '<li><strong>分秒必争</strong> — 充分治疗每延迟一小时,死亡率和重症结局(截肢、坏死、华弗综合征)比例在统计上显著升高。</li>' +
+    '<li><strong>聚集性疫情</strong> — 封闭集体(军营、宿舍、幼儿园)中的暴发需要对接触者进行紧急化学预防;药物选择取决于菌株的耐药性。</li>' +
+    '<li><strong>俄罗斯流行病学</strong> — 以 B、C 血清群及占比上升的 W 群为主;流行克隆复合体为 cc11、cc41/44。</li>' +
+    '<li><strong>环丙沙星耐药</strong> — 欧洲、美国和亚洲均已报告耐药菌株 (gyrA T91I),正在改变疫源地预防策略。</li></ul>' +
+    '<p>标准微生物学方法需要 1–3 天才能给出结果,而疫源地化学预防的问题早已"盲目"决定。我们的流程<strong>当日</strong>即可返回血清群和耐药谱——此时结果仍能影响结局。</p><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/meningococcal-meningitis">WHO — 脑膜炎球菌性脑膜炎(实况报道)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/meningococcal/">CDC — 脑膜炎球菌病</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/neisseria-spp">PubMLST 奈瑟菌数据库</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=ciprofloxacin-resistant+Neisseria+meningitidis">PubMed — 环丙沙星耐药脑膜炎奈瑟菌</a></li></ul>';
+
+  /* ── 生殖支原体 (mycoplasma) ── */
+  ZH['/mycoplasma/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_mycoplasma.svg" alt="生殖支原体 (Mycoplasma genitalium)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>生殖支原体耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">治疗前检测对大环内酯类和氟喹诺酮类的耐药性 — 常被漏诊的性传播病原体,多重耐药迅速发展</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>生殖支原体</em>是最小的可自我复制细菌,也是被低估的性传播病原体:导致男性非淋菌性尿道炎、女性宫颈炎和盆腔炎。该菌<strong>没有细胞壁</strong>,因此对所有 β-内酰胺类抗生素天然耐药,常规培养几乎不可能——在常规性病诊断中该病原体<strong>常被漏诊</strong>。</p>' +
+    '<p>主要问题在于耐药性的增长速度。部分国家<strong>阿奇霉素</strong>耐药率已超过 50%,而尿道炎经验性治疗方案仍在"盲目"使用阿奇霉素。紧随大环内酯类之后,对储备药物<strong>莫西沙星</strong>的耐药也在蔓延。国际指南(BASHH、澳大利亚性病指南)要求<strong>治疗前进行耐药检测</strong>(耐药指导治疗,resistance-guided therapy):只有掌握具体菌株的基因型才能开药。</p>' +
+    '<p>我们的流程分析关键耐药位点(<em>23S rRNA</em>、<em>gyrA</em>、<em>parC</em>)扩增子测序或临床样本宏基因组测序的纳米孔数据,直接输出治疗方案。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。最佳方案:<em>23S rRNA</em>、<em>gyrA</em>、<em>parC</em> 位点扩增子测序<strong>或</strong>拭子微生物组测序。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告——大环内酯类和氟喹诺酮类药敏谱及推荐治疗方案;以及面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与突变</h2>' +
+    '<p>流程分析<em>生殖支原体</em>耐药的关键遗传决定因素:</p>' +
+    tbl(['基因 / 位点', '关键突变', '抗生素类别'], [
+      ['<strong>23S rRNA</strong>', 'A2058G、A2059G', '阿奇霉素(大环内酯类)'],
+      ['<strong>gyrA</strong>', 'S83I、D87N/Y(大肠杆菌编号)', '莫西沙星(氟喹诺酮类)'],
+      ['<strong>parC</strong>', 'S80I/R、D84N(大肠杆菌编号)', '莫西沙星(氟喹诺酮类)']
+    ]) +
+    '<p><em>gyrA</em> 与 <em>parC</em> 突变的组合决定耐药水平:单一 <em>parC</em> 突变降低敏感性,而 <em>gyrA</em> + <em>parC</em> 双重突变导致莫西沙星完全失效。</p>' +
+    '<h3>报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '类别', '临床意义'], [
+      ['<strong>多西环素</strong>', '四环素类', '耐药指导治疗的第一步——降低细菌载量'],
+      ['<strong>阿奇霉素</strong>', '大环内酯类', '仅在无 23S rRNA 突变时有效'],
+      ['<strong>莫西沙星</strong>', '氟喹诺酮类', '大环内酯类耐药时的储备药物;需检测 <em>gyrA/parC</em>'],
+      ['<strong>普那霉素</strong>', '链阳菌素类', '多重耐药时的备用方案(并非所有国家均可获得)'],
+      ['<strong>米诺环素</strong>', '四环素类', '多重耐药时的替代方案']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Mgen Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>Mgen-Res-Detector</strong>', '基于突变谱预测大环内酯类和氟喹诺酮类耐药性'],
+      ['<strong>Mgen-Typing</strong>', '菌株基因分型与耐药克隆传播追踪']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>(参考基因组:生殖支原体 G37)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. 耐药注释</strong>', '自建突变数据库 23S rRNA/gyrA/parC'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>耐药率 >50%</strong> — 澳大利亚、西欧和日本的<em>生殖支原体</em>大环内酯类耐药株比例已超过 50%;双重耐药(大环内酯类 + 氟喹诺酮类)正在上升。</li>' +
+    '<li><strong>耐药指导治疗</strong> — 依据分子耐药检测结果开抗生素,已被澳大利亚性病指南和 BASHH 推荐为<em>生殖支原体</em>感染的标准诊疗方式。</li>' +
+    '<li><strong>隐形病原体</strong> — 由于无法培养且很少纳入标准 PCR 检测组合,感染常年得不到诊断,导致慢性尿道炎、宫颈炎和不孕。</li>' +
+    '<li><strong>经验性治疗失败</strong> — 不做耐药检测即用阿奇霉素,会导致感染持续和耐药株筛选。</li></ul>' +
+    '<p>现行标准是检测单个突变的 PCR 方法。我们的流程可在医疗现场数小时内给出耐药位点的完整基因型。</p><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/std/treatment-guidelines/default.htm">CDC — 性传播感染治疗指南,2021</a></li>' +
+    '<li>📄 <a href="https://www.bashhguidelines.org/">BASHH 指南 — 英国生殖支原体感染管理国家指南</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mycoplasma+genitalium+resistance+guided+therapy">PubMed — 生殖支原体耐药指导治疗</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — 生殖支原体</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -3350,7 +5041,28 @@
       'tuberculosis': ['结核病', '结核分枝杆菌耐药性与谱系(基因型)鉴定'],
       'helicobacter': ['幽门螺杆菌 (H. pylori)', '基于基因组的耐药与毒力谱分析,用于个体化根除治疗'],
       'sarscov2': ['新型冠状病毒 SARS-CoV-2', '变异株(亚型)鉴定与抗病毒药物耐药性检测'],
-      'hiv':  ['HIV(艾滋病病毒)', 'HIV-1 耐药性与亚型鉴定']
+      'hpv': ['人乳头瘤病毒 (HPV)', '高危型 HPV 基因分型、宿主基因组整合状态与甲基化分流,用于宫颈癌预防 — 从病因到预防的关键环节'],
+      'gonorrhoeae': ['淋病 (淋病奈瑟菌)', '淋病奈瑟菌耐药性检测 — WHO 重点 AMR 病原体'],
+      'meningitidis': ['脑膜炎奈瑟菌 (N. meningitidis)', '脑膜炎奈瑟菌床旁血清分群与耐药性检测 — 暴发性脑膜炎,分秒必争'],
+      'mycoplasma': ['生殖支原体 (Mycoplasma genitalium)', '治疗前检测生殖支原体对大环内酯类和氟喹诺酮类的耐药性 — 快速发展的多重耐药,常被漏诊的性传播病原体'],
+      'staphylococcus': ['金黄色葡萄球菌 (S. aureus)', 'MRSA/VRSA 鉴定与完整 AMR 谱分析 — 主要的医院感染病原体'],
+      'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
+      'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
+      'hiv':  ['HIV(艾滋病病毒)', 'HIV-1 耐药性与亚型鉴定'],
+      'identikit': ['DNA 法医画像', '从犯罪现场 DNA 预测外貌、祖源与年龄 — 基于纳米孔测序的法医 DNA 表型分型'],
+      'phytophthora': ['疫霉与植物病原体', '植物病原体及杀菌剂抗性的宏基因组鉴定 — 致病疫霉、镰刀菌、灰葡萄孢等。就在田间。'],
+      'phytophthora-infestans': ['晚疫病(致病疫霉)', '马铃薯和番茄晚疫病 — 甲霜灵、CAA 杀菌剂与甲氧基丙烯酸酯类的抗性标志物'],
+      'phytophthora-sojae': ['大豆根腐病(大豆疫霉)', '大豆根腐与茎腐病 — 生理小种监测与苯基酰胺类、CAA 抗性'],
+      'fusarium-oxysporum': ['镰刀菌枯萎病(尖孢镰刀菌)', '番茄、黄瓜和谷类枯萎病 — 专化型 (f. sp.) 检测与苯并咪唑类抗性'],
+      'fusarium-graminearum': ['小麦赤霉病(禾谷镰刀菌)', '小麦和大麦赤霉病 — DON/玉米赤霉烯酮霉菌毒素、唑类与多菌灵抗性'],
+      'alternaria-solani': ['早疫病(茄链格孢)', '马铃薯和番茄早疫病 — 对 QoI(甲氧基丙烯酸酯类)和 SDHI 杀菌剂的抗性'],
+      'botrytis-cinerea': ['灰霉病(灰葡萄孢)', '葡萄、草莓和蔬菜灰霉病 — 完整的杀菌剂多药抗性谱'],
+      'pythium': ['腐霉属 (Pythium spp.)', '根腐病与幼苗猝倒病 — 与镰刀菌/丝核菌鉴别、精甲霜灵抗性'],
+      'plasmopara-viticola': ['葡萄霜霉病(葡萄生单轴霉)', '葡萄霜霉病 — 对 QoI、CAA 和苯基酰胺类的抗性'],
+      'peronospora': ['霜霉病(霜霉属 Peronospora spp.)', '向日葵和洋葱霜霉病 — 生理小种监测与苯基酰胺类抗性'],
+      'edge': ['OnSiteSeq Edge(床旁测序一体机)', '自主软硬件一体化系统。在患者床旁、偏远地区实现床旁测序。arm64 架构,Nvidia Jetson AGX GPU。'],
+      'desktop': ['OnSiteSeq Desktop(医生工作站)', '面向医生工作站的 Cockpit 流程管理系统。可独立运行,也可与 Edge 配套使用。x86 架构。'],
+      'cloud': ['OnSiteSeq Cloud(云端版)', '面向云服务商的 Cockpit 版本。访问地址:cloud.onsiteseq.io。x86 架构。']
     }
   };
 
