@@ -1136,6 +1136,302 @@
     '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mycoplasma+genitalium+resistance+guided+therapy">PubMed — Mycoplasma genitalium resistance-guided therapy</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — Mycoplasma genitalium</a></li></ul>';
 
+  /* ── SYPHILIS (Treponema pallidum) ── */
+  EN['/syphilis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/syphilis.png" alt="Treponema pallidum" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Macrolide Resistance Determination and Genotyping of Treponema pallidum</h1>' +
+    '<p style="font-size:1.2em;color:#555">Detection of azithromycin resistance mutations for the safe selection of alternative therapy in penicillin intolerance</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Treponema pallidum</em> is the causative agent of syphilis, one of the most socially significant sexually transmitted infections. Syphilis incidence is rising worldwide, including in Russia.</p>' +
+    '<p>A unique medical phenomenon: since the 1940s <em>T. pallidum</em> has <strong>not developed resistance to penicillin</strong> — it remains the gold standard of treatment. However, about <strong>10% of patients</strong> are allergic to penicillin. Such patients were previously prescribed <strong>macrolides (azithromycin)</strong> — a convenient oral alternative. But due to point mutations in the <strong>23S rRNA</strong> gene (A2058G, A2059G) the treponeme has become <strong>completely non-susceptible</strong> to azithromycin: in several regions (the USA, China, European countries) <strong>80% to 100%</strong> of circulating strains carry these mutations.</p>' +
+    '<p>Our pipeline provides the complete nanopore data analysis cycle for <strong>rapid confirmation of macrolide resistance</strong> in a specific strain and <strong>accurate genotyping</strong> of the pathogen — right at the patient\'s bedside or in the laboratory, without transferring data to external servers.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ).</li>' +
+    '<li><strong>📤 Output:</strong> Detailed HTML report for the clinician and an extended report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mutations</h2>' +
+    '<p>The pipeline analyses the key genetic determinants of <em>Treponema pallidum</em> resistance:</p>' +
+    tbl(['Gene / locus', 'Key mutations', 'Antibiotic class', 'Clinical significance'], [
+      ['<strong>23S rRNA</strong>', 'A2058G', '<strong>Azithromycin</strong> (macrolides)', 'Complete resistance — the drug is ineffective'],
+      ['<strong>23S rRNA</strong>', 'A2059G', '<strong>Azithromycin</strong> (macrolides)', 'Complete resistance — the drug is ineffective']
+    ]) +
+    '<h3>Antibiotic profile in the report</h3>' +
+    tbl(['Antibiotic', 'Class', 'Clinical significance'], [
+      ['<strong>Benzathine benzylpenicillin</strong>', 'β-lactam (penicillin)', 'Gold standard; no resistance recorded since the 1940s'],
+      ['<strong>Azithromycin</strong>', 'Macrolide', 'Alternative in penicillin allergy; 80–100% of strains are resistant'],
+      ['<strong>Doxycycline</strong>', 'Tetracycline', 'Second-line alternative in penicillin allergy'],
+      ['<strong>Ceftriaxone</strong>', 'Cephalosporin III', 'Alternative in neurosyphilis']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<p>We continuously improve our pipeline and machine learning models to ensure the highest accuracy.</p>' +
+    '<h3>Core Tool</h3>' +
+    tbl(['Component', 'Current Version'], [['<strong>OnSiteSeq Syphilis Pipeline</strong>', '<code>1.0</code>']]) +
+    '<h3>Analysis Modules</h3>' +
+    tbl(['Module', 'Version', 'Description'], [
+      ['<strong>T. pallidum MLST &amp; Genotyping</strong>', '<code>1.0</code>', 'Determination of the molecular type of the pathogen'],
+      ['<strong>Macrolide Resistance Detection (23S rRNA)</strong>', '<code>1.1</code>', 'Detection of A2058G and A2059G mutations associated with azithromycin resistance']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework and split into isolated Conda environments for maximum reproducibility.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>Python 3.10</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment</strong>', '<code>minimap2</code>, <code>samtools</code>'],
+      ['<strong>3. Variant Calling</strong>', '<code>bcftools</code>, <code>htslib</code>'],
+      ['<strong>4. Annotation and Reporting</strong>', '<code>Python</code>, <code>pandas</code>, <code>jinja2</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Penicillin always works.</strong> Over more than 80 years of use, <em>T. pallidum</em> has not developed a single resistance mechanism against it. Benzathine benzylpenicillin remains the number one drug.</li>' +
+    '<li><strong>~10% of patients</strong> are allergic to penicillin and need alternative therapy.</li>' +
+    '<li><strong>Macrolides are virtually written off</strong> from recommendations: A2058G/A2059G mutations in 23S rRNA make azithromycin completely ineffective. Without genetic confirmation, prescribing azithromycin to an allergic patient will lead to treatment failure and progression of the infection to a more severe stage.</li>' +
+    '<li><strong>WHO</strong> — syphilis remains a global health problem, especially in the context of congenital syphilis and HIV co-infection.</li>' +
+    '<li><strong>Russia</strong> — despite declining incidence, syphilis remains one of the key STIs requiring genomic surveillance.</li></ul>' +
+    '<p>Our pipeline makes it possible to determine <strong>in hours, not days</strong> whether an alternative macrolide can be prescribed to a patient with penicillin allergy, or whether another treatment regimen is required.</p><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/syphilis/treatment/index.html">CDC — Syphilis Treatment and Care</a></li>' +
+    '<li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/sexually-transmitted-infections-(stis)">WHO — Sexually Transmitted Infections (STIs)</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/treponema-pallidum">PubMLST — Treponema pallidum typing</a></li></ul>';
+
+  /* ── ACINETOBACTER BAUMANNII (CRAB) ── */
+  EN['/acinetobacter/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/acinetobacter.png" alt="Acinetobacter baumannii" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Drug Resistance Determination of Acinetobacter baumannii</h1>' +
+    '<p style="font-size:1.2em;color:#555">Genomic surveillance of the "last bastion" of nosocomial infections — a WHO priority pathogen of the "critical" category</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Acinetobacter baumannii</em> is a Gram-negative coccobacillus causing severe hospital-acquired (nosocomial) infections: pneumonia, bacteremia, meningitis, urinary tract and surgical wound infections. In 2024 the WHO included it in the updated list of <strong>AMR priority pathogens in the "critical" category (Priority 1: Critical)</strong> — the highest level of threat to human health.</p>' +
+    '<p>The main danger of <em>A. baumannii</em> is its phenomenal ability to <strong>accumulate multidrug resistance (MDR) mechanisms</strong>: horizontal gene transfer, carbapenemase production (OXA-23, OXA-40, NDM), active efflux pumps (AdeABC) and modification of porin proteins. The result is the emergence of <strong>CRAB</strong> (Carbapenem-Resistant <em>A. baumannii</em>) and <strong>PDRAB</strong> (Pandrug-Resistant) strains resistant to literally all classes of antibiotics.</p>' +
+    '<p>The current standard of AMR diagnostics — culture plus disk diffusion — takes 3–5 days. This is critically long in the ICU, where <strong>every hour of delay in appropriate therapy</strong> increases mortality. Our pipeline cuts the time to a complete AMR profile to <strong>a single working day</strong>, right in the hospital.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ). Both amplicon sequencing of key genes and whole-genome sequencing (WGS) are supported.</li>' +
+    '<li><strong>📤 Output:</strong> Clinical HTML report with a complete AMR profile for the infectious disease physician and a technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mechanisms</h2>' +
+    '<p><em>Acinetobacter baumannii</em> is one of the most genetically plastic pathogens. The pipeline analyses the full spectrum of key resistance determinants:</p>' +
+    '<h3>Carbapenemases (the most critical class)</h3>' +
+    tbl(['Gene / determinant', 'Mechanism', 'Antibiotic class'], [
+      ['<strong>OXA-23, OXA-40, OXA-58</strong>', 'Class D serine β-lactamase', 'Carbapenems (Imipenem, Meropenem)'],
+      ['<strong>OXA-51-like</strong> (chromosomal)', 'Constitutive β-lactamase', 'Carbapenems (species marker)'],
+      ['<strong>NDM-1, NDM-2</strong>', 'Class B metallo-β-lactamase', 'Carbapenems, most β-lactams'],
+      ['<strong>VIM, IMP</strong>', 'Metallo-β-lactamase', 'Carbapenems']
+    ]) +
+    '<h3>Resistance to other antibiotic classes</h3>' +
+    tbl(['Gene / determinant', 'Mechanism', 'Antibiotic class'], [
+      ['<strong>AdeABC</strong> (efflux pump)', 'Active efflux', 'Tetracyclines, quinolones, β-lactams'],
+      ['<strong>AdeIJK</strong> (efflux pump)', 'Active efflux', 'Ticarcillin, chloramphenicol, trimethoprim'],
+      ['<strong>armA, rmtB</strong>', '16S rRNA methylation', 'Aminoglycosides (high level)'],
+      ['<strong>aac(6\')-Ib, aph(3\')-Ia</strong>', 'Enzymatic inactivation', 'Aminoglycosides'],
+      ['<strong>gyrA</strong> Ser83Leu/Trp', 'Target modification', 'Fluoroquinolones (Ciprofloxacin)'],
+      ['<strong>parC</strong> Ser80Leu', 'Target modification', 'Fluoroquinolones'],
+      ['<strong>sul1, sul2</strong>', 'Alternative enzyme', 'Sulfonamides, co-trimoxazole'],
+      ['<strong>tet(A), tet(B)</strong>', 'Efflux pump', 'Tetracyclines'],
+      ['<strong>mcr-1</strong>', 'Lipid A modification', 'Colistin ("last-resort" drug)']
+    ]) +
+    '<h3>Antibiotic profile in the clinical report</h3>' +
+    tbl(['Antibiotic', 'Class', 'Clinical significance'], [
+      ['<strong>Meropenem / Imipenem</strong>', 'Carbapenem', 'First line in severe infections; CRAB is a global threat'],
+      ['<strong>Colistin / Polymyxin B</strong>', 'Polymyxin', '"Last-resort" drug; nephrotoxic; mcr genes are a threat'],
+      ['<strong>Sulbactam</strong>', 'β-lactamase inhibitor', 'Active on its own against AB; combination therapy'],
+      ['<strong>Cefiderocol</strong>', 'Siderophore cephalosporin', 'Newest drug; active against CRAB and PDRAB'],
+      ['<strong>Tigecycline</strong>', 'Glycylcycline', 'Alternative in MDR; no activity in bacteremia'],
+      ['<strong>Ciprofloxacin</strong>', 'Fluoroquinolone', 'Frequently resistant; control marker'],
+      ['<strong>Gentamicin / Amikacin</strong>', 'Aminoglycoside', 'Activity possible in the absence of armA/rmt']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Core Tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq AB Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned Analysis Modules</h3>' +
+    tbl(['Module', 'Version', 'Description'], [
+      ['<strong>AB-Carbapenemase-Detector</strong>', '<code>1.0</code>', 'Detection of OXA-23/40/58, NDM, VIM, IMP — carbapenemases of all classes'],
+      ['<strong>AB-AMR-Profiler</strong>', '<code>1.0</code>', 'Complete resistance profile across 7 antibiotic classes'],
+      ['<strong>AB-MLST</strong>', '<code>1.0</code>', 'Molecular typing under the Pasteur scheme (Institut Pasteur) for epidemiological surveillance'],
+      ['<strong>AB-cgMLST</strong>', '<code>1.0</code>', 'High-resolution typing for ICU outbreak investigation']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework and split into isolated Conda environments for maximum reproducibility.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>Python 3.10</code>, <code>NanoFilt</code>, <code>porechop_abi</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code>, <code>samtools</code> (reference: ATCC 19606 / CP000521)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3 ≥1.0.4</code>, <code>bcftools</code>, <code>htslib</code>'],
+      ['<strong>4. Resistance gene detection</strong>', '<code>AMRFinderPlus</code> (NCBI), <code>ResFinder</code>, custom OXA-type database'],
+      ['<strong>5. MLST typing</strong>', '<code>mlst</code> (Pasteur/Acinetobacter scheme, PubMLST)'],
+      ['<strong>6. Annotation and reporting</strong>', '<code>Python</code>, <code>pandas</code>, <code>jinja2</code>, <code>snpEff</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>WHO, 2024 — Priority 1: Critical.</strong> <em>A. baumannii</em> topped the updated AMR priority pathogens list. No other bacterium received such an unambiguous threat assessment.</li>' +
+    '<li><strong>CRAB infection mortality</strong> in the ICU reaches <strong>40–70%</strong> — comparable to severe sepsis.</li>' +
+    '<li><strong>Military conflicts</strong> — <em>A. baumannii</em> earned the informal name "Iraqibacter" after mass nosocomial outbreaks among wounded service members in Iraq and Afghanistan.</li>' +
+    '<li><strong>Resistance to disinfectants</strong>: the bacterium survives on dry surfaces for up to <strong>25 days</strong>, driving rapid spread within hospitals.</li>' +
+    '<li><strong>Russia</strong>: CRAB circulates widely in Russian ICUs; the share of carbapenem-resistant isolates in some regions exceeds <strong>60%</strong>.</li>' +
+    '<li><strong>New drugs</strong>: Cefiderocol (2019) and Sulbactam-Durlobactam (2023) are the only new options for PDRAB; appropriate therapy cannot be selected without an AMR profile.</li></ul>' +
+    '<p>Rapid molecular AMR diagnostics at the bedside allows immediate <strong>de-escalation</strong> (switching from broad- to narrow-spectrum drugs) or <strong>escalation</strong> of therapy in CRAB/PDRAB — directly affecting ICU survival.</p><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — Bacterial Priority Pathogens List 2024</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI) — resistance gene database</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/acinetobacter-baumannii">PubMLST — Acinetobacter typing (Pasteur scheme)</a></li>' +
+    '<li>📄 <a href="https://www.eucast.org/clinical_breakpoints/">EUCAST — Breakpoints for A. baumannii</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/drugresistance/biggest-threats.html">CDC — Carbapenem-resistant Acinetobacter</a></li></ul>';
+
+  /* ── PSEUDOMONAS AERUGINOSA (CRPA) ── */
+  EN['/pseudomonas/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/pseudomonas.png" alt="Pseudomonas aeruginosa" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Drug Resistance Determination of Pseudomonas aeruginosa</h1>' +
+    '<p style="font-size:1.2em;color:#555">Genomic surveillance of P. aeruginosa — a master of adaptation and chronic infections in cystic fibrosis, burns and the ICU</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Pseudomonas aeruginosa</em> is a Gram-negative non-fermenting bacterium, one of the most clinically dangerous opportunistic pathogens. In 2024 the WHO again included it in the <strong>priority pathogens list of the "critical" category</strong>, highlighting the rapid growth of carbapenem-resistant strains (CRPA).</p>' +
+    '<p><em>P. aeruginosa</em> is unique in its adaptive capabilities. It has <strong>one of the largest bacterial genomes</strong> (~6.3 Mb), encoding a rich arsenal of resistance and virulence mechanisms. The bacterium can <strong>simultaneously</strong> engage multiple resistance mechanisms: porin loss (OprD), hyperexpression of efflux pumps (MexAB-OprM and others), β-lactamase production (AmpC, MBLs), and mutations in antibiotic target genes.</p>' +
+    '<p>A particular problem is the role of <em>P. aeruginosa</em> in <strong>chronic infections in cystic fibrosis</strong>: the bacterium forms a biofilm and switches to a mucoid phenotype, becoming unreachable for antibiotics and the immune system. For these patients, monitoring the AMR profile of each strain is a matter of survival.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ). Both whole-genome (WGS) and amplicon sequencing are supported.</li>' +
+    '<li><strong>📤 Output:</strong> Clinical HTML report with an AMR profile for the infectious disease physician / pulmonologist and a technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Resistance Genes and Mechanisms</h2>' +
+    '<p><em>Pseudomonas aeruginosa</em> is one of the most difficult pathogens to treat: its resistance develops along several independent pathways at once. The pipeline analyses the full spectrum of determinants:</p>' +
+    '<h3>Carbapenemases and β-lactamases</h3>' +
+    tbl(['Gene / determinant', 'Mechanism', 'Antibiotic class'], [
+      ['<strong>NDM-1, NDM-2</strong>', 'Class B metallo-β-lactamase (MBL)', 'Carbapenems, most β-lactams'],
+      ['<strong>VIM-1, VIM-2</strong>', 'Class B MBL — the most frequent in PA', 'Carbapenems'],
+      ['<strong>IMP types</strong>', 'Class B MBL', 'Carbapenems'],
+      ['<strong>KPC-2, KPC-3</strong>', 'Class A serine carbapenemase', 'Carbapenems, all β-lactams'],
+      ['<strong>AmpC</strong> (chromosomal, derepressed)', 'Class C cephalosporinase', 'Cephalosporins I–III, aztreonam'],
+      ['<strong>OXA-10, OXA-14</strong>', 'Class D oxacillinase', 'Carbapenems (moderate), penicillins']
+    ]) +
+    '<h3>Efflux pumps (the main MDR mechanism in PA)</h3>' +
+    tbl(['Pump', 'Regulator', 'Antibiotic class'], [
+      ['<strong>MexAB-OprM</strong>', 'MexR (disruption)', 'β-lactams, fluoroquinolones, tetracyclines'],
+      ['<strong>MexCD-OprJ</strong>', 'NfxB (disruption)', 'Fluoroquinolones, cefepime'],
+      ['<strong>MexEF-OprN</strong>', 'MexT (activation)', 'Fluoroquinolones, carbapenems, chloramphenicol'],
+      ['<strong>MexXY-OprM</strong>', 'MexZ (disruption)', 'Aminoglycosides, fluoroquinolones']
+    ]) +
+    '<h3>OprD porin loss and target mutations</h3>' +
+    tbl(['Gene / change', 'Mechanism', 'Antibiotic class'], [
+      ['<strong>oprD</strong> (mutation / deletion)', 'Loss of the specific porin', 'Carbapenems (Imipenem >> Meropenem)'],
+      ['<strong>gyrA</strong> Thr83Ile, Asp87Gly/Asn', 'DNA gyrase modification', 'Fluoroquinolones (Ciprofloxacin)'],
+      ['<strong>parC</strong> Ser87Trp', 'Topoisomerase IV modification', 'Fluoroquinolones'],
+      ['<strong>armA, rmtB, rmtC</strong>', '16S rRNA methylation', 'Aminoglycosides (high level)'],
+      ['<strong>aac(6\')-II, aph(3\')-IIb</strong>', 'Enzymatic inactivation', 'Aminoglycosides'],
+      ['<strong>fosA</strong> (chromosomal)', 'Fosfomycin inactivation', 'Fosfomycin']
+    ]) +
+    '<h3>Antibiotic profile in the clinical report</h3>' +
+    tbl(['Antibiotic', 'Class', 'Clinical significance'], [
+      ['<strong>Piperacillin/tazobactam</strong>', 'β-lactam + inhibitor', 'First line for susceptible strains'],
+      ['<strong>Ceftazidime</strong>', 'Cephalosporin III (antipseudomonal)', 'First line; susceptible in the absence of AmpC'],
+      ['<strong>Cefepime</strong>', 'Cephalosporin IV', 'Active against derepressed AmpC'],
+      ['<strong>Ceftolozane/tazobactam</strong>', 'New cephalosporin + inhibitor', 'Active against MDR strains with AmpC'],
+      ['<strong>Meropenem / Imipenem</strong>', 'Carbapenem', 'First line in severe infections; CRPA is a global threat'],
+      ['<strong>Cefiderocol</strong>', 'Siderophore cephalosporin', 'Newest drug against CRPA and PDR strains'],
+      ['<strong>Ciprofloxacin</strong>', 'Fluoroquinolone', 'Frequently resistant; controlled via gyrA/parC'],
+      ['<strong>Amikacin / Tobramycin</strong>', 'Aminoglycoside', 'Inhaled use in cystic fibrosis; armA = resistance'],
+      ['<strong>Colistin / Polymyxin B</strong>', 'Polymyxin', 'Last resort in PDR'],
+      ['<strong>Aztreonam/avibactam</strong>', 'Monobactam + inhibitor', 'Active against MBL producers']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Core Tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq PA Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned Analysis Modules</h3>' +
+    tbl(['Module', 'Version', 'Description'], [
+      ['<strong>PA-Carbapenemase-Detector</strong>', '<code>1.0</code>', 'Detection of NDM, VIM, IMP, KPC, OXA — all classes of MBLs and serine carbapenemases'],
+      ['<strong>PA-Efflux-Profiler</strong>', '<code>1.0</code>', 'Analysis of mutations in the pump regulators MexR, NfxB, MexT, MexZ'],
+      ['<strong>PA-AMR-Profiler</strong>', '<code>1.0</code>', 'Complete AMR profile across 8 antibiotic classes'],
+      ['<strong>PA-MLST</strong>', '<code>1.0</code>', 'Molecular typing (PubMLST/Pseudomonas scheme) for outbreak surveillance'],
+      ['<strong>PA-Biofilm-Predictor</strong>', '<code>1.0</code>', 'Detection of biofilm genes (<em>pelB</em>, <em>pslA</em>, <em>algD</em>, <em>mucA</em>) — critical in cystic fibrosis']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework and split into isolated Conda environments for maximum reproducibility.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>Python 3.10</code>, <code>NanoFilt</code>, <code>porechop_abi</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code>, <code>samtools</code> (reference: PAO1 / AE004091)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3 ≥1.0.4</code>, <code>bcftools</code>, <code>htslib</code>'],
+      ['<strong>4. Resistance gene detection</strong>', '<code>AMRFinderPlus</code>, <code>ResFinder</code>, custom MBL and efflux pump database'],
+      ['<strong>5. MLST typing</strong>', '<code>mlst</code> (PubMLST/Pseudomonas aeruginosa scheme)'],
+      ['<strong>6. Virulence gene annotation</strong>', '<code>VFDB</code> (virulence factor database)'],
+      ['<strong>7. Reporting</strong>', '<code>Python</code>, <code>pandas</code>, <code>jinja2</code>, <code>snpEff</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>WHO, 2024 — Priority 1: Critical.</strong> CRPA (carbapenem-resistant <em>P. aeruginosa</em>), together with CRAB, is at the absolute top of global health threats.</li>' +
+    '<li><strong>Mortality</strong>: CRPA infections in the ICU carry a case fatality of <strong>30–50%</strong>; in bacteremia — up to <strong>60%</strong>.</li>' +
+    '<li><strong>Cystic fibrosis</strong>: <em>P. aeruginosa</em> chronically infects <strong>~80% of adult patients</strong> with cystic fibrosis. Switching to the mucoid phenotype makes the bacterium unreachable for standard therapy — AMR monitoring of each strain is <strong>vital</strong>.</li>' +
+    '<li><strong>Burn centres</strong>: <em>P. aeruginosa</em> is the leading pathogen in burn patients; CRPA outbreaks devastate entire wards.</li>' +
+    '<li><strong>Resistance accumulation "on the fly"</strong>: <em>P. aeruginosa</em> can acquire new resistance mechanisms <strong>during the treatment of a single patient</strong> — repeat AMR analysis over time is critically important.</li>' +
+    '<li><strong>Russia</strong>: the share of CRPA in Russian hospitals exceeds <strong>30%</strong> on average and reaches <strong>50–60%</strong> in large ICUs.</li>' +
+    '<li><strong>Biofilm</strong>: within a biofilm <em>P. aeruginosa</em> is <strong>1000 times</strong> more resistant to antibiotics — molecular detection of biofilm genes (<em>pelB</em>, <em>algD</em>) predicts therapeutic failure.</li></ul>' +
+    '<p>Rapid molecular typing of the strain at the bedside allows the physician to switch immediately to an active drug (ceftolozane/tazobactam, cefiderocol) and <strong>not waste critical hours</strong> on "trial" regimens of ineffective therapy.</p><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — Bacterial Priority Pathogens List 2024</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI)</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/pseudomonas-aeruginosa">PubMLST — Pseudomonas aeruginosa typing</a></li>' +
+    '<li>📄 <a href="https://www.eucast.org/clinical_breakpoints/">EUCAST — Breakpoints for P. aeruginosa</a></li>' +
+    '<li>📄 <a href="http://www.mgc.ac.cn/VFs/">VFDB — Virulence Factor Database</a></li>' +
+    '<li>📄 <a href="https://www.cff.org/managing-cf/treatments-and-therapies/infection-management/pseudomonas-aeruginosa">Cystic Fibrosis Foundation — PA in cystic fibrosis</a></li></ul>';
+
+  /* ── CHLAMYDIA TRACHOMATIS ── */
+  EN['/chlamydia/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/chlamydia.png" alt="Chlamydia trachomatis" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Resistance Determination and Genotyping of Chlamydia trachomatis</h1>' +
+    '<p style="font-size:1.2em;color:#555">Molecular diagnostics of the most common bacterial STI — from serovar determination to the detection of macrolide and fluoroquinolone resistance mutations</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Chlamydia trachomatis</em> is an obligate intracellular parasite causing chlamydia: the <strong>most common bacterial sexually transmitted infection</strong> in the world. According to the WHO, more than <strong>127 million new cases</strong> are registered annually. In Russia, chlamydia ranks first among STIs.</p>' +
+    '<p>The unique biology of the pathogen creates serious diagnostic and therapeutic problems: chlamydia exists in <strong>two forms</strong> — the infectious elementary body (EB) and the intracellular reticulate body (RB). This makes the bacterium <strong>inaccessible to most antibiotics</strong> that disrupt cell wall synthesis (β-lactams are completely ineffective).</p>' +
+    '<p>For a long time the drug of choice remained <strong>azithromycin</strong> (single dose). However, due to uncontrolled use, growing <strong>macrolide resistance</strong> via 23S rRNA gene mutations is being recorded, as well as resistance to <strong>fluoroquinolones</strong> (<em>gyrA</em>, <em>parC</em> genes). Incorrectly chosen therapy leads to chronic infection, infertility and the risk of ectopic pregnancy.</p>' +
+    '<p>Our pipeline provides the complete nanopore data analysis cycle for <strong>serovar/genotype determination</strong> of the pathogen and <strong>detection of resistance mutations</strong> — right at the point of care, without transferring data to external servers.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ).</li>' +
+    '<li><strong>📤 Output:</strong> Detailed HTML report for the clinician with the serovar and antibiotic susceptibility profile, and an extended QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Serovar Typing and Clinical Nosologies</h2>' +
+    '<p><em>Chlamydia trachomatis</em> comprises <strong>19 serovars (A–L)</strong>, each associated with a specific clinical picture:</p>' +
+    tbl(['Serovars', 'Clinical nosology', 'Significance'], [
+      ['<strong>A, B, Ba, C</strong>', 'Trachoma (infectious keratoconjunctivitis)', 'Leading infectious cause of blindness in the world'],
+      ['<strong>D–K</strong>', 'Urogenital chlamydia', 'The most common STI: urethritis, cervicitis, PID, infertility'],
+      ['<strong>L1, L2, L2a, L2b, L3</strong>', 'Lymphogranuloma venereum (LGV)', 'Invasive form, severe systemic complications']
+    ]) + '<hr>' +
+    '<h2>🔬 Resistance Genes and Mutations</h2>' +
+    '<p>The pipeline analyses the key genetic determinants of <em>Chlamydia trachomatis</em> resistance:</p>' +
+    tbl(['Gene / locus', 'Key mutations', 'Antibiotic class', 'Clinical significance'], [
+      ['<strong>23S rRNA</strong>', 'A2058G, A2059G', '<strong>Azithromycin</strong> (macrolides)', 'Resistance to the first-line drug'],
+      ['<strong>23S rRNA</strong>', 'G2057A, C2611T', '<strong>Clarithromycin, Erythromycin</strong>', 'Cross-resistance to macrolides'],
+      ['<strong>gyrA</strong>', 'Ser83Leu, Asp87Asn', '<strong>Ofloxacin, Levofloxacin</strong> (fluoroquinolones)', 'Resistance to alternative therapy'],
+      ['<strong>parC</strong>', 'Ser87Ile', '<strong>Fluoroquinolones</strong>', 'Increased resistance level']
+    ]) +
+    '<h3>Antibiotic profile in the report</h3>' +
+    tbl(['Antibiotic', 'Class', 'Clinical significance'], [
+      ['<strong>Azithromycin</strong>', 'Macrolide', 'First line — single 1 g dose; growing resistance'],
+      ['<strong>Doxycycline</strong>', 'Tetracycline', 'First line (7 days) — preferred when resistance is a risk'],
+      ['<strong>Ofloxacin / Levofloxacin</strong>', 'Fluoroquinolone', 'Alternative therapy'],
+      ['<strong>Clarithromycin</strong>', 'Macrolide', 'Cross-resistance with azithromycin'],
+      ['<strong>Amoxicillin</strong>', 'β-lactam', 'Only in pregnancy (limited efficacy)']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<p>We continuously improve our pipeline and machine learning models to ensure the highest accuracy.</p>' +
+    '<h3>Core Tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Chlamydia Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned Analysis Modules</h3>' +
+    tbl(['Module', 'Version', 'Description'], [
+      ['<strong>CT-Serovar-Typer</strong>', '<code>1.0</code>', 'Serovar determination (A–L3) by the <em>ompA</em> gene (major outer membrane protein)'],
+      ['<strong>CT-Resistance-Detector</strong>', '<code>1.0</code>', 'Detection of macrolide (23S rRNA) and fluoroquinolone (<em>gyrA</em>, <em>parC</em>) resistance mutations'],
+      ['<strong>CT-MLST</strong>', '<code>1.0</code>', 'Molecular typing under the PubMLST/Chlamydiales scheme']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework and split into isolated Conda environments for maximum reproducibility.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>Python 3.10</code>, <code>NanoFilt</code>, <code>porechop_abi</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment</strong>', '<code>minimap2</code>, <code>samtools</code> (reference: D/UW-3/CX, NZ_CP001713)'],
+      ['<strong>3. Variant Calling</strong>', '<code>bcftools</code>, <code>htslib</code>, <code>clair3</code>'],
+      ['<strong>4. Serovar typing</strong>', 'Custom <em>ompA</em> allele database + <code>mlst</code> (PubMLST/Chlamydiales)'],
+      ['<strong>5. Annotation and reporting</strong>', '<code>Python</code>, <code>pandas</code>, <code>jinja2</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>127 million new cases per year</strong> — chlamydia leads among bacterial STIs (WHO, 2020).</li>' +
+    '<li><strong>"Silent epidemic"</strong> — in <strong>70–80% of women and 50% of men</strong> the infection is asymptomatic, ensuring unnoticed spread.</li>' +
+    '<li><strong>Growing azithromycin resistance</strong> — A2058G and A2059G mutations in 23S rRNA were once described as rare, but their detection frequency is rising in Europe and the USA; doxycycline is coming to the fore.</li>' +
+    '<li><strong>Complications</strong>: chronic salpingitis → tubal obstruction → <strong>infertility</strong> (in 10–15% of untreated women); LGV serovars cause severe destructive lymphadenopathies.</li>' +
+    '<li><strong>Co-infection</strong>: chlamydia increases the risk of HIV acquisition during sexual contact <strong>3–5-fold</strong>, making its diagnosis critically important in conjunction with other STIs.</li>' +
+    '<li><strong>Russia</strong> — chlamydia remains the most frequently registered STI; real incidence exceeds official figures 5–10-fold due to the asymptomatic course.</li></ul>' +
+    '<p>The current standard is PCR diagnostics (presence/absence without resistance information). Our pipeline adds a <strong>critically important level</strong>: <strong>which serovar</strong> and <strong>whether it is susceptible to azithromycin</strong>, allowing the right therapy to be prescribed immediately without the risk of treatment failure.</p><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/chlamydia">WHO — Chlamydia Fact Sheet</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm">CDC — Chlamydia Treatment Guidelines</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/chlamydiales-spp">PubMLST — Chlamydiales typing</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/en/chlamydia">ECDC — Chlamydia in Europe</a></li></ul>';
+
   /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
   EN['/hvkp/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -4924,6 +5220,322 @@
     '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mycoplasma+genitalium+resistance+guided+therapy">PubMed — 生殖支原体耐药指导治疗</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy — 生殖支原体</a></li></ul>';
 
+  /* ── 梅毒 (syphilis) ── */
+  ZH['/syphilis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/syphilis.png" alt="梅毒螺旋体 (Treponema pallidum)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>梅毒螺旋体大环内酯类耐药性检测与基因分型</h1>' +
+    '<p style="font-size:1.2em;color:#555">检测阿奇霉素耐药突变,为青霉素不耐受患者安全选择替代治疗方案</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>梅毒螺旋体</em>是梅毒的病原体,梅毒是最具社会意义的性传播感染之一。梅毒发病率在全球(包括俄罗斯)持续上升。</p>' +
+    '<p>一个独特的医学现象:自 1940 年代以来,<em>梅毒螺旋体</em><strong>从未对青霉素产生耐药性</strong>——青霉素至今仍是治疗的金标准。然而约 <strong>10% 的患者</strong>对青霉素过敏。此前这类患者使用<strong>大环内酯类(阿奇霉素)</strong>——一种方便的口服替代方案。但由于 <strong>23S rRNA</strong> 基因的点突变(A2058G、A2059G),梅毒螺旋体已对阿奇霉素<strong>完全不敏感</strong>:在部分地区(美国、中国、欧洲多国),<strong>80–100%</strong> 的流行菌株携带这些突变。</p>' +
+    '<p>我们的流程完成纳米孔数据的完整分析周期,可<strong>快速确认</strong>具体菌株的<strong>大环内酯类耐药性</strong>并<strong>精确确定病原体的基因型</strong>——直接在患者床旁或实验室内完成,数据不传输至外部服务器。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的详细 HTML 报告,以及面向生物信息分析师的扩展报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与突变</h2>' +
+    '<p>流程分析<em>梅毒螺旋体</em>耐药的关键遗传决定因素:</p>' +
+    tbl(['基因 / 位点', '关键突变', '抗生素类别', '临床意义'], [
+      ['<strong>23S rRNA</strong>', 'A2058G', '<strong>阿奇霉素</strong>(大环内酯类)', '完全耐药——药物无效'],
+      ['<strong>23S rRNA</strong>', 'A2059G', '<strong>阿奇霉素</strong>(大环内酯类)', '完全耐药——药物无效']
+    ]) +
+    '<h3>报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '类别', '临床意义'], [
+      ['<strong>苄星青霉素</strong>', 'β-内酰胺类(青霉素类)', '金标准;自 1940 年代以来未记录到耐药'],
+      ['<strong>阿奇霉素</strong>', '大环内酯类', '青霉素过敏时的替代方案;80–100% 菌株耐药'],
+      ['<strong>多西环素</strong>', '四环素类', '青霉素过敏时的二线替代方案'],
+      ['<strong>头孢曲松</strong>', '第三代头孢菌素', '神经梅毒时的替代方案']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<p>我们持续改进流程和机器学习模型,以确保最高准确性。</p>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '当前版本'], [['<strong>OnSiteSeq Syphilis Pipeline</strong>', '<code>1.0</code>']]) +
+    '<h3>分析模块</h3>' +
+    tbl(['模块', '版本', '描述'], [
+      ['<strong>T. pallidum MLST &amp; Genotyping</strong>', '<code>1.0</code>', '确定病原体的分子型别'],
+      ['<strong>Macrolide Resistance Detection (23S rRNA)</strong>', '<code>1.1</code>', '检测与阿奇霉素耐药相关的 A2058G 和 A2059G 突变']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于隔离的 Conda 环境中,以保证最大可重复性。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>Python 3.10</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Alignment)</strong>', '<code>minimap2</code>、<code>samtools</code>'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>bcftools</code>、<code>htslib</code>'],
+      ['<strong>4. 注释与报告</strong>', '<code>Python</code>、<code>pandas</code>、<code>jinja2</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>青霉素始终有效。</strong>在 80 多年的应用中,<em>梅毒螺旋体</em>从未对其产生任何耐药机制。苄星青霉素仍是首选药物。</li>' +
+    '<li><strong>约 10% 的患者</strong>对青霉素过敏,需要替代治疗。</li>' +
+    '<li><strong>大环内酯类实际上已被移出</strong>推荐方案:23S rRNA 的 A2058G/A2059G 突变使阿奇霉素完全无效。若无基因确认即对青霉素过敏患者使用阿奇霉素,将导致治疗失败并使感染进展至更严重的阶段。</li>' +
+    '<li><strong>世界卫生组织</strong> — 梅毒仍是全球公共卫生问题,尤其是在先天性梅毒和 HIV 合并感染的背景下。</li>' +
+    '<li><strong>俄罗斯</strong> — 尽管发病率有所下降,梅毒仍是最主要的性传播感染之一,需要基因组监测。</li></ul>' +
+    '<p>我们的流程能够在<strong>数小时而非数天</strong>内确定:对青霉素过敏的患者能否使用大环内酯类替代药物,还是必须采用其他治疗方案。</p><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/syphilis/treatment/index.html">CDC — 梅毒治疗与护理</a></li>' +
+    '<li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/sexually-transmitted-infections-(stis)">WHO — 性传播感染 (STI)</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/treponema-pallidum">PubMLST — 梅毒螺旋体分型</a></li></ul>';
+
+  /* ── 鲍曼不动杆菌 (acinetobacter) ── */
+  ZH['/acinetobacter/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/acinetobacter.png" alt="鲍曼不动杆菌 (Acinetobacter baumannii)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>鲍曼不动杆菌耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">对医院感染"最后堡垒"的基因组监测 — WHO"危急"级别重点病原体</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>鲍曼不动杆菌</em>是一种革兰阴性球杆菌,可引起严重的医院获得性(院内)感染:肺炎、菌血症、脑膜炎、尿路感染和手术切口感染。2024 年 WHO 将其列入更新的 <strong>AMR 重点病原体清单"危急"级别(Priority 1: Critical)</strong>——对人类健康的最高威胁等级。</p>' +
+    '<p><em>鲍曼不动杆菌</em>的主要危险在于其<strong>积累多重耐药 (MDR) 机制</strong>的惊人能力:基因水平转移、碳青霉烯酶产生(OXA-23、OXA-40、NDM)、主动外排泵 (AdeABC) 以及孔蛋白的修饰。其结果是出现对几乎所有抗生素类别耐药的 <strong>CRAB</strong>(耐碳青霉烯<em>鲍曼不动杆菌</em>)和 <strong>PDRAB</strong>(泛耐药)菌株。</p>' +
+    '<p>现行 AMR 诊断标准——培养法加纸片扩散法——需要 3–5 天。在重症监护室 (ICU) 条件下这过于漫长,<strong>正确治疗每延误一小时</strong>,死亡率都会上升。我们的流程将获得完整 AMR 谱的时间缩短至<strong>一个工作日</strong>,且直接在院内完成。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。支持关键基因扩增子测序和全基因组测序 (WGS)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向感染科医生的完整 AMR 谱临床 HTML 报告,以及面向生物信息分析师的技术质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与机制</h2>' +
+    '<p><em>鲍曼不动杆菌</em>是遗传可塑性最强的病原体之一。流程分析全部关键耐药决定因素:</p>' +
+    '<h3>碳青霉烯酶(最关键的类别)</h3>' +
+    tbl(['基因 / 决定因素', '机制', '抗生素类别'], [
+      ['<strong>OXA-23、OXA-40、OXA-58</strong>', 'D 类丝氨酸 β-内酰胺酶', '碳青霉烯类(亚胺培南、美罗培南)'],
+      ['<strong>OXA-51-like</strong>(染色体介导)', '组成型 β-内酰胺酶', '碳青霉烯类(菌种标志物)'],
+      ['<strong>NDM-1、NDM-2</strong>', 'B 类金属 β-内酰胺酶', '碳青霉烯类及多数 β-内酰胺类'],
+      ['<strong>VIM、IMP</strong>', '金属 β-内酰胺酶', '碳青霉烯类']
+    ]) +
+    '<h3>对其他抗生素类别的耐药</h3>' +
+    tbl(['基因 / 决定因素', '机制', '抗生素类别'], [
+      ['<strong>AdeABC</strong>(外排泵)', '主动外排', '四环素类、喹诺酮类、β-内酰胺类'],
+      ['<strong>AdeIJK</strong>(外排泵)', '主动外排', '替卡西林、氯霉素、甲氧苄啶'],
+      ['<strong>armA、rmtB</strong>', '16S rRNA 甲基化', '氨基糖苷类(高水平)'],
+      ['<strong>aac(6\')-Ib、aph(3\')-Ia</strong>', '酶促灭活', '氨基糖苷类'],
+      ['<strong>gyrA</strong> Ser83Leu/Trp', '靶位修饰', '氟喹诺酮类(环丙沙星)'],
+      ['<strong>parC</strong> Ser80Leu', '靶位修饰', '氟喹诺酮类'],
+      ['<strong>sul1、sul2</strong>', '替代酶', '磺胺类、复方磺胺甲噁唑'],
+      ['<strong>tet(A)、tet(B)</strong>', '外排泵', '四环素类'],
+      ['<strong>mcr-1</strong>', '脂质 A 修饰', '黏菌素("最后手段"药物)']
+    ]) +
+    '<h3>临床报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '类别', '临床意义'], [
+      ['<strong>美罗培南 / 亚胺培南</strong>', '碳青霉烯类', '重症感染的一线用药;CRAB 是全球性威胁'],
+      ['<strong>黏菌素 / 多黏菌素 B</strong>', '多黏菌素类', '"最后手段"药物;具肾毒性;mcr 基因构成威胁'],
+      ['<strong>舒巴坦</strong>', 'β-内酰胺酶抑制剂', '本身对不动杆菌有活性;用于联合治疗'],
+      ['<strong>头孢地尔</strong>', '铁载体头孢菌素', '最新药物;对 CRAB 和 PDRAB 有活性'],
+      ['<strong>替加环素</strong>', '甘氨酰环素类', '多重耐药时的替代方案;对菌血症无活性'],
+      ['<strong>环丙沙星</strong>', '氟喹诺酮类', '常见耐药;作为对照'],
+      ['<strong>庆大霉素 / 阿米卡星</strong>', '氨基糖苷类', '无 armA/rmt 时可能有效']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq AB Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的分析模块</h3>' +
+    tbl(['模块', '版本', '描述'], [
+      ['<strong>AB-Carbapenemase-Detector</strong>', '<code>1.0</code>', '检测 OXA-23/40/58、NDM、VIM、IMP — 各类碳青霉烯酶'],
+      ['<strong>AB-AMR-Profiler</strong>', '<code>1.0</code>', '覆盖 7 类抗生素的完整耐药谱'],
+      ['<strong>AB-MLST</strong>', '<code>1.0</code>', '按 Pasteur 方案(巴斯德研究所)进行分子分型,用于流行病学监测'],
+      ['<strong>AB-cgMLST</strong>', '<code>1.0</code>', '高分辨率分型,用于 ICU 暴发调查']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于隔离的 Conda 环境中,以保证最大可重复性。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>Python 3.10</code>、<code>NanoFilt</code>、<code>porechop_abi</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>、<code>samtools</code>(参考基因组:ATCC 19606 / CP000521)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3 ≥1.0.4</code>、<code>bcftools</code>、<code>htslib</code>'],
+      ['<strong>4. 耐药基因检测</strong>', '<code>AMRFinderPlus</code> (NCBI)、<code>ResFinder</code>、自建 OXA 型别数据库'],
+      ['<strong>5. MLST 分型</strong>', '<code>mlst</code>(Pasteur/不动杆菌方案,PubMLST)'],
+      ['<strong>6. 注释与报告</strong>', '<code>Python</code>、<code>pandas</code>、<code>jinja2</code>、<code>snpEff</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO,2024 — 优先级 1:危急。</strong><em>鲍曼不动杆菌</em>位居更新的 AMR 重点病原体清单之首,没有任何其他细菌获得如此明确的威胁评估。</li>' +
+    '<li><strong>CRAB 感染的病死率</strong>在 ICU 中高达 <strong>40–70%</strong>——与严重脓毒症相当。</li>' +
+    '<li><strong>军事冲突</strong> — <em>鲍曼不动杆菌</em>因伊拉克和阿富汗伤员中的大规模院内暴发而获得非正式名称"Iraqibacter(伊拉克杆菌)",对军事医学具有现实意义。</li>' +
+    '<li><strong>对消毒剂的耐受性</strong>:该菌可在干燥表面存活长达 <strong>25 天</strong>,导致其在院内迅速传播。</li>' +
+    '<li><strong>俄罗斯</strong>:CRAB 在俄罗斯 ICU 中广泛流行;部分地区耐碳青霉烯分离株的比例超过 <strong>60%</strong>。</li>' +
+    '<li><strong>新药</strong>:头孢地尔(2019)和舒巴坦-度洛巴坦(2023)是 PDRAB 仅有的新选择;没有 AMR 谱就无法正确选择治疗方案。</li></ul>' +
+    '<p>床旁快速 AMR 分子诊断使医生能够立即<strong>降阶梯</strong>(从广谱转向窄谱药物)或在 CRAB/PDRAB 时<strong>升阶梯</strong>治疗——直接影响 ICU 患者的生存率。</p><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — 2024 年细菌类重点病原体清单</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI) — 耐药基因数据库</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/acinetobacter-baumannii">PubMLST — 不动杆菌分型(Pasteur 方案)</a></li>' +
+    '<li>📄 <a href="https://www.eucast.org/clinical_breakpoints/">EUCAST — 鲍曼不动杆菌折点</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/drugresistance/biggest-threats.html">CDC — 耐碳青霉烯不动杆菌</a></li></ul>';
+
+  /* ── 铜绿假单胞菌 (pseudomonas) ── */
+  ZH['/pseudomonas/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/pseudomonas.png" alt="铜绿假单胞菌 (Pseudomonas aeruginosa)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>铜绿假单胞菌耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">对铜绿假单胞菌的基因组监测 — 适应性大师,囊性纤维化、烧伤及 ICU 慢性感染的关键病原体</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>铜绿假单胞菌</em>是一种革兰阴性非发酵菌,是临床上最危险的机会性病原体之一。2024 年 WHO 再次将其列入<strong>"危急"级别重点病原体清单</strong>,强调耐碳青霉烯菌株 (CRPA) 的迅速增长。</p>' +
+    '<p><em>铜绿假单胞菌</em>的适应能力独一无二。它拥有<strong>最大的细菌基因组之一</strong>(约 6.3 Mb),编码极其丰富的耐药与毒力机制。该菌能够<strong>同时</strong>动用多种耐药机制:孔蛋白丢失 (OprD)、外排泵高表达(MexAB-OprM 等)、β-内酰胺酶产生(AmpC、金属 β-内酰胺酶)以及抗生素靶基因突变。</p>' +
+    '<p>特别严重的问题是<em>铜绿假单胞菌</em>在<strong>囊性纤维化慢性感染</strong>中的作用:细菌形成生物膜并转为黏液型表型,使抗生素和免疫系统无法触及。对这类患者而言,监测每个菌株的 AMR 谱关乎生存。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。支持全基因组测序 (WGS) 和扩增子测序。</li>' +
+    '<li><strong>📤 输出:</strong> 面向感染科/呼吸科医生的 AMR 谱临床 HTML 报告,以及面向生物信息分析师的技术质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 耐药基因与机制</h2>' +
+    '<p><em>铜绿假单胞菌</em>是最难治疗的病原体之一:其耐药性沿多条独立途径同时形成。流程分析全部决定因素:</p>' +
+    '<h3>碳青霉烯酶与 β-内酰胺酶</h3>' +
+    tbl(['基因 / 决定因素', '机制', '抗生素类别'], [
+      ['<strong>NDM-1、NDM-2</strong>', 'B 类金属 β-内酰胺酶 (MBL)', '碳青霉烯类及多数 β-内酰胺类'],
+      ['<strong>VIM-1、VIM-2</strong>', 'B 类 MBL — 铜绿假单胞菌中最常见', '碳青霉烯类'],
+      ['<strong>IMP 型</strong>', 'B 类 MBL', '碳青霉烯类'],
+      ['<strong>KPC-2、KPC-3</strong>', 'A 类丝氨酸碳青霉烯酶', '碳青霉烯类及所有 β-内酰胺类'],
+      ['<strong>AmpC</strong>(染色体介导,去阻遏)', 'C 类头孢菌素酶', '第一至第三代头孢菌素、氨曲南'],
+      ['<strong>OXA-10、OXA-14</strong>', 'D 类苯唑西林酶', '碳青霉烯类(中度)、青霉素类']
+    ]) +
+    '<h3>外排泵(铜绿假单胞菌多重耐药的主要机制)</h3>' +
+    tbl(['外排泵', '调控因子', '抗生素类别'], [
+      ['<strong>MexAB-OprM</strong>', 'MexR(功能破坏)', 'β-内酰胺类、氟喹诺酮类、四环素类'],
+      ['<strong>MexCD-OprJ</strong>', 'NfxB(功能破坏)', '氟喹诺酮类、头孢吡肟'],
+      ['<strong>MexEF-OprN</strong>', 'MexT(激活)', '氟喹诺酮类、碳青霉烯类、氯霉素'],
+      ['<strong>MexXY-OprM</strong>', 'MexZ(功能破坏)', '氨基糖苷类、氟喹诺酮类']
+    ]) +
+    '<h3>OprD 孔蛋白丢失与靶位突变</h3>' +
+    tbl(['基因 / 改变', '机制', '抗生素类别'], [
+      ['<strong>oprD</strong>(突变 / 缺失)', '特异性孔蛋白丢失', '碳青霉烯类(亚胺培南 >> 美罗培南)'],
+      ['<strong>gyrA</strong> Thr83Ile、Asp87Gly/Asn', 'DNA 旋转酶修饰', '氟喹诺酮类(环丙沙星)'],
+      ['<strong>parC</strong> Ser87Trp', '拓扑异构酶 IV 修饰', '氟喹诺酮类'],
+      ['<strong>armA、rmtB、rmtC</strong>', '16S rRNA 甲基化', '氨基糖苷类(高水平)'],
+      ['<strong>aac(6\')-II、aph(3\')-IIb</strong>', '酶促灭活', '氨基糖苷类'],
+      ['<strong>fosA</strong>(染色体介导)', '磷霉素灭活', '磷霉素']
+    ]) +
+    '<h3>临床报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '类别', '临床意义'], [
+      ['<strong>哌拉西林/他唑巴坦</strong>', 'β-内酰胺类 + 抑制剂', '敏感菌株的一线用药'],
+      ['<strong>头孢他啶</strong>', '第三代头孢菌素(抗假单胞菌)', '一线用药;无 AmpC 时敏感'],
+      ['<strong>头孢吡肟</strong>', '第四代头孢菌素', '对去阻遏 AmpC 有活性'],
+      ['<strong>头孢洛扎/他唑巴坦</strong>', '新型头孢菌素 + 抑制剂', '对产 AmpC 的多重耐药株有活性'],
+      ['<strong>美罗培南 / 亚胺培南</strong>', '碳青霉烯类', '重症感染的一线用药;CRPA 是全球性威胁'],
+      ['<strong>头孢地尔</strong>', '铁载体头孢菌素', '针对 CRPA 和泛耐药株的最新药物'],
+      ['<strong>环丙沙星</strong>', '氟喹诺酮类', '常见耐药;通过 gyrA/parC 监测'],
+      ['<strong>阿米卡星 / 妥布霉素</strong>', '氨基糖苷类', '囊性纤维化时吸入给药;armA = 耐药'],
+      ['<strong>黏菌素 / 多黏菌素 B</strong>', '多黏菌素类', '泛耐药时的最后手段'],
+      ['<strong>氨曲南/阿维巴坦</strong>', '单环 β-内酰胺类 + 抑制剂', '对产 MBL 菌株有活性']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq PA Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的分析模块</h3>' +
+    tbl(['模块', '版本', '描述'], [
+      ['<strong>PA-Carbapenemase-Detector</strong>', '<code>1.0</code>', '检测 NDM、VIM、IMP、KPC、OXA — 各类 MBL 与丝氨酸碳青霉烯酶'],
+      ['<strong>PA-Efflux-Profiler</strong>', '<code>1.0</code>', '分析外排泵调控因子 MexR、NfxB、MexT、MexZ 的突变'],
+      ['<strong>PA-AMR-Profiler</strong>', '<code>1.0</code>', '覆盖 8 类抗生素的完整 AMR 谱'],
+      ['<strong>PA-MLST</strong>', '<code>1.0</code>', '分子分型(PubMLST/假单胞菌方案),用于暴发监测'],
+      ['<strong>PA-Biofilm-Predictor</strong>', '<code>1.0</code>', '检测生物膜基因(<em>pelB</em>、<em>pslA</em>、<em>algD</em>、<em>mucA</em>)— 对囊性纤维化至关重要']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于隔离的 Conda 环境中,以保证最大可重复性。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>Python 3.10</code>、<code>NanoFilt</code>、<code>porechop_abi</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code>、<code>samtools</code>(参考基因组:PAO1 / AE004091)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3 ≥1.0.4</code>、<code>bcftools</code>、<code>htslib</code>'],
+      ['<strong>4. 耐药基因检测</strong>', '<code>AMRFinderPlus</code>、<code>ResFinder</code>、自建 MBL 与外排泵数据库'],
+      ['<strong>5. MLST 分型</strong>', '<code>mlst</code>(PubMLST/铜绿假单胞菌方案)'],
+      ['<strong>6. 毒力基因注释</strong>', '<code>VFDB</code>(毒力因子数据库)'],
+      ['<strong>7. 报告生成</strong>', '<code>Python</code>、<code>pandas</code>、<code>jinja2</code>、<code>snpEff</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>WHO,2024 — 优先级 1:危急。</strong>CRPA(耐碳青霉烯<em>铜绿假单胞菌</em>)与 CRAB 同列全球健康威胁的最顶端。</li>' +
+    '<li><strong>病死率</strong>:ICU 中 CRPA 感染的病死率为 <strong>30–50%</strong>;发生菌血症时可达 <strong>60%</strong>。</li>' +
+    '<li><strong>囊性纤维化</strong>:<em>铜绿假单胞菌</em>慢性感染约 <strong>80% 的成年</strong>囊性纤维化患者。转为黏液型表型后,细菌对标准治疗不可及——对每个菌株的 AMR 监测<strong>关乎生死</strong>。</li>' +
+    '<li><strong>烧伤中心</strong>:<em>铜绿假单胞菌</em>是烧伤患者感染的首要病原体;CRPA 暴发可使整个病区陷于瘫痪。</li>' +
+    '<li><strong>"治疗过程中"的耐药积累</strong>:<em>铜绿假单胞菌</em>能够在<strong>同一患者的治疗期间</strong>获得新的耐药机制——动态复查 AMR 至关重要。</li>' +
+    '<li><strong>俄罗斯</strong>:俄罗斯医院中 CRPA 的比例平均超过 <strong>30%</strong>,大型 ICU 中可达 <strong>50–60%</strong>。</li>' +
+    '<li><strong>生物膜</strong>:生物膜内的<em>铜绿假单胞菌</em>对抗生素的耐药性提高 <strong>1000 倍</strong>——生物膜基因(<em>pelB</em>、<em>algD</em>)的分子检测可预测治疗失败。</li></ul>' +
+    '<p>床旁快速分子分型使医生能够立即换用有活性的药物(头孢洛扎/他唑巴坦、头孢地尔),<strong>不浪费关键时间</strong>在无效的"试探性"治疗方案上。</p><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — 2024 年细菌类重点病原体清单</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI)</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/pseudomonas-aeruginosa">PubMLST — 铜绿假单胞菌分型</a></li>' +
+    '<li>📄 <a href="https://www.eucast.org/clinical_breakpoints/">EUCAST — 铜绿假单胞菌折点</a></li>' +
+    '<li>📄 <a href="http://www.mgc.ac.cn/VFs/">VFDB — 毒力因子数据库</a></li>' +
+    '<li>📄 <a href="https://www.cff.org/managing-cf/treatments-and-therapies/infection-management/pseudomonas-aeruginosa">囊性纤维化基金会 — 囊性纤维化中的铜绿假单胞菌</a></li></ul>';
+
+  /* ── 沙眼衣原体 (chlamydia) ── */
+  ZH['/chlamydia/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/chlamydia.png" alt="沙眼衣原体 (Chlamydia trachomatis)" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>沙眼衣原体耐药性检测与基因分型</h1>' +
+    '<p style="font-size:1.2em;color:#555">对全球最常见细菌性传播感染的分子诊断 — 从血清型鉴定到大环内酯类和氟喹诺酮类耐药突变检测</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>沙眼衣原体</em>是专性细胞内寄生菌,是衣原体感染的病原体——<strong>全球最常见的细菌性性传播感染</strong>。据 WHO 数据,每年新增病例超过 <strong>1.27 亿</strong>。在俄罗斯,衣原体感染在性传播感染中居首位。</p>' +
+    '<p>病原体独特的生物学特性造成严重的诊断和治疗难题:衣原体以<strong>两种形态</strong>存在——具感染性的原体 (EB) 和细胞内的网状体 (RB)。这使细菌对多数破坏细胞壁合成的抗生素<strong>不可及</strong>(β-内酰胺类完全无效)。</p>' +
+    '<p>长期以来首选药物是<strong>阿奇霉素</strong>(单次给药)。然而由于不规范使用,经 23S rRNA 基因突变导致的<strong>大环内酯类耐药</strong>正在增长,同时还出现对<strong>氟喹诺酮类</strong>(<em>gyrA</em>、<em>parC</em> 基因)的耐药。选错治疗方案会导致感染转为慢性、不孕以及异位妊娠风险。</p>' +
+    '<p>我们的流程完成纳米孔数据的完整分析周期,用于病原体的<strong>血清型/基因型鉴定</strong>和<strong>耐药突变检测</strong>——直接在医疗现场完成,数据不传输至外部服务器。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的详细 HTML 报告(含血清型和药敏谱),以及面向生物信息分析师的扩展质控报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 血清型分型与临床疾病</h2>' +
+    '<p><em>沙眼衣原体</em>共有 <strong>19 个血清型(A–L)</strong>,每个血清型对应特定的临床表现:</p>' +
+    tbl(['血清型', '临床疾病', '意义'], [
+      ['<strong>A、B、Ba、C</strong>', '沙眼(感染性角膜结膜炎)', '全球首要的感染性致盲原因'],
+      ['<strong>D–K</strong>', '泌尿生殖道衣原体感染', '最常见的性传播感染:尿道炎、宫颈炎、盆腔炎性疾病、不孕'],
+      ['<strong>L1、L2、L2a、L2b、L3</strong>', '性病淋巴肉芽肿 (LGV)', '侵袭性形式,严重的全身并发症']
+    ]) + '<hr>' +
+    '<h2>🔬 耐药基因与突变</h2>' +
+    '<p>流程分析<em>沙眼衣原体</em>耐药的关键遗传决定因素:</p>' +
+    tbl(['基因 / 位点', '关键突变', '抗生素类别', '临床意义'], [
+      ['<strong>23S rRNA</strong>', 'A2058G、A2059G', '<strong>阿奇霉素</strong>(大环内酯类)', '对一线药物耐药'],
+      ['<strong>23S rRNA</strong>', 'G2057A、C2611T', '<strong>克拉霉素、红霉素</strong>', '大环内酯类交叉耐药'],
+      ['<strong>gyrA</strong>', 'Ser83Leu、Asp87Asn', '<strong>氧氟沙星、左氧氟沙星</strong>(氟喹诺酮类)', '对替代治疗耐药'],
+      ['<strong>parC</strong>', 'Ser87Ile', '<strong>氟喹诺酮类</strong>', '耐药水平增强']
+    ]) +
+    '<h3>报告中的抗生素谱</h3>' +
+    tbl(['抗生素', '类别', '临床意义'], [
+      ['<strong>阿奇霉素</strong>', '大环内酯类', '一线用药——单次 1 g;耐药性不断增长'],
+      ['<strong>多西环素</strong>', '四环素类', '一线用药(7 天)——存在耐药风险时首选'],
+      ['<strong>氧氟沙星 / 左氧氟沙星</strong>', '氟喹诺酮类', '替代治疗'],
+      ['<strong>克拉霉素</strong>', '大环内酯类', '与阿奇霉素交叉耐药'],
+      ['<strong>阿莫西林</strong>', 'β-内酰胺类', '仅限妊娠期(疗效有限)']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<p>我们持续改进流程和机器学习模型,以确保最高准确性。</p>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Chlamydia Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的分析模块</h3>' +
+    tbl(['模块', '版本', '描述'], [
+      ['<strong>CT-Serovar-Typer</strong>', '<code>1.0</code>', '基于 <em>ompA</em> 基因(主要外膜蛋白)鉴定血清型(A–L3)'],
+      ['<strong>CT-Resistance-Detector</strong>', '<code>1.0</code>', '检测大环内酯类(23S rRNA)和氟喹诺酮类(<em>gyrA</em>、<em>parC</em>)耐药突变'],
+      ['<strong>CT-MLST</strong>', '<code>1.0</code>', '按 PubMLST/Chlamydiales 方案进行分子分型']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于隔离的 Conda 环境中,以保证最大可重复性。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>Python 3.10</code>、<code>NanoFilt</code>、<code>porechop_abi</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Alignment)</strong>', '<code>minimap2</code>、<code>samtools</code>(参考基因组:D/UW-3/CX,NZ_CP001713)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>bcftools</code>、<code>htslib</code>、<code>clair3</code>'],
+      ['<strong>4. 血清型分型</strong>', '自建 <em>ompA</em> 等位基因数据库 + <code>mlst</code>(PubMLST/Chlamydiales)'],
+      ['<strong>5. 注释与报告</strong>', '<code>Python</code>、<code>pandas</code>、<code>jinja2</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景</h2>' +
+    '<ul><li><strong>每年 1.27 亿新发病例</strong> — 衣原体感染在细菌性性传播感染中居首位(WHO,2020)。</li>' +
+    '<li><strong>"无声的流行病"</strong> — <strong>70–80% 的女性和 50% 的男性</strong>感染后无症状,导致感染隐匿传播。</li>' +
+    '<li><strong>阿奇霉素耐药性上升</strong> — 23S rRNA 的 A2058G 和 A2059G 突变曾被认为是罕见的,但在欧洲和美国的检出率不断上升;多西环素正成为首选。</li>' +
+    '<li><strong>并发症</strong>:慢性输卵管炎 → 输卵管阻塞 → <strong>不孕</strong>(见于 10–15% 未治疗的女性);LGV 血清型可导致严重的破坏性淋巴结病变。</li>' +
+    '<li><strong>合并感染</strong>:衣原体感染使性接触中感染 HIV 的风险增加 <strong>3–5 倍</strong>,因此其诊断与其他性传播感染的联合防控至关重要。</li>' +
+    '<li><strong>俄罗斯</strong> — 衣原体感染仍是最常报告的性传播感染;由于无症状病程,实际发病率超过官方数据的 5–10 倍。</li></ul>' +
+    '<p>现行标准是 PCR 诊断(仅能确认有无感染,无耐药信息)。我们的流程增加了<strong>至关重要的一环</strong>:<strong>是哪种血清型</strong>、<strong>对阿奇霉素是否敏感</strong>,从而可以立即开出正确的治疗方案,避免治疗失败的风险。</p><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/chlamydia">WHO — 衣原体感染实况报道</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm">CDC — 衣原体感染治疗指南</a></li>' +
+    '<li>📄 <a href="https://pubmlst.org/organisms/chlamydiales-spp">PubMLST — 衣原体目分型</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/en/chlamydia">ECDC — 欧洲衣原体感染</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -4960,6 +5572,10 @@
       'chauvoei':     ['Blackleg (C. chauvoei)', 'Emphysematous carbuncle of cattle — field differentiation from anthrax, cctA detection, molecular epidemiology of outbreaks'],
       'gonorrhoeae':  ['Gonorrhoea (N. gonorrhoeae)', 'Drug resistance determination of Neisseria gonorrhoeae — WHO priority AMR pathogen'],
       'mycoplasma':   ['Mycoplasma genitalium', 'Pre-treatment resistance testing of M. genitalium to macrolides and fluoroquinolones — rapidly emerging multidrug resistance, frequently missed STI pathogen'],
+      'syphilis':     ['Syphilis (T. pallidum)', 'Macrolide resistance determination and genotyping of Treponema pallidum'],
+      'acinetobacter': ['Acinetobacter baumannii (CRAB)', 'Complete AMR profile and carbapenemase detection (OXA-23, NDM, VIM) — WHO priority "critical" pathogen, the main ICU threat'],
+      'pseudomonas':  ['Pseudomonas aeruginosa (CRPA)', 'Complete AMR profile, MBL (VIM, NDM) and efflux pump (MexAB) detection — a master of adaptation, key pathogen of ICUs and cystic fibrosis'],
+      'chlamydia':    ['Chlamydia (C. trachomatis)', 'Serovar (A–L) genotyping and macrolide/fluoroquinolone resistance determination — the most common bacterial STI in the world'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
       'hbv':          ['Hepatitis B (HBV)', 'HBV genotyping (A–J), polymerase resistance mutations (YMDD), HBeAg status and liver cancer risk markers — from a single assay'],
       'hvkp':         ['Hypervirulent Klebsiella (hvKP)', 'Virulence markers (rmpA, iucA, peg-344), K1/K2 capsular types and convergence with carbapenem resistance — liver abscess and metastatic infections'],
@@ -5045,6 +5661,10 @@
       'gonorrhoeae': ['淋病 (淋病奈瑟菌)', '淋病奈瑟菌耐药性检测 — WHO 重点 AMR 病原体'],
       'meningitidis': ['脑膜炎奈瑟菌 (N. meningitidis)', '脑膜炎奈瑟菌床旁血清分群与耐药性检测 — 暴发性脑膜炎,分秒必争'],
       'mycoplasma': ['生殖支原体 (Mycoplasma genitalium)', '治疗前检测生殖支原体对大环内酯类和氟喹诺酮类的耐药性 — 快速发展的多重耐药,常被漏诊的性传播病原体'],
+      'syphilis': ['梅毒 (梅毒螺旋体)', '梅毒螺旋体大环内酯类耐药性检测与基因分型'],
+      'acinetobacter': ['鲍曼不动杆菌 (CRAB)', '完整 AMR 谱与碳青霉烯酶检测 (OXA-23、NDM、VIM) — WHO"危急"级别重点病原体,ICU 的首要威胁'],
+      'pseudomonas': ['铜绿假单胞菌 (CRPA)', '完整 AMR 谱、金属 β-内酰胺酶 (VIM、NDM) 与外排泵 (MexAB) 检测 — 适应性大师,ICU 与囊性纤维化的关键病原体'],
+      'chlamydia': ['衣原体感染 (沙眼衣原体)', '血清型 (A–L) 基因分型与大环内酯类/氟喹诺酮类耐药性检测 — 全球最常见的细菌性传播感染'],
       'staphylococcus': ['金黄色葡萄球菌 (S. aureus)', 'MRSA/VRSA 鉴定与完整 AMR 谱分析 — 主要的医院感染病原体'],
       'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
       'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
