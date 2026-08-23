@@ -52,6 +52,11 @@ old_project_entries:
     desc: Определение лекарственной устойчивости и токсигенности Clostridioides difficile — возбудитель антибиотик-ассоциированного колита
     image: /assets/images/logo/icon_cdifficile.svg
 
+  - title: Газовая гангрена (C. perfringens)
+    url: perfringens
+    desc: "Токсинотипирование (cpa/cpb/etx/cpe/netB) и AMR-профиль Clostridium perfringens за часы — при мионекрозе счёт идёт на часы: ~15 см/час, летальность без лечения до 100%"
+    image: /assets/images/logo/icon_perfringens.svg
+
   - title: Acinetobacter baumannii (CRAB)
     url: acinetobacter
     desc: Полный профиль AMR и детекция карбапенемаз (OXA-23, NDM, VIM) — приоритетный патоген ВОЗ категории «критический», главная угроза ОРИТ

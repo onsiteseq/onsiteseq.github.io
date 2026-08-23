@@ -1324,11 +1324,88 @@
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>WHO</strong> — C. difficile is among the most serious antibiotic-associated infectious threats globally; RT027/NAP1/BI — the pandemic hypervirulent clone.</li>' +
     '<li><strong>Russia</strong> — CDI is underdiagnosed; widespread use of fluoroquinolones and cephalosporins drives selection of epidemic clones.</li>' +
-    '<li><strong>Bezlotoxumab (Zinplava)</strong> — monoclonal antibody against toxin B for recurrent CDI prevention; requires confirmed toxin B for indication.</li></ul><hr>' +
+    '<li><strong>Bezlotoxumab (Zinplava)</strong> — monoclonal antibody against toxin B for recurrent CDI prevention; requires confirmed toxin B for indication.</li>' +
+    '<li><strong>Other clostridia</strong> — see our pipeline for <a href="/perfringens/">Clostridium perfringens</a>: gas gangrene where every hour counts, toxinotyping (cpa/cpb/etx/cpe/netB) and urgent AMR profiling.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789241509763">WHO — C. difficile surveillance and infection control</a></li>' +
     '<li>📄 <a href="https://card.mcmaster.ca/">CARD — Comprehensive Antibiotic Resistance Database</a></li>' +
     '<li>📄 <a href="https://www.genomicepidemiology.org/">Center for Genomic Epidemiology — typing tools</a></li></ul>';
+
+  /* ── CLOSTRIDIUM PERFRINGENS (gas gangrene) ── */
+  EN['/perfringens/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_perfringens.svg" alt="Clostridium perfringens — spore-forming rod" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Toxinotyping and Antimicrobial Resistance of Clostridium perfringens</h1>' +
+    '<p style="font-size:1.2em;color:#555">Toxinotype (A–G), AMR profile and clostridia differentiation — in hours, when every hour counts</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Clostridium perfringens</em> is a Gram-positive anaerobic spore-forming rod (the name <em>perfringens</em> — "bursting through" tissues) and the causative agent of <strong>~95% of gas gangrene cases</strong> (clostridial myonecrosis). It is a fulminant infection: symptoms develop <strong>1–6 hours</strong> after trauma, necrosis spreads through muscle at up to <strong>~15 cm/hour</strong>, untreated lethality is <strong>67–100%</strong>, and most deaths occur within the <strong>first 24 hours</strong>. With such a course there is no time for culture-based diagnostics (days) or for "trial" antibiotic therapy — the result is needed the same day, in the emergency department of a trauma centre.</p>' +
+    '<p>From nanopore sequencing data our pipeline determines the <strong>toxinotype (A–G)</strong> from the toxin gene profile, <strong>species identification</strong> with differentiation from <em>C. septicum</em> (the agent of spontaneous gangrene with even higher lethality) and other clostridia, and the <strong>AMR profile</strong> — a genomic answer for the surgeon and intensivist in hours, not days.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: wound discharge, aspirate from the lesion, stool. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the point-of-care scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the surgeon/intensivist — species identification, toxinotype, susceptibility profile with an empirical regimen recommendation; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Toxins, Identification, Resistance</h2>' +
+    '<h3>Toxin genes and toxinotypes</h3>' +
+    '<p>The toxinotype is defined by the toxin gene profile — the key clinical question in suspected clostridial infection:</p>' +
+    tbl(['Gene', 'Toxin', 'Significance'], [
+      ['<strong>cpa</strong>', 'α-toxin (phospholipase C)', 'Main factor of myonecrosis in gas gangrene; present in all types'],
+      ['<strong>cpb</strong>', 'β-toxin', 'Necrotising enteritis (types B, C)'],
+      ['<strong>etx</strong>', 'ε-toxin', 'One of the most toxic bacterial proteins (types B, D)'],
+      ['<strong>iap / ibp</strong>', 'ι-toxin (binary)', 'Components of ι-toxin (type E)'],
+      ['<strong>cpe</strong>', 'CPE enterotoxin', 'Food poisoning and antibiotic-associated diarrhoea (types A, F)'],
+      ['<strong>netB</strong>', 'NetB toxin', 'Necrotic enteritis of poultry (type G)']
+    ]) +
+    '<h3>Toxinotypes and clinical forms</h3>' +
+    tbl(['Type', 'Toxins', 'Clinical Significance'], [
+      ['<strong>A</strong>', 'cpa', '<strong>Gas gangrene</strong> and food poisoning — the most common type in humans'],
+      ['<strong>C</strong>', 'cpa, cpb', 'Necrotising enteritis ("pigbel")'],
+      ['<strong>F</strong>', 'cpa, cpe', 'CPE-associated food poisoning and antibiotic-associated diarrhoea'],
+      ['<strong>G</strong>', 'cpa, netB', 'Necrotic enteritis of poultry — veterinary significance']
+    ]) +
+    '<h3>Species identification and differential diagnosis</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>tpi</strong> (triose phosphate isomerase)', 'Species-specific identification of <em>C. perfringens</em>'],
+      ['<strong>16S rRNA</strong>', 'Differentiation from <em>C. septicum</em> (spontaneous gangrene, often against a background of neutropenia and GI tumours), <em>C. novyi</em>, <em>C. sordellii</em> and other clostridia']
+    ]) +
+    '<h3>Resistance genes</h3>' +
+    '<p>Traditionally <em>C. perfringens</em> is susceptible to penicillin and clindamycin, but <strong>multidrug-resistant (MDR) strains</strong> have been described; in a fulminant course, urgent susceptibility determination directly affects the outcome, and an MDR profile requires switching to carbapenems.</p>' +
+    tbl(['Gene', 'Antibiotic Class', 'Clinical Significance'], [
+      ['<strong>tet(A) / tet(W) / tet(M)</strong>', 'Tetracyclines', 'Frequent resistance, especially in isolates of animal origin'],
+      ['<strong>ermB</strong>', 'Macrolides, <strong>clindamycin</strong> (MLSB)', 'Critical: clindamycin is a first-line component (suppresses toxin synthesis)'],
+      ['<strong>bla</strong>', 'β-lactams', 'Risk of penicillin G failure'],
+      ['<strong>cat</strong>', 'Chloramphenicol', 'Epidemiological marker'],
+      ['<strong>floR</strong>', 'Florfenicols', 'Marker of veterinary-origin isolates']
+    ]) +
+    '<h3>Empirical therapy in the report</h3>' +
+    tbl(['Clinical Form', 'Approach', 'Role of Genomics'], [
+      ['<strong>Gas gangrene</strong>', 'Surgical debridement + penicillin G + <strong>clindamycin</strong> (suppresses toxin synthesis)', 'ermB/bla profile → regimen correction without losing time'],
+      ['<strong>Food poisoning</strong>', 'Self-limiting (CPE; meat and meat products, the "danger zone" 5–60 °C)', 'cpe confirmation, outbreak epidemiological typing'],
+      ['<strong>Necrotising enteritis</strong>', 'Antibiotics ± surgery', 'Confirmation of cpb-positive type C']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Perfringens Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CPF-Tox-Typer</strong>', 'Toxinotyping (A–G) from the cpa/cpb/etx/iap/cpe/netB gene profile'],
+      ['<strong>CPF-Res-Detector</strong>', 'Resistance profile prediction from genomic data'],
+      ['<strong>CPF-Species-ID</strong>', 'Differentiation of <em>C. perfringens</em> from <em>C. septicum</em> and other clostridia']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — clostridia reference panel (<em>C. perfringens</em>, <em>C. septicum</em>, <em>C. novyi</em> and others)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. Toxin and AMR gene detection</strong>', 'Custom toxin and resistance gene database, compatible with CARD/ResFinder'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Every hour counts</strong> — gas gangrene in trauma and wounds remains a fulminant infection: spread ~15 cm/hour, untreated lethality 67–100%, most deaths within the first 24 hours. Point-of-care sequencing on an Edge unit in the trauma centre emergency department cuts the time to a genomic answer from days to hours.</li>' +
+    '<li><strong>Food poisoning</strong> — <em>C. perfringens</em> is one of the most common causes of bacterial foodborne infection: CDC estimates about one million cases per year in the USA alone. Rapid typing of cpe-positive strains is essential for outbreak investigation in catering.</li>' +
+    '<li><strong>MDR trend</strong> — multidrug resistance is increasingly described in isolates of animal origin (tet, ermB, floR) and is spilling into the clinic; the empirical "penicillin + clindamycin" regimen is no longer guaranteed.</li>' +
+    '<li><strong>Veterinary context</strong> — NetB-associated necrotic enteritis of poultry (type G) and ruminant enterotoxaemias (types B and D) cause significant economic damage to poultry and livestock farming; the same toxinotyping pipeline is applicable in veterinary diagnostics.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Clostridium perfringens (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Gas Gangrene / Clostridial Myonecrosis</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — Clostridium perfringens (Food Safety)</a></li></ul>';
 
   /* ── SARS-CoV-2 ── */
   EN['/sarscov2/'] =
@@ -2489,6 +2566,87 @@
     '<li>📄 <a href="https://globin.bx.psu.edu/hbvar/">HbVar — 血红蛋白变异与地中海贫血数据库</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/gene/3043">NCBI Gene — HBB</a></li></ul>';
 
+  /* ── 产气荚膜梭菌 (perfringens) ── */
+  ZH['/perfringens/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_perfringens.svg" alt="产气荚膜梭菌 — 产孢杆菌" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>产气荚膜梭菌毒素分型与耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">毒素分型 (A–G)、耐药谱与梭菌鉴别 — 分秒必争时数小时出结果</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>产气荚膜梭菌</strong>是一种革兰氏阳性厌氧产孢杆菌(<em>perfringens</em> 意为"穿透"组织),是<strong>约 95% 气性坏疽病例</strong>(梭菌性肌坏死)的病原体。这是一种暴发性感染:创伤后 <strong>1–6 小时</strong>内出现症状,坏死沿肌肉以每小时<strong>约 15 厘米</strong>的速度蔓延,未经治疗的致死率达 <strong>67–100%</strong>,多数死亡发生在<strong>最初 24 小时</strong>内。如此病程下,既没有时间做培养诊断(需数天),也无法"试药"使用抗生素——当天就需要结果,就在创伤中心的急诊室。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,根据毒素基因谱确定<strong>毒素分型 (A–G)</strong>,进行<strong>菌种鉴定</strong>并与 <em>C. septicum</em>(致死率更高的自发性坏疽病原体)及其他梭菌鉴别,同时给出 <strong>AMR 耐药谱</strong>——为外科医生和重症医生提供以小时而非天计的基因组学答案。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:伤口分泌物、病灶穿刺液、粪便。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁 (point-of-care) 场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向外科/重症医生的 HTML 报告 — 菌种鉴定、毒素分型、含经验性用药建议的药敏谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:毒素、鉴定、耐药</h2>' +
+    '<h3>毒素基因与毒素分型</h3>' +
+    '<p>毒素分型由毒素基因谱决定——疑似梭菌感染时的首要临床问题:</p>' +
+    tbl(['基因', '毒素', '意义'], [
+      ['<strong>cpa</strong>', 'α-毒素(磷脂酶 C)', '气性坏疽肌坏死的主要因子;各型均有'],
+      ['<strong>cpb</strong>', 'β-毒素', '坏死性肠炎(B、C 型)'],
+      ['<strong>etx</strong>', 'ε-毒素', '毒性最强的细菌蛋白之一(B、D 型)'],
+      ['<strong>iap / ibp</strong>', 'ι-毒素(二元毒素)', 'ι-毒素组分(E 型)'],
+      ['<strong>cpe</strong>', 'CPE 肠毒素', '食物中毒与抗生素相关性腹泻(A、F 型)'],
+      ['<strong>netB</strong>', 'NetB 毒素', '禽坏死性肠炎(G 型)']
+    ]) +
+    '<h3>毒素分型与临床类型</h3>' +
+    tbl(['型别', '毒素', '临床意义'], [
+      ['<strong>A</strong>', 'cpa', '<strong>气性坏疽</strong>与食物中毒 — 人类最常见型别'],
+      ['<strong>C</strong>', 'cpa, cpb', '坏死性肠炎("pigbel")'],
+      ['<strong>F</strong>', 'cpa, cpe', 'CPE 相关食物中毒与抗生素相关性腹泻'],
+      ['<strong>G</strong>', 'cpa, netB', '禽坏死性肠炎 — 兽医意义']
+    ]) +
+    '<h3>菌种鉴定与鉴别诊断</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>tpi</strong>(磷酸丙糖异构酶)', '<em>C. perfringens</em> 种特异性鉴定'],
+      ['<strong>16S rRNA</strong>', '与 <em>C. septicum</em>(自发性坏疽,常见于中性粒细胞减少和消化道肿瘤背景)、<em>C. novyi</em>、<em>C. sordellii</em> 及其他梭菌鉴别']
+    ]) +
+    '<h3>耐药基因</h3>' +
+    '<p>传统上 <em>C. perfringens</em> 对青霉素和克林霉素敏感,但已有<strong>多重耐药 (MDR) 菌株</strong>的报道;暴发性病程下,紧急药敏测定直接影响预后,MDR 谱则需改用碳青霉烯类。</p>' +
+    tbl(['基因', '抗生素类别', '临床意义'], [
+      ['<strong>tet(A) / tet(W) / tet(M)</strong>', '四环素类', '常见耐药,动物源分离株尤甚'],
+      ['<strong>ermB</strong>', '大环内酯类、<strong>克林霉素</strong> (MLSB)', '关键:克林霉素是一线用药组分(抑制毒素合成)'],
+      ['<strong>bla</strong>', 'β-内酰胺类', '青霉素 G 失效风险'],
+      ['<strong>cat</strong>', '氯霉素', '流行病学标志物'],
+      ['<strong>floR</strong>', '氟苯尼考类', '兽医源分离株标志物']
+    ]) +
+    '<h3>报告中的经验性治疗</h3>' +
+    tbl(['临床类型', '方案', '基因组学的作用'], [
+      ['<strong>气性坏疽</strong>', '外科清创 + 青霉素 G + <strong>克林霉素</strong>(抑制毒素合成)', 'ermB/bla 谱 → 不耽误时间地调整方案'],
+      ['<strong>食物中毒</strong>', '自限性(CPE;肉类及肉制品,"危险温度区" 5–60 °C)', 'cpe 确认,暴发流行病学分型'],
+      ['<strong>坏死性肠炎</strong>', '抗生素 ± 手术', '确认 cpb 阳性 C 型']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Perfringens Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CPF-Tox-Typer</strong>', '基于 cpa/cpb/etx/iap/cpe/netB 基因谱的毒素分型 (A–G)'],
+      ['<strong>CPF-Res-Detector</strong>', '基于基因组数据的耐药谱预测'],
+      ['<strong>CPF-Species-ID</strong>', '<em>C. perfringens</em> 与 <em>C. septicum</em> 及其他梭菌的鉴别']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 梭菌参考序列面板(<em>C. perfringens</em>、<em>C. septicum</em>、<em>C. novyi</em> 等)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. 毒素与 AMR 基因检出</strong>', '自建毒素与耐药基因数据库,兼容 CARD/ResFinder'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>分秒必争</strong> — 创伤与战伤中的气性坏疽仍是暴发性感染:蔓延速度约 15 厘米/小时,未经治疗致死率 67–100%,多数死亡发生在最初 24 小时内。在创伤中心急诊室用 Edge 设备进行床旁测序,把获得基因组学答案的时间从数天缩短到数小时。</li>' +
+    '<li><strong>食物中毒</strong> — <em>C. perfringens</em> 是最常见的细菌性食物中毒病原之一:据美国 CDC 估计,仅美国每年约有一百万病例。对 cpe 阳性菌株的快速分型对餐饮业暴发调查至关重要。</li>' +
+    '<li><strong>MDR 趋势</strong> — 动物源分离株(tet、ermB、floR)中多重耐药的报道越来越多,并正向临床传播;"青霉素 + 克林霉素"的经验性方案不再有保障。</li>' +
+    '<li><strong>兽医背景</strong> — NetB 相关禽坏死性肠炎(G 型)和反刍动物肠毒血症(B、D 型)给家禽与畜牧业造成重大经济损失;同一套毒素分型流程同样适用于兽医诊断。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 产气荚膜梭菌 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 气性坏疽 / 梭菌性肌坏死</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 产气荚膜梭菌(食品安全)</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -2517,6 +2675,7 @@
       'tuberculosis': ['Tuberculosis', 'Drug resistance and lineage determination of Mycobacterium tuberculosis'],
       'hpv':          ['Human Papillomavirus (HPV)', 'High-risk HPV genotyping, host-genome integration status and methylation triage for cervical cancer prevention — from the root cause to the key element of prevention'],
       'cdifficile':   ['C. difficile (Clostridia)', 'Drug resistance and toxigenicity determination of Clostridioides difficile — causative agent of antibiotic-associated colitis'],
+      'perfringens':  ['Gas Gangrene (C. perfringens)', 'Toxinotyping (cpa/cpb/etx/cpe/netB) and AMR profiling of Clostridium perfringens in hours — in myonecrosis every hour counts: ~15 cm/hour spread, up to 100% untreated lethality'],
       'gonorrhoeae':  ['Gonorrhoea (N. gonorrhoeae)', 'Drug resistance determination of Neisseria gonorrhoeae — WHO priority AMR pathogen'],
       'mycoplasma':   ['Mycoplasma genitalium', 'Pre-treatment resistance testing of M. genitalium to macrolides and fluoroquinolones — rapidly emerging multidrug resistance, frequently missed STI pathogen'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
@@ -2584,6 +2743,7 @@
     },
     cards: {
       'asfv': ['非洲猪瘟 (ASFV)', '猪场门口数小时出结果 — p72 基因分型、低毒力缺失变异株 (CD2v/MGF)、与经典猪瘟鉴别'],
+      'perfringens': ['气性坏疽(产气荚膜梭菌)', '产气荚膜梭菌毒素分型 (cpa/cpb/etx/cpe/netB) 与 AMR 谱分析数小时出结果 — 肌坏死分秒必争:蔓延约 15 厘米/小时,未经治疗致死率可达 100%'],
       'hbv':  ['乙型肝炎 (HBV)', 'HBV 基因分型 (A–J)、聚合酶耐药突变 (YMDD)、HBeAg 状态与肝癌风险标志物 — 一次检测完成'],
       'hvkp': ['高毒力肺炎克雷伯菌 (hvKP)', '毒力标志物 (rmpA、iucA、peg-344)、K1/K2 荚膜血清型与碳青霉烯耐药性汇聚 — 肝脓肿与转移性感染'],
       'sfts': ['发热伴血小板减少综合征 (SFTS)', '床旁 mNGS 检测发热伴血小板减少综合征 — L/M/S 节段分析与流行区出血热鉴别诊断'],
