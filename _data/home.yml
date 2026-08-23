@@ -47,16 +47,6 @@ old_project_entries:
     desc: Определение макролидной резистентности и генотипирование Treponema pallidum
     image: /assets/images/logo/icon_syphilis.svg
 
-  - title: Клостридии (C. difficile)
-    url: cdifficile
-    desc: Определение лекарственной устойчивости и токсигенности Clostridioides difficile — возбудитель антибиотик-ассоциированного колита
-    image: /assets/images/logo/icon_cdifficile.svg
-
-  - title: Газовая гангрена (C. perfringens)
-    url: perfringens
-    desc: "Токсинотипирование (cpa/cpb/etx/cpe/netB) и AMR-профиль Clostridium perfringens за часы — при мионекрозе счёт идёт на часы: ~15 см/час, летальность без лечения до 100%"
-    image: /assets/images/logo/icon_perfringens.svg
-
   - title: Acinetobacter baumannii (CRAB)
     url: acinetobacter
     desc: Полный профиль AMR и детекция карбапенемаз (OXA-23, NDM, VIM) — приоритетный патоген ВОЗ категории «критический», главная угроза ОРИТ
@@ -141,6 +131,37 @@ old_project_entries:
     url: helicobacter
     desc: Профиль устойчивости и вирулентности (cagA/vacA) H. pylori из биоптата за день — для подбора индивидуальной эрадикационной терапии
     image: /assets/images/logo/icon_helicobacter.png
+
+clostridia_entries:
+  - title: Клостридии (C. difficile)
+    url: cdifficile
+    desc: Определение лекарственной устойчивости и токсигенности Clostridioides difficile — возбудитель антибиотик-ассоциированного колита
+    image: /assets/images/logo/icon_cdifficile.svg
+
+  - title: Газовая гангрена (C. perfringens)
+    url: perfringens
+    desc: "Токсинотипирование (cpa/cpb/etx/cpe/netB) и AMR-профиль Clostridium perfringens за часы — при мионекрозе счёт идёт на часы: ~15 см/час, летальность без лечения до 100%"
+    image: /assets/images/logo/icon_perfringens.svg
+
+  - title: Ботулизм (C. botulinum)
+    url: botulinum
+    desc: Детекция bont A–G и серотипирование за часы — самый сильный яд из известных; антитоксин эффективен только при раннем введении
+    image: /assets/images/logo/icon_botulinum.svg
+
+  - title: Токсический шок (P. sordellii и C. septicum)
+    url: sordellii
+    desc: Шок без лихорадки после родов и спонтанная гангрена — маркер скрытого рака — детекция tcsL/tcsH и csa из крови и ткани за часы
+    image: /assets/images/logo/icon_sordellii.svg
+
+  - title: Онколитик C. novyi-NT
+    url: novyi
+    desc: Онколитические клостридии — геномный QC штамма и мониторинг прорастания спор в гипоксичном ядре опухоли
+    image: /assets/images/logo/icon_novyi.svg
+
+  - title: Эмкар КРС (C. chauvoei)
+    url: chauvoei
+    desc: Эмфизематозный карбункул — полевая дифференциация от сибирской язвы, детекция cctA, молекулярная эпидемиология вспышек
+    image: /assets/images/logo/icon_chauvoei.svg
 
 farmer_entries:
   - title: Фитофтороз (Phytophthora infestans)
