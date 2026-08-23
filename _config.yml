@@ -32,6 +32,7 @@ theme_config:
   show_oncology: true # show oncology projects as cards, add in _data/home.yml
   show_old_projects: true # show old projects as cards, add in _data/home.yml
   show_farmer: true # show farmer pipelines as cards, add in _data/home.yml
+  show_clostridia: true # show clostridia universe pipelines as cards, add in _data/home.yml
   show_criminal: true # show criminal projects as cards, add in _data/home.yml
   show_misc_list: false # show generic vertical list for misc details, add _data/home.yml
   show_reading_time: true # show number of words and reading time in the blog posts
@@ -45,6 +46,7 @@ theme_config:
     title_blog: Blog
     title_old_projects: Пейплайны в работе. Помощники врача.
     title_farmer: Пейплайны в работе. Помощники фермера.
+    title_clostridia: Пейплайны в работе. Помощники врача. Вселенная клостридий.
     title_criminal: Пейплайны в работе. Помощники криминалиста.
 
 soopr:

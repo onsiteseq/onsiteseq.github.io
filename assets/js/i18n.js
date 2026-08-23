@@ -1407,6 +1407,289 @@
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Gas Gangrene / Clostridial Myonecrosis</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — Clostridium perfringens (Food Safety)</a></li></ul>';
 
+  /* ── BOTULINUM (C. botulinum) ── */
+  EN['/botulinum/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_botulinum.svg" alt="Clostridium botulinum — rod with a spore and a blocked synapse" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Botulinum Neurotoxin Detection and Serotyping of Clostridium botulinum</h1>' +
+    '<p style="font-size:1.2em;color:#555">The bont gene, serotype (A–G), toxin cluster and its localisation — in hours, when antitoxin works only in the first hours</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Clostridium botulinum</em> is an anaerobic spore-forming rod producing <strong>botulinum neurotoxin (BoNT) — the most toxic substance known to science</strong>: the lethal dose for humans is estimated at ~1–2 ng/kg. BoNT is a protease that cleaves proteins of the <strong>SNARE complex</strong> of the nerve terminal and blocks acetylcholine release at the neuromuscular junction. Clinically this manifests as a <strong>descending symmetric flaccid paralysis</strong>: diplopia and ptosis → dysphagia and dysarthria → paralysis of the respiratory muscles and respiratory failure. The antidote — heptavalent botulinum antitoxin (BAT) — binds only circulating toxin and is effective <strong>only when given early</strong>: neurons with already internalised toxin recover over weeks. The speed of laboratory confirmation therefore directly determines the outcome.</p>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>direct detection of the bont gene</strong>, <strong>serotyping (A–G)</strong> from the toxin target specificity, <strong>toxin cluster analysis</strong> (the <em>ntnh</em> and <em>ha</em> genes — the "progenitor toxin complex") and <strong>cluster localisation</strong> — chromosome, plasmid or prophage. Long ONT reads give a fundamental advantage here: they resolve the cluster architecture and the epidemiology of its horizontal transfer.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: remnants of the suspect food product, vomit, stool, serum, wound material. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the field/laboratory express-diagnostics scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the treating physician, epidemiologist and food-safety authority — bont detection, serotype, cluster structure (ha/ntnh), localisation (chromosome/plasmid/phage), carrier identification; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Toxin, Serotypes, Cluster, Localisation</h2>' +
+    '<h3>The bont gene and serotypes</h3>' +
+    '<p>The serotype is defined by the antigenic specificity of BoNT and correlates with the molecular target of the toxin in the SNARE complex:</p>' +
+    tbl(['Serotype', 'BoNT Target', 'Significance'], [
+      ['<strong>A</strong>', 'SNAP-25', 'The main "human" type; the most severe and protracted course; also the therapeutic BoNT'],
+      ['<strong>B</strong>', 'Synaptobrevin/VAMP', 'The main "human" type; foodborne botulism'],
+      ['<strong>C</strong>', 'Syntaxin and SNAP-25', 'Mainly birds and animals'],
+      ['<strong>D</strong>', 'Synaptobrevin/VAMP', 'Animals'],
+      ['<strong>E</strong>', 'SNAP-25', 'The "fish" type; foodborne botulism from fish products and seafood'],
+      ['<strong>F</strong>', 'Synaptobrevin/VAMP', 'Rare human cases; also described in <em>C. baratii</em>'],
+      ['<strong>G</strong>', 'Synaptobrevin/VAMP', 'Rare; isolated from soil']
+    ]) +
+    '<h3>Toxin cluster (progenitor complex)</h3>' +
+    '<p>bont genes do not exist in isolation in the genome — they form a cluster with regulatory and protective genes:</p>' +
+    tbl(['Gene', 'Function', 'Analytical Significance'], [
+      ['<strong>bont (A–G)</strong>', 'Botulinum neurotoxin', 'Primary detection and serotyping target'],
+      ['<strong>ntnh</strong>', 'Non-toxic non-haemagglutinating protein NTNH', 'Conserved cluster marker; protects the toxin in the GI tract'],
+      ['<strong>ha (ha17/33/70)</strong>', 'Haemagglutinins', 'Components of the progenitor toxin complex; ha variability is a cluster-type marker']
+    ]) +
+    '<h3>Cluster localisation and horizontal transfer</h3>' +
+    '<p>Long ONT reads resolve the genomic context of the cluster — the key to understanding its epidemiology:</p>' +
+    tbl(['Localisation', 'Examples', 'Epidemiological Significance'], [
+      ['<strong>Chromosome</strong>', 'Type A (group I), type E', 'Relatively stable inheritance'],
+      ['<strong>Plasmids</strong>', 'Type B (group II), some A', 'Potential for transfer between strains'],
+      ['<strong>Prophages</strong>', 'Types C, D (group III)', 'Phage-mediated transfer of toxigenicity']
+    ]) +
+    '<p><em>C. botulinum</em> is not a single species but <strong>four physiological groups (I–IV)</strong> united only by the ability to produce BoNT. Moreover, bont genes have been found in other clostridia — <em>C. baratii</em> (type F) and <em>C. butyricum</em> (type E): direct evidence of the horizontal transfer that our pipeline tracks.</p>' +
+    '<h3>Clinical forms of botulism</h3>' +
+    tbl(['Form', 'Source / Mechanism', 'Role of Genomics'], [
+      ['<strong>Foodborne</strong>', 'Home preserves, dried/smoked fish, mushrooms — hermetically sealed products without oxygen access', 'bont detection in the product sample and in the patient; serotyping for source tracing'],
+      ['<strong>Infant</strong>', 'Intestinal colonisation by spores (the classic factor — honey before 1 year of age); toxin is synthesised in situ', 'Confirmation of the toxigenic strain in the infant\'s stool'],
+      ['<strong>Wound</strong>', 'Wound contamination by spores, including in people who inject drugs', 'bont detection from wound material'],
+      ['<strong>Iatrogenic</strong>', 'Overdose of therapeutic/cosmetic BoNT', 'Differentiation from infectious botulism'],
+      ['<strong>Inhalational</strong>', 'Potential biothreat — CDC category A', 'Detection within biosafety and sanitary surveillance']
+    ]) +
+    '<h3>Classical and modern diagnostics</h3>' +
+    tbl(['Method', 'Limitations', 'Place of the ONT Pipeline'], [
+      ['<strong>Mouse bioassay</strong> (historical gold standard)', 'Slow (up to a day), ethically controversial, requires special facilities', 'A genomic alternative in hours'],
+      ['<strong>Endopep-MS</strong> (mass spectrometry of toxin activity)', 'Requires a specialised laboratory', 'Complementary methods'],
+      ['<strong>PCR for bont</strong>', 'Point-like: provides neither cluster architecture nor localisation', 'Long reads resolve the whole cluster'],
+      ['<strong>Culture</strong>', 'Slow, requires anaerobic and BSL conditions', 'Direct detection from the sample without cultivation']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Botulinum Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CBT-Tox-Serotyper</strong>', 'Serotyping (A–G) from the bont gene with target determination (SNAP-25 / VAMP / syntaxin)'],
+      ['<strong>CBT-Cluster-Resolver</strong>', 'Reconstruction of the toxin cluster (ha/ntnh) and its localisation (chromosome/plasmid/phage)'],
+      ['<strong>CBT-Host-ID</strong>', 'Carrier identification: <em>C. botulinum</em> (groups I–IV), <em>C. baratii</em>, <em>C. butyricum</em>']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — bont A–G reference panel + cluster genes (ntnh, ha) + carrier genomes'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. bont detection and cluster analysis</strong>', 'Custom database of bont serotypes and cluster genes; localisation resolved from long reads'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Antitoxin works only in the first hours</strong> — BAT neutralises only circulating toxin, so every hour of delay in laboratory confirmation worsens the prognosis. Point-of-care ONT sequencing cuts the time from sample to genomic answer from days to hours.</li>' +
+    '<li><strong>Home preserves — a persistent risk in Russia and Eastern Europe</strong> — dried and smoked fish (type E), mushrooms and vegetable preserves remain classic sources of foodborne botulism; hermetic packaging without oxygen creates ideal conditions for spores. Rapid typing matters for outbreak tracing by food-safety authorities.</li>' +
+    '<li><strong>Infant botulism and honey</strong> — the most frequent form of botulism in a number of countries; honey is not recommended for children under one year. Confirming the toxigenic strain in the infant\'s stool speeds up diagnosis with a non-specific picture (hypotonia, weak cry, constipation).</li>' +
+    '<li><strong>Wound botulism in people who inject drugs</strong> — a persistent source of outbreaks in Europe and North America requiring rapid detection from wound material.</li>' +
+    '<li><strong>"Poison-medicine"</strong> — type A BoNT (Botox and analogues) is the highest-grossing biopharmaceutical in the world; the dual nature of the toxin (poison, medicine, potential bioweapon — CDC category A) makes diagnostics and toxigenicity control a clinical, sanitary and defence task alike.</li>' +
+    '<li><strong>Horizontal transfer as a threat</strong> — the discovery of bont in <em>C. baratii</em> and <em>C. butyricum</em> shows that toxigenicity is not tied to a species; monitoring cluster localisation (plasmid/phage) is a forecast of threat evolution.</li></ul>' +
+    '<blockquote><p>⚠️ <strong>Dual use.</strong> This page and the pipeline have a strictly medical-diagnostic and defensive purpose (biosafety, food control). The pipeline solves only detection and typing tasks and contains no protocols for producing or cultivating the toxin.</p></blockquote><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — Botulism</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Botulism (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — Botulism (Fact Sheet)</a></li></ul>';
+
+  /* ── SORDELLII / SEPTICUM ── */
+  EN['/sordellii/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_sordellii.svg" alt="Paeniclostridium sordellii and Clostridium septicum — two spore-forming rods and a droplet" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Direct Detection of Paeniclostridium sordellii and Clostridium septicum Toxins</h1>' +
+    '<p style="font-size:1.2em;color:#555">tcsL/tcsH and csa genes, species identification from blood, tissue and uterine aspirate — in hours, when culture cannot keep up</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p>A duet page: two rare but ultra-dramatic clostridial syndromes united by a common scenario — <strong>intensive care, the count is in hours, culture cannot keep up</strong>.</p>' +
+    '<p><em><strong>Paeniclostridium sordellii</strong></em> (formerly <em>Clostridium sordellii</em>) is the agent of <strong>toxic shock after childbirth and uterine medical interventions</strong> (including medical abortion). The clinical portrait is specific and differs from sepsis: <strong>shock without fever</strong>, refractory hypotension, marked <strong>haemoconcentration</strong> (haematocrit up to 60–70%), <strong>leukaemoid reaction</strong> (leukocytes 40–80 thousand), cavitary effusions. Death occurs within <strong>2–6 days</strong>; lethality of the TSS form in published series is <strong>70–100%</strong>. The cause is the lethal toxin <strong>TcsL</strong> from the family of large clostridial glucosylating toxins (a relative of TcdB of <em>C. difficile</em>): it glucosylates small GTPases (Rac, Ras subfamily) → collapse of the endothelial cytoskeleton → <strong>total capillary leak</strong>. Additional arsenal: the haemorrhagic toxin <strong>TcsH</strong> and neuraminidase <strong>NanS</strong> (a promising target for inhibitors).</p>' +
+    '<p><em><strong>Clostridium septicum</strong></em> is the agent of <strong>atraumatic (spontaneous) gas gangrene</strong> and an important clinical marker: <em>C. septicum</em> bacteraemia often points to <strong>occult colon cancer or neutropenia</strong> (the bacterium penetrates through a defect of the intestinal wall and seeds muscle). Its alpha-toxin (gene <strong>csa</strong>) is <strong>pore-forming</strong>, related to aerolysin, and NOT a phospholipase C as in <em>C. perfringens</em>. Lethality of spontaneous gangrene is higher than that of traumatic gangrene.</p>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>direct detection of the toxin genes tcsL/tcsH</strong> (<em>P. sordellii</em>) and <strong>csa</strong> (<em>C. septicum</em>) together with <strong>species identification</strong> (16S rRNA and species-specific markers) and differentiation from <em>C. perfringens</em> and other clostridia — a genomic answer for the intensivist, obstetrician and surgeon in hours, not days.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood, lesion tissue, uterine aspirate. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the point-of-care scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the intensivist/obstetrician/surgeon — species identification, toxin gene profile, clostridial differential series; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Toxins, Identification, Differentiation</h2>' +
+    '<h3>Toxin genes</h3>' +
+    tbl(['Gene', 'Pathogen', 'Toxin and Mechanism'], [
+      ['<strong>tcsL</strong>', '<em>P. sordellii</em>', 'Lethal toxin TcsL — a large clostridial glucosylating toxin; inactivates small GTPases (Rac, Ras) → endothelial cytoskeleton collapse → capillary leak and TSS'],
+      ['<strong>tcsH</strong>', '<em>P. sordellii</em>', 'Haemorrhagic toxin TcsH — the haemorrhagic component'],
+      ['<strong>nanS</strong>', '<em>P. sordellii</em>', 'Neuraminidase NanS — a virulence factor and a target for inhibitors'],
+      ['<strong>csa</strong>', '<em>C. septicum</em>', 'α-toxin — <strong>pore-forming</strong>, related to aerolysin (not a phospholipase!); the key factor of myonecrosis in spontaneous gangrene']
+    ]) +
+    '<h3>Species identification and differential diagnosis</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>16S rRNA</strong>', 'Genus- and species-level identification; differentiation from <em>C. perfringens</em>, <em>C. novyi</em>, <em>C. chauvoei</em> and other clostridia'],
+      ['<strong>Species-specific markers</strong>', 'Discrimination of <em>P. sordellii</em> and <em>C. septicum</em> when 16S is too close']
+    ]) +
+    '<h3>Cross table: three clostridial syndromes</h3>' +
+    tbl(['Feature', '<em>C. perfringens</em>', '<em>C. septicum</em>', '<em>P. sordellii</em>'], [
+      ['<strong>Syndrome</strong>', 'Traumatic gas gangrene (~95% of cases)', '<strong>Spontaneous</strong> (atraumatic) gangrene', 'Toxic shock after childbirth / uterine interventions'],
+      ['<strong>Portal of entry</strong>', 'Wound, trauma', 'Intestinal wall defect (tumour, neutropenia)', 'Endometritis, postpartum/post-abortion infection'],
+      ['<strong>Key toxin</strong>', 'α-toxin cpa (phospholipase C)', 'α-toxin csa (<strong>pore-forming</strong>)', 'TcsL (glucosylating) + TcsH'],
+      ['<strong>Distinctive feature</strong>', 'Necrosis ~15 cm/hour', 'Marker of occult colon cancer', 'Shock <strong>without fever</strong>, haematocrit 60–70%, leukocytes 40–80 thousand'],
+      ['<strong>See also</strong>', '<a href="/perfringens/">Page /perfringens/</a>', '—', '—']
+    ]) +
+    '<h3>Treatment approaches (in the report)</h3>' +
+    tbl(['Pathogen', 'Approach', 'Role of Genomics'], [
+      ['<strong>P. sordellii</strong>', 'Early source control (often <strong>hysterectomy</strong>) + clindamycin/penicillin + intensive care; no specific antitoxin exists', 'tcsL/tcsH detection confirms toxin-driven shock → rationale for aggressive source control'],
+      ['<strong>C. septicum</strong>', 'Emergency surgery + penicillin/clindamycin; in survivors — <strong>mandatory search for an intestinal tumour</strong>', 'csa detection + species identification → oncological alertness and referral for colonoscopy']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Sordellii/Septicum Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CST-Tox-Detector</strong>', 'Detection of the toxin genes tcsL/tcsH/csa/nanS in raw reads'],
+      ['<strong>CST-Species-ID</strong>', 'Differentiation of <em>P. sordellii</em>, <em>C. septicum</em>, <em>C. perfringens</em> and other clostridia'],
+      ['<strong>CST-Syndrome-Classifier</strong>', 'Syndrome prioritisation (TSS / spontaneous gangrene) from the findings profile']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — clostridia reference panel (<em>P. sordellii</em>, <em>C. septicum</em>, <em>C. perfringens</em>, <em>C. novyi</em> and others)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. Toxin gene detection</strong>', 'Custom database of toxin genes (tcsL, tcsH, nanS, csa) and species-specific markers'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Rarity → low alertness</strong> — both syndromes are rare, so the diagnosis is often made <strong>post-mortem</strong>: culture cannot keep up, and the clinical picture (shock without fever in <em>P. sordellii</em>) does not fit the familiar image of sepsis. Direct molecular detection from blood/tissue in hours changes this equation.</li>' +
+    '<li><strong>The mifepristone story of 2005</strong> — a series of deaths after medical abortions (mifepristone) in the USA and Canada led to an FDA alert and a joint CDC/FDA/NIH workshop (2006), after which the misoprostol administration scheme was changed. The case showed how a rare pathogen changes the regulation of an entire class of medical interventions.</li>' +
+    '<li><strong>C. septicum as a paraclinical marker</strong> — <em>C. septicum</em> bacteraemia is associated with occult colorectal cancer and neutropenia; identifying the pathogen is not only a diagnosis of gangrene but also a signal for an oncological search. An argument for oncological alertness and interdisciplinarity (One Health).</li>' +
+    '<li><strong>The family of large clostridial toxins</strong> — TcsL is related to TcdB of <em>C. difficile</em>: a unified pipeline for detecting glucosylating toxins creates the basis for the whole "clostridia universe" — from the anthrax-like syndromes of <em>C. novyi</em> to <em>C. difficile</em> infection.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Clostridium septicum / Gas Gangrene (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Clostridial Infections</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — Clostridium sordellii (Toxic Shock after Medical Abortion)</a></li></ul>';
+
+  /* ── NOVYI-NT (oncolytic) ── */
+  EN['/novyi/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_novyi.svg" alt="Clostridium novyi-NT — a spore germinating in the hypoxic tumour core" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Genomic Control of Clostridium novyi-NT — an Oncolytic Bacterium</h1>' +
+    '<p style="font-size:1.2em;color:#555">Therapeutic strain passport from complete assembly and biodistribution monitoring — long reads for experimental bacteriotherapy of solid tumours</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Clostridium novyi</em> type A is an anaerobic spore-forming clostridium, one of the agents of <strong>gas gangrene</strong> (notably known from outbreaks among people who inject drugs in the UK in the 2000s). Its main virulence factor is the <strong>α-toxin</strong>, a phospholipase related to the α-toxin (CPA) of <em>C. perfringens</em>. The <strong>C. novyi-NT</strong> strain (NT = non-toxic) was obtained by <strong>deleting the α-toxin gene</strong> — and it is precisely this that turned a dangerous pathogen into a candidate oncolytic agent.</p>' +
+    '<p>The key idea of the therapy: <strong>spores</strong> are injected intratumourally or systemically and germinate <strong>exclusively in the hypoxic (oxygen-free) core of a solid tumour</strong> — a zone poorly reached by chemo- and radiotherapy. Vegetative bacteria destroy the tumour from within: direct oncolysis plus release of tumour antigens with secondary activation of the immune response. The evidence base is still early: preclinical work on spontaneous canine tumours and a first-in-human phase I trial in patients with refractory solid tumours showed cases of objective destruction of injected lesions; combinations with immune checkpoint inhibitors are being studied. <strong>This is investigational therapy, not a standard of care.</strong></p>' +
+    '<p>Our role is <strong>genomic control and monitoring</strong> based on nanopore sequencing:</p>' +
+    '<ul><li><strong>🧪 Genomic QC of the therapeutic strain</strong> — confirmation of the absence of the α-toxin gene and unwanted insertions; a strain passport from complete assembly: long reads resolve the repeats and plasmids critical for clostridial genomes.</li>' +
+    '<li><strong>📍 Biodistribution monitoring</strong> — detection of <em>C. novyi-NT</em> DNA in tumour biopsies and in blood (metagenomics and targeted panels): confirmation that germination occurs precisely in the tumour and not in normal tissues.</li>' +
+    '<li><strong>🔗 Oncogenomic context</strong> — prospectively, integration with our oncology pipelines: the tumour mutational landscape as a background for interpreting the response to bacteriotherapy.</li></ul>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: culture of the therapeutic strain, tumour biopsies, blood samples.</li>' +
+    '<li><strong>📤 Output:</strong> Strain genomic passport report (complete assembly, α-toxin locus status, plasmids); biodistribution report (fraction of <em>C. novyi-NT</em> reads per sample); technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Genomic Passport and Biodistribution</h2>' +
+    '<h3>Genomic QC of the therapeutic strain</h3>' +
+    tbl(['Locus / Feature', 'Significance for Control'], [
+      ['<strong>α-toxin gene</strong>', 'The targeted deletion — the main genomic hallmark of the NT strain; control of the absence of a functional copy and of reversions'],
+      ['<strong>Plasmids</strong>', 'Clostridial toxins are often plasmid-borne; complete long-read assembly fixes the plasmid composition of the production batch'],
+      ['<strong>Repeats and mobile elements</strong>', 'Long reads resolve repeats inaccessible to short-read platforms — control of unwanted insertions and rearrangements'],
+      ['<strong>Assembly completeness</strong>', 'One closed chromosome + plasmids — the reference passport of the strain production batch']
+    ]) +
+    '<h3>Differential identification</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>NT strain-specific markers</strong>', 'Unique deletion junctions and strain signatures — distinguishing the therapeutic strain from wild <em>C. novyi</em>'],
+      ['<strong>16S rRNA + species markers</strong>', 'Differentiation from <em>C. perfringens</em>, <em>C. septicum</em> and other clostridia in the metagenomic background of a biopsy']
+    ]) +
+    '<h3>Biodistribution monitoring</h3>' +
+    tbl(['Sample', 'Question', 'Method'], [
+      ['<strong>Tumour biopsy</strong>', 'Does the strain germinate in the hypoxic core?', 'Metagenomics / targeted detection of <em>C. novyi-NT</em> DNA'],
+      ['<strong>Blood</strong>', 'Is there systemic dissemination beyond the tumour?', 'Targeted detection of strain-specific markers'],
+      ['<strong>Time series</strong>', 'Dynamics of the bacterial load after injection', 'Quantitative estimate of the strain read fraction']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Novyi Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CNV-Strain-Passport</strong>', 'Verification of the strain genomic passport: α-toxin locus status, plasmids, rearrangements'],
+      ['<strong>CNV-Biodistribution</strong>', 'Detection and quantification of <em>C. novyi-NT</em> DNA in the metagenomic background of biopsies and blood'],
+      ['<strong>CNV-Contaminant-Guard</strong>', 'Control of wild clostridia contaminants and foreign microflora in the therapeutic strain batch']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — <em>C. novyi-NT</em> reference and a panel of related clostridia'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. Complete strain assembly</strong>', '<code>flye</code> — closed chromosome and plasmids from long reads for the genomic passport'],
+      ['<strong>5. Strain marker detection</strong>', 'Custom database of strain-specific markers and α-toxin deletion junctions'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>A long history of cancer bacteriotherapy</strong> — the idea of using bacteria against tumours goes back to "Coley\'s toxins" of the late 19th century; today the field is being reborn at a new genomic level: strains are engineered purposefully (like the α-toxin deletion in <em>C. novyi-NT</em>) rather than taken "as is".</li>' +
+    '<li><strong>Hypoxia — an Achilles\' heel and a target at once</strong> — the hypoxic core of a solid tumour is resistant to chemo- and radiotherapy, but for obligate anaerobes it is the only place where they can germinate: the tumour itself creates the niche for its own destruction.</li>' +
+    '<li><strong>Combinations with immunotherapy — a hot niche</strong> — oncolysis releases tumour antigens and inflammatory signals; combining bacteriotherapy with immune checkpoint inhibitors is actively studied as a way to turn a local effect into a systemic one.</li>' +
+    '<li><strong>Genomic control is a mandatory component</strong> — for a live therapeutic agent, confirmed strain stability (no reversions of the toxin locus) and proven biodistribution are critical; long reads close both tasks where short platforms cannot resolve repeats and plasmids.</li>' +
+    '<li><strong>A restrained frame</strong> — <em>C. novyi-NT</em> bacteriotherapy remains an early experimental strategy with a limited evidence base; our pipeline is a research quality-control tool, not a clinical standard.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed / NCBI — publications on Clostridium novyi-NT</a></li>' +
+    '<li>📄 <a href="https://clinicaltrials.gov/">ClinicalTrials.gov — clinical trials of tumour bacteriotherapy</a></li>' +
+    '<li>📄 <a href="https://www.cancer.gov/">NCI (cancer.gov) — US National Cancer Institute</a></li></ul>';
+
+  /* ── CHAUVOEI (blackleg, veterinary) ── */
+  EN['/chauvoei/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_chauvoei.svg" alt="Clostridium chauvoei — spore-forming rod and bull silhouette" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Differential Diagnosis of Blackleg (Emphysematous Carbuncle) in Cattle</h1>' +
+    '<p style="font-size:1.2em;color:#555">A veterinary card of the "Clostridia Universe" section: sudden cattle death — blackleg or anthrax? A molecular answer on site, before the carcass is opened</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Clostridium chauvoei</em> is a Gram-positive anaerobic spore-forming rod, the agent of <strong>blackleg (emphysematous carbuncle)</strong> — a fulminant necrotising infection of cattle. The outdated name of the disease — "symptomatic anthrax" — <strong>must not mislead: blackleg has nothing to do with true anthrax (<em>Bacillus anthracis</em>)</strong>, yet the clinical picture of sudden death requires ruling anthrax out first. Spores persist in soil for years; mainly <strong>young cattle aged 6 months to 2 years</strong> are affected — typically well-fed young bulls on pasture. Spores penetrate the muscles (including via microtraumas), where under anaerobic conditions they germinate and cause <strong>crepitant myositis</strong>: gas in the muscles, lameness, high fever, swelling and crackling of the affected area. The disease is lightning-fast — <strong>the animal is often found already dead</strong>, without warning signs.</p>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (16S rRNA + species-specific markers) with differentiation from the closest relative <em>C. septicum</em> (with which <em>C. chauvoei</em> is easily confused; see our page <a href="/sordellii/">P. sordellii and C. septicum</a>), <strong>detection of the main virulence factor cctA</strong> and — the key task for the veterinary service — <strong>molecular exclusion of anthrax</strong> (<em>B. anthracis</em>: pagA/cap markers). In sudden cattle death the carcass must not be opened until anthrax is excluded: a rapid on-site answer decides whether to declare quarantine. Additionally the pipeline builds a <strong>molecular-epidemiological picture of the outbreak</strong> (outbreak map).</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: muscle tissue from the affected area, exudate, impression smear. Optimal: rapid library preparation and a <strong>Flongle</strong> run in a regional veterinary laboratory (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the veterinarian and veterinary surveillance — species identification, cctA detection, the <em>B. anthracis</em> exclusion result, epidemiological typing of the outbreak; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Virulence, Identification, Anthrax Exclusion</h2>' +
+    '<h3>Virulence factors</h3>' +
+    tbl(['Marker', 'Product', 'Significance'], [
+      ['<strong>cctA</strong>', 'CctA (chauvoei toxin A)', 'The main virulence factor: a pore-forming cytolysin of the β-pore-forming toxin family, identified as the key one in the 2010s'],
+      ['<strong>Hyaluronidase</strong>', 'Spreading enzyme', 'Destruction of the intercellular matrix, spread through the muscle'],
+      ['<strong>DNase</strong>', 'Nuclease', 'Degradation of tissue DNA and neutrophil extracellular traps'],
+      ['<strong>Neuraminidase</strong>', 'Sialidase', 'Damage to cell membranes, an additional pathogenicity factor'],
+      ['<strong>Flagella (fla locus)</strong>', 'Motility proteins', 'Motility in tissues; a marker of species identification']
+    ]) +
+    '<h3>Species identification and clostridial differential diagnosis</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>16S rRNA</strong>', 'Genus/species identification; differentiation from <em>C. septicum</em> (malignant oedema — the closest relative, easily confused with <em>C. chauvoei</em>), <em>C. perfringens</em>, <em>C. novyi</em>'],
+      ['<strong><em>C. chauvoei</em> species-specific markers</strong>', 'Unambiguous species identification despite close relatedness to <em>C. septicum</em>'],
+      ['<strong>Clostridia panel</strong>', 'Discrimination of blackleg, malignant oedema and other cattle clostridioses in a single run']
+    ]) +
+    '<h3>Anthrax exclusion (the core value for the veterinary service)</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>pagA</strong> (protective antigen)', 'A <em>Bacillus anthracis</em> marker — detected <strong>to exclude</strong> anthrax'],
+      ['<strong>cap</strong> (capsular polyglutamate)', 'A <em>B. anthracis</em> capsule marker — the second independent exclusion target'],
+      ['<strong>Decision in the report</strong>', '"Anthrax excluded / not excluded" → carcass opening, quarantine measures or routine disposal']
+    ]) +
+    '<h3>Molecular epidemiology of the outbreak</h3>' +
+    tbl(['Task', 'Pipeline Role'], [
+      ['<strong>Isolate typing</strong>', 'Comparison of the strain with the reference panel, relatedness assessment with previous outbreaks'],
+      ['<strong>Outbreak map</strong>', 'Linking the result to the farm/pasture: spores rise from the soil after floods and earthworks']
+    ]) +
+    '<h3>Control and prevention (reference in the report)</h3>' +
+    tbl(['Measure', 'Comment'], [
+      ['<strong>Vaccination of young stock</strong>', 'Toxoid and culture vaccines are effective; outbreaks continue where vaccinations are missed'],
+      ['<strong>After floods/droughts</strong>', 'Abnormal floods raise spores from the soil — elevated risk on new pastures'],
+      ['<strong>Carcass disposal</strong>', 'Burning or burial with lime; opening only after anthrax is excluded'],
+      ['<strong>Herd movement</strong>', 'Removal from the affected pasture, grazing restriction in the outbreak area']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Chauvoei Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CCV-Species-ID</strong>', 'Differentiation of <em>C. chauvoei</em> from <em>C. septicum</em>, <em>C. perfringens</em> and other clostridia'],
+      ['<strong>CCV-Anthrax-RuleOut</strong>', '"blackleg / anthrax / other" classifier from cctA and pagA/cap markers'],
+      ['<strong>CCV-Epi-Map</strong>', 'Molecular-epidemiological clustering of isolates and outbreak map']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — clostridia reference panel (<em>C. chauvoei</em>, <em>C. septicum</em>, <em>C. perfringens</em> and others) + <em>Bacillus anthracis</em>'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. Marker detection</strong>', 'In-house database of species-specific markers, the cctA gene and anthrax exclusion markers (pagA/cap)'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Decision before opening the carcass</strong> — in sudden cattle death the first question of the veterinary service is always the same: anthrax or not. An error in either direction is costly: a false alarm means quarantine and farm shutdown, a miss means spread of a particularly dangerous infection. Rapid molecular differentiation on site (Flongle in a regional veterinary laboratory) cuts the answer from days to hours.</li>' +
+    '<li><strong>Worldwide distribution and economics</strong> — blackleg is registered all over the world and causes tangible losses to cattle farming: the best-fed young animals die, and vaccination requires annual discipline. In Russia, outbreaks are regularly registered (Rosselkhoznadzor monitoring), including in Siberia, Altai and the Caucasus.</li>' +
+    '<li><strong>The climate factor</strong> — outbreaks are linked to abnormal floods and droughts: flood waters raise soil spores onto new pastures, droughts concentrate herds on limited areas. Climate change makes epizootiological monitoring in demand.</li>' +
+    '<li><strong>Vaccination gaps</strong> — the vaccine is effective, but outbreaks keep occurring where vaccinations are missed; rapid laboratory-confirmed outbreak diagnostics help veterinary surveillance localise the problem before it spreads.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.woah.org/">WOAH (formerly OIE) — World Organisation for Animal Health</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — Clostridium chauvoei (Taxonomy, Genome, Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckvetmanual.com/">Merck Veterinary Manual — Blackleg (Emphysematous Carbuncle)</a></li></ul>';
+
   /* ── SARS-CoV-2 ── */
   EN['/sarscov2/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -2647,6 +2930,309 @@
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 气性坏疽 / 梭菌性肌坏死</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — 产气荚膜梭菌(食品安全)</a></li></ul>';
 
+  /* ── BOTULINUM (肉毒梭菌) ── */
+  ZH['/botulinum/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_botulinum.svg" alt="肉毒梭菌 — 带孢子的杆菌与被阻断的突触" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>肉毒神经毒素检测与肉毒梭菌血清分型</h1>' +
+    '<p style="font-size:1.2em;color:#555">bont 基因、血清型 (A–G)、毒素基因簇及其定位 — 数小时出结果,而抗毒素仅在最初几小时有效</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>肉毒梭菌</em>(Clostridium botulinum)是一种厌氧产孢杆菌,产生<strong>肉毒神经毒素 (BoNT) — 已知毒性最强的物质</strong>:对人的致死剂量估计约为 1–2 纳克/公斤。BoNT 是一种蛋白酶,可切割神经末梢 <strong>SNARE 复合体</strong>的蛋白,阻断神经肌肉接头处乙酰胆碱的释放。临床上表现为<strong>下行性对称性弛缓性麻痹</strong>:复视与上睑下垂 → 吞咽困难与构音障碍 → 呼吸肌麻痹与呼吸衰竭。解毒剂——七价肉毒抗毒素 (BAT)——只能中和循环中的毒素,<strong>仅在早期给药时有效</strong>:已内化毒素的神经元需数周才能恢复。因此,实验室确诊的速度直接决定预后。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,执行 <strong>bont 基因直接检测</strong>、根据毒素作用靶点进行<strong>血清分型 (A–G)</strong>、<strong>毒素基因簇分析</strong>(<em>ntnh</em> 与 <em>ha</em> 基因——“前体毒素复合体”)以及<strong>基因簇定位</strong>——染色体、质粒或前噬菌体。ONT 长读长在此具有根本优势:可解析基因簇结构及其水平转移的流行病学。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:可疑食品残留、呕吐物、粪便、血清、伤口材料。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场/实验室快速诊断场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向主治医生、流行病学家和食品监管机构的 HTML 报告 — bont 检测、血清型、基因簇结构 (ha/ntnh)、定位(染色体/质粒/噬菌体)、携带者鉴定;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:毒素、血清型、基因簇、定位</h2>' +
+    '<h3>bont 基因与血清型</h3>' +
+    '<p>血清型由 BoNT 的抗原特异性决定,并与毒素在 SNARE 复合体中的分子靶点相关:</p>' +
+    tbl(['血清型', 'BoNT 靶点', '意义'], [
+      ['<strong>A</strong>', 'SNAP-25', '主要“人类”型别;病程最重、最迁延;也是治疗用 BoNT'],
+      ['<strong>B</strong>', '突触小泡蛋白/VAMP', '主要“人类”型别;食源性肉毒中毒'],
+      ['<strong>C</strong>', '突触融合蛋白和 SNAP-25', '主要见于鸟类和动物'],
+      ['<strong>D</strong>', '突触小泡蛋白/VAMP', '动物'],
+      ['<strong>E</strong>', 'SNAP-25', '“鱼类”型别;鱼制品和海产品引起的食源性肉毒中毒'],
+      ['<strong>F</strong>', '突触小泡蛋白/VAMP', '人类罕见病例;也见于 <em>C. baratii</em>'],
+      ['<strong>G</strong>', '突触小泡蛋白/VAMP', '罕见;分离自土壤']
+    ]) +
+    '<h3>毒素基因簇(前体复合体)</h3>' +
+    '<p>bont 基因在基因组中并非孤立存在——它们与调控和保护基因组成基因簇:</p>' +
+    tbl(['基因', '功能', '分析意义'], [
+      ['<strong>bont (A–G)</strong>', '肉毒神经毒素', '检测与血清分型的首要靶标'],
+      ['<strong>ntnh</strong>', '无毒非血凝蛋白 NTNH', '基因簇保守标志物,在胃肠道中保护毒素'],
+      ['<strong>ha (ha17/33/70)</strong>', '血凝素', '前体毒素复合体组分;ha 变异是基因簇类型标志物']
+    ]) +
+    '<h3>基因簇定位与水平转移</h3>' +
+    '<p>ONT 长读长可解析基因簇的基因组背景——理解其流行病学的关键:</p>' +
+    tbl(['定位', '示例', '流行病学意义'], [
+      ['<strong>染色体</strong>', 'A 型(I 群)、E 型', '相对稳定的遗传'],
+      ['<strong>质粒</strong>', 'B 型(II 群)、部分 A 型', '菌株间传播的潜力'],
+      ['<strong>前噬菌体</strong>', 'C、D 型(III 群)', '噬菌体介导的产毒能力转移']
+    ]) +
+    '<p><em>肉毒梭菌</em>并非单一物种,而是<strong>四个生理群 (I–IV)</strong>,仅因能产生 BoNT 而归为一类。此外,在其他梭菌——<em>C. baratii</em>(F 型)和 <em>C. butyricum</em>(E 型)——中也发现了 bont 基因:这正是我们流程所追踪的水平转移的直接证据。</p>' +
+    '<h3>肉毒中毒的临床类型</h3>' +
+    tbl(['类型', '来源/机制', '基因组学的作用'], [
+      ['<strong>食源性</strong>', '家庭罐头、风干/熏制鱼、蘑菇——无氧密封食品', '在食品样本和患者样本中检测 bont;血清分型用于溯源'],
+      ['<strong>婴儿型</strong>', '孢子在肠道定植(经典因素——1 岁前食用蜂蜜);毒素原位合成', '确认婴儿粪便中的产毒菌株'],
+      ['<strong>创伤型</strong>', '伤口被孢子污染,包括注射吸毒者', '从伤口材料中检测 bont'],
+      ['<strong>医源性</strong>', '治疗/美容用 BoNT 过量', '与感染性肉毒中毒鉴别'],
+      ['<strong>吸入性</strong>', '潜在生物威胁——CDC A 类', '生物安全与卫生监督框架内的检测']
+    ]) +
+    '<h3>经典与现代诊断方法</h3>' +
+    tbl(['方法', '局限性', 'ONT 流程的定位'], [
+      ['<strong>小鼠生物试验</strong>(历史金标准)', '缓慢(长达一天)、伦理争议、需要特殊条件', '数小时的基因组学替代方案'],
+      ['<strong>Endopep-MS</strong>(毒素活性质谱)', '需要专业实验室', '互为补充的方法'],
+      ['<strong>bont PCR</strong>', '点状检测:无法给出基因簇结构和定位', '长读长可完整解析基因簇'],
+      ['<strong>培养</strong>', '缓慢,需要厌氧和 BSL 条件', '无需培养直接从样本检测']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Botulinum Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CBT-Tox-Serotyper</strong>', '基于 bont 基因的血清分型 (A–G) 并确定作用靶点 (SNAP-25 / VAMP / 突触融合蛋白)'],
+      ['<strong>CBT-Cluster-Resolver</strong>', '毒素基因簇 (ha/ntnh) 及其定位(染色体/质粒/噬菌体)的重建'],
+      ['<strong>CBT-Host-ID</strong>', '携带者鉴定:<em>C. botulinum</em>(I–IV 群)、<em>C. baratii</em>、<em>C. butyricum</em>']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — bont A–G 参考面板 + 基因簇基因 (ntnh、ha) + 携带者基因组'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. bont 检测与基因簇分析</strong>', '自建 bont 血清型与基因簇基因数据库;基于长读长解析定位'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>抗毒素仅在最初几小时有效</strong> — BAT 只能中和循环中的毒素,实验室确诊每延迟一小时,预后就更差。床旁 ONT 测序把从样本到基因组学答案的时间从数天缩短到数小时。</li>' +
+    '<li><strong>家庭罐头——俄罗斯和东欧的持续风险</strong> — 风干与熏制鱼(E 型)、蘑菇和蔬菜罐头仍是食源性肉毒中毒的经典来源;无氧密封包装为孢子创造了理想条件。快速分型对食品监管机构的暴发溯源同样重要。</li>' +
+    '<li><strong>婴儿肉毒中毒与蜂蜜</strong> — 在一些国家是最常见的肉毒中毒类型;不建议一岁内婴儿食用蜂蜜。确认婴儿粪便中的产毒菌株,可在非典型表现(肌张力低下、哭声微弱、便秘)时加速诊断。</li>' +
+    '<li><strong>注射吸毒者的创伤型肉毒中毒</strong> — 欧洲和北美暴发的持续来源,需要从伤口材料中快速检测。</li>' +
+    '<li><strong>“毒药-良药”</strong> — A 型 BoNT(保妥适及类似物)是全球最畅销的生物制药;毒素的双重属性(毒药、药物、潜在生物武器——CDC A 类)使诊断与产毒能力监控同时成为临床、卫生和国防任务。</li>' +
+    '<li><strong>水平转移作为威胁</strong> — 在 <em>C. baratii</em> 和 <em>C. butyricum</em> 中发现 bont 表明产毒能力并不绑定于物种;监测基因簇定位(质粒/噬菌体)即是对威胁演化的预测。</li></ul>' +
+    '<blockquote><p>⚠️ <strong>双重用途。</strong>本页面与流程仅用于严格的医学诊断和防御目的(生物安全、食品监管)。流程只解决检测与分型任务,不含任何毒素制备或培养方案。</p></blockquote><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — 肉毒中毒</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 肉毒中毒 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — 肉毒中毒(实况报道)</a></li></ul>';
+
+  /* ── SORDELLII / SEPTICUM ── */
+  ZH['/sordellii/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_sordellii.svg" alt="索氏帕埃尼梭菌与败血梭菌 — 两根产孢杆菌与一滴液体" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>索氏帕埃尼梭菌与败血梭菌毒素直接检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">tcsL/tcsH 与 csa 基因,从血液、组织和子宫抽吸物进行菌种鉴定 — 培养来不及的时候,数小时出结果</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>“双人组”页面:两种罕见但极端凶险的梭菌综合征,共同场景是——<strong>重症监护、分秒必争、培养来不及</strong>。</p>' +
+    '<p><em><strong>索氏帕埃尼梭菌</strong></em>(Paeniclostridium sordellii,旧称 <em>Clostridium sordellii</em>)是<strong>分娩及子宫医疗操作(包括药物流产)后中毒性休克</strong>的病原体。其临床特征特异、不同于普通脓毒症:<strong>无发热休克</strong>、难治性低血压、显著<strong>血液浓缩</strong>(血细胞比容升至 60–70%)、<strong>类白血病反应</strong>(白细胞 4–8 万)、浆膜腔积液。死亡发生在 <strong>2–6 天</strong>内,已发表病例系列中 TSS 型病死率达 <strong>70–100%</strong>。病因是致死性毒素 <strong>TcsL</strong>——大梭菌糖基化毒素家族成员(与 <em>C. difficile</em> 的 TcdB 同源):使小 GTP 酶(Rac、Ras 亚家族)糖基化 → 内皮细胞骨架崩塌 → <strong>全面毛细血管渗漏</strong>。其他武器:出血性毒素 <strong>TcsH</strong> 和神经氨酸酶 <strong>NanS</strong>(抑制剂的有前景靶点)。</p>' +
+    '<p><em><strong>败血梭菌</strong></em>(Clostridium septicum)是<strong>非创伤性(自发性)气性坏疽</strong>的病原体,也是重要的临床标志物:<em>C. septicum</em> 菌血症常提示<strong>隐匿性结肠癌或中性粒细胞减少</strong>(细菌经肠壁缺损侵入并播种于肌肉)。其 α-毒素(基因 <strong>csa</strong>)为<strong>成孔毒素</strong>,与气溶素同源,而并非 <em>C. perfringens</em> 那样的磷脂酶 C。自发性坏疽的病死率高于创伤性坏疽。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,执行<strong>毒素基因 tcsL/tcsH</strong>(<em>P. sordellii</em>)与 <strong>csa</strong>(<em>C. septicum</em>)的<strong>直接检测</strong>,同时进行<strong>菌种鉴定</strong>(16S rRNA 与种特异性标志物)并与 <em>C. perfringens</em> 及其他梭菌鉴别——为重症、产科和外科医生提供以小时而非天计的基因组学答案。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液、病灶组织、子宫抽吸物。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向重症/产科/外科医生的 HTML 报告 — 菌种鉴定、毒素基因谱、梭菌鉴别系列;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:毒素、鉴定、鉴别</h2>' +
+    '<h3>毒素基因</h3>' +
+    tbl(['基因', '病原体', '毒素与机制'], [
+      ['<strong>tcsL</strong>', '<em>P. sordellii</em>', '致死性毒素 TcsL——大梭菌糖基化毒素;使小 GTP 酶 (Rac、Ras) 失活 → 内皮细胞骨架崩塌 → 毛细血管渗漏与 TSS'],
+      ['<strong>tcsH</strong>', '<em>P. sordellii</em>', '出血性毒素 TcsH——出血组分'],
+      ['<strong>nanS</strong>', '<em>P. sordellii</em>', '神经氨酸酶 NanS——毒力因子及抑制剂靶点'],
+      ['<strong>csa</strong>', '<em>C. septicum</em>', 'α-毒素——<strong>成孔毒素</strong>,与气溶素同源(不是磷脂酶!);自发性坏疽肌坏死的关键因子']
+    ]) +
+    '<h3>菌种鉴定与鉴别诊断</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>16S rRNA</strong>', '属/种水平鉴定;与 <em>C. perfringens</em>、<em>C. novyi</em>、<em>C. chauvoei</em> 及其他梭菌鉴别'],
+      ['<strong>种特异性标志物</strong>', '16S 过于接近时区分 <em>P. sordellii</em> 与 <em>C. septicum</em>']
+    ]) +
+    '<h3>对照表:三种梭菌综合征</h3>' +
+    tbl(['特征', '<em>C. perfringens</em>', '<em>C. septicum</em>', '<em>P. sordellii</em>'], [
+      ['<strong>综合征</strong>', '创伤性气性坏疽(约 95% 病例)', '<strong>自发性</strong>(非创伤性)坏疽', '分娩/子宫操作后中毒性休克'],
+      ['<strong>入侵门户</strong>', '伤口、创伤', '肠壁缺损(肿瘤、中性粒细胞减少)', '子宫内膜炎、产后/流产后感染'],
+      ['<strong>关键毒素</strong>', 'α-毒素 cpa(磷脂酶 C)', 'α-毒素 csa(<strong>成孔毒素</strong>)', 'TcsL(糖基化)+ TcsH'],
+      ['<strong>特点</strong>', '坏死约 15 厘米/小时', '隐匿性结肠癌标志物', '<strong>无发热</strong>休克,血细胞比容 60–70%,白细胞 4–8 万'],
+      ['<strong>另见</strong>', '<a href="/perfringens/">页面 /perfringens/</a>', '—', '—']
+    ]) +
+    '<h3>治疗策略(报告内)</h3>' +
+    tbl(['病原体', '策略', '基因组学的作用'], [
+      ['<strong>P. sordellii</strong>', '早期感染源控制(常需<strong>子宫切除</strong>)+ 克林霉素/青霉素 + 重症支持;无特异性抗毒素', 'tcsL/tcsH 检测证实毒素介导的休克 → 为激进感染源控制提供依据'],
+      ['<strong>C. septicum</strong>', '急诊手术 + 青霉素/克林霉素;存活者<strong>必须排查肠道肿瘤</strong>', 'csa 检测 + 菌种鉴定 → 肿瘤警觉并转诊结肠镜']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Sordellii/Septicum Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CST-Tox-Detector</strong>', '在原始读长中检测毒素基因 tcsL/tcsH/csa/nanS'],
+      ['<strong>CST-Species-ID</strong>', '<em>P. sordellii</em>、<em>C. septicum</em>、<em>C. perfringens</em> 及其他梭菌的鉴别'],
+      ['<strong>CST-Syndrome-Classifier</strong>', '根据检出谱对综合征(TSS/自发性坏疽)进行优先级排序']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 梭菌参考序列面板(<em>P. sordellii</em>、<em>C. septicum</em>、<em>C. perfringens</em>、<em>C. novyi</em> 等)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. 毒素基因检出</strong>', '自建毒素基因(tcsL、tcsH、nanS、csa)与种特异性标志物数据库'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>罕见 → 警觉性低</strong> — 两种综合征均罕见,诊断常在<strong>死后</strong>才做出:培养来不及,而临床表现(<em>P. sordellii</em> 的无发热休克)又不符合人们习惯的脓毒症图像。数小时内从血液/组织直接分子检测改变了这一等式。</li>' +
+    '<li><strong>2005 年米非司酮事件</strong> — 美国和加拿大药物流产(米非司酮)后的一系列死亡引发 FDA 警示,并促成 CDC/FDA/NIH 联合研讨会(2006),此后米索前列醇给药方案被修改。该案例表明,一种罕见病原体可以改变整类医疗操作的监管。</li>' +
+    '<li><strong>C. septicum 作为旁临床标志物</strong> — <em>C. septicum</em> 菌血症与隐匿性结直肠癌和中性粒细胞减少相关;鉴定病原体不仅是坏疽的诊断,也是肿瘤排查的信号。这是肿瘤警觉与多学科协作 (One Health) 的论据。</li>' +
+    '<li><strong>大梭菌毒素家族</strong> — TcsL 与 <em>C. difficile</em> 的 TcdB 同源:统一的糖基化毒素检测流程为整个“梭菌宇宙”奠定基础——从 <em>C. novyi</em> 的炭疽样综合征到艰难梭菌感染。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 败血梭菌/气性坏疽 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 梭菌感染</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 索氏梭菌(药物流产后中毒性休克)</a></li></ul>';
+
+  /* ── NOVYI-NT(溶瘤梭菌) ── */
+  ZH['/novyi/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_novyi.svg" alt="溶瘤梭菌 C. novyi-NT — 孢子在肿瘤缺氧核心萌发" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>溶瘤细菌 Clostridium novyi-NT 的基因组质控</h1>' +
+    '<p style="font-size:1.2em;color:#555">完整组装的治疗菌株基因组护照与生物分布监测 — 长读长服务实体瘤实验性细菌治疗</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>诺维梭菌</em>(Clostridium novyi)A 型是一种厌氧产孢梭菌,<strong>气性坏疽</strong>病原体之一(因 2000 年代英国注射吸毒者中的暴发而为人所知)。其主要毒力因子是 <strong>α-毒素</strong>——一种磷脂酶,与 <em>C. perfringens</em> 的 α-毒素 (CPA) 同源。<strong>C. novyi-NT</strong> 菌株(NT = non-toxic,无毒)通过<strong>删除 α-毒素基因</strong>获得——正是这一改造把危险病原体变成了溶瘤制剂候选。</p>' +
+    '<p>治疗的核心理念:<strong>孢子</strong>经瘤内或全身注射后,<strong>仅在实体瘤缺氧(无氧)核心</strong>萌发——这是化疗和放疗难以企及的区域。营养体细菌从内部摧毁肿瘤:直接溶瘤加上释放肿瘤抗原、继发激活免疫应答。证据尚处早期:犬自发性肿瘤的临床前研究和针对难治性实体瘤患者的首次 I 期临床试验均观察到注射病灶的客观破坏;与免疫检查点抑制剂的联合方案正在研究中。<strong>这是研究性治疗,而非标准治疗。</strong></p>' +
+    '<p>我们的角色是基于纳米孔测序的<strong>基因组质控与监测</strong>:</p>' +
+    '<ul><li><strong>🧪 治疗菌株基因组 QC</strong> — 确认 α-毒素基因缺失及无不良插入;以完整组装出具菌株护照:长读长可解析对梭菌基因组至关重要的重复序列和质粒。</li>' +
+    '<li><strong>📍 生物分布监测</strong> — 在肿瘤活检组织和血液中检测 <em>C. novyi-NT</em> DNA(宏基因组学与靶向 panel):确认萌发确实发生在肿瘤而非正常组织。</li>' +
+    '<li><strong>🔗 肿瘤基因组背景</strong> — 展望与我们肿瘤流程的联动:肿瘤突变景观作为解读细菌治疗应答的背景。</li></ul>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:治疗菌株培养物、肿瘤活检组织、血液样本。</li>' +
+    '<li><strong>📤 输出:</strong> 菌株基因组护照报告(完整组装、α-毒素位点状态、质粒);生物分布报告(各样本中 <em>C. novyi-NT</em> 读长占比);面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:基因组护照与生物分布</h2>' +
+    '<h3>治疗菌株基因组 QC</h3>' +
+    tbl(['位点/特征', '质控意义'], [
+      ['<strong>α-毒素基因</strong>', '目标缺失——NT 菌株的核心基因组特征;监控无功能性拷贝及回复突变'],
+      ['<strong>质粒</strong>', '梭菌毒素常为质粒携带;长读长完整组装固定生产批次的质粒组成'],
+      ['<strong>重复序列与可移动元件</strong>', '长读长解析短读长平台无法覆盖的重复——监控不良插入与重排'],
+      ['<strong>组装完整性</strong>', '一条闭合染色体 + 质粒——菌株生产批次的基准护照']
+    ]) +
+    '<h3>鉴别鉴定</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>NT 菌株特异性标志物</strong>', '独特的缺失断点与菌株签名——区分治疗菌株与野生型 <em>C. novyi</em>'],
+      ['<strong>16S rRNA + 种特异性标志物</strong>', '在活检宏基因组背景中与 <em>C. perfringens</em>、<em>C. septicum</em> 及其他梭菌鉴别']
+    ]) +
+    '<h3>生物分布监测</h3>' +
+    tbl(['样本', '问题', '方法'], [
+      ['<strong>肿瘤活检</strong>', '菌株是否在缺氧核心萌发?', '宏基因组学/靶向检测 <em>C. novyi-NT</em> DNA'],
+      ['<strong>血液</strong>', '是否存在超出肿瘤的全身播散?', '靶向检测菌株特异性标志物'],
+      ['<strong>时间序列</strong>', '注射后细菌载量的动态', '菌株读长占比的定量评估']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Novyi Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CNV-Strain-Passport</strong>', '菌株基因组护照验证:α-毒素位点状态、质粒、重排'],
+      ['<strong>CNV-Biodistribution</strong>', '在活检与血液的宏基因组背景中检测并定量 <em>C. novyi-NT</em> DNA'],
+      ['<strong>CNV-Contaminant-Guard</strong>', '治疗菌株批次中野生梭菌与杂菌污染的监控']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — <em>C. novyi-NT</em> 参考序列及近缘梭菌面板'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. 菌株完整组装</strong>', '<code>flye</code> — 从长读长获得闭合染色体与质粒,用于基因组护照'],
+      ['<strong>5. 菌株标志物检出</strong>', '自建菌株特异性标志物与 α-毒素缺失断点数据库'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>肿瘤细菌治疗的悠久历史</strong> — 用细菌对抗肿瘤的设想可追溯到 19 世纪末的“科利毒素”(Coley);如今该方向在新的基因组层面复兴:菌株被定向改造(如 <em>C. novyi-NT</em> 的 α-毒素缺失),而非“拿来即用”。</li>' +
+    '<li><strong>缺氧——既是阿喀琉斯之踵,也是靶点</strong> — 实体瘤缺氧核心对化疗和放疗耐受,但对专性厌氧菌而言却是唯一能萌发的场所:肿瘤自己为自身的毁灭创造了生态位。</li>' +
+    '<li><strong>与免疫治疗联合——热门方向</strong> — 溶瘤释放肿瘤抗原与炎症信号;细菌治疗与免疫检查点抑制剂的联合正被积极研究,以期把局部效应转化为全身效应。</li>' +
+    '<li><strong>基因组质控是必备环节</strong> — 对活体治疗制剂而言,菌株稳定性(毒素位点无回复突变)的确证和生物分布的证明至关重要;长读长在短读长平台无法解析重复与质粒之处补上这两项任务。</li>' +
+    '<li><strong>审慎的定位</strong> — <em>C. novyi-NT</em> 细菌治疗仍是证据有限的早期实验策略;我们的流程是研究性质控工具,而非临床标准。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed / NCBI — Clostridium novyi-NT 相关文献</a></li>' +
+    '<li>📄 <a href="https://clinicaltrials.gov/">ClinicalTrials.gov — 肿瘤细菌治疗临床试验</a></li>' +
+    '<li>📄 <a href="https://www.cancer.gov/">NCI(cancer.gov)— 美国国家癌症研究所</a></li></ul>';
+
+  /* ── CHAUVOEI(气肿疽,兽医) ── */
+  ZH['/chauvoei/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_chauvoei.svg" alt="气肿疽梭菌 — 产孢杆菌与牛的剪影" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>牛气肿疽(Emphysematous Carbuncle)鉴别诊断</h1>' +
+    '<p style="font-size:1.2em;color:#555">“梭菌宇宙”板块的兽医卡片:牛突然死亡——气肿疽还是炭疽?剖检之前,现场给出分子学答案</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>气肿疽梭菌</em>(Clostridium chauvoei)是一种革兰氏阳性厌氧产孢杆菌,是<strong>气肿疽(blackleg)</strong>——牛急性坏死性感染——的病原体。该病的旧称“类炭疽”<strong>不应引起误解:气肿疽与真正的炭疽(<em>Bacillus anthracis</em>)毫无关系</strong>,但猝死的临床表现要求首先排除炭疽。孢子可在土壤中存活多年;主要感染 <strong>6 月龄至 2 岁的青年牛</strong>——通常是牧场上膘情良好的小公牛。孢子侵入肌肉(包括经微创伤),在厌氧条件下萌发并引起<strong>捻发音性肌炎</strong>:肌肉产气、跛行、高热、患部肿胀与捻发音。病程闪电般迅速——<strong>动物常在无任何前兆时已被发现死亡</strong>。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种鉴定</strong>(16S rRNA + 种特异性标志物),并与最近的近缘种 <em>C. septicum</em> 鉴别(两者极易混淆;参见我们的 <a href="/sordellii/">索氏帕埃尼梭菌与败血梭菌</a> 页面),<strong>检测主要毒力因子 cctA</strong>,以及——对兽医部门最关键的任务——<strong>分子学排除炭疽</strong>(<em>B. anthracis</em>:pagA/cap 标志物)。牛猝死时,排除炭疽之前不得剖检尸体:现场快速给出答案,决定是否宣布隔离。此外,流程还构建<strong>暴发的分子流行病学图景</strong>(疫点地图)。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:患部肌肉组织、渗出液、触片。最佳方案:快速建库,在地区兽医实验室用 <strong>Flongle</strong> 运行 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向兽医与兽医监管部门的 HTML 报告 — 菌种鉴定、cctA 检测、<em>B. anthracis</em> 排除结果、疫点流行病学分型;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:毒力、鉴定、排除炭疽</h2>' +
+    '<h3>毒力因子</h3>' +
+    tbl(['标志物', '产物', '意义'], [
+      ['<strong>cctA</strong>', 'CctA(chauvoei toxin A)', '主要毒力因子:β-成孔毒素家族的成孔细胞溶解素,2010 年代被确定为关键因子'],
+      ['<strong>透明质酸酶</strong>', '扩散因子', '破坏细胞间基质,沿肌肉扩散'],
+      ['<strong>DNA 酶</strong>', '核酸酶', '降解组织 DNA 与中性粒细胞胞外诱捕网'],
+      ['<strong>神经氨酸酶</strong>', '唾液酸酶', '损伤细胞膜,附加致病因子'],
+      ['<strong>鞭毛(fla 位点)</strong>', '运动蛋白', '组织内运动能力;菌种鉴定标志物']
+    ]) +
+    '<h3>菌种鉴定与梭菌鉴别诊断</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>16S rRNA</strong>', '属/种鉴定;与 <em>C. septicum</em>(恶性水肿——最近近缘种,极易与 <em>C. chauvoei</em> 混淆)、<em>C. perfringens</em>、<em>C. novyi</em> 鉴别'],
+      ['<strong><em>C. chauvoei</em> 种特异性标志物</strong>', '与 <em>C. septicum</em> 近缘情况下的一锤定音鉴定'],
+      ['<strong>梭菌 panel</strong>', '一次运行区分气肿疽、恶性水肿及其他牛梭菌病']
+    ]) +
+    '<h3>排除炭疽(兽医部门的核心价值)</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>pagA</strong>(保护性抗原)', '<em>Bacillus anthracis</em> 标志物——检测目的是<strong>排除</strong>炭疽'],
+      ['<strong>cap</strong>(荚膜聚谷氨酸)', '<em>B. anthracis</em> 荚膜标志物——第二个独立排除靶点'],
+      ['<strong>报告结论</strong>', '“已排除/未排除炭疽” → 剖检、隔离措施或常规无害化处理']
+    ]) +
+    '<h3>暴发的分子流行病学</h3>' +
+    tbl(['任务', '流程的作用'], [
+      ['<strong>分离株分型</strong>', '与参考面板比较,评估与既往疫点的亲缘关系'],
+      ['<strong>疫点地图</strong>', '将结果关联到养殖场/牧场:洪水和土方工程会把孢子从土壤中带出']
+    ]) +
+    '<h3>防控要点(报告参考)</h3>' +
+    tbl(['措施', '说明'], [
+      ['<strong>青年牛疫苗接种</strong>', '类毒素与培养疫苗有效;漏免地区仍不断出现暴发'],
+      ['<strong>洪水/干旱之后</strong>', '异常洪水把土壤中的孢子带上新牧场——风险升高'],
+      ['<strong>尸体处理</strong>', '焚烧或石灰深埋;排除炭疽后方可剖检'],
+      ['<strong>畜群转移</strong>', '撤离受污染牧场,限制疫点内放牧']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Chauvoei Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CCV-Species-ID</strong>', '<em>C. chauvoei</em> 与 <em>C. septicum</em>、<em>C. perfringens</em> 及其他梭菌的鉴别'],
+      ['<strong>CCV-Anthrax-RuleOut</strong>', '基于 cctA 与 pagA/cap 标志物的“气肿疽/炭疽/其他”分类器'],
+      ['<strong>CCV-Epi-Map</strong>', '分离株分子流行病学聚类与暴发疫点地图']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 梭菌参考序列面板(<em>C. chauvoei</em>、<em>C. septicum</em>、<em>C. perfringens</em> 等)+ <em>Bacillus anthracis</em>'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. 标志物检出</strong>', '自建种特异性标志物、cctA 基因与炭疽排除标志物 (pagA/cap) 数据库'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>剖检之前做决定</strong> — 牛猝死时,兽医部门的第一个问题永远是:是不是炭疽。两个方向的错误代价都高:误报意味着隔离与养殖场停摆,漏报意味着特别危险感染的扩散。现场快速分子鉴别(地区兽医实验室的 Flongle)把答案从数天缩短到数小时。</li>' +
+    '<li><strong>全球分布与经济损失</strong> — 气肿疽在世界各地均有登记,给养牛业造成明显损失:死亡的往往是最肥壮的青年牛,疫苗接种需要年年坚持。在俄罗斯,疫点由俄联邦动植物卫生监督局持续监测,西伯利亚、阿尔泰和高加索均有报告。</li>' +
+    '<li><strong>气候因素</strong> — 暴发与异常洪水和干旱相关:洪水把土壤孢子带上新牧场,干旱则让畜群集中于有限地块。气候变化使流行病学监测愈发重要。</li>' +
+    '<li><strong>免疫缺口</strong> — 疫苗有效,但漏免之处仍不断出现暴发;快速的实验室确诊帮助兽医监管部门在扩散前锁定问题。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.woah.org/">WOAH(原 OIE)— 世界动物卫生组织</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 气肿疽梭菌(分类学、基因组、Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckvetmanual.com/">Merck Veterinary Manual — 气肿疽(Blackleg)</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -2658,6 +3244,7 @@
       'Реализованные пейплайны': 'Implemented Pipelines',
       'Онкология. Пейплайны в работе.': 'Oncology. Pipelines in Development.',
       'Пейплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
+      'Пейплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
       'Пейплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
       'Пейплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
     },
@@ -2676,6 +3263,10 @@
       'hpv':          ['Human Papillomavirus (HPV)', 'High-risk HPV genotyping, host-genome integration status and methylation triage for cervical cancer prevention — from the root cause to the key element of prevention'],
       'cdifficile':   ['C. difficile (Clostridia)', 'Drug resistance and toxigenicity determination of Clostridioides difficile — causative agent of antibiotic-associated colitis'],
       'perfringens':  ['Gas Gangrene (C. perfringens)', 'Toxinotyping (cpa/cpb/etx/cpe/netB) and AMR profiling of Clostridium perfringens in hours — in myonecrosis every hour counts: ~15 cm/hour spread, up to 100% untreated lethality'],
+      'botulinum':    ['Botulism (C. botulinum)', 'bont A–G detection and serotyping in hours — the most potent toxin known; antitoxin works only when given early'],
+      'sordellii':    ['Toxic Shock (P. sordellii & C. septicum)', 'Shock without fever after childbirth and spontaneous gangrene as a marker of occult cancer — tcsL/tcsH and csa detection from blood and tissue in hours'],
+      'novyi':        ['C. novyi-NT Oncolytic', 'Oncolytic clostridia — genomic QC of the therapeutic strain and monitoring of spore germination in the hypoxic tumour core'],
+      'chauvoei':     ['Blackleg (C. chauvoei)', 'Emphysematous carbuncle of cattle — field differentiation from anthrax, cctA detection, molecular epidemiology of outbreaks'],
       'gonorrhoeae':  ['Gonorrhoea (N. gonorrhoeae)', 'Drug resistance determination of Neisseria gonorrhoeae — WHO priority AMR pathogen'],
       'mycoplasma':   ['Mycoplasma genitalium', 'Pre-treatment resistance testing of M. genitalium to macrolides and fluoroquinolones — rapidly emerging multidrug resistance, frequently missed STI pathogen'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
@@ -2732,6 +3323,7 @@
       'Реализованные пейплайны': '已实现的分析流程',
       'Онкология. Пейплайны в работе.': '肿瘤学 · 开发中的流程',
       'Пейплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
+      'Пейплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
       'Пейплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
       'Пейплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
     },
@@ -2744,6 +3336,11 @@
     cards: {
       'asfv': ['非洲猪瘟 (ASFV)', '猪场门口数小时出结果 — p72 基因分型、低毒力缺失变异株 (CD2v/MGF)、与经典猪瘟鉴别'],
       'perfringens': ['气性坏疽(产气荚膜梭菌)', '产气荚膜梭菌毒素分型 (cpa/cpb/etx/cpe/netB) 与 AMR 谱分析数小时出结果 — 肌坏死分秒必争:蔓延约 15 厘米/小时,未经治疗致死率可达 100%'],
+      'cdifficile': ['艰难梭菌 (C. difficile)', '艰难梭菌(Clostridioides difficile)——抗生素相关性结肠炎病原体——的耐药性与产毒能力检测'],
+      'botulinum': ['肉毒中毒 (C. botulinum)', '数小时完成 bont A–G 检测与血清分型 — 已知最剧烈的毒素;抗毒素仅在早期给药时有效'],
+      'sordellii': ['中毒性休克 (P. sordellii 与 C. septicum)', '产后无发热休克与作为隐匿癌症标志的自发性坏疽 — 数小时内从血液和组织检测 tcsL/tcsH 与 csa'],
+      'novyi': ['溶瘤梭菌 C. novyi-NT', '溶瘤梭菌 — 治疗菌株基因组质控与肿瘤缺氧核心孢子萌发监测'],
+      'chauvoei': ['气肿疽 (C. chauvoei)', '牛气肿疽 — 现场与炭疽鉴别、cctA 检测、暴发的分子流行病学'],
       'hbv':  ['乙型肝炎 (HBV)', 'HBV 基因分型 (A–J)、聚合酶耐药突变 (YMDD)、HBeAg 状态与肝癌风险标志物 — 一次检测完成'],
       'hvkp': ['高毒力肺炎克雷伯菌 (hvKP)', '毒力标志物 (rmpA、iucA、peg-344)、K1/K2 荚膜血清型与碳青霉烯耐药性汇聚 — 肝脓肿与转移性感染'],
       'sfts': ['发热伴血小板减少综合征 (SFTS)', '床旁 mNGS 检测发热伴血小板减少综合征 — L/M/S 节段分析与流行区出血热鉴别诊断'],
@@ -2786,7 +3383,7 @@
     if (dz) dz.textContent = H.dzenText;
 
     /* Section titles */
-    ['components', 'projects', 'oncology', 'old', 'farmer', 'criminal'].forEach(function (k) {
+    ['components', 'projects', 'oncology', 'old', 'clostridia', 'farmer', 'criminal'].forEach(function (k) {
       var el = document.getElementById('i18n-sec-' + k);
       if (el) {
         var ru = el.textContent.trim();
