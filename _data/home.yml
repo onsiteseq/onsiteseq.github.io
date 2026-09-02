@@ -57,11 +57,6 @@ old_project_entries:
     desc: Полный AMR-профиль, детекция МБЛ (VIM, NDM) и насосов эффлюкса (MexAB) — мастер адаптации, ключевой патоген ОРИТ и муковисцидоза
     image: /assets/images/logo/pseudomonas.png
 
-  - title: Гонорея (N. gonorrhoeae)
-    url: gonorrhoeae
-    desc: Определение лекарственной устойчивости Neisseria gonorrhoeae — приоритетный патоген ВОЗ по АМР
-    image: /assets/images/logo/icon_gonorrhoeae.svg
-
   - title: Хламидиоз (C. trachomatis)
     url: chlamydia
     desc: Генотипирование сероваров (A–L) и определение резистентности к макролидам и фторхинолонам — самая распространённая бактериальная ИППП в мире
@@ -71,11 +66,6 @@ old_project_entries:
     url: mycoplasma
     desc: Диагностика резистентности Mycoplasma genitalium к макролидам и фторхинолонам перед терапией — быстро развивающаяся МЛУ, часто пропускаемый возбудитель ИППП
     image: /assets/images/logo/icon_mycoplasma.svg
-
-  - title: Менингококк (N. meningitidis)
-    url: meningitidis
-    desc: Серогруппирование и определение резистентности Neisseria meningitidis у постели пациента — молниеносный менингит, где каждый час критичен
-    image: /assets/images/logo/icon_meningitidis.svg
 
   - title: Гепатит B (HBV)
     url: hbv
@@ -101,11 +91,6 @@ old_project_entries:
     url: sarscov2
     desc: Определение варианта (субтипа) и устойчивости к противовирусным препаратам
     image: /assets/images/logo/icon_sarscov2.svg
-
-  - title: Золотистый стафилококк (S. aureus)
-    url: staphylococcus
-    desc: Определение MRSA/VRSA и полного профиля AMR Staphylococcus aureus — ведущего возбудителя нозокомиальных инфекций
-    image: /assets/images/logo/icon_staphylococcus.svg
 
   - title: ОРВИ (вирусные возбудители)
     url: flu
@@ -188,6 +173,42 @@ candida_entries:
     url: tropicalis
     desc: Азиатские азоль-резистентные клоны tropicalis (ERG11 Y132F/A395T) и врождённая флуконазол-резистентность krusei — видовая идентификация решает стартовую терапию
     image: /assets/images/logo/icon_tropicalis.svg
+
+cocci_entries:
+  - title: Золотистый стафилококк (S. aureus)
+    url: staphylococcus
+    desc: Определение MRSA/VRSA и полного профиля AMR Staphylococcus aureus — ведущего возбудителя нозокомиальных инфекций
+    image: /assets/images/logo/icon_staphylococcus.svg
+
+  - title: Пневмококк (S. pneumoniae)
+    url: pneumoniae
+    desc: "Мозаичные pbp2x/pbp2b/pbp1a и серотипирование по cps-локусу: вакцинный эскейп (19A, 22F, 33F) и пенициллин-резистентность, которые фенотип не предсказывает"
+    image: /assets/images/logo/icon_pneumoniae.svg
+
+  - title: Стрептококк группы A (S. pyogenes)
+    url: pyogenes
+    desc: "emm-типирование вместо Сэнжера, суперантигены speA/speC/ssa и макролидная резистентность (ermB/mefA) — от ангины до некротического фасциита"
+    image: /assets/images/logo/icon_pyogenes.svg
+
+  - title: Стрептококк группы B (S. agalactiae)
+    url: agalactiae
+    desc: Скрининг беременных в родзале за часы вместо 18–48 ч культуры — серотипы, клон CC17 и маркеры резистентности при аллергии на пенициллин
+    image: /assets/images/logo/icon_agalactiae.svg
+
+  - title: Гонорея (N. gonorrhoeae)
+    url: gonorrhoeae
+    desc: Определение лекарственной устойчивости Neisseria gonorrhoeae — приоритетный патоген ВОЗ по АМР
+    image: /assets/images/logo/icon_gonorrhoeae.svg
+
+  - title: Менингококк (N. meningitidis)
+    url: meningitidis
+    desc: Серогруппирование и определение резистентности Neisseria meningitidis у постели пациента — молниеносный менингит, где каждый час критичен
+    image: /assets/images/logo/icon_meningitidis.svg
+
+  - title: Ванкомицин-резистентный энтерококк (E. faecium)
+    url: faecium
+    desc: "vanA/vanB с резолюцией плазмидного контекста Tn1546 на длинных прочтениях — трассировка вспышек ОРИТ и генотип вместо фенотипа для выбора терапии"
+    image: /assets/images/logo/icon_faecium.svg
 
 farmer_entries:
   - title: Фитофтороз (Phytophthora infestans)

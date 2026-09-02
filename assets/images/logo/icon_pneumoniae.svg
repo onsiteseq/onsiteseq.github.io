@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="sp1" cx="38%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#90caf9"/>
+      <stop offset="100%" stop-color="#1565c0"/>
+    </radialGradient>
+    <radialGradient id="sp2" cx="62%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#90caf9"/>
+      <stop offset="100%" stop-color="#1565c0"/>
+    </radialGradient>
+    <radialGradient id="sp_hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#e3f2fd" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#1565c0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Polysaccharide capsule halo around the main pair -->
+  <ellipse cx="50" cy="50" rx="34" ry="22" fill="none" stroke="#0d47a1"
+           stroke-width="2.5" stroke-dasharray="4 2" opacity="0.45"/>
+
+  <!-- Left lancet-shaped coccus (pointed outer end, flattened adjoining side) -->
+  <path d="M 20 50
+           C 22 40, 30 38, 40 38
+           L 47 38
+           C 50 38, 50 62, 47 62
+           L 40 62
+           C 30 62, 22 60, 20 50 Z"
+        fill="url(#sp1)"/>
+  <path d="M 20 50
+           C 22 40, 30 38, 40 38
+           L 47 38
+           C 50 38, 50 62, 47 62
+           L 40 62
+           C 30 62, 22 60, 20 50 Z"
+        fill="url(#sp_hl)"/>
+  <path d="M 20 50
+           C 22 40, 30 38, 40 38
+           L 47 38
+           C 50 38, 50 62, 47 62
+           L 40 62
+           C 30 62, 22 60, 20 50 Z"
+        fill="none" stroke="#0d47a1" stroke-width="1.4" opacity="0.7"/>
+
+  <!-- Right lancet-shaped coccus (mirrored) -->
+  <path d="M 80 50
+           C 78 40, 70 38, 60 38
+           L 53 38
+           C 50 38, 50 62, 53 62
+           L 60 62
+           C 70 62, 78 60, 80 50 Z"
+        fill="url(#sp2)"/>
+  <path d="M 80 50
+           C 78 40, 70 38, 60 38
+           L 53 38
+           C 50 38, 50 62, 53 62
+           L 60 62
+           C 70 62, 78 60, 80 50 Z"
+        fill="url(#sp_hl)"/>
+  <path d="M 80 50
+           C 78 40, 70 38, 60 38
+           L 53 38
+           C 50 38, 50 62, 53 62
+           L 60 62
+           C 70 62, 78 60, 80 50 Z"
+        fill="none" stroke="#0d47a1" stroke-width="1.4" opacity="0.7"/>
+
+  <!-- Nucleoid dots inside each coccus -->
+  <ellipse cx="36" cy="50" rx="6" ry="5" fill="#0a3d91" opacity="0.35"/>
+  <ellipse cx="64" cy="50" rx="6" ry="5" fill="#0a3d91" opacity="0.35"/>
+
+  <!-- Second diplococcus pair, bottom-left, rotated -->
+  <g transform="rotate(-30 24 80)" opacity="0.65">
+    <path d="M 9 80 C 10.5 75, 14 74, 18 74 L 21 74 C 22.5 74, 22.5 86, 21 86 L 18 86 C 14 86, 10.5 85, 9 80 Z"
+          fill="url(#sp1)"/>
+    <path d="M 9 80 C 10.5 75, 14 74, 18 74 L 21 74 C 22.5 74, 22.5 86, 21 86 L 18 86 C 14 86, 10.5 85, 9 80 Z"
+          fill="url(#sp_hl)"/>
+    <path d="M 9 80 C 10.5 75, 14 74, 18 74 L 21 74 C 22.5 74, 22.5 86, 21 86 L 18 86 C 14 86, 10.5 85, 9 80 Z"
+          fill="none" stroke="#0d47a1" stroke-width="1" opacity="0.6"/>
+    <path d="M 39 80 C 37.5 75, 34 74, 30 74 L 27 74 C 25.5 74, 25.5 86, 27 86 L 30 86 C 34 86, 37.5 85, 39 80 Z"
+          fill="url(#sp2)"/>
+    <path d="M 39 80 C 37.5 75, 34 74, 30 74 L 27 74 C 25.5 74, 25.5 86, 27 86 L 30 86 C 34 86, 37.5 85, 39 80 Z"
+          fill="url(#sp_hl)"/>
+    <path d="M 39 80 C 37.5 75, 34 74, 30 74 L 27 74 C 25.5 74, 25.5 86, 27 86 L 30 86 C 34 86, 37.5 85, 39 80 Z"
+          fill="none" stroke="#0d47a1" stroke-width="1" opacity="0.6"/>
+  </g>
+
+  <!-- Third diplococcus pair, top-right, rotated -->
+  <g transform="rotate(25 78 20)" opacity="0.65">
+    <path d="M 63 20 C 64.5 15, 68 14, 72 14 L 75 14 C 76.5 14, 76.5 26, 75 26 L 72 26 C 68 26, 64.5 25, 63 20 Z"
+          fill="url(#sp1)"/>
+    <path d="M 63 20 C 64.5 15, 68 14, 72 14 L 75 14 C 76.5 14, 76.5 26, 75 26 L 72 26 C 68 26, 64.5 25, 63 20 Z"
+          fill="url(#sp_hl)"/>
+    <path d="M 63 20 C 64.5 15, 68 14, 72 14 L 75 14 C 76.5 14, 76.5 26, 75 26 L 72 26 C 68 26, 64.5 25, 63 20 Z"
+          fill="none" stroke="#0d47a1" stroke-width="1" opacity="0.6"/>
+    <path d="M 93 20 C 91.5 15, 88 14, 84 14 L 81 14 C 79.5 14, 79.5 26, 81 26 L 84 26 C 88 26, 91.5 25, 93 20 Z"
+          fill="url(#sp2)"/>
+    <path d="M 93 20 C 91.5 15, 88 14, 84 14 L 81 14 C 79.5 14, 79.5 26, 81 26 L 84 26 C 88 26, 91.5 25, 93 20 Z"
+          fill="url(#sp_hl)"/>
+    <path d="M 93 20 C 91.5 15, 88 14, 84 14 L 81 14 C 79.5 14, 79.5 26, 81 26 L 84 26 C 88 26, 91.5 25, 93 20 Z"
+          fill="none" stroke="#0d47a1" stroke-width="1" opacity="0.6"/>
+  </g>
+</svg>
