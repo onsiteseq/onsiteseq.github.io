@@ -69,6 +69,13 @@ layout: default
   </section>
 {% endif %}
 
+{% if site.theme_config.show_candida == true %}
+  <section class="home-section">
+    <h2 class="section-title" id="i18n-sec-candida">{{ site.theme_config.home.title_candida }}</h2>
+    {% include card_list.html collection=site.data.home.candida_entries %}
+  </section>
+{% endif %}
+
 {% if site.theme_config.show_farmer == true %}
   <section class="home-section">
     <h2 class="section-title" id="i18n-sec-farmer">{{ site.theme_config.home.title_farmer }}</h2>
