@@ -1432,6 +1432,328 @@
     '<li>📄 <a href="https://pubmlst.org/organisms/chlamydiales-spp">PubMLST — Chlamydiales typing</a></li>' +
     '<li>📄 <a href="https://www.ecdc.europa.eu/en/chlamydia">ECDC — Chlamydia in Europe</a></li></ul>';
 
+  /* ── CANDIDA ALBICANS ── */
+  EN['/albicans/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_albicans.svg" alt="Candida albicans — yeast cell with blastoconidia and pseudohyphae" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Candida albicans: Resistance to Azoles and Echinocandins, Aneuploidies and Structural Rearrangements</h1>' +
+    '<p style="font-size:1.2em;color:#555">SNV + CNV + aneuploidies in a single run — long reads see what short reads miss</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Candida albicans</em> is the leading agent of invasive candidiasis in humans: <strong>candidaemia in intensive care units</strong> (one of the main causes of bloodstream infections in hospitals), mucosal and cutaneous candidiasis, and <strong>biofilms on catheters and implants</strong> — azole tolerance within a biofilm is many times higher than in planktonic cells. The hallmark of the species is <strong>yeast ↔ hypha dimorphism</strong>: morphology switching is a key factor of virulence, tissue invasion and biofilm formation.</p>' +
+    '<p>The key molecular feature that shapes the pipeline architecture: <em>C. albicans</em> is a <strong>diploid</strong> organism without a full sexual cycle, and in it resistance often develops not through point mutations but through <strong>aneuploidies and structural rearrangements</strong> — the classic example is <strong>isochromosome 5L</strong>, which carries both <em>ERG11</em> (the fluconazole target) and the regulator <em>TAC1</em>. Short reads resolve such rearrangements poorly; nanopore sequencing sees structural variants, copy number changes (CNV) and allows <strong>allele phasing</strong> in a diploid genome. Our pipeline combines <strong>SNV + CNV + aneuploidies in a single run</strong>.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: pure isolate or blood culture. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the near-bedside scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — species identification (ITS), AMR profile (azoles, echinocandins), CNV/aneuploidies (including isochromosome 5L), biofilm markers; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Resistance, Structural Variants</h2>' +
+    '<h3>Species identification</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ITS</strong> (internal transcribed spacer of rDNA)', 'Species identification of <em>C. albicans</em> and differentiation from non-albicans species (<em>C. glabrata</em>, <em>C. parapsilosis</em>, <em>C. tropicalis</em>, <em>C. auris</em>)']
+    ]) +
+    '<h3>Azole resistance (fluconazole and others)</h3>' +
+    tbl(['Marker', 'Mechanism', 'Clinical Significance'], [
+      ['<strong>ERG11</strong>', 'Point mutations in the fluconazole target (lanosterol 14α-demethylase)', 'Reduced affinity of the azole for the enzyme — the main resistance mechanism'],
+      ['<strong>UPC2</strong> (gain-of-function)', 'Overexpression of <strong>ERG11</strong>', 'Overproduction of the target compensates for the action of the azole'],
+      ['<strong>TAC1</strong> (gain-of-function)', 'Overexpression of the <strong>CDR1/CDR2</strong> efflux pumps (ABC transporters)', 'Pumping the azole out of the cell'],
+      ['<strong>MRR1</strong> (gain-of-function)', 'Overexpression of the <strong>MDR1</strong> pump (MFS transporter)', 'Pumping the azole out of the cell']
+    ]) +
+    '<h3>Echinocandins and amphotericin B</h3>' +
+    tbl(['Marker', 'Drugs', 'Clinical Significance'], [
+      ['<strong>FKS1</strong>, hot spots <strong>HS1/HS2</strong> (e.g. S645P)', 'Caspofungin, micafungin', 'Mutations in the echinocandin target (glucan synthase) — the key resistance given widespread echinocandin use in ICUs'],
+      ['<strong>ERG3</strong> and ERG-related changes', 'Amphotericin B', 'Resistance is rare but described; altered membrane sterol composition']
+    ]) +
+    '<h3>Structural variants, CNV and aneuploidies — the long-read advantage</h3>' +
+    tbl(['Variant', 'Content', 'Significance'], [
+      ['<strong>Isochromosome 5L</strong>', 'Carries <strong>ERG11</strong> and <strong>TAC1</strong> simultaneously', 'A classic route to azole resistance: doubling the target and the efflux regulator with a single rearrangement'],
+      ['<strong>Chromosome duplications / aneuploidies</strong>', 'Altered gene dosage', 'A frequent mechanism of adaptation to antifungals in diploid Candida'],
+      ['<strong>CNV in AMR gene loci</strong>', 'Amplification of ERG11, CDR1/CDR2, MDR1', 'Overexpression without point mutations — invisible to SNV-oriented pipelines']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Albicans Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CAL-Azole-Profiler</strong>', 'Prediction of azole resistance from the ERG11/UPC2/TAC1/MRR1 profile and CNV'],
+      ['<strong>CAL-FKS-Detector</strong>', 'Detection of FKS1 hot-spot mutations (HS1/HS2) — echinocandin resistance risk'],
+      ['<strong>CAL-Aneuploidy-Scanner</strong>', 'Recognition of aneuploidies and isochromosome 5L from coverage and structural variants']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — <em>C. albicans</em> reference (diploid genome)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — SNV/indels with allele phasing'],
+      ['<strong>4. Structural variants and CNV</strong>', '<code>sniffles2</code>, <code>cuteSV</code> — SV, aneuploidies, per-chromosome coverage analysis (isochromosome 5L)'],
+      ['<strong>5. AMR marker detection</strong>', 'Custom target database: ERG11, FKS1 HS1/HS2, UPC2/TAC1/MRR1 GoF, biofilm markers'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Candidaemia in the ICU</strong> — bloodstream infections caused by Candida occupy a growing share among nosocomial ICU infections; candidaemia is associated with high mortality, and delaying adequate antifungal therapy worsens the outcome. A genomic answer in hours changes tactics before irreversible empirical errors accumulate.</li>' +
+    '<li><strong>Rising echinocandin resistance</strong> — echinocandins have become first-line drugs for candidaemia, and their widespread use is accompanied by the emergence of FKS1 mutants; monitoring of HS1/HS2 hot spots is becoming part of therapy routing.</li>' +
+    '<li><strong>Species shift towards non-albicans</strong> — the share of <em>C. glabrata</em>, <em>C. parapsilosis</em> and <em>C. auris</em> is growing; ITS species identification determines the starting regimen even before susceptibility data. See the other cards of the candidiasis universe: <a href="/auris/">Candida auris</a> and <a href="/glabrata/">Candida glabrata</a>.</li>' +
+    '<li><strong>Biofilms on devices</strong> — catheters and implants are colonised by biofilms with manifold increased azole tolerance; a genomic profile helps distinguish a "purely biofilm" problem (the solution is device removal) from heritable resistance of the strain.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — Candidiasis</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — PubMed / Bookshelf</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Candidiasis</a></li></ul>';
+
+  /* ── CANDIDA AURIS ── */
+  EN['/auris/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_auris.svg" alt="Candida auris — budding yeast cell and global outbreaks" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Identification, Clade Typing and Outbreak Tracking of Candida auris</h1>' +
+    '<p style="font-size:1.2em;color:#555">Molecular identification of the "super fungus", clade (I–VI) and AMR profile — an answer for hospital infection control in hours</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Candida auris</em> is a yeast-like fungus first described in <strong>2009</strong> (an isolate from the ear discharge of a patient in Japan — hence the name <em>auris</em>, "ear"). It soon turned out that something unprecedented had happened: several genetic clades (I–V; a sixth is now being described) emerged <strong>independently and almost simultaneously on different continents</strong> — the puzzle of simultaneous global emergence. One of the hypotheses under discussion links this to climate warming as a selection factor for thermotolerant fungi able to overcome the temperature barrier of the mammalian body; this is a hypothesis, not a proven mechanism.</p>' +
+    '<p>The CDC has placed <em>C. auris</em> in the <strong>"Urgent Threat"</strong> category — the highest level of antimicrobial resistance threat. Three reasons why the fungus is called a "super fungus":</p>' +
+    '<ul><li><strong>Multidrug resistance</strong> — about <strong>90% of isolates are resistant to fluconazole</strong>, amphotericin B resistance varies, echinocandin resistance is rising (mutations in <strong>FKS1</strong>, e.g. S639F); <strong>pan-resistant</strong> strains insensitive to all three main classes of antifungals have been described.</li>' +
+    '<li><strong>Nosocomial outbreaks</strong> — persistent survival on surfaces and patient skin, transmission in ICUs; resistance to a number of disinfectants requires agents with proven activity against <em>C. auris</em>.</li>' +
+    '<li><strong>Misidentification</strong> — phenotypic systems confuse it with <em>C. haemulonii</em> and other yeasts; reliable identification is only <strong>molecular</strong> (ITS/D1–D2) or MALDI-TOF with updated databases.</li></ul>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>molecular species identification</strong>, <strong>clade determination (I–VI)</strong> from a SNP panel/whole genome, the <strong>AMR profile</strong> (ERG11, FKS1) and <strong>outbreak tracking</strong>: SNP analysis of isolate relatedness answers the infection control question "who infected whom" and documents nosocomial transmission.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: isolate or screening swabs (axilla/groin). Optimal: rapid library preparation and a <strong>Flongle</strong> run for the hospital scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Report for the hospital infection control service — species identification, clade, AMR profile, SNP clustering of outbreak isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Clades, Resistance</h2>' +
+    '<h3>Molecular identification and differential diagnosis</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ITS / D1–D2</strong>', 'Species-specific identification of <em>C. auris</em> — the gold standard replacing error-prone phenotypic diagnostics'],
+      ['<strong>Whole-genome SNP analysis</strong>', 'Differentiation from <em>C. haemulonii</em>, <em>C. pseudohaemulonii</em>, <em>C. duobushaemulonii</em> and other morphologically similar yeasts']
+    ]) +
+    '<h3>Clades (geographic phylogeography)</h3>' +
+    tbl(['Clade', 'Typical Region', 'Note'], [
+      ['<strong>I</strong>', 'South Asia', 'The most widespread in clinical outbreaks'],
+      ['<strong>II</strong>', 'East Asia', 'The clade of the original 2009 Japanese isolate'],
+      ['<strong>III</strong>', 'Africa', 'Outbreaks in South Africa and elsewhere'],
+      ['<strong>IV</strong>', 'South America', 'Outbreaks in Venezuela, Colombia'],
+      ['<strong>V</strong>', 'Iran', 'Described later, sporadic isolates'],
+      ['<strong>VI</strong>', '—', 'A recently described clade; classification is being refined']
+    ]) +
+    '<h3>Resistance genes</h3>' +
+    tbl(['Gene', 'Drug Class', 'Clinical Significance'], [
+      ['<strong>ERG11</strong>', 'Azoles (fluconazole)', 'Mutations (Y132F, K143R and others) — the main mechanism of azole resistance; ~90% of isolates are resistant to fluconazole'],
+      ['<strong>FKS1</strong>', 'Echinocandins (caspofungin and others)', 'Hot-spot mutations (e.g. <strong>S639F</strong>) — the last-line drug loses efficacy'],
+      ['<strong>Additional loci</strong>', 'Amphotericin B', 'Mechanisms vary; pan-resistant strains deprive all three classes']
+    ]) +
+    '<h3>Output for infection control</h3>' +
+    tbl(['Task', 'What the Pipeline Provides'], [
+      ['<strong>Species confirmation</strong>', 'Molecular identification of <em>C. auris</em> without the risk of confusion with <em>C. haemulonii</em>'],
+      ['<strong>Outbreak investigation</strong>', 'SNP clustering of isolates: who infected whom, common source, nosocomial transmission'],
+      ['<strong>Therapy selection</strong>', 'AMR profile (ERG11, FKS1) — fluconazole is excluded by default, echinocandin risk is checked'],
+      ['<strong>Surveillance</strong>', 'Clade determination (I–VI) — imported isolate or local circulation']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Auris Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CAU-Clade-Typer</strong>', 'Clade determination (I–VI) from the SNP profile'],
+      ['<strong>CAU-Res-Detector</strong>', 'Antifungal resistance prediction from genomic data (ERG11, FKS1)'],
+      ['<strong>CAU-Outbreak-Tracker</strong>', 'Clustering of outbreak isolates by SNP relatedness for epidemiological investigation']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — references of <em>C. auris</em> clades (I–VI) and related species for differentiation'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. Phylogenetics and clustering</strong>', 'SNP analysis of isolate relatedness, tree building, custom clade database'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) +
+    '<p>Long Oxford Nanopore reads additionally enable <strong>complete isolate assembly</strong> and detection of <strong>structural variants</strong> inaccessible to short-read technologies.</p><hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Global outbreaks</strong> — <em>C. auris</em> has been recorded on all inhabited continents; according to the CDC and ECDC, case numbers in the USA and Europe are steadily rising; cases have also been reported from Russia. Every new outbreak requires a rapid answer: species, clade, resistance, transmission chain.</li>' +
+    '<li><strong>Urgent Threat</strong> — the CDC has assigned <em>C. auris</em> to the highest AMR threat category. Multidrug resistance (up to pan-resistant strains) makes the empirical choice of antifungal therapy virtually impossible without genomic data.</li>' +
+    '<li><strong>High candidaemia mortality</strong> — in invasive forms, lethality in clinical series reaches <strong>30–60%</strong>; attribution of mortality is complex — patients usually have severe comorbid conditions (ICU, catheters, immunosuppression).</li>' +
+    '<li><strong>Hospital infection control</strong> — <em>C. auris</em> persists on surfaces and skin for months; treatment requires disinfectants with proven activity against this fungus. Rapid SNP outbreak tracking allows the source to be localised and the transmission chain to be broken before spread across wards.</li>' +
+    '<li><strong>The emergence puzzle</strong> — the simultaneous independent appearance of clades on different continents (hypothesis: selection of thermotolerant fungi against a background of warming) makes <em>C. auris</em> a model example of a new wave of fungal pathogens for which surveillance systems must be ready.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — Candida auris</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/">ECDC — European Centre for Disease Prevention and Control</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — National Center for Biotechnology Information</a></li></ul>';
+
+  /* ── CANDIDA GLABRATA ── */
+  EN['/glabrata/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_glabrata.svg" alt="Candida glabrata — budding yeast cells and a spiral of resistance evolution" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>The Evolution of Drug Resistance in Candida glabrata — Under Genome Surveillance</h1>' +
+    '<p style="font-size:1.2em;color:#555">PDR1 / FKS1 / FKS2 / MSH2 profile and microevolution of serial patient isolates — while therapy can still work</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Candida glabrata</em> (modern name — <em>Nakaseomyces glabratus</em>) is the <strong>second most frequent cause of candidaemia</strong> in adults in developed countries and the headliner of the new "Candidiasis Universe" section. Unlike <em>C. albicans</em>, this pathogen is <strong>haploid</strong> and <strong>forms neither true hyphae nor pseudohyphae</strong> — only small budding yeast cells. Persistence in the host is provided by adhesins of the <strong>EPA family</strong>, and its main clinical weapon is a striking ability to evolve resistance right in the course of therapy.</p>' +
+    '<p>The core of the problem is <strong>resistance evolving "in front of the eyes of the physician"</strong>. <em>C. glabrata</em> is intrinsically <strong>less susceptible to fluconazole</strong> (SDD category — susceptible, dose-dependent), and under therapeutic pressure rapidly acquires full resistance: <strong>gain-of-function PDR1 mutations</strong> lead to overexpression of the <strong>CDR1/CDR2</strong> efflux pumps (azole resistance), while <strong>FKS1 and FKS2 hot-spot mutations</strong> (e.g. S629P in FKS1, S663P in FKS2) confer resistance to echinocandins. The classic scenario: an ICU patient on micafungin, a few weeks later — <strong>breakthrough candidaemia with a resistant strain</strong>. A separate feature of the species is <strong>MSH2</strong> mutations (mismatch repair system) producing a <strong>mutator (hypermutable) phenotype</strong> that accelerates this whole evolution. Isolates resistant <strong>to both azoles and echinocandins simultaneously</strong> have been described — in such cases practically only amphotericin B remains among the treatment options.</p>' +
+    '<p>From nanopore sequencing data of <strong>serial isolates from a single patient</strong> (before and during therapy) our pipeline builds the profile of key resistance genes, performs ITS species identification and <strong>compares the serial isolates with each other</strong> — tracking microevolution within the patient. Long reads give complete coverage of the target genes and <strong>CNV</strong> control (copy number of pumps and targets).</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: culture of serial isolates from blood and other sterile sites. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the ICU bedside scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the clinician — species identification, PDR1/FKS1/FKS2/MSH2 profile, mutation dynamics across serial isolates and a <strong>therapy adjustment recommendation</strong>; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Resistance, Identification, Microevolution</h2>' +
+    '<h3>Resistance marker genes</h3>' +
+    tbl(['Gene', 'Mechanism', 'Clinical Significance'], [
+      ['<strong>PDR1</strong>', 'Gain-of-function mutations of the regulator → pump overexpression', 'The main driver of acquired resistance to <strong>azoles</strong> (fluconazole, voriconazole)'],
+      ['<strong>CDR1 / CDR2</strong>', 'Efflux pumps (ABC transporters)', 'Effectors of PDR1-dependent resistance; increased expression and copy number'],
+      ['<strong>FKS1</strong>', 'Hot-spot mutations (e.g. <strong>S629P</strong>) — echinocandin target', 'Resistance to <strong>echinocandins</strong> (micafungin, caspofungin, anidulafungin)'],
+      ['<strong>FKS2</strong>', 'Hot-spot mutations (e.g. <strong>S663P</strong>) — the second glucan synthase subunit', 'In <em>glabrata</em> no less significant than FKS1 — both must be monitored'],
+      ['<strong>MSH2</strong>', 'Mismatch repair (MMR) system defect', '<strong>Hypermutable phenotype</strong> → accelerated evolution of resistance to any drugs']
+    ]) +
+    '<h3>Species identification and differential diagnosis</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ITS</strong> (internal transcribed spacer of rDNA)', 'Species identification of <em>C. glabrata</em> / <em>Nakaseomyces glabratus</em>'],
+      ['<strong>Non-albicans Candida panel</strong>', 'Differentiation from <em>C. albicans</em>, <em>C. parapsilosis</em>, <em>C. tropicalis</em> and <em>C. auris</em> — they have different susceptibility profiles and therapy tactics']
+    ]) +
+    '<h3>Serial isolates: microevolution within the patient</h3>' +
+    tbl(['Analysis', 'Significance'], [
+      ['<strong>Comparison of "before / during therapy" isolates</strong>', 'Detection of new PDR1/FKS1/FKS2 mutations during treatment — resistance is recorded at the moment of emergence, not after the fact'],
+      ['<strong>CNV from long reads</strong>', 'Copy number control of CDR1/CDR2 and targets — amplifications intensify the resistance phenotype'],
+      ['<strong>Signs of hypermutability (MSH2)</strong>', 'Prognosis: a strain with defective MMR will acquire resistance faster — backup regimens must be prepared in advance']
+    ]) +
+    '<h3>Clinical scenarios in the report</h3>' +
+    tbl(['Scenario', 'Problem', 'Role of Genomics'], [
+      ['<strong>Empirical fluconazole</strong>', 'Intrinsic SDD susceptibility of <em>glabrata</em> — risk of standard-dose failure', 'ITS species confirmation → timely switch to an adequate regimen'],
+      ['<strong>Breakthrough candidaemia on an echinocandin</strong>', 'Patient on micafungin for weeks, cultures keep growing', 'Search for FKS1/FKS2 mutations in serial isolates → proof of resistance and a drug change'],
+      ['<strong>Multidrug-resistant isolate</strong>', 'Simultaneous resistance to azoles + echinocandins', 'PDR1 + FKS profile → rationale for switching to <strong>amphotericin B</strong>'],
+      ['<strong>Recurrent candidaemia</strong>', 'Strain persistence vs reinfection', 'Genome comparison of serial isolates: are the strains related']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Glabrata Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CGL-FKS-Caller</strong>', 'Detection of FKS1/FKS2 hot-spot mutations and prediction of echinocandin resistance'],
+      ['<strong>CGL-Res-Evolution</strong>', 'Prediction of resistance evolution risk from the PDR1/MSH2 profile and serial isolate dynamics'],
+      ['<strong>CGL-Species-ID</strong>', 'Species identification of non-albicans Candida from ITS and genomic features']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — <em>C. glabrata</em> reference + non-albicans Candida species panel'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — SNPs in PDR1/FKS1/FKS2/MSH2, CNV control from long-read coverage'],
+      ['<strong>4. Resistance target detection</strong>', 'Custom target database (PDR1, CDR1/CDR2, FKS1/FKS2, MSH2) + ITS for species identification'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Shift towards non-albicans</strong> — the share of candidaemias caused by species other than <em>C. albicans</em> is steadily growing in developed countries, and <em>C. glabrata</em> is the leader of this shift: empirical regimens designed for albicans increasingly prove inadequate.</li>' +
+    '<li><strong>CDC and ECDC alarm signal</strong> — the rise of echinocandin-resistant <em>C. glabrata</em> is recognised as an epidemiological threat: echinocandins are first-line drugs for candidaemia, and their failure leaves the clinician practically without safe options.</li>' +
+    '<li><strong>ICU practice fuels the problem</strong> — routine empirical echinocandin prescribing in severe patients creates constant selective pressure: it is in intensive care units that breakthrough resistant strains arise and are selected.</li>' +
+    '<li><strong>Microevolution is clinically measurable</strong> — serial isolates from a single patient show resistance emerging over weeks, not years. Nanopore sequencing on an Edge unit allows this process to be tracked in real time and therapy to be adjusted before the clinical breakthrough, not after.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — Invasive Candidiasis and Candida glabrata</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/">ECDC — Candidaemia and resistance surveillance</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — Candida glabrata (Taxonomy, Bookshelf, PubMed)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Candidiasis</a></li></ul>';
+
+  /* ── CANDIDA PARAPSILOSIS ── */
+  EN['/parapsilosis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_parapsilosis.svg" alt="Candida parapsilosis — yeast cells and a catheter" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Identification, Fluconazole Resistance and Outbreak Tracking of Candida parapsilosis</h1>' +
+    '<p style="font-size:1.2em;color:#555">ERG11 Y132F, SNP clustering of outbreak isolates and species complex differentiation — in the neonatal ICU every hour counts</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Candida parapsilosis</em> is a yeast-like fungus and a classic agent of <strong>outbreaks in neonatal intensive care units (NICUs)</strong>. The key mechanism is transmission via the <strong>hands of medical staff</strong> and <strong>invasive devices</strong>: the fungus has a pronounced tropism for biofilms on polymers, so central venous catheters and parenteral nutrition systems become the gateway of <strong>catheter-associated candidaemia</strong>. Historically <em>C. parapsilosis</em> was considered less virulent than <em>C. albicans</em>, but its outbreak potential, persistence in the ward and growing resistance have made it one of the main infection control problems in neonatology.</p>' +
+    '<p>From nanopore sequencing data of outbreak isolates our pipeline performs <strong>species identification</strong> (ITS, with differentiation from <em>C. orthopsilosis</em> and <em>C. metapsilosis</em> — a complex of related species with different epidemiology), the <strong>AMR profile</strong> (ERG11 Y132F, TAC1, FKS1) and <strong>SNP-based outbreak tracking</strong> — a genomic answer for infection control: is it a single clone, and where is its source — staff hands or equipment.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: isolates from blood, swabs from staff hands and surfaces, catheter biofilm. Optimal: a <strong>Flongle</strong> run right in the ward for the point-of-care scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for infection control and the clinician — species identification, AMR profile with a therapy recommendation (<strong>echinocandins in case of ERG11 Y132F</strong>), SNP clustering of outbreak isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Resistance, Outbreak</h2>' +
+    '<h3>Species identification: a species complex</h3>' +
+    '<p><em>C. parapsilosis</em> is a complex of closely related species that differ in epidemiology and azole susceptibility; ITS sequencing reliably separates them:</p>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ITS</strong> (ITS1–5.8S–ITS2)', 'Species-specific identification of <em>C. parapsilosis</em> sensu stricto'],
+      ['<strong>ITS vs ortho/metapsilosis</strong>', 'Differentiation from <em>C. orthopsilosis</em> and <em>C. metapsilosis</em> — complex species with a different resistance frequency']
+    ]) +
+    '<h3>Resistance genes: the core is fluconazole</h3>' +
+    '<p>The main emerging problem is <strong>fluconazole resistance via the ERG11 Y132F mutation</strong> (the same mutation as in <em>C. tropicalis</em>). Outbreaks of fluconazole-resistant <em>C. parapsilosis</em> with Y132F have been described in different countries — Europe, Asia, Latin America; resistant clones spread within hospitals and change empirical regimens.</p>' +
+    tbl(['Marker', 'Mechanism', 'Clinical Significance'], [
+      ['<strong>ERG11 Y132F</strong>', 'Substitution in the azole target (lanosterol 14α-demethylase)', '<strong>The key mutation</strong>: fluconazole resistance; with Y132F the report recommends echinocandins'],
+      ['<strong>TAC1</strong> (polymorphisms)', 'Overexpression of CDR efflux pumps', 'Enhancement of azole resistance, phenotype modifier'],
+      ['<strong>FKS1</strong>', 'Echinocandin target (β-1,3-glucan synthase)', 'Control of echinocandin resistance — the drugs of choice in case of Y132F']
+    ]) +
+    '<h3>Outbreak tracking</h3>' +
+    tbl(['Task', 'Approach', 'Result in the Report'], [
+      ['<strong>Isolate relatedness</strong>', 'SNP clustering from clair3/medaka variants', 'One clone or several introductions into the ward'],
+      ['<strong>Source</strong>', 'Comparison of patient isolates with swabs from staff hands and equipment', 'Localisation of the reservoir: staff hands / catheters / parenteral nutrition systems'],
+      ['<strong>Therapy</strong>', 'AMR profile (ERG11, TAC1, FKS1)', 'Recommendation: echinocandins with Y132F; fluconazole with wild-type ERG11']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Parapsilosis Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CPAR-Species-ID</strong>', 'Differentiation of the <em>C. parapsilosis</em> / <em>C. orthopsilosis</em> / <em>C. metapsilosis</em> complex from ITS'],
+      ['<strong>CPAR-Res-Detector</strong>', 'Resistance profile prediction from genomic data (ERG11 Y132F, TAC1, FKS1)'],
+      ['<strong>CPAR-Outbreak-Tracker</strong>', 'SNP clustering of outbreak isolates and source finding']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — reference panel of the species complex (<em>C. parapsilosis</em>, <em>C. orthopsilosis</em>, <em>C. metapsilosis</em>)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — complete genes and isolate assembly on long reads'],
+      ['<strong>4. AMR marker detection and SNP clustering</strong>', 'Custom marker database (ERG11, TAC1, FKS1) and SNP clustering of outbreak isolates'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Neonatal ICUs</strong> — <em>C. parapsilosis</em> outbreaks in neonatology are a regular publication topic: premature infants with central catheters and parenteral nutrition are the highest-risk group. SNP clone tracking allows the source (staff hands, equipment) to be found quickly and the outbreak to be stopped.</li>' +
+    '<li><strong>Geography</strong> — the share of <em>C. parapsilosis</em> in the candidaemia structure is higher in Southern Europe, Latin America and Asia, where it often ranks among the leading candidaemia agents alongside <em>C. albicans</em>.</li>' +
+    '<li><strong>Emerging resistance</strong> — outbreaks of fluconazole-resistant <em>C. parapsilosis</em> with the ERG11 Y132F mutation have been described in various countries; resistant clones spread within hospitals and shift empirical therapy towards echinocandins.</li>' +
+    '<li><strong>Infection control</strong> — fungal persistence on surfaces and biofilms makes traditional culture-based monitoring slow; genomic typing of outbreak isolates in hours turns an investigation from retrospective analysis into an operational tool.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — Invasive Candidiasis</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — Candida parapsilosis (Taxonomy and literature)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Candidiasis</a></li></ul>';
+
+  /* ── CANDIDA TROPICALIS & C. KRUSEI ── */
+  EN['/tropicalis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_tropicalis.svg" alt="Candida tropicalis and Candida krusei — a duet of non-albicans yeasts" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Identification and Antifungal Resistance of Candida tropicalis and C. krusei</h1>' +
+    '<p style="font-size:1.2em;color:#555">Asian and intrinsically resistant Candida: species identification, ERG11/FKS1 profile and tracking of resistant clones</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p>The "Candidiasis Universe" section opens with a duet of <strong>non-albicans</strong> species with special resistance profiles — <em>Candida tropicalis</em> and <em>Candida krusei</em> (teleomorph <em>Pichia kudriavzevii</em>). Both species are increasingly causing candidaemia, and both break the standard empirical tactics designed for <em>C. albicans</em>.</p>' +
+    '<p><em>Candida tropicalis</em> is one of the leading causes of candidaemia in the <strong>Asia-Pacific region</strong> and in haematological/oncological patients against a background of <strong>neutropenia</strong>. The key problem of recent years is the wide spread (first and foremost described for <strong>China</strong>) of clones with <strong>azole cross-resistance</strong> caused by mutations in the <strong>ERG11</strong> gene (primarily <strong>Y132F</strong> and <strong>A395T</strong>, often in combination). Such clones are resistant to <strong>fluconazole and voriconazole</strong> and are detected, among others, in patients <strong>without prior azole exposure</strong>. This gave rise to the discussed hypothesis of an <strong>environmental reservoir</strong> of resistance and its possible link to the use of azole fungicides in agriculture — a classic <strong>One Health</strong> storyline.</p>' +
+    '<p><em>Candida krusei</em> (<em>Pichia kudriavzevii</em>) is a species with <strong>intrinsic fluconazole resistance</strong>: this antifungal must not be prescribed empirically, even without waiting for the susceptibility test. Under the selective pressure of <strong>echinocandins</strong> the species acquires <strong>FKS1</strong> mutations, narrowing an already narrow arsenal. A historical fact: the species is named after the Russian microbiologist <strong>V. I. Kudryavtsev</strong>, a researcher of yeast taxonomy.</p>' +
+    '<p>From nanopore sequencing data of an isolate our pipeline performs <strong>ITS species identification</strong> (krusei vs tropicalis differentiation is critical: the species have different starting therapy), determines the <strong>AMR profile</strong> (ERG11 Y132F/A395T, TAC1, FKS1) and <strong>tracks the spread of resistant clones</strong> by SNP distances.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: pure isolate culture (blood culture, sterile sites). Optimal: rapid library preparation and a <strong>Flongle</strong> run for the "isolate → report within a shift" scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the clinician/microbiologist — species identification, AMR profile explicitly stating that for <em>C. krusei</em> <strong>fluconazole is excluded</strong>, a starting therapy recommendation; SNP clustering for the epidemiologist; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Resistance, Clones</h2>' +
+    '<h3>Species identification</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ITS (ITS1–5.8S–ITS2)</strong>', 'Species-specific identification: <em>C. tropicalis</em> vs <em>C. krusei</em> — fundamentally different starting therapy'],
+      ['<strong>Non-albicans panel</strong>', 'Differentiation from <em>C. albicans</em>, <em>C. glabrata</em>, <em>C. parapsilosis</em> and other complex species']
+    ]) +
+    '<h3>Azole resistance genes</h3>' +
+    tbl(['Gene / Mutation', 'Species', 'Clinical Significance'], [
+      ['<strong>ERG11 Y132F</strong>', '<em>C. tropicalis</em>', 'Key mutation of azole cross-resistance (fluconazole + voriconazole) in Asian clones'],
+      ['<strong>ERG11 A395T</strong>', '<em>C. tropicalis</em>', 'Often combined with Y132F — high-level azole resistance'],
+      ['<strong>TAC1</strong>', '<em>C. tropicalis</em>', 'ABC transporter regulator; overexpression enhances azole efflux'],
+      ['<strong>ERG11 (wild type)</strong>', '<em>C. krusei</em>', 'Structural features of the target → <strong>intrinsic fluconazole resistance</strong> (not acquired!)']
+    ]) +
+    '<h3>Echinocandin resistance</h3>' +
+    tbl(['Gene', 'Species', 'Clinical Significance'], [
+      ['<strong>FKS1 (hot spots)</strong>', 'both species', 'Mutations under echinocandin pressure (caspofungin, micafungin, anidulafungin) — critical for <em>C. krusei</em>, whose arsenal is already narrow']
+    ]) +
+    '<h3>Empirical therapy in the report</h3>' +
+    tbl(['Scenario', 'Approach', 'Role of Genomics'], [
+      ['<strong>ITS → <em>C. krusei</em></strong>', 'Fluconazole is <strong>excluded</strong> (intrinsic resistance) — start with an echinocandin or amphotericin B', 'FKS1 profile → preserve echinocandins in the absence of hot-spot mutations'],
+      ['<strong>ITS → <em>C. tropicalis</em>, ERG11 Y132F/A395T+</strong>', 'Azole cross-resistance is likely — an echinocandin is preferred', 'FKS1 profile + SNP clustering of the resistant clone'],
+      ['<strong>ITS → <em>C. tropicalis</em>, wild-type ERG11</strong>', 'Azoles remain an option', 'Confirmation of a susceptible background, absence of TAC1 overexpression']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Tropicalis Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CTR-Species-ID</strong>', 'ITS species identification: krusei vs tropicalis and differentiation from other non-albicans'],
+      ['<strong>CTR-Azole-Res</strong>', 'Prediction of azole cross-resistance from the ERG11 (Y132F/A395T) and TAC1 profile'],
+      ['<strong>CTR-Clone-Tracker</strong>', 'SNP clustering and tracking of resistant clone spread']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — reference panel of <em>C. tropicalis</em>, <em>C. krusei</em> (<em>P. kudriavzevii</em>) and other non-albicans'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. AMR gene detection</strong>', 'Custom database of ERG11/TAC1/FKS1 alleles and ITS markers, compatible with CARD/ResFinder formats'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Species spectrum shift of candidaemias</strong> — the share of non-albicans species is steadily growing; in the Asia-Pacific region <em>C. tropicalis</em> is among the candidaemia leaders, and empirical fluconazole designed for <em>C. albicans</em> increasingly misses the target.</li>' +
+    '<li><strong>Azole-resistant <em>C. tropicalis</em> clones from Asia</strong> — wide spread of ERG11 Y132F/A395T clones (first and foremost in China), including isolates from patients without prior azole exposure. This turns species identification without an AMR profile into half an answer.</li>' +
+    '<li><strong>Intrinsic resistance of <em>C. krusei</em></strong> — the only widespread Candida species for which fluconazole is unacceptable in principle. An empirical prescribing error here is not a matter of probability but a rule.</li>' +
+    '<li><strong>One Health bridge</strong> — the discussed link between azole fungicides in agriculture and azole resistance of clinical isolates points to a possible environmental reservoir of resistant clones. The same "fungicides in the field → resistance in the clinic" logic works in phytopathology too — see the farming section on <a href="/phytophthora/">late blight</a>.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — Candidemia and Invasive Candidiasis</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — Candida tropicalis / Candida krusei (Taxonomy, PubMed)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Candidiasis (invasive)</a></li></ul>';
+
   /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
   EN['/hvkp/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -5548,6 +5870,353 @@
     '<li>📄 <a href="https://pubmlst.org/organisms/chlamydiales-spp">PubMLST — 衣原体目分型</a></li>' +
     '<li>📄 <a href="https://www.ecdc.europa.eu/en/chlamydia">ECDC — 欧洲衣原体感染</a></li></ul>';
 
+  /* ── CANDIDA ALBICANS (白色念珠菌) ── */
+  ZH['/albicans/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_albicans.svg" alt="白色念珠菌 — 带芽生孢子和假菌丝的酵母细胞" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>白色念珠菌:唑类与棘白菌素类耐药、非整倍体与结构重排</h1>' +
+    '<p style="font-size:1.2em;color:#555">单次运行完成 SNV + CNV + 非整倍体分析 — 长读长能看到短读长遗漏的信息</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>白色念珠菌</em>(Candida albicans)是人类侵袭性念珠菌病的首要病原体:<strong>重症监护室的念珠菌血症</strong>(医院血流感染的主要原因之一)、黏膜与皮肤念珠菌病,以及<strong>导管和植入物上的生物膜</strong>——生物膜内对唑类的耐受性比浮游细胞高出数倍。该物种的标志性特征是<strong>"酵母 ↔ 菌丝"双形态转换</strong>:形态切换是毒力、组织侵袭和生物膜形成的关键因素。</p>' +
+    '<p>决定流程架构的核心分子特征:<em>C. albicans</em> 是<strong>二倍体</strong>生物,没有完整的有性生殖周期,其耐药性往往不是通过点突变,而是通过<strong>非整倍体和结构重排</strong>发展而来——经典例子是<strong>5L 等臂染色体</strong>,同时携带 <em>ERG11</em>(氟康唑靶标)和调控因子 <em>TAC1</em>。短读长难以解析这类重排;纳米孔测序能看到结构变异和拷贝数变化 (CNV),并可在二倍体基因组中<strong>定相等位基因</strong>。我们的流程在<strong>单次运行中联合分析 SNV + CNV + 非整倍体</strong>。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:纯培养分离株或血培养。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 菌种鉴定 (ITS)、AMR 谱(唑类、棘白菌素类)、CNV/非整倍体(含 5L 等臂染色体)、生物膜标志物;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、耐药、结构变异</h2>' +
+    '<h3>菌种鉴定</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ITS</strong>(核糖体 DNA 内转录间隔区)', '<em>C. albicans</em> 菌种鉴定及与非白念珠菌物种(<em>C. glabrata</em>、<em>C. parapsilosis</em>、<em>C. tropicalis</em>、<em>C. auris</em>)的鉴别']
+    ]) +
+    '<h3>唑类耐药(氟康唑等)</h3>' +
+    tbl(['标志物', '机制', '临床意义'], [
+      ['<strong>ERG11</strong>', '氟康唑靶标(羊毛甾醇 14α-去甲基化酶)点突变', '唑类对酶的亲和力下降——主要耐药机制'],
+      ['<strong>UPC2</strong>(功能获得性)', '<strong>ERG11</strong> 过表达', '靶标过量产生,抵消唑类作用'],
+      ['<strong>TAC1</strong>(功能获得性)', '<strong>CDR1/CDR2</strong> 外排泵(ABC 转运体)过表达', '将唑类泵出细胞'],
+      ['<strong>MRR1</strong>(功能获得性)', '<strong>MDR1</strong> 泵(MFS 转运体)过表达', '将唑类泵出细胞']
+    ]) +
+    '<h3>棘白菌素类与两性霉素 B</h3>' +
+    tbl(['标志物', '药物', '临床意义'], [
+      ['<strong>FKS1</strong>,热点 <strong>HS1/HS2</strong>(如 S645P)', '卡泊芬净、米卡芬净', '棘白菌素靶标(葡聚糖合酶)突变——ICU 广泛应用棘白菌素背景下的关键耐药'],
+      ['<strong>ERG3</strong> 及 ERG 相关改变', '两性霉素 B', '耐药罕见但有报道;膜甾醇组成改变']
+    ]) +
+    '<h3>结构变异、CNV 与非整倍体 — 长读长优势</h3>' +
+    tbl(['变异', '内容', '意义'], [
+      ['<strong>5L 等臂染色体</strong>', '同时携带 <strong>ERG11</strong> 和 <strong>TAC1</strong>', '唑类耐药的经典路径:一次重排同时加倍靶标和外排调控因子'],
+      ['<strong>染色体重复/非整倍体</strong>', '基因剂量改变', '二倍体念珠菌适应抗真菌药物的常见机制'],
+      ['<strong>AMR 基因座 CNV</strong>', 'ERG11、CDR1/CDR2、MDR1 扩增', '无点突变的过表达——面向 SNV 的流程无法发现']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Albicans Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CAL-Azole-Profiler</strong>', '基于 ERG11/UPC2/TAC1/MRR1 谱与 CNV 预测唑类耐药'],
+      ['<strong>CAL-FKS-Detector</strong>', '检测 FKS1 热点突变 (HS1/HS2)——棘白菌素耐药风险'],
+      ['<strong>CAL-Aneuploidy-Scanner</strong>', '基于覆盖度和结构变异识别非整倍体与 5L 等臂染色体']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 白色念珠菌参考基因组(二倍体)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — 带等位基因定相的 SNV/插入缺失'],
+      ['<strong>4. 结构变异与 CNV</strong>', '<code>sniffles2</code>、<code>cuteSV</code> — SV、非整倍体、按染色体覆盖度分析(5L 等臂染色体)'],
+      ['<strong>5. AMR 标志物检出</strong>', '自建靶标数据库:ERG11、FKS1 HS1/HS2、UPC2/TAC1/MRR1 GoF、生物膜标志物'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>ICU 念珠菌血症</strong> — 念珠菌所致血流感染在重症监护室院内感染中的占比不断上升;念珠菌血症死亡率高,延误充分的抗真菌治疗会恶化预后。数小时内获得基因组学答案,可在经验性用药错误累积之前调整策略。</li>' +
+    '<li><strong>棘白菌素耐药上升</strong> — 棘白菌素类已成为念珠菌血症一线用药,其广泛应用伴随 FKS1 突变株的出现;监测 HS1/HS2 热点正成为治疗路径选择的一部分。</li>' +
+    '<li><strong>菌种谱向非白念珠菌转移</strong> — 光滑念珠菌、近平滑念珠菌和耳念珠菌的占比不断上升;ITS 菌种鉴定在药敏数据出来之前就决定起始方案。参见念珠菌病宇宙的其他卡片:<a href="/auris/">耳念珠菌</a>与<a href="/glabrata/">光滑念珠菌</a>。</li>' +
+    '<li><strong>器械上的生物膜</strong> — 导管和植入物被生物膜定植,对唑类的耐受性成倍提高;基因组谱有助于区分"纯生物膜"问题(解决方案是拔除器械)与菌株的遗传性耐药。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — 念珠菌病</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — PubMed / Bookshelf</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 念珠菌病</a></li></ul>';
+
+  /* ── CANDIDA AURIS (耳念珠菌) ── */
+  ZH['/auris/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_auris.svg" alt="耳念珠菌 — 出芽酵母细胞与全球暴发分布" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>耳念珠菌的鉴定、进化分支分型与暴发追踪</h1>' +
+    '<p style="font-size:1.2em;color:#555">"超级真菌"的分子鉴定、进化分支 (I–VI) 与 AMR 谱 — 数小时内为医院感染控制提供答案</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>耳念珠菌</em>(Candida auris)是一种类酵母真菌,<strong>2009 年</strong>首次被描述(分离自日本一名患者的耳部分泌物——故名 <em>auris</em>,拉丁语"耳")。随后发现了前所未有的现象:多个遗传进化分支(I–V;目前也在描述 VI)<strong>在不同大陆独立且几乎同时出现</strong>——全球同步出现的谜团。一种讨论中的假说将其与气候变暖联系起来:变暖作为选择因子,筛选出能突破哺乳动物体温屏障的耐热真菌;这只是假说,而非已证实的机制。</p>' +
+    '<p>CDC 将<em>耳念珠菌</em>列入 <strong>"紧迫威胁" (Urgent Threat)</strong> 类别——抗微生物药物耐药的最高威胁等级。该真菌被称为"超级真菌"有三个原因:</p>' +
+    '<ul><li><strong>多重耐药</strong> — 约 <strong>90% 的分离株对氟康唑耐药</strong>,对两性霉素 B 的耐药性不一,对棘白菌素类的耐药性正在上升(<strong>FKS1</strong> 突变,如 S639F);已有对所有三类主要抗真菌药物均不敏感的<strong>泛耐药</strong>菌株报道。</li>' +
+    '<li><strong>院内暴发</strong> — 在物体表面和患者皮肤上长期存活,在 ICU 内传播;对多种消毒剂耐受,需使用经证明对耳念珠菌有效的消毒产品。</li>' +
+    '<li><strong>鉴定错误</strong> — 表型系统会将其与 <em>C. haemulonii</em> 等酵母混淆;可靠鉴定只能靠<strong>分子方法</strong>(ITS/D1–D2)或更新数据库后的 MALDI-TOF。</li></ul>' +
+    '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种分子鉴定</strong>、基于 SNP 面板/全基因组的<strong>进化分支判定 (I–VI)</strong>、<strong>AMR 谱</strong>(ERG11、FKS1)以及<strong>暴发追踪</strong>:分离株亲缘关系的 SNP 分析回答感染控制的核心问题"谁传染了谁",并记录院内传播。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:分离株或筛查拭子(腋窝/腹股沟)。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于医院场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医院感染控制部门的报告 — 菌种鉴定、进化分支、AMR 谱、暴发分离株 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、进化分支、耐药</h2>' +
+    '<h3>分子鉴定与鉴别诊断</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ITS / D1–D2</strong>', '耳念珠菌种特异性鉴定——取代易错表型诊断的金标准'],
+      ['<strong>全基因组 SNP 分析</strong>', '与 <em>C. haemulonii</em>、<em>C. pseudohaemulonii</em>、<em>C. duobushaemulonii</em> 等形态相似酵母的鉴别']
+    ]) +
+    '<h3>进化分支(地理系统发育)</h3>' +
+    tbl(['分支', '典型地区', '备注'], [
+      ['<strong>I</strong>', '南亚', '临床暴发中最常见'],
+      ['<strong>II</strong>', '东亚', '2009 年日本原始分离株所属分支'],
+      ['<strong>III</strong>', '非洲', '南非等地暴发'],
+      ['<strong>IV</strong>', '南美洲', '委内瑞拉、哥伦比亚暴发'],
+      ['<strong>V</strong>', '伊朗', '描述较晚,零星分离株'],
+      ['<strong>VI</strong>', '—', '新近描述的分支;分类仍在完善']
+    ]) +
+    '<h3>耐药基因</h3>' +
+    tbl(['基因', '药物类别', '临床意义'], [
+      ['<strong>ERG11</strong>', '唑类(氟康唑)', '突变(Y132F、K143R 等)——唑类耐药的主要机制;约 90% 分离株对氟康唑耐药'],
+      ['<strong>FKS1</strong>', '棘白菌素类(卡泊芬净等)', '热点突变(如 <strong>S639F</strong>)——最后防线药物失效'],
+      ['<strong>其他位点</strong>', '两性霉素 B', '机制多样;泛耐药菌株使三类药物全部失效']
+    ]) +
+    '<h3>感染控制输出</h3>' +
+    tbl(['任务', '流程提供的内容'], [
+      ['<strong>菌种确认</strong>', '耳念珠菌分子鉴定,无与 <em>C. haemulonii</em> 混淆的风险'],
+      ['<strong>暴发流行病学调查</strong>', '分离株 SNP 聚类:谁传染了谁、共同来源、院内传播'],
+      ['<strong>治疗选择</strong>', 'AMR 谱(ERG11、FKS1)——默认排除氟康唑,核查棘白菌素风险'],
+      ['<strong>流行病学监测</strong>', '进化分支判定 (I–VI)——输入性分离株还是本地流行']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Auris Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CAU-Clade-Typer</strong>', '基于 SNP 谱判定进化分支 (I–VI)'],
+      ['<strong>CAU-Res-Detector</strong>', '基于基因组数据预测抗真菌药物耐药性(ERG11、FKS1)'],
+      ['<strong>CAU-Outbreak-Tracker</strong>', '基于 SNP 亲缘关系对暴发分离株聚类,用于流行病学调查']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 耳念珠菌各分支 (I–VI) 及近缘物种参考序列,用于鉴别'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. 系统发育与聚类</strong>', '分离株亲缘关系 SNP 分析、进化树构建、自建分支数据库'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) +
+    '<p>Oxford Nanopore 长读长还能获得<strong>分离株完整组装</strong>并检出短读长技术无法获得的<strong>结构变异</strong>。</p><hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>全球暴发</strong> — 耳念珠菌已在所有有人居住的大陆报告;据 CDC 和 ECDC 数据,美国和欧洲的病例数持续上升;俄罗斯也有病例报告。每一次新暴发都需要快速回答:菌种、分支、耐药性、传播链。</li>' +
+    '<li><strong>紧迫威胁</strong> — CDC 将耳念珠菌列入 AMR 最高威胁类别。多重耐药(直至泛耐药菌株)使没有基因组数据的经验性抗真菌治疗选择几乎不可能。</li>' +
+    '<li><strong>念珠菌血症高死亡率</strong> — 侵袭性感染的临床系列死亡率可达 <strong>30–60%</strong>;死亡归因复杂——患者通常有严重的基础疾病(ICU、导管、免疫抑制)。</li>' +
+    '<li><strong>医院感染控制</strong> — 耳念珠菌在表面和皮肤上可存活数月;消毒需使用经证明对该真菌有效的消毒剂。快速 SNP 暴发追踪可定位来源,在传播到各病区之前切断传播链。</li>' +
+    '<li><strong>出现之谜</strong> — 各分支在不同大陆同时独立出现(假说:变暖背景下耐热真菌被选择),使耳念珠菌成为新一波真菌病原体的典型范例,监测系统必须为此做好准备。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — 耳念珠菌</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/">ECDC — 欧洲疾病预防控制中心</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 美国国家生物技术信息中心</a></li></ul>';
+
+  /* ── CANDIDA GLABRATA (光滑念珠菌) ── */
+  ZH['/glabrata/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_glabrata.svg" alt="光滑念珠菌 — 出芽酵母细胞与耐药性进化的螺旋" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>光滑念珠菌耐药性的进化 — 基因组实时监控</h1>' +
+    '<p style="font-size:1.2em;color:#555">PDR1 / FKS1 / FKS2 / MSH2 谱与患者连续分离株的微观进化 — 趁治疗还来得及发挥作用</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>光滑念珠菌</em>(Candida glabrata,现名 <em>Nakaseomyces glabratus</em>)是发达国家成人<strong>第二常见的念珠菌血症病因</strong>,也是新栏目"念珠菌病宇宙"的主打物种。与白色念珠菌不同,该病原体是<strong>单倍体</strong>,<strong>不形成真菌丝和假菌丝</strong>——只有小型出芽酵母细胞。其在宿主体内的持留依靠 <strong>EPA 家族</strong>黏附素,而主要的临床"武器"是在治疗过程中进化出耐药性的惊人能力。</p>' +
+    '<p>问题的核心是<strong>"在医生眼前"产生的耐药性</strong>。光滑念珠菌天然对氟康唑<strong>敏感性降低</strong>(SDD 类别——剂量依赖性敏感),在治疗压力下迅速获得完全耐药:<strong>PDR1 功能获得性突变</strong>导致 <strong>CDR1/CDR2</strong> 外排泵过表达(唑类耐药),<strong>FKS1 和 FKS2 热点突变</strong>(如 FKS1 的 S629P、FKS2 的 S663P)导致棘白菌素类耐药。经典场景:ICU 患者使用米卡芬净,数周后出现<strong>耐药菌株突破性念珠菌血症</strong>。该物种的另一特征是 <strong>MSH2</strong> 突变(错配修复系统),产生<strong>突变子(超突变)表型</strong>,加速整个进化过程。已有<strong>同时对唑类和棘白菌素类耐药</strong>的分离株报道——此时治疗选择几乎只剩两性霉素 B。</p>' +
+    '<p>我们的流程基于<strong>同一患者连续分离株</strong>(治疗前和治疗期间)的纳米孔测序数据,构建关键耐药基因谱,进行 ITS 菌种鉴定,并<strong>将连续分离株相互比较</strong>——追踪患者体内的微观进化。长读长提供靶基因的完整覆盖和 <strong>CNV</strong> 控制(泵和靶标的拷贝数)。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液及其他无菌部位连续分离株的培养物。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于 ICU 床旁场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告 — 菌种鉴定、PDR1/FKS1/FKS2/MSH2 谱、连续分离株的突变动态及<strong>治疗调整建议</strong>;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:耐药、鉴定、微观进化</h2>' +
+    '<h3>耐药标志基因</h3>' +
+    tbl(['基因', '机制', '临床意义'], [
+      ['<strong>PDR1</strong>', '调控因子功能获得性突变 → 外排泵过表达', '获得性<strong>唑类</strong>(氟康唑、伏立康唑)耐药的主要驱动因素'],
+      ['<strong>CDR1 / CDR2</strong>', '外排泵(ABC 转运体)', 'PDR1 依赖耐药的效应分子;表达量和拷贝数升高'],
+      ['<strong>FKS1</strong>', '热点突变(如 <strong>S629P</strong>)——棘白菌素靶标', '<strong>棘白菌素类</strong>(米卡芬净、卡泊芬净、阿尼芬净)耐药'],
+      ['<strong>FKS2</strong>', '热点突变(如 <strong>S663P</strong>)——葡聚糖合酶第二亚基', '在光滑念珠菌中意义不亚于 FKS1——两者必须同时监测'],
+      ['<strong>MSH2</strong>', '错配修复 (MMR) 系统缺陷', '<strong>超突变表型</strong> → 加速对任何药物的耐药进化']
+    ]) +
+    '<h3>菌种鉴定与鉴别诊断</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ITS</strong>(核糖体 DNA 内转录间隔区)', '<em>C. glabrata</em> / <em>Nakaseomyces glabratus</em> 菌种鉴定'],
+      ['<strong>非白念珠菌面板</strong>', '与 <em>C. albicans</em>、<em>C. parapsilosis</em>、<em>C. tropicalis</em> 和 <em>C. auris</em> 鉴别——它们的药敏谱和治疗策略不同']
+    ]) +
+    '<h3>连续分离株:患者体内的微观进化</h3>' +
+    tbl(['分析', '意义'], [
+      ['<strong>"治疗前/治疗中"分离株比较</strong>', '检测治疗过程中新出现的 PDR1/FKS1/FKS2 突变——在耐药发生之时即被记录,而非事后发现'],
+      ['<strong>长读长 CNV</strong>', '监控 CDR1/CDR2 及靶标拷贝数——扩增会强化耐药表型'],
+      ['<strong>超突变特征 (MSH2)</strong>', '预后:MMR 缺陷菌株会更快获得耐药——备用方案需提前准备']
+    ]) +
+    '<h3>报告中的临床场景</h3>' +
+    tbl(['场景', '问题', '基因组学的作用'], [
+      ['<strong>经验性氟康唑</strong>', '光滑念珠菌天然 SDD 敏感——标准剂量失效风险', 'ITS 菌种确认 → 及时换用充分方案'],
+      ['<strong>棘白菌素治疗中突破性念珠菌血症</strong>', '患者使用米卡芬净数周,培养持续阳性', '在连续分离株中寻找 FKS1/FKS2 突变 → 证实耐药并换药'],
+      ['<strong>多重耐药分离株</strong>', '同时对唑类+棘白菌素类耐药', 'PDR1 + FKS 谱 → 为换用<strong>两性霉素 B</strong> 提供依据'],
+      ['<strong>复发性念珠菌血症</strong>', '菌株持留还是再次感染', '比较连续分离株基因组:是否为同源菌株']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Glabrata Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CGL-FKS-Caller</strong>', '检测 FKS1/FKS2 热点突变并预测棘白菌素耐药'],
+      ['<strong>CGL-Res-Evolution</strong>', '基于 PDR1/MSH2 谱和连续分离株动态预测耐药进化风险'],
+      ['<strong>CGL-Species-ID</strong>', '基于 ITS 和基因组特征的非白念珠菌菌种鉴定']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 光滑念珠菌参考基因组 + 非白念珠菌物种面板'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — PDR1/FKS1/FKS2/MSH2 的 SNP,基于长读长覆盖度的 CNV 控制'],
+      ['<strong>4. 耐药靶标检出</strong>', '自建靶标数据库(PDR1、CDR1/CDR2、FKS1/FKS2、MSH2)+ 用于菌种鉴定的 ITS'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>向非白念珠菌转移</strong> — 发达国家中非白色念珠菌引起的念珠菌血症占比稳步上升,光滑念珠菌是这一转变的领头羊:按白色念珠菌设计的经验性方案越来越不够用。</li>' +
+    '<li><strong>CDC 和 ECDC 的警报</strong> — 棘白菌素耐药光滑念珠菌的增长已被认定为流行病学威胁:棘白菌素类是念珠菌血症一线用药,其失效使临床医生几乎没有安全的选择。</li>' +
+    '<li><strong>ICU 实践加剧问题</strong> — 对重症患者常规经验性使用棘白菌素造成持续的选择压力:突破性耐药菌株正是在重症监护室中产生和被筛选出来的。</li>' +
+    '<li><strong>微观进化在临床上可测量</strong> — 同一患者的连续分离株显示耐药性在数周而非数年内产生。Edge 设备上的纳米孔测序可实时追踪这一过程,在临床突破发生之前而非之后调整治疗。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — 侵袭性念珠菌病与光滑念珠菌</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/">ECDC — 念珠菌血症与耐药监测</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 光滑念珠菌 (Taxonomy、Bookshelf、PubMed)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 念珠菌病</a></li></ul>';
+
+  /* ── CANDIDA PARAPSILOSIS (近平滑念珠菌) ── */
+  ZH['/parapsilosis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_parapsilosis.svg" alt="近平滑念珠菌 — 酵母细胞与导管" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>近平滑念珠菌的鉴定、氟康唑耐药与暴发追踪</h1>' +
+    '<p style="font-size:1.2em;color:#555">ERG11 Y132F、暴发分离株 SNP 聚类与物种复合体鉴别 — 新生儿 ICU 中分秒必争</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>近平滑念珠菌</em>(Candida parapsilosis)是一种类酵母真菌,<strong>新生儿重症监护室 (NICU) 暴发</strong>的经典病原体。关键机制是经<strong>医护人员双手</strong>和<strong>侵入性器械</strong>传播:该真菌对聚合物表面生物膜有明显趋向性,因此中心静脉导管和肠外营养系统成为<strong>导管相关念珠菌血症</strong>的入口。历史上近平滑念珠菌被认为毒力低于白色念珠菌,但其暴发能力、在病房内的持留性以及日益增长的耐药性,使其成为新生儿科感染控制的主要难题之一。</p>' +
+    '<p>我们的流程基于暴发分离株的纳米孔测序数据,执行<strong>菌种鉴定</strong>(ITS,并与 <em>C. orthopsilosis</em> 和 <em>C. metapsilosis</em> 鉴别——这是流行病学不同的近缘物种复合体)、<strong>AMR 谱</strong>(ERG11 Y132F、TAC1、FKS1)和<strong>基于 SNP 的暴发追踪</strong>——为感染控制提供基因组学答案:是否为同一克隆,来源在哪里——医护人员的手还是设备。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液分离株、医护人员手和物体表面拭子、导管生物膜。最佳方案:在病房内直接用 <strong>Flongle</strong> 运行,床旁场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向感染控制和临床医生的 HTML 报告 — 菌种鉴定、含治疗建议的 AMR 谱(<strong>ERG11 Y132F 时推荐棘白菌素类</strong>)、暴发分离株 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、耐药、暴发</h2>' +
+    '<h3>菌种鉴定:物种复合体</h3>' +
+    '<p>近平滑念珠菌是一个近缘物种复合体,各物种在流行病学和唑类敏感性上不同;ITS 测序可以可靠区分:</p>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ITS</strong>(ITS1–5.8S–ITS2)', '狭义近平滑念珠菌 (sensu stricto) 种特异性鉴定'],
+      ['<strong>ITS 鉴别 ortho/metapsilosis</strong>', '与 <em>C. orthopsilosis</em> 和 <em>C. metapsilosis</em> 鉴别——复合体中耐药频率不同的物种']
+    ]) +
+    '<h3>耐药基因:核心是氟康唑</h3>' +
+    '<p>主要的新兴问题是通过 <strong>ERG11 Y132F 突变</strong>产生的<strong>氟康唑耐药</strong>(与热带念珠菌相同的突变)。携带 Y132F 的氟康唑耐药近平滑念珠菌暴发已在欧洲、亚洲、拉丁美洲等多国报道;耐药克隆在医院内传播并改变经验性方案。</p>' +
+    tbl(['标志物', '机制', '临床意义'], [
+      ['<strong>ERG11 Y132F</strong>', '唑类靶标(羊毛甾醇 14α-去甲基化酶)替换', '<strong>关键突变</strong>:氟康唑耐药;Y132F 时报告推荐棘白菌素类'],
+      ['<strong>TAC1</strong>(多态性)', 'CDR 外排泵过表达', '增强唑类耐药,表型修饰因子'],
+      ['<strong>FKS1</strong>', '棘白菌素靶标(β-1,3-葡聚糖合酶)', '监控棘白菌素类耐药——Y132F 时的首选药物']
+    ]) +
+    '<h3>暴发追踪</h3>' +
+    tbl(['任务', '方法', '报告结果'], [
+      ['<strong>分离株关联</strong>', '基于 clair3/medaka 变异的 SNP 聚类', '单一克隆还是多次传入病房'],
+      ['<strong>来源</strong>', '将患者分离株与医护人员手和设备拭子比较', '定位储存宿主:医护人员的手 / 导管 / 肠外营养系统'],
+      ['<strong>治疗</strong>', 'AMR 谱(ERG11、TAC1、FKS1)', '建议:Y132F 时用棘白菌素类;ERG11 野生型时用氟康唑']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Parapsilosis Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CPAR-Species-ID</strong>', '基于 ITS 鉴别 <em>C. parapsilosis</em> / <em>C. orthopsilosis</em> / <em>C. metapsilosis</em> 复合体'],
+      ['<strong>CPAR-Res-Detector</strong>', '基于基因组数据预测耐药谱(ERG11 Y132F、TAC1、FKS1)'],
+      ['<strong>CPAR-Outbreak-Tracker</strong>', '暴发分离株 SNP 聚类与来源查找']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 物种复合体参考面板(<em>C. parapsilosis</em>、<em>C. orthopsilosis</em>、<em>C. metapsilosis</em>)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — 长读长上的完整基因与分离株组装'],
+      ['<strong>4. AMR 标志物检出与 SNP 聚类</strong>', '自建标志物数据库(ERG11、TAC1、FKS1)与暴发分离株 SNP 聚类'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>新生儿 ICU</strong> — 新生儿科近平滑念珠菌暴发是文献中的常见主题:带中心静脉导管和肠外营养的早产儿是最高风险人群。基于 SNP 的克隆追踪能快速找到来源(医护人员的手、设备)并终止暴发。</li>' +
+    '<li><strong>地理分布</strong> — 近平滑念珠菌在南欧、拉丁美洲和亚洲的念珠菌血症构成中占比更高,常与白色念珠菌并列为主要病原体。</li>' +
+    '<li><strong>新兴耐药</strong> — 携带 ERG11 Y132F 突变的氟康唑耐药近平滑念珠菌暴发已在多国报道;耐药克隆在医院内传播,使经验性治疗转向棘白菌素类。</li>' +
+    '<li><strong>感染控制</strong> — 真菌在表面和生物膜上的持留使传统培养监测缓慢;数小时内完成暴发分离株基因组分型,把调查从事后分析变为实时工具。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — 侵袭性念珠菌病</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 近平滑念珠菌(Taxonomy 与文献)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 念珠菌病</a></li></ul>';
+
+  /* ── CANDIDA TROPICALIS & C. KRUSEI (热带念珠菌与克鲁斯念珠菌) ── */
+  ZH['/tropicalis/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_tropicalis.svg" alt="热带念珠菌与克鲁斯念珠菌 — 非白念珠菌二重奏" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>热带念珠菌与克鲁斯念珠菌的鉴定与抗真菌耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">亚洲型与先天耐药的念珠菌:菌种鉴定、ERG11/FKS1 谱与耐药克隆追踪</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>"念珠菌病宇宙"栏目以一对具有特殊耐药谱的<strong>非白念珠菌</strong>物种开篇——<em>热带念珠菌</em>(Candida tropicalis)和<em>克鲁斯念珠菌</em>(Candida krusei,有性型 <em>Pichia kudriavzevii</em>)。两者都越来越常引起念珠菌血症,也都打破了针对白色念珠菌设计的标准经验性策略。</p>' +
+    '<p><em>热带念珠菌</em>是<strong>亚太地区</strong>念珠菌血症的主要病因之一,也常见于<strong>中性粒细胞减少</strong>的血液科/肿瘤科患者。近年来的关键问题是携带<strong>唑类交叉耐药</strong>的克隆广泛传播(首先在<strong>中国</strong>报道),由 <strong>ERG11</strong> 基因突变(首先是 <strong>Y132F</strong> 和 <strong>A395T</strong>,常联合出现)所致。此类克隆对<strong>氟康唑和伏立康唑</strong>耐药,甚至在<strong>从未使用过唑类药物</strong>的患者中也能检出。这催生了一个讨论中的假说:耐药性存在<strong>环境储存库</strong>,可能与农业中使用唑类杀菌剂有关——典型的<strong>"同一健康" (One Health)</strong> 故事。</p>' +
+    '<p><em>克鲁斯念珠菌</em>(<em>Pichia kudriavzevii</em>)具有<strong>先天氟康唑耐药</strong>:这种抗真菌药甚至不等药敏试验结果就不得经验性使用。在<strong>棘白菌素类</strong>的选择压力下,该物种会产生 <strong>FKS1</strong> 突变,使本已有限的武器库进一步收窄。历史事实:该物种以俄罗斯微生物学家<strong>库德里亚夫采夫 (V. I. Kudryavtsev)</strong> 命名,他是酵母分类学研究者。</p>' +
+    '<p>我们的流程基于分离株的纳米孔测序数据,执行 <strong>ITS 菌种鉴定</strong>(克鲁斯与热带的鉴别至关重要:两者的起始治疗不同),确定 <strong>AMR 谱</strong>(ERG11 Y132F/A395T、TAC1、FKS1),并基于 SNP 距离<strong>追踪耐药克隆的传播</strong>。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:分离株纯培养(血培养、无菌部位)。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,"分离株 → 当班出报告"场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向临床医生/微生物学家的 HTML 报告 — 菌种鉴定、AMR 谱(明确指出克鲁斯念珠菌<strong>禁用氟康唑</strong>)、起始治疗建议;面向流行病学家的 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、耐药、克隆</h2>' +
+    '<h3>菌种鉴定</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ITS (ITS1–5.8S–ITS2)</strong>', '种特异性鉴定:<em>C. tropicalis</em> vs <em>C. krusei</em>——起始治疗根本不同'],
+      ['<strong>非白念珠菌面板</strong>', '与 <em>C. albicans</em>、<em>C. glabrata</em>、<em>C. parapsilosis</em> 及其他复合体物种鉴别']
+    ]) +
+    '<h3>唑类耐药基因</h3>' +
+    tbl(['基因 / 突变', '物种', '临床意义'], [
+      ['<strong>ERG11 Y132F</strong>', '<em>C. tropicalis</em>', '亚洲克隆唑类交叉耐药(氟康唑 + 伏立康唑)的关键突变'],
+      ['<strong>ERG11 A395T</strong>', '<em>C. tropicalis</em>', '常与 Y132F 联合——高水平唑类耐药'],
+      ['<strong>TAC1</strong>', '<em>C. tropicalis</em>', 'ABC 转运体调控因子;过表达增强唑类外排'],
+      ['<strong>ERG11(野生型)</strong>', '<em>C. krusei</em>', '靶标结构特征 → <strong>先天氟康唑耐药</strong>(非获得性!)']
+    ]) +
+    '<h3>棘白菌素类耐药</h3>' +
+    tbl(['基因', '物种', '临床意义'], [
+      ['<strong>FKS1(热点)</strong>', '两个物种', '棘白菌素压力下的突变(卡泊芬净、米卡芬净、阿尼芬净)——对武器库本已狭窄的克鲁斯念珠菌尤为关键']
+    ]) +
+    '<h3>报告中的经验性治疗</h3>' +
+    tbl(['场景', '方案', '基因组学的作用'], [
+      ['<strong>ITS → <em>C. krusei</em></strong>', '氟康唑<strong>禁用</strong>(先天耐药)——以棘白菌素或两性霉素 B 起始', 'FKS1 谱 → 无热点突变时保留棘白菌素'],
+      ['<strong>ITS → <em>C. tropicalis</em>,ERG11 Y132F/A395T+</strong>', '可能存在唑类交叉耐药——优选棘白菌素', 'FKS1 谱 + 耐药克隆 SNP 聚类'],
+      ['<strong>ITS → <em>C. tropicalis</em>,ERG11 野生型</strong>', '唑类仍是选择', '确认敏感背景,无 TAC1 过表达']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Tropicalis Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CTR-Species-ID</strong>', '基于 ITS 的菌种鉴定:克鲁斯 vs 热带及与其他非白念珠菌鉴别'],
+      ['<strong>CTR-Azole-Res</strong>', '基于 ERG11 (Y132F/A395T) 和 TAC1 谱预测唑类交叉耐药'],
+      ['<strong>CTR-Clone-Tracker</strong>', 'SNP 聚类与耐药克隆传播追踪']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 热带念珠菌、克鲁斯念珠菌 (<em>P. kudriavzevii</em>) 及其他非白念珠菌参考面板'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. AMR 基因检出</strong>', '自建 ERG11/TAC1/FKS1 等位基因与 ITS 标志物数据库,兼容 CARD/ResFinder 格式'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>念珠菌血症菌种谱转变</strong> — 非白念珠菌占比稳步上升;在亚太地区热带念珠菌是念珠菌血症的领先病原之一,针对白色念珠菌的经验性氟康唑越来越脱靶。</li>' +
+    '<li><strong>来自亚洲的唑类耐药热带念珠菌克隆</strong> — ERG11 Y132F/A395T 克隆广泛传播(首先在中国),包括从未用过唑类药物患者的分离株。这使没有 AMR 谱的菌种鉴定只算半个答案。</li>' +
+    '<li><strong>克鲁斯念珠菌的先天耐药</strong> — 唯一一种氟康唑原则上禁用的常见念珠菌。这里的经验性用药错误不是概率问题,而是规则。</li>' +
+    '<li><strong>"同一健康"桥梁</strong> — 农业唑类杀菌剂与临床分离株唑类耐药之间讨论中的关联,指向耐药克隆可能存在环境储存库。同样的"田间杀菌剂 → 临床耐药"逻辑也适用于植物病理学——参见农业栏目中的<a href="/phytophthora/">晚疫病</a>。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.cdc.gov/">CDC — 念珠菌血症与侵袭性念珠菌病</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 热带念珠菌 / 克鲁斯念珠菌 (Taxonomy、PubMed)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 念珠菌病(侵袭性)</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -5560,6 +6229,7 @@
       'Онкология. Пейплайны в работе.': 'Oncology. Pipelines in Development.',
       'Пейплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
+      'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': 'Pipelines in Development. Clinical Assistants. Candidiasis Universe.',
       'Пейплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
       'Пейплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
     },
@@ -5588,6 +6258,11 @@
       'acinetobacter': ['Acinetobacter baumannii (CRAB)', 'Complete AMR profile and carbapenemase detection (OXA-23, NDM, VIM) — WHO priority "critical" pathogen, the main ICU threat'],
       'pseudomonas':  ['Pseudomonas aeruginosa (CRPA)', 'Complete AMR profile, MBL (VIM, NDM) and efflux pump (MexAB) detection — a master of adaptation, key pathogen of ICUs and cystic fibrosis'],
       'chlamydia':    ['Chlamydia (C. trachomatis)', 'Serovar (A–L) genotyping and macrolide/fluoroquinolone resistance determination — the most common bacterial STI in the world'],
+      'albicans':     ['Candida albicans', 'Azole (ERG11, TAC1, efflux) and echinocandin (FKS1) resistance + aneuploidies (isochromosome 5L) — SNV, CNV and structural variants in a single long-read run'],
+      'auris':        ['Candida auris Superbug', 'Molecular identification (phenotyping gets it wrong), clade I–VI determination, MDR profile and SNP tracking of nosocomial outbreaks'],
+      'glabrata':     ['Candida glabrata (Nakaseomyces)', 'Resistance evolving during therapy — PDR1, FKS1/FKS2 hot spots, MSH2 mutator phenotype; serial isolate monitoring'],
+      'parapsilosis': ['Candida parapsilosis', 'Outbreaks in neonatal ICUs and catheter-associated candidaemia — ERG11 Y132F detection and SNP source tracing (staff hands, equipment)'],
+      'tropicalis':   ['Candida tropicalis & C. krusei', 'Asian azole-resistant tropicalis clones (ERG11 Y132F/A395T) and intrinsic fluconazole resistance of krusei — species identification decides the starting therapy'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
       'hbv':          ['Hepatitis B (HBV)', 'HBV genotyping (A–J), polymerase resistance mutations (YMDD), HBeAg status and liver cancer risk markers — from a single assay'],
       'hvkp':         ['Hypervirulent Klebsiella (hvKP)', 'Virulence markers (rmpA, iucA, peg-344), K1/K2 capsular types and convergence with carbapenem resistance — liver abscess and metastatic infections'],
@@ -5643,6 +6318,7 @@
       'Онкология. Пейплайны в работе.': '肿瘤学 · 开发中的流程',
       'Пейплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
+      'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': '开发中的流程 · 医生助手 · 念珠菌病宇宙',
       'Пейплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
       'Пейплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
     },
@@ -5677,6 +6353,11 @@
       'acinetobacter': ['鲍曼不动杆菌 (CRAB)', '完整 AMR 谱与碳青霉烯酶检测 (OXA-23、NDM、VIM) — WHO"危急"级别重点病原体,ICU 的首要威胁'],
       'pseudomonas': ['铜绿假单胞菌 (CRPA)', '完整 AMR 谱、金属 β-内酰胺酶 (VIM、NDM) 与外排泵 (MexAB) 检测 — 适应性大师,ICU 与囊性纤维化的关键病原体'],
       'chlamydia': ['衣原体感染 (沙眼衣原体)', '血清型 (A–L) 基因分型与大环内酯类/氟喹诺酮类耐药性检测 — 全球最常见的细菌性传播感染'],
+      'albicans': ['白色念珠菌', '唑类(ERG11、TAC1、外排泵)与棘白菌素类(FKS1)耐药 + 非整倍体(5L 等臂染色体)— 长读长单次运行完成 SNV、CNV 与结构变异分析'],
+      'auris': ['超级真菌耳念珠菌', '分子鉴定(表型易误判)、进化分支 I–VI 判定、MDR 谱与院内暴发的 SNP 追踪'],
+      'glabrata': ['光滑念珠菌 (Nakaseomyces)', '治疗过程中不断进化的耐药性 — PDR1、FKS1/FKS2 热点突变、MSH2 突变子表型;连续分离株监测'],
+      'parapsilosis': ['近平滑念珠菌', '新生儿 ICU 暴发与导管相关念珠菌血症 — ERG11 Y132F 检测与 SNP 来源追踪(医护人员的手、设备)'],
+      'tropicalis': ['热带念珠菌与克鲁斯念珠菌', '亚洲唑类耐药热带念珠菌克隆(ERG11 Y132F/A395T)与克鲁斯念珠菌先天氟康唑耐药 — 菌种鉴定决定起始治疗'],
       'staphylococcus': ['金黄色葡萄球菌 (S. aureus)', 'MRSA/VRSA 鉴定与完整 AMR 谱分析 — 主要的医院感染病原体'],
       'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
       'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
@@ -5727,7 +6408,7 @@
     if (dz) dz.textContent = H.dzenText;
 
     /* Section titles */
-    ['components', 'projects', 'oncology', 'old', 'clostridia', 'farmer', 'criminal'].forEach(function (k) {
+    ['components', 'projects', 'oncology', 'old', 'clostridia', 'candida', 'farmer', 'criminal'].forEach(function (k) {
       var el = document.getElementById('i18n-sec-' + k);
       if (el) {
         var ru = el.textContent.trim();

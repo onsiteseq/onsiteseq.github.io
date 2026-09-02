@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cpar_yeast" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b2dfdb"/>
+      <stop offset="100%" stop-color="#00695c"/>
+    </linearGradient>
+    <linearGradient id="cpar_cath" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eceff1"/>
+      <stop offset="100%" stop-color="#90a4ae"/>
+    </linearGradient>
+    <radialGradient id="cpar_bud" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fffde7"/>
+      <stop offset="100%" stop-color="#fbc02d"/>
+    </radialGradient>
+    <radialGradient id="cpar_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#e0f2f1" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#00695c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Central venous catheter (transmission via invasive devices) === -->
+  <g transform="rotate(28 50 50)">
+    <!-- catheter tube -->
+    <rect x="30" y="74" width="40" height="7" rx="3.5" fill="url(#cpar_cath)" stroke="#546e7a" stroke-width="1.4"/>
+    <!-- luer connector hub -->
+    <rect x="66" y="70.5" width="15" height="14" rx="3" fill="url(#cpar_cath)" stroke="#546e7a" stroke-width="1.4"/>
+    <rect x="72" y="73.5" width="8" height="8" rx="1.5" fill="#ffffff" fill-opacity="0.5" stroke="#546e7a" stroke-width="1"/>
+    <!-- tube highlight -->
+    <rect x="33" y="75.5" width="30" height="2.2" rx="1.1" fill="#ffffff" fill-opacity="0.55"/>
+    <!-- insertion end taper -->
+    <path d="M30 74 L24 77.5 L30 81 Z" fill="url(#cpar_cath)" stroke="#546e7a" stroke-width="1.4" stroke-linejoin="round"/>
+  </g>
+
+  <!-- === Budding yeast cells (Candida parapsilosis) === -->
+  <g stroke="#004d40" stroke-width="1.6">
+    <!-- large budding cell -->
+    <ellipse cx="38" cy="40" rx="16" ry="12.5" fill="url(#cpar_yeast)"/>
+    <circle cx="55.5" cy="33" r="6.5" fill="url(#cpar_yeast)"/>
+    <!-- small budding cell -->
+    <ellipse cx="68" cy="52" rx="10.5" ry="8.5" fill="url(#cpar_yeast)"/>
+    <circle cx="79.5" cy="47" r="4.5" fill="url(#cpar_yeast)"/>
+  </g>
+  <!-- glossy highlights on cells -->
+  <ellipse cx="33" cy="35.5" rx="7" ry="3.6" fill="url(#cpar_hl)"/>
+  <ellipse cx="65" cy="49" rx="4.5" ry="2.4" fill="url(#cpar_hl)"/>
+
+  <!-- === Biofilm beads on catheter surface === -->
+  <g stroke="#f57f17" stroke-width="1">
+    <circle cx="20" cy="66" r="3.4" fill="url(#cpar_bud)"/>
+    <circle cx="27" cy="61.5" r="2.6" fill="url(#cpar_bud)"/>
+    <circle cx="34" cy="68" r="2.2" fill="url(#cpar_bud)"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.85">
+    <circle cx="19" cy="65" r="1"/>
+    <circle cx="26.2" cy="60.7" r="0.8"/>
+    <circle cx="52.8" cy="31" r="1.6"/>
+    <circle cx="78.3" cy="45.8" r="1.1"/>
+  </g>
+</svg>

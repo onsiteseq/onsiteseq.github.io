@@ -163,6 +163,32 @@ clostridia_entries:
     desc: Эмфизематозный карбункул — полевая дифференциация от сибирской язвы, детекция cctA, молекулярная эпидемиология вспышек
     image: /assets/images/logo/icon_chauvoei.svg
 
+candida_entries:
+  - title: Candida albicans
+    url: albicans
+    desc: Азольная (ERG11, TAC1, эффлюкс) и эхинокандиновая (FKS1) резистентность + анеуплоидии (изохромосома 5L) — SNV, CNV и структурные варианты в одном запуске на длинных прочтениях
+    image: /assets/images/logo/icon_albicans.svg
+
+  - title: Супергриб Candida auris
+    url: auris
+    desc: Молекулярная идентификация (фенотип ошибается), определение клады I–VI, MDR-профиль и отслеживание внутрибольничных вспышек по SNP
+    image: /assets/images/logo/icon_auris.svg
+
+  - title: Candida glabrata (Nakaseomyces)
+    url: glabrata
+    desc: Эволюция резистентности во время терапии — PDR1, горячие точки FKS1/FKS2, мутаторный фенотип MSH2; мониторинг серийных изолятов
+    image: /assets/images/logo/icon_glabrata.svg
+
+  - title: Candida parapsilosis
+    url: parapsilosis
+    desc: Вспышки в неонатальных ОРИТ и катетер-ассоциированная кандидемия — детекция ERG11 Y132F и SNP-трассировка источника (руки персонала, оборудование)
+    image: /assets/images/logo/icon_parapsilosis.svg
+
+  - title: Candida tropicalis и C. krusei
+    url: tropicalis
+    desc: Азиатские азоль-резистентные клоны tropicalis (ERG11 Y132F/A395T) и врождённая флуконазол-резистентность krusei — видовая идентификация решает стартовую терапию
+    image: /assets/images/logo/icon_tropicalis.svg
+
 farmer_entries:
   - title: Фитофтороз (Phytophthora infestans)
     url: phytophthora-infestans
