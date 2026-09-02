@@ -1754,6 +1754,269 @@
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — Candida tropicalis / Candida krusei (Taxonomy, PubMed)</a></li>' +
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Candidiasis (invasive)</a></li></ul>';
 
+  /* ── PNEUMOCOCCUS (S. pneumoniae) ── */
+  EN['/pneumoniae/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_pneumoniae.svg" alt="Streptococcus pneumoniae — lancet-shaped diplococci" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Serotyping and Penicillin Resistance of Streptococcus pneumoniae</h1>' +
+    '<p style="font-size:1.2em;color:#555">Mosaic pbp genes, capsular serotype and AMR profile — long reads see what the phenotype cannot predict</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Streptococcus pneumoniae</em> (pneumococcus) is a Gram-positive <strong>lancet-shaped diplococcus</strong> with <strong>α-haemolysis</strong> on blood agar and a prominent polysaccharide capsule. It is the leading cause of <strong>community-acquired pneumonia</strong>, bacterial <strong>meningitis</strong> and <strong>acute otitis media in children</strong>, as well as sinusitis and bacteraemia in the elderly. Airborne transmission and nasopharyngeal carriage (up to 20–40% of healthy children) make the pneumococcus a permanent resident of the population — and a permanent source of invasive infections.</p>' +
+    '<p>The key genomic theme of the pneumococcus is <strong>penicillin resistance through mosaic pbp2x, pbp2b and pbp1a genes</strong>. The pneumococcus is naturally competent: it takes up DNA from commensal streptococci of the mitis group (<em>S. mitis</em>, <em>S. oralis</em>) and integrates their fragments into its own penicillin-binding protein genes. The resulting <strong>mosaic PBPs</strong> have reduced affinity for β-lactams, with MIC rising stepwise as foreign blocks accumulate. Phenotypic testing cannot predict such a mosaic — whereas <strong>sequencing sees it directly</strong>, block by block.</p>' +
+    '<p>The second theme is <strong>serotyping from the capsular cps locus</strong>: <strong>more than 90 serotypes</strong> are known, and the capsule is precisely the target of conjugate vaccines. After the introduction of PCV13 the population structure shifted: <strong>non-vaccine serotypes (19A, 22F, 33F, 8 and others)</strong> are on the rise — a classic vaccine escape that requires continuous genomic surveillance. WGS serotyping (the SeroBA approach) is more accurate than the Quellung reaction and requires no panel of antisera.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: sputum, CSF, blood, nasopharyngeal swab. The mosaic pbp genes of <strong>2–3 kb</strong> and the capsular locus of <strong>~10–20 kb</strong> fit entirely within long nanopore reads — an ideal scenario for a <strong>MinION with Flongle</strong> in point-of-care format (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — species identification, capsular serotype, susceptibility profile (β-lactams, macrolides, fluoroquinolones) with interpretation of mosaic pbp; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Resistance, Serotype</h2>' +
+    '<h3>Species identification</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>lytA</strong> (autolysin)', 'Gold standard of pneumococcal species identification'],
+      ['<strong>cpsA</strong> (wzg)', 'Conserved gene of the capsular locus; species confirmation and entry point for serotyping'],
+      ['<strong>16S rRNA</strong>', 'Differentiation from commensal streptococci of the mitis group (<em>S. mitis</em>, <em>S. oralis</em>, <em>S. pseudopneumoniae</em>)']
+    ]) +
+    '<h3>β-lactams: mosaic PBP genes</h3>' +
+    '<p>Penicillin resistance in the pneumococcus is neither a point mutation nor a plasmid, but a <strong>mosaic of foreign fragments</strong> assembled by recombination with commensal streptococci. Long ONT reads span such genes end to end, without breaking the mosaic into short fragments.</p>' +
+    tbl(['Gene', 'Target', 'Clinical Significance'], [
+      ['<strong>pbp2x</strong>', 'PBP2x', 'Primary determinant of resistance to penicillin and third-generation cephalosporins'],
+      ['<strong>pbp2b</strong>', 'PBP2b', 'Second key determinant; mosaic pbp2x + pbp2b is the minimum for clinical penicillin resistance'],
+      ['<strong>pbp1a</strong>', 'PBP1a', 'Raises MIC to high levels, including ceftriaxone resistance in meningitis']
+    ]) +
+    '<h3>Macrolides and fluoroquinolones</h3>' +
+    tbl(['Marker', 'Antibiotic Class', 'Clinical Significance'], [
+      ['<strong>ermB</strong>', 'Macrolides (MLSB)', 'Methylation of 23S rRNA — high-level resistance to azithromycin and clarithromycin'],
+      ['<strong>mefA</strong>', 'Macrolides', 'Efflux pump; moderate resistance, often carried on the Tn1207.3 element'],
+      ['<strong>gyrA / parC</strong>', 'Fluoroquinolones', 'QRDR point mutations (Ser81, Asp83 and others) — resistance to levofloxacin and moxifloxacin']
+    ]) +
+    '<h3>Capsular locus and serotypes</h3>' +
+    tbl(['Element', 'Significance'], [
+      ['<strong>cps locus (~10–20 kb)</strong>', 'Complete biosynthetic pathway of the capsular polysaccharide; the locus structure defines the serotype (SeroBA approach)'],
+      ['<strong>PCV13 vaccine serotypes</strong>', '1, 3, 4, 5, 6A, 6B, 7F, 9V, 14, 18C, 19F, 23F — monitoring their share after vaccination'],
+      ['<strong>Non-vaccine ("escape") serotypes</strong>', '<strong>19A, 22F, 33F, 8</strong>, 15A, 35B and others — rising after PCV13 introduction; require surveillance and revision of vaccine panels']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Pneumoniae Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>SPN-PBP-Mosaic</strong>', 'Reconstruction of the mosaic structure of pbp2x/pbp2b/pbp1a and prediction of penicillin and ceftriaxone MIC'],
+      ['<strong>SPN-SeroTyper</strong>', 'WGS serotyping from the cps locus (SeroBA approach) with detection of non-vaccine serotypes'],
+      ['<strong>SPN-Res-Detector</strong>', 'Prediction of the complete AMR profile (β-lactams, macrolides, fluoroquinolones) from genomic data']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — pneumococcal and mitis-group streptococci references'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. AMR gene and pbp mosaic detection</strong>', 'Custom database of pbp alleles and resistance genes, compatible with CARD/ResFinder'],
+      ['<strong>5. Serotyping from the cps locus</strong>', 'Capsular locus database (SeroBA approach), long-read assembly of the locus'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Disease burden</strong> — the pneumococcus remains the leading bacterial cause of mortality from lower respiratory tract infections: by WHO estimates, hundreds of thousands of deaths annually, predominantly children under 5 and the elderly. Meningitis and bacteraemia demand immediately adequate therapy.</li>' +
+    '<li><strong>A mosaic instead of a mutation</strong> — pneumococcal penicillin resistance evolves through horizontal transfer from commensal streptococci. Phenotypic microbiology sees only the resulting MIC; sequencing reveals the pbp mosaic itself and makes it possible to predict it before the culture result — critical in meningitis, where hours count.</li>' +
+    '<li><strong>Vaccine escape</strong> — conjugate vaccines sharply reduced the incidence of vaccine serotypes, but the niche was taken over by non-vaccine ones (19A, 22F, 33F, 8). Genomic serotype surveillance is a mandatory component of modern pneumococcal epidemiology and the basis for updating vaccine panels (PCV15/PCV20).</li>' +
+    '<li><strong>Long reads solve the problem</strong> — mosaic pbp (2–3 kb) and the capsular locus (10–20 kb) are spanned by nanopore reads in full, without assembly gaps; the compact MinION + Flongle combination makes such analysis available in Edge format next to the clinical laboratory.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Streptococcus pneumoniae (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — Pneumococcal Disease</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — Pneumococcal vaccines</a></li>' +
+    '<li>📄 <a href="https://www.microbiologyresearch.org/">SeroBA: rapid serotyping of Streptococcus pneumoniae from WGS (Microbial Genomics)</a></li></ul>';
+
+  /* ── GAS (S. pyogenes) ── */
+  EN['/pyogenes/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_pyogenes.svg" alt="Streptococcus pyogenes — chains of cocci" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>emm Typing and Antimicrobial Resistance of Streptococcus pyogenes</h1>' +
+    '<p style="font-size:1.2em;color:#555">emm type, superantigen toxins and macrolide resistance — in hours, when invasive GAS is suspected</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Streptococcus pyogenes</em> (group A β-haemolytic streptococcus, <strong>GAS</strong>) is a Gram-positive coccus forming chains (hence "strepto-") and one of the most strictly human-adapted pathogens: it colonises and infects humans only. The spectrum of disease is unusually wide: from <strong>streptococcal pharyngitis, scarlet fever and erysipelas</strong> to <strong>invasive forms</strong> — necrotising fasciitis and streptococcal toxic shock syndrome (STSS) with a case fatality of <strong>30–70%</strong>. A separate cluster is the <strong>non-suppurative sequelae</strong>: rheumatic fever and post-streptococcal glomerulonephritis, which define the long-term burden on cardiology and nephrology.</p>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>emm typing</strong> (from the 5\'-end of the <em>emm</em> gene encoding the M protein) — the gold standard of GAS epidemiology with <strong>250+ known types</strong>; determines the <strong>superantigen toxin profile</strong> (speA, speC, ssa) and <strong>macrolide resistance genes</strong> (ermB, mefA). Sequencing replaces Sanger in emm typing and simultaneously answers virulence and susceptibility — from a single run.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: throat swab, wound discharge, aspirate from the lesion, blood. The genome is small (~1.9 Mb): an amplicon emm assay on <strong>Flongle</strong> is optimal for the point-of-care scenario (Edge); whole genome — for invasive forms.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — emm type, toxin profile (STSS risk), macrolide resistance markers with an empirical therapy recommendation; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: emm Typing, Toxins, Resistance</h2>' +
+    '<h3>emm typing and epidemiology</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>emm</strong> (5\'-end, hypervariable region of the M protein)', 'Gold standard of GAS typing: 250+ types; an ONT amplicon fully replaces Sanger, including mixed reads difficult for Sanger'],
+      ['<strong>emm1 / M1global clone</strong>', 'Dominant clone of invasive infections: global surge of STSS and necrotising fasciitis outbreaks with increased virulence (high speA expression)'],
+      ['<strong>emm12</strong>', 'The main type in scarlet fever outbreaks in China and East Asia'],
+      ['<strong>hasA</strong> (hyaluronic acid capsule operon)', 'The capsule is a virulence factor; mucoid strains are associated with rheumatic fever and invasive forms'],
+      ['<strong>16S rRNA</strong>', 'Differentiation from <em>S. dysgalactiae</em>, <em>S. agalactiae</em> and other β-haemolytic streptococci']
+    ]) +
+    '<h3>Superantigen toxins</h3>' +
+    '<p>Superantigens non-specifically activate up to 20% of T lymphocytes → cytokine storm and STSS. Their profile determines the risk of a severe course and helps investigate clonal outbreaks:</p>' +
+    tbl(['Gene', 'Toxin', 'Significance'], [
+      ['<strong>speA</strong>', 'Pyrogenic exotoxin A', 'Key marker of the M1global clone (emm1) and severe STSS'],
+      ['<strong>speC</strong>', 'Pyrogenic exotoxin C', 'Classic toxin associated with STSS and scarlet fever'],
+      ['<strong>ssa</strong>', 'Streptococcal superantigen SSA', 'Marker of invasive strains, a frequent companion of speA/speC in outbreaks']
+    ]) +
+    '<h3>Resistance genes</h3>' +
+    '<p>A unique fact: <strong>penicillin remains universally active</strong> — not a single penicillin-resistant GAS strain has ever been described. But macrolides — the second line in β-lactam allergy — are losing efficacy: <strong>in China GAS resistance to erythromycin exceeds 90%</strong>, which makes genomic control of ermB/mefA clinically mandatory.</p>' +
+    tbl(['Gene', 'Antibiotic Class', 'Clinical Significance'], [
+      ['<strong>ermB</strong>', 'Macrolides + lincosamides (MLSB phenotype, constitutive)', 'Resistance to erythromycin, azithromycin and <strong>clindamycin</strong> — dominant in China'],
+      ['<strong>mefA</strong>', 'Macrolides (M phenotype, efflux)', 'Resistance to 14- and 15-membered macrolides; clindamycin retains activity']
+    ]) +
+    '<h3>Empirical therapy in the report</h3>' +
+    tbl(['Clinical Form', 'Approach', 'Role of Genomics'], [
+      ['<strong>Pharyngitis / scarlet fever</strong>', 'Penicillin (amoxicillin) — 10 days; in allergy — a macrolide', 'ermB/mefA profile → choice of a working macrolide or a cephalosporin'],
+      ['<strong>Invasive GAS (fasciitis, STSS)</strong>', 'Emergency surgical debridement + penicillin G + <strong>clindamycin</strong> (suppresses toxin synthesis)', 'Rapid confirmation of GAS and the speA/speC/ssa profile; ermB rules out clindamycin'],
+      ['<strong>Carriage / surveillance</strong>', 'Eradication in outbreaks in closed communities', 'emm typing to confirm a clonal link between cases']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Pyogenes Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>SPY-Emm-Typer</strong>', 'emm typing from the amplicon of the 5\'-end of the emm gene, including novel variants'],
+      ['<strong>SPY-Res-Detector</strong>', 'Prediction of macrolide resistance (ermB/mefA and point mutations in 23S/L4/L22)'],
+      ['<strong>SPY-Invasive-Risk</strong>', 'Assessment of invasive-course risk from the superantigen and capsule profile']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — reference panel of β-haemolytic streptococci (<em>S. pyogenes</em>, <em>S. dysgalactiae</em>, <em>S. agalactiae</em>)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. emm typing and toxin/AMR detection</strong>', 'CDC Blast-type emm database, custom superantigen and resistance gene database, compatible with CARD/ResFinder'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>The return of scarlet fever</strong> — after decades of decline GAS is experiencing a global surge: record scarlet fever incidence in the United Kingdom and East Asia, growing invasive infections of the M1global clone in Europe and Australia. Epidemiological surveillance requires mass emm typing, and Sanger has become the bottleneck.</li>' +
+    '<li><strong>China: macrolides do not work</strong> — GAS resistance to erythromycin in China exceeds 90% (predominantly ermB, MLSB phenotype): empirical macrolide prescribing in penicillin allergy there is virtually meaningless without genomic verification. A rapid emm+AMR answer is critical precisely for this region.</li>' +
+    '<li><strong>Speed in invasive forms</strong> — necrotising fasciitis and STSS require emergency surgery and correct antibiotic therapy within the first hours; confirmation of GAS and the superantigen profile on an Edge unit cuts the time to answer from days to hours.</li>' +
+    '<li><strong>Rheumatic fever</strong> — in low- and middle-income countries rheumatic heart disease remains the leading cause of acquired heart defects in children; complete eradication of GAS in pharyngitis (confirmed susceptibility, emm surveillance) is the foundation of prevention.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Group A Streptococcal Infections (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — Group A Strep: emm Typing and Surveillance</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — Scarlet Fever and Invasive GAS Updates</a></li></ul>';
+
+  /* ── GBS (S. agalactiae) ── */
+  EN['/agalactiae/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_agalactiae.svg" alt="Streptococcus agalactiae — paired cocci and short chains" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Serotyping and Resistance of Streptococcus agalactiae (GBS)</h1>' +
+    '<p style="font-size:1.2em;color:#555">Group B streptococcus: serotype, CC17 clone and resistance markers — in hours, in the delivery room</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Streptococcus agalactiae</em> is a Gram-positive group B coccus (GBS) that harmlessly colonises the gastrointestinal and urogenital tract of <strong>10–30% of pregnant women</strong>, yet remains the <strong>leading cause of neonatal sepsis and meningitis</strong>. Two clinical forms are distinguished: <strong>early-onset disease (up to 7 days of life)</strong> — vertical transmission during delivery from a colonised mother, and <strong>late-onset (up to 3 months)</strong> — with a predominance of meningitis. Without intrapartum prophylaxis up to half of infected newborns fall ill; with prophylaxis the risk drops dozens-fold. The standard is screening of pregnant women at <strong>35–37 weeks</strong> by swab culture: if colonisation is detected, intrapartum prophylaxis with <strong>penicillin</strong> is prescribed. The problem is that culture takes <strong>18–48 hours</strong> and offers nothing to a woman admitted in labour without screening — that is exactly where a rapid molecular answer is needed.</p>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (cfb — CAMP factor), <strong>capsular serotyping</strong> (Ia, Ib, II–IX from cps genes), detection of the <strong>hypervirulent clone CC17 (ST-17)</strong> — the main culprit of neonatal invasive forms, and determination of <strong>resistance markers</strong> — critical for pregnant women with penicillin allergy. The small genome (~<strong>2.2 Mb</strong>) is ideal for a rapid run on <strong>Flongle</strong> right in the delivery unit.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: vaginal-rectal swab, neonatal CSF/blood. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the point-of-care scenario in the labour ward (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the obstetrician/neonatologist — GBS species identification, capsular serotype, clonal affiliation (CC17), susceptibility profile with a recommendation in case of penicillin allergy; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Serotypes, Resistance</h2>' +
+    '<h3>Species identification and virulence</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>cfb</strong> (CAMP factor)', 'Classic species-specific marker of <em>S. agalactiae</em> — the basis of species confirmation'],
+      ['<strong>scpB</strong> (C5a peptidase)', 'Virulence factor (complement degradation); auxiliary species identification'],
+      ['<strong>16S rRNA</strong>', 'Differentiation from <em>S. pyogenes</em>, <em>S. dysgalactiae</em> and enterococci in the swab']
+    ]) +
+    '<h3>Capsular serotypes and clonality</h3>' +
+    '<p>The capsule is the main virulence factor of GBS; serotypes <strong>Ia, Ib, II–IX</strong> are known. Serotype distribution determines clinical risk and the landscape of future vaccines.</p>' +
+    tbl(['Serotype / Clone', 'Clinical Significance'], [
+      ['<strong>Serotype III</strong>', 'Dominates in <strong>neonatal meningitis</strong> and late-onset infections; priority vaccine target'],
+      ['<strong>CC17 (ST-17)</strong>', '<strong>Hypervirulent clone</strong> — prevails in neonatal invasive forms; detection raises clinical vigilance'],
+      ['<strong>Ia, Ib, II, III, V</strong>', 'Cover most invasive isolates from mothers and newborns']
+    ]) +
+    '<h3>Resistance genes</h3>' +
+    '<p><strong>Penicillin remains the drug of choice</strong> — there is no universal resistance to it in GBS. But in penicillin allergy the alternative is <strong>clindamycin</strong>, and resistance to it and to erythromycin is steadily rising — so rapid marker determination in allergy becomes clinically significant.</p>' +
+    tbl(['Gene', 'Antibiotic Class', 'Clinical Significance'], [
+      ['<strong>ermB</strong>', 'Macrolides, <strong>clindamycin</strong> (MLSB, constitutive)', 'Main mechanism of resistance to clindamycin — the reserve drug in allergy'],
+      ['<strong>mefA / mefE</strong>', 'Macrolides (efflux, M phenotype)', 'Erythromycin resistance without affecting clindamycin — distinguished in the report'],
+      ['<strong>lsaB</strong>', 'Lincosamides, streptogramins A, pleuromutilins', 'Emerging mechanism of clindamycin resistance'],
+      ['<strong>lnuB</strong>', 'Lincosamides (inactivating nucleotidyltransferase)', 'Additional marker of clindamycin resistance'],
+      ['<strong>pbp2x</strong> (penicillin-binding protein)', 'β-lactams', 'Rare mutations with reduced penicillin susceptibility — monitoring']
+    ]) +
+    '<h3>Intrapartum tactics in the report</h3>' +
+    tbl(['Scenario', 'Approach', 'Role of Genomics'], [
+      ['<strong>Screening at 35–37 weeks (routine)</strong>', 'Culture; in colonisation — intrapartum penicillin', 'Confirmation of cfb-positive GBS, serotype for surveillance'],
+      ['<strong>Admission in labour without screening</strong>', 'Empirical decision based on risk factors', 'PCR/sequencing in hours instead of 18–48 h of culture → justified prophylaxis'],
+      ['<strong>Penicillin allergy</strong>', 'Clindamycin if susceptibility is confirmed', 'ermB/mefE/mefA/lsaB/lnuB profile → choice between clindamycin and vancomycin']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Agalactiae Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>GBS-Sero-Typer</strong>', 'Capsular serotyping (Ia, Ib, II–IX) from cps genes'],
+      ['<strong>GBS-CC17-Detector</strong>', 'Detection of the hypervirulent clone CC17 (ST-17)'],
+      ['<strong>GBS-Res-Predictor</strong>', 'Prediction of macrolide and clindamycin resistance from genomic data']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — <em>S. agalactiae</em> reference (~2.2 Mb) and a panel of related streptococci'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — including <strong>pbp2x</strong> mutations'],
+      ['<strong>4. Serotyping and AMR detection</strong>', 'Custom database of cps genes and resistance markers, compatible with CARD/ResFinder'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>Neonatal burden</strong> — GBS remains the leading cause of neonatal sepsis and meningitis: hundreds of thousands of invasive infections annually by WHO estimates, including early-onset (vertical transmission during delivery) and late-onset forms with a high share of neurological sequelae.</li>' +
+    '<li><strong>The blind spot of screening</strong> — culture takes 18–48 hours, and a woman admitted in labour without screening receives prophylaxis "blindly" based on risk factors; point-of-care sequencing on an Edge unit in the delivery unit gives an answer in hours — before active labour begins.</li>' +
+    '<li><strong>Growing resistance in allergy</strong> — penicillin holds its ground, but resistance to clindamycin and erythromycin (ermB, mefA/E, lsaB, lnuB) is rising worldwide; in penicillin allergy the genomic marker profile directly determines the drug choice.</li>' +
+    '<li><strong>The vaccine era</strong> — hexavalent conjugate vaccines against GBS are in clinical trials; serotype surveillance (the share of serotype III, the CC17 clone) will become the basis for assessing their effectiveness.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Group B Streptococcal Infections (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/group-b-strep/">CDC — Group B Strep: Clinical Guidance</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — Group B Streptococcus Vaccine Development</a></li></ul>';
+
+  /* ── VRE (E. faecium) ── */
+  EN['/faecium/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_faecium.svg" alt="Enterococcus faecium — pairs and short chains of cocci" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Enterococcus faecium (VRE): Vancomycin Resistance and Hospital Epidemiology</h1>' +
+    '<p style="font-size:1.2em;color:#555">vanA/vanB genotype, AMR profile and WGS outbreak tracing in the ICU — in hours, when isolation decides everything</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Enterococcus faecium</em> is a Gram-positive coccus (pairs and short chains) and an <strong>ESKAPE pathogen</strong>, one of the main agents of hospital-acquired infections in the ICU: <strong>bacteraemia, urinary tract infections, intra-abdominal infections</strong>. It becomes especially severe in immunosuppressed patients — in <strong>haemato-oncology and transplantology</strong> vancomycin-resistant (VRE) bacteraemia carries high mortality, and the therapeutic arsenal is running out: the hospital clone <strong>CC17</strong> is already resistant to ampicillin (<em>pbp5</em>) and high-level aminoglycosides (<em>aac(6\')-aph(2\'\')</em>), and resistance to the reserve drugs — <strong>linezolid and daptomycin</strong> — is rising (<em>cfr</em>, <em>optrA</em>).</p>' +
+    '<p>The key to therapy and epidemiology is the <strong>vanA/vanB clusters</strong> on plasmids and transposons (Tn1546): <strong>vanA</strong> confers high-level resistance to both vancomycin and teicoplanin, while <strong>vanB</strong> confers variable resistance under which teicoplanin may remain active. Therefore <strong>the genotype matters more than the phenotype</strong> for regimen selection. From nanopore sequencing data our pipeline determines the van genotype, the AMR profile, clonal affiliation and — during outbreaks — WGS tracing of transmission (cgMLST / core-genome SNP), turning rectal screening into a manageable infection-control tool.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: rectal swabs (carriage screening), blood culture, urine, intra-abdominal discharge. Optimal: screening sequencing of the vanA/vanB amplicon on <strong>Flongle</strong> for an answer in hours (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the intensivist/epidemiologist — species identification (<em>ddl</em>), van genotype with interpretation for therapy, AMR profile and, in an outbreak, cluster analysis of isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, van Clusters, Resistance</h2>' +
+    '<h3>Species identification</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ddl</strong> (D-Ala-D-Ala ligase)', 'Species-specific identification of <em>E. faecium</em>, differentiation from <em>E. faecalis</em> — different resistance spectra and treatment tactics'],
+      ['<strong>16S rRNA</strong>', 'Genus-level identification, differentiation from other cocci']
+    ]) +
+    '<h3>Vancomycin resistance clusters (VRE)</h3>' +
+    tbl(['Genotype', 'Location', 'Clinical Significance'], [
+      ['<strong>vanA</strong>', 'Transposon <strong>Tn1546</strong> (~10 kb), plasmids', 'High-level resistance to <strong>vancomycin AND teicoplanin</strong>; the most frequent genotype in hospital outbreaks'],
+      ['<strong>vanB</strong>', 'Chromosome/plasmids (Tn1549/Tn5382)', 'Variable resistance to vancomycin; <strong>teicoplanin may remain active</strong> — the genotype directly changes the regimen']
+    ]) +
+    '<h3>Hospital adaptation of CC17 and reserve drugs</h3>' +
+    tbl(['Gene', 'Antibiotic Class', 'Clinical Significance'], [
+      ['<strong>pbp5</strong> (mutations)', 'β-lactams (<strong>ampicillin</strong>)', 'Ampicillin resistance — the hallmark of the hospital clone CC17'],
+      ['<strong>aac(6\')-aph(2\'\')</strong>', 'Aminoglycosides', 'High-level resistance — rules out synergy with β-lactams in endocarditis'],
+      ['<strong>cfr / optrA</strong>', '<strong>Linezolid</strong>', 'Growing resistance to the reserve drug in VRE bacteraemia'],
+      ['<strong>Mutations in liaFSR</strong>', '<strong>Daptomycin</strong>', 'Reduced susceptibility to the last reserve']
+    ]) +
+    '<h3>Epidemiology and WGS tracing</h3>' +
+    tbl(['Task', 'Approach', 'Role of the Pipeline'], [
+      ['<strong>ICU outbreak</strong>', 'WGS tracing of transmission: cgMLST / core-genome SNP', 'Proof of clonal spread vs independent introductions — in hours, not weeks'],
+      ['<strong>Carriage screening</strong>', 'Rectal swabs, vanA/vanB amplicon sequencing on <strong>Flongle</strong>', 'Answer in hours versus days in a send-out PCR laboratory — isolation of the carrier before transmission'],
+      ['<strong>Epidemiological risk</strong>', 'Long reads resolve the <strong>plasmid context of vanA</strong> (~10 kb on Tn1546): copy number, mobility', 'Assessment of the horizontal-transfer potential of the cluster — inaccessible to short reads']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Faecium Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>EFM-Van-Typer</strong>', 'vanA/vanB genotyping with interpretation for therapy (teicoplanin in vanB)'],
+      ['<strong>EFM-Res-Detector</strong>', 'Prediction of the complete AMR profile, including linezolid (cfr/optrA) and daptomycin'],
+      ['<strong>EFM-Outbreak-Tracer</strong>', 'Cluster analysis of isolates (cgMLST/SNP) for outbreak tracing in the ICU']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — <em>E. faecium</em> (CC17) references and an enterococci panel'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — pbp5 and liaFSR mutations'],
+      ['<strong>4. van cluster and AMR gene detection</strong>', 'Custom vanA/vanB (Tn1546) and resistance database, compatible with CARD/ResFinder'],
+      ['<strong>5. Assembly and plasmid context</strong>', '<code>flye</code> — resolution of Tn1546 ~10 kb: copy number, mobility'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>ESKAPE and the ICU</strong> — VRE bacteraemia in intensive care, haemato-oncology and transplantology has high mortality; every delay of correct therapy worsens the outcome. A vanA/vanB genotype in hours allows choosing teicoplanin immediately in vanB, without losing days on the phenotype.</li>' +
+    '<li><strong>A vanishing arsenal</strong> — hospital CC17 is already resistant to ampicillin and aminoglycosides; resistance to linezolid (cfr, optrA) and daptomycin is spreading. Without genomic control, empirical regimens go blind.</li>' +
+    '<li><strong>Outbreaks are settled by speed</strong> — rectal swab screening with vanA/vanB sequencing on Flongle gives an answer in hours versus days in a send-out PCR laboratory; WGS tracing proves transmission routes and stops an outbreak instead of merely recording it.</li>' +
+    '<li><strong>The unique advantage of long reads</strong> — the ~10 kb vanA cluster on transposon Tn1546 migrates between plasmids and the chromosome; only long ONT reads resolve the plasmid context (copy number, mobility), which is critical for forecasting epidemiological risk.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Vancomycin-Resistant Enterococcus (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — Bacterial Priority Pathogens List (ESKAPE)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — VRE in Healthcare Settings</a></li></ul>';
+
   /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
   EN['/hvkp/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -6217,6 +6480,289 @@
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 热带念珠菌 / 克鲁斯念珠菌 (Taxonomy、PubMed)</a></li>' +
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 念珠菌病(侵袭性)</a></li></ul>';
 
+  /* ── PNEUMOCOCCUS (肺炎链球菌) ── */
+  ZH['/pneumoniae/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_pneumoniae.svg" alt="肺炎链球菌 — 柳叶刀状双球菌" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>肺炎链球菌血清分型与青霉素耐药检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">镶嵌型 pbp 基因、荚膜血清型与 AMR 耐药谱——长读长能看到表型无法预测的东西</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>肺炎链球菌</em>(Streptococcus pneumoniae,肺炎球菌)是一种革兰氏阳性<strong>柳叶刀状双球菌</strong>,在血琼脂上呈 <strong>α-溶血</strong>,具有明显的多糖荚膜。它是<strong>社区获得性肺炎</strong>、细菌性<strong>脑膜炎</strong>和儿童<strong>急性中耳炎</strong>的首要病因,也可引起老年人鼻窦炎和菌血症。空气飞沫传播和鼻咽部定植(健康儿童携带率高达 20–40%)使肺炎球菌成为人群中的常驻菌——也是侵袭性感染的持续来源。</p>' +
+    '<p>肺炎球菌的关键基因组主题是<strong>通过镶嵌型 pbp2x、pbp2b 和 pbp1a 基因产生青霉素耐药</strong>。肺炎球菌具有天然感受态:它摄取 mitis 群共生链球菌(<em>S. mitis</em>、<em>S. oralis</em>)的 DNA,并将其片段整合进自身的青霉素结合蛋白基因。由此产生的<strong>镶嵌型 PBP</strong> 对 β-内酰胺类亲和力降低,MIC 随外源片段的累积呈阶梯式上升。表型检测无法预测这种镶嵌结构——而<strong>测序能直接看到它</strong>,逐块解析。</p>' +
+    '<p>第二个主题是<strong>基于荚膜 cps 基因座的血清分型</strong>:已知<strong>超过 90 种血清型</strong>,而荚膜正是结合疫苗的靶点。PCV13 引入后,群体结构发生了偏移:<strong>非疫苗血清型(19A、22F、33F、8 等)</strong>正在上升——这是典型的疫苗逃逸,需要持续的基因组监测。WGS 血清分型(SeroBA 方法)比荚膜肿胀反应 (Quellung) 更准确,且无需抗血清面板。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:痰液、脑脊液、血液、鼻咽拭子。长度 <strong>2–3 kb</strong> 的镶嵌型 pbp 基因和<strong>约 10–20 kb</strong> 的荚膜基因座可完整落入纳米孔长读长——这是 <strong>MinION 配 Flongle</strong> 床旁 (point-of-care) 场景 (Edge) 的理想用例。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 菌种鉴定、荚膜血清型、药敏谱(β-内酰胺类、大环内酯类、氟喹诺酮类)并附镶嵌型 pbp 解读;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、耐药、血清型</h2>' +
+    '<h3>菌种鉴定</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>lytA</strong>(自溶素)', '肺炎球菌菌种鉴定的金标准'],
+      ['<strong>cpsA</strong> (wzg)', '荚膜基因座保守基因;确认菌种并作为血清分型的入口'],
+      ['<strong>16S rRNA</strong>', '与 mitis 群共生链球菌(<em>S. mitis</em>、<em>S. oralis</em>、<em>S. pseudopneumoniae</em>)鉴别']
+    ]) +
+    '<h3>β-内酰胺类:镶嵌型 PBP 基因</h3>' +
+    '<p>肺炎球菌的青霉素耐药既不是点突变也不是质粒,而是通过与共生链球菌重组拼装起来的<strong>外源片段镶嵌结构</strong>。ONT 长读长可完整读取这类基因,不会把镶嵌结构打断成短片段。</p>' +
+    tbl(['基因', '靶标', '临床意义'], [
+      ['<strong>pbp2x</strong>', 'PBP2x', '对青霉素和第三代头孢菌素耐药的首要决定因子'],
+      ['<strong>pbp2b</strong>', 'PBP2b', '第二个关键决定因子;镶嵌型 pbp2x + pbp2b 是临床青霉素耐药的最低条件'],
+      ['<strong>pbp1a</strong>', 'PBP1a', '将 MIC 推至高水平,包括脑膜炎时的头孢曲松耐药']
+    ]) +
+    '<h3>大环内酯类与氟喹诺酮类</h3>' +
+    tbl(['标志物', '抗生素类别', '临床意义'], [
+      ['<strong>ermB</strong>', '大环内酯类 (MLSB)', '23S rRNA 甲基化——对阿奇霉素和克拉霉素的高水平耐药'],
+      ['<strong>mefA</strong>', '大环内酯类', '外排泵;中度耐药,常位于 Tn1207.3 元件上'],
+      ['<strong>gyrA / parC</strong>', '氟喹诺酮类', 'QRDR 点突变(Ser81、Asp83 等)——对左氧氟沙星和莫西沙星耐药']
+    ]) +
+    '<h3>荚膜基因座与血清型</h3>' +
+    tbl(['要素', '意义'], [
+      ['<strong>cps 基因座(约 10–20 kb)</strong>', '荚膜多糖的完整合成通路;基因座结构决定血清型(SeroBA 方法)'],
+      ['<strong>PCV13 疫苗血清型</strong>', '1、3、4、5、6A、6B、7F、9V、14、18C、19F、23F——监测疫苗接种后其占比变化'],
+      ['<strong>非疫苗("逃逸")血清型</strong>', '<strong>19A、22F、33F、8</strong>、15A、35B 等——PCV13 引入后上升;需要监测并修订疫苗面板']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Pneumoniae Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>SPN-PBP-Mosaic</strong>', '重建 pbp2x/pbp2b/pbp1a 镶嵌结构并预测青霉素和头孢曲松 MIC'],
+      ['<strong>SPN-SeroTyper</strong>', '基于 cps 基因座的 WGS 血清分型(SeroBA 方法),检出非疫苗血清型'],
+      ['<strong>SPN-Res-Detector</strong>', '基于基因组数据预测完整 AMR 耐药谱(β-内酰胺类、大环内酯类、氟喹诺酮类)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 肺炎球菌及 mitis 群链球菌参考序列'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. AMR 基因与 pbp 镶嵌结构检出</strong>', '自建 pbp 等位基因与耐药基因数据库,兼容 CARD/ResFinder'],
+      ['<strong>5. 基于 cps 基因座的血清分型</strong>', '荚膜基因座数据库(SeroBA 方法),基因座长读长组装'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>疾病负担</strong> — 肺炎球菌仍是下呼吸道感染死亡的首要细菌性病因:据 WHO 估计每年数十万人死亡,主要是 5 岁以下儿童和老年人。脑膜炎和菌血症要求立即给予恰当治疗。</li>' +
+    '<li><strong>镶嵌结构而非点突变</strong> — 肺炎球菌的青霉素耐药通过来自共生链球菌的水平转移演化。表型微生物学只能看到最终的 MIC;测序能揭示 pbp 镶嵌结构本身,并在培养结果出来之前作出预测——这对以小时计的脑膜炎至关重要。</li>' +
+    '<li><strong>疫苗逃逸</strong> — 结合疫苗大幅降低了疫苗血清型的发病率,但生态位被非疫苗血清型(19A、22F、33F、8)占据。血清型基因组监测是现代肺炎球菌流行病学的必备组成部分,也是更新疫苗面板 (PCV15/PCV20) 的基础。</li>' +
+    '<li><strong>长读长解决问题</strong> — 镶嵌型 pbp(2–3 kb)和荚膜基因座(10–20 kb)可被纳米孔读长完整覆盖,无组装缺口;紧凑的 MinION + Flongle 组合使此类分析能以 Edge 形态部署在临床实验室旁。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 肺炎链球菌 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 肺炎球菌性疾病</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — 肺炎球菌疫苗</a></li>' +
+    '<li>📄 <a href="https://www.microbiologyresearch.org/">SeroBA:基于 WGS 的肺炎链球菌快速血清分型 (Microbial Genomics)</a></li></ul>';
+
+  /* ── GAS (A组链球菌) ── */
+  ZH['/pyogenes/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_pyogenes.svg" alt="化脓性链球菌 — 成链状排列的球菌" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>化脓性链球菌 emm 分型与耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">emm 分型、超抗原毒素与大环内酯类耐药——疑似侵袭性 GAS 时数小时出结果</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>化脓性链球菌</em>(Streptococcus pyogenes,A 组 β-溶血性链球菌,<strong>GAS</strong>)是革兰氏阳性球菌,呈链状排列(故名"链"球菌),也是最具"人类专一性"的病原体之一:仅定植和感染人类。疾病谱异常宽广:从<strong>链球菌性咽炎、猩红热和丹毒</strong>到<strong>侵袭性感染</strong>——坏死性筋膜炎和链球菌中毒性休克综合征 (STSS),病死率 <strong>30–70%</strong>。另有单独的<strong>非化脓性并发症</strong>:风湿热和链球菌感染后肾小球肾炎,决定了心内科和肾内科的长期疾病负担。</p>' +
+    '<p>我们的流程基于纳米孔测序数据执行 <strong>emm 分型</strong>(基于编码 M 蛋白的 <em>emm</em> 基因 5\' 端)——GAS 流行病学的金标准,已知 <strong>250 余种型别</strong>;确定<strong>超抗原毒素谱</strong>(speA、speC、ssa)和<strong>大环内酯类耐药基因</strong>(ermB、mefA)。测序在 emm 分型中取代 Sanger 法,并同时给出毒力和药敏答案——一次运行全部完成。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:咽拭子、伤口分泌物、病灶穿刺液、血液。基因组很小(约 1.9 Mb):床旁场景 (Edge) 最优方案是在 <strong>Flongle</strong> 上做 emm 扩增子测序;侵袭性感染则做全基因组。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — emm 型别、毒素谱(STSS 风险)、大环内酯类耐药标志物及经验性用药建议;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:emm 分型、毒素、耐药</h2>' +
+    '<h3>emm 分型与流行病学</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>emm</strong>(5\' 端,M 蛋白高变区)', 'GAS 分型金标准:250 余种型别;ONT 扩增子完全取代 Sanger,包括 Sanger 难以处理的混合读取'],
+      ['<strong>emm1 / M1global 克隆</strong>', '侵袭性感染的优势克隆:STSS 与坏死性筋膜炎暴发全球上升,毒力增强(speA 高表达)'],
+      ['<strong>emm12</strong>', '中国及东亚猩红热暴发的主要型别'],
+      ['<strong>hasA</strong>(透明质酸荚膜操纵子)', '荚膜为毒力因子;黏液型 (mucoid) 菌株与风湿热及侵袭性感染相关'],
+      ['<strong>16S rRNA</strong>', '与 <em>S. dysgalactiae</em>、<em>S. agalactiae</em> 及其他 β-溶血性链球菌鉴别']
+    ]) +
+    '<h3>超抗原毒素</h3>' +
+    '<p>超抗原可非特异性激活多达 20% 的 T 淋巴细胞 → 细胞因子风暴与 STSS。其谱决定重症风险,并有助于调查克隆性暴发:</p>' +
+    tbl(['基因', '毒素', '意义'], [
+      ['<strong>speA</strong>', '致热外毒素 A', 'M1global 克隆 (emm1) 和重症 STSS 的关键标志物'],
+      ['<strong>speC</strong>', '致热外毒素 C', '经典的 STSS 与猩红热相关毒素'],
+      ['<strong>ssa</strong>', '链球菌超抗原 SSA', '侵袭性菌株标志物,暴发中常与 speA/speC 伴随']
+    ]) +
+    '<h3>耐药基因</h3>' +
+    '<p>一个独特的事实:<strong>青霉素至今仍普遍有效</strong>——有观察史以来从未描述过耐青霉素的 GAS 菌株。但作为 β-内酰胺过敏时二线用药的大环内酯类正在失效:<strong>中国 GAS 对红霉素的耐药率超过 90%</strong>,这使 ermB/mefA 的基因组学检查成为临床必需。</p>' +
+    tbl(['基因', '抗生素类别', '临床意义'], [
+      ['<strong>ermB</strong>', '大环内酯类 + 林可酰胺类(MLSB 表型,组成型)', '对红霉素、阿奇霉素和<strong>克林霉素</strong>耐药——在中国占主导'],
+      ['<strong>mefA</strong>', '大环内酯类(M 表型,外排)', '对 14、15 元环大环内酯类耐药;克林霉素仍保持活性']
+    ]) +
+    '<h3>报告中的经验性治疗</h3>' +
+    tbl(['临床类型', '方案', '基因组学的作用'], [
+      ['<strong>咽炎 / 猩红热</strong>', '青霉素(阿莫西林)10 天;过敏者用大环内酯类', 'ermB/mefA 谱 → 选择有效的大环内酯或头孢菌素'],
+      ['<strong>侵袭性 GAS(筋膜炎、STSS)</strong>', '急诊外科清创 + 青霉素 G + <strong>克林霉素</strong>(抑制毒素合成)', '快速确认 GAS 及 speA/speC/ssa 谱;ermB 排除克林霉素'],
+      ['<strong>携带状态 / 流行病学监测</strong>', '集体机构暴发时进行根除', 'emm 分型用于确认病例间的克隆关联']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Pyogenes Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>SPY-Emm-Typer</strong>', '基于 emm 基因 5\' 端扩增子的 emm 分型,包括新型变异'],
+      ['<strong>SPY-Res-Detector</strong>', '预测大环内酯类耐药(ermB/mefA 及 23S/L4/L22 点突变)'],
+      ['<strong>SPY-Invasive-Risk</strong>', '基于超抗原与荚膜谱评估侵袭性病程风险']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — β-溶血性链球菌参考面板(<em>S. pyogenes</em>、<em>S. dysgalactiae</em>、<em>S. agalactiae</em>)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. emm 分型与毒素/AMR 检出</strong>', 'CDC Blast 型别 emm 数据库,自建超抗原与耐药基因数据库,兼容 CARD/ResFinder'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>猩红热回归</strong> — 经历数十年下降后,GAS 正在全球范围内回升:英国和东亚猩红热发病率创纪录,欧洲和澳大利亚 M1global 克隆侵袭性感染上升。流行病学监测需要大规模 emm 分型,而 Sanger 法已成为瓶颈。</li>' +
+    '<li><strong>中国:大环内酯类失效</strong> — 中国 GAS 对红霉素耐药率超过 90%(以 ermB、MLSB 表型为主):青霉素过敏时经验性使用大环内酯类,在当地若无基因组学验证几乎失去意义。快速的 emm+AMR 答案对该地区尤为关键。</li>' +
+    '<li><strong>侵袭性感染争分夺秒</strong> — 坏死性筋膜炎和 STSS 要求在最初数小时内完成急诊手术和正确的抗菌治疗;在 Edge 设备上确认 GAS 及超抗原谱,把获得答案的时间从数天缩短到数小时。</li>' +
+    '<li><strong>风湿热</strong> — 在中低收入国家,风湿性心脏病仍是儿童获得性心脏瓣膜病的首要病因;咽炎时彻底清除 GAS(确认药敏、emm 监测)是预防的基础。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — A 组链球菌感染 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — A 组链球菌:emm 分型与监测</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — 猩红热与侵袭性 GAS 动态</a></li></ul>';
+
+  /* ── GBS (无乳链球菌/B组链球菌) ── */
+  ZH['/agalactiae/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_agalactiae.svg" alt="无乳链球菌 — 成对球菌与短链" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>无乳链球菌 (GBS) 血清分型与耐药性检测</h1>' +
+    '<p style="font-size:1.2em;color:#555">B 组链球菌:血清型、CC17 克隆与耐药标志物——数小时出结果,就在产房</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>无乳链球菌</em>(Streptococcus agalactiae)是革兰氏阳性 B 组球菌 (GBS),可无害地定植于 <strong>10–30% 孕妇</strong>的胃肠道和泌尿生殖道,却同时是<strong>新生儿脓毒症和脑膜炎的首要病因</strong>。临床上分两型:<strong>早发型(出生 7 天内)</strong>——分娩时由定植母亲垂直传播;以及<strong>晚发型(3 个月内)</strong>——以脑膜炎为主。若无分娩期预防,多达半数受感染新生儿发病;采取预防后风险下降数十倍。标准做法是在孕 <strong>35–37 周</strong>行拭子培养筛查:发现定植即给予<strong>青霉素</strong>分娩期预防。问题在于培养需 <strong>18–48 小时</strong>,对未筛查即入院分娩的产妇毫无帮助——这正是需要快速分子诊断的场景。</p>' +
+    '<p>我们的流程基于纳米孔测序数据执行<strong>菌种鉴定</strong>(cfb——CAMP 因子)、<strong>荚膜血清分型</strong>(基于 cps 基因的 Ia、Ib、II–IX 型)、检出<strong>高毒力克隆 CC17 (ST-17)</strong>——新生儿侵袭性感染的主要元凶,并测定<strong>耐药标志物</strong>——对青霉素过敏的孕妇至关重要。小基因组(约 <strong>2.2 Mb</strong>)非常适合在产房直接用 <strong>Flongle</strong> 快速运行。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:阴道-直肠拭子、新生儿脑脊液/血液。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于产房床旁场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向产科医生/新生儿科医生的 HTML 报告 — GBS 菌种鉴定、荚膜血清型、克隆归属 (CC17)、药敏谱及青霉素过敏时的用药建议;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、血清型、耐药</h2>' +
+    '<h3>菌种鉴定与毒力</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>cfb</strong>(CAMP 因子)', '<em>S. agalactiae</em> 经典的种特异性标志物——菌种确认的基础'],
+      ['<strong>scpB</strong>(C5a 肽酶)', '毒力因子(降解补体);辅助菌种鉴定'],
+      ['<strong>16S rRNA</strong>', '与拭子中的 <em>S. pyogenes</em>、<em>S. dysgalactiae</em> 及肠球菌鉴别']
+    ]) +
+    '<h3>荚膜血清型与克隆性</h3>' +
+    '<p>荚膜是 GBS 的主要毒力因子;已知血清型 <strong>Ia、Ib、II–IX</strong>。血清型分布决定临床风险和未来疫苗的格局。</p>' +
+    tbl(['血清型 / 克隆', '临床意义'], [
+      ['<strong>III 型</strong>', '在<strong>新生儿脑膜炎</strong>和晚发型感染中占主导;疫苗的优先靶点'],
+      ['<strong>CC17 (ST-17)</strong>', '<strong>高毒力克隆</strong>——在新生儿侵袭性感染中占优势;检出后应提高警惕'],
+      ['<strong>Ia、Ib、II、III、V</strong>', '覆盖母亲和新生儿大多数侵袭性分离株']
+    ]) +
+    '<h3>耐药基因</h3>' +
+    '<p><strong>青霉素仍是首选药物</strong>——GBS 中不存在普遍的青霉素耐药。但青霉素过敏时的替代药物是<strong>克林霉素</strong>,而对克林霉素和红霉素的耐药正稳步上升——因此过敏情况下快速测定标志物具有临床意义。</p>' +
+    tbl(['基因', '抗生素类别', '临床意义'], [
+      ['<strong>ermB</strong>', '大环内酯类、<strong>克林霉素</strong>(MLSB,组成型)', '克林霉素(过敏时的后备药)耐药的主要机制'],
+      ['<strong>mefA / mefE</strong>', '大环内酯类(外排,M 表型)', '红霉素耐药而不影响克林霉素——报告中予以区分'],
+      ['<strong>lsaB</strong>', '林可酰胺类、链阳菌素 A、截短侧耳素类', '新兴的克林霉素耐药机制'],
+      ['<strong>lnuB</strong>', '林可酰胺类(灭活性核苷酸转移酶)', '克林霉素耐药的补充标志物'],
+      ['<strong>pbp2x</strong>(青霉素结合蛋白)', 'β-内酰胺类', '偶见青霉素敏感性降低的突变——需监测']
+    ]) +
+    '<h3>报告中的分娩期处置</h3>' +
+    tbl(['场景', '方案', '基因组学的作用'], [
+      ['<strong>孕 35–37 周常规筛查</strong>', '培养;发现定植则分娩期用青霉素', '确认 cfb 阳性 GBS,血清型用于流行病学监测'],
+      ['<strong>未筛查即入院分娩</strong>', '按危险因素经验性决策', '数小时的 PCR/测序替代 18–48 小时培养 → 有依据的预防用药'],
+      ['<strong>青霉素过敏</strong>', '确认敏感后用克林霉素', 'ermB/mefE/mefA/lsaB/lnuB 谱 → 在克林霉素与万古霉素之间选择']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Agalactiae Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>GBS-Sero-Typer</strong>', '基于 cps 基因的荚膜血清分型(Ia、Ib、II–IX)'],
+      ['<strong>GBS-CC17-Detector</strong>', '检出高毒力克隆 CC17 (ST-17)'],
+      ['<strong>GBS-Res-Predictor</strong>', '基于基因组数据预测大环内酯类和克林霉素耐药']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — <em>S. agalactiae</em> 参考序列(约 2.2 Mb)及近缘链球菌面板'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — 包括 <strong>pbp2x</strong> 突变'],
+      ['<strong>4. 血清分型与 AMR 检出</strong>', '自建 cps 基因与耐药标志物数据库,兼容 CARD/ResFinder'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>新生儿负担</strong> — GBS 仍是新生儿脓毒症和脑膜炎的首要病因:据 WHO 估计每年数十万例侵袭性感染,包括早发型(分娩时垂直传播)和晚发型,神经系统后遗症比例高。</li>' +
+    '<li><strong>筛查盲区</strong> — 培养需 18–48 小时,未筛查即入院分娩的产妇只能按危险因素"盲目"预防;在产房用 Edge 设备做床旁测序,可在数小时内——即活跃产程开始前——给出答案。</li>' +
+    '<li><strong>过敏情况下的耐药上升</strong> — 青霉素地位稳固,但对克林霉素和红霉素的耐药(ermB、mefA/E、lsaB、lnuB)在全球上升;青霉素过敏时,基因组标志物谱直接决定用药选择。</li>' +
+    '<li><strong>疫苗时代</strong> — 抗 GBS 六价结合疫苗正处于临床试验阶段;血清型流行病学监测(III 型占比、CC17 克隆)将成为评估其有效性的基础。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — B 组链球菌感染 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/group-b-strep/">CDC — B 组链球菌:临床指南</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — B 组链球菌疫苗研发</a></li></ul>';
+
+  /* ── VRE (屎肠球菌/万古霉素耐药肠球菌) ── */
+  ZH['/faecium/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_faecium.svg" alt="屎肠球菌 — 成对及短链状球菌" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>屎肠球菌 (VRE):万古霉素耐药与医院流行病学</h1>' +
+    '<p style="font-size:1.2em;color:#555">vanA/vanB 基因型、AMR 耐药谱与 ICU 暴发 WGS 追踪——隔离决定一切时数小时出结果</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>屎肠球菌</em>(Enterococcus faecium)是革兰氏阳性球菌(成对及短链状),属 <strong>ESKAPE 病原体</strong>,是 ICU 医院获得性感染的主要病原之一:<strong>菌血症、尿路感染、腹腔感染</strong>。在免疫抑制患者——<strong>血液肿瘤科和器官移植科</strong>——中尤为凶险:万古霉素耐药 (VRE) 菌血症病死率高,而药物武器库正在枯竭:医院克隆 <strong>CC17</strong> 本已耐受氨苄西林(<em>pbp5</em>)和高水平氨基糖苷类(<em>aac(6\')-aph(2\'\')</em>),对后备药物——<strong>利奈唑胺和达托霉素</strong>——的耐药也在上升(<em>cfr</em>、<em>optrA</em>)。</p>' +
+    '<p>治疗与流行病学防控的关键在于位于质粒和转座子 (Tn1546) 上的 <strong>vanA/vanB 基因簇</strong>:<strong>vanA</strong> 导致对万古霉素<strong>和</strong>替考拉宁的高水平耐药,<strong>vanB</strong> 则产生可变耐药,此时替考拉宁可能仍保持活性。因此,选方案时<strong>基因型比表型更重要</strong>。我们的流程基于纳米孔测序数据确定 van 基因型、AMR 耐药谱、克隆归属,并在暴发时进行传播链 WGS 追踪 (cgMLST / 核心基因组 SNP),把直肠拭子筛查变成可控的院感防控工具。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:直肠拭子(定植筛查)、血培养、尿液、腹腔分泌物。最佳方案:在 <strong>Flongle</strong> 上做 vanA/vanB 扩增子筛查测序,数小时出结果 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向重症医生/流行病学家的 HTML 报告 — 菌种鉴定(<em>ddl</em>)、van 基因型及治疗解读、AMR 耐药谱,暴发时附分离株聚类分析;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、van 基因簇、耐药</h2>' +
+    '<h3>菌种鉴定</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ddl</strong>(D-Ala-D-Ala 连接酶)', '<em>E. faecium</em> 种特异性鉴定,与 <em>E. faecalis</em> 鉴别——两者耐药谱与治疗策略不同'],
+      ['<strong>16S rRNA</strong>', '属级鉴定,与其他球菌鉴别']
+    ]) +
+    '<h3>万古霉素耐药基因簇 (VRE)</h3>' +
+    tbl(['基因型', '定位', '临床意义'], [
+      ['<strong>vanA</strong>', '转座子 <strong>Tn1546</strong>(约 10 kb)、质粒', '对<strong>万古霉素和替考拉宁</strong>均高水平耐药;医院暴发中最常见的基因型'],
+      ['<strong>vanB</strong>', '染色体/质粒 (Tn1549/Tn5382)', '对万古霉素可变耐药;<strong>替考拉宁可能仍有效</strong>——基因型直接改变用药方案']
+    ]) +
+    '<h3>CC17 的医院适应与后备药物</h3>' +
+    tbl(['基因', '抗生素类别', '临床意义'], [
+      ['<strong>pbp5</strong>(突变)', 'β-内酰胺类(<strong>氨苄西林</strong>)', '氨苄西林耐药——医院克隆 CC17 的标志性特征'],
+      ['<strong>aac(6\')-aph(2\'\')</strong>', '氨基糖苷类', '高水平耐药——心内膜炎时无法与 β-内酰胺类产生协同作用'],
+      ['<strong>cfr / optrA</strong>', '<strong>利奈唑胺</strong>', 'VRE 菌血症后备药物耐药的上升'],
+      ['<strong>liaFSR 突变</strong>', '<strong>达托霉素</strong>', '对最后手段药物敏感性下降']
+    ]) +
+    '<h3>流行病学与 WGS 暴发追踪</h3>' +
+    tbl(['任务', '方法', '流程的作用'], [
+      ['<strong>ICU 暴发</strong>', '传播链 WGS 追踪:cgMLST / 核心基因组 SNP', '证明克隆传播 vs 独立带入——数小时而非数周'],
+      ['<strong>定植筛查</strong>', '直肠拭子,在 <strong>Flongle</strong> 上做 vanA/vanB 扩增子测序', '数小时出结果,而外送 PCR 实验室需数天——在传播发生前隔离携带者'],
+      ['<strong>流行病学风险</strong>', '长读长解析 <strong>vanA 的质粒背景</strong>(Tn1546 上约 10 kb):拷贝数、可移动性', '评估基因簇水平传播潜力——短读长无法做到']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Faecium Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>EFM-Van-Typer</strong>', 'vanA/vanB 基因分型及治疗解读(vanB 时可用替考拉宁)'],
+      ['<strong>EFM-Res-Detector</strong>', '预测完整 AMR 耐药谱,包括利奈唑胺 (cfr/optrA) 和达托霉素'],
+      ['<strong>EFM-Outbreak-Tracer</strong>', '分离株聚类分析 (cgMLST/SNP),追踪 ICU 暴发']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — <em>E. faecium</em> (CC17) 参考序列及肠球菌面板'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — pbp5、liaFSR 突变'],
+      ['<strong>4. van 基因簇与 AMR 基因检出</strong>', '自建 vanA/vanB (Tn1546) 及耐药数据库,兼容 CARD/ResFinder'],
+      ['<strong>5. 组装与质粒背景</strong>', '<code>flye</code> — 解析 Tn1546 约 10 kb:拷贝数、可移动性'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>ESKAPE 与 ICU</strong> — 重症监护、血液肿瘤和移植科的 VRE 菌血症病死率高;每一次正确治疗的延误都会恶化预后。数小时获得 vanA/vanB 基因型,可在 vanB 时立即选用替考拉宁,不必为等表型结果浪费数天。</li>' +
+    '<li><strong>正在消失的药物武器库</strong> — 医院克隆 CC17 本已耐受氨苄西林和氨基糖苷类;对利奈唑胺 (cfr、optrA) 和达托霉素的耐药正在蔓延。没有基因组学监控,经验性方案就会"失明"。</li>' +
+    '<li><strong>暴发处置拼速度</strong> — 直肠拭子筛查加 Flongle 上 vanA/vanB 测序,数小时出结果,而外送 PCR 实验室需数天;WGS 追踪证明传播途径,真正阻断暴发,而不是事后记录。</li>' +
+    '<li><strong>长读长的独特优势</strong> — Tn1546 转座子上约 10 kb 的 vanA 基因簇在质粒与染色体之间迁移;只有 ONT 长读长能解析其质粒背景(拷贝数、可移动性),这对预测流行病学风险至关重要。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 万古霉素耐药肠球菌 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — 细菌重点病原体清单 (ESKAPE)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 医疗机构中的 VRE</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -6230,6 +6776,7 @@
       'Пейплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
       'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': 'Pipelines in Development. Clinical Assistants. Candidiasis Universe.',
+      'Пейплайны в работе. Помощники врача. Вселенная кокков.': 'Pipelines in Development. Clinical Assistants. Cocci Universe.',
       'Пейплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
       'Пейплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
     },
@@ -6273,6 +6820,10 @@
       'sarscov2':     ['Coronavirus SARS-CoV-2', 'Variant (subtype) and antiviral drug resistance determination'],
       'helicobacter': ['Helicobacter pylori', 'Resistance and virulence profile (cagA/vacA) of H. pylori from a biopsy in one day — for personalised eradication therapy'],
       'staphylococcus': ['S. aureus (Staphylococcus)', 'MRSA/VRSA and full AMR profile determination — leading nosocomial pathogen'],
+      'pneumoniae':   ['Pneumococcus (S. pneumoniae)', 'Mosaic pbp2x/pbp2b/pbp1a and cps-locus serotyping: vaccine escape (19A, 22F, 33F) and penicillin resistance that phenotype cannot predict'],
+      'pyogenes':     ['Group A Streptococcus (S. pyogenes)', 'emm-typing instead of Sanger, superantigens speA/speC/ssa and macrolide resistance (ermB/mefA) — from pharyngitis to necrotising fasciitis'],
+      'agalactiae':   ['Group B Streptococcus (S. agalactiae)', 'Point-of-care screening of pregnant women in the delivery ward in hours instead of an 18–48 h culture — serotypes, CC17 clone and resistance markers in penicillin allergy'],
+      'faecium':      ['Vancomycin-Resistant Enterococcus (E. faecium)', 'vanA/vanB with plasmid-context resolution of Tn1546 on long reads — ICU outbreak tracing and genotype over phenotype for therapy choice'],
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
       'cold':         ['Bacterial ARI', 'Metagenomic identification of bacterial respiratory pathogens and AMR — S. pneumoniae, H. influenzae, K. pneumoniae, etc.'],
       'identikit':    ['DNA Forensic Portrait', 'Appearance, ancestry and age prediction from crime scene DNA — Forensic DNA Phenotyping via nanopore sequencing'],
@@ -6319,6 +6870,7 @@
       'Пейплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
       'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': '开发中的流程 · 医生助手 · 念珠菌病宇宙',
+      'Пейплайны в работе. Помощники врача. Вселенная кокков.': '开发中的流程 · 医生助手 · 球菌宇宙',
       'Пейплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
       'Пейплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
     },
@@ -6359,6 +6911,10 @@
       'parapsilosis': ['近平滑念珠菌', '新生儿 ICU 暴发与导管相关念珠菌血症 — ERG11 Y132F 检测与 SNP 来源追踪(医护人员的手、设备)'],
       'tropicalis': ['热带念珠菌与克鲁斯念珠菌', '亚洲唑类耐药热带念珠菌克隆(ERG11 Y132F/A395T)与克鲁斯念珠菌先天氟康唑耐药 — 菌种鉴定决定起始治疗'],
       'staphylococcus': ['金黄色葡萄球菌 (S. aureus)', 'MRSA/VRSA 鉴定与完整 AMR 谱分析 — 主要的医院感染病原体'],
+      'pneumoniae': ['肺炎链球菌 (S. pneumoniae)', '嵌合型 pbp2x/pbp2b/pbp1a 与 cps 基因座血清分型:表型无法预测的疫苗逃逸 (19A、22F、33F) 与青霉素耐药'],
+      'pyogenes': ['A 组链球菌 (S. pyogenes)', 'emm 分型取代 Sanger 测序、超抗原 speA/speC/ssa 与大环内酯类耐药 (ermB/mefA) — 从咽炎到坏死性筋膜炎'],
+      'agalactiae': ['B 组链球菌 (S. agalactiae)', '产房床旁数小时完成孕妇筛查,替代 18–48 小时培养 — 血清型、CC17 克隆与青霉素过敏时的耐药标志物'],
+      'faecium': ['万古霉素耐药肠球菌 (E. faecium)', 'vanA/vanB 检测与长读长解析 Tn1546 质粒背景 — ICU 暴发追踪,以基因型而非表型指导治疗'],
       'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
       'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
       'hiv':  ['HIV(艾滋病病毒)', 'HIV-1 耐药性与亚型鉴定'],
@@ -6408,7 +6964,7 @@
     if (dz) dz.textContent = H.dzenText;
 
     /* Section titles */
-    ['components', 'projects', 'oncology', 'old', 'clostridia', 'candida', 'farmer', 'criminal'].forEach(function (k) {
+    ['components', 'projects', 'oncology', 'old', 'clostridia', 'candida', 'cocci', 'farmer', 'criminal'].forEach(function (k) {
       var el = document.getElementById('i18n-sec-' + k);
       if (el) {
         var ru = el.textContent.trim();
