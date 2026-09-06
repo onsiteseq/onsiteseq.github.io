@@ -2017,6 +2017,80 @@
     '<li>📄 <a href="https://www.who.int/">WHO — Bacterial Priority Pathogens List (ESKAPE)</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — VRE in Healthcare Settings</a></li></ul>';
 
+  /* ── HAEMOPHILUS INFLUENZAE (BLNAR) ── */
+  EN['/haemophilus/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_haemophilus.svg" alt="Haemophilus influenzae — pleomorphic coccobacilli" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Haemophilus influenzae: BLNAR, Serotype and Species Identification</h1>' +
+    '<p style="font-size:1.2em;color:#555">ftsI sequencing sees the resistance that a β-lactamase PCR misses — in hours, on a small genome</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Haemophilus influenzae</em> (Pfeiffer\'s bacillus) is a small Gram-negative <strong>pleomorphic coccobacillus</strong>, a commensal of the nasopharynx and a causative agent of otitis, sinusitis, <strong>COPD exacerbations</strong> (the second most frequent bacterial pathogen after the pneumococcus) and pneumonia; in unvaccinated children — epiglottitis and meningitis (historically the capsular type b, Hib). Culture-based diagnostics is slow and demanding: the bacterium is fastidious, grows only on <strong>chocolate agar</strong> and requires growth factors <strong>X (haemin) and V (NAD)</strong>. Genomics bypasses this problem: the answer does not depend on whether the culture grows.</p>' +
+    '<p>From nanopore sequencing data our pipeline determines the <strong>AMR profile with mandatory analysis of ftsI mutations</strong> (the key point — below), the <strong>serotype (a–f or non-typeable NTHi)</strong> from the capsular locus and <strong>species identification</strong> with differentiation from the non-pathogenic look-alike <em>H. haemolyticus</em>. The genome is small (<strong>~1.8 Mb</strong>), and the key targets — the ftsI + blaTEM amplicon and the capsular locus — deliver an answer <strong>within hours</strong> in a hospital or an outpatient clinic on an Edge unit with Flongle.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: sputum, nasopharyngeal swab, middle-ear exudate, CSF, blood. Optimal — rapid library preparation and a run on <strong>Flongle</strong> for the point-of-care scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the paediatrician/pulmonologist — species identification, serotype, AMR profile (including BLNAR status) with an empirical regimen recommendation; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Resistance, Serotype, Identification</h2>' +
+    '<h3>Core: mechanisms of β-lactam resistance</h3>' +
+    '<p>The main clinical question in <em>H. influenzae</em> is susceptibility to aminopenicillins and cephalosporins. There are two mechanisms, and both must be seen:</p>' +
+    tbl(['Marker', 'Mechanism', 'Clinical Significance'], [
+      ['<strong>blaTEM-1</strong>', 'β-lactamase (plasmid-borne)', 'Resistance to ampicillin/amoxicillin; overcome by inhibitors (clavulanate)'],
+      ['<strong>blaROB-1</strong>', 'β-lactamase (rarer)', 'Resistance to ampicillin; often combined resistance'],
+      ['<strong>ftsI</strong> (PBP3)', 'Mutations in the penicillin-binding protein 3 gene', '<strong>BLNAR — β-lactamase-negative ampicillin resistance</strong>']
+    ]) +
+    '<p><strong>BLNAR is the main trap of routine diagnostics.</strong> The strain produces no β-lactamase, but mutations in <strong>ftsI</strong> (the classic substitutions N526K, S385T, R517H and others) reduce the affinity of PBP3 for all aminopenicillins and some cephalosporins. A β-lactamase PCR will call such a strain "susceptible", while the patient will not respond to amoxicillin — only <strong>ftsI sequencing</strong> sees the truth. The proportion of BLNAR is growing worldwide, and the world\'s highest is in <strong>East Asia (Japan, Korea, China)</strong>, where BLNAR and BLPACR (β-lactamase-positive strains with ftsI mutations) account for <strong>tens of percent of clinical isolates</strong>; the share of low-BLNAR (borderline susceptibility) is growing as well.</p>' +
+    '<h3>Resistance genes: other classes</h3>' +
+    tbl(['Marker', 'Antibiotic Class', 'Clinical Significance'], [
+      ['<strong>gyrA / parC</strong>', 'Fluoroquinolones', 'QRDR mutations → resistance to levofloxacin/moxifloxacin (a reserve option in BLNAR and COPD)']
+    ]) +
+    '<h3>Serotyping and the capsular locus</h3>' +
+    '<p>After Hib vaccination the epidemiology shifted: invasive forms are increasingly caused by <strong>non-typeable strains (NTHi)</strong> and <strong>non-b serotypes</strong> — in particular, <strong>Hia</strong> causes outbreaks of severe invasive infections in Indigenous populations of North America. Genomic serotyping from the capsular locus is <strong>more accurate than serum agglutination</strong> (which produces cross-reactions and errors).</p>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>bexA</strong>', 'Marker of capsule presence as such (capsular polysaccharide export); bexA-negative → NTHi'],
+      ['<strong>Capsular locus (regions I–III)</strong>', 'Serotype a–f from the serotype-specific genes of region II']
+    ]) +
+    '<h3>Species identification: separating from H. haemolyticus</h3>' +
+    '<p><em>Haemophilus haemolyticus</em> is a <strong>non-pathogenic commensal look-alike</strong>, phenotypically almost indistinguishable from NTHi (up to MALDI-TOF errors). Misidentification distorts epidemiology and prescribing. Molecular identification resolves this at once:</p>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>iga</strong> (IgA1 protease)', 'Present in <em>H. influenzae</em>, absent in <em>H. haemolyticus</em>'],
+      ['<strong>lgtC</strong> (lipooligosaccharide glycosyltransferase)', 'Complementary marker: often absent in <em>H. influenzae</em>, present in <em>H. haemolyticus</em>'],
+      ['Composite iga/lgtC profile + MLST loci', 'Definitive species verification from sequence data']
+    ]) +
+    '<h3>Empirical therapy in the report</h3>' +
+    tbl(['Clinical Form', 'Approach', 'Role of Genomics'], [
+      ['<strong>COPD exacerbation / pneumonia</strong>', 'Amoxicillin-clavulanate or a cephalosporin', 'ftsI status is critical: BLNAR → an aminopenicillin will fail even with an inhibitor'],
+      ['<strong>Otitis, sinusitis</strong>', 'Amoxicillin (first line)', 'blaTEM-1 + ftsI profile → choice between clavulanate and switching class'],
+      ['<strong>Invasive infection (epiglottitis, meningitis, sepsis)</strong>', 'Empirical ceftriaxone', 'Serotype (Hib? Hia? NTHi?) + AMR → regimen adjustment and epidemiological assessment']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Primary tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Haemophilus Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned ML models</h3>' +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>HI-BLNAR-Detector</strong>', 'Classification of BLNAR / low-BLNAR / susceptible from the ftsI mutation profile'],
+      ['<strong>HI-Sero-Typer</strong>', 'Serotyping a–f / NTHi from the capsular locus and bexA'],
+      ['<strong>HI-Species-ID</strong>', 'Differentiation of <em>H. influenzae</em> from <em>H. haemolyticus</em> by composite markers (iga, lgtC)']
+    ]) + '<hr>' +
+    '<h2>🛠 Technical Architecture (Pipeline Stack)</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — reference panel (<em>H. influenzae</em> Rd KW20, 86-028NP, <em>H. haemolyticus</em>)'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — ftsI, gyrA/parC mutations'],
+      ['<strong>4. AMR and serotype gene detection</strong>', 'Custom database (blaTEM-1/blaROB-1, capsular locus a–f, bexA, iga, lgtC), compatible with CARD/ResFinder'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>The BLNAR trap is scaling up</strong> — the proportion of BLNAR strains is growing worldwide, and in East Asia (Japan, Korea, China) reaches tens of percent of clinical isolates; low-BLNAR is growing as well. A β-lactamase test "does not see" such a strain, and phenotypic susceptibility testing requires growing a capricious culture — only ftsI sequencing gives the right answer immediately.</li>' +
+    '<li><strong>COPD is everyday work</strong> — <em>H. influenzae</em> is the second most frequent bacterial cause of COPD exacerbations and a common cause of community-acquired pneumonia; a wrong empirical regimen in a COPD patient means hospitalisation. An answer within hours on an Edge unit in the outpatient clinic changes tactics the same day.</li>' +
+    '<li><strong>Post-Hib epidemiology</strong> — the Hib vaccine (one of the most successful in history) shifted invasive infections towards NTHi and non-b serotypes; Hia outbreaks in Indigenous populations of North America show that serotyping remains clinically and epidemiologically significant — and genomic serotyping is more reliable than agglutination.</li>' +
+    '<li><strong>Fastidiousness as an argument for sequencing</strong> — culturing <em>H. influenzae</em> (chocolate agar, X and V factors, CO₂ incubation) is slow and often fails after the first antibiotic dose. The small genome (~1.8 Mb) makes direct sequencing from clinical material practical even on Flongle.</li>' +
+    '<li><strong>The H. haemolyticus look-alike</strong> — without molecular verification the share of "NTHi" in swabs is overestimated; composite markers (iga/lgtC) in the pipeline close this question automatically.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Haemophilus influenzae (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Haemophilus influenzae Infections</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — Haemophilus influenzae Disease (Hib)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — Haemophilus influenzae type b (Hib)</a></li></ul>';
+
   /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
   EN['/hvkp/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -6763,6 +6837,85 @@
     '<li>📄 <a href="https://www.who.int/">WHO — 细菌重点病原体清单 (ESKAPE)</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — 医疗机构中的 VRE</a></li></ul>';
 
+  /* ── 流感嗜血杆菌 (haemophilus) ── */
+  ZH['/haemophilus/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_haemophilus.svg" alt="流感嗜血杆菌 — 多形性球杆菌" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>流感嗜血杆菌:BLNAR、血清分型与菌种鉴定</h1>' +
+    '<p style="font-size:1.2em;color:#555">ftsI 测序能看到 β-内酰胺酶 PCR 漏掉的耐药性——小基因组,数小时出结果</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>流感嗜血杆菌</em>(Haemophilus influenzae,Pfeiffer 杆菌)是一种小型革兰氏阴性<strong>多形性球杆菌</strong>,为鼻咽部共生菌,也是中耳炎、鼻窦炎、<strong>慢阻肺急性加重</strong>(仅次于肺炎球菌的第二常见细菌性病原体)和肺炎的病原;在未接种疫苗的儿童中可引起会厌炎和脑膜炎(历史上为荚膜 b 型,即 Hib)。培养诊断缓慢而苛刻:该菌苛养,仅在<strong>巧克力琼脂</strong>上生长,且需要生长因子 <strong>X(血红素)和 V(NAD)</strong>。基因组学绕开了这一难题:结果不取决于培养是否长出来。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,确定<strong>AMR 耐药谱(必做 ftsI 突变分析,要点见下文)</strong>,由荚膜基因座判定<strong>血清型(a–f 或无荚膜的 NTHi)</strong>,并进行<strong>菌种鉴定</strong>——与无致病性的"孪生菌"<em>溶血嗜血杆菌</em>(H. haemolyticus)相鉴别。基因组很小(<strong>约 1.8 Mb</strong>),而关键目标——ftsI + blaTEM 扩增子加荚膜基因座——可在医院或门诊的 Edge 设备上用 Flongle <strong>数小时内</strong>给出答案。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:痰液、鼻咽拭子、中耳渗出液、脑脊液、血液。最佳方案——快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁 (point-of-care) 场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向儿科/呼吸科医生的 HTML 报告 — 菌种鉴定、血清型、AMR 耐药谱(含 BLNAR 状态)并附经验性用药建议;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:耐药、血清型、鉴定</h2>' +
+    '<h3>核心:β-内酰胺类耐药机制</h3>' +
+    '<p><em>流感嗜血杆菌</em>的主要临床问题是对氨基青霉素类和头孢菌素类的敏感性。机制有两种,两者都必须看到:</p>' +
+    tbl(['标志物', '机制', '临床意义'], [
+      ['<strong>blaTEM-1</strong>', 'β-内酰胺酶(质粒介导)', '对氨苄西林/阿莫西林耐药;可被抑制剂(克拉维酸)克服'],
+      ['<strong>blaROB-1</strong>', 'β-内酰胺酶(较少见)', '对氨苄西林耐药;常为联合耐药'],
+      ['<strong>ftsI</strong> (PBP3)', '青霉素结合蛋白 3 基因突变', '<strong>BLNAR——β-内酰胺酶阴性氨苄西林耐药</strong>']
+    ]) +
+    '<p><strong>BLNAR 是常规诊断的最大陷阱。</strong>菌株不产 β-内酰胺酶,但 <strong>ftsI</strong> 突变(经典替换 N526K、S385T、R517H 等)降低了 PBP3 对所有氨基青霉素类和部分头孢菌素类的亲和力。对此类菌株,β-内酰胺酶 PCR 会报"敏感",而患者对阿莫西林无应答——只有 <strong>ftsI 测序</strong>能看到真相。BLNAR 的比例在全球上升,世界最高的是<strong>东亚(日本、韩国、中国)</strong>,那里 BLNAR 和 BLPACR(产 β-内酰胺酶且伴 ftsI 突变的菌株)合计<strong>占临床分离株的数十个百分点</strong>;low-BLNAR(临界敏感)的比例也在上升。</p>' +
+    '<h3>耐药基因:其他类别</h3>' +
+    tbl(['标志物', '抗生素类别', '临床意义'], [
+      ['<strong>gyrA / parC</strong>', '氟喹诺酮类', 'QRDR 突变 → 对左氧氟沙星/莫西沙星耐药(BLNAR 与慢阻肺时的储备用药)']
+    ]) +
+    '<h3>血清分型与荚膜基因座</h3>' +
+    '<p>Hib 疫苗接种后流行病学发生了偏移:侵袭性感染越来越多由<strong>无荚膜菌株 (NTHi)</strong> 和<strong>非 b 血清型</strong>引起——尤其是 <strong>Hia</strong>,在北美原住人群中引起重症侵袭性感染暴发。基于荚膜基因座的基因组血清分型<strong>比血清凝集试验更准确</strong>(后者存在交叉反应和误判)。</p>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>bexA</strong>', '荚膜存在与否的标志物(荚膜多糖输出);bexA 阴性 → NTHi'],
+      ['<strong>荚膜基因座(I–III 区)</strong>', '根据 II 区血清型特异性基因判定血清型 a–f']
+    ]) +
+    '<h3>菌种鉴定:与溶血嗜血杆菌鉴别</h3>' +
+    '<p><em>溶血嗜血杆菌</em>(H. haemolyticus)是<strong>无致病性的共生"孪生菌"</strong>,表型上与 NTHi 几乎无法区分(甚至 MALDI-TOF 也会误判)。错误鉴定会扭曲流行病学数据和用药决策。分子鉴定一次解决:</p>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>iga</strong>(IgA1 蛋白酶)', '存在于<em>流感嗜血杆菌</em>,不存在于<em>溶血嗜血杆菌</em>'],
+      ['<strong>lgtC</strong>(脂寡糖糖基转移酶)', '互补标志物:常不存在于<em>流感嗜血杆菌</em>,存在于<em>溶血嗜血杆菌</em>'],
+      ['iga/lgtC 复合谱 + MLST 位点', '基于测序的菌种最终确认']
+    ]) +
+    '<h3>报告中的经验性治疗</h3>' +
+    tbl(['临床类型', '方案', '基因组学的作用'], [
+      ['<strong>慢阻肺急性加重 / 肺炎</strong>', '阿莫西林-克拉维酸或头孢菌素', 'ftsI 状态至关重要:BLNAR → 即使加抑制剂,氨基青霉素也无效'],
+      ['<strong>中耳炎、鼻窦炎</strong>', '阿莫西林(一线)', 'blaTEM-1 + ftsI 谱 → 在加克拉维酸与换药类别之间选择'],
+      ['<strong>侵袭性感染(会厌炎、脑膜炎、脓毒症)</strong>', '经验性头孢曲松', '血清型(Hib?Hia?NTHi?)+ AMR → 调整方案并评估流行病学']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Haemophilus Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的机器学习模型</h3>' +
+    tbl(['模型', '目标任务'], [
+      ['<strong>HI-BLNAR-Detector</strong>', '根据 ftsI 突变谱分类 BLNAR / low-BLNAR / 敏感'],
+      ['<strong>HI-Sero-Typer</strong>', '基于荚膜基因座和 bexA 的血清分型 a–f / NTHi'],
+      ['<strong>HI-Species-ID</strong>', '基于复合标志物(iga、lgtC)鉴别<em>流感嗜血杆菌</em>与<em>溶血嗜血杆菌</em>']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构 (Pipeline Stack)</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — 参考序列面板(<em>H. influenzae</em> Rd KW20、86-028NP、<em>H. haemolyticus</em>)'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — ftsI、gyrA/parC 突变'],
+      ['<strong>4. AMR 与血清型基因检出</strong>', '自建数据库(blaTEM-1/blaROB-1、荚膜基因座 a–f、bexA、iga、lgtC),兼容 CARD/ResFinder'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>BLNAR 陷阱正在扩大</strong> — BLNAR 菌株的比例在全球上升,在东亚(日本、韩国、中国)已达临床分离株的数十个百分点;low-BLNAR 也在上升。β-内酰胺酶检测"看不见"这类菌株,表型药敏又需要培养苛养菌——只有 ftsI 测序能立即给出正确答案。</li>' +
+    '<li><strong>慢阻肺是每天的工作</strong> — <em>流感嗜血杆菌</em>是慢阻肺急性加重的第二常见细菌性病原,也是社区获得性肺炎的常见病因;慢阻肺患者经验性用药出错就意味着住院。门诊 Edge 设备数小时出结果,当天即可调整治疗策略。</li>' +
+    '<li><strong>后 Hib 时代的流行病学</strong> — Hib 疫苗(史上最成功的疫苗之一)使侵袭性感染转向 NTHi 和非 b 血清型;北美原住人群的 Hia 暴发表明血清分型在临床上和流行病学上仍然重要——而基因组血清分型比凝集试验更可靠。</li>' +
+    '<li><strong>苛养性本身就是测序的理由</strong> — <em>流感嗜血杆菌</em>的培养(巧克力琼脂、X 和 V 因子、CO₂ 孵育)缓慢,且在首剂抗生素后常常长不出来。小基因组(约 1.8 Mb)使直接从临床样本测序在 Flongle 上也切实可行。</li>' +
+    '<li><strong>溶血嗜血杆菌"孪生菌"</strong> — 没有分子验证,拭子中"NTHi"的比例会被高估;流程中的复合标志物(iga/lgtC)自动解决这一问题。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 流感嗜血杆菌 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 流感嗜血杆菌感染</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 流感嗜血杆菌疾病 (Hib)</a></li>' +
+    '<li>📄 <a href="https://www.who.int/">WHO — b 型流感嗜血杆菌 (Hib)</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -6826,6 +6979,7 @@
       'faecium':      ['Vancomycin-Resistant Enterococcus (E. faecium)', 'vanA/vanB with plasmid-context resolution of Tn1546 on long reads — ICU outbreak tracing and genotype over phenotype for therapy choice'],
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
       'cold':         ['Bacterial ARI', 'Metagenomic identification of bacterial respiratory pathogens and AMR — S. pneumoniae, H. influenzae, K. pneumoniae, etc.'],
+      'haemophilus':  ['H. influenzae (Pfeiffer\'s bacillus)', 'BLNAR via ftsI (PBP3) mutations invisible to β-lactamase PCR, a–f/NTHi serotyping and differentiation from H. haemolyticus — otitis, COPD, epiglottitis'],
       'identikit':    ['DNA Forensic Portrait', 'Appearance, ancestry and age prediction from crime scene DNA — Forensic DNA Phenotyping via nanopore sequencing'],
       'phytophthora': ['Phytophthora & Plant Pathogens', 'Metagenomic identification of plant pathogens and fungicide resistance — P. infestans, Fusarium, Botrytis, etc. Right in the field.'],
       'phytophthora-infestans': ['Late Blight (Phytophthora infestans)', 'Late blight of potato and tomato — resistance markers for metalaxyl, CAA fungicides and strobilurins'],
@@ -6917,6 +7071,7 @@
       'faecium': ['万古霉素耐药肠球菌 (E. faecium)', 'vanA/vanB 检测与长读长解析 Tn1546 质粒背景 — ICU 暴发追踪,以基因型而非表型指导治疗'],
       'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
       'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
+      'haemophilus': ['流感嗜血杆菌(法伊弗杆菌)', 'ftsI (PBP3) 突变导致的 BLNAR — β-内酰胺酶 PCR 无法发现;a–f/NTHi 血清分型与溶血嗜血杆菌鉴别 — 中耳炎、慢阻肺、会厌炎'],
       'hiv':  ['HIV(艾滋病病毒)', 'HIV-1 耐药性与亚型鉴定'],
       'identikit': ['DNA 法医画像', '从犯罪现场 DNA 预测外貌、祖源与年龄 — 基于纳米孔测序的法医 DNA 表型分型'],
       'phytophthora': ['疫霉与植物病原体', '植物病原体及杀菌剂抗性的宏基因组鉴定 — 致病疫霉、镰刀菌、灰葡萄孢等。就在田间。'],
