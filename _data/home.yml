@@ -215,6 +215,27 @@ cocci_entries:
     desc: "vanA/vanB с резолюцией плазмидного контекста Tn1546 на длинных прочтениях — трассировка вспышек ОРИТ и генотип вместо фенотипа для выбора терапии"
     image: /assets/images/logo/icon_faecium.svg
 
+herpes_entries:
+  - title: Цитомегаловирус (CMV)
+    url: cmv
+    desc: "Генотипирование резистентности в трансплантологии: UL97 (ганцикловир), UL54, UL56 (летермовир) — минорные субпопуляции 5–20%, которые Sanger не видит"
+    image: /assets/images/logo/icon_cmv.svg
+
+  - title: Простой герпес (HSV-1/HSV-2)
+    url: hsv
+    desc: "Энцефалит — каждый час = нейроны: mNGS ликвора и резистентность к ацикловиру (UL23/UL30) у иммуносупрессированных за часы"
+    image: /assets/images/logo/icon_hsv.svg
+
+  - title: Вирус Эпштейна–Барр (EBV)
+    url: ebv
+    desc: "«Кантонский рак» — скрининг рака носоглотки по ВЭБ-ДНК, штаммотипирование (del-LMP1) и клональность по терминальным репитам; PTLD"
+    image: /assets/images/logo/icon_ebv.svg
+
+  - title: HHV-6 и iciHHV-6
+    url: hhv6
+    desc: "Ловушка интеграции: ~1% людей несут HHV-6 в зародышевой линии — химерные риды «вирус–теломера» отличают её от реактивации и спасают от лишнего ганцикловира"
+    image: /assets/images/logo/icon_hhv6.svg
+
 farmer_entries:
   - title: Фитофтороз (Phytophthora infestans)
     url: phytophthora-infestans

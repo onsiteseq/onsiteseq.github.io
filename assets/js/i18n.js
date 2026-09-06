@@ -2091,6 +2091,286 @@
     '<li>📄 <a href="https://www.cdc.gov/">CDC — Haemophilus influenzae Disease (Hib)</a></li>' +
     '<li>📄 <a href="https://www.who.int/">WHO — Haemophilus influenzae type b (Hib)</a></li></ul>';
 
+  /* ── CYTOMEGALOVIRUS (CMV) ── */
+  EN['/cmv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_cmv.svg" alt="Cytomegalovirus — an enveloped herpesvirus" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Resistance Genotyping of Cytomegalovirus (CMV/HHV-5) in Transplantation</h1>' +
+    '<p style="font-size:1.2em;color:#555">UL97, UL54, UL56 — the answer to the cause of refractory CMV in hours, not in weeks of a reference laboratory</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p>Cytomegalovirus (CMV, HHV-5) is a β-herpesvirus with a <strong>seroprevalence of 60–90% in the adult population</strong>. In an immunocompetent host it lies dormant in monocytes; after <strong>solid-organ or bone marrow transplantation</strong> it becomes the leading viral pathogen: CMV viraemia, pneumonitis, colitis, retinitis, oesophagitis. Beyond direct organ damage, CMV carries <strong>indirect effects</strong>: it increases the risk of graft rejection and opens the door to fungal and bacterial superinfections — which is exactly why the virus is managed prophylactically (valganciclovir, letermovir) and the viral load is monitored.</p>' +
+    '<p>The classic clinical trap is <strong>refractory CMV</strong>: the load does not fall on ganciclovir/valganciclovir for weeks. There are only two causes — insufficient immunity or a <strong>resistant virus</strong> — and the solutions are opposite. A reference laboratory (Sanger) answers within <strong>weeks</strong>; our pipeline, from nanopore sequencing data, genotypes the resistance genes <strong>in hours</strong>, on site, in the transplant centre. Deep sequencing catches <strong>minor resistant subpopulations (5–20%)</strong> that Sanger fundamentally cannot see — yet it is precisely they that are selected under therapy and lead to failure of the treatment line.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma/whole blood of a post-transplant patient (viraemia confirmed by PCR). Optimal — a run on <strong>Flongle/MinION</strong> right in the transplant centre laboratory (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the transplant physician — resistance genotype across UL97/UL54/UL56/UL51/UL89 with subpopulation fractions, drug-level interpretation (ganciclovir / foscarnet / cidofovir / letermovir / maribavir), viral load estimation from the same data; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Resistance Genes and Viral Load</h2>' +
+    '<h3>UL97 — phosphotransferase, the "gateway of ganciclovir"</h3>' +
+    '<p>Ganciclovir is a prodrug: it is activated in the target cell by the viral phosphotransferase UL97. Without the first phosphorylation the drug is inert. That is why UL97 mutations are the most frequent cause of resistance to ganciclovir/valganciclovir:</p>' +
+    tbl(['Mutation', 'Drug', 'Clinical Significance'], [
+      ['<strong>M460V / M460I</strong>', 'Ganciclovir', 'Classic "hot" positions; high-level resistance'],
+      ['<strong>H520Q</strong>', 'Ganciclovir', 'Moderate resistance, often in combination with UL54'],
+      ['<strong>C592G</strong>', 'Ganciclovir', 'The most frequent mutation in clinical series'],
+      ['<strong>A594V</strong>', 'Ganciclovir', 'High-level resistance'],
+      ['<strong>L595S</strong>', 'Ganciclovir', 'Moderate resistance, expands under valganciclovir selection'],
+      ['<strong>C603W</strong>', 'Ganciclovir', 'Rare, but high-level']
+    ]) +
+    '<h3>UL54 — DNA polymerase, the target of all "-virs" and foscarnet</h3>' +
+    '<p>UL54 is the catalytic subunit of the viral DNA polymerase. Here mutations affect several drugs at once, and the pattern determines cross-resistance: ganciclovir, cidofovir, foscarnet. It is the UL97+UL54 combination that gives the full picture — and it is exactly here that nanopore beats everyone.</p>' +
+    '<h3>UL56 / UL51 / UL89 — the terminase complex</h3>' +
+    tbl(['Gene', 'Function', 'Drug'], [
+      ['<strong>UL56</strong>', 'Terminase subunit', '<strong>Letermovir</strong> (intensively used for prophylaxis after HSCT — resistance has been described and is growing)'],
+      ['<strong>UL51</strong>', 'Terminase complex', 'Additional letermovir resistance mutations'],
+      ['<strong>UL89</strong>', 'Terminase subunit', 'Letermovir resistance (cross with UL56 lineages)']
+    ]) +
+    '<h3>Viral load from the same data</h3>' +
+    '<p>Viral genome coverage in the same run is a <strong>surrogate of viral load</strong>: load dynamics under therapy can be tracked without a separate PCR reference, synchronised with the dynamics of resistant subpopulation fractions.</p><hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Primary tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq CMV Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned ML models</h3>' +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CMV-Res-Genotyper</strong>', 'Classification of UL97/UL54/UL56/UL51/UL89 mutations by drug with resistance levels'],
+      ['<strong>CMV-Subpop-Phaser</strong>', 'Phasing of mutations on long reads: one chromosome or different subpopulations'],
+      ['<strong>CMV-Load-Tracker</strong>', 'Estimation of viral load and its dynamics from coverage']
+    ]) + '<hr>' +
+    '<h2>🛠 Technical Architecture (Pipeline Stack)</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — CMV references (Merlin/AD169), assembly through the repeats of the ~235 kb genome'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — with depth thresholds for minor variants (5–20%)'],
+      ['<strong>4. Resistance genotyping</strong>', 'Custom UL97/UL54/UL56/UL51/UL89 mutation database based on clinical reference catalogues'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>Refractory CMV means weeks of uncertainty.</strong> Today\'s standard is Sanger genotyping at a reference laboratory: logistics, queue, an answer in 1–3 weeks. In that time the virus either keeps growing on useless ganciclovir, or the patient is forcibly switched to foscarnet with its nephrotoxicity. On-site Edge sequencing compresses this cycle to hours.</li>' +
+    '<li><strong>Minor subpopulations decide.</strong> Resistant CMV clones start at a fraction of a few percent and are selected under therapy. Sanger with a threshold of ~20–25% does not see them; deep sequencing on ONT does. This changes the prognosis of a therapy line before the load clinically "stalls".</li>' +
+    '<li><strong>A ~235 kb genome with repeats is within nanopore\'s reach.</strong> The CMV genome abounds in long repeats (UL/b\' and US/c\' reiterations), where short reads neither assemble nor phase. ONT reads traverse the repeats in full.</li>' +
+    '<li><strong>Phasing is the unique trump card of long reads.</strong> UL97 and UL54 mutations sit at opposite ends of the genome: on short reads one cannot tell "two mutations in one genome" from "two different subpopulations with one mutation each". A long read is a single molecule — linkage is read directly. And these are different clinical decisions: a mono-resistant population versus a cumulatively multi-resistant one.</li>' +
+    '<li><strong>Letermovir escalates the problem.</strong> Letermovir prophylaxis after HSCT is becoming standard — and UL56 resistance has already been described; rapid control of the terminase genes is in ever greater demand.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Cytomegalovirus (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Cytomegalovirus (CMV) Infection</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — Cytomegalovirus (CMV) and Congenital CMV Infection</a></li></ul>';
+
+  /* ── HERPES SIMPLEX VIRUS (HSV) ── */
+  EN['/hsv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hsv.svg" alt="Herpes simplex virus — herpesvirion and neuron" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Herpes Simplex Virus (HSV-1/HSV-2): Encephalitis and Acyclovir Resistance</h1>' +
+    '<p style="font-size:1.2em;color:#555">CSF mNGS, UL23/UL30 genotyping and whole-genome assembly on long reads — when every hour costs neurons</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p>Herpes simplex virus type 1 (HSV-1, HHV-1) is the leading cause of <strong>sporadic fatal encephalitis</strong> in adults: the virus strikes the <strong>temporal lobes</strong>, causing haemorrhagic necrosis. Without treatment, mortality is <strong>~70%</strong>; with early intravenous acyclovir it falls to <strong>~20–30%</strong> — but every hour of therapeutic delay irreversibly costs neurons and cognitive functions. HSV-2 accounts for genital infection, <strong>neonatal herpes</strong> (sepsis and encephalitis of newborns with mortality up to 60% without treatment) and recurrent aseptic meningitis.</p>' +
+    '<p>CSF PCR is the gold standard of diagnostics, but it has blind spots: in the <strong>first 24–72 hours</strong> of illness PCR can be false-negative, atypical and vaccine-associated cases escape it, and above all — <strong>PCR does not answer the question of resistance</strong>. In immunosuppressed patients (organ and HSCT transplantation, HIV) acyclovir resistance reaches <strong>4–14%</strong>: the phenotypic test requires viral culture and takes <strong>weeks</strong>, whereas the genotype across <strong>UL23</strong> (thymidine kinase, ~95% of resistance cases) and <strong>UL30</strong> (DNA polymerase) delivers the answer in hours and immediately points to a change of therapy (foscarnet, cidofovir).</p>' +
+    '<p>From nanopore sequencing data our pipeline combines three tasks in a single run: <strong>CSF mNGS</strong> (detection of HSV together with the differential panel — VZV, enteroviruses, HHV-6, bacterial meningitis), <strong>resistance genotyping</strong> across UL23/UL30 and <strong>whole-genome assembly</strong> for strain epidemiology.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: CSF (priority), vesicular fluid, mucosal swabs, blood in neonatal infection. Optimal — a run on <strong>Flongle</strong> for the emergency scenario (Edge) in intensive care.</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the neurologist/infectious disease physician — species and type of virus (HSV-1/HSV-2 by US6), resistance genotype with interpretation of UL23/UL30 mutations and a therapy-change recommendation, differential panel by mNGS; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification and Resistance</h2>' +
+    '<h3>Key genes</h3>' +
+    tbl(['Gene', 'Protein', 'Clinical Significance'], [
+      ['<strong>UL23</strong>', 'Thymidine kinase (TK)', '<strong>~95% of acyclovir resistance cases</strong>: point mutations, deletions and insertions (often in G/C homopolymer tracts); TK-negative phenotype → switch to <strong>foscarnet</strong>'],
+      ['<strong>UL30</strong>', 'DNA polymerase (pol)', '~5% of cases; mutations confer cross-resistance to acyclovir and foscarnet — cidofovir is required'],
+      ['<strong>US6</strong>', 'Glycoprotein D (gD)', '<strong>HSV-1 / HSV-2 differentiation</strong> — crucial for prognosis: HSV-2 encephalitis recurs more often and responds worse to therapy'],
+      ['<strong>UL27</strong>', 'Glycoprotein B (gB)', 'Conserved species-identification marker; target for mNGS classification']
+    ]) +
+    '<h3>Resistance genotype in the report</h3>' +
+    tbl(['Finding', 'Interpretation', 'Action'], [
+      ['UL23 mutation (incl. deletions/insertions)', 'TK deficiency: acyclovir is not phosphorylated', 'Discontinue acyclovir → <strong>foscarnet</strong>'],
+      ['UL30 mutation', 'Altered DNA polymerase', 'Cross-resistance possible → foscarnet or <strong>cidofovir</strong>'],
+      ['Wild-type UL23/UL30 with refractoriness', 'Resistance not confirmed', 'Check dose/adherence, repeat the lumbar puncture']
+    ]) +
+    '<h3>The mNGS differential panel in suspected encephalitis</h3>' +
+    '<p>In a single run the pipeline checks the whole range of causes of acute encephalitis/meningitis — critical when HSV PCR is negative but the clinical picture persists:</p>' +
+    '<ul><li><strong>VZV</strong> — the second most frequent cause of viral encephalitis;</li>' +
+    '<li><strong>Enteroviruses</strong> — a frequent cause of aseptic meningitis;</li>' +
+    '<li><strong>HHV-6</strong> — encephalitis in immunosuppressed patients and reactivation after transplantation;</li>' +
+    '<li><strong>Bacterial meningitis</strong> (<em>N. meningitidis</em>, <em>S. pneumoniae</em>, <em>L. monocytogenes</em>) — must not be missed with an atypical CSF profile.</li></ul><hr>' +
+    '<h2>🧬 The Technical Trump Card of ONT: a Genome with Repeats</h2>' +
+    '<p>The HSV genome is a double-stranded DNA of <strong>~152 kb</strong> with a complex architecture: the unique segments UL and US are surrounded by <strong>terminal and internal inverted repeats</strong> (TRL/IRL/IRS/TRS, 6–9 kb each). Assembly with short reads (Illumina) <strong>breaks at the repeats</strong>: the repeats collapse, the context of mutations in TK and in the homopolymer tracts of UL23 is lost, and the genome assembles in fragments. <strong>Long Oxford Nanopore reads pass straight through the repeats</strong>, yielding a whole-genome assembly as a single contig — this opens up:</p>' +
+    '<ul><li>precise mapping of deletions/insertions in UL23, including homopolymer tracts (C₇–C₈, G-stretches), where resistance most often arises;</li>' +
+    '<li><strong>whole-genome epidemiology</strong> of HSV-1/HSV-2 strains — phylogenetics of nosocomial and neonatal outbreaks without PCR amplification of individual loci;</li>' +
+    '<li>detection of mixed populations (a latent reservoir of resistant quasispecies) by read fraction.</li></ul><hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Primary tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq HSV Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned ML models</h3>' +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>HSV-Res-Geno</strong>', 'Interpretation of UL23/UL30 mutations: resistance vs polymorphism (against curated genotype databases)'],
+      ['<strong>HSV-Typer</strong>', 'HSV-1/HSV-2 differentiation by US6/UL27 and whole-genome signatures'],
+      ['<strong>CNS-mNGS-Classifier</strong>', 'Pathogen prioritisation in CSF mNGS: HSV vs VZV vs enteroviruses vs the bacterial panel']
+    ]) + '<hr>' +
+    '<h2>🛠 Technical Architecture (Pipeline Stack)</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Dehosting and mNGS classification</strong>', 'Removal of human reads (GRCh38 reference), <code>kraken2</code> / <code>minimap2</code> against a neuroinfection panel'],
+      ['<strong>3. Alignment (Mapping)</strong>', '<code>minimap2</code> — HSV-1 (strain 17) and HSV-2 (strain HG52) references'],
+      ['<strong>4. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — including indels in the homopolymer tracts of UL23'],
+      ['<strong>5. Whole-genome assembly</strong>', '<code>flye</code> / <code>medaka</code> — through-assembly across the RL/RS repeats'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>Every hour costs neurons</strong> — herpes simplex encephalitis has an annual incidence of ~2–4 cases per million, yet remains the most frequent cause of fatal sporadic encephalitis. Early PCR negativity (the first 24–72 h) provokes withdrawal of acyclovir — and death of the patient; mNGS with data accumulating over sequencing intervals increases sensitivity in the early period.</li>' +
+    '<li><strong>Neonatal herpes</strong> — HSV-2 (and increasingly HSV-1) acquired during delivery causes disseminated infection and encephalitis of the newborn: without treatment mortality reaches 60%, and survivors suffer severe neurological disability. The speed of typing determines the outcome.</li>' +
+    '<li><strong>Resistance under immunosuppression</strong> — in transplant recipients and HIV patients the proportion of acyclovir-resistant strains reaches 4–14%; the phenotypic test (culture, weeks) is clinically useless, and the UL23/UL30 genotype is the only rapid answer determining the switch to toxic foscarnet.</li>' +
+    '<li><strong>Epidemiology</strong> — whole-genome HSV sequencing has revealed global recombination and geographic clustering of strains; long reads make such analysis routine for the first time, including nosocomial and neonatal outbreaks.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/">WHO — Herpes simplex virus (Fact sheet)</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Herpes Simplex Encephalitis (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/">ECDC — Herpes simplex virus</a></li></ul>';
+
+  /* ── EPSTEIN–BARR VIRUS (EBV) ── */
+  EN['/ebv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_ebv.svg" alt="Epstein–Barr virus — herpesvirion and B lymphocyte" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Epstein–Barr Virus: Nasopharyngeal Cancer and Viral Oncology</h1>' +
+    '<p style="font-size:1.2em;color:#555">The first discovered human oncovirus — complete genome, tumour clonality and latency methylation in a single nanopore run</p></div><hr>' +
+    '<h2>🧬 Why EBV Is Viral Oncology in Its Purest Form</h2>' +
+    '<p>Epstein–Barr virus (EBV, human herpesvirus 4, HHV-4) is the <strong>first virus for which oncogenicity in humans was proven</strong> (1964, Burkitt lymphoma) and an <strong>IARC Group 1 carcinogen</strong>. Virtually the entire adult population of the planet is infected: <strong>~95% of adults are seropositive</strong>. After primary infection the virus persists for life in B lymphocytes in latent form — and in a fraction of carriers becomes the driver of malignant transformation.</p>' +
+    '<p>EBV is associated with a whole spectrum of tumours and conditions:</p>' +
+    '<ul><li><strong>Nasopharyngeal carcinoma (NPC)</strong> — the undifferentiated form is practically always EBV-associated;</li>' +
+    '<li><strong>Burkitt lymphoma</strong> (endemic and sporadic) and <strong>Hodgkin lymphoma</strong>;</li>' +
+    '<li><strong>B-cell lymphoproliferations in immunosuppressed patients</strong> — above all post-transplant lymphoproliferative disorder (<strong>PTLD</strong>);</li>' +
+    '<li><strong>~9% of gastric carcinomas</strong> (EBV-associated gastric cancer — a distinct molecular subtype per TCGA);</li>' +
+    '<li><strong>Infectious mononucleosis</strong> — the classic manifestation of primary infection;</li>' +
+    '<li><strong>Multiple sclerosis</strong> — EBV infection is recognised as the leading risk factor (an almost necessary condition according to large cohorts).</li></ul>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma (cell-free EBV DNA), tumour/lymph node biopsy, nasopharyngeal lavage, whole blood (PTLD monitoring).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report — viral load, strain type (EBV-1/EBV-2), LMP1 variants, clonality assessment by terminal repeats, methylation profile and latency programme; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<h2>🎯 What the Pipeline Determines: Three Levels of Analysis</h2>' +
+    '<p>As on our <a href="/hpv/">HPV page</a>, nanopore sequencing in a single run solves tasks for which qPCR and short reads require three different tests — or do not solve them at all.</p>' +
+    tbl(['Level', 'Task', 'Clinical Significance'], [
+      ['<strong>1. Detection and load</strong>', 'Quantitative determination of EBV DNA in plasma/material', 'NPC screening and monitoring; PTLD management after transplantation'],
+      ['<strong>2. Genomic analysis</strong>', 'Strain typing <strong>EBV-1/EBV-2</strong> (EBNA-2/3 genes), <strong>LMP1</strong> variants (incl. the 30-bp deletion del-LMP1 associated with NPC), <strong>tumour clonality by the number of terminal repeats</strong>', 'Monoclonal episomal EBV = proof that the tumour grew from a single infected cell; deleted LMP1 — a marker of increased oncogenicity'],
+      ['<strong>3. Latency epigenetics</strong>', 'Direct reading of <strong>viral genome methylation</strong> from native reads + analysis of the <strong>Cp/Wp</strong> promoters', 'Distinguish the latency programme (I/II/III) from the lytic cycle — the key to understanding tumour state and therapy response']
+    ]) +
+    '<p><strong>The key advantage of nanopore:</strong> the ~<strong>172 kb</strong> EBV genome is interwoven with large tandem internal repeats (<strong>IR1–IR4</strong>) and terminal repeats (<strong>TR</strong>). Short reads fundamentally cannot resolve these regions — neither count the number of repeats (clonality!) nor assemble the complete genome. A long nanopore read spans a repeat in full, and native DNA reading yields methylation <strong>without bisulfite conversion and without a separate test</strong>.</p>' +
+    '<blockquote>This is a direct analogue of the HPV scenario: viral oncology + liquid biopsy + risk stratification in a single run.</blockquote><hr>' +
+    '<h2>🇨🇳 "Cantonese Cancer": the Epicentre Is Southern China</h2>' +
+    '<p>Nasopharyngeal carcinoma is called the <strong>"Cantonese cancer"</strong>: the epicentre of global incidence is <strong>Southern China</strong> (Guangdong and Guangxi provinces, Hong Kong, the city of Guangzhou), where NPC occurs <strong>20–50 times more often</strong> than the world average. The cause is a combination of circulating oncogenic EBV variants, genetic predisposition (HLA loci) and environmental factors (salted fish, nitrosamines).</p>' +
+    '<p>The decisive evidence for screening was obtained precisely there:</p>' +
+    '<ul><li><strong>Chan et al., NEJM 2017 (Hong Kong)</strong> — screening of <strong>20,174 asymptomatic men</strong> by cell-free EBV DNA in plasma: NPC was detected in 34 participants, with the share of early stages (I–II) rising from ~20% (population level) to <strong>71%</strong>, and 3-year progression-free survival reaching <strong>97% versus 70%</strong> in a historical cohort. This is the reference study showing that viral-DNA liquid biopsy <strong>shifts stages and survival</strong>.</li>' +
+    '<li>Today EBV-DNA screening is being introduced into early NPC detection programmes in Hong Kong, Guangzhou and Guangxi; expansion to the endemic regions of Southeast Asia is under discussion.</li></ul>' +
+    '<p><strong>Where OnSiteSeq is needed:</strong> qPCR tests give only "how much virus". A nanopore run in the same plasma or lavage additionally yields the <strong>strain, del-LMP1, clonality and methylation</strong> — that is, not merely screening, but a molecular characterisation of the tumour even before biopsy. The portable Edge architecture allows such screening to be deployed in district clinics of endemic provinces, without sending samples to central laboratories.</p><hr>' +
+    '<h2>🧫 PTLD and Transplantation</h2>' +
+    '<p>After organ and bone marrow transplantation, immunosuppression lifts control over latent EBV — the risk of <strong>post-transplant lymphoproliferative disorder (PTLD)</strong>. The standard of care is regular monitoring of viral load in blood; our platform adds to it:</p>' +
+    '<ul><li><strong>Clonality</strong> by terminal repeats — distinguishing polyclonal reactivation from a monoclonal lymphoproliferative process;</li>' +
+    '<li><strong>The latency programme</strong> (Cp/Wp promoters, methylation) — latency III is typical of early PTLD in immunosuppressed patients;</li>' +
+    '<li><strong>The strain</strong> — in donor–recipient transmission and outbreaks in transplant centres.</li></ul><hr>' +
+    '<h2>🎯 Markers: What We Read in the EBV Genome</h2>' +
+    tbl(['Marker', 'Type', 'Significance'], [
+      ['<strong>LMP1</strong>', 'Gene (latent membrane protein 1)', 'The principal viral oncogene; the <strong>30-bp deletion (del-LMP1)</strong> is associated with NPC and a more aggressive phenotype'],
+      ['<strong>EBNA-1</strong>', 'Gene', 'Episome maintenance; polymorphisms (incl. the V-val variant) are linked to NPC in Southern China'],
+      ['<strong>EBNA-2 / EBNA-3</strong>', 'Genes', 'Basis of strain typing <strong>EBV-1 (type A) / EBV-2 (type B)</strong>; type 2 is more frequent in immunosuppressed patients'],
+      ['<strong>BART</strong>', 'microRNA locus', 'Cluster of viral miRNAs, highly expressed in NPC and EBV-associated gastric cancer; BART deletions are a hallmark of NPC strains'],
+      ['<strong>EBER</strong>', 'Non-coding RNAs (EBER1/2)', 'Classic histological marker of EBV (EBER-ISH); in the pipeline — a control of latent transcription coverage'],
+      ['<strong>Terminal repeats (TR)</strong>', 'Repeats of ~500 bp at the genome ends', 'The number of TRs is the "fingerprint" of the cell clone: tumour monoclonality proves EBV aetiology'],
+      ['<strong>IR1–IR4</strong>', 'Internal tandem repeats', 'Not resolved by short reads; long reads deliver the complete ~172 kb genome assembly'],
+      ['<strong>Cp / Wp</strong>', 'Promoters', 'Switching of latency programmes (0/I/II/III) and the lytic cycle; read together with methylation']
+    ]) + '<hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Primary tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq EBV Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned ML models</h3>' +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>EBV-Strain-Typer</strong>', 'Strain typing EBV-1/EBV-2 and calling of LMP1/EBNA-1 variants (architecture — an analogue of <a href="/ml/hiv/">HIV-1-M-Env-Rus</a>: CNN + Self-Attention)'],
+      ['<strong>EBV-Clonality-Caller</strong>', 'Clonality assessment from the distribution of terminal-repeat counts across reads'],
+      ['<strong>EBV-Latency-Methyl</strong>', 'Classification of the latency programme (0/I/II/III vs lytic cycle) from Cp/Wp and BART methylation patterns']
+    ]) +
+    '<p>Training is planned on the reference genomes <strong>NCBI RefSeq (NC_007605, type 1; AG876, type 2)</strong> and open NPC cohort data with validation on clinical samples.</p><hr>' +
+    '<h2>🛠 Under the Hood: Dependencies and Environment (Pipeline Stack)</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — EBV reference panel (NC_007605, AG876) + <code>GRCh38</code> for subtracting the host background'],
+      ['<strong>3. Assembly and variants</strong>', '<code>medaka</code>, <code>clair3</code>, <code>samtools</code>; de novo assembly at high load (<code>flye</code>)'],
+      ['<strong>4. Clonality and repeats</strong>', 'Counting of terminal/internal repeats on spanning reads (<code>pysam</code>, custom caller)'],
+      ['<strong>5. Methylation</strong>', '<code>Dorado</code> (5mC/5hmC modifications), <code>modkit</code> — latency vs lytic cycle'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>BioPython</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>~95% of adults are seropositive</strong> — virtually everyone carries EBV; the question is not infection, but in whom the latent infection will turn into an oncological scenario.</li>' +
+    '<li><strong>~130,000 new cases of nasopharyngeal cancer per year</strong> (GLOBOCAN), up to 80% in East and Southeast Asia; undifferentiated NPC is practically always EBV-associated.</li>' +
+    '<li><strong>Proven screening</strong> — the Hong Kong study (NEJM 2017) showed a shift to early stages and 97% 3-year survival with detection by plasma EBV DNA: one of the very few cases where liquid biopsy has proven population-level benefit.</li>' +
+    '<li><strong>Transplantation</strong> — PTLD remains a formidable complication; early differentiation of reactivation from a monoclonal process changes management (reduction of immunosuppression vs rituximab).</li>' +
+    '<li><strong>Multiple sclerosis</strong> — a causal link with EBV has been confirmed by large cohorts (Bjornevik et al., Science 2022, US Army cohort, HR ≈ 32); serology and viral load are coming into the focus of neurology.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1701717">Chan K.C.A. et al. — Analysis of Plasma Epstein–Barr Virus DNA to Screen for Nasopharyngeal Cancer (NEJM, 2017)</a></li>' +
+    '<li>📄 <a href="https://monographs.iarc.who.int/list-of-classifications">IARC Monographs — Epstein–Barr virus, Group 1 carcinogen</a></li>' +
+    '<li>📄 <a href="https://www.science.org/doi/10.1126/science.abj8222">Bjornevik K. et al. — Longitudinal analysis reveals high prevalence of EBV associated with multiple sclerosis (Science, 2022)</a></li>' +
+    '<li>📄 <a href="https://www.nature.com/articles/nature13480">TCGA — Molecular subtypes of gastric cancer (EBV-positive subtype, Nature 2014)</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/nuccore/NC_007605">NCBI RefSeq — Epstein–Barr virus, complete genome (NC_007605)</a></li></ul>';
+
+  /* ── HHV-6 / iciHHV-6 ── */
+  EN['/hhv6/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hhv6.svg" alt="HHV-6 herpesvirus integrated into a chromosome" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>HHV-6: Chromosomal Integration (iciHHV-6) and the Trap of False Viral Loads</h1>' +
+    '<p style="font-size:1.2em;color:#555">Long reads distinguish a chromosomally integrated virus from active reactivation — and spare the patient months of unnecessary ganciclovir</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><strong>Human herpesviruses 6 (HHV-6A and HHV-6B)</strong> are β-herpesviruses with lifelong latency. HHV-6B causes <strong>exanthem subitum (roseola)</strong> in children, and in transplanted patients HHV-6 reactivation produces severe complications: <strong>post-transplant limbic encephalitis</strong> (a classic after haematopoietic stem cell transplantation, HSCT), pneumonitis and suppression of haematopoiesis.</p>' +
+    '<p>But HHV-6 has a unique trap that no other herpesvirus possesses: <strong>iciHHV-6</strong> (inherited chromosomally integrated HHV-6). About <strong>~1% of people</strong> carry the complete HHV-6 genome <strong>chromosomally integrated into the germline</strong> — the virus embedded itself into the telomeric regions of an ancestor\'s chromosomes and is now inherited like an ordinary gene. In such a patient, blood PCR (especially of whole blood) shows <strong>enormous "viral loads" — millions of copies/ml</strong> — but this is not an active infection, it is <strong>their own genome</strong>: every cell carries one copy of the virus. The outcome: false diagnoses of "refractory viraemia", months of unnecessary <strong>ganciclovir/foscarnet</strong> with their myelotoxicity and nephrotoxicity — up to withdrawal of life-sustaining immunosuppression.</p>' +
+    '<p>Our pipeline settles the question with <strong>long nanopore reads</strong>: they capture <strong>"virus–chromosome" chimeric reads</strong> and junctions with telomeric repeats <strong>(TTAGGG)n</strong> — direct proof of germline integration, while the coverage ratio (<strong>~1 viral copy per cell</strong> in iciHHV-6 versus growth during replication) distinguishes integration from active reactivation.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: whole blood, plasma, CSF (when encephalitis is suspected).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the transplant physician/neurologist — species (HHV-6A/6B), <strong>integration status (iciHHV-6 yes/no)</strong>, copy-number estimate, interpretation of the "viral load"; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Core of the Pipeline: iciHHV-6 versus Reactivation</h2>' +
+    '<p>The main clinical question in high HHV-6 viraemia is — <strong>is this an active infection or an inherited integration?</strong> qPCR fundamentally cannot distinguish these states: in both there is viral DNA in blood. Long reads settle the question directly.</p>' +
+    tbl(['Feature', 'HHV-6 Reactivation', 'iciHHV-6 (integration)'], [
+      ['<strong>"Virus–chromosome" chimeric reads</strong>', 'Absent (the virus replicates episomally)', '<strong>Present</strong> — reads that are half viral, half chromosomal'],
+      ['<strong>Telomeric junctions (TTAGGG)n</strong>', 'Absent', '<strong>Present</strong> — the viral genome is spliced with the chromosome\'s telomeric repeats'],
+      ['<strong>Copy number</strong>', 'Rises during replication, falls on therapy', 'Stably ~1 copy per cell in all cells of the body'],
+      ['<strong>Whole-blood PCR</strong>', 'High but variable', 'Stably "off the scale" (millions of copies/ml)'],
+      ['<strong>Plasma PCR</strong>', 'Positive (virus in plasma)', 'Usually low/negative — the virus sits inside cells'],
+      ['<strong>Clinical picture</strong>', 'Encephalitis, pneumonitis, cytopenias', 'Often absent; the patient is healthy'],
+      ['<strong>Correct action</strong>', 'Ganciclovir / foscarnet', '<strong>Observation</strong>; withdrawal of unnecessary antiviral therapy']
+    ]) +
+    '<p><strong>How sequencing sees it:</strong> a long nanopore read (5–50+ kb) spans the insertion site in full — one part of the read aligns to the HHV-6 genome (U38, U57 and others), the other to the host chromosome, and the telomeric repeats (TTAGGG)n are read at the junction. Such a read is <strong>unambiguous proof</strong> of germline integration: no replication generates chimeric reads.</p>' +
+    '<blockquote>This is exactly the same molecular mechanism of <strong>"chimeric reads"</strong> as in our <a href="/hpv/">HPV pipeline</a> — there "virus–human" chimeric reads prove HPV integration into the cervical epithelium as a cancer driver; here — integration of HHV-6 into the germline as the cause of false viral loads.</blockquote><hr>' +
+    '<h2>🏥 Clinical Scenarios</h2>' +
+    tbl(['Scenario', 'Problem', 'What Sequencing Delivers'], [
+      ['<strong>Transplantation (HSCT, solid organs)</strong>', '"Refractory" HHV-6 viraemia not falling on ganciclovir — a frequent reason for escalation to foscarnet', 'Confirmation of iciHHV-6 → withdrawal of toxic therapy, return to standard immunosuppression'],
+      ['<strong>Nephrology / HSCT</strong>', 'Suppression of haematopoiesis: HHV-6 reactivation or foscarnet toxicity?', 'Separation of replication and integration by copy number and chimeric reads'],
+      ['<strong>Encephalitis differentiation</strong>', 'Limbic encephalitis after HSCT: HHV-6 in CSF — reactivation or iciHHV-6?', 'Absence of chimeric reads in CSF despite high viral DNA = genuine reactivation requiring treatment'],
+      ['<strong>Prenatal diagnostics</strong>', 'Rare cases of iciHHV-6 reactivation in the fetus; "viral load" in amniotic fluid', 'Confirmation of inherited integration in parent and fetus → exclusion of active intrauterine infection']
+    ]) + '<hr>' +
+    '<h2>🎯 Markers</h2>' +
+    tbl(['Marker', 'Gene / Locus', 'Significance'], [
+      ['<strong>U38</strong>', 'DNA polymerase', 'The main target of qPCR diagnostics; in the pipeline — a reference point for coverage and copy number'],
+      ['<strong>U57</strong>', 'Major capsid protein', 'Replication marker; rising U57 coverage over time = active infection'],
+      ['<strong>HHV-6A/6B differentiation</strong>', 'Genomic regions with species-specific polymorphisms (U90–U100, terminal DR repeats)', '6B — roseola and transplant reactivations; 6A — more frequent in iciHHV-6 and in the CNS'],
+      ['<strong>Telomeric junctions</strong>', 'HHV-6 terminal repeats (DR-L/DR-R) ↔ (TTAGGG)n of the chromosome', 'Direct proof of chromosomal integration; localisation of the insertion site']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Primary tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq HHV-6 Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned ML models</h3>' +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>HHV6-Integration-Caller</strong>', 'Detection and localisation of iciHHV-6 by chimeric reads and telomeric junctions (logic — a descendant of <a href="/hpv/">HPV-Integration-Caller</a>)'],
+      ['<strong>HHV6-Copy-Estimator</strong>', 'Estimation of viral copies per cell: integration (~1) vs replication (rising)'],
+      ['<strong>HHV6-AB-Typer</strong>', 'HHV-6A/HHV-6B differentiation by species-specific SNPs']
+    ]) + '<hr>' +
+    '<h2>🛠 Technical Architecture (Pipeline Stack)</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — HHV-6A (U1102) and HHV-6B (Z29/HST) references + <code>GRCh38</code> for finding integration sites'],
+      ['<strong>3. Chimeric-read detection</strong>', 'Search for "virus–chromosome" split/supplementary alignments (<code>pysam</code>, custom caller), (TTAGGG)n filter at the junction'],
+      ['<strong>4. Copy number and coverage</strong>', '<code>samtools</code>, custom virus/chromosome coverage-ratio script'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>~1% of humanity</strong> carries iciHHV-6: these are tens of millions of people whose any HHV-6 blood PCR will be "off the scale". In transplantation, where PCR monitoring of herpesviruses is routine, iciHHV-6 is a systematic source of false alarms and iatrogenesis.</li>' +
+    '<li><strong>Toxicity of unnecessary therapy</strong> — ganciclovir causes myelosuppression (especially dangerous after HSCT), foscarnet — nephrotoxicity and electrolyte shifts. Months of such therapy "for a false viraemia" can cost the patient graft engraftment.</li>' +
+    '<li><strong>Limbic encephalitis</strong> — a classic complication after HSCT (anterograde amnesia, seizures, hippocampal changes on MRI); HHV-6 is its principal cause, but in an iciHHV-6 carrier a positive CSF PCR requires confirmation of replication specifically, not integration.</li>' +
+    '<li><strong>Inheritance</strong> — iciHHV-6 is transmitted in Mendelian fashion: once confirmed in a patient, the donor (in HSCT) and relatives should be tested — a donor with iciHHV-6 will give the recipient a "viral load" from day one after transplantation.</li></ul><hr>' +
+    '<h2>🔬 Related OnSiteSeq Pages and Sources</h2>' +
+    '<ul><li>🧬 <a href="/hpv/">HPV and cervical cancer</a> — a related page: the same integration-detection mechanism via "virus–host" chimeric reads</li>' +
+    '<li>📄 <a href="https://hhv-6foundation.org/">iciHHV-6 Foundation — a resource on chromosomal integration of HHV-6</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed — inherited chromosomally integrated HHV-6 (iciHHV-6)</a></li>' +
+    '<li>📄 <a href="https://www.ecil-leukaemia.com/">ASTS/ECIL — guidelines on HHV-6 in transplant recipients</a></li></ul>';
+
   /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
   EN['/hvkp/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -6916,6 +7196,306 @@
     '<li>📄 <a href="https://www.cdc.gov/">CDC — 流感嗜血杆菌疾病 (Hib)</a></li>' +
     '<li>📄 <a href="https://www.who.int/">WHO — b 型流感嗜血杆菌 (Hib)</a></li></ul>';
 
+  /* ── 巨细胞病毒 (CMV) ── */
+  ZH['/cmv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_cmv.svg" alt="巨细胞病毒——有包膜的疱疹病毒" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>移植医学中的巨细胞病毒 (CMV/HHV-5) 耐药基因分型</h1>' +
+    '<p style="font-size:1.2em;color:#555">UL97、UL54、UL56——数小时内查明难治性 CMV 的病因,而无需等待参考实验室数周</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>巨细胞病毒 (CMV,HHV-5) 是一种 β-疱疹病毒,<strong>成人血清阳性率为 60–90%</strong>。在免疫功能正常的携带者体内,它潜伏于单核细胞中;而在<strong>实体器官或骨髓移植</strong>后,它成为最主要的病毒性病原体:CMV 病毒血症、肺炎、结肠炎、视网膜炎、食管炎。除直接损伤器官外,CMV 还产生<strong>间接效应</strong>:增加移植物排斥风险,并为真菌和细菌继发感染敞开大门——正因如此,临床对其实施预防性用药(缬更昔洛韦、莱特莫韦)并监测病毒载量。</p>' +
+    '<p>经典的临床陷阱是<strong>难治性 CMV</strong>:在更昔洛韦/缬更昔洛韦治疗下病毒载量数周不降。病因只有两个——免疫不足或<strong>耐药病毒</strong>——而两者的处理截然相反。参考实验室 (Sanger) 需要<strong>数周</strong>才能给出答复;我们的流程基于纳米孔测序数据,在移植中心现场<strong>数小时内</strong>完成耐药基因分型。深度测序能捕获 Sanger 原则上无法看到的<strong>低频耐药亚群 (5–20%)</strong>——而正是这些亚群在治疗压力下被筛选出来,导致该线治疗失败。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:移植后患者的血浆/全血(病毒血症经 PCR 证实)。最佳方案——在移植中心实验室直接用 <strong>Flongle/MinION</strong> 运行 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向移植医生的 HTML 报告 — UL97/UL54/UL56/UL51/UL89 耐药基因型及亚群比例,按药物解读(更昔洛韦/膦甲酸/西多福韦/莱特莫韦/马立巴韦),并由同一数据估算病毒载量;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:耐药基因与病毒载量</h2>' +
+    '<h3>UL97——磷酸转移酶,"更昔洛韦之门"</h3>' +
+    '<p>更昔洛韦是前体药物:在靶细胞内由病毒磷酸转移酶 UL97 激活。没有第一步磷酸化,药物就没有活性。因此 UL97 突变是对更昔洛韦/缬更昔洛韦耐药最常见的原因:</p>' +
+    tbl(['突变', '药物', '临床意义'], [
+      ['<strong>M460V / M460I</strong>', '更昔洛韦', '经典"热点"位点;高水平耐药'],
+      ['<strong>H520Q</strong>', '更昔洛韦', '中度耐药,常与 UL54 联合出现'],
+      ['<strong>C592G</strong>', '更昔洛韦', '临床系列中最常见的突变'],
+      ['<strong>A594V</strong>', '更昔洛韦', '高水平耐药'],
+      ['<strong>L595S</strong>', '更昔洛韦', '中度耐药,在缬更昔洛韦选择压力下增多'],
+      ['<strong>C603W</strong>', '更昔洛韦', '少见,但为高水平耐药']
+    ]) +
+    '<h3>UL54——DNA 聚合酶,所有"-洛韦"类药物与膦甲酸的靶点</h3>' +
+    '<p>UL54 是病毒 DNA 聚合酶的催化亚基。此处的突变会同时影响多种药物,其模式决定交叉耐药:更昔洛韦、西多福韦、膦甲酸。UL97+UL54 联合分析才能给出完整图景——而这正是纳米孔胜过一切方法之处。</p>' +
+    '<h3>UL56 / UL51 / UL89——末端酶复合体</h3>' +
+    tbl(['基因', '功能', '药物'], [
+      ['<strong>UL56</strong>', '末端酶亚基', '<strong>莱特莫韦</strong>(造血干细胞移植后广泛用于预防——耐药已有报道且在增加)'],
+      ['<strong>UL51</strong>', '末端酶复合体', '其他莱特莫韦耐药突变'],
+      ['<strong>UL89</strong>', '末端酶亚基', '莱特莫韦耐药(与 UL56 谱系交叉)']
+    ]) +
+    '<h3>同一数据中的病毒载量</h3>' +
+    '<p>同一次运行中病毒基因组的覆盖度是<strong>病毒载量的替代指标</strong>:无需单独的 PCR 参考即可追踪治疗下载量的动态,并与耐药亚群比例的变化同步。</p><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq CMV Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的机器学习模型</h3>' +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CMV-Res-Genotyper</strong>', '按药物及耐药水平对 UL97/UL54/UL56/UL51/UL89 突变进行分类'],
+      ['<strong>CMV-Subpop-Phaser</strong>', '利用长读长对突变进行定相:同一染色体还是不同亚群'],
+      ['<strong>CMV-Load-Tracker</strong>', '由覆盖度估算病毒载量及其动态']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构 (Pipeline Stack)</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — CMV 参考序列 (Merlin/AD169),穿越约 235 kb 基因组的重复序列完成组装'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — 设深度阈值以捕获低频变异 (5–20%)'],
+      ['<strong>4. 耐药基因分型</strong>', '基于临床参考目录的 UL97/UL54/UL56/UL51/UL89 自建突变数据库'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>难治性 CMV 意味着数周的不确定性。</strong>今天的标准是在参考实验室做 Sanger 基因分型:物流、排队,1–3 周才有答复。在此期间,病毒要么在无效的更昔洛韦下继续增殖,要么患者被迫改用具有肾毒性的膦甲酸。现场 Edge 测序将这一周期压缩到数小时。</li>' +
+    '<li><strong>低频亚群决定结局。</strong>耐药 CMV 克隆以百分之几的比例起步,在治疗下被筛选。阈值约 20–25% 的 Sanger 看不到它们;ONT 深度测序能看到。这能在载量临床上"停滞"之前改变该线治疗的预后。</li>' +
+    '<li><strong>约 235 kb、富含重复的基因组,纳米孔完全可以胜任。</strong>CMV 基因组充满长重复序列(UL/b′ 和 US/c′ 重复区),短读长在那里既无法组装也无法定相。ONT 读长可完整穿越重复序列。</li>' +
+    '<li><strong>定相是长读长独有的王牌。</strong>UL97 与 UL54 突变位于基因组两端:在短读长上无法区分"同一基因组中的两个突变"与"两个各带一个突变的不同亚群"。长读长就是一条分子,连锁关系直接读出。而这对应着不同的临床决策:单耐药群体还是累积性多重耐药群体。</li>' +
+    '<li><strong>莱特莫韦使问题升级。</strong>造血干细胞移植后用莱特莫韦预防正成为标准——而 UL56 耐药已有报道;末端酶基因的快速监控需求日益增长。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 巨细胞病毒 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 巨细胞病毒 (CMV) 感染</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 巨细胞病毒 (CMV) 与先天性 CMV 感染</a></li></ul>';
+
+  /* ── 单纯疱疹病毒 (HSV) ── */
+  ZH['/hsv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hsv.svg" alt="单纯疱疹病毒——疱疹病毒颗粒与神经元" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>单纯疱疹病毒 (HSV-1/HSV-2):脑炎与阿昔洛韦耐药</h1>' +
+    '<p style="font-size:1.2em;color:#555">脑脊液 mNGS、UL23/UL30 基因分型与长读长全基因组组装——每一小时都意味着神经元的存亡</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>1 型单纯疱疹病毒 (HSV-1,HHV-1) 是成人<strong>散发性致死性脑炎</strong>的首要病因:病毒侵袭<strong>颞叶</strong>,引起出血性坏死。不经治疗病死率约 <strong>70%</strong>;早期静脉阿昔洛韦可将其降至<strong>约 20–30%</strong>——但每延误一小时治疗,都不可逆地损失神经元与认知功能。HSV-2 则导致生殖器感染、<strong>新生儿疱疹</strong>(新生儿脓毒症与脑炎,不治疗病死率高达 60%)以及复发性无菌性脑膜炎。</p>' +
+    '<p>脑脊液 PCR 是诊断金标准,但存在盲区:发病<strong>最初 24–72 小时</strong>内 PCR 可呈假阴性,非典型及疫苗相关病例会漏检,更重要的是——<strong>PCR 无法回答耐药问题</strong>。在免疫抑制患者(器官与造血干细胞移植、HIV)中,阿昔洛韦耐药率可达 <strong>4–14%</strong>:表型药敏试验需要病毒培养,耗时<strong>数周</strong>;而基于 <strong>UL23</strong>(胸苷激酶,约占耐药病例 95%)和 <strong>UL30</strong>(DNA 聚合酶)的基因分型数小时内即可给出答案,并直接提示换药方案(膦甲酸、西多福韦)。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,在一次运行中合并三项任务:<strong>脑脊液 mNGS</strong>(在鉴别诊断谱中检测 HSV——VZV、肠道病毒、HHV-6、细菌性脑膜炎)、UL23/UL30 <strong>耐药基因分型</strong>以及用于毒株流行病学研究的<strong>全基因组组装</strong>。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:脑脊液(优先)、疱液、黏膜拭子、新生儿感染时的血液。最佳方案——在重症监护室以 <strong>Flongle</strong> 运行,用于急诊场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向神经科/感染科医生的 HTML 报告 — 病毒种类与型别(按 US6 区分 HSV-1/HSV-2)、耐药基因型(含 UL23/UL30 突变解读与换药建议)、mNGS 鉴别诊断谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定与耐药</h2>' +
+    '<h3>关键基因</h3>' +
+    tbl(['基因', '蛋白', '临床意义'], [
+      ['<strong>UL23</strong>', '胸苷激酶 (TK)', '<strong>约 95% 的阿昔洛韦耐药病例</strong>:点突变、缺失与插入(常位于 G/C 同聚物区);TK 阴性表型 → 换用<strong>膦甲酸</strong>'],
+      ['<strong>UL30</strong>', 'DNA 聚合酶 (pol)', '约 5% 的病例;突变导致对阿昔洛韦和膦甲酸交叉耐药——需使用西多福韦'],
+      ['<strong>US6</strong>', '糖蛋白 D (gD)', '<strong>HSV-1 / HSV-2 鉴别</strong>——对预后至关重要:HSV-2 脑炎更易复发,治疗应答更差'],
+      ['<strong>UL27</strong>', '糖蛋白 B (gB)', '保守的种属鉴定标志物;mNGS 分类的靶点']
+    ]) +
+    '<h3>报告中的耐药基因型</h3>' +
+    tbl(['发现', '解读', '处理'], [
+      ['UL23 突变(含缺失/插入)', 'TK 缺陷:阿昔洛韦无法磷酸化', '停用阿昔洛韦 → <strong>膦甲酸</strong>'],
+      ['UL30 突变', 'DNA 聚合酶改变', '可能存在交叉耐药 → 膦甲酸或<strong>西多福韦</strong>'],
+      ['难治情况下 UL23/UL30 为野生型', '未证实耐药', '核查剂量/依从性,重复腰椎穿刺']
+    ]) +
+    '<h3>疑似脑炎时的 mNGS 鉴别诊断谱</h3>' +
+    '<p>流程一次运行即可排查急性脑炎/脑膜炎的全部常见病因——当 HSV PCR 阴性而临床表现仍在时至关重要:</p>' +
+    '<ul><li><strong>VZV</strong>——病毒性脑炎的第二大病因;</li>' +
+    '<li><strong>肠道病毒</strong>——无菌性脑膜炎的常见病因;</li>' +
+    '<li><strong>HHV-6</strong>——免疫抑制患者的脑炎及移植后再激活;</li>' +
+    '<li><strong>细菌性脑膜炎</strong>(<em>脑膜炎奈瑟菌</em>、<em>肺炎链球菌</em>、<em>单核细胞增生李斯特菌</em>)——脑脊液表现不典型时切勿漏诊。</li></ul><hr>' +
+    '<h2>🧬 ONT 的技术王牌:含重复序列的基因组</h2>' +
+    '<p>HSV 基因组为双链 DNA,约 <strong>152 kb</strong>,结构复杂:独特区 UL 和 US 被<strong>末端及内部反向重复序列</strong>(TRL/IRL/IRS/TRS,各 6–9 kb)包围。短读长 (Illumina) 组装<strong>在重复序列处断裂</strong>:重复区塌陷,TK 中突变及 UL23 同聚物区的上下文丢失,基因组只能拼成碎片。<strong>Oxford Nanopore 长读长可完整穿越重复序列</strong>,以单条重叠群给出全基因组组装——由此实现:</p>' +
+    '<ul><li>精确绘制 UL23 中的缺失/插入,包括同聚物区(C₇–C₈、G 串)——耐药最常在此产生;</li>' +
+    '<li>HSV-1/HSV-2 毒株的<strong>全基因组流行病学</strong>——无需对单个位点做 PCR 扩增,即可进行医院内与新生儿暴发的系统发育分析;</li>' +
+    '<li>按读长比例检测混合群体(耐药准种的潜伏库)。</li></ul><hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq HSV Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的机器学习模型</h3>' +
+    tbl(['模型', '目标任务'], [
+      ['<strong>HSV-Res-Geno</strong>', '解读 UL23/UL30 突变:耐药还是多态性(依据人工审核的基因型数据库)'],
+      ['<strong>HSV-Typer</strong>', '基于 US6/UL27 及全基因组特征的 HSV-1/HSV-2 鉴别'],
+      ['<strong>CNS-mNGS-Classifier</strong>', '脑脊液 mNGS 中的病原体优先级排序:HSV、VZV、肠道病毒与细菌谱']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构 (Pipeline Stack)</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 去宿主与 mNGS 分类</strong>', '去除人类读长(GRCh38 参考),<code>kraken2</code> / <code>minimap2</code> 对照神经感染面板'],
+      ['<strong>3. 比对 (Mapping)</strong>', '<code>minimap2</code> — HSV-1 (strain 17) 与 HSV-2 (strain HG52) 参考序列'],
+      ['<strong>4. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — 含 UL23 同聚物区中的插入缺失'],
+      ['<strong>5. 全基因组组装</strong>', '<code>flye</code> / <code>medaka</code> — 穿越 RL/RS 重复区的贯通组装'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>每一小时都是神经元</strong>——疱疹性脑炎年发病率约为每百万人口 2–4 例,但仍是致死性散发性脑炎最常见的病因。早期 PCR 阴性(最初 24–72 小时)会诱使临床停用阿昔洛韦——导致患者死亡;mNGS 随测序进程累积数据,可提高早期敏感性。</li>' +
+    '<li><strong>新生儿疱疹</strong>——分娩时感染的 HSV-2(以及越来越多的 HSV-1)引起新生儿播散性感染与脑炎:不治疗病死率高达 60%,存活者遗留严重神经功能障碍。分型速度决定结局。</li>' +
+    '<li><strong>免疫抑制下的耐药</strong>——移植受者与 HIV 患者中阿昔洛韦耐药株比例可达 4–14%;表型试验(培养,数周)在临床上没有价值,UL23/UL30 基因分型是唯一能快速给出答案、指导换用有毒性膦甲酸的手段。</li>' +
+    '<li><strong>流行病学</strong>——HSV 全基因组测序揭示了全球范围的重组与毒株地理聚集;长读长首次使这类分析成为常规,包括医院内与新生儿暴发。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/">WHO — 单纯疱疹病毒(实况报道)</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 单纯疱疹脑炎 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.ecdc.europa.eu/">ECDC — 单纯疱疹病毒</a></li></ul>';
+
+  /* ── EB病毒 (EBV) ── */
+  ZH['/ebv/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_ebv.svg" alt="EB病毒——疱疹病毒颗粒与B淋巴细胞" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>EB病毒:鼻咽癌与病毒性肿瘤学</h1>' +
+    '<p style="font-size:1.2em;color:#555">首个被发现的人类肿瘤病毒——一次纳米孔运行同时获得完整基因组、肿瘤克隆性与潜伏期甲基化</p></div><hr>' +
+    '<h2>🧬 为何 EBV 是最纯粹的病毒性肿瘤学</h2>' +
+    '<p>EB病毒 (EBV,人类疱疹病毒 4 型,HHV-4) 是<strong>首个被证实对人类有致癌性的病毒</strong>(1964 年,伯基特淋巴瘤),也是 <strong>IARC 1 类致癌物</strong>。全球几乎所有成年人都已感染:<strong>约 95% 的成人血清阳性</strong>。原发感染后,病毒终身以潜伏形式存在于 B 淋巴细胞中——并在部分携带者中成为恶性转化的驱动因素。</p>' +
+    '<p>EBV 与一系列肿瘤和疾病相关:</p>' +
+    '<ul><li><strong>鼻咽癌 (NPC)</strong>——未分化型几乎总是与 EBV 相关;</li>' +
+    '<li><strong>伯基特淋巴瘤</strong>(地方型与散发型)和<strong>霍奇金淋巴瘤</strong>;</li>' +
+    '<li><strong>免疫抑制患者的 B 细胞淋巴增殖</strong>——首先是移植后淋巴增殖性疾病 (<strong>PTLD</strong>);</li>' +
+    '<li><strong>约 9% 的胃癌</strong>(EBV 相关胃癌——TCGA 认定的独立分子亚型);</li>' +
+    '<li><strong>传染性单核细胞增多症</strong>——原发感染的典型表现;</li>' +
+    '<li><strong>多发性硬化</strong>——EBV 感染被公认为首要危险因素(大型队列研究显示几乎是必要条件)。</li></ul>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血浆(游离 EBV DNA)、肿瘤/淋巴结活检、鼻咽灌洗液、全血(PTLD 监测)。</li>' +
+    '<li><strong>📤 输出:</strong> HTML 报告 — 病毒载量、毒株型 (EBV-1/EBV-2)、LMP1 变异、基于末端重复的克隆性评估、甲基化谱与潜伏程序;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>🎯 流程检测内容:三个分析层级</h2>' +
+    '<p>与我们的 <a href="/hpv/">HPV 页面</a>一样,纳米孔测序一次运行即可解决 qPCR 和短读长需要三种不同检测——甚至根本无法解决——的任务。</p>' +
+    tbl(['层级', '任务', '临床意义'], [
+      ['<strong>1. 检测与载量</strong>', '定量测定血浆/样本中的 EBV DNA', '鼻咽癌筛查与监测;移植后 PTLD 管理'],
+      ['<strong>2. 基因组分析</strong>', '毒株分型 <strong>EBV-1/EBV-2</strong>(EBNA-2/3 基因)、<strong>LMP1</strong> 变异(含与鼻咽癌相关的 30 bp 缺失 del-LMP1)、<strong>基于末端重复数目的肿瘤克隆性</strong>', '单克隆游离型 EBV = 肿瘤起源于单个感染细胞的证据;缺失型 LMP1——致癌性增强的标志物'],
+      ['<strong>3. 潜伏期表观遗传学</strong>', '从天然读长直接读取<strong>病毒基因组甲基化</strong> + 分析 <strong>Cp/Wp</strong> 启动子', '区分潜伏程序 (I/II/III) 与裂解周期——理解肿瘤状态和治疗应答的关键']
+    ]) +
+    '<p><strong>纳米孔的关键优势:</strong>约 <strong>172 kb</strong> 的 EBV 基因组布满大型串联内部重复 (<strong>IR1–IR4</strong>) 和末端重复 (<strong>TR</strong>)。短读长原则上无法解析这些区域——既数不出重复次数(克隆性!),也拼不出完整基因组。纳米孔长读长可完整跨越重复区,天然 DNA 测序<strong>无需亚硫酸氢盐转化、无需单独检测</strong>即可获得甲基化信息。</p>' +
+    '<blockquote>这与 HPV 场景直接对应:病毒性肿瘤学 + 液体活检 + 风险分层,一次运行完成。</blockquote><hr>' +
+    '<h2>🇨🇳 "广东癌":流行中心在中国南方</h2>' +
+    '<p>鼻咽癌被称为<strong>"广东癌"</strong>:全球发病的中心在<strong>中国南方</strong>(广东、广西两省区、香港、广州市),当地鼻咽癌发病率比全球平均水平高 <strong>20–50 倍</strong>。原因在于流行的致癌性 EBV 变异、遗传易感性 (HLA 位点) 与环境因素(咸鱼、亚硝胺)的叠加。</p>' +
+    '<p>筛查的决定性证据正是在那里获得的:</p>' +
+    '<ul><li><strong>Chan 等,NEJM 2017(香港)</strong>——对 <strong>20 174 名无症状男性</strong>进行血浆游离 EBV DNA 筛查:34 名受检者检出鼻咽癌,早期 (I–II 期) 比例从约 20%(人群水平)升至 <strong>71%</strong>,3 年无进展生存率达 <strong>97%,而历史队列为 70%</strong>。这项标杆研究证明,基于病毒 DNA 的液体活检能够<strong>前移分期、改善生存</strong>。</li>' +
+    '<li>目前 EBV DNA 筛查正在香港、广州和广西的鼻咽癌早检项目中推广;向东南亚流行区扩展也在讨论之中。</li></ul>' +
+    '<p><strong>OnSiteSeq 的用武之地:</strong>qPCR 检测只回答"有多少病毒"。同一份血浆或灌洗液的纳米孔测序还能给出<strong>毒株、del-LMP1、克隆性与甲基化</strong>——即在活检之前就不只是筛查,而是对肿瘤进行分子表征。便携式 Edge 架构使这类筛查可以下沉到流行省份的基层医院,无需将样本送往中心实验室。</p><hr>' +
+    '<h2>🧫 PTLD 与移植医学</h2>' +
+    '<p>器官与骨髓移植后,免疫抑制解除了对潜伏 EBV 的控制——带来<strong>移植后淋巴增殖性疾病 (PTLD)</strong> 风险。标准管理是定期监测血液病毒载量;我们的平台在此基础上增加:</p>' +
+    '<ul><li>基于末端重复的<strong>克隆性</strong>——区分多克隆再激活与单克隆淋巴增殖过程;</li>' +
+    '<li><strong>潜伏程序</strong>(Cp/Wp 启动子、甲基化)——III 型潜伏是免疫抑制患者早期 PTLD 的典型特征;</li>' +
+    '<li><strong>毒株</strong>——用于供受者间传播及移植中心暴发调查。</li></ul><hr>' +
+    '<h2>🎯 标志物:我们在 EBV 基因组中读取什么</h2>' +
+    tbl(['标志物', '类型', '意义'], [
+      ['<strong>LMP1</strong>', '基因(潜伏膜蛋白 1)', '主要病毒癌基因;<strong>30 bp 缺失 (del-LMP1)</strong> 与鼻咽癌及更强侵袭性表型相关'],
+      ['<strong>EBNA-1</strong>', '基因', '维持游离体;多态性(含 V-val 变异)与中国南方鼻咽癌相关'],
+      ['<strong>EBNA-2 / EBNA-3</strong>', '基因', '毒株分型 <strong>EBV-1(A 型)/ EBV-2(B 型)</strong> 的基础;2 型在免疫抑制患者中更常见'],
+      ['<strong>BART</strong>', 'microRNA 位点', '病毒 miRNA 簇,在鼻咽癌和 EBV 相关胃癌中高表达;BART 缺失是鼻咽癌毒株的特征'],
+      ['<strong>EBER</strong>', '非编码 RNA (EBER1/2)', '经典的 EBV 组织学标志物 (EBER-ISH);在流程中作为潜伏转录覆盖度的质控'],
+      ['<strong>末端重复 (TR)</strong>', '基因组两端约 500 bp 的重复', 'TR 数目 = 细胞克隆的"指纹":肿瘤单克隆性证明 EBV 病因'],
+      ['<strong>IR1–IR4</strong>', '内部串联重复', '短读长无法解析;长读长给出约 172 kb 基因组的完整组装'],
+      ['<strong>Cp / Wp</strong>', '启动子', '潜伏程序 (0/I/II/III) 与裂解周期的切换;与甲基化联合读取']
+    ]) + '<hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq EBV Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的机器学习模型</h3>' +
+    tbl(['模型', '目标任务'], [
+      ['<strong>EBV-Strain-Typer</strong>', 'EBV-1/EBV-2 毒株分型与 LMP1/EBNA-1 变异检测(架构同 <a href="/ml/hiv/">HIV-1-M-Env-Rus</a>:CNN + Self-Attention)'],
+      ['<strong>EBV-Clonality-Caller</strong>', '根据读长中末端重复数目的分布评估克隆性'],
+      ['<strong>EBV-Latency-Methyl</strong>', '根据 Cp/Wp 与 BART 甲基化模式分类潜伏程序(0/I/II/III 或裂解周期)']
+    ]) +
+    '<p>计划使用参考基因组 <strong>NCBI RefSeq(NC_007605,1 型;AG876,2 型)</strong> 和公开鼻咽癌队列数据进行训练,并在临床样本上验证。</p><hr>' +
+    '<h2>🛠 内部实现:依赖与环境 (Pipeline Stack)</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — EBV 参考序列面板(NC_007605、AG876)+ <code>GRCh38</code> 用于扣除宿主背景'],
+      ['<strong>3. 组装与变异</strong>', '<code>medaka</code>、<code>clair3</code>、<code>samtools</code>;高载量时进行从头组装(<code>flye</code>)'],
+      ['<strong>4. 克隆性与重复区</strong>', '基于跨越读长统计末端/内部重复次数(<code>pysam</code>,自研 caller)'],
+      ['<strong>5. 甲基化</strong>', '<code>Dorado</code>(5mC/5hmC 修饰)、<code>modkit</code> — 潜伏期与裂解周期鉴别'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>BioPython</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>约 95% 的成人血清阳性</strong>——几乎人人携带 EBV;问题不在于感染本身,而在于谁的潜伏感染会走向肿瘤剧本。</li>' +
+    '<li><strong>每年约 13 万例新发鼻咽癌</strong>(GLOBOCAN),高达 80% 集中在东亚和东南亚;未分化型鼻咽癌几乎总是与 EBV 相关。</li>' +
+    '<li><strong>已获证实的筛查</strong>——香港研究 (NEJM 2017) 显示,通过血浆 EBV DNA 检测可将诊断前移至早期,3 年生存率达 97%:这是极少数证明液体活检具有人群获益的案例之一。</li>' +
+    '<li><strong>移植医学</strong>——PTLD 仍是凶险的并发症;早期区分再激活与单克隆过程可改变处理策略(减免疫抑制还是用利妥昔单抗)。</li>' +
+    '<li><strong>多发性硬化</strong>——大型队列已证实 EBV 与多发性硬化的因果关系(Bjornevik 等,Science 2022,美国军队队列,HR ≈ 32);血清学与病毒载量正进入神经病学视野。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1701717">Chan K.C.A. 等 — 血浆 EB 病毒 DNA 分析用于鼻咽癌筛查 (NEJM,2017)</a></li>' +
+    '<li>📄 <a href="https://monographs.iarc.who.int/list-of-classifications">IARC 专论 — EB 病毒,1 类致癌物</a></li>' +
+    '<li>📄 <a href="https://www.science.org/doi/10.1126/science.abj8222">Bjornevik K. 等 — 纵向分析揭示 EBV 与多发性硬化的高度相关 (Science,2022)</a></li>' +
+    '<li>📄 <a href="https://www.nature.com/articles/nature13480">TCGA — 胃癌分子亚型(EBV 阳性亚型,Nature 2014)</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/nuccore/NC_007605">NCBI RefSeq — EB 病毒完整基因组 (NC_007605)</a></li></ul>';
+
+  /* ── HHV-6 与 iciHHV-6 ── */
+  ZH['/hhv6/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_hhv6.svg" alt="整合入染色体的 HHV-6 疱疹病毒" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>HHV-6:染色体整合 (iciHHV-6) 与假病毒载量的陷阱</h1>' +
+    '<p style="font-size:1.2em;color:#555">长读长区分染色体整合病毒与活动性再激活——使患者免于数月不必要的更昔洛韦治疗</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><strong>人类疱疹病毒 6 型 (HHV-6A 和 HHV-6B)</strong> 是终身潜伏的 β-疱疹病毒。HHV-6B 是儿童<strong>幼儿急疹(玫瑰疹)</strong>的病因;在移植患者中,HHV-6 再激活可导致严重并发症:<strong>移植后边缘叶脑炎</strong>(造血干细胞移植 (HSCT) 后的经典并发症)、肺炎和造血抑制。</p>' +
+    '<p>但 HHV-6 有一个其他疱疹病毒都不具备的独特陷阱:<strong>iciHHV-6</strong>(遗传性染色体整合 HHV-6)。约 <strong>1% 的人</strong>携带<strong>以生殖系方式整合入染色体</strong>的完整 HHV-6 基因组——病毒在祖先体内嵌入了染色体端粒区,如今像普通基因一样遗传。这类患者的血液 PCR(尤其是全血)会显示<strong>巨大的"病毒载量"——数百万拷贝/毫升</strong>——但这不是活动性感染,而是<strong>他自己的基因组</strong>:每个细胞都带有一份病毒拷贝。后果是:"难治性病毒血症"的误诊,数月不必要的<strong>更昔洛韦/膦甲酸</strong>及其骨髓毒性和肾毒性——甚至被迫停用维持生命的免疫抑制治疗。</p>' +
+    '<p>我们的流程用<strong>纳米孔长读长</strong>终结这个问题:长读长可捕获<strong>"病毒-染色体"嵌合读长</strong>以及与端粒重复序列 <strong>(TTAGGG)n</strong> 的连接点——这是生殖系整合的直接证据;而覆盖度比值(iciHHV-6 时<strong>每个细胞约 1 个病毒拷贝</strong>,复制时则升高)可区分整合与活动性再激活。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:全血、血浆、脑脊液(疑似脑炎时)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向移植医生/神经科医生的 HTML 报告 — 型别 (HHV-6A/6B)、<strong>整合状态(iciHHV-6 是/否)</strong>、拷贝数估算、"病毒载量"解读;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 流程核心:iciHHV-6 与再激活之辨</h2>' +
+    '<p>HHV-6 高病毒血症时的首要临床问题是——<strong>这是活动性感染还是遗传性整合?</strong>qPCR 原则上无法区分这两种状态:两者的血液中都有病毒 DNA。长读长可直接回答。</p>' +
+    tbl(['特征', 'HHV-6 再激活', 'iciHHV-6(整合)'], [
+      ['<strong>"病毒-染色体"嵌合读长</strong>', '无(病毒以游离体形式复制)', '<strong>有</strong>——读长一半为病毒序列,一半为染色体序列'],
+      ['<strong>端粒连接点 (TTAGGG)n</strong>', '无', '<strong>有</strong>——病毒基因组与染色体端粒重复序列拼接'],
+      ['<strong>拷贝数</strong>', '复制时升高,治疗时下降', '全身所有细胞稳定为约 1 拷贝/细胞'],
+      ['<strong>全血 PCR</strong>', '高但有波动', '稳定"爆表"(数百万拷贝/毫升)'],
+      ['<strong>血浆 PCR</strong>', '阳性(病毒存在于血浆)', '通常低/阴性——病毒藏在细胞内'],
+      ['<strong>临床表现</strong>', '脑炎、肺炎、血细胞减少', '常无;患者健康'],
+      ['<strong>正确处理</strong>', '更昔洛韦/膦甲酸', '<strong>观察</strong>;停用不必要的抗病毒治疗']
+    ]) +
+    '<p><strong>测序如何看到它:</strong>纳米孔长读长(5–50+ kb)完整跨越插入位点——读长的一部分比对到 HHV-6 基因组(U38、U57 等),另一部分比对到宿主染色体,连接点处可读出端粒重复 (TTAGGG)n。这样的读长是生殖系整合的<strong>确凿证据</strong>:任何复制都不会产生嵌合读长。</p>' +
+    '<blockquote>这与我们 <a href="/hpv/">HPV 流程</a>中的<strong>"嵌合读长"</strong>分子机制完全相同——在那里,"病毒-人"嵌合读长证明 HPV 整合入宫颈上皮是癌症的驱动因素;在这里,它证明 HHV-6 整合入生殖系是假病毒载量的根源。</blockquote><hr>' +
+    '<h2>🏥 临床场景</h2>' +
+    tbl(['场景', '问题', '测序带来的价值'], [
+      ['<strong>移植医学(HSCT、实体器官)</strong>', '更昔洛韦治疗下不下降的"难治性"HHV-6 病毒血症——常见的升级为膦甲酸的理由', '确认 iciHHV-6 → 停用有毒治疗,回归标准免疫抑制方案'],
+      ['<strong>肾内科 / HSCT</strong>', '造血抑制:HHV-6 再激活还是膦甲酸毒性?', '按拷贝数与嵌合读长区分复制与整合'],
+      ['<strong>脑炎鉴别</strong>', 'HSCT 后边缘叶脑炎:脑脊液中的 HHV-6 是再激活还是 iciHHV-6?', '脑脊液病毒 DNA 高而无嵌合读长 = 需要治疗的真实再激活'],
+      ['<strong>产前诊断</strong>', '胎儿 iciHHV-6 再激活的罕见病例;羊水中的"病毒载量"', '确认父母与胎儿的遗传性整合 → 排除活动性宫内感染']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物</h2>' +
+    tbl(['标志物', '基因/位点', '意义'], [
+      ['<strong>U38</strong>', 'DNA 聚合酶', 'qPCR 诊断的主要靶点;在流程中作为覆盖度与拷贝数的基准点'],
+      ['<strong>U57</strong>', '主要衣壳蛋白', '复制标志物;U57 覆盖度随时间上升 = 活动性感染'],
+      ['<strong>HHV-6A/6B 鉴别</strong>', '含型特异性多态性的基因组区域(U90–U100、末端 DR 重复)', '6B——幼儿急疹与移植再激活;6A——更多见于 iciHHV-6 及中枢神经系统'],
+      ['<strong>端粒连接点</strong>', 'HHV-6 末端重复 (DR-L/DR-R) ↔ 染色体 (TTAGGG)n', '染色体整合的直接证据;插入位点定位']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq HHV-6 Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的机器学习模型</h3>' +
+    tbl(['模型', '目标任务'], [
+      ['<strong>HHV6-Integration-Caller</strong>', '基于嵌合读长与端粒连接点检测并定位 iciHHV-6(逻辑继承自 <a href="/hpv/">HPV-Integration-Caller</a>)'],
+      ['<strong>HHV6-Copy-Estimator</strong>', '估算每个细胞的病毒拷贝数:整合(约 1)与复制(上升)'],
+      ['<strong>HHV6-AB-Typer</strong>', '基于型特异性 SNP 鉴别 HHV-6A/HHV-6B']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构 (Pipeline Stack)</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — HHV-6A (U1102)、HHV-6B (Z29/HST) 参考序列 + <code>GRCh38</code> 用于查找整合位点'],
+      ['<strong>3. 嵌合读长检测</strong>', '搜索"病毒-染色体" split/supplementary 比对(<code>pysam</code>,自研 caller),连接点 (TTAGGG)n 过滤'],
+      ['<strong>4. 拷贝数与覆盖度</strong>', '<code>samtools</code>,病毒/染色体覆盖度比值自研脚本'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>约 1% 的人类</strong>携带 iciHHV-6:这是数千万人,他们任何一次 HHV-6 血液 PCR 都会"爆表"。在疱疹病毒 PCR 监测已成常规的移植领域,iciHHV-6 是系统性假警报和医源性伤害的源头。</li>' +
+    '<li><strong>多余治疗的毒性</strong>——更昔洛韦导致骨髓抑制(HSCT 后尤其危险),膦甲酸导致肾毒性和电解质紊乱。因"假病毒血症"接受数月此类治疗,可能使患者付出移植物植入失败的代价。</li>' +
+    '<li><strong>边缘叶脑炎</strong>——HSCT 后的经典并发症(顺行性遗忘、癫痫发作、MRI 上海马改变);HHV-6 是其首要病因,但 iciHHV-6 携带者脑脊液 PCR 阳性时,必须证实的是复制而非整合。</li>' +
+    '<li><strong>遗传</strong>——iciHHV-6 按孟德尔方式传递:在患者中确认后,应检查供者(HSCT 时)及亲属——携带 iciHHV-6 的供者会让受者从移植第一天起就出现"病毒载量"。</li></ul><hr>' +
+    '<h2>🔬 相关 OnSiteSeq 页面与来源</h2>' +
+    '<ul><li>🧬 <a href="/hpv/">HPV 与宫颈癌</a>——相关页面:同样基于"病毒-宿主"嵌合读长检测整合的机制</li>' +
+    '<li>📄 <a href="https://hhv-6foundation.org/">iciHHV-6 Foundation — HHV-6 染色体整合资源</a></li>' +
+    '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed — 遗传性染色体整合 HHV-6 (iciHHV-6)</a></li>' +
+    '<li>📄 <a href="https://www.ecil-leukaemia.com/">ASTS/ECIL — 移植受者 HHV-6 指南</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -6930,6 +7510,7 @@
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
       'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': 'Pipelines in Development. Clinical Assistants. Candidiasis Universe.',
       'Пейплайны в работе. Помощники врача. Вселенная кокков.': 'Pipelines in Development. Clinical Assistants. Cocci Universe.',
+      'Пейплайны в работе. Помощники врача. Вселенная герпесвирусов.': 'Pipelines in Development. Clinical Assistants. Herpesvirus Universe.',
       'Пейплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
       'Пейплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
     },
@@ -6980,6 +7561,10 @@
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
       'cold':         ['Bacterial ARI', 'Metagenomic identification of bacterial respiratory pathogens and AMR — S. pneumoniae, H. influenzae, K. pneumoniae, etc.'],
       'haemophilus':  ['H. influenzae (Pfeiffer\'s bacillus)', 'BLNAR via ftsI (PBP3) mutations invisible to β-lactamase PCR, a–f/NTHi serotyping and differentiation from H. haemolyticus — otitis, COPD, epiglottitis'],
+      'cmv':          ['Cytomegalovirus (CMV)', 'Resistance genotyping in transplant care: UL97 (ganciclovir), UL54, UL56 (letermovir) — 5–20% minority subpopulations that Sanger cannot see'],
+      'hsv':          ['Herpes Simplex (HSV-1/HSV-2)', 'Encephalitis — every hour costs neurons: CSF mNGS and acyclovir resistance (UL23/UL30) in immunocompromised patients within hours'],
+      'ebv':          ['Epstein–Barr Virus (EBV)', '"Cantonese cancer" — nasopharyngeal carcinoma screening by plasma EBV DNA, strain typing (del-LMP1) and terminal-repeat clonality; PTLD'],
+      'hhv6':         ['HHV-6 & iciHHV-6', 'The integration trap: ~1% of people carry HHV-6 in the germline — chimeric virus–telomere reads tell it from reactivation and spare unneeded ganciclovir'],
       'identikit':    ['DNA Forensic Portrait', 'Appearance, ancestry and age prediction from crime scene DNA — Forensic DNA Phenotyping via nanopore sequencing'],
       'phytophthora': ['Phytophthora & Plant Pathogens', 'Metagenomic identification of plant pathogens and fungicide resistance — P. infestans, Fusarium, Botrytis, etc. Right in the field.'],
       'phytophthora-infestans': ['Late Blight (Phytophthora infestans)', 'Late blight of potato and tomato — resistance markers for metalaxyl, CAA fungicides and strobilurins'],
@@ -7025,6 +7610,7 @@
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
       'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': '开发中的流程 · 医生助手 · 念珠菌病宇宙',
       'Пейплайны в работе. Помощники врача. Вселенная кокков.': '开发中的流程 · 医生助手 · 球菌宇宙',
+      'Пейплайны в работе. Помощники врача. Вселенная герпесвирусов.': '开发中的流程 · 医生助手 · 疱疹病毒宇宙',
       'Пейплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
       'Пейплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
     },
@@ -7072,6 +7658,10 @@
       'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
       'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
       'haemophilus': ['流感嗜血杆菌(法伊弗杆菌)', 'ftsI (PBP3) 突变导致的 BLNAR — β-内酰胺酶 PCR 无法发现;a–f/NTHi 血清分型与溶血嗜血杆菌鉴别 — 中耳炎、慢阻肺、会厌炎'],
+      'cmv': ['巨细胞病毒 (CMV)', '移植医学中的耐药基因分型:UL97(更昔洛韦)、UL54、UL56(莱特莫韦)— Sanger 测序无法发现的 5–20% 少数亚群'],
+      'hsv': ['单纯疱疹病毒 (HSV-1/HSV-2)', '脑炎 — 每小时都是神经元:脑脊液 mNGS 与免疫抑制患者的阿昔洛韦耐药 (UL23/UL30),数小时出结果'],
+      'ebv': ['EB 病毒 (EBV)', '"广东癌" — 血浆 EBV DNA 鼻咽癌筛查、株型分型 (del-LMP1) 与末端重复序列克隆性分析;PTLD'],
+      'hhv6': ['HHV-6 与 iciHHV-6', '整合陷阱:约 1% 人群生殖系携带 HHV-6 — 病毒-端粒嵌合读段区分整合与再激活,避免不必要的更昔洛韦'],
       'hiv':  ['HIV(艾滋病病毒)', 'HIV-1 耐药性与亚型鉴定'],
       'identikit': ['DNA 法医画像', '从犯罪现场 DNA 预测外貌、祖源与年龄 — 基于纳米孔测序的法医 DNA 表型分型'],
       'phytophthora': ['疫霉与植物病原体', '植物病原体及杀菌剂抗性的宏基因组鉴定 — 致病疫霉、镰刀菌、灰葡萄孢等。就在田间。'],
@@ -7119,7 +7709,7 @@
     if (dz) dz.textContent = H.dzenText;
 
     /* Section titles */
-    ['components', 'projects', 'oncology', 'old', 'clostridia', 'candida', 'cocci', 'farmer', 'criminal'].forEach(function (k) {
+    ['components', 'projects', 'oncology', 'old', 'clostridia', 'candida', 'cocci', 'herpes', 'farmer', 'criminal'].forEach(function (k) {
       var el = document.getElementById('i18n-sec-' + k);
       if (el) {
         var ru = el.textContent.trim();
