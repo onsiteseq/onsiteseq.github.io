@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="vm_rod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a7f0e1"/>
+      <stop offset="100%" stop-color="#00796b"/>
+    </linearGradient>
+    <linearGradient id="vm_rod_soft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d0f5ec"/>
+      <stop offset="100%" stop-color="#26a69a"/>
+    </linearGradient>
+    <radialGradient id="vm_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#e0f7f3" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00796b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Main chain of Lactobacillus: long thin rods linked end-to-end === -->
+  <g fill="url(#vm_rod)" stroke="#004d40" stroke-width="1.4">
+    <rect x="0" y="-3.2" width="19" height="6.4" rx="3.2" transform="translate(24 72) rotate(-60)"/>
+    <rect x="0" y="-3.2" width="19" height="6.4" rx="3.2" transform="translate(34.2 54.2) rotate(-52)"/>
+    <rect x="0" y="-3.2" width="19" height="6.4" rx="3.2" transform="translate(46.8 38) rotate(-44)"/>
+    <rect x="0" y="-3.2" width="19" height="6.4" rx="3.2" transform="translate(61.5 23.8) rotate(-38)"/>
+  </g>
+  <!-- glossy highlights on main chain -->
+  <g fill="url(#vm_hl)">
+    <rect x="2" y="-2.2" width="11" height="2.4" rx="1.2" transform="translate(24 72) rotate(-60)"/>
+    <rect x="2" y="-2.2" width="11" height="2.4" rx="1.2" transform="translate(34.2 54.2) rotate(-52)"/>
+    <rect x="2" y="-2.2" width="11" height="2.4" rx="1.2" transform="translate(46.8 38) rotate(-44)"/>
+    <rect x="2" y="-2.2" width="11" height="2.4" rx="1.2" transform="translate(61.5 23.8) rotate(-38)"/>
+  </g>
+
+  <!-- === Second chain: shorter, softer, in the background === -->
+  <g fill="url(#vm_rod_soft)" stroke="#00695c" stroke-width="1.1" opacity="0.9">
+    <rect x="0" y="-2.5" width="15" height="5" rx="2.5" transform="translate(50 92) rotate(-25)"/>
+    <rect x="0" y="-2.5" width="15" height="5" rx="2.5" transform="translate(64.5 85.2) rotate(-16)"/>
+    <rect x="0" y="-2.5" width="15" height="5" rx="2.5" transform="translate(79.9 80.8) rotate(-10)"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.55">
+    <rect x="1.5" y="-1.6" width="8" height="1.8" rx="0.9" transform="translate(50 92) rotate(-25)"/>
+    <rect x="1.5" y="-1.6" width="8" height="1.8" rx="0.9" transform="translate(64.5 85.2) rotate(-16)"/>
+    <rect x="1.5" y="-1.6" width="8" height="1.8" rx="0.9" transform="translate(79.9 80.8) rotate(-10)"/>
+  </g>
+
+  <!-- === Single detached rod === -->
+  <g transform="translate(12 30) rotate(-70)">
+    <rect x="0" y="-2.5" width="15" height="5" rx="2.5" fill="url(#vm_rod_soft)" stroke="#00695c" stroke-width="1.1"/>
+    <rect x="1.5" y="-1.6" width="8" height="1.8" rx="0.9" fill="#ffffff" fill-opacity="0.55"/>
+  </g>
+
+  <!-- === Short paired rods (dividing cells) === -->
+  <g transform="translate(84 40) rotate(20)">
+    <rect x="0" y="-2.3" width="11" height="4.6" rx="2.3" fill="url(#vm_rod_soft)" stroke="#00695c" stroke-width="1"/>
+    <rect x="0" y="12.7" width="11" height="4.6" rx="2.3" fill="url(#vm_rod_soft)" stroke="#00695c" stroke-width="1" transform="rotate(-8)"/>
+  </g>
+</svg>

@@ -107,6 +107,16 @@ old_project_entries:
     desc: "BLNAR через мутации ftsI (PBP3), которую не видит ПЦР на β-лактамазу, серотипирование a–f/NTHi и дифференциация от H. haemolyticus — отит, ХОБЛ, эпиглоттит"
     image: /assets/images/logo/icon_haemophilus.svg
 
+  - title: Микробиом кишечника
+    url: microbiome
+    desc: "По следам HMP и MetaHIT: full-length 16S до вида, профиль до/после FMT при рецидиве C. difficile, резистом ОРИТ — энтеротипы и функции вместо списка родов"
+    image: /assets/images/logo/icon_microbiome.svg
+
+  - title: Вагинальный микробиом
+    url: vaginal
+    desc: "CST-типирование и L. crispatus vs L. iners на полноразмерном 16S — предиктор преждевременных родов и рецидивов бактериального вагиноза"
+    image: /assets/images/logo/icon_vaginal.svg
+
   - title: Малярия
     url: plasmodium
     desc: Профиль устойчивости P. falciparum (артемизинин, ACT-партнёры), видовая идентификация и делеции hrp2/hrp3 — верификация завозных случаев

@@ -2371,6 +2371,141 @@
     '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed — inherited chromosomally integrated HHV-6 (iciHHV-6)</a></li>' +
     '<li>📄 <a href="https://www.ecil-leukaemia.com/">ASTS/ECIL — guidelines on HHV-6 in transplant recipients</a></li></ul>';
 
+  /* ── GUT MICROBIOME (CDI, FMT, enterotypes) ── */
+  EN['/microbiome/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_microbiome.svg" alt="Gut microbiome — a community of diverse bacteria" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Gut Microbiome: CDI, FMT and Enterotypes</h1>' +
+    '<p style="font-size:1.2em;color:#555">From genus lists to functions and strains: gut metagenomics on long reads</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p>The gut microbiome is an ecosystem of hundreds of species of bacteria, archaea, fungi and viruses whose combined genome is a hundred times richer than the human one. Two flagship international projects defined the modern scientific framework for studying it:</p>' +
+    '<ul><li><strong>Human Microbiome Project (HMP, NIH, 2007–2016)</strong> — showed that <strong>microbial genes outnumber human genes roughly 100-fold</strong> and that <strong>there is no single "healthy microbiome"</strong>: the taxonomic composition of healthy people differs radically, whereas the <strong>functional profile (metabolic pathways) is more stable</strong> than the species list.</li>' +
+    '<li><strong>MetaHIT (EU, 2008–2012)</strong> — built a catalogue of <strong>3.3 million microbial genes</strong>, described <strong>enterotypes</strong> (stable community configurations dominated by <em>Bacteroides</em>, <em>Prevotella</em> or <em>Ruminococcus</em>) and linked <strong>low microbiome gene richness to obesity, systemic inflammation and inflammatory bowel disease (IBD)</strong>.</li></ul>' +
+    '<p>The common conclusion of both projects: <strong>the diagnostic value of metagenomics lies in functions and strains, not in a list of genera</strong>. Our pipeline is built exactly this way: full-length 16S and shotgun metagenomics on long nanopore reads deliver species/strain-level resolution, functional annotation and the resistome in a single run.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: stool, rectal swabs, mucosal biopsies. For the <strong>Edge scenario (Flongle)</strong>, 16S/ITS amplicons and targeted panels are optimal; deep gut shotgun sequencing is a Desktop/Cloud task (MinION and above).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — species-level taxonomic profile, diversity metrics (Shannon index, gene richness), dysbiosis markers, recovery dynamics after FMT, resistome (AMR genes); technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<h2>📊 Product Availability</h2>' +
+    tbl(['Platform', 'Availability Status'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>In development</strong> — 16S/ITS amplicons and targeted panels on Flongle'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>In development</strong> — medium-coverage shotgun metagenomics (MinION)'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 Not available — deep shotgun sequencing and MAG assembly']
+    ]) +
+    '<p>An honest caveat about Flongle: the capacity of a Flongle flow cell is sufficient for amplicon approaches (16S/ITS) and targeted panels — this is the <strong>ideal Edge scenario</strong>. A deep gut shotgun metagenome requires tens of millions of reads and goes beyond Edge — that is Desktop and Cloud territory.</p><hr>' +
+    '<h2>🎯 Clinical Core #1: CDI and FMT Monitoring</h2>' +
+    '<p><strong>Recurrent <em>Clostridioides difficile</em> infection (CDI)</strong> is the principal proven indication for microbiome therapy. <strong>Faecal microbiota transplantation (FMT)</strong> achieves <strong>~90%</strong> efficacy in recurrent CDI, where antibiotics yield only 20–30%. CDI diagnostics itself (tcdA/tcdB, ribotype 027) is covered by our <a href="/cdifficile/">/cdifficile/</a> page — here we discuss the <strong>microbiome profile BEFORE and AFTER FMT</strong>:</p>' +
+    tbl(['Parameter', 'Before FMT (dysbiosis in CDI)', 'After successful FMT'], [
+      ['<strong>Diversity (Shannon)</strong>', 'Sharply reduced', 'Recovers to the donor level'],
+      ['<strong>Proteobacteria</strong>', 'Expansion (a dysbiosis marker)', 'Displaced; their share normalises'],
+      ['<strong>SCFA producers</strong> (<em>Faecalibacterium</em>, <em>Roseburia</em>)', 'Depleted — no butyrate for the epithelium', 'Return, restoring the barrier and colonisation resistance'],
+      ['<strong>Firmicutes/Bacteroidetes</strong>', 'Balance shifted', 'Ratio normalises']
+    ]) +
+    '<p>Metagenomic FMT monitoring answers practical questions: <strong>has the donor consortium engrafted</strong> (strain-level donor → recipient tracking), has diversity recovered, and have unwanted resistance genes been transferred together with the graft.</p><hr>' +
+    '<h2>🎯 Clinical Core #2: The Gut Resistome</h2>' +
+    '<p>The gut is the main <strong>reservoir of antimicrobial resistance genes (the resistome)</strong> in the body: a dense community, horizontal gene transfer, antibiotic pressure. Metagenomic resistome screening is clinically significant in two scenarios:</p>' +
+    '<ul><li><strong>ICU patients</strong> — colonisation by multidrug-resistant organisms predicts the aetiology of ventilator-associated pneumonia and sepsis; knowing the resistome narrows the empirical regimen.</li>' +
+    '<li><strong>Before transplantation and chemotherapy</strong> — neutropenia turns the gut reservoir into a source of translocation; the resistome profile determines the decontamination and prophylaxis protocol.</li></ul>' +
+    tbl(['Gene', 'Class / Mechanism', 'Clinical Significance'], [
+      ['<strong>vanA</strong>', 'Glycopeptides (vancomycin)', 'VRE epidemiology, pre-transplant screening'],
+      ['<strong>blaNDM</strong>', 'Carbapenems (metallo-β-lactamase)', 'Alarming marker: an intestinal NDM reservoir is a source of untreatable infections'],
+      ['<strong>mcr</strong>', 'Colistin (a "last-resort" antibiotic)', 'Plasmid-borne transmission, surveillance']
+    ]) +
+    '<p>Detection is performed against the <strong>CARD</strong> and <strong>ResFinder</strong> databases, with the genetic context (plasmid/chromosome) reported in shotgun mode.</p><hr>' +
+    '<h2>⚙️ The ONT Technical Edge: Long Reads for Metagenomics</h2>' +
+    '<ul><li><strong>Full-length 16S (~1500 bp) instead of V3–V4</strong> — short Illumina fragments resolve only to genus and fundamentally cannot distinguish closely related species (the classic example: <strong>short 16S cannot tell <em>E. coli</em> from <em>Shigella</em></strong>). Nanopore reads the entire gene — <strong>species-level resolution</strong>, not genus.</li>' +
+    '<li><strong>MAG assembly (metagenome-assembled genomes)</strong> from long reads — chromosomes of dominant species assemble into contigs, opening access to strains absent from reference databases (and the "uncultivable" majority of the gut is exactly where the novelty lies).</li>' +
+    '<li><strong>Direct methylation reading</strong> — the nanopore signal carries base-modification information without bisulfite conversion: microbiome epigenetics is an additional data layer from the same run.</li></ul><hr>' +
+    '<h2>🧪 Report Markers and Metrics</h2>' +
+    tbl(['Marker / Metric', 'What It Measures', 'Interpretation'], [
+      ['<strong>Full-length 16S (~1500 bp)</strong>', 'Species-level taxonomy', 'The foundation of the profile; species resolution without genus-level guesswork'],
+      ['<strong>Shannon index</strong>', 'α-diversity', 'A decrease = dysbiosis; its dynamics are the main marker of recovery after FMT'],
+      ['<strong>Gene richness</strong> (MetaHIT metric)', 'Number of unique microbial genes', 'Low richness ↔ obesity, inflammation, IBD'],
+      ['<strong>Firmicutes / Bacteroidetes</strong>', 'Balance of the two dominant phyla', 'A shifted ratio is associated with metabolic disorders'],
+      ['<strong>Proteobacteria share</strong>', 'Expansion of opportunists', 'A marker of dysbiosis and inflammation; rises after antibiotics'],
+      ['<strong>SCFA producers</strong> (<em>Faecalibacterium</em>, <em>Roseburia</em>)', 'Butyrate production', 'Epithelial health and colonisation resistance'],
+      ['<strong>Resistome (CARD / ResFinder)</strong>', 'AMR genes in the community', 'vanA, blaNDM, mcr — screening in the ICU and before transplantation']
+    ]) + '<hr>' +
+    '<h2>🛠 Technical Architecture (Pipeline Stack)</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>NanoPlot</code>'],
+      ['<strong>2. Taxonomy</strong>', 'Full-length 16S classification (SILVA/GTDB databases); for shotgun — <code>Kraken2</code> / <code>minimap2</code> against references'],
+      ['<strong>3. Diversity metrics</strong>', 'α- and β-diversity, Shannon index, gene richness, F/B ratio'],
+      ['<strong>4. Resistome</strong>', '<code>CARD</code>, <code>ResFinder</code> — detection of vanA, blaNDM, mcr and hundreds of other AMR genes'],
+      ['<strong>5. MAG assembly (shotgun)</strong>', '<code>metaFlye</code>, <code>medaka</code> — assembly and polishing of metagenome-assembled genomes'],
+      ['<strong>6. Reporting</strong>', 'HTML report for the physician + QC report for the bioinformatician']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>CDI — an in-hospital epidemic</strong> — <em>C. difficile</em> remains the leading cause of nosocomial diarrhoea; post-antibiotic recurrence reaches 30–60%. FMT with ~90% efficacy has become the standard, and metagenomic monitoring of donor consortium engraftment is its necessary scientific companion.</li>' +
+    '<li><strong>The AMR pandemic</strong> — the gut resistome (vanA, blaNDM, mcr) is a hidden reservoir from which multidrug-resistant infections arise in the most vulnerable patients. Resistome screening is an emerging component of infection control in ICUs and transplant medicine.</li>' +
+    '<li><strong>Long reads change the resolution</strong> — the move from V3–V4 to full-length 16S and shotgun MAG assembly lifts metagenomics from "genus lists" to the level of species, strains and functions — exactly where, according to HMP and MetaHIT, the diagnostic value resides.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://hmpdacc.org/">NIH Human Microbiome Project (HMP)</a></li>' +
+    '<li>📄 <a href="https://www.nature.com/articles/nature08821">MetaHIT — the human gut microbial gene catalogue (Nature, 2010)</a></li>' +
+    '<li>📄 <a href="https://www.nature.com/articles/nature09944">Enterotypes of the human gut microbiome (Nature, 2011)</a></li>' +
+    '<li>📄 <a href="/cdifficile/">Our page — Clostridioides difficile</a></li></ul>';
+
+  /* ── VAGINAL MICROBIOME (CST, preterm birth, BV) ── */
+  EN['/vaginal/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_vaginal.svg" alt="Vaginal microbiome — lactobacillus rods" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Vaginal Microbiome: Preterm Birth and Dysbiosis</h1>' +
+    '<p style="font-size:1.2em;color:#555">CST classification, species-level resolution of lactobacilli and risk assessment — full-length 16S where V3–V4 fails</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p>The vaginal microbiome — one of the five key body sites of the <strong>Human Microbiome Project</strong> — is unique among human biomes for its <strong>low diversity</strong>: unlike the gut, health here is defined not by species richness but by the <strong>dominance of lactobacilli</strong>. Vaginal communities are described by five types — <strong>Community State Types (CST I–V)</strong>: <strong>CST I</strong> (dominated by <em>Lactobacillus crispatus</em>) is a protective state with low pH and a stable barrier; <strong>CST IV</strong> (diverse anaerobes — <em>Gardnerella</em>, <em>Prevotella</em>, <em>Atopobium</em>) is dysbiosis, clinically corresponding to bacterial vaginosis. Prognostically it is critical to distinguish both "favourable" and "transitional" states: <em>L. iners</em> is not a protector but a bridge to dysbiosis.</p>' +
+    '<p>From nanopore <strong>full-length 16S rRNA gene</strong> sequencing data our pipeline determines the CST, the species composition of lactobacilli and key anaerobes, and risk markers of preterm birth and recurrent bacterial vaginosis — from a self-collected sample, within hours.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: a <strong>self-collected</strong> vaginal swab (low biomass is not an obstacle). Optimal: rapid library preparation and a <strong>Flongle</strong> run for the outpatient screening scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the obstetrician-gynaecologist — CST classification, species-level lactobacillus profile, dysbiosis markers and risk assessment; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: CST, Lactobacilli, Anaerobes</h2>' +
+    '<h3>Clinical Core #1 — Preterm Birth</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>CST IV</strong> (anaerobic dysbiosis)', 'Associated with an increased risk of <strong>preterm birth</strong> — the leading cause of neonatal mortality worldwide'],
+      ['<strong>Depletion of <em>L. crispatus</em></strong>', 'Loss of dominance of the protective lactobacillus in the <strong>second trimester</strong> is a predictor of adverse pregnancy outcome; microbiome screening in this window is a working prevention tool'],
+      ['<strong>Linkage with GBS</strong>', 'The microbiome profile complements <a href="/agalactiae/">Streptococcus agalactiae screening in pregnancy</a>: vaginal dysbiosis and GBS carriage are two arms of a unified assessment of the infectious risk of delivery']
+    ]) +
+    '<h3>Clinical Core #2 — Bacterial Vaginosis (BV)</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong><em>Gardnerella vaginalis</em> (clades)</strong>', 'Key component of the BV biofilm; clade-level resolution matters — clades differ in virulence and association with recurrence'],
+      ['<strong><em>Atopobium vaginae</em></strong>', 'Marker of severe and <strong>recurrent</strong> BV; resistant to metronidazole — its dominance explains the failure of standard therapy'],
+      ['<strong><em>Prevotella</em> spp.</strong>', 'Component of the polymicrobial anaerobic consortium of CST IV; associated with an inflammatory background'],
+      ['<strong>Recurrence up to 50%</strong>', 'After metronidazole, BV returns in every second patient — molecular profiling (instead of Nugent microscopy) reveals the reason: biofilm, <em>Atopobium</em>, incomplete eradication'],
+      ['<strong>STI risk</strong>', 'BV increases the risk of sexually transmitted infections, including <strong>HIV</strong> and <strong>HPV persistence</strong> — the vaginal microbiome directly affects human papillomavirus clearance (see our <a href="/hpv/">HPV page</a>)']
+    ]) +
+    '<h3>The Technical Edge: Full-Length 16S</h3>' +
+    tbl(['Question', 'V3–V4 (Illumina)', 'Full-length 16S (ONT)'], [
+      ['<strong>L. crispatus vs L. iners</strong>', 'Cannot distinguish', '<strong>Distinguishes</strong> — and these are prognostically opposite species: crispatus protects, iners is a transitional state towards dysbiosis'],
+      ['<strong>Gardnerella clades</strong>', 'Genus-level resolution', 'Species- and subspecies-level'],
+      ['<strong>SNV strain tracking of L. crispatus</strong>', 'Impossible', 'Possible — strain tracking over the course of treatment and pregnancy'],
+      ['<strong>Format</strong>', 'Stationary laboratory', 'Self-collection → Flongle → answer within hours; low biomass is no obstacle']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    '<h3>Primary tool</h3>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Vaginal Microbiome Pipeline</strong>', '🟡 In development']]) +
+    '<h3>Planned ML models</h3>' +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>VM-CST-Classifier</strong>', 'Automatic CST classification (I–V) from the full-length 16S profile'],
+      ['<strong>VM-PTB-Risk</strong>', 'Preterm birth risk assessment from the second-trimester microbiome composition'],
+      ['<strong>VM-BV-Relapse</strong>', 'Prediction of BV recurrence after therapy from the <em>Atopobium</em> / <em>Gardnerella</em> clade profile']
+    ]) + '<hr>' +
+    '<h2>🛠 Technical Architecture (Pipeline Stack)</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Full-length 16S taxonomy</strong>', '<code>minimap2</code> + a curated 16S database of the vaginal biome (species-level resolution of lactobacilli and <em>Gardnerella</em> clades)'],
+      ['<strong>3. CST classification</strong>', 'Clustering of profiles against reference CST I–V (a modification of VALENCIA)'],
+      ['<strong>4. SNV analysis</strong>', '<code>clair3</code>, <code>medaka</code> — longitudinal strain tracking of <em>L. crispatus</em>'],
+      ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>Preterm birth</strong> — about 15 million cases per year worldwide and the leading cause of under-five mortality. Vaginal dysbiosis (CST IV, depletion of <em>L. crispatus</em>) is a modifiable risk factor: microbiome screening in the second trimester opens a window for prevention.</li>' +
+    '<li><strong>Bacterial vaginosis</strong> — the most common vaginal pathology of women of reproductive age; recurrence after metronidazole reaches 50%. The move from subjective microscopy (Nugent score) to molecular profiling is a need that sequencing fulfils.</li>' +
+    '<li><strong>The HIV and HPV link</strong> — vaginal dysbiosis increases susceptibility to HIV and hinders HPV clearance, so microbiome status is not only gynaecology but also cancer and STI prevention.</li>' +
+    '<li><strong>Decentralisation of screening</strong> — self-collected samples and rapid analysis on Flongle make microbiome testing available in the outpatient setting, without a stationary sequencing laboratory.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://hmpdacc.org/">Human Microbiome Project — vaginal microbiome (NIH HMP)</a></li>' +
+    '<li>📄 <a href="https://www.pnas.org/">Ravel et al. — Vaginal microbiome of reproductive-age women (PNAS, CST I–V)</a></li>' +
+    '<li>📄 <a href="https://www.science.org/journal/stm">DiGiulio et al. — Temporal and spatial variation of the human microbiota during pregnancy (Science Translational Medicine)</a></li></ul>';
+
   /* ── HYPERVIRULENT KLEBSIELLA (hvKP) ── */
   EN['/hvkp/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -7496,6 +7631,146 @@
     '<li>📄 <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed — 遗传性染色体整合 HHV-6 (iciHHV-6)</a></li>' +
     '<li>📄 <a href="https://www.ecil-leukaemia.com/">ASTS/ECIL — 移植受者 HHV-6 指南</a></li></ul>';
 
+  /* ── 肠道微生物组(CDI、粪菌移植、肠型)── */
+  ZH['/microbiome/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_microbiome.svg" alt="肠道微生物组——由多种细菌组成的群落" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>肠道微生物组:CDI、粪菌移植与肠型</h1>' +
+    '<p style="font-size:1.2em;color:#555">从属级列表迈向功能与菌株:基于长读长的肠道宏基因组学</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>肠道微生物组是由数百种细菌、古菌、真菌和病毒组成的生态系统,其基因总量比人类基因组丰富约两个数量级。两个国际旗舰项目确立了该领域的现代科学框架:</p>' +
+    '<ul><li><strong>人类微生物组计划 (HMP,NIH,2007–2016)</strong>——表明<strong>微生物基因数量约为人类基因的 100 倍</strong>,且<strong>不存在统一的"健康微生物组"</strong>:健康人群的物种组成差异巨大,而<strong>功能谱(代谢通路)比物种名单更稳定</strong>。</li>' +
+    '<li><strong>MetaHIT(欧盟,2008–2012)</strong>——构建了包含 <strong>330 万微生物基因</strong>的目录,描述了<strong>肠型</strong>(以 <em>Bacteroides</em>、<em>Prevotella</em> 或 <em>Ruminococcus</em> 为优势的稳定群落构型),并将<strong>微生物组基因丰富度低下与肥胖、系统性炎症及炎症性肠病 (IBD)</strong> 联系起来。</li></ul>' +
+    '<p>两大项目的共同结论:<strong>宏基因组学的诊断价值在于功能与菌株,而非属级名单</strong>。我们的流程正是按此构建:基于纳米孔长读长的全长 16S 与鸟枪法宏基因组学,一次运行即可获得物种/菌株级分辨率、功能注释与耐药组分析。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:粪便、直肠拭子、黏膜活检。<strong>Edge 场景 (Flongle)</strong> 最适合 16S/ITS 扩增子与靶向 panel;深度肠道鸟枪测序属于 Desktop/Cloud 任务 (MinION 及以上)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告——物种级分类谱、多样性指标(香农指数、基因丰富度)、菌群失调标志物、FMT 后的恢复动态、耐药组(AMR 基因);面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>——Flongle 上的 16S/ITS 扩增子与靶向 panel'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>——中等覆盖度鸟枪法宏基因组学 (MinION)'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用——深度鸟枪测序与 MAG 组装']
+    ]) +
+    '<p>关于 Flongle 的坦率说明:Flongle 芯片的通量足以支持扩增子方案 (16S/ITS) 和靶向 panel——这是<strong>理想的 Edge 场景</strong>。深度肠道鸟枪宏基因组需要数千万条读长,超出 Edge 能力范围——那是 Desktop 与 Cloud 的领域。</p><hr>' +
+    '<h2>🎯 临床核心 №1:CDI 与 FMT 监测</h2>' +
+    '<p><strong>复发性艰难梭菌感染 (CDI)</strong> 是微生物组治疗最主要的已证实适应证。<strong>粪菌移植 (FMT)</strong> 在复发性 CDI 中的有效率达<strong>约 90%</strong>,而抗生素仅为 20–30%。CDI 诊断本身(tcdA/tcdB、027 核糖体型)由我们的 <a href="/cdifficile/">/cdifficile/</a> 页面覆盖——这里讨论的是 <strong>FMT 前后的微生物组谱</strong>:</p>' +
+    tbl(['指标', 'FMT 前(CDI 菌群失调)', 'FMT 成功后'], [
+      ['<strong>多样性(香农指数)</strong>', '显著降低', '恢复至供体水平'],
+      ['<strong>变形菌门 (Proteobacteria)</strong>', '扩张(菌群失调标志)', '被排挤,占比恢复正常'],
+      ['<strong>短链脂肪酸产生菌</strong>(<em>Faecalibacterium</em>、<em>Roseburia</em>)', '匮乏——上皮缺乏丁酸', '回归,重建屏障与定植抗性'],
+      ['<strong>厚壁菌门/拟杆菌门 (Firmicutes/Bacteroidetes)</strong>', '平衡偏移', '比值恢复正常']
+    ]) +
+    '<p>FMT 的宏基因组监测回答实际问题:<strong>供体菌群是否定植成功</strong>(供体 → 受体的菌株级追踪)、多样性是否恢复、耐药基因是否随移植物一同传入。</p><hr>' +
+    '<h2>🎯 临床核心 №2:肠道耐药组</h2>' +
+    '<p>肠道是人体内<strong>抗生素耐药基因(耐药组)的主要储库</strong>:高密度群落、水平基因转移、抗生素选择压力。耐药组的宏基因组筛查在两个场景中具有临床意义:</p>' +
+    '<ul><li><strong>ICU 患者</strong>——多重耐药菌定植可预测呼吸机相关性肺炎与脓毒症的病原学;掌握耐药组可缩窄经验性用药方案。</li>' +
+    '<li><strong>移植与化疗前</strong>——中性粒细胞减少会使肠道储库成为细菌易位之源;耐药组谱决定去污染与预防方案。</li></ul>' +
+    tbl(['基因', '类别/机制', '临床意义'], [
+      ['<strong>vanA</strong>', '糖肽类(万古霉素)', 'VRE 流行病学、移植前筛查'],
+      ['<strong>blaNDM</strong>', '碳青霉烯类(金属β-内酰胺酶)', '警报标志:肠道 NDM 储库是不可治愈感染的源头'],
+      ['<strong>mcr</strong>', '黏菌素("最后防线"抗生素)', '质粒介导传播,流行病学监测']
+    ]) +
+    '<p>检测基于 <strong>CARD</strong> 与 <strong>ResFinder</strong> 数据库,鸟枪模式下同时报告遗传背景(质粒/染色体)。</p><hr>' +
+    '<h2>⚙️ ONT 技术优势:面向宏基因组学的长读长</h2>' +
+    '<ul><li><strong>全长 16S(约 1500 bp)取代 V3–V4</strong>——Illumina 短片段只能分辨到属,且原则上无法区分近缘物种(经典例子:<strong>短 16S 无法区分大肠杆菌与志贺菌</strong>)。纳米孔完整读出整个基因——实现<strong>物种级分辨率</strong>,而非属级。</li>' +
+    '<li><strong>长读长组装 MAG(宏基因组组装基因组)</strong>——优势物种的染色体组装成重叠群,从而触及参考数据库中不存在的菌株(肠道中"不可培养"的大多数正是新颖性所在)。</li>' +
+    '<li><strong>直接读取甲基化</strong>——纳米孔信号无需亚硫酸盐转化即携带碱基修饰信息:微生物组表观遗传学是同一次运行中的附加数据层。</li></ul><hr>' +
+    '<h2>🧪 报告标志物与指标</h2>' +
+    tbl(['标志物/指标', '测量内容', '解读'], [
+      ['<strong>全长 16S(约 1500 bp)</strong>', '物种级分类', '谱分析的基础;无需按属推测的物种分辨率'],
+      ['<strong>香农指数</strong>', 'α-多样性', '下降 = 菌群失调;其动态是 FMT 后恢复的主要标志'],
+      ['<strong>基因丰富度</strong>(MetaHIT 指标)', '独特微生物基因数量', '低丰富度 ↔ 肥胖、炎症、炎症性肠病'],
+      ['<strong>厚壁菌门/拟杆菌门比值</strong>', '两大优势菌门的平衡', '比值偏移与代谢紊乱相关'],
+      ['<strong>变形菌门占比</strong>', '条件致病菌扩张', '菌群失调与炎症的标志;抗生素后升高'],
+      ['<strong>短链脂肪酸产生菌</strong>(<em>Faecalibacterium</em>、<em>Roseburia</em>)', '丁酸生成', '上皮健康与定植抗性'],
+      ['<strong>耐药组 (CARD / ResFinder)</strong>', '群落中的 AMR 基因', 'vanA、blaNDM、mcr——ICU 与移植前筛查']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构 (Pipeline Stack)</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>NanoPlot</code>'],
+      ['<strong>2. 分类学分析</strong>', '全长 16S 分类(SILVA/GTDB 数据库);鸟枪法采用 <code>Kraken2</code> / <code>minimap2</code> 比对参考序列'],
+      ['<strong>3. 多样性指标</strong>', 'α- 与 β-多样性、香农指数、基因丰富度、F/B 比值'],
+      ['<strong>4. 耐药组</strong>', '<code>CARD</code>、<code>ResFinder</code>——检测 vanA、blaNDM、mcr 及数百种其他 AMR 基因'],
+      ['<strong>5. MAG 组装(鸟枪法)</strong>', '<code>metaFlye</code>、<code>medaka</code>——宏基因组组装基因组的组装与抛光'],
+      ['<strong>6. 报告</strong>', '面向医生的 HTML 报告 + 面向生物信息分析师的 QC 报告']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>CDI——院内的流行病</strong>——艰难梭菌仍是医院获得性腹泻的首要病因;抗生素后复发率达 30–60%。有效率约 90% 的 FMT 已成为标准疗法,而供体菌群定植的宏基因组监测是其必不可少的科学配套。</li>' +
+    '<li><strong>AMR 大流行</strong>——肠道耐药组(vanA、blaNDM、mcr)是隐蔽的储库,最脆弱患者的多重耐药感染正源于此。耐药组筛查正成为 ICU 与移植医学感染控制的新兴组成部分。</li>' +
+    '<li><strong>长读长改变分辨率</strong>——从 V3–V4 走向全长 16S 与鸟枪 MAG 组装,使宏基因组学从"属级名单"提升到物种、菌株与功能层面——正如 HMP 与 MetaHIT 所证明的,诊断价值正在于此。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://hmpdacc.org/">NIH 人类微生物组计划 (HMP)</a></li>' +
+    '<li>📄 <a href="https://www.nature.com/articles/nature08821">MetaHIT——人类肠道微生物基因目录 (Nature,2010)</a></li>' +
+    '<li>📄 <a href="https://www.nature.com/articles/nature09944">人类肠道微生物组的肠型 (Nature,2011)</a></li>' +
+    '<li>📄 <a href="/cdifficile/">我们的页面——艰难梭菌 (Clostridioides difficile)</a></li></ul>';
+
+  /* ── 阴道微生物组(CST、早产、细菌性阴道病)── */
+  ZH['/vaginal/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_vaginal.svg" alt="阴道微生物组——乳杆菌杆" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>阴道微生物组:早产与菌群失调</h1>' +
+    '<p style="font-size:1.2em;color:#555">CST 分型、乳杆菌物种级分辨率与风险评估——在 V3–V4 无能为力之处,全长 16S 大显身手</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p>阴道微生物组是<strong>人类微生物组计划</strong>的五个关键部位之一,在人体各生物群落中以<strong>低多样性</strong>独树一帜:与肠道不同,这里的健康不取决于物种丰富度,而取决于<strong>乳杆菌的优势地位</strong>。阴道群落分为五种类型——<strong>社区状态类型 (CST I–V)</strong>:<strong>CST I</strong>(以卷曲乳杆菌 <em>Lactobacillus crispatus</em> 为优势)是低 pH、屏障稳定的保护性状态;<strong>CST IV</strong>(多种厌氧菌——<em>Gardnerella</em>、<em>Prevotella</em>、<em>Atopobium</em>)是菌群失调,临床上对应细菌性阴道病。在预后上,区分"良好"与"过渡"状态至关重要:惰性乳杆菌 <em>L. iners</em> 并非保护者,而是通往菌群失调的桥梁。</p>' +
+    '<p>我们的流程基于纳米孔<strong>全长 16S rRNA 基因</strong>测序数据,确定 CST 分型、乳杆菌与关键厌氧菌的物种组成,以及早产和复发性细菌性阴道病的风险标志物——样本自取,数小时出结果。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:<strong>自取</strong>阴道拭子(低生物量不构成障碍)。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于门诊筛查场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向妇产科医生的 HTML 报告——CST 分型、乳杆菌物种谱、菌群失调标志物与风险评估;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:CST、乳杆菌、厌氧菌</h2>' +
+    '<h3>临床核心 №1——早产</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>CST IV</strong>(厌氧性菌群失调)', '与<strong>早产</strong>风险升高相关——早产是全球新生儿死亡的首要原因'],
+      ['<strong>卷曲乳杆菌 <em>L. crispatus</em> 耗竭</strong>', '<strong>孕中期</strong>保护性乳杆菌优势地位丧失是不良妊娠结局的预测因子;在此窗口进行微生物组筛查是可行的预防工具'],
+      ['<strong>与 GBS 的衔接</strong>', '微生物组谱与<a href="/agalactiae/">孕妇无乳链球菌筛查</a>互为补充:阴道菌群失调与 GBS 携带是分娩感染风险统一评估的两个方面']
+    ]) +
+    '<h3>临床核心 №2——细菌性阴道病 (BV)</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>阴道加德纳菌 <em>Gardnerella vaginalis</em>(分支)</strong>', 'BV 生物膜的关键组分;分支级分辨率很重要——各分支在毒力及与复发的关联上存在差异'],
+      ['<strong>阴道阿托波菌 <em>Atopobium vaginae</em></strong>', '重症及<strong>复发性</strong> BV 的标志;对甲硝唑耐药——其优势地位解释了标准疗法的失败'],
+      ['<strong>普雷沃菌 <em>Prevotella</em> spp.</strong>', 'CST IV 多微生物厌氧联合体的组分;与炎症背景相关'],
+      ['<strong>复发率高达 50%</strong>', '甲硝唑治疗后,每两位患者中就有一位 BV 复发——分子谱分析(取代 Nugent 显微镜评分)可揭示原因:生物膜、<em>Atopobium</em>、根除不彻底'],
+      ['<strong>性传播感染风险</strong>', 'BV 升高性传播感染风险,包括 <strong>HIV</strong> 与 <strong>HPV 持续感染</strong>——阴道微生物组直接影响人乳头瘤病毒的清除(参见我们的 <a href="/hpv/">HPV 页面</a>)']
+    ]) +
+    '<h3>技术优势:全长 16S</h3>' +
+    tbl(['问题', 'V3–V4 (Illumina)', '全长 16S (ONT)'], [
+      ['<strong>L. crispatus 与 L. iners</strong>', '无法区分', '<strong>可以区分</strong>——而这是预后截然相反的两个物种:crispatus 起保护作用,iners 是走向菌群失调的过渡状态'],
+      ['<strong>加德纳菌分支</strong>', '属级分辨率', '物种级与种内分辨率'],
+      ['<strong>L. crispatus 的 SNV 菌株追踪</strong>', '不可能', '可行——治疗与妊娠过程中的菌株动态追踪'],
+      ['<strong>模式</strong>', '固定实验室', '自取样本 → Flongle → 数小时出结果;低生物量无妨']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    '<h3>核心工具</h3>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Vaginal Microbiome Pipeline</strong>', '🟡 开发中']]) +
+    '<h3>计划中的机器学习模型</h3>' +
+    tbl(['模型', '目标任务'], [
+      ['<strong>VM-CST-Classifier</strong>', '基于全长 16S 谱自动进行 CST 分型 (I–V)'],
+      ['<strong>VM-PTB-Risk</strong>', '基于孕中期微生物组组成评估早产风险'],
+      ['<strong>VM-BV-Relapse</strong>', '基于 <em>Atopobium</em> / 加德纳菌分支谱预测治疗后 BV 复发']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构 (Pipeline Stack)</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 全长 16S 分类学分析</strong>', '<code>minimap2</code> + 阴道生物群系 16S 人工整编数据库(乳杆菌与加德纳菌分支的物种级分辨率)'],
+      ['<strong>3. CST 分型</strong>', '对照 CST I–V 参考谱进行聚类(VALENCIA 的改进版)'],
+      ['<strong>4. SNV 分析</strong>', '<code>clair3</code>、<code>medaka</code>——<em>L. crispatus</em> 菌株动态追踪'],
+      ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>早产</strong>——全球每年约 1500 万例,是 5 岁以下儿童死亡的首要原因。阴道菌群失调(CST IV、卷曲乳杆菌耗竭)是可干预的危险因素:孕中期微生物组筛查为预防打开了窗口。</li>' +
+    '<li><strong>细菌性阴道病</strong>——育龄女性最常见的阴道疾病;甲硝唑治疗后复发率高达 50%。从主观显微镜检查(Nugent 评分)转向分子谱分析,正是测序所能满足的需求。</li>' +
+    '<li><strong>与 HIV 和 HPV 的关联</strong>——阴道菌群失调升高 HIV 易感性并阻碍 HPV 清除,因此微生物组状态不仅关乎妇科,也关乎肿瘤与性传播感染的预防。</li>' +
+    '<li><strong>筛查的去中心化</strong>——自取样本与 Flongle 快速分析使微生物组检测在门诊层面即可开展,无需固定的测序实验室。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://hmpdacc.org/">人类微生物组计划——阴道微生物组 (NIH HMP)</a></li>' +
+    '<li>📄 <a href="https://www.pnas.org/">Ravel 等——育龄女性阴道微生物组 (PNAS,CST I–V)</a></li>' +
+    '<li>📄 <a href="https://www.science.org/journal/stm">DiGiulio 等——妊娠期人类微生物组的时空变化 (Science Translational Medicine)</a></li></ul>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -7561,6 +7836,8 @@
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
       'cold':         ['Bacterial ARI', 'Metagenomic identification of bacterial respiratory pathogens and AMR — S. pneumoniae, H. influenzae, K. pneumoniae, etc.'],
       'haemophilus':  ['H. influenzae (Pfeiffer\'s bacillus)', 'BLNAR via ftsI (PBP3) mutations invisible to β-lactamase PCR, a–f/NTHi serotyping and differentiation from H. haemolyticus — otitis, COPD, epiglottitis'],
+      'microbiome':   ['Gut Microbiome', 'In the footsteps of HMP and MetaHIT: full-length 16S to species level, before/after FMT profiling in recurrent C. difficile, ICU resistome — enterotypes and functions over genus lists'],
+      'vaginal':      ['Vaginal Microbiome', 'CST typing and L. crispatus vs L. iners on full-length 16S — a predictor of preterm birth and bacterial vaginosis relapse'],
       'cmv':          ['Cytomegalovirus (CMV)', 'Resistance genotyping in transplant care: UL97 (ganciclovir), UL54, UL56 (letermovir) — 5–20% minority subpopulations that Sanger cannot see'],
       'hsv':          ['Herpes Simplex (HSV-1/HSV-2)', 'Encephalitis — every hour costs neurons: CSF mNGS and acyclovir resistance (UL23/UL30) in immunocompromised patients within hours'],
       'ebv':          ['Epstein–Barr Virus (EBV)', '"Cantonese cancer" — nasopharyngeal carcinoma screening by plasma EBV DNA, strain typing (del-LMP1) and terminal-repeat clonality; PTLD'],
@@ -7658,6 +7935,8 @@
       'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
       'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
       'haemophilus': ['流感嗜血杆菌(法伊弗杆菌)', 'ftsI (PBP3) 突变导致的 BLNAR — β-内酰胺酶 PCR 无法发现;a–f/NTHi 血清分型与溶血嗜血杆菌鉴别 — 中耳炎、慢阻肺、会厌炎'],
+      'microbiome': ['肠道微生物组', '沿袭 HMP 与 MetaHIT:全长 16S 精确到种、复发性艰难梭菌感染 FMT 前后谱分析、ICU 耐药组 — 肠型与功能胜过属级清单'],
+      'vaginal': ['阴道微生物组', '基于全长 16S 的 CST 分型与卷曲乳杆菌/惰性乳杆菌鉴别 — 早产与细菌性阴道病复发的预测指标'],
       'cmv': ['巨细胞病毒 (CMV)', '移植医学中的耐药基因分型:UL97(更昔洛韦)、UL54、UL56(莱特莫韦)— Sanger 测序无法发现的 5–20% 少数亚群'],
       'hsv': ['单纯疱疹病毒 (HSV-1/HSV-2)', '脑炎 — 每小时都是神经元:脑脊液 mNGS 与免疫抑制患者的阿昔洛韦耐药 (UL23/UL30),数小时出结果'],
       'ebv': ['EB 病毒 (EBV)', '"广东癌" — 血浆 EBV DNA 鼻咽癌筛查、株型分型 (del-LMP1) 与末端重复序列克隆性分析;PTLD'],
