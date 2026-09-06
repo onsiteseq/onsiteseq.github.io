@@ -102,6 +102,11 @@ old_project_entries:
     desc: Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам — S. pneumoniae, H. influenzae, K. pneumoniae и др.
     image: /assets/images/logo/icon_cold.svg
 
+  - title: Палочка Пфайфера (H. influenzae)
+    url: haemophilus
+    desc: "BLNAR через мутации ftsI (PBP3), которую не видит ПЦР на β-лактамазу, серотипирование a–f/NTHi и дифференциация от H. haemolyticus — отит, ХОБЛ, эпиглоттит"
+    image: /assets/images/logo/icon_haemophilus.svg
+
   - title: Малярия
     url: plasmodium
     desc: Профиль устойчивости P. falciparum (артемизинин, ACT-партнёры), видовая идентификация и делеции hrp2/hrp3 — верификация завозных случаев

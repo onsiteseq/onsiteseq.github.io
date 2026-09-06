@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="hi1" cx="38%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#ce93d8"/>
+      <stop offset="100%" stop-color="#6a1b9a"/>
+    </radialGradient>
+    <radialGradient id="hi2" cx="62%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#ce93d8"/>
+      <stop offset="100%" stop-color="#6a1b9a"/>
+    </radialGradient>
+    <radialGradient id="hi_hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#f3e5f5" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#6a1b9a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Polysaccharide capsule halo around the main cluster (type b capsule) -->
+  <ellipse cx="50" cy="50" rx="38" ry="26" fill="none" stroke="#4a148c"
+           stroke-width="2.5" stroke-dasharray="4 2" opacity="0.45"/>
+
+  <!-- Central short rod (coccobacillus), slightly rotated -->
+  <g transform="rotate(-12 42 48)">
+    <rect x="28" y="40" width="28" height="16" rx="8" ry="8" fill="url(#hi1)"/>
+    <rect x="28" y="40" width="28" height="16" rx="8" ry="8" fill="url(#hi_hl)"/>
+    <rect x="28" y="40" width="28" height="16" rx="8" ry="8" fill="none"
+          stroke="#4a148c" stroke-width="1.4" opacity="0.7"/>
+    <!-- Nucleoid -->
+    <ellipse cx="42" cy="48" rx="6" ry="4" fill="#38006b" opacity="0.35"/>
+  </g>
+
+  <!-- Coccus, upper right (pleomorphic round form) -->
+  <circle cx="70" cy="38" r="9" fill="url(#hi2)"/>
+  <circle cx="70" cy="38" r="9" fill="url(#hi_hl)"/>
+  <circle cx="70" cy="38" r="9" fill="none" stroke="#4a148c"
+          stroke-width="1.4" opacity="0.7"/>
+  <ellipse cx="69" cy="37" rx="4" ry="3" fill="#38006b" opacity="0.35"/>
+
+  <!-- Short rod, lower right, rotated the other way -->
+  <g transform="rotate(24 68 68)">
+    <rect x="56" y="62" width="24" height="12" rx="6" ry="6" fill="url(#hi1)"/>
+    <rect x="56" y="62" width="24" height="12" rx="6" ry="6" fill="url(#hi_hl)"/>
+    <rect x="56" y="62" width="24" height="12" rx="6" ry="6" fill="none"
+          stroke="#4a148c" stroke-width="1.2" opacity="0.7"/>
+    <ellipse cx="68" cy="68" rx="5" ry="3" fill="#38006b" opacity="0.35"/>
+  </g>
+
+  <!-- Coccus, lower left -->
+  <circle cx="30" cy="72" r="7" fill="url(#hi2)"/>
+  <circle cx="30" cy="72" r="7" fill="url(#hi_hl)"/>
+  <circle cx="30" cy="72" r="7" fill="none" stroke="#4a148c"
+          stroke-width="1.2" opacity="0.7"/>
+
+  <!-- Small satellite forms (pleomorphism variety) -->
+  <g opacity="0.65">
+    <circle cx="52" cy="28" r="4.5" fill="url(#hi2)"/>
+    <circle cx="52" cy="28" r="4.5" fill="url(#hi_hl)"/>
+    <circle cx="52" cy="28" r="4.5" fill="none" stroke="#4a148c" stroke-width="1" opacity="0.6"/>
+    <g transform="rotate(-35 20 34)">
+      <rect x="13" y="31" width="14" height="7" rx="3.5" ry="3.5" fill="url(#hi1)"/>
+      <rect x="13" y="31" width="14" height="7" rx="3.5" ry="3.5" fill="url(#hi_hl)"/>
+      <rect x="13" y="31" width="14" height="7" rx="3.5" ry="3.5" fill="none"
+            stroke="#4a148c" stroke-width="0.9" opacity="0.6"/>
+    </g>
+    <g transform="rotate(15 84 56)">
+      <rect x="78" y="53" width="12" height="6" rx="3" ry="3" fill="url(#hi2)"/>
+      <rect x="78" y="53" width="12" height="6" rx="3" ry="3" fill="url(#hi_hl)"/>
+      <rect x="78" y="53" width="12" height="6" rx="3" ry="3" fill="none"
+            stroke="#4a148c" stroke-width="0.9" opacity="0.6"/>
+    </g>
+    <circle cx="47" cy="82" r="3.5" fill="url(#hi1)"/>
+    <circle cx="47" cy="82" r="3.5" fill="url(#hi_hl)"/>
+    <circle cx="47" cy="82" r="3.5" fill="none" stroke="#4a148c" stroke-width="0.9" opacity="0.6"/>
+  </g>
+</svg>
