@@ -45,6 +45,17 @@
     '<p>Our algorithm delivers a complete sequencing data processing cycle for identifying drug resistance mutations and accurately determining the HIV-1 subtype.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado ML base-caller converts nanopore electrical signals to nucleotide data; POD5/FAST5 → FASTQ).</li>' +
     '<li><strong>📤 Output:</strong> Detailed HTML report for the clinician and an extended report for the bioinformatician.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: VI — (+)ssRNA-RT (retroviruses)</h2>' +
+    '<p>Class VI unites the retroviruses: their genome is positive-sense single-stranded RNA, yet it does not serve directly as mRNA — first the viral <strong>reverse transcriptase</strong> (RT, <em>pol</em> gene) copies the RNA into DNA, and <strong>integrase</strong> inserts this DNA copy into the host genome, forming a <strong>provirus</strong>. HIV-1 is the canonical member of the class: the provirus becomes a permanent part of the cell and a lifelong source of new virions — which is exactly why modern therapy cannot eliminate the infection. Reverse transcriptase lacks proofreading (3\'→5\' exonuclease) activity, so copying errors accumulate orders of magnitude faster than with cellular DNA polymerases — hence the quasispecies diversity of HIV in every patient and the rapid selection of resistant variants under drug pressure. That is why HIV drug resistance means mutations in the <em>pol</em> gene (reverse transcriptase, protease, integrase) — the very ones our pipeline reads against Stanford HIVdb rules.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['I', 'dsDNA', 'DNA → mRNA (like the host cell)', 'Herpesviruses, adenoviruses, smallpox, ASFV'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['<strong>VI</strong>', '<strong>(+)ssRNA-RT</strong>', '<strong>Reverse transcriptase: RNA → DNA</strong>', '<strong>HIV, retroviruses</strong>'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('ok', 'ok', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
     '<p>The pipeline analyses the entire <em>pol</em> gene — all three enzyme targets of antiretroviral therapy. Mutation interpretation follows <strong>Stanford HIVdb</strong> rules — the global standard for genotypic HIV drug resistance interpretation.</p>' +
@@ -394,6 +405,17 @@
     '<p>The second pillar — the "high-performance HPV test" — is the niche where sequencing delivers what classic qPCR screening cannot. This is where OnSiteSeq kicks the door into oncology.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: cervical swab or self-collected vaginal sample.</li>' +
     '<li><strong>📤 Output:</strong> HTML report for the physician — HPV genotype(s), integration status, methylation triage with risk category (low / moderate / high CIN2+ risk); QC report for the bioinformatician.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: I — dsDNA</h2>' +
+    '<p>Class I comprises double-stranded DNA viruses: their genome is transcribed into mRNA by cellular RNA polymerase II, following the same logic as the host cell\'s own genes. HPV carries a small circular dsDNA genome (~8 kb) that is usually maintained in epithelial cells as an <strong>episome</strong> — an autonomous circular molecule in the nucleus, without integration into chromosomes. The clinical turning point comes with <strong>integration</strong>: the circular viral DNA breaks (most often near the <em>E2</em> gene) and inserts into the host genome — losing E2 control releases the brake on the <em>E6/E7</em> oncogenes and launches carcinogenesis. It is precisely this episome → integration transition that our pipeline detects from chimeric "virus–human" reads (see the "What the Pipeline Determines" section below), while the dsDNA nature of the genome allows native DNA to be read directly by the nanopore — including direct methylation calling without bisulfite conversion.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['<strong>I</strong>', '<strong>dsDNA</strong>', '<strong>DNA → mRNA (like the host cell)</strong>', '<strong>Herpesviruses, adenoviruses, smallpox, ASFV</strong>'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     '<h2>🎯 What the Pipeline Determines: Three Levels of Analysis</h2>' +
     '<p>Unlike qPCR panels that only give a "yes/no" for a few genotypes, nanopore sequencing solves three tasks of differing clinical weight in a single run.</p>' +
     tbl(['Level', 'Task', 'Clinical Significance'], [
@@ -574,6 +596,17 @@
     '<p>The pipeline performs whole-genome influenza analysis: HA/NA subtyping, reconstruction of all segments, reassortant detection and antiviral resistance profiling. Segment ancestry is tracked with <strong>locus-level graph alignment (OnSiteSeq-PanG)</strong>: the graph encodes the history of known segments and shows which "historical pieces" the patient\'s virus is assembled from. Subtyping and segment assembly use mature standard tools (IRMA, CDC).</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: naso-/oropharyngeal swab, virus culture. Optimal: WGS of all 8 segments (multiplex PCR).</li>' +
     '<li><strong>📤 Output:</strong> HTML report with subtype (H1N1pdm09, H3N2, Victoria/Yamagata), Nextclade assignment, reassortant segment information and resistance profile.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: V — (−)ssRNA, negative-sense single-stranded RNA</h2>' +
+    '<p>In Class V viruses the genome is negative-sense single-stranded RNA: such a strand cannot be translated directly by cellular ribosomes, so the virus first synthesises a complementary (+)strand from which proteins are then translated. The required enzyme — RNA-dependent RNA polymerase (RdRp) — is carried inside the virion: the cell has none to offer. The influenza genome is divided into <strong>8 separate (−)ssRNA segments</strong>, and it is precisely this segmentation that enables <strong>reassortment</strong> — the exchange of whole segments when two strains co-infect a single cell, the mechanism of antigenic shift and the birth of pandemic variants. That is why the pipeline analyses the origin of each segment separately (OnSiteSeq-PanG), rather than reporting only the averaged virus subtype.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['I', 'dsDNA', 'DNA → mRNA (like the host cell)', 'Herpesviruses, adenoviruses, smallpox, ASFV'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['<strong>V</strong>', '<strong>(−)ssRNA</strong>', '<strong>First the (+)strand is synthesised (RdRp)</strong>', '<strong>Influenza, SFTS, rabies</strong>'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Key Markers and Resistance</h2>' +
     tbl(['Marker', 'Significance', 'Drug Class'], [
@@ -675,6 +708,17 @@
     '<p>Our pipeline performs nanopore sequencing right on the farm or in a veterinary laboratory: confirmation of ASFV DNA, genotyping by the <em>p72</em> gene (<em>B646L</em>) and — critical for the current epizootic situation — <strong>detection of low-virulence deletion variants</strong> (Δ<em>CD2v</em>, Δ<em>MGF360/505</em>) that spread across China in 2020–2021 and mimic chronic infections, defeating routine monitoring approaches.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: EDTA blood, spleen, lymph nodes, tonsils; equipment swabs, feed, drinking water.</li>' +
     '<li><strong>📤 Output:</strong> HTML report for the veterinarian — ASFV DNA detection, <em>p72</em> genotype, <em>CD2v</em>/<em>MGF</em>/<em>I177L</em> deletion status, differentiation from classical swine fever (CSF).</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: I — dsDNA, double-stranded DNA</h2>' +
+    '<p>Class I comprises double-stranded DNA viruses: transcription follows the cellular path familiar to the cell — DNA → mRNA. ASFV is one of the giants of this class: its <strong>170–190 kb</strong> genome encodes 150–200 of its own proteins, including its own DNA polymerase, repair enzymes and RNA polymerase. Unlike most DNA viruses, ASFV replicates <strong>in the cytoplasm</strong> of the infected cell — the virus builds "viral factories" there that barely depend on the host nuclear machinery. A large DNA genome with its own replication apparatus tolerates deletions of entire gene blocks: this is exactly how <strong>low-virulence deletion variants</strong> arise (Δ<em>CD2v</em>, Δ<em>MGF360/505</em>), whose detection is a key task of the pipeline.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['<strong>I</strong>', '<strong>dsDNA</strong>', '<strong>DNA → mRNA (like the host cell)</strong>', '<strong>Herpesviruses, adenoviruses, smallpox, ASFV</strong>'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Key Markers</h2>' +
     tbl(['Marker', 'Significance'], [
@@ -968,6 +1012,17 @@
     '<p>From nanopore sequencing data our pipeline determines the <strong>virus genotype (A–J)</strong>, the <strong>reverse transcriptase (polymerase) resistance profile</strong>, preC/BCP mutations driving HBeAg-negative disease, and HBsAg escape mutations — a complete genomic passport of the virus for therapy selection and adjustment.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood plasma/serum. Optimal: amplicon sequencing of <em>pol</em> and preS/S <strong>or</strong> target enrichment with whole-genome coverage.</li>' +
     '<li><strong>📤 Output:</strong> HTML report for the physician — HBV genotype, nucleos(t)ide analogue susceptibility profile, preC/BCP and HBsAg-escape status, therapy interpretation.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: VII — dsDNA-RT (pararetroviruses)</h2>' +
+    '<p>Class VII — the pararetroviruses: their genome is DNA, but it replicates via reverse transcription — the mirror image of Class VI retroviruses. HBV virions package a partially double-stranded circular DNA (rcDNA, ~3.2 kb), which in the hepatocyte nucleus is repaired into covalently closed circular DNA (<strong>cccDNA</strong>) — cccDNA is the very reservoir of chronicity that modern nucleos(t)ide analogues cannot eliminate. From cccDNA the pregenomic RNA (<strong>pgRNA</strong>) is transcribed, which the viral polymerase (<em>pol</em> gene) reverse-transcribes back into DNA during the assembly of new particles. That is why HBV resistance mutations are mutations in the rt domain of the <em>pol</em> gene: the classic YMDD substitution <strong>rtM204V</strong> alters the catalytic motif of the reverse transcriptase and abolishes lamivudine sensitivity (see the mutation table below).</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['I', 'dsDNA', 'DNA → mRNA (like the host cell)', 'Herpesviruses, adenoviruses, smallpox, ASFV'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['<strong>VII</strong>', '<strong>dsDNA-RT</strong>', '<strong>Reverse transcription via an RNA intermediate</strong>', '<strong>Hepatitis B</strong>']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Mutations and Clinical Markers</h2>' +
     '<h3>Polymerase (rt domain) resistance</h3>' +
@@ -2102,6 +2157,17 @@
     '<p>The classic clinical trap is <strong>refractory CMV</strong>: the load does not fall on ganciclovir/valganciclovir for weeks. There are only two causes — insufficient immunity or a <strong>resistant virus</strong> — and the solutions are opposite. A reference laboratory (Sanger) answers within <strong>weeks</strong>; our pipeline, from nanopore sequencing data, genotypes the resistance genes <strong>in hours</strong>, on site, in the transplant centre. Deep sequencing catches <strong>minor resistant subpopulations (5–20%)</strong> that Sanger fundamentally cannot see — yet it is precisely they that are selected under therapy and lead to failure of the treatment line.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma/whole blood of a post-transplant patient (viraemia confirmed by PCR). Optimal — a run on <strong>Flongle/MinION</strong> right in the transplant centre laboratory (Edge).</li>' +
     '<li><strong>📤 Output:</strong> HTML report for the transplant physician — resistance genotype across UL97/UL54/UL56/UL51/UL89 with subpopulation fractions, drug-level interpretation (ganciclovir / foscarnet / cidofovir / letermovir / maribavir), viral load estimation from the same data; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: I — double-stranded DNA (dsDNA)</h2>' +
+    '<p>CMV belongs to <strong>Class I of the Baltimore classification</strong> — double-stranded DNA viruses. Their expression strategy is the most "cellular": the dsDNA genome is transcribed by DNA-dependent RNA polymerase (host and viral) into mRNA, which is immediately translated into protein — the classic <strong>DNA → mRNA → protein</strong> scheme, with no reverse transcription and no RNA intermediates. The CMV genome — <strong>~235 kb</strong>, the largest among human herpesviruses — is riddled with repeats (inverted b\'/c\' repeats flanking the unique UL and US segments), and in monocytes the virus goes latent, persisting as episomal dsDNA. For the pipeline this means two things: dsDNA is a <strong>stable target</strong> that requires no reverse-transcription step and is read directly by the nanopore, including native methylation; and long ONT reads <strong>span the repeats end to end</strong>, where short reads of a dsDNA genome collapse and fail to phase.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['<strong>I</strong>', '<strong>dsDNA</strong>', '<strong>DNA → mRNA (like the host cell)</strong>', '<strong>Herpesviruses, adenoviruses, smallpox, ASFV</strong>'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Resistance Genes and Viral Load</h2>' +
     '<h3>UL97 — phosphotransferase, the "gateway of ganciclovir"</h3>' +
@@ -2165,6 +2231,17 @@
     '<p>From nanopore sequencing data our pipeline combines three tasks in a single run: <strong>CSF mNGS</strong> (detection of HSV together with the differential panel — VZV, enteroviruses, HHV-6, bacterial meningitis), <strong>resistance genotyping</strong> across UL23/UL30 and <strong>whole-genome assembly</strong> for strain epidemiology.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: CSF (priority), vesicular fluid, mucosal swabs, blood in neonatal infection. Optimal — a run on <strong>Flongle</strong> for the emergency scenario (Edge) in intensive care.</li>' +
     '<li><strong>📤 Output:</strong> HTML report for the neurologist/infectious disease physician — species and type of virus (HSV-1/HSV-2 by US6), resistance genotype with interpretation of UL23/UL30 mutations and a therapy-change recommendation, differential panel by mNGS; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: I — double-stranded DNA (dsDNA)</h2>' +
+    '<p>HSV-1 and HSV-2 belong to <strong>Class I of the Baltimore classification</strong> — double-stranded DNA viruses. Their expression strategy is the most "cellular": the dsDNA genome is transcribed by DNA-dependent RNA polymerase (host and viral) into mRNA, which is immediately translated into protein — the classic <strong>DNA → mRNA → protein</strong> scheme, with no reverse transcription and no RNA intermediates. The HSV genome is <strong>~152 kb</strong> of dsDNA with a characteristic architecture: the unique UL and US segments are surrounded by <strong>terminal and internal inverted repeats</strong> (TRL/IRL/IRS/TRS), and in ganglion neurons the virus establishes lifelong latency. For the pipeline this means two things: dsDNA is a <strong>stable target</strong> that requires no reverse-transcription step and is read directly by the nanopore, including native methylation; and long ONT reads <strong>resolve the inverted repeats in full</strong>, allowing the genome to be assembled into a single contig and indels in the homopolymer tracts of UL23 to be mapped precisely.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['<strong>I</strong>', '<strong>dsDNA</strong>', '<strong>DNA → mRNA (like the host cell)</strong>', '<strong>Herpesviruses, adenoviruses, smallpox, ASFV</strong>'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification and Resistance</h2>' +
     '<h3>Key genes</h3>' +
@@ -2268,6 +2345,17 @@
       ['<strong>IR1–IR4</strong>', 'Internal tandem repeats', 'Not resolved by short reads; long reads deliver the complete ~172 kb genome assembly'],
       ['<strong>Cp / Wp</strong>', 'Promoters', 'Switching of latency programmes (0/I/II/III) and the lytic cycle; read together with methylation']
     ]) + '<hr>' +
+    '<h2>🧭 Baltimore Class: I — double-stranded DNA (dsDNA)</h2>' +
+    '<p>EBV belongs to <strong>Class I of the Baltimore classification</strong> — double-stranded DNA viruses. Their expression strategy is the most "cellular": the dsDNA genome is transcribed by DNA-dependent RNA polymerase (host and viral) into mRNA, which is immediately translated into protein — the classic <strong>DNA → mRNA → protein</strong> scheme, with no reverse transcription and no RNA intermediates. The EBV genome is <strong>~172 kb</strong> of dsDNA, threaded with internal tandem repeats <strong>IR1–IR4</strong> and terminal repeats <strong>TR</strong>, whose copy number serves as a "fingerprint" of tumour clonality; in B lymphocytes the virus persists for life as a circular episome in one of its latency programmes. For the pipeline this means two things: dsDNA is a <strong>stable target</strong> that requires no reverse-transcription step and is read directly by the nanopore, including <strong>native methylation without bisulfite conversion</strong> (the key to latency programmes); and long ONT reads <strong>resolve IR1–IR4 and TR in full</strong> — something fundamentally inaccessible to short reads.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['<strong>I</strong>', '<strong>dsDNA</strong>', '<strong>DNA → mRNA (like the host cell)</strong>', '<strong>Herpesviruses, adenoviruses, smallpox, ASFV</strong>'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>⚙️ Versions and ML Models</h2>' +
     '<h3>Primary tool</h3>' +
@@ -2314,6 +2402,17 @@
     '<p>Our pipeline settles the question with <strong>long nanopore reads</strong>: they capture <strong>"virus–chromosome" chimeric reads</strong> and junctions with telomeric repeats <strong>(TTAGGG)n</strong> — direct proof of germline integration, while the coverage ratio (<strong>~1 viral copy per cell</strong> in iciHHV-6 versus growth during replication) distinguishes integration from active reactivation.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: whole blood, plasma, CSF (when encephalitis is suspected).</li>' +
     '<li><strong>📤 Output:</strong> HTML report for the transplant physician/neurologist — species (HHV-6A/6B), <strong>integration status (iciHHV-6 yes/no)</strong>, copy-number estimate, interpretation of the "viral load"; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: I — double-stranded DNA (dsDNA)</h2>' +
+    '<p>HHV-6A and HHV-6B belong to <strong>Class I of the Baltimore classification</strong> — double-stranded DNA viruses. Their expression strategy is the most "cellular": the dsDNA genome is transcribed by DNA-dependent RNA polymerase (host and viral) into mRNA, which is immediately translated into protein — the classic <strong>DNA → mRNA → protein</strong> scheme, with no reverse transcription and no RNA intermediates. The HHV-6 genome is <strong>~160 kb</strong> of dsDNA with telomere-like repeats at its ends, and it is these repeats that enable an ability unique among herpesviruses — <strong>integration into the telomeres of host chromosomes</strong> (iciHHV-6): viral dsDNA embeds into chromosomal dsDNA and is inherited through the germline. For the pipeline this means two things: dsDNA is a <strong>stable target</strong> that requires no reverse-transcription step and is read directly by the nanopore, including native methylation; and long ONT reads <strong>capture the chimeric virus–chromosome junctions in full</strong>, distinguishing integration from replication where qPCR is fundamentally powerless.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['<strong>I</strong>', '<strong>dsDNA</strong>', '<strong>DNA → mRNA (like the host cell)</strong>', '<strong>Herpesviruses, adenoviruses, smallpox, ASFV</strong>'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Core of the Pipeline: iciHHV-6 versus Reactivation</h2>' +
     '<p>The main clinical question in high HHV-6 viraemia is — <strong>is this an active infection or an inherited integration?</strong> qPCR fundamentally cannot distinguish these states: in both there is viral DNA in blood. Long reads settle the question directly.</p>' +
@@ -2570,6 +2669,17 @@
     '<p>In the acute phase viraemia is high, and the virus is confidently detected by direct sequencing: it is clinical metagenomic sequencing (mNGS), widely deployed in China, that most often yields the diagnosis of SFTS in cases of unclear fever. Our pipeline implements <strong>point-of-care nanopore mNGS in a district hospital of an endemic region</strong>: long reads cover entire segments almost completely, making it possible not only to identify the virus but also to perform L/M/S segment analysis, phylogenetics and tracking of segment reassortment between lineages, and to differentiate SFTS from other haemorrhagic fevers and rickettsioses. A MinION with a Flongle adapter gives fast time-to-answer and field deployment in a county hospital setting.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma/serum or whole blood in the acute phase. Optimal: metagenomic sequencing with ribosomal RNA/host background depletion <strong>or</strong> targeted enrichment of the L/M/S segments.</li>' +
     '<li><strong>📤 Output:</strong> HTML report for the physician — identification of Dabie bandavirus, coverage and consensuses of the L/M/S segments, genetic lineage and signs of reassortment, and a differential panel of other fever pathogens.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: V — (−)ssRNA, negative-sense single-stranded RNA</h2>' +
+    '<p>Like influenza, SFTSV belongs to Class V: its genome is negative-sense single-stranded RNA, which cannot be translated directly, so the virus brings its own RdRp into the cell to synthesise (+)strand mRNAs. The genome is divided into <strong>three segments</strong>: <strong>L</strong> encodes the RdRp itself, <strong>M</strong> the envelope glycoproteins Gn/Gc, and <strong>S</strong> the nucleocapsid protein N. A textbook subtlety: the S segment of bunyaviruses uses an <strong>ambisense</strong> strategy — the N protein is encoded on the viral (−)strand, while the non-structural protein NSs is encoded in the opposite (+)orientation, meaning that translating both proteins requires RNAs of both polarities. Segmentation, as in influenza, opens the door to reassortment — the exchange of L/M/S segments between lineages, which the pipeline tracks via discordant segment phylogenies.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['I', 'dsDNA', 'DNA → mRNA (like the host cell)', 'Herpesviruses, adenoviruses, smallpox, ASFV'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['IV', '(+)ssRNA', 'Genome = mRNA, immediate translation', 'SARS-CoV-2, hepatitis C'],
+      ['<strong>V</strong>', '<strong>(−)ssRNA</strong>', '<strong>First the (+)strand is synthesised (RdRp)</strong>', '<strong>Influenza, SFTS, rabies</strong>'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Genomic Markers and Clinical Significance</h2>' +
     '<h3>Segment analysis</h3>' +
@@ -3197,6 +3307,17 @@
     '<p>Our pipeline performs whole-genome sequencing using the <strong>ARTIC</strong> protocol (amplicon, nanopore) and automatically delivers: genomic variant/lineage, spike protein mutation profile, and susceptibility assessment for four antiviral drugs.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after basecalling (Dorado, R10.4.1 chemistry). Amplicon sequencing with ARTIC V4.1 / V5.3 primer schemes.</li>' +
     '<li><strong>📤 Output:</strong> HTML report for clinician (variant, S-protein mutations, drug resistance profile) and QC report for bioinformatician.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Class: IV — (+)ssRNA</h2>' +
+    '<p>Class IV comprises positive-sense single-stranded RNA viruses: the genome is itself an mRNA and is translated by ribosomes into the replicase polyprotein immediately upon entering the cell. In SARS-CoV-2 this is one of the largest known RNA genomes (~30 kb): the replicase complex assembles an RNA-dependent RNA polymerase (<strong>RdRp, nsp12</strong>) that synthesises new genomic RNAs and a set of <strong>subgenomic RNAs</strong> — from which the structural proteins (S, M, N, E) are translated. A unique feature of coronaviruses is the proofreading 3\'→5\' exonuclease <strong>nsp14 (ExoN)</strong>: it corrects RdRp errors, so coronaviruses mutate more slowly than other RNA viruses (though faster than DNA viruses). All clinical genomics of COVID-19 works with the products of this strategy: variant mutations accumulate in the subgenomically encoded S protein, and the resistance targets — <em>nsp5</em> (protease) and <em>nsp12</em> (RdRp) — are the very enzymes of that replicase complex, which our pipeline annotates.</p>' +
+    tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
+      ['I', 'dsDNA', 'DNA → mRNA (like the host cell)', 'Herpesviruses, adenoviruses, smallpox, ASFV'],
+      ['II', 'ssDNA (+)', 'Via a dsDNA intermediate', 'Parvoviruses'],
+      ['III', 'dsRNA', 'RdRp transcribes from dsRNA', 'Rotaviruses'],
+      ['<strong>IV</strong>', '<strong>(+)ssRNA</strong>', '<strong>Genome = mRNA, immediate translation</strong>', '<strong>SARS-CoV-2, hepatitis C</strong>'],
+      ['V', '(−)ssRNA', 'First the (+)strand is synthesised (RdRp)', 'Influenza, SFTS, rabies'],
+      ['VI', '(+)ssRNA-RT', 'Reverse transcriptase: RNA → DNA', 'HIV, retroviruses'],
+      ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
+    ]) + '<hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Key Mutations and Genes</h2>' +
     '<h3>Variant Determination — S Gene (Spike)</h3>' +
@@ -3257,6 +3378,15 @@
     '<p>Our pipeline uses <strong>metagenomic nanopore sequencing (mNGS)</strong>: the sample (nasopharyngeal swab, BAL) is sequenced without prior knowledge of the pathogen — all viruses are detected simultaneously. For detected influenza A/B, subtype and antiviral resistance profile are additionally determined.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: nasopharyngeal swab / nasopharyngeal aspirate / BAL.</li>' +
     '<li><strong>📤 Output:</strong> HTML report for clinician with identified pathogens, relative abundance, and (for influenza) antiviral resistance profile.</li></ul><hr>' +
+    '<h2>🧭 Baltimore Classes as a Map of ARI</h2>' +
+    '<p>The Baltimore classification divides viruses into seven classes by genome type and mRNA synthesis strategy. Respiratory viruses are scattered across several classes at once — and metagenomic screening sees them all <strong>simultaneously, with a single method</strong>, because it works with nucleic acid directly: the sequencer does not care which replication strategy a virus uses. This is exactly what distinguishes mNGS from PCR panels, where each genome class requires its own amplification scheme.</p>' +
+    tbl(['Baltimore Class', 'Genome', 'Pathogens in the ARI Panel'], [
+      ['<strong>I</strong>', 'dsDNA', 'Adenovirus (serotypes B, C, E)'],
+      ['<strong>II</strong>', 'ssDNA (+)', 'Bocavirus (HBoV)'],
+      ['<strong>IV</strong>', '(+)ssRNA', 'Rhinoviruses A/B/C; coronaviruses (SARS-CoV-2, seasonal HCoV)'],
+      ['<strong>V</strong>', '(−)ssRNA', 'Influenza A/B, RSV, parainfluenza virus, metapneumovirus']
+    ]) +
+    '<p>Note: one and the same clinical picture — the "common cold" — is caused by viruses with fundamentally different molecular biology, from the single-stranded DNA of bocavirus to the segmented (−)ssRNA of influenza. For diagnostics this difference is levelled out: during library preparation RNA is converted into cDNA, and from then on all classes are analysed by a single pipeline.</p><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🦠 Detectable Pathogens</h2>' +
     tbl(['Pathogen', 'Clinical Significance'], [
@@ -3778,6 +3908,17 @@
     '<p>我们的流程在猪场或兽医实验室现场进行纳米孔测序:确认 ASFV DNA、基于 <em>p72</em> 基因 (<em>B646L</em>) 进行基因分型,并——对当前疫情形势至关重要——<strong>检测低毒力缺失变异株</strong> (Δ<em>CD2v</em>、Δ<em>MGF360/505</em>)。这类变异株 2020–2021 年在中国扩散,表现为慢性感染,令常规监测手段失效。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:EDTA 抗凝血、脾脏、淋巴结、扁桃体;设备拭子、饲料、饮水。</li>' +
     '<li><strong>📤 输出:</strong> 面向兽医的 HTML 报告 — ASFV DNA 检测结果、<em>p72</em> 基因型、<em>CD2v</em>/<em>MGF</em>/<em>I177L</em> 缺失状态、与经典猪瘟 (CSF) 的鉴别。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:I — 双链DNA</h2>' +
+    '<p>I 类为双链DNA基因组病毒:转录沿细胞熟悉的路径 DNA → mRNA 进行。ASFV 是该类中的"巨人"之一:170–190 kb 的基因组编码 150–200 种自身蛋白,包括自身的 DNA 聚合酶、修复酶和 RNA 聚合酶。与大多数 DNA 病毒不同,ASFV 在感染细胞的细胞质中复制 —— 病毒在那里构建几乎不依赖宿主细胞核机器的"病毒工厂"。携带自身复制装置的大型 DNA 基因组可以容忍整个基因块的缺失:<strong>低毒力缺失变异株</strong>(Δ<em>CD2v</em>、Δ<em>MGF360/505</em>)正是这样产生的,而检测它们正是流程的关键任务。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['<strong>I</strong>', '<strong>双链DNA</strong>', '<strong>DNA → mRNA(与宿主细胞相同)</strong>', '<strong>疱疹病毒、腺病毒、天花、非洲猪瘟</strong>'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -3813,6 +3954,17 @@
     '<p>我们的流程基于纳米孔测序数据确定<strong>病毒基因型 (A–J)</strong>、<strong>逆转录酶(聚合酶)耐药谱</strong>、导致 HBeAg 阴性病程的 preC/BCP 突变,以及 HBsAg 逃逸突变——为治疗方案的选择与调整提供完整的病毒基因组档案。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血浆/血清。最佳方案:<em>pol</em> 与 preS/S 扩增子测序<strong>或</strong>全基因组覆盖的靶向富集。</li>' +
     '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — HBV 基因型、核苷(酸)类似物敏感性谱、preC/BCP 与 HBsAg 逃逸状态及治疗解读。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:VII — 双链DNA-逆转录(副逆转录病毒)</h2>' +
+    '<p>VII 类为副逆转录病毒:基因组是 DNA,但复制需经逆转录 —— 与 VI 类逆转录病毒恰好"镜像"相反。HBV 病毒颗粒中包装的是部分双链环状 DNA(rcDNA,约 3.2 kb),进入肝细胞核后被修复为共价闭合环状 DNA(<strong>cccDNA</strong>)—— cccDNA 正是慢性化的储库,现有核苷(酸)类似物无法将其清除。以 cccDNA 为模板转录出前基因组 RNA(<strong>pgRNA</strong>),病毒聚合酶(<em>pol</em> 基因)在装配新颗粒时将其逆转录回 DNA。因此 HBV 的耐药突变就是 <em>pol</em> 基因 rt 结构域的突变:经典的 YMDD 替换 <strong>rtM204V</strong> 改变逆转录酶的催化基序,使拉米夫定失效(见下方突变表)。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['I', '双链DNA', 'DNA → mRNA(与宿主细胞相同)', '疱疹病毒、腺病毒、天花、非洲猪瘟'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['<strong>VII</strong>', '<strong>双链DNA-逆转录</strong>', '<strong>经RNA中间体逆转录</strong>', '<strong>乙型肝炎</strong>']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4005,6 +4157,17 @@
     '<p>我们的流程采用 <strong>ARTIC</strong> 方案(扩增子法,纳米孔)进行全基因组测序,并自动提供:基因组变异株/谱系、刺突蛋白突变谱,以及四种抗病毒药物的敏感性评估。</p>' +
     '<ul><li><strong>📥 输入:</strong> 碱基识别(Dorado,R10.4.1 化学体系)后的原始 <code>FASTQ</code> 数据。采用 ARTIC V4.1 / V5.3 引物方案的扩增子测序。</li>' +
     '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告(变异株、S 蛋白突变、耐药谱)和面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:IV — 正链ssRNA</h2>' +
+    '<p>IV 类为正链单链RNA病毒:基因组本身即是 mRNA,进入细胞后立刻由核糖体翻译为复制酶多聚蛋白。SARS-CoV-2 拥有已知最大的 RNA 基因组之一(约 30 kb):复制酶复合体组装出 RNA 依赖的 RNA 聚合酶(<strong>RdRp,nsp12</strong>),合成新的基因组 RNA 及一组<strong>亚基因组 RNA</strong> —— 结构蛋白(S、M、N、E)即由后者翻译。冠状病毒独有的特征是校正型 3\'→5\' 外切核酸酶 <strong>nsp14(ExoN)</strong>:它纠正 RdRp 的错误,因此冠状病毒的突变速度慢于其他 RNA 病毒(但快于 DNA 病毒)。COVID-19 的临床基因组学全部围绕这一策略的产物展开:变异株突变积累在亚基因组编码的 S 蛋白中,而耐药靶点 —— <em>nsp5</em>(蛋白酶)和 <em>nsp12</em>(RdRp)—— 正是该复制酶复合体的酶,也是我们的流程所注释的对象。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['I', '双链DNA', 'DNA → mRNA(与宿主细胞相同)', '疱疹病毒、腺病毒、天花、非洲猪瘟'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['<strong>IV</strong>', '<strong>正链ssRNA</strong>', '<strong>基因组即 mRNA,直接翻译</strong>', '<strong>SARS-CoV-2、丙型肝炎</strong>'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4128,6 +4291,17 @@
     '<p>疾病急性期病毒载量高,病毒可通过直接测序可靠检出:在中国广泛应用的临床宏基因组测序 (mNGS) 最常为不明原因发热带来 SFTS 诊断。我们的流程实现了<strong>流行区县级医院的床旁纳米孔 mNGS</strong>:长读长几乎可以完整覆盖整个节段,不仅能鉴定病毒,还能进行 L/M/S 节段分析、系统发育分析及谱系间节段重配追踪,并将 SFTS 与其他出血热和立克次体病相鉴别。配备 Flongle 适配器的 MinION 可快速给出结果,适合在县级医院现场部署。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:急性期血浆/血清或全血。最佳方案:去除核糖体 RNA/宿主背景的宏基因组测序<strong>或</strong>针对 L/M/S 节段的靶向富集。</li>' +
     '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 大别班达病毒鉴定、L/M/S 节段覆盖度与一致序列、遗传谱系与重配迹象,以及与其他发热病原体的鉴别。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:V — 负链ssRNA(负义单链RNA)</h2>' +
+    '<p>与流感病毒一样,SFTSV 属于 V 类:基因组为负链单链RNA,无法直接翻译,因此病毒自带 RdRp 进入细胞,合成(+)链 mRNA。基因组分为<strong>三个节段</strong>:<strong>L</strong> 编码 RdRp 本身,<strong>M</strong> 编码囊膜糖蛋白 Gn/Gc,<strong>S</strong> 编码核衣壳蛋白 N。一个教科书式的细节:布尼亚病毒的 S 节段采用<strong>双义(ambisense)</strong>策略 —— N 蛋白由病毒(−)链编码,而非结构蛋白 NSs 以相反的(+)方向编码,即翻译两种蛋白需要两种极性的 RNA。与流感一样,分节段特性为重配打开了大门 —— 不同谱系之间交换 L/M/S 节段,流程正是通过节段系统发育的不一致性来追踪这一现象。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['I', '双链DNA', 'DNA → mRNA(与宿主细胞相同)', '疱疹病毒、腺病毒、天花、非洲猪瘟'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['<strong>V</strong>', '<strong>负链ssRNA</strong>', '<strong>先合成(+)链(RdRp)</strong>', '<strong>流感、SFTS、狂犬病</strong>'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4808,6 +4982,17 @@
     '<p>第二支柱——"高性能 HPV 检测"——正是测序能够提供经典 qPCR 筛查所无法企及之处的领域。OnSiteSeq 由此叩开肿瘤学的大门。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:宫颈拭子或自取阴道样本。</li>' +
     '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — HPV 基因型、整合状态、甲基化分流及风险类别(CIN2+ 风险:低 / 中 / 高);面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:I — 双链DNA</h2>' +
+    '<p>I 类为双链DNA病毒:其基因组由细胞 RNA 聚合酶 II 转录为 mRNA,逻辑与宿主自身基因相同。HPV 携带小型环状双链DNA基因组(约 8 kb),在上皮细胞中通常以<strong>游离体</strong>形式维持 —— 即细胞核内自主的环状分子,不整合入染色体。临床转折点出现在<strong>整合</strong>之时:环状病毒 DNA 断裂(多在 <em>E2</em> 基因附近)并插入宿主基因组 —— 失去 E2 调控会解除对 <em>E6/E7</em> 癌基因的抑制,启动癌变。我们的流程正是通过"病毒–人源"嵌合读长检测这一"游离体 → 整合"转变(见下文"流程检测内容"部分),而基因组的 dsDNA 属性使纳米孔可直接读取天然 DNA —— 包括无需亚硫酸氢盐转化即可直接检测甲基化。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['<strong>I</strong>', '<strong>双链DNA</strong>', '<strong>DNA → mRNA(与宿主细胞相同)</strong>', '<strong>疱疹病毒、腺病毒、天花、非洲猪瘟</strong>'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>🎯 流程检测内容:三个分析层级</h2>' +
     '<p>与仅对少数基因型给出"是/否"答案的 qPCR 试剂盒不同,纳米孔测序在一次运行中解决三项临床权重不同的任务。</p>' +
     tbl(['层级', '任务', '临床意义'], [
@@ -4876,6 +5061,17 @@
     '<p>我们的算法提供完整的测序数据处理流程,用于识别耐药突变并准确鉴定 HIV-1 亚型。</p>' +
     '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 机器学习碱基识别器将纳米孔电信号转换为核苷酸数据之后;POD5/FAST5 → FASTQ)。</li>' +
     '<li><strong>📤 输出:</strong> 面向临床医生的详细 HTML 报告和面向生物信息分析师的扩展报告。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:VI — 正链ssRNA-逆转录(逆转录病毒)</h2>' +
+    '<p>VI 类涵盖逆转录病毒:其基因组为正链单链RNA,但不能直接充当 mRNA —— 首先由病毒<strong>逆转录酶</strong>(RT,<em>pol</em> 基因)将 RNA 逆转录为 DNA,再由<strong>整合酶</strong>将该 DNA 拷贝插入宿主基因组,形成<strong>前病毒</strong>。HIV-1 是该类的典型代表:前病毒成为细胞的永久组成部分和终生产生新病毒颗粒的源头,这正是现代疗法无法根除感染的原因。逆转录酶缺乏校正(3\'→5\' 外切核酸酶)活性,复制错误积累速度比细胞 DNA 聚合酶快几个数量级 —— 因此每位患者体内的 HIV 都呈准种多样性,耐药变异在药物压力下被迅速选择。正因如此,HIV 的耐药性就是 <em>pol</em> 基因(逆转录酶、蛋白酶、整合酶)中的突变,我们的流程依据 Stanford HIVdb 规则对其进行解读。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['I', '双链DNA', 'DNA → mRNA(与宿主细胞相同)', '疱疹病毒、腺病毒、天花、非洲猪瘟'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['<strong>VI</strong>', '<strong>正链ssRNA-逆转录</strong>', '<strong>逆转录酶:RNA → DNA</strong>', '<strong>HIV、逆转录病毒</strong>'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟢 <strong>可用</strong>'],
@@ -5174,6 +5370,17 @@
     '<p>流程执行流感全基因组分析:HA/NA 亚型分型、全部节段重建、重配株检测与抗病毒耐药谱分析。节段来源通过<strong>位点级图比对 (OnSiteSeq-PanG)</strong> 追踪:图编码了已知节段的历史,显示患者病毒由哪些"历史片段"组装而成。亚型分型与节段组装使用成熟的标准工具 (IRMA,CDC)。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:鼻咽/口咽拭子、病毒培养物。最佳方案:全部 8 个节段的 WGS(多重 PCR)。</li>' +
     '<li><strong>📤 输出:</strong> HTML 报告,含亚型(H1N1pdm09、H3N2、Victoria/Yamagata)、Nextclade 归属、重配节段信息与耐药谱。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:V — 负链ssRNA(负义单链RNA)</h2>' +
+    '<p>V 类病毒的基因组为负链单链RNA:该链无法被细胞核糖体直接翻译,因此病毒首先合成互补的(+)链,再由此翻译蛋白。所需的酶 —— RNA 依赖的 RNA 聚合酶(RdRp)—— 由病毒颗粒自带:细胞中没有现成的。流感基因组分为 <strong>8 个独立的负链ssRNA 节段</strong>,正是这种分节段特性使<strong>重配</strong>成为可能 —— 当两个毒株同时感染一个细胞时整体交换节段,这是抗原转变和大流行变异株诞生的机制。因此流程逐一分析每个节段的来源(OnSiteSeq-PanG),而非只给出一个平均化的病毒亚型。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['I', '双链DNA', 'DNA → mRNA(与宿主细胞相同)', '疱疹病毒、腺病毒、天花、非洲猪瘟'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['<strong>V</strong>', '<strong>负链ssRNA</strong>', '<strong>先合成(+)链(RdRp)</strong>', '<strong>流感、SFTS、狂犬病</strong>'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5285,6 +5492,15 @@
     '<p>我们的流程采用<strong>宏基因组纳米孔测序 (mNGS)</strong>:样本(鼻咽拭子、肺泡灌洗液)在事先不知病原体的情况下测序 — 同时检出所有病毒。对检出的甲/乙型流感,还会额外确定亚型与抗病毒耐药谱。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:鼻咽拭子 / 鼻咽抽吸物 / 肺泡灌洗液 (BAL)。</li>' +
     '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,含检出的病原体、相对丰度,以及(针对流感)抗病毒耐药谱。</li></ul><hr>' +
+    '<h2>🧭 作为急性呼吸道感染地图的巴尔的摩分类</h2>' +
+    '<p>巴尔的摩分类法按基因组类型和 mRNA 合成策略将病毒分为七个类别。呼吸道病毒同时散布在多个类别中 —— 而宏基因组筛查能用<strong>同一种方法一次性</strong>看到它们全部,因为它直接作用于核酸:测序仪并不关心病毒采用哪种复制策略。这正是 mNGS 与 PCR 组合检测的区别所在 —— 后者每一类基因组都需要各自的扩增方案。</p>' +
+    tbl(['巴尔的摩类别', '基因组', '急性呼吸道感染检测组合中的病原体'], [
+      ['<strong>I</strong>', '双链DNA', '腺病毒(血清型 B、C、E)'],
+      ['<strong>II</strong>', '单链DNA(+)', '博卡病毒(HBoV)'],
+      ['<strong>IV</strong>', '正链ssRNA', '鼻病毒 A/B/C;冠状病毒(SARS-CoV-2、季节性 HCoV)'],
+      ['<strong>V</strong>', '负链ssRNA', '甲型/乙型流感、RSV、副流感病毒、偏肺病毒']
+    ]) +
+    '<p>请注意:相同的临床表现 ——"普通感冒"—— 可由分子生物学特性截然不同的病毒引起,从博卡病毒的单链DNA到流感病毒的分节段负链ssRNA。对诊断而言,这种差异被抹平了:在文库制备阶段 RNA 被转化为 cDNA,此后所有类别都由同一条流程分析。</p><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7342,6 +7558,17 @@
     '<p>经典的临床陷阱是<strong>难治性 CMV</strong>:在更昔洛韦/缬更昔洛韦治疗下病毒载量数周不降。病因只有两个——免疫不足或<strong>耐药病毒</strong>——而两者的处理截然相反。参考实验室 (Sanger) 需要<strong>数周</strong>才能给出答复;我们的流程基于纳米孔测序数据,在移植中心现场<strong>数小时内</strong>完成耐药基因分型。深度测序能捕获 Sanger 原则上无法看到的<strong>低频耐药亚群 (5–20%)</strong>——而正是这些亚群在治疗压力下被筛选出来,导致该线治疗失败。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:移植后患者的血浆/全血(病毒血症经 PCR 证实)。最佳方案——在移植中心实验室直接用 <strong>Flongle/MinION</strong> 运行 (Edge)。</li>' +
     '<li><strong>📤 输出:</strong> 面向移植医生的 HTML 报告 — UL97/UL54/UL56/UL51/UL89 耐药基因型及亚群比例,按药物解读(更昔洛韦/膦甲酸/西多福韦/莱特莫韦/马立巴韦),并由同一数据估算病毒载量;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:I — 双链DNA(dsDNA)</h2>' +
+    '<p>CMV 属于<strong>巴尔的摩分类的 I 类</strong> —— 双链DNA基因组病毒。其表达策略最"细胞化":dsDNA 基因组由 DNA 依赖的 RNA 聚合酶(宿主的和病毒的)转录为 mRNA,随即翻译为蛋白 —— 经典的 <strong>DNA → mRNA → 蛋白</strong> 路线,无逆转录和 RNA 中间体。CMV 基因组约 <strong>235 kb</strong>,是人疱疹病毒中最大的,且遍布重复序列(侧翼于独特区段 UL 和 US 的反向重复 b\'/c\');在单核细胞中病毒进入潜伏,以游离体 dsDNA 形式存留。对流程而言这意味着两点:dsDNA 是<strong>稳定的靶标</strong>,无需逆转录步骤,可由纳米孔直接读取,包括天然甲基化;而 ONT 长读长能够<strong>完整跨越重复序列</strong>,在那里 dsDNA 基因组的短读长会坍塌且无法定相。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['<strong>I</strong>', '<strong>双链DNA</strong>', '<strong>DNA → mRNA(与宿主细胞相同)</strong>', '<strong>疱疹病毒、腺病毒、天花、非洲猪瘟</strong>'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7410,6 +7637,17 @@
     '<p>我们的流程基于纳米孔测序数据,在一次运行中合并三项任务:<strong>脑脊液 mNGS</strong>(在鉴别诊断谱中检测 HSV——VZV、肠道病毒、HHV-6、细菌性脑膜炎)、UL23/UL30 <strong>耐药基因分型</strong>以及用于毒株流行病学研究的<strong>全基因组组装</strong>。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:脑脊液(优先)、疱液、黏膜拭子、新生儿感染时的血液。最佳方案——在重症监护室以 <strong>Flongle</strong> 运行,用于急诊场景 (Edge)。</li>' +
     '<li><strong>📤 输出:</strong> 面向神经科/感染科医生的 HTML 报告 — 病毒种类与型别(按 US6 区分 HSV-1/HSV-2)、耐药基因型(含 UL23/UL30 突变解读与换药建议)、mNGS 鉴别诊断谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:I — 双链DNA(dsDNA)</h2>' +
+    '<p>HSV-1 和 HSV-2 属于<strong>巴尔的摩分类的 I 类</strong> —— 双链DNA基因组病毒。其表达策略最"细胞化":dsDNA 基因组由 DNA 依赖的 RNA 聚合酶(宿主的和病毒的)转录为 mRNA,随即翻译为蛋白 —— 经典的 <strong>DNA → mRNA → 蛋白</strong> 路线,无逆转录和 RNA 中间体。HSV 基因组为约 <strong>152 kb</strong> 的 dsDNA,具有特征性结构:独特区段 UL 和 US 被<strong>末端及内部反向重复序列</strong>(TRL/IRL/IRS/TRS)环绕;在神经节神经元中病毒建立终身潜伏。对流程而言这意味着两点:dsDNA 是<strong>稳定的靶标</strong>,无需逆转录步骤,可由纳米孔直接读取,包括天然甲基化;而 ONT 长读长能够<strong>完整解析反向重复序列</strong>,使基因组得以组装为单条重叠群,并精确绘制 UL23 同聚物区段的插入缺失。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['<strong>I</strong>', '<strong>双链DNA</strong>', '<strong>DNA → mRNA(与宿主细胞相同)</strong>', '<strong>疱疹病毒、腺病毒、天花、非洲猪瘟</strong>'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7518,6 +7756,17 @@
       ['<strong>IR1–IR4</strong>', '内部串联重复', '短读长无法解析;长读长给出约 172 kb 基因组的完整组装'],
       ['<strong>Cp / Wp</strong>', '启动子', '潜伏程序 (0/I/II/III) 与裂解周期的切换;与甲基化联合读取']
     ]) + '<hr>' +
+    '<h2>🧭 巴尔的摩分类:I — 双链DNA(dsDNA)</h2>' +
+    '<p>EBV 属于<strong>巴尔的摩分类的 I 类</strong> —— 双链DNA基因组病毒。其表达策略最"细胞化":dsDNA 基因组由 DNA 依赖的 RNA 聚合酶(宿主的和病毒的)转录为 mRNA,随即翻译为蛋白 —— 经典的 <strong>DNA → mRNA → 蛋白</strong> 路线,无逆转录和 RNA 中间体。EBV 基因组为约 <strong>172 kb</strong> 的 dsDNA,遍布内部串联重复 <strong>IR1–IR4</strong> 和末端重复 <strong>TR</strong>,其拷贝数是肿瘤克隆性的"指纹";在 B 淋巴细胞中病毒以环状游离体形式终身潜伏于某种潜伏程序之中。对流程而言这意味着两点:dsDNA 是<strong>稳定的靶标</strong>,无需逆转录步骤,可由纳米孔直接读取,包括<strong>无需亚硫酸氢盐转化的天然甲基化</strong>(解析潜伏程序的关键);而 ONT 长读长能够<strong>完整解析 IR1–IR4 和 TR</strong> —— 这是短读长从根本上无法企及的。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['<strong>I</strong>', '<strong>双链DNA</strong>', '<strong>DNA → mRNA(与宿主细胞相同)</strong>', '<strong>疱疹病毒、腺病毒、天花、非洲猪瘟</strong>'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7569,6 +7818,17 @@
     '<p>我们的流程用<strong>纳米孔长读长</strong>终结这个问题:长读长可捕获<strong>"病毒-染色体"嵌合读长</strong>以及与端粒重复序列 <strong>(TTAGGG)n</strong> 的连接点——这是生殖系整合的直接证据;而覆盖度比值(iciHHV-6 时<strong>每个细胞约 1 个病毒拷贝</strong>,复制时则升高)可区分整合与活动性再激活。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:全血、血浆、脑脊液(疑似脑炎时)。</li>' +
     '<li><strong>📤 输出:</strong> 面向移植医生/神经科医生的 HTML 报告 — 型别 (HHV-6A/6B)、<strong>整合状态(iciHHV-6 是/否)</strong>、拷贝数估算、"病毒载量"解读;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>🧭 巴尔的摩分类:I — 双链DNA(dsDNA)</h2>' +
+    '<p>HHV-6A 和 HHV-6B 属于<strong>巴尔的摩分类的 I 类</strong> —— 双链DNA基因组病毒。其表达策略最"细胞化":dsDNA 基因组由 DNA 依赖的 RNA 聚合酶(宿主的和病毒的)转录为 mRNA,随即翻译为蛋白 —— 经典的 <strong>DNA → mRNA → 蛋白</strong> 路线,无逆转录和 RNA 中间体。HHV-6 基因组为约 <strong>160 kb</strong> 的 dsDNA,两端带有端粒样重复序列,正是它们赋予了疱疹病毒中独一无二的能力 —— <strong>整合入宿主染色体端粒</strong>(iciHHV-6):病毒 dsDNA 嵌入染色体 dsDNA 并沿生殖系遗传。对流程而言这意味着两点:dsDNA 是<strong>稳定的靶标</strong>,无需逆转录步骤,可由纳米孔直接读取,包括天然甲基化;而 ONT 长读长能够<strong>完整捕获"病毒–染色体"嵌合连接</strong>,在 qPCR 根本无能为力之处区分整合与复制。</p>' +
+    tbl(['类别', '基因组', '复制策略', '示例'], [
+      ['<strong>I</strong>', '<strong>双链DNA</strong>', '<strong>DNA → mRNA(与宿主细胞相同)</strong>', '<strong>疱疹病毒、腺病毒、天花、非洲猪瘟</strong>'],
+      ['II', '单链DNA(+)', '经双链DNA中间体', '细小病毒'],
+      ['III', '双链RNA', 'RdRp 从双链RNA转录', '轮状病毒'],
+      ['IV', '正链ssRNA', '基因组即 mRNA,直接翻译', 'SARS-CoV-2、丙型肝炎'],
+      ['V', '负链ssRNA', '先合成(+)链(RdRp)', '流感、SFTS、狂犬病'],
+      ['VI', '正链ssRNA-逆转录', '逆转录酶:RNA → DNA', 'HIV、逆转录病毒'],
+      ['VII', '双链DNA-逆转录', '经RNA中间体逆转录', '乙型肝炎']
+    ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
