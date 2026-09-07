@@ -189,6 +189,11 @@ candida_entries:
     desc: Азиатские азоль-резистентные клоны tropicalis (ERG11 Y132F/A395T) и врождённая флуконазол-резистентность krusei — видовая идентификация решает стартовую терапию
     image: /assets/images/logo/icon_tropicalis.svg
 
+  - title: Malassezia (липофильные дрожжи)
+    url: malassezia
+    desc: "Фунгемии NICU у детей на липидных эмульсиях, зоонозные вспышки M. pachydermatis с собак — культура мучительна (агар Dixon), молекулярная идентификация и SNP-трассировка решают"
+    image: /assets/images/logo/icon_malassezia.svg
+
 cocci_entries:
   - title: Золотистый стафилококк (S. aureus)
     url: staphylococcus

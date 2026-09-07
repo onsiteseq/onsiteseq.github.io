@@ -1809,6 +1809,69 @@
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — Candida tropicalis / Candida krusei (Taxonomy, PubMed)</a></li>' +
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Candidiasis (invasive)</a></li></ul>';
 
+  /* ── MALASSEZIA ── */
+  EN['/malassezia/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_malassezia.svg" alt="Malassezia — budding yeasts with a lipid droplet" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Malassezia: NICU Fungaemia and Zoonotic Outbreaks</h1>' +
+    '<p style="font-size:1.2em;color:#555">Species identification of lipophilic yeasts, SNP tracing of the outbreak source and azole resistance — where culture is powerless</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Malassezia</em> is a genus of <strong>lipophilic basidiomycete yeasts</strong> (this is fundamental: not <em>Candida</em> and not ascomycetes, but the class Exobasidiomycetes), dominants of the skin mycobiome of humans and warm-blooded animals. The genus comprises <strong>~18 species</strong>; <em>M. globosa</em> and <em>M. restricta</em> are associated with dandruff and seborrhoeic dermatitis, <em>M. furfur</em> with pityriasis versicolor and Malassezia folliculitis. To be honest: <strong>cutaneous forms are a clinical diagnosis</strong> — microscopy of a scraping is sufficient, and sequencing there is excessive. Our pipeline targets the territory where culture and phenotype systematically lose — invasive infection and outbreak epidemiology.</p>' +
+    '<p><strong>Core #1 — NICU fungaemia.</strong> Preterm infants on prolonged parenteral nutrition with <strong>lipid emulsions (Intralipid)</strong> are the classic population for Malassezia fungaemia: the fungus is lipid-dependent and literally feeds on the lipids of the infusate, forming <strong>catheter-associated fungaemia</strong> of central venous catheters. The clinical picture is nonspecific (fever, thrombocytopenia, respiratory distress in a catheterised child), and <em>Malassezia</em> <strong>does not grow</strong> in standard blood culture media — without lipid supplementation the culture remains sterile, and the diagnosis is systematically delayed or never made at all.</p>' +
+    '<p><strong>Core #2 — culture is laborious, molecular identification is faster and more reliable.</strong> Lipid dependence requires special media (Dixon agar with a lipid supplement), growth is slow (days), and phenotypic methods <strong>do not differentiate the ~18 species of the genus</strong>. Direct molecular identification from blood, a catheter tip or skin by ITS/LSU gives a species-level answer within hours — without waiting for a culture that may never grow.</p>' +
+    '<p><strong>Core #3 — zoonotic outbreaks and One Health.</strong> <em>M. pachydermatis</em> is the only <strong>lipid-independent</strong> species of the genus, a permanent inhabitant of canine skin and ears. NICU outbreaks have been documented in which staff <strong>brought the fungus on their hands from household pets</strong>, infecting preterm infants through catheters. <strong>SNP tracing</strong> of genomic data links clinical isolates to the source (the pet of a specific staff member) — this changes infection-control measures from "sterilise everything" to targeted elimination of the source. The One Health loop is closed by resistance: dogs with Malassezia otitis and dermatitis are massively treated with <strong>azoles in veterinary medicine</strong>, and azole-resistant <em>M. pachydermatis</em> strains have already been described — a potential reservoir of resistance next door to the preterm unit. A related topic is catheter-associated outbreaks of <em>Candida parapsilosis</em> in the same NICUs: see the <a href="/parapsilosis/">Candida parapsilosis page</a>.</p>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (full-length ITS + D1/D2 LSU), <strong>SNP typing</strong> for outbreak tracing and <strong>detection of azole resistance</strong> via ERG11 and efflux mechanisms.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood, catheter tip, skin scraping, canine external ear discharge (veterinary sample). Skin samples are <strong>low biomass</strong>, so the amplicon approach (ITS/D1D2) is optimal, together with a rapid <strong>Flongle</strong> run (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the NICU microbiologist/epidemiologist — species identification, ERG11/efflux profile, SNP clustering of outbreak isolates with an indication of the probable source; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Resistance, Tracing</h2>' +
+    '<h3>Species identification</h3>' +
+    '<p>Phenotypic methods do not differentiate species of the genus <em>Malassezia</em>; the gold standard is molecular loci:</p>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ITS1 / ITS2 (full-length ITS)</strong>', 'The primary barcode of the genus; nanopore sequencing covers the entire ITS in a single read — species-level resolution without assembly'],
+      ['<strong>D1/D2 (LSU, 26S rRNA)</strong>', 'The classic yeast identification locus; duplicates ITS and resolves ambiguous cases'],
+      ['<strong>Species targets</strong>', '<em>M. furfur</em> (NICU fungaemia, pityriasis versicolor), <em>M. pachydermatis</em> (canine zoonosis), <em>M. globosa</em> and <em>M. restricta</em> (dominants of the skin mycobiome, seborrhoeic dermatitis)']
+    ]) +
+    '<h3>Resistance genes</h3>' +
+    '<p>Azoles are the backbone of therapy (fluconazole, itraconazole) and veterinary practice, but resistance is growing:</p>' +
+    tbl(['Mechanism', 'Marker', 'Clinical Significance'], [
+      ['<strong>Target mutations</strong>', '<strong>ERG11</strong> (lanosterol 14α-demethylase)', 'Point mutations reduce azole binding — the main mechanism of fluconazole resistance'],
+      ['<strong>Efflux pumps</strong>', 'ABC transporters (MDR pumps)', 'Pumping azoles out of the cell; overexpression and hypermorphic alleles of regulators'],
+      ['<strong>Veterinary reservoir</strong>', 'ERG11 + efflux in <em>M. pachydermatis</em>', 'Azole selection in dogs → resistant strains within reach of the NICU']
+    ]) +
+    '<h3>Epidemiological tracing</h3>' +
+    tbl(['Method', 'Task'], [
+      ['<strong>SNP typing</strong> (clonal core genome)', 'Clustering of NICU outbreak isolates: a single source vs independent introductions'],
+      ['<strong>Human–pet matching</strong>', 'Proof of zoonotic introduction of <em>M. pachydermatis</em> from the dog of a specific staff member — grounds for targeted measures instead of closing the unit'],
+      ['<strong>Catheter link</strong>', 'Identity of the blood isolate and the catheter-tip isolate confirms catheter-associated fungaemia']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Malassezia Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>MAL-Species-ID</strong>', 'Species identification from full-length ITS + D1/D2 (all ~18 species of the genus)'],
+      ['<strong>MAL-Azole-Res</strong>', 'Prediction of azole resistance from ERG11 mutations and the efflux-pump signature'],
+      ['<strong>MAL-Outbreak-Tracer</strong>', 'SNP clustering of outbreak isolates with source estimation (patient/staff/pet)']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>; control of low biomass and host DNA admixture'],
+      ['<strong>2. Amplicon targeting (ITS/D1D2)</strong>', 'ITS1/ITS2 and D1/D2 LSU primers; full-amplicon read consensus'],
+      ['<strong>3. Alignment (Mapping)</strong>', '<code>minimap2</code> — reference panel of the genus <em>Malassezia</em> (<em>M. furfur</em>, <em>M. pachydermatis</em>, <em>M. globosa</em>, <em>M. restricta</em> and others)'],
+      ['<strong>4. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code> — ERG11 and the SNP core for tracing'],
+      ['<strong>5. Isolate clustering</strong>', 'SNP matrix, outbreak phylogenetics, matching with veterinary isolates'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context</h2>' +
+    '<ul><li><strong>The invisible NICU fungaemia</strong> — <em>Malassezia</em> does not grow in standard blood cultures: without a lipid supplement and without laboratory suspicion the culture is sterile, while the catheterised child on parenteral lipid emulsions keeps receiving the infusate that feeds the fungus. Direct molecular diagnostics from blood removes the dependence on culture and cuts time-to-answer from days to hours.</li>' +
+    '<li><strong>Documented zoonotic outbreaks</strong> — carriage of <em>M. pachydermatis</em> by NICU staff from their household dogs has been described repeatedly in the literature; for the first time SNP tracing makes the investigation evidence-based rather than presumptive, allowing the specific source to be eliminated instead of closing the unit.</li>' +
+    '<li><strong>One Health and azole selection</strong> — veterinary use of azoles for Malassezia otitis and dermatitis in dogs creates a reservoir of resistant strains in immediate proximity to the most vulnerable patient cohort; monitoring of ERG11/efflux profiles is needed on both sides of the human–animal barrier.</li>' +
+    '<li><strong>The skin mycobiome under control</strong> — <em>M. globosa</em> and <em>M. restricta</em> dominate the skin of healthy people, and their imbalance is linked to dandruff, seborrhoeic dermatitis and atopic dermatitis; precise species-level resolution (ITS/D1D2) opens the way to mycobiome studies inaccessible to phenotypic mycology.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — Tinea Versicolor (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Overview of Fungal Infections</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — Invasive Candidiasis and Neonatal Fungal Infections</a></li></ul>';
+
   /* ── PNEUMOCOCCUS (S. pneumoniae) ── */
   EN['/pneumoniae/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -7185,6 +7248,74 @@
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — 热带念珠菌 / 克鲁斯念珠菌 (Taxonomy、PubMed)</a></li>' +
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 念珠菌病(侵袭性)</a></li></ul>';
 
+  /* ── MALASSEZIA (马拉色菌) ── */
+  ZH['/malassezia/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_malassezia.svg" alt="马拉色菌 — 带脂滴的出芽酵母" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>马拉色菌:新生儿重症监护室真菌血症与人畜共患暴发</h1>' +
+    '<p style="font-size:1.2em;color:#555">亲脂性酵母的菌种鉴定、暴发源头 SNP 溯源与唑类耐药检测——在培养无能为力之处</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>马拉色菌属</em>(Malassezia)是一类<strong>亲脂性担子菌酵母</strong>(这一点至关重要:既不是念珠菌,也不是子囊菌,而是外担菌纲 Exobasidiomycetes),是人类和温血动物皮肤真菌群落的优势属。该属包含<strong>约 18 个物种</strong>;<em>球形马拉色菌</em>(M. globosa)和<em>限制性马拉色菌</em>(M. restricta)与头皮屑和脂溢性皮炎相关,<em>糠秕马拉色菌</em>(M. furfur)则与花斑癣和马拉色菌毛囊炎相关。坦率地说:<strong>皮肤型属于临床诊断</strong>,刮片镜检已经足够,测序在那里是多余的。我们的流程瞄准的是培养和表型方法系统性失灵的领域——侵袭性感染与暴发流行病学。</p>' +
+    '<p><strong>核心一:新生儿重症监护室 (NICU) 真菌血症。</strong>长期接受含<strong>脂质乳剂 (Intralipid)</strong> 肠外营养的早产儿是马拉色菌真菌血症的经典人群:该菌依赖脂质,直接以输注液中的脂质为营养,在中心静脉导管上形成<strong>导管相关真菌血症</strong>。临床表现不具特异性(带导管患儿的发热、血小板减少、呼吸障碍),而马拉色菌在标准血培养基中<strong>不生长</strong>——不添加脂质,培养便始终无菌,诊断被系统性地延误,甚至根本无法做出。</p>' +
+    '<p><strong>核心二:培养艰难,分子鉴定更快更可靠。</strong>脂质依赖性要求特殊培养基(添加脂质的 Dixon 琼脂),生长缓慢(以天计),且表型方法<strong>无法区分该属约 18 个物种</strong>。基于 ITS/LSU 从血液、导管尖端或皮肤直接进行分子鉴定,可在数小时内给出种级答案——无需等待可能永远长不出来的培养。</p>' +
+    '<p><strong>核心三:人畜共患暴发与"同一健康" (One Health)。</strong><em>厚皮马拉色菌</em>(M. pachydermatis)是该属唯一<strong>不依赖脂质</strong>的物种,是犬皮肤和耳道的常驻菌。已有文献记载的 NICU 暴发中,工作人员<strong>将真菌从自家宠物经双手带入</strong>,通过导管感染早产儿。基于基因组数据的 <strong>SNP 溯源</strong>将临床分离株与源头(某位员工的宠物)关联起来——这把防疫措施从"全面消毒"变为对源头的精准清除。"同一健康"的闭环由耐药性完成:患马拉色菌性耳炎和皮炎的犬在兽医实践中被大规模使用<strong>唑类药物</strong>治疗,耐唑类 <em>M. pachydermatis</em> 菌株已有报道——这是紧邻早产儿病房的潜在耐药储存库。相关主题还有同一 NICU 中近平滑念珠菌的导管相关暴发:参见<a href="/parapsilosis/">近平滑念珠菌页面</a>。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种鉴定</strong>(全长 ITS + D1/D2 LSU)、用于暴发溯源的 <strong>SNP 分型</strong>,以及基于 ERG11 和外排机制的<strong>唑类耐药检测</strong>。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液、导管尖端、皮肤刮片、犬外耳道分泌物(兽医样本)。皮肤样本为<strong>低生物量</strong>,因此最佳方案是扩增子方法 (ITS/D1D2) 并在 <strong>Flongle</strong> 上快速运行 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向 NICU 微生物学家/流行病学家的 HTML 报告 — 菌种鉴定、ERG11/外排谱、暴发分离株 SNP 聚类并指明最可能的源头;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、耐药、溯源</h2>' +
+    '<h3>菌种鉴定</h3>' +
+    '<p>表型方法无法区分马拉色菌属各物种;金标准是分子基因座:</p>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ITS1 / ITS2(全长 ITS)</strong>', '该属的主要条形码;纳米孔测序可在单条读长中覆盖整个 ITS——无需组装即可达到种级分辨率'],
+      ['<strong>D1/D2(LSU,26S rRNA)</strong>', '经典的酵母鉴定基因座;与 ITS 互为印证并解决疑难病例'],
+      ['<strong>目标物种</strong>', '<em>糠秕马拉色菌</em>(NICU 真菌血症、花斑癣)、<em>厚皮马拉色菌</em>(犬源人畜共患)、<em>球形马拉色菌</em>与<em>限制性马拉色菌</em>(皮肤真菌群落优势种、脂溢性皮炎)']
+    ]) +
+    '<h3>耐药基因</h3>' +
+    '<p>唑类药物是治疗(氟康唑、伊曲康唑)和兽医实践的基石,但耐药性正在上升:</p>' +
+    tbl(['机制', '标志物', '临床意义'], [
+      ['<strong>靶点突变</strong>', '<strong>ERG11</strong>(羊毛甾醇 14α-去甲基化酶)', '点突变降低唑类结合——氟康唑耐药的主要机制'],
+      ['<strong>外排泵</strong>', 'ABC 转运体(MDR 泵)', '将唑类泵出细胞;调控因子的过表达与超功能等位基因'],
+      ['<strong>兽医储存库</strong>', '<em>厚皮马拉色菌</em>的 ERG11 + 外排', '犬体内的唑类选择 → 耐药菌株进入 NICU 可达范围']
+    ]) +
+    '<h3>流行病学溯源</h3>' +
+    tbl(['方法', '任务'], [
+      ['<strong>SNP 分型</strong>(克隆核心基因组)', 'NICU 暴发分离株聚类:单一源头 vs 独立带入'],
+      ['<strong>"人–宠物"比对</strong>', '证明<em>厚皮马拉色菌</em>由某位员工的犬只人畜共患带入——是采取针对性措施而非关闭病房的依据'],
+      ['<strong>与导管的关联</strong>', '血液分离株与导管尖端分离株的一致性证实导管相关真菌血症']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Malassezia Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>MAL-Species-ID</strong>', '基于全长 ITS + D1/D2 的菌种鉴定(覆盖该属全部约 18 个物种)'],
+      ['<strong>MAL-Azole-Res</strong>', '基于 ERG11 突变和外排泵特征预测唑类耐药'],
+      ['<strong>MAL-Outbreak-Tracer</strong>', '暴发分离株 SNP 聚类并评估源头(患者/员工/宠物)']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>;低生物量与宿主 DNA 混入控制'],
+      ['<strong>2. 扩增子靶向 (ITS/D1D2)</strong>', 'ITS1/ITS2 与 D1/D2 LSU 引物;完整扩增子读长共识序列'],
+      ['<strong>3. 比对 (Mapping)</strong>', '<code>minimap2</code> — 马拉色菌属参考面板(<em>糠秕马拉色菌</em>、<em>厚皮马拉色菌</em>、<em>球形马拉色菌</em>、<em>限制性马拉色菌</em>等)'],
+      ['<strong>4. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code> — 用于溯源的 ERG11 与 SNP 核心'],
+      ['<strong>5. 分离株聚类</strong>', 'SNP 矩阵、暴发系统发育分析、与兽医分离株比对'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>看不见的 NICU 真菌血症</strong> — 马拉色菌在标准血培养中不生长:没有脂质添加、没有实验室的警觉,培养就是无菌,而带导管、接受肠外营养脂质乳剂的患儿仍在输注喂养真菌的营养液。从血液直接进行分子诊断摆脱了对培养的依赖,将出结果时间从数天缩短到数小时。</li>' +
+    '<li><strong>有文献记载的人畜共患暴发</strong> — NICU 工作人员从家养犬携带<em>厚皮马拉色菌</em>的案例在文献中多次报道;SNP 溯源首次让调查有据可依而非基于推测,使关闭病房变为清除具体源头。</li>' +
+    '<li><strong>"同一健康"与唑类选择</strong> — 兽医对犬马拉色菌性耳炎和皮炎使用唑类药物,在最脆弱的患者人群近在咫尺之处形成了耐药菌株储存库;ERG11/外排谱监测需要覆盖"人–动物"屏障的两侧。</li>' +
+    '<li><strong>可控的皮肤真菌群落</strong> — <em>球形马拉色菌</em>和<em>限制性马拉色菌</em>在健康人皮肤上占主导地位,其失衡与头皮屑、脂溢性皮炎和特应性皮炎相关;精准的种级分辨率 (ITS/D1D2) 为表型真菌学无法企及的真菌群落研究开辟了道路。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.ncbi.nlm.nih.gov/books/">StatPearls — 花斑癣 (NCBI Bookshelf)</a></li>' +
+    '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 真菌感染概述</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 侵袭性念珠菌病与新生儿真菌感染</a></li></ul>';
+
   /* ── PNEUMOCOCCUS (肺炎链球菌) ── */
   ZH['/pneumoniae/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -8043,7 +8174,7 @@
       'Онкология. Пейплайны в работе.': 'Oncology. Pipelines in Development.',
       'Пейплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
-      'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': 'Pipelines in Development. Clinical Assistants. Candidiasis Universe.',
+      'Пейплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': 'Pipelines in Development. Clinical Assistants. Yeast Universe.',
       'Пейплайны в работе. Помощники врача. Вселенная кокков.': 'Pipelines in Development. Clinical Assistants. Cocci Universe.',
       'Пейплайны в работе. Помощники врача. Вселенная герпесвирусов.': 'Pipelines in Development. Clinical Assistants. Herpesvirus Universe.',
       'Пейплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
@@ -8079,6 +8210,7 @@
       'glabrata':     ['Candida glabrata (Nakaseomyces)', 'Resistance evolving during therapy — PDR1, FKS1/FKS2 hot spots, MSH2 mutator phenotype; serial isolate monitoring'],
       'parapsilosis': ['Candida parapsilosis', 'Outbreaks in neonatal ICUs and catheter-associated candidaemia — ERG11 Y132F detection and SNP source tracing (staff hands, equipment)'],
       'tropicalis':   ['Candida tropicalis & C. krusei', 'Asian azole-resistant tropicalis clones (ERG11 Y132F/A395T) and intrinsic fluconazole resistance of krusei — species identification decides the starting therapy'],
+      'malassezia':   ['Malassezia (lipophilic yeasts)', 'NICU fungaemia in infants on lipid emulsions and zoonotic M. pachydermatis outbreaks from dogs — culture is painful (Dixon agar), molecular ID and SNP tracing solve it'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
       'hbv':          ['Hepatitis B (HBV)', 'HBV genotyping (A–J), polymerase resistance mutations (YMDD), HBeAg status and liver cancer risk markers — from a single assay'],
       'hvkp':         ['Hypervirulent Klebsiella (hvKP)', 'Virulence markers (rmpA, iucA, peg-344), K1/K2 capsular types and convergence with carbapenem resistance — liver abscess and metastatic infections'],
@@ -8145,7 +8277,7 @@
       'Онкология. Пейплайны в работе.': '肿瘤学 · 开发中的流程',
       'Пейплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
       'Пейплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
-      'Пейплайны в работе. Помощники врача. Вселенная кандидозов.': '开发中的流程 · 医生助手 · 念珠菌病宇宙',
+      'Пейплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': '开发中的流程 · 医生助手 · 酵母菌宇宙',
       'Пейплайны в работе. Помощники врача. Вселенная кокков.': '开发中的流程 · 医生助手 · 球菌宇宙',
       'Пейплайны в работе. Помощники врача. Вселенная герпесвирусов.': '开发中的流程 · 医生助手 · 疱疹病毒宇宙',
       'Пейплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
@@ -8187,6 +8319,7 @@
       'glabrata': ['光滑念珠菌 (Nakaseomyces)', '治疗过程中不断进化的耐药性 — PDR1、FKS1/FKS2 热点突变、MSH2 突变子表型;连续分离株监测'],
       'parapsilosis': ['近平滑念珠菌', '新生儿 ICU 暴发与导管相关念珠菌血症 — ERG11 Y132F 检测与 SNP 来源追踪(医护人员的手、设备)'],
       'tropicalis': ['热带念珠菌与克鲁斯念珠菌', '亚洲唑类耐药热带念珠菌克隆(ERG11 Y132F/A395T)与克鲁斯念珠菌先天氟康唑耐药 — 菌种鉴定决定起始治疗'],
+      'malassezia': ['马拉色菌(亲脂性酵母)', '接受脂质乳剂新生儿的 NICU 真菌血症与源自犬类的厚皮马拉色菌暴发 — 培养困难(Dixon 琼脂),分子鉴定与 SNP 溯源一锤定音'],
       'staphylococcus': ['金黄色葡萄球菌 (S. aureus)', 'MRSA/VRSA 鉴定与完整 AMR 谱分析 — 主要的医院感染病原体'],
       'pneumoniae': ['肺炎链球菌 (S. pneumoniae)', '嵌合型 pbp2x/pbp2b/pbp1a 与 cps 基因座血清分型:表型无法预测的疫苗逃逸 (19A、22F、33F) 与青霉素耐药'],
       'pyogenes': ['A 组链球菌 (S. pyogenes)', 'emm 分型取代 Sanger 测序、超抗原 speA/speC/ssa 与大环内酯类耐药 (ermB/mefA) — 从咽炎到坏死性筋膜炎'],
