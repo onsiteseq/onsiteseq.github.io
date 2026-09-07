@@ -1872,6 +1872,70 @@
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — Overview of Fungal Infections</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — Invasive Candidiasis and Neonatal Fungal Infections</a></li></ul>';
 
+  /* ── CRYPTOCOCCUS ── */
+  EN['/cryptococcus/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_cryptococcus.svg" alt="Cryptococcus neoformans — a yeast cell with a huge polysaccharide capsule" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>Cryptococcus neoformans / gattii: Species Identification, Molecular Types and Azole Resistance</h1>' +
+    '<p style="font-size:1.2em;color:#555">Species differentiation, CNVs and chromosome 1 disomy within hours — something neither CrAg nor culture can deliver</p></div><hr>' +
+    '<h2>🧬 Pipeline Description</h2>' +
+    '<p><em>Cryptococcus neoformans</em> is an encapsulated basidiomycete yeast; <strong>cryptococcal meningitis is the leading cause of adult meningitis</strong> in countries with high HIV prevalence: an estimated <strong>~112,000–152,000 deaths every year</strong>, up to <strong>19% of all HIV-related mortality</strong>. In 2022 the <strong>WHO included Cryptococcus in the fungal priority pathogens list — in the critical group</strong>. The infection is also gaining importance in China — including in patients <strong>without HIV</strong>, which blurs the familiar clinical picture.</p>' +
+    '<p>A separate problem is <em>C. gattii</em>: historically a "tropical" species, it infects <strong>immunocompetent</strong> people (the famous Vancouver Island and Pacific Northwest outbreak, with the range expanding together with the climate), causes a more severe course with neuro-obstructions and responds worse to fluconazole. The signature of the genus is the <strong>enormous polysaccharide capsule</strong>: the main virulence factor and at the same time an obstacle to classical PCR DNA extraction (but not to nanopore library preparation).</p>' +
+    '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (<em>neoformans</em> vs <em>gattii</em> — prognostically these are different diseases), determines <strong>molecular types</strong> VNI–VNIV (<em>neoformans</em>) and VGI–VGIV (<em>gattii</em>) and builds an <strong>azole resistance profile</strong> — including <strong>aneuploidies and CNVs</strong> that short reads cannot see.</p>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: pure isolate, CSF. Optimal — <strong>ITS / D1–D2</strong> amplicons on <strong>Flongle</strong> for rapid species identification (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> HTML report for the physician — species, molecular type, fluconazole susceptibility profile (ERG11, AFR1, chromosome 1 disomy), virulence markers; technical QC report for the bioinformatician.</li></ul><hr>' +
+    av('dev', 'dev', 'none') + '<hr>' +
+    '<h2>🎯 Markers: Identification, Typing, Resistance</h2>' +
+    '<h3>Species identification and molecular types</h3>' +
+    '<p>CrAg (latex / lateral flow) is a fast and cheap screen, but it <strong>does not distinguish species and molecular types</strong> and says nothing about resistance; culture takes days. Molecular diagnostics answers both questions:</p>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>ITS</strong> (internal transcribed spacer of rDNA)', 'Species identification: <em>C. neoformans</em> vs <em>C. gattii</em> and differentiation from other yeasts'],
+      ['<strong>D1/D2 LSU</strong> (large-subunit rDNA domain)', 'Species confirmation, phylogenetic resolution within the species complex'],
+      ['<strong>Molecular types VNI–VNIV</strong>', 'Genotypes of <em>C. neoformans</em>: VNI dominates in the clinic; VNIV — hybrids, rarer'],
+      ['<strong>Molecular types VGI–VGIV</strong>', 'Genotypes of <em>C. gattii</em>: VGII — the Pacific Northwest outbreak; the type affects prognosis and the response to fluconazole']
+    ]) +
+    '<h3>Azole resistance — critical in resource-limited settings</h3>' +
+    '<p>Fluconazole is the backbone of therapy where amphotericin B is unavailable (most HIV-endemic regions), so azole resistance directly decides the outcome:</p>' +
+    tbl(['Marker', 'Mechanism', 'Clinical Significance'], [
+      ['<strong>ERG11</strong>', 'Point mutations in the fluconazole target (lanosterol 14α-demethylase)', 'Classic target-mediated resistance'],
+      ['<strong>AFR1</strong>', 'Efflux pump (ABC transporter)', 'Pumping the azole out of the cell'],
+      ['<strong>Chromosome 1 disomy</strong>', 'Aneuploidy: <strong>ERG11 and AFR1 lie on the same chromosome</strong> — an extra copy doubles both the target and the pump', 'The main mechanism of <strong>heteroresistance</strong>: a disomic subpopulation survives on fluconazole'],
+      ['<strong>CNVs in the ERG11/AFR1 loci</strong>', 'Amplification without point mutations', 'Invisible to SNV-oriented tests; long reads + coverage analysis detect it directly']
+    ]) +
+    '<p>Heteroresistance via chromosome 1 disomy is the same class of mechanism as <strong>isochromosome 5L in Candida albicans</strong> (see the neighbouring <a href="/albicans/">Candida albicans card</a>): aneuploidies and CNVs are read by nanopore in the same run as SNVs.</p>' +
+    '<h3>Virulence factors</h3>' +
+    tbl(['Marker', 'Significance'], [
+      ['<strong>CAP59 / CAP64</strong>', 'Genes of polysaccharide capsule synthesis — the main virulence factor; acapsular mutants are avirulent'],
+      ['<strong>LAC1</strong>', 'Laccase, melanin synthesis — protection from oxidative stress inside macrophages, a virulence marker']
+    ]) + '<hr>' +
+    '<h2>⚙️ Versions and ML Models</h2>' +
+    tbl(['Component', 'Status'], [['<strong>OnSiteSeq Cryptococcus Pipeline</strong>', '🟡 In development']]) +
+    tbl(['Model', 'Target Task'], [
+      ['<strong>CRY-Species-Typer</strong>', 'Differentiation of <em>C. neoformans</em> / <em>C. gattii</em> and molecular types VNI–VNIV / VGI–VGIV from ITS and D1/D2'],
+      ['<strong>CRY-Azole-Profiler</strong>', 'Prediction of fluconazole resistance from ERG11, AFR1 and CNVs'],
+      ['<strong>CRY-Heterores-Scanner</strong>', 'Detection of heteroresistant subpopulations: chromosome 1 disomy and aneuploidies from the coverage profile']
+    ]) + '<hr>' +
+    '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
+    '<p>The pipeline is managed by the Snakemake framework in isolated Conda environments.</p>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Quality Control (QC)</strong>', '<code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
+      ['<strong>2. Alignment (Mapping)</strong>', '<code>minimap2</code> — <em>C. neoformans</em> (H99) and <em>C. gattii</em> (WM276) references'],
+      ['<strong>3. Variant Calling</strong>', '<code>clair3</code>, <code>medaka</code>'],
+      ['<strong>4. CNVs and aneuploidies</strong>', '<code>sniffles2</code>, per-chromosome coverage analysis — chr1 disomy, heteroresistant subpopulations at deep coverage'],
+      ['<strong>5. Marker detection</strong>', 'In-house database: ITS, D1/D2, ERG11, AFR1, CAP59/CAP64, LAC1, molecular-type markers'],
+      ['<strong>6. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 Global Context: Why It Matters</h2>' +
+    '<ul><li><strong>Critical WHO priority</strong> — cryptococcal meningitis kills 112,000–152,000 people a year and accounts for up to 19% of HIV-related mortality; in 2022 the WHO placed Cryptococcus in the critical group of fungal priority pathogens.</li>' +
+    '<li><strong>CrAg is not enough</strong> — the antigen test answers "yes/no" but does not distinguish species and molecular types and is silent on resistance; molecular diagnostics turns screening into prognosis.</li>' +
+    '<li><strong>C. gattii is redrawing the map</strong> — infection of immunocompetent hosts with a severe course and a poorer response to fluconazole is expanding its range together with the climate; species differentiation is becoming necessary outside the tropics as well, including a growing number of non-HIV cases in China.</li>' +
+    '<li><strong>Heteroresistance is invisible to short reads</strong> — chromosome 1 disomy with ERG11+AFR1 is an aneuploid mechanism reliably seen only by long reads with CNV analysis; the same logic as in <a href="/albicans/">Candida albicans</a>.</li>' +
+    '<li><strong>The capsule is no obstacle</strong> — the polysaccharide capsule complicates PCR extraction but not nanopore library preparation; ITS/D1–D2 amplicons on Flongle deliver species identification in a point-of-care scenario.</li></ul><hr>' +
+    '<h2>🔬 Sources</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240060241">WHO — Fungal priority pathogens list (2022)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — C. neoformans and C. gattii Infection</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — PubMed / Bookshelf</a></li></ul>';
+
   /* ── PNEUMOCOCCUS (S. pneumoniae) ── */
   EN['/pneumoniae/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -7316,6 +7380,75 @@
     '<li>📄 <a href="https://www.merckmanuals.com/">Merck Manual — 真菌感染概述</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — 侵袭性念珠菌病与新生儿真菌感染</a></li></ul>';
 
+  /* ── CRYPTOCOCCUS (隐球菌) ── */
+  ZH['/cryptococcus/'] =
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
+    '<img src="/assets/images/logo/icon_cryptococcus.svg" alt="新生隐球菌 — 带巨大多糖荚膜的酵母细胞" style="max-height:120px;margin-bottom:1rem">' +
+    '<h1>新生隐球菌 / 格特隐球菌:菌种鉴定、分子分型与唑类耐药</h1>' +
+    '<p style="font-size:1.2em;color:#555">数小时内完成菌种鉴别、CNV 与 1 号染色体二体检测——CrAg 和培养都做不到这一点</p></div><hr>' +
+    '<h2>🧬 流程说明</h2>' +
+    '<p><em>新生隐球菌</em>(Cryptococcus neoformans)是一种带荚膜的担子菌酵母;<strong>隐球菌性脑膜炎是 HIV 高流行国家成人脑膜炎的首要病因</strong>:估计每年约有 <strong>112 000–152 000 例死亡</strong>,占全部 HIV 相关死亡的 <strong>19%</strong>。2022 年,<strong>WHO 将隐球菌列入真菌重点病原体清单——关键优先级组</strong>。该病在中国的意义也日益上升——包括<strong>非 HIV</strong> 患者,这模糊了人们习以为常的临床画像。</p>' +
+    '<p>另一个独立的问题是<em>格特隐球菌</em>(C. gattii):这个历史上的"热带"菌种会感染<strong>免疫功能正常</strong>的人群(著名的温哥华岛及太平洋西北地区暴发,分布范围随气候变化不断扩大),病程更重,可伴神经梗阻性并发症,对氟康唑的反应也更差。该属的标志性特征是<strong>巨大的多糖荚膜</strong>:既是主要毒力因子,同时也是经典 PCR DNA 提取的障碍(但对纳米孔文库制备不是)。</p>' +
+    '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种鉴定</strong>(<em>neoformans</em> vs <em>gattii</em>——两者在预后上是不同的疾病),确定<strong>分子型</strong> VNI–VNIV(<em>neoformans</em>)和 VGI–VGIV(<em>gattii</em>),并构建<strong>唑类耐药谱</strong>——包括短读长无法看到的<strong>非整倍体与 CNV</strong>。</p>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:纯培养分离株、脑脊液。最佳方案 — 在 <strong>Flongle</strong> 上运行 <strong>ITS / D1–D2</strong> 扩增子,实现快速菌种鉴定 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 菌种、分子型、氟康唑药敏谱(ERG11、AFR1、1 号染色体二体)、毒力标志物;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<h2>📊 产品可用性</h2>' +
+    tbl(['平台', '可用状态'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟡 <strong>开发中</strong>'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+    ]) + '<hr>' +
+    '<h2>🎯 标志物:鉴定、分型、耐药</h2>' +
+    '<h3>菌种鉴定与分子分型</h3>' +
+    '<p>CrAg(乳胶凝集/侧向层析)是快速且廉价的筛查手段,但<strong>不能区分菌种和分子型</strong>,对耐药也一无所知;培养需要数天。分子诊断能同时回答这两个问题:</p>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>ITS</strong>(rDNA 内转录间隔区)', '菌种鉴定:<em>新生隐球菌</em> vs <em>格特隐球菌</em>,并与其他酵母鉴别'],
+      ['<strong>D1/D2 LSU</strong>(rDNA 大亚基结构域)', '菌种确认、种复合体内部的系统发育分辨率'],
+      ['<strong>分子型 VNI–VNIV</strong>', '<em>新生隐球菌</em>基因型:VNI 在临床上占主导;VNIV 为杂交型,较少见'],
+      ['<strong>分子型 VGI–VGIV</strong>', '<em>格特隐球菌</em>基因型:VGII — 太平洋西北暴发株;分子型影响预后和对氟康唑的反应']
+    ]) +
+    '<h3>唑类耐药 — 在资源有限地区至关重要</h3>' +
+    '<p>在无法获得两性霉素 B 的地区(大多数 HIV 流行地区),氟康唑是治疗的基石,因此唑类耐药直接决定结局:</p>' +
+    tbl(['标志物', '机制', '临床意义'], [
+      ['<strong>ERG11</strong>', '氟康唑靶点(羊毛甾醇 14α-去甲基化酶)点突变', '经典的靶点介导耐药'],
+      ['<strong>AFR1</strong>', '外排泵(ABC 转运体)', '将唑类泵出细胞'],
+      ['<strong>1 号染色体二体</strong>', '非整倍体:<strong>ERG11 与 AFR1 位于同一条染色体上</strong>——额外拷贝使靶点和外排泵同时加倍', '<strong>异质性耐药</strong>的主要机制:带二体的亚群在氟康唑下存活'],
+      ['<strong>ERG11/AFR1 基因座 CNV</strong>', '无点突变的扩增', '面向 SNV 的检测看不到;长读长 + 覆盖度分析可直接检出']
+    ]) +
+    '<p>经 1 号染色体二体产生的异质性耐药,与<strong>白色念珠菌的 5L 等臂染色体</strong>属于同一类机制(参见相邻卡片<a href="/albicans/">/albicans/</a>):纳米孔可在同一次运行中与 SNV 一起读取非整倍体和 CNV。</p>' +
+    '<h3>毒力因子</h3>' +
+    tbl(['标志物', '意义'], [
+      ['<strong>CAP59 / CAP64</strong>', '多糖荚膜合成基因——主要毒力因子;无荚膜突变体无毒力'],
+      ['<strong>LAC1</strong>', '漆酶、黑色素合成——抵御巨噬细胞内氧化应激,毒力标志物']
+    ]) + '<hr>' +
+    '<h2>⚙️ 版本与机器学习模型</h2>' +
+    tbl(['组件', '状态'], [['<strong>OnSiteSeq Cryptococcus Pipeline</strong>', '🟡 开发中']]) +
+    tbl(['模型', '目标任务'], [
+      ['<strong>CRY-Species-Typer</strong>', '基于 ITS 和 D1/D2 鉴别<em>新生隐球菌</em> / <em>格特隐球菌</em>及分子型 VNI–VNIV / VGI–VGIV'],
+      ['<strong>CRY-Azole-Profiler</strong>', '基于 ERG11、AFR1 和 CNV 预测氟康唑耐药'],
+      ['<strong>CRY-Heterores-Scanner</strong>', '检测异质性耐药亚群:基于覆盖度谱的 1 号染色体二体与非整倍体']
+    ]) + '<hr>' +
+    '<h2>🛠 技术架构:流程依赖与环境</h2>' +
+    '<p>流程由 Snakemake 框架管理,运行于相互隔离的 Conda 环境中。</p>' +
+    tbl(['流程阶段', '库与工具'], [
+      ['<strong>1. 质量控制 (QC)</strong>', '<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
+      ['<strong>2. 比对 (Mapping)</strong>', '<code>minimap2</code> — <em>新生隐球菌</em>(H99)与<em>格特隐球菌</em>(WM276)参考序列'],
+      ['<strong>3. 变异检测 (Variant Calling)</strong>', '<code>clair3</code>、<code>medaka</code>'],
+      ['<strong>4. CNV 与非整倍体</strong>', '<code>sniffles2</code>、逐染色体覆盖度分析 — chr1 二体、深覆盖下的异质性耐药亚群'],
+      ['<strong>5. 标志物检测</strong>', '自建数据库:ITS、D1/D2、ERG11、AFR1、CAP59/CAP64、LAC1、分子型标志物'],
+      ['<strong>6. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) + '<hr>' +
+    '<h2>🌍 全球背景:为何重要</h2>' +
+    '<ul><li><strong>WHO 关键优先级</strong> — 隐球菌性脑膜炎每年导致 112 000–152 000 人死亡,占 HIV 相关死亡的 19%;2022 年 WHO 将隐球菌列入真菌重点病原体的关键优先级组。</li>' +
+    '<li><strong>仅有 CrAg 不够</strong> — 抗原检测只回答"是/否",不区分菌种和分子型,对耐药保持沉默;分子诊断把筛查变成预后判断。</li>' +
+    '<li><strong>格特隐球菌正在改写版图</strong> — 感染免疫功能正常者、病程严重且对氟康唑反应较差的这一菌种,正随气候变化扩大分布;菌种鉴别在热带以外也变得必要,包括中国日益增多的非 HIV 病例。</li>' +
+    '<li><strong>异质性耐药对短读长不可见</strong> — 携带 ERG11+AFR1 的 1 号染色体二体是一种非整倍体机制,只有长读长结合 CNV 分析才能可靠看到;逻辑与<a href="/albicans/">白色念珠菌</a>相同。</li>' +
+    '<li><strong>荚膜不是障碍</strong> — 多糖荚膜会妨碍 PCR 提取,但不妨碍纳米孔文库制备;Flongle 上的 ITS/D1–D2 扩增子可在床旁 (point-of-care) 场景下完成菌种鉴定。</li></ul><hr>' +
+    '<h2>🔬 参考来源</h2>' +
+    '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240060241">WHO — 真菌重点病原体清单 (2022)</a></li>' +
+    '<li>📄 <a href="https://www.cdc.gov/">CDC — 新生隐球菌与格特隐球菌感染</a></li>' +
+    '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/">NCBI — PubMed / Bookshelf</a></li></ul>';
+
   /* ── PNEUMOCOCCUS (肺炎链球菌) ── */
   ZH['/pneumoniae/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
@@ -8211,6 +8344,7 @@
       'parapsilosis': ['Candida parapsilosis', 'Outbreaks in neonatal ICUs and catheter-associated candidaemia — ERG11 Y132F detection and SNP source tracing (staff hands, equipment)'],
       'tropicalis':   ['Candida tropicalis & C. krusei', 'Asian azole-resistant tropicalis clones (ERG11 Y132F/A395T) and intrinsic fluconazole resistance of krusei — species identification decides the starting therapy'],
       'malassezia':   ['Malassezia (lipophilic yeasts)', 'NICU fungaemia in infants on lipid emulsions and zoonotic M. pachydermatis outbreaks from dogs — culture is painful (Dixon agar), molecular ID and SNP tracing solve it'],
+      'cryptococcus': ['Cryptococcus neoformans / gattii', 'Cryptococcal meningitis — up to 19% of HIV-related mortality: neoformans/gattii species differentiation, VNI–VNIV/VGI–VGIV typing and azole heteroresistance via chromosome 1 disomy'],
       'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
       'hbv':          ['Hepatitis B (HBV)', 'HBV genotyping (A–J), polymerase resistance mutations (YMDD), HBeAg status and liver cancer risk markers — from a single assay'],
       'hvkp':         ['Hypervirulent Klebsiella (hvKP)', 'Virulence markers (rmpA, iucA, peg-344), K1/K2 capsular types and convergence with carbapenem resistance — liver abscess and metastatic infections'],
@@ -8320,6 +8454,7 @@
       'parapsilosis': ['近平滑念珠菌', '新生儿 ICU 暴发与导管相关念珠菌血症 — ERG11 Y132F 检测与 SNP 来源追踪(医护人员的手、设备)'],
       'tropicalis': ['热带念珠菌与克鲁斯念珠菌', '亚洲唑类耐药热带念珠菌克隆(ERG11 Y132F/A395T)与克鲁斯念珠菌先天氟康唑耐药 — 菌种鉴定决定起始治疗'],
       'malassezia': ['马拉色菌(亲脂性酵母)', '接受脂质乳剂新生儿的 NICU 真菌血症与源自犬类的厚皮马拉色菌暴发 — 培养困难(Dixon 琼脂),分子鉴定与 SNP 溯源一锤定音'],
+      'cryptococcus': ['隐球菌(新生隐球菌/格特隐球菌)', '隐球菌性脑膜炎 — 占 HIV 相关死亡的 19%:新生/格特种鉴别、VNI–VNIV/VGI–VGIV 分型与 1 号染色体二体导致的唑类异质性耐药'],
       'staphylococcus': ['金黄色葡萄球菌 (S. aureus)', 'MRSA/VRSA 鉴定与完整 AMR 谱分析 — 主要的医院感染病原体'],
       'pneumoniae': ['肺炎链球菌 (S. pneumoniae)', '嵌合型 pbp2x/pbp2b/pbp1a 与 cps 基因座血清分型:表型无法预测的疫苗逃逸 (19A、22F、33F) 与青霉素耐药'],
       'pyogenes': ['A 组链球菌 (S. pyogenes)', 'emm 分型取代 Sanger 测序、超抗原 speA/speC/ssa 与大环内酯类耐药 (ermB/mefA) — 从咽炎到坏死性筋膜炎'],
