@@ -194,6 +194,11 @@ candida_entries:
     desc: "Фунгемии NICU у детей на липидных эмульсиях, зоонозные вспышки M. pachydermatis с собак — культура мучительна (агар Dixon), молекулярная идентификация и SNP-трассировка решают"
     image: /assets/images/logo/icon_malassezia.svg
 
+  - title: Cryptococcus neoformans / gattii
+    url: cryptococcus
+    desc: "Криптококковый менингит — до 19% ВИЧ-смертности: видовая дифференциация neoformans/gattii, типы VNI–VNIV/VGI–VGIV и азольная гетерорезистентность через дисомию хромосомы 1"
+    image: /assets/images/logo/icon_cryptococcus.svg
+
 cocci_entries:
   - title: Золотистый стафилококк (S. aureus)
     url: staphylococcus
