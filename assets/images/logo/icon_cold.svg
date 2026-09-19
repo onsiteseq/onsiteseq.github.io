@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="cap_grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ce93d8" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#6a1b9a" stop-opacity="0.08"/>
+    </radialGradient>
+    <radialGradient id="cell1_g" cx="38%" cy="33%" r="60%">
+      <stop offset="0%" stop-color="#ce93d8"/>
+      <stop offset="100%" stop-color="#6a1b9a"/>
+    </radialGradient>
+    <radialGradient id="cell2_g" cx="62%" cy="33%" r="60%">
+      <stop offset="0%" stop-color="#ce93d8"/>
+      <stop offset="100%" stop-color="#6a1b9a"/>
+    </radialGradient>
+    <radialGradient id="hl" cx="35%" cy="28%" r="55%">
+      <stop offset="0%" stop-color="#f3e5f5" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#6a1b9a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Polysaccharide capsule (surrounding both cells) === -->
+  <ellipse cx="50" cy="51" rx="34" ry="30" fill="url(#cap_grad)"/>
+  <ellipse cx="50" cy="51" rx="34" ry="30"
+           fill="none" stroke="#7b1fa2" stroke-width="1.5"
+           stroke-dasharray="5 3" opacity="0.45"/>
+
+  <!-- === Left lancet-shaped diplococcus === -->
+  <!-- Lancet = slightly pointed at far end, flat at contact zone -->
+  <path d="M22 51 Q24 34 36 32 Q44 32 44 51 Q44 70 36 70 Q24 68 22 51 Z"
+        fill="url(#cell1_g)"/>
+  <path d="M22 51 Q24 34 36 32 Q44 32 44 51 Q44 70 36 70 Q24 68 22 51 Z"
+        fill="url(#hl)"/>
+  <path d="M22 51 Q24 34 36 32 Q44 32 44 51 Q44 70 36 70 Q24 68 22 51 Z"
+        fill="none" stroke="#4a148c" stroke-width="1.6" opacity="0.6"/>
+
+  <!-- === Right lancet-shaped diplococcus === -->
+  <path d="M78 51 Q76 34 64 32 Q56 32 56 51 Q56 70 64 70 Q76 68 78 51 Z"
+        fill="url(#cell2_g)"/>
+  <path d="M78 51 Q76 34 64 32 Q56 32 56 51 Q56 70 64 70 Q76 68 78 51 Z"
+        fill="url(#hl)"/>
+  <path d="M78 51 Q76 34 64 32 Q56 32 56 51 Q56 70 64 70 Q76 68 78 51 Z"
+        fill="none" stroke="#4a148c" stroke-width="1.6" opacity="0.6"/>
+
+  <!-- === Nucleoid regions === -->
+  <ellipse cx="34" cy="51" rx="7" ry="9" fill="#4a148c" opacity="0.22"/>
+  <ellipse cx="66" cy="51" rx="7" ry="9" fill="#4a148c" opacity="0.22"/>
+
+  <!-- === Division septum (contact zone) === -->
+  <line x1="50" y1="32" x2="50" y2="70"
+        stroke="#4a148c" stroke-width="1.2" opacity="0.3" stroke-linecap="round"/>
+
+  <!-- === Pili / surface proteins === -->
+  <line x1="26" y1="37" x2="18" y2="28" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="22" y1="51" x2="12" y2="51" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="26" y1="65" x2="18" y2="74" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="74" y1="37" x2="82" y2="28" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="78" y1="51" x2="88" y2="51" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="74" y1="65" x2="82" y2="74" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="36" y1="31" x2="33" y2="20" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="64" y1="31" x2="67" y2="20" stroke="#7b1fa2" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+</svg>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      OnSiteSeq ОРЗ — Метагеномная идентификация бактериальных возбудителей острых респираторных заболеваний и их AMR
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OnSiteSeq ОРЗ — Метагеномная идентификация бактериальных возбудителей острых респираторных заболеваний и их AMR" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента" />
+<meta property="og:description" content="Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента" />
+<link rel="canonical" href="https://onsiteseq.io/cold/" />
+<meta property="og:url" content="https://onsiteseq.io/cold/" />
+<meta property="og:site_name" content="OnSiteSeq" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/cold/" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-08T00:00:00+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/cold/" />
+<meta property="twitter:title" content="OnSiteSeq ОРЗ — Метагеномная идентификация бактериальных возбудителей острых респираторных заболеваний и их AMR" />
+<meta name="twitter:site" content="@gorbenkoteh" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.io/cold/"},"url":"https://onsiteseq.io/cold/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента","@type":"BlogPosting","headline":"OnSiteSeq ОРЗ — Метагеномная идентификация бактериальных возбудителей острых респираторных заболеваний и их AMR","dateModified":"2025-01-08T00:00:00+01:00","datePublished":"2025-01-08T00:00:00+01:00","@context":"https://schema.org"}</script>
+<script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.io/feed.xml" title="OnSiteSeq" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header class="site-header">
+  <nav class="site-nav" style="display:flex; align-items:center; gap:1.2em;">
+    <a href="/" style="display:flex; align-items:center; flex-shrink:0; text-decoration:none;">
+      <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
+    </a>
+    <ul class="horizontal-list">
+      <li><a href="/">Главная</a>&nbsp;&nbsp;</li>
+      <li><a href="/aboutonsiteseq">О платформе</a>&nbsp;&nbsp;</li>
+      <li><a href="/contact/">Контакты</a>&nbsp;&nbsp;</li>
+      <li><a href="https://cloud.onsiteseq.io" target="_blank" rel="noopener">Вход в Облако</a>&nbsp;&nbsp;</li>
+    </ul>
+    <button id="lang-toggle" title="Switch language / Переключить язык"
+      style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+      🌐 EN
+    </button>
+  </nav>
+  <div class="dashed"></div>
+</header>
+
+<div id="i18n-content">
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <img src="/assets/images/logo/icon_cold.svg" alt="Бактериальные возбудители ОРЗ" style="max-height: 120px; margin-bottom: 1rem;" />
+  <h1>Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам</h1>
+  <p style="font-size: 1.2em; color: #555;">Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента</p>
+</div>
+
+<hr />
+
+<h2 id="-описание-пейплайна">🧬 Описание пейплайна</h2>
+
+<p>Бактериальные острые респираторные заболевания (ОРЗ) — от внебольничной пневмонии до обострений ХОБЛ — требуют срочного выбора антибиотика. Стандартный путь: посев мокроты (2–5 дней) или экспресс-тест на единственный патоген. Оба подхода не дают ответа на ключевой вопрос — <strong>чувствителен ли данный штамм к конкретному антибиотику</strong>, — особенно в условиях нарастающей AMR.</p>
+
+<p>Наш пайплайн использует <strong>метагеномное нанопоровое секвенирование</strong> (mNGS) непосредственно из клинического материала (мокрота, БАЛ, аспират). Все бактериальные патогены выявляются одновременно, а для каждого — автоматически определяется наличие генов и мутаций резистентности к антибиотикам первой и второй линии.</p>
+
+<ul>
+  <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> после High Accuracy basecalling (Dorado SUP, химия R10.4.1). Материал: мокрота, назофарингеальный аспират, БАЛ, плевральная жидкость.</li>
+  <li><strong>📤 На выходе:</strong> HTML-отчёт для клинициста — идентифицированные патогены, количественная представленность, профиль генов AMR и рекомендованные антибиотики; QC-отчёт для биоинформатика.</li>
+</ul>
+
+<hr />
+
+<h2 id="-доступность-продукта">📊 Доступность продукта</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Платформа</th>
+      <th style="text-align: left">Статус доступности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Edge</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Desktop</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong></td>
+      <td style="text-align: left">🔴 Не доступно</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-определяемые-патогены">🦠 Определяемые патогены</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Патоген</th>
+      <th style="text-align: left">Клиническое значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Streptococcus pneumoniae</strong></td>
+      <td style="text-align: left">Ведущий возбудитель внебольничной пневмонии; анализ pbp-генов → устойчивость к пенициллину</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Haemophilus influenzae</strong></td>
+      <td style="text-align: left">Второй по частоте возбудитель ВП; частый возбудитель обострений ХОБЛ</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Moraxella catarrhalis</strong></td>
+      <td style="text-align: left">Характерен при ХОБЛ; &gt;90% штаммов продуцируют β-лактамазу (BRO-1/BRO-2)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Mycoplasma pneumoniae</strong></td>
+      <td style="text-align: left">Атипичная пневмония; резистентность к макролидам — ключевая клиническая проблема</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Legionella pneumophila</strong></td>
+      <td style="text-align: left">Болезнь легионеров; тяжёлое течение; терапия фторхинолонами</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Staphylococcus aureus (MRSA/MSSA)</strong></td>
+      <td style="text-align: left">Госпитальная пневмония; определение mecA критично для выбора терапии</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Klebsiella pneumoniae</strong></td>
+      <td style="text-align: left">Нозокомиальная пневмония; ESBL и карбапенемазы — угроза исходу</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Pseudomonas aeruginosa</strong></td>
+      <td style="text-align: left">Хроническое лёгкое (муковисцидоз, ХОБЛ); множественная природная резистентность</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Acinetobacter baumannii</strong></td>
+      <td style="text-align: left">ИТАР (ИВЛ-ассоциированная пневмония); часто XDR; карбапенемазы</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-ключевые-гены-резистентности">🎯 Ключевые гены резистентности</h2>
+
+<h3 id="β-лактамы-пенициллины-и-цефалоспорины">β-лактамы (пенициллины и цефалоспорины)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген / механизм</th>
+      <th style="text-align: left">Патоген</th>
+      <th style="text-align: left">Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>pbp1a, pbp2b, pbp2x</strong> (мутации)</td>
+      <td style="text-align: left"><em>S. pneumoniae</em></td>
+      <td style="text-align: left">Устойчивость к пенициллину и цефалоспоринам</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>blaTEM-1</strong></td>
+      <td style="text-align: left"><em>H. influenzae</em></td>
+      <td style="text-align: left">β-лактамазная устойчивость к ампициллину</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>BRO-1 / BRO-2</strong></td>
+      <td style="text-align: left"><em>M. catarrhalis</em></td>
+      <td style="text-align: left">β-лактамаза (&gt;90% штаммов)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>mecA / mecC</strong></td>
+      <td style="text-align: left"><em>S. aureus</em></td>
+      <td style="text-align: left">MRSA — устойчивость к оксациллину и всем β-лактамам</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>blaSHV, blaTEM, blaCTX-M</strong></td>
+      <td style="text-align: left"><em>K. pneumoniae</em></td>
+      <td style="text-align: left">ESBL — устойчивость к цефалоспоринам III–IV</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>blaKPC, blaNDM, blaOXA-48</strong></td>
+      <td style="text-align: left"><em>K. pneumoniae</em>, <em>P. aeruginosa</em>, <em>A. baumannii</em></td>
+      <td style="text-align: left">Карбапенемазы — устойчивость к карбапенемам</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="макролиды-и-атипичные-антибиотики">Макролиды и атипичные антибиотики</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Патоген</th>
+      <th style="text-align: left">Класс</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>ermB, mefA</strong></td>
+      <td style="text-align: left"><em>S. pneumoniae</em></td>
+      <td style="text-align: left">Устойчивость к азитромицину, кларитромицину</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>23S rRNA</strong> (A2058G, A2059G)</td>
+      <td style="text-align: left"><em>M. pneumoniae</em></td>
+      <td style="text-align: left">Макролид-резистентность (растёт в РФ и Азии)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="фторхинолоны">Фторхинолоны</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Патоген</th>
+      <th style="text-align: left">Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>gyrA, parC</strong> (мутации)</td>
+      <td style="text-align: left"><em>S. pneumoniae</em>, <em>K. pneumoniae</em>, <em>P. aeruginosa</em></td>
+      <td style="text-align: left">Устойчивость к левофлоксацину, моксифлоксацину</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="профиль-антибиотиков-в-отчёте">Профиль антибиотиков в отчёте</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Антибиотик</th>
+      <th style="text-align: left">Класс</th>
+      <th style="text-align: left">Актуальность</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Амоксициллин/клавуланат</strong></td>
+      <td style="text-align: left">Аминопенициллин + ингибитор β-лактамазы</td>
+      <td style="text-align: left">Первая линия ВП амбулаторно</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Цефтриаксон</strong></td>
+      <td style="text-align: left">Цефалоспорин III</td>
+      <td style="text-align: left">Первая линия ВП стационарно</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Азитромицин / Кларитромицин</strong></td>
+      <td style="text-align: left">Макролиды</td>
+      <td style="text-align: left">Атипичные патогены; мониторинг ermB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Левофлоксацин / Моксифлоксацин</strong></td>
+      <td style="text-align: left">Фторхинолоны</td>
+      <td style="text-align: left">«Респираторные хинолоны»; ХОБЛ</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Меропенем / Имипенем</strong></td>
+      <td style="text-align: left">Карбапенемы</td>
+      <td style="text-align: left">Тяжёлая нозокомиальная пневмония</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Ванкомицин / Линезолид</strong></td>
+      <td style="text-align: left">Гликопептид / Оксазолидинон</td>
+      <td style="text-align: left">MRSA-пневмония</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-оптимизация-под-кассету-flongle">🧪 Оптимизация под кассету Flongle</h2>
+
+<p>OnSiteSeq Edge рассчитан на компактные кассеты <strong>Flongle</strong> (~126 активных пор, реальный выход ~0,5–2 Гб против 10–20 Гб у полноразмерной кассеты). Для метагеномики это определяет дизайн пайплайна:</p>
+
+<ul>
+  <li><strong>Adaptive Sampling (Read Until)</strong> — отклонение человеческих ридов в реальном времени прямо во время секвенирования. На Flongle каждый рид на счету: обогащение доли патогенных ридов в 3–10 раз без химической деплеции.</li>
+  <li><strong>Химическая деплеция хозяина</strong> (сапониновая лизис-деплеция + DNase) — на этапе препаративки снижает долю человеческой ДНК в мокроте/БАЛ с 90–99 % до ~50–80 %.</li>
+  <li><strong>Честный порог чувствительности</strong> — при выходе ~1 Гб надёжная детекция требует доли патогена ≥ 0,1–1 % в метагеноме. Для более слабых образцов предусмотрен таргетный режим (ампликонное обогащение) вместо «чистого» mNGS.</li>
+  <li><strong>Мультиплексирование</strong> — баркодирование 2–4 образцов на кассету экономит реагенты, но снижает глубину на образец; для образцов с низкой бактериальной нагрузкой рекомендуется один образец на Flongle.</li>
+  <li><strong>Детекция AMR-генов</strong> — требует покрытия генома патогена; при недостаточной глубине отчёт выдаёт идентификацию вида с пометкой «профиль AMR не установлен», без выдумывания результата.</li>
+</ul>
+
+<p><em>По мере роста выхода кассет и точности химии ONT те же пейплайны без изменений перейдут на более глубокое покрытие — пороги чувствительности заданы конфигурацией запуска, а не зашиты в код.</em></p>
+
+<hr />
+
+<h2 id="️-версии-и-ml-модели">⚙️ Версии и ML-модели</h2>
+
+<h3 id="основной-инструмент">Основной инструмент</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Компонент</th>
+      <th style="text-align: left">Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq ОРЗ Pipeline</strong></td>
+      <td style="text-align: left">🟡 В разработке</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="планируемые-ml-модели">Планируемые ML-модели</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Модель</th>
+      <th style="text-align: left">Целевая задача</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>BactResp-Classifier</strong></td>
+      <td style="text-align: left">Метагеномная классификация бактериальных патогенов (k-мерный классификатор)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>BactResp-AMR-Detector</strong></td>
+      <td style="text-align: left">Предсказание AMR-фенотипа по выявленным генам резистентности</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Pneumo-Serotyper</strong></td>
+      <td style="text-align: left">In silico серотипирование <em>S. pneumoniae</em> (важно для оценки охвата вакциной PCV)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Обучение планируется на геномах из <strong>NCBI Pathogen Database</strong> и европейской коллекции <strong>ECDC Surveillance Atlas of Infectious Diseases</strong>.</p>
+
+<hr />
+
+<h2 id="-под-капотом-зависимости-и-окружение-pipeline-stack">🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Этап пайплайна</th>
+      <th style="text-align: left">Ключевые библиотеки и инструменты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>1. Контроль качества (QC)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">porechop_abi</code>, <code class="language-plaintext highlighter-rouge">NanoFilt</code>, <code class="language-plaintext highlighter-rouge">pigz</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>2. Деплеция хозяйских ридов</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2</code> (ref: GRCh38) → исключение человеческих ридов</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>3. Метагеномная классификация</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Kraken2</code> + <code class="language-plaintext highlighter-rouge">Bracken</code> (RefSeq bacterial DB)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4. Целевое выравнивание и сборка</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2</code> + <code class="language-plaintext highlighter-rouge">medaka</code> на референсы выявленных патогенов</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>5. Детекция генов AMR</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">AMRFinderPlus</code> (NCBI), <code class="language-plaintext highlighter-rouge">abricate</code> (базы CARD, Resfinder, VFDB)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>6. MLST-типирование</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">mlst</code> (схемы PubMLST: пневмококк, K. pneumoniae, S. aureus)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>7. ML-инференс</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PyTorch</code>, <code class="language-plaintext highlighter-rouge">pandas</code>, <code class="language-plaintext highlighter-rouge">scikit-learn</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-глобальный-контекст">🌍 Глобальный контекст</h2>
+
+<ul>
+  <li><strong>ВОЗ AMR Action Plan</strong> — устойчивые <em>K. pneumoniae</em>, <em>P. aeruginosa</em>, <em>A. baumannii</em> включены в список «критических» приоритетных патогенов (наивысший уровень угрозы).</li>
+  <li><strong>Россия</strong> — по данным СКАТ (Стратегия контроля антимикробной терапии), доля ESBL-продуцирующих <em>K. pneumoniae</em> в ОРИТ превышает 70%.</li>
+  <li><strong>Проблема эмпирической терапии</strong> — в условиях неизвестного возбудителя врач вынужден назначать антибиотики широкого спектра, что ускоряет формирование AMR. Метагеномная диагностика у кровати пациента позволяет перейти к <strong>целенаправленной деэскалационной терапии</strong>.</li>
+  <li><strong>MRSA-пневмония</strong> — летальность при ИВЛ-ассоциированной MRSA-пневмонии достигает 40–60%; своевременное определение mecA критично.</li>
+</ul>
+
+<hr />
+
+<h2 id="-связанные-источники">🔬 Связанные источники</h2>
+
+<ul>
+  <li>📄 <a href="https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.12">ВОЗ — Глобальный список приоритетных патогенов по AMR (ESKAPE)</a></li>
+  <li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">NCBI AMRFinderPlus</a></li>
+  <li>📄 <a href="https://card.mcmaster.ca/">CARD — Comprehensive Antibiotic Resistance Database</a></li>
+  <li>📄 <a href="https://pubmlst.org/">PubMLST — Многолокусное сиквенс-типирование бактерий</a></li>
+  <li>📄 <a href="https://www.antibiotic.ru/skat/">СКАТ — Стратегия контроля антимикробной терапии в России</a></li>
+</ul>
+
+</div>
+<script src="/assets/js/i18n.js"></script>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2026&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>

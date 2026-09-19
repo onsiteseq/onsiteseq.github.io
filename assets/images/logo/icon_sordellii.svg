@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cst_rod1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef9a9a"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </linearGradient>
+    <linearGradient id="cst_rod2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ce93d8"/>
+      <stop offset="100%" stop-color="#4a148c"/>
+    </linearGradient>
+    <radialGradient id="cst_spore" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fffde7"/>
+      <stop offset="100%" stop-color="#f9a825"/>
+    </radialGradient>
+    <radialGradient id="cst_drop" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#ffcdd2"/>
+      <stop offset="100%" stop-color="#d32f2f"/>
+    </radialGradient>
+    <radialGradient id="cst_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#b71c1c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Rod 1: Paeniclostridium sordellii (terminal spore, "drumstick") === -->
+  <g transform="rotate(-38 40 38)">
+    <rect x="12" y="30" width="48" height="14" rx="7" fill="url(#cst_rod1)" stroke="#7f0000" stroke-width="1.5"/>
+    <ellipse cx="57" cy="37" rx="9.5" ry="9" fill="url(#cst_rod1)" stroke="#7f0000" stroke-width="1.5"/>
+    <ellipse cx="57" cy="37" rx="5.5" ry="5" fill="url(#cst_spore)" stroke="#f57f17" stroke-width="1.1"/>
+    <rect x="15" y="32.2" width="28" height="4.2" rx="2.1" fill="url(#cst_hl)"/>
+    <g stroke="#7f0000" stroke-width="0.9" stroke-opacity="0.45" fill="none">
+      <path d="M27 31.2 V42.8"/>
+      <path d="M39 31.2 V42.8"/>
+    </g>
+  </g>
+
+  <!-- === Rod 2: Clostridium septicum (subterminal spore) === -->
+  <g transform="rotate(-14 55 70)">
+    <rect x="26" y="62" width="52" height="14" rx="7" fill="url(#cst_rod2)" stroke="#311b92" stroke-width="1.5"/>
+    <ellipse cx="40" cy="69" rx="8.5" ry="8" fill="url(#cst_rod2)" stroke="#311b92" stroke-width="1.5"/>
+    <ellipse cx="40" cy="69" rx="5" ry="4.6" fill="url(#cst_spore)" stroke="#f57f17" stroke-width="1.1"/>
+    <rect x="46" y="64.2" width="26" height="4.2" rx="2.1" fill="url(#cst_hl)"/>
+    <g stroke="#311b92" stroke-width="0.9" stroke-opacity="0.45" fill="none">
+      <path d="M56 63.2 V74.8"/>
+      <path d="M67 63.2 V74.8"/>
+    </g>
+  </g>
+
+  <!-- === Ruptured vessel + leaking droplets (capillary leak) === -->
+  <g stroke="#8e0000" stroke-width="2.4" stroke-linecap="round" fill="none">
+    <path d="M6 88 Q18 84 30 87"/>
+    <path d="M44 90 Q58 93 70 88"/>
+  </g>
+  <!-- rupture gap with escaping droplets -->
+  <path d="M37 84 Q41 89 40 94 Q39.4 97.5 36.8 97.5 Q34.2 97.5 33.6 94 Q33 89 37 84 Z" fill="url(#cst_drop)" stroke="#8e0000" stroke-width="1.2"/>
+  <circle cx="45" cy="97" r="2.6" fill="url(#cst_drop)" stroke="#8e0000" stroke-width="1"/>
+  <circle cx="30" cy="99" r="1.6" fill="url(#cst_drop)" stroke="#8e0000" stroke-width="0.8"/>
+  <!-- droplet shine -->
+  <circle cx="36" cy="91" r="1.1" fill="#ffffff" fill-opacity="0.85"/>
+
+  <!-- === Small companion droplet upper-right (toxin/leak motif) === -->
+  <path d="M84 18 Q89 26 88.4 31.5 Q88 35.5 84.6 35.5 Q81.2 35.5 80.8 31.5 Q80.2 26 84 18 Z" fill="url(#cst_drop)" stroke="#8e0000" stroke-width="1.2"/>
+  <circle cx="83.2" cy="28" r="1.2" fill="#ffffff" fill-opacity="0.85"/>
+</svg>

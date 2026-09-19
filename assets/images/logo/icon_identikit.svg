@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="lens_g" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#e8eaf6"/>
+      <stop offset="100%" stop-color="#9fa8da"/>
+    </radialGradient>
+    <linearGradient id="handle_g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3949ab"/>
+      <stop offset="100%" stop-color="#1a237e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- === Magnifying glass handle === -->
+  <line x1="68" y1="68" x2="88" y2="88"
+        stroke="url(#handle_g)" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- === Magnifying glass ring === -->
+  <circle cx="44" cy="44" r="30" fill="url(#lens_g)" opacity="0.85"/>
+  <circle cx="44" cy="44" r="30"
+          fill="none" stroke="#283593" stroke-width="5"/>
+
+  <!-- === DNA double helix inside lens === -->
+
+  <!-- Left backbone strand -->
+  <path d="M32 24 Q38 30 32 36 Q26 42 32 48 Q38 54 32 60 Q26 66 32 70"
+        fill="none" stroke="#3949ab" stroke-width="2" stroke-linecap="round"/>
+  <!-- Right backbone strand -->
+  <path d="M56 24 Q50 30 56 36 Q62 42 56 48 Q50 54 56 60 Q62 66 56 70"
+        fill="none" stroke="#3949ab" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Base pairs (rungs) - A-T, G-C colours -->
+  <!-- Rung 1 (top) -->
+  <line x1="32" y1="27" x2="56" y2="27" stroke="#e53935" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 2 -->
+  <line x1="32" y1="33" x2="56" y2="33" stroke="#43a047" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 3 (crossing point) -->
+  <line x1="32" y1="36" x2="56" y2="36" stroke="#e53935" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 4 -->
+  <line x1="26" y1="42" x2="62" y2="42" stroke="#43a047" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 5 -->
+  <line x1="32" y1="48" x2="56" y2="48" stroke="#1e88e5" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 6 (crossing point) -->
+  <line x1="32" y1="51" x2="56" y2="51" stroke="#e53935" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 7 -->
+  <line x1="26" y1="57" x2="62" y2="57" stroke="#43a047" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 8 -->
+  <line x1="32" y1="63" x2="56" y2="63" stroke="#1e88e5" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Rung 9 (bottom) -->
+  <line x1="32" y1="67" x2="56" y2="67" stroke="#e53935" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Lens glare (top-left reflection) -->
+  <ellipse cx="32" cy="32" rx="7" ry="4" fill="white" opacity="0.18"
+           transform="rotate(-35 32 32)"/>
+</svg>

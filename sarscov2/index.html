@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      OnSiteSeq SARS-CoV-2 — Определение варианта и устойчивости к противовирусным препаратам
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OnSiteSeq SARS-CoV-2 — Определение варианта и устойчивости к противовирусным препаратам" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии" />
+<meta property="og:description" content="Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии" />
+<link rel="canonical" href="https://onsiteseq.io/sarscov2/" />
+<meta property="og:url" content="https://onsiteseq.io/sarscov2/" />
+<meta property="og:site_name" content="OnSiteSeq" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/sarscov2/" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-08T00:00:00+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/sarscov2/" />
+<meta property="twitter:title" content="OnSiteSeq SARS-CoV-2 — Определение варианта и устойчивости к противовирусным препаратам" />
+<meta name="twitter:site" content="@gorbenkoteh" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.io/sarscov2/"},"url":"https://onsiteseq.io/sarscov2/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии","@type":"BlogPosting","headline":"OnSiteSeq SARS-CoV-2 — Определение варианта и устойчивости к противовирусным препаратам","dateModified":"2025-01-08T00:00:00+01:00","datePublished":"2025-01-08T00:00:00+01:00","@context":"https://schema.org"}</script>
+<script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.io/feed.xml" title="OnSiteSeq" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header class="site-header">
+  <nav class="site-nav" style="display:flex; align-items:center; gap:1.2em;">
+    <a href="/" style="display:flex; align-items:center; flex-shrink:0; text-decoration:none;">
+      <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
+    </a>
+    <ul class="horizontal-list">
+      <li><a href="/">Главная</a>&nbsp;&nbsp;</li>
+      <li><a href="/aboutonsiteseq">О платформе</a>&nbsp;&nbsp;</li>
+      <li><a href="/contact/">Контакты</a>&nbsp;&nbsp;</li>
+      <li><a href="https://cloud.onsiteseq.io" target="_blank" rel="noopener">Вход в Облако</a>&nbsp;&nbsp;</li>
+    </ul>
+    <button id="lang-toggle" title="Switch language / Переключить язык"
+      style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+      🌐 EN
+    </button>
+  </nav>
+  <div class="dashed"></div>
+</header>
+
+<div id="i18n-content">
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <img src="/assets/images/logo/icon_sarscov2.svg" alt="SARS-CoV-2" style="max-height: 120px; margin-bottom: 1rem;" />
+  <h1>Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2</h1>
+  <p style="font-size: 1.2em; color: #555;">Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии</p>
+</div>
+
+<hr />
+
+<h2 id="-описание-пейплайна">🧬 Описание пейплайна</h2>
+
+<p><em>SARS-CoV-2</em> — РНК-вирус семейства <em>Coronaviridae</em>, возбудитель COVID-19. С 2020 года вирус непрерывно эволюционирует: сменившие друг друга варианты (Alpha → Delta → Omicron и его подварианты) демонстрируют нарастающий иммунный уход и изменённую чувствительность к противовирусным препаратам. Одновременно зафиксирована <strong>клинически значимая резистентность к нирматрелвиру (Paxlovid)</strong> — мутации в гене <em>nsp5</em> (3CL-протеаза).</p>
+
+<p>Наш пайплайн выполняет полногеномное секвенирование по протоколу <strong>ARTIC</strong> (ампликонное, нанопоровое) и автоматически выдаёт клинициту: геномный вариант/линию, профиль мутаций в спайк-белке и оценку чувствительности к четырём противовирусным препаратам.</p>
+
+<ul>
+  <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> после basecalling (Dorado, химия R10.4.1). Ампликонное секвенирование по схемам праймеров ARTIC V4.1 / V5.3.</li>
+  <li><strong>📤 На выходе:</strong> HTML-отчёт для клинициста (вариант, мутации S-белка, профиль устойчивости к препаратам) и QC-отчёт для биоинформатика.</li>
+</ul>
+
+<hr />
+
+<h2 id="-класс-по-балтимору-iv--ssrna">🧭 Класс по Балтимору: IV — (+)ssRNA</h2>
+
+<p>Класс IV — вирусы с одноцепочечной РНК положительной полярности: их геном сам является мРНК и сразу после проникновения в клетку транслируется рибосомами в полибелок репликазы. У SARS-CoV-2 это один из крупнейших известных РНК-геномов (~30 т.п.н.): из репликазного комплекса собирается РНК-зависимая РНК-полимераза (<strong>RdRp, nsp12</strong>), которая синтезирует новые геномные РНК и набор <strong>субгеномных РНК</strong> — именно с них транслируются структурные белки (S, M, N, E). Уникальная черта коронавирусов — корректирующая 3’→5’-экзонуклеаза <strong>nsp14 (ExoN)</strong>: она исправляет ошибки RdRp, поэтому коронавирусы мутируют медленнее других РНК-вирусов (хотя и быстрее ДНК-вирусов). Вся клиническая геномика COVID-19 работает с продуктами этой стратегии: мутации вариантов накапливаются в субгеномно кодируемом S-белке, а мишени резистентности — <em>nsp5</em> (протеаза) и <em>nsp12</em> (RdRp) — ферменты того самого репликазного комплекса, которые и аннотирует наш пайплайн.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Класс</th>
+      <th style="text-align: left">Геном</th>
+      <th style="text-align: left">Стратегия репликации</th>
+      <th style="text-align: left">Примеры</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">I</td>
+      <td style="text-align: left">dsDNA</td>
+      <td style="text-align: left">ДНК → мРНК (как у клетки)</td>
+      <td style="text-align: left">Герпесвирусы, аденовирусы, оспа, АЧС</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">II</td>
+      <td style="text-align: left">ssDNA (+)</td>
+      <td style="text-align: left">Через промежуточную dsDNA</td>
+      <td style="text-align: left">Парвовирусы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">III</td>
+      <td style="text-align: left">dsRNA</td>
+      <td style="text-align: left">РдРП транскрибирует с dsRNA</td>
+      <td style="text-align: left">Ротавирусы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>IV</strong></td>
+      <td style="text-align: left"><strong>(+)ssRNA</strong></td>
+      <td style="text-align: left"><strong>Геном = мРНК, сразу трансляция</strong></td>
+      <td style="text-align: left"><strong>SARS-CoV-2, гепатит C</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">V</td>
+      <td style="text-align: left">(−)ssRNA</td>
+      <td style="text-align: left">Сначала синтез (+)цепи (РдРП)</td>
+      <td style="text-align: left">Грипп, SFTS, бешенство</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">VI</td>
+      <td style="text-align: left">(+)ssRNA-RT</td>
+      <td style="text-align: left">Обратная транскриптаза: РНК → ДНК</td>
+      <td style="text-align: left">ВИЧ, ретровирусы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">VII</td>
+      <td style="text-align: left">dsDNA-RT</td>
+      <td style="text-align: left">Реверт-транскрипция через РНК-интермедиат</td>
+      <td style="text-align: left">Гепатит B</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-доступность-продукта">📊 Доступность продукта</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Платформа</th>
+      <th style="text-align: left">Статус доступности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Edge</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Desktop</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong></td>
+      <td style="text-align: left">🔴 Не доступно</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-ключевые-мутации-и-гены">🎯 Ключевые мутации и гены</h2>
+
+<h3 id="определение-варианта--ген-s-spike">Определение варианта — ген S (Spike)</h3>
+
+<p>Пайплайн анализирует S-ген полностью и ключевые мутации, определяющие вариант и иммунный уход:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Мутация</th>
+      <th style="text-align: left">Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>D614G</strong></td>
+      <td style="text-align: left">Базовая мутация всех современных вариантов (повышенная трансмиссивность)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>N501Y</strong></td>
+      <td style="text-align: left">Alpha, Beta, Gamma, Omicron — повышенное сродство к ACE2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>E484K/A</strong></td>
+      <td style="text-align: left">Beta, Gamma, ряд Omicron — иммунный уход от нейтрализующих антител</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>L452R</strong></td>
+      <td style="text-align: left">Delta — повышенная трансмиссивность и уход от нейтрализующих антител</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>P681H/R</strong></td>
+      <td style="text-align: left">Alpha/Delta — эффективное расщепление фурином</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>K417N/T</strong></td>
+      <td style="text-align: left">Beta, Gamma, Omicron BA.1 — иммунный уход</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>F486P/V/S</strong></td>
+      <td style="text-align: left">Подварианты Omicron XBB, JN.1 — нейтрализационный уход</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>ВОЗ классифицирует варианты по степени риска: <strong>VOC</strong> (Variant of Concern — подтверждённое влияние на трансмиссивность/тяжесть/иммунный уход), <strong>VOI</strong> (Variant of Interest — потенциальный риск) и <strong>VUM</strong> (Variant Under Monitoring — наблюдение). Пайплайн присваивает линию Pango и автоматически сопоставляет её с актуальной категорией ВОЗ.</p>
+
+<h3 id="устойчивость-к-противовирусным-препаратам">Устойчивость к противовирусным препаратам</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Мутации</th>
+      <th style="text-align: left">Препарат</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>nsp5</strong> (3CLpro)</td>
+      <td style="text-align: left">E166V, L50F, A173V (комбинация L50F+E166V — наиболее сильная)</td>
+      <td style="text-align: left">Нирматрелвир (Paxlovid)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>nsp12</strong> (RdRp)</td>
+      <td style="text-align: left">V792I, S759A, E802D (in vitro и у иммунокомпрометированных пациентов)</td>
+      <td style="text-align: left">Ремдесивир</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">—</td>
+      <td style="text-align: left">Клинически значимых маркеров не установлено</td>
+      <td style="text-align: left">Молнупиравир / Фавипиравир</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="профиль-противовирусных-препаратов-в-отчёте">Профиль противовирусных препаратов в отчёте</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Препарат</th>
+      <th style="text-align: left">Механизм</th>
+      <th style="text-align: left">Значение в РФ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Нирматрелвир/Ритонавир</strong></td>
+      <td style="text-align: left">3CL-протеаза ингибитор</td>
+      <td style="text-align: left">Наиболее эффективный при раннем назначении</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Ремдесивир</strong></td>
+      <td style="text-align: left">RdRp ингибитор</td>
+      <td style="text-align: left">Госпитальный стандарт тяжёлого COVID</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Молнупиравир</strong></td>
+      <td style="text-align: left">RdRp мутаген</td>
+      <td style="text-align: left">Альтернатива при противопоказаниях к Paxlovid</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Фавипиравир</strong></td>
+      <td style="text-align: left">RdRp ингибитор</td>
+      <td style="text-align: left">Широко используется в России</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-ограничения-и-границы-применимости">⚠️ Ограничения и границы применимости</h2>
+
+<ul>
+  <li><strong>Низкая вирусная нагрузка</strong> — при Ct &gt; 30–33 ампликонная схема даёт неполный геном; линия Pango может не определиться. В отчёте указывается процент покрытия генома.</li>
+  <li><strong>Порог классификации</strong> — для надёжного определения линии требуется покрытие ≥ 80 % генома (стандарт QC Nextclade).</li>
+  <li><strong>Резистентность ≠ клиническая неудача</strong> — носительство маркера устойчивости интерпретируется с учётом иммунного статуса пациента и предыдущей терапии.</li>
+  <li><strong>Быстрое устаревание баз</strong> — классификация вариантов и база мутаций резистентности требуют регулярного обновления (Pango-линейки пересматриваются еженедельно).</li>
+</ul>
+
+<hr />
+
+<h2 id="️-версии-и-ml-модели">⚙️ Версии и ML-модели</h2>
+
+<h3 id="основной-инструмент">Основной инструмент</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Компонент</th>
+      <th style="text-align: left">Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq SARS-CoV-2 Pipeline</strong></td>
+      <td style="text-align: left">🟡 В разработке</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="планируемые-ml-модели">Планируемые ML-модели</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Модель</th>
+      <th style="text-align: left">Целевая задача</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>CoV2-Variant-Classifier</strong></td>
+      <td style="text-align: left">Классификация варианта/линии Pango по WGS (аналог Nextclade, офлайн)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>CoV2-Res-Detector</strong></td>
+      <td style="text-align: left">Предсказание устойчивости к противовирусным препаратам</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Классификация вариантов будет выполняться локально — без передачи данных во внешние сервисы (Nextstrain, GISAID), что критично при работе с деидентифицированными геномными данными пациентов.</p>
+
+<hr />
+
+<h2 id="-под-капотом-зависимости-и-окружение-pipeline-stack">🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Этап пайплайна</th>
+      <th style="text-align: left">Ключевые библиотеки и инструменты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>1. Тримминг праймеров (QC)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">porechop_abi</code>, <code class="language-plaintext highlighter-rouge">NanoFilt</code>, <code class="language-plaintext highlighter-rouge">trim_galore</code> (ARTIC праймеры V4.1/V5.3)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>2. Выравнивание (Mapping)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2 2.26</code>, <code class="language-plaintext highlighter-rouge">samtools &gt;=1.17</code> (Референс: NC_045512.2 / MN908947.3)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>3. Сборка консенсуса</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">medaka</code>, <code class="language-plaintext highlighter-rouge">bcftools</code>, <code class="language-plaintext highlighter-rouge">htslib</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4. Определение варианта/линии</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">nextclade</code>, <code class="language-plaintext highlighter-rouge">pangolin</code> (локальный запуск, обновляемые базы)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>5. Аннотация резистентности</strong></td>
+      <td style="text-align: left">Кастомная база мутаций nsp5/nsp12/S + <code class="language-plaintext highlighter-rouge">snpEff</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>6. ML-инференс</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PyTorch</code>, <code class="language-plaintext highlighter-rouge">pandas</code>, <code class="language-plaintext highlighter-rouge">scikit-learn</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-глобальный-контекст">🌍 Глобальный контекст</h2>
+
+<ul>
+  <li><strong>ВОЗ</strong> — геномный эпидемиологический надзор за SARS-CoV-2 признан обязательным элементом готовности к пандемиям.</li>
+  <li><strong>Китай</strong> — первый геном вируса был опубликован китайскими учёными в январе 2020 года (Шанхай, Fudan University) и сделал возможной разработку первых ПЦР-тестов и вакцин. В период политики «нулевой терпимости» массовое тестирование и геномный надзор стали в Китае инструментом государственного масштаба — опыт, показавший всему миру ценность быстрой геномной диагностики.</li>
+  <li><strong>Нирматрелвир-резистентность</strong> — мутация E166V зафиксирована в клинических случаях; в условиях массового применения Paxlovid мониторинг резистентности становится критическим.</li>
+  <li><strong>Россия</strong> — Фавипиравир используется широко; отечественный геномный надзор (GISAID-совместимые данные из РФ) требует локальной инфраструктуры анализа.</li>
+  <li><strong>Преимущество нанопора</strong> — полный геном SARS-CoV-2 (~30 кб) секвенируется за <strong>4–6 часов</strong> от образца до результата, что позволяет принять клиническое решение в тот же день.</li>
+</ul>
+
+<hr />
+
+<h2 id="-связанные-источники">🔬 Связанные источники</h2>
+
+<ul>
+  <li>📄 <a href="https://artic.network/ncov-2019">ARTIC Network — протоколы нанопорового секвенирования SARS-CoV-2</a></li>
+  <li>📄 <a href="https://clades.nextstrain.org/">Nextclade — классификация вариантов SARS-CoV-2</a></li>
+  <li>📄 <a href="https://www.gisaid.org/">GISAID — глобальная база геномов SARS-CoV-2</a></li>
+  <li>📄 <a href="https://covdb.stanford.edu/">Stanford CoVDB — база данных мутаций резистентности к противовирусным препаратам</a></li>
+</ul>
+
+</div>
+<script src="/assets/js/i18n.js"></script>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2026&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>
