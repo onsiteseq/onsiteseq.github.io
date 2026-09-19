@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cpf_rod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b39ddb"/>
+      <stop offset="100%" stop-color="#4527a0"/>
+    </linearGradient>
+    <radialGradient id="cpf_spore" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fffde7"/>
+      <stop offset="100%" stop-color="#f9a825"/>
+    </radialGradient>
+    <radialGradient id="cpf_bubble" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#e1f5fe"/>
+      <stop offset="100%" stop-color="#4fc3f7"/>
+    </radialGradient>
+    <radialGradient id="cpf_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ede7f6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#4527a0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Clostridium rod with terminal spore ("drumstick") === -->
+  <g transform="rotate(-32 50 52)">
+    <!-- cell body -->
+    <rect x="16" y="44" width="56" height="16" rx="8" fill="url(#cpf_rod)" stroke="#311b92" stroke-width="1.6"/>
+    <!-- terminal spore swelling (drumstick head) -->
+    <ellipse cx="70" cy="52" rx="11" ry="10.5" fill="url(#cpf_rod)" stroke="#311b92" stroke-width="1.6"/>
+    <ellipse cx="70" cy="52" rx="6.5" ry="6" fill="url(#cpf_spore)" stroke="#f57f17" stroke-width="1.2"/>
+    <!-- glossy highlight on cell body -->
+    <rect x="20" y="46.5" width="34" height="5" rx="2.5" fill="url(#cpf_hl)"/>
+    <!-- segmentation hints -->
+    <g stroke="#311b92" stroke-width="1" stroke-opacity="0.45" fill="none">
+      <path d="M34 45.5 V58.5"/>
+      <path d="M48 45.5 V58.5"/>
+    </g>
+  </g>
+
+  <!-- === Gas bubbles in tissue (gas gangrene) === -->
+  <g stroke="#0288d1" stroke-width="1.2">
+    <circle cx="24" cy="22" r="7" fill="url(#cpf_bubble)"/>
+    <circle cx="40" cy="13" r="4.5" fill="url(#cpf_bubble)"/>
+    <circle cx="14" cy="38" r="3.5" fill="url(#cpf_bubble)"/>
+    <circle cx="82" cy="80" r="6" fill="url(#cpf_bubble)"/>
+    <circle cx="92" cy="64" r="3.5" fill="url(#cpf_bubble)"/>
+    <circle cx="68" cy="88" r="3" fill="url(#cpf_bubble)"/>
+  </g>
+  <!-- bubble shines -->
+  <g fill="#ffffff" fill-opacity="0.85">
+    <circle cx="21.5" cy="19.5" r="1.8"/>
+    <circle cx="38.5" cy="11.5" r="1.2"/>
+    <circle cx="80" cy="78" r="1.5"/>
+    <circle cx="90.8" cy="62.8" r="1"/>
+  </g>
+</svg>

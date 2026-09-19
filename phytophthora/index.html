@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      OnSiteSeq Фито — Метагеномная идентификация патогенов растений и устойчивости к фунгицидам
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OnSiteSeq Фито — Метагеномная идентификация патогенов растений и устойчивости к фунгицидам" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Метагеномная идентификация патогенов растений и устойчивости к фунгицидам Молекулярная диагностика фитофтороза, фузариоза, серой гнили и других заболеваний — прямо в поле, без лаборатории" />
+<meta property="og:description" content="Метагеномная идентификация патогенов растений и устойчивости к фунгицидам Молекулярная диагностика фитофтороза, фузариоза, серой гнили и других заболеваний — прямо в поле, без лаборатории" />
+<link rel="canonical" href="https://onsiteseq.io/phytophthora/" />
+<meta property="og:url" content="https://onsiteseq.io/phytophthora/" />
+<meta property="og:site_name" content="OnSiteSeq" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/phytophthora/" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-08T00:00:00+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/phytophthora/" />
+<meta property="twitter:title" content="OnSiteSeq Фито — Метагеномная идентификация патогенов растений и устойчивости к фунгицидам" />
+<meta name="twitter:site" content="@gorbenkoteh" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.io/phytophthora/"},"url":"https://onsiteseq.io/phytophthora/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Метагеномная идентификация патогенов растений и устойчивости к фунгицидам Молекулярная диагностика фитофтороза, фузариоза, серой гнили и других заболеваний — прямо в поле, без лаборатории","@type":"BlogPosting","headline":"OnSiteSeq Фито — Метагеномная идентификация патогенов растений и устойчивости к фунгицидам","dateModified":"2025-01-08T00:00:00+01:00","datePublished":"2025-01-08T00:00:00+01:00","@context":"https://schema.org"}</script>
+<script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.io/feed.xml" title="OnSiteSeq" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header class="site-header">
+  <nav class="site-nav" style="display:flex; align-items:center; gap:1.2em;">
+    <a href="/" style="display:flex; align-items:center; flex-shrink:0; text-decoration:none;">
+      <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
+    </a>
+    <ul class="horizontal-list">
+      <li><a href="/">Главная</a>&nbsp;&nbsp;</li>
+      <li><a href="/aboutonsiteseq">О платформе</a>&nbsp;&nbsp;</li>
+      <li><a href="/contact/">Контакты</a>&nbsp;&nbsp;</li>
+      <li><a href="https://cloud.onsiteseq.io" target="_blank" rel="noopener">Вход в Облако</a>&nbsp;&nbsp;</li>
+    </ul>
+    <button id="lang-toggle" title="Switch language / Переключить язык"
+      style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+      🌐 EN
+    </button>
+  </nav>
+  <div class="dashed"></div>
+</header>
+
+<div id="i18n-content">
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <h1>Метагеномная идентификация патогенов растений и устойчивости к фунгицидам</h1>
+  <p style="font-size: 1.2em; color: #555;">Молекулярная диагностика фитофтороза, фузариоза, серой гнили и других заболеваний — прямо в поле, без лаборатории</p>
+</div>
+
+<hr />
+
+<h2 id="-описание-пейплайна">🧬 Описание пейплайна</h2>
+
+<p><em>Phytophthora infestans</em> и другие патогены растений ежегодно уничтожают до 20–40% урожая картофеля и томатов в России. Традиционная диагностика — визуальная оценка агронома или лабораторный анализ (3–7 дней). К моменту получения результата инфекция распространяется по полю.</p>
+
+<p>Наш пайплайн выполняет <strong>метагеномное нанопоровое секвенирование</strong> (mNGS) образца растительной ткани или почвы прямо на месте посева. За несколько часов агроном получает: точный список выявленных патогенов и — критично для защиты урожая — <strong>профиль устойчивости к фунгицидам</strong>, позволяющий выбрать действительно эффективный препарат.</p>
+
+<ul>
+  <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> после High Accuracy basecalling (Dorado SUP, химия R10.4.1). Материал: гомогенат листа/клубня/корня, почвенный смыв.</li>
+  <li><strong>📤 На выходе:</strong> HTML-отчёт для агронома — выявленные патогены, количественная представленность, профиль резистентности к фунгицидам и рекомендации по обработке.</li>
+</ul>
+
+<hr />
+
+<h2 id="-доступность-продукта">📊 Доступность продукта</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Платформа</th>
+      <th style="text-align: left">Статус доступности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Edge</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Desktop</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong></td>
+      <td style="text-align: left">🔴 Не доступно</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-определяемые-патогены">🌿 Определяемые патогены</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Патоген</th>
+      <th style="text-align: left">Заболевание</th>
+      <th style="text-align: left">Ключевые культуры</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong><a href="/phytophthora-infestans/">Phytophthora infestans</a></strong></td>
+      <td style="text-align: left">Фитофтороз (поздний ожог)</td>
+      <td style="text-align: left">Картофель, томат</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/phytophthora-sojae/">Phytophthora sojae</a></strong></td>
+      <td style="text-align: left">Корневая гниль сои</td>
+      <td style="text-align: left">Соя</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/fusarium-oxysporum/">Fusarium oxysporum</a></strong></td>
+      <td style="text-align: left">Фузариозное увядание</td>
+      <td style="text-align: left">Томат, огурец, зерновые</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/fusarium-graminearum/">Fusarium graminearum</a></strong></td>
+      <td style="text-align: left">Фузариоз колоса</td>
+      <td style="text-align: left">Пшеница, ячмень</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/alternaria-solani/">Alternaria solani</a></strong></td>
+      <td style="text-align: left">Ранний ожог, альтернариоз</td>
+      <td style="text-align: left">Картофель, томат</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/botrytis-cinerea/">Botrytis cinerea</a></strong></td>
+      <td style="text-align: left">Серая гниль</td>
+      <td style="text-align: left">Виноград, земляника, овощи</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/pythium/">Pythium spp.</a></strong></td>
+      <td style="text-align: left">Корневые гнили, демпинг-офф</td>
+      <td style="text-align: left">Сеянцы, рассада</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/plasmopara-viticola/">Plasmopara viticola</a></strong></td>
+      <td style="text-align: left">Мучнистая роса (ложная)</td>
+      <td style="text-align: left">Виноград</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="/peronospora/">Peronospora spp.</a></strong></td>
+      <td style="text-align: left">Ложная мучнистая роса</td>
+      <td style="text-align: left">Подсолнечник, лук</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-гены-устойчивости-к-фунгицидам">🎯 Гены устойчивости к фунгицидам</h2>
+
+<p>Устойчивость к фунгицидам — прямой аналог AMR в медицине. Пайплайн анализирует молекулярные маркеры резистентности для каждого выявленного патогена:</p>
+
+<h3 id="phytophthora-infestans">Phytophthora infestans</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Мутации</th>
+      <th style="text-align: left">Фунгицид</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>CesA3</strong> (целлюлозосинтаза)</td>
+      <td style="text-align: left">G1105S, G1105V</td>
+      <td style="text-align: left">Мандипропамид, диметоморф (CAA-фунгициды)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>RPA70</strong></td>
+      <td style="text-align: left">V799A</td>
+      <td style="text-align: left">CAA-фунгициды</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Ras2</strong> / другие</td>
+      <td style="text-align: left">Полиморфизмы</td>
+      <td style="text-align: left">Металаксил / Мефеноксам (фениламиды)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Cytb</strong> (цитохром b)</td>
+      <td style="text-align: left">G143A, F129L</td>
+      <td style="text-align: left">Стробилурины (азоксистробин, крезоксим-метил)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="fusarium-spp">Fusarium spp.</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Мутации</th>
+      <th style="text-align: left">Фунгицид</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>CYP51</strong> (ланостерол 14α-деметилаза)</td>
+      <td style="text-align: left">I381V, Y461D, S524T + промотор ins</td>
+      <td style="text-align: left">Азолы (тебуконазол, протиоконазол)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>β-тубулин</strong></td>
+      <td style="text-align: left">E198A, F200Y</td>
+      <td style="text-align: left">Бензимидазолы (тиабендазол, МБЦ)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="botrytis-cinerea">Botrytis cinerea</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Мутации</th>
+      <th style="text-align: left">Фунгицид</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>BcCYP51</strong></td>
+      <td style="text-align: left">Множественные мутации + тандемные повторы</td>
+      <td style="text-align: left">Азолы (тебуконазол)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>BcMrr1</strong></td>
+      <td style="text-align: left">Активирующие мутации</td>
+      <td style="text-align: left">SDHI-фунгициды (боскалид)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>BcSdhB/C/D</strong></td>
+      <td style="text-align: left">H272R, P225L</td>
+      <td style="text-align: left">SDHI-фунгициды</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>β-тубулин</strong></td>
+      <td style="text-align: left">E198A, F200Y</td>
+      <td style="text-align: left">Бензимидазолы</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="профиль-фунгицидов-в-отчёте">Профиль фунгицидов в отчёте</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Фунгицид</th>
+      <th style="text-align: left">Класс</th>
+      <th style="text-align: left">Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Металаксил / Мефеноксам</strong></td>
+      <td style="text-align: left">Фениламиды</td>
+      <td style="text-align: left">Системный; металаксил-устойчивый P. infestans распространён в РФ</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Мандипропамид / Диметоморф</strong></td>
+      <td style="text-align: left">CAA</td>
+      <td style="text-align: left">Высокоактивен против оомицетов</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Азоксистробин / Крезоксим-метил</strong></td>
+      <td style="text-align: left">Стробилурины (QoI)</td>
+      <td style="text-align: left">Широкий спектр; G143A → полная резистентность</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Тебуконазол / Протиоконазол</strong></td>
+      <td style="text-align: left">Триазолы (DMI)</td>
+      <td style="text-align: left">Основа защиты зерновых от фузариоза</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Боскалид / Флуксапироксад</strong></td>
+      <td style="text-align: left">SDHI</td>
+      <td style="text-align: left">Высокий риск резистентности у Botrytis</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Тиабендазол</strong></td>
+      <td style="text-align: left">Бензимидазолы</td>
+      <td style="text-align: left">Высокий уровень резистентности у Botrytis и Fusarium</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-версии-и-ml-модели">⚙️ Версии и ML-модели</h2>
+
+<h3 id="основной-инструмент">Основной инструмент</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Компонент</th>
+      <th style="text-align: left">Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Фито Pipeline</strong></td>
+      <td style="text-align: left">🟡 В разработке</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="планируемые-ml-модели">Планируемые ML-модели</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Модель</th>
+      <th style="text-align: left">Целевая задача</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>PhytoPathogen-Classifier</strong></td>
+      <td style="text-align: left">Метагеномная классификация патогенов растений (k-мерный CNN)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>PhytoRes-Detector</strong></td>
+      <td style="text-align: left">Предсказание устойчивости к фунгицидам по молекулярным маркерам</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>PhytoQuant</strong></td>
+      <td style="text-align: left">Количественная оценка тяжести заражения по концентрации патогена в образце</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Обучение на геномах из <strong>NCBI RefSeq Fungi/Oomycota</strong>, <strong>PHI-base</strong> (Pathogen-Host Interaction database) и базе маркеров резистентности <strong>FRAC</strong> (Fungicide Resistance Action Committee).</p>
+
+<hr />
+
+<h2 id="-под-капотом-зависимости-и-окружение-pipeline-stack">🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Этап пайплайна</th>
+      <th style="text-align: left">Ключевые библиотеки и инструменты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>1. Контроль качества (QC)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">porechop_abi</code>, <code class="language-plaintext highlighter-rouge">NanoFilt</code>, <code class="language-plaintext highlighter-rouge">pigz</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>2. Деплеция хозяйских ридов</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2</code> (ref: геном картофеля <em>S. tuberosum</em> DM v6.1)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>3. Метагеномная классификация</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Kraken2</code> + <code class="language-plaintext highlighter-rouge">Bracken</code> (кастомная БД: грибы + оомицеты RefSeq)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4. ITS-баркодирование</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2</code> vs UNITE (ITS1/ITS2 база грибов и оомицетов)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>5. Детекция генов резистентности</strong></td>
+      <td style="text-align: left">Кастомная база FRAC-маркеров + <code class="language-plaintext highlighter-rouge">snpEff</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>6. ML-инференс</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PyTorch</code>, <code class="language-plaintext highlighter-rouge">pandas</code>, <code class="language-plaintext highlighter-rouge">scikit-learn</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-глобальный-контекст">🌍 Глобальный контекст</h2>
+
+<ul>
+  <li><strong>Экономика</strong> — мировые потери урожая от P. infestans оцениваются в <strong>$6–7 млрд ежегодно</strong>. В России фитофтороз поражает до 50% посевов картофеля в дождливые сезоны.</li>
+  <li><strong>Ирландский голод (1845–1852)</strong> — исторический пример: P. infestans уничтожил практически весь урожай картофеля в Ирландии, унеся более 1 млн жизней.</li>
+  <li><strong>Металаксил-резистентность</strong> — устойчивые популяции P. infestans зафиксированы во всех картофелепроизводящих регионах России. Агроном без молекулярной диагностики применяет неэффективный препарат.</li>
+  <li><strong>FRAC</strong> (Fungicide Resistance Action Committee) — международный комитет, ведущий мониторинг резистентности к фунгицидам; Россия участвует в рамках EUROBLIGHT для P. infestans.</li>
+</ul>
+
+<hr />
+
+<h2 id="-связанные-источники">🔬 Связанные источники</h2>
+
+<ul>
+  <li>📄 <a href="https://www.frac.info/">FRAC — Комитет по резистентности к фунгицидам</a></li>
+  <li>📄 <a href="https://euroblight.net/">EUROBLIGHT — европейская сеть мониторинга P. infestans</a></li>
+  <li>📄 <a href="http://www.phi-base.org/">PHI-base — база взаимодействий патоген-хозяин</a></li>
+  <li>📄 <a href="https://unite.ut.ee/">UNITE — база данных ITS-баркодирования грибов и оомицетов</a></li>
+</ul>
+
+</div>
+<script src="/assets/js/i18n.js"></script>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2026&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>

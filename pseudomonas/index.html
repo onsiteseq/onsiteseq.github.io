@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      OnSiteSeq PA — Определение лекарственной устойчивости Pseudomonas aeruginosa
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OnSiteSeq PA — Определение лекарственной устойчивости Pseudomonas aeruginosa" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<meta property="og:description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<link rel="canonical" href="https://onsiteseq.io/pseudomonas/" />
+<meta property="og:url" content="https://onsiteseq.io/pseudomonas/" />
+<meta property="og:site_name" content="OnSiteSeq" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/pseudomonas/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/pseudomonas/" />
+<meta property="twitter:title" content="OnSiteSeq PA — Определение лекарственной устойчивости Pseudomonas aeruginosa" />
+<meta name="twitter:site" content="@gorbenkoteh" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"url":"https://onsiteseq.io/pseudomonas/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.","@type":"WebPage","headline":"OnSiteSeq PA — Определение лекарственной устойчивости Pseudomonas aeruginosa","@context":"https://schema.org"}</script>
+<script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.io/feed.xml" title="OnSiteSeq" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header class="site-header">
+  <nav class="site-nav" style="display:flex; align-items:center; gap:1.2em;">
+    <a href="/" style="display:flex; align-items:center; flex-shrink:0; text-decoration:none;">
+      <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
+    </a>
+    <ul class="horizontal-list">
+      <li><a href="/">Главная</a>&nbsp;&nbsp;</li>
+      <li><a href="/aboutonsiteseq">О платформе</a>&nbsp;&nbsp;</li>
+      <li><a href="/contact/">Контакты</a>&nbsp;&nbsp;</li>
+      <li><a href="https://cloud.onsiteseq.io" target="_blank" rel="noopener">Вход в Облако</a>&nbsp;&nbsp;</li>
+    </ul>
+    <button id="lang-toggle" title="Switch language / Переключить язык"
+      style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+      🌐 EN
+    </button>
+  </nav>
+  <div class="dashed"></div>
+</header>
+
+<div id="i18n-content">
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <img src="/assets/images/logo/pseudomonas.png" alt="Pseudomonas aeruginosa" style="max-height: 120px; margin-bottom: 1rem;" />
+  <h1>Определение лекарственной устойчивости Pseudomonas aeruginosa</h1>
+  <p style="font-size: 1.2em; color: #555;">Геномный надзор за синегнойной палочкой — мастером адаптации и хронических инфекций при муковисцидозе, ожогах и в условиях ОРИТ</p>
+</div>
+
+<hr />
+
+<h2 id="-описание-пейплайна">🧬 Описание пейплайна</h2>
+
+<p><em>Pseudomonas aeruginosa</em> (синегнойная палочка) — грамотрицательная неферментирующая бактерия, один из наиболее клинически опасных оппортунистических патогенов. ВОЗ в 2024 году вновь включила её в <strong>список приоритетных патогенов категории «критический»</strong>, подчёркивая стремительный рост карбапенем-резистентных штаммов (CRPA).</p>
+
+<p><em>P. aeruginosa</em> уникальна по своим адаптивным возможностям. Она обладает <strong>одним из крупнейших бактериальных геномов</strong> (~6,3 Мб), кодирующим богатейший арсенал механизмов устойчивости и вирулентности. Бактерия способна <strong>одновременно</strong> задействовать множество механизмов резистентности: потерю поринов (OprD), гиперэкспрессию насосов эффлюкса (MexAB-OprM и др.), продукцию β-лактамаз (AmpC, МБЛ), а также мутации в генах-мишенях антибиотиков.</p>
+
+<p>Особую проблему представляет роль <em>P. aeruginosa</em> в <strong>хронических инфекциях при муковисцидозе</strong>: бактерия образует биоплёнку и переходит в мукоидный фенотип, становясь недостижимой для антибиотиков и иммунной системы. У таких пациентов мониторинг AMR-профиля каждого штамма — вопрос выживаемости.</p>
+
+<ul>
+  <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> (после base-caller модели Dorado, конвертации POD5/FAST5 в FASTQ). Поддерживается полногеномное (WGS) и ампликонное секвенирование.</li>
+  <li><strong>📤 На выходе:</strong> Клинический HTML-отчёт с профилем AMR для врача-инфекциониста / пульмонолога и технический QC-отчёт для биоинформатика.</li>
+</ul>
+
+<hr />
+
+<h2 id="-доступность-продукта">📊 Доступность продукта</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Платформа</th>
+      <th style="text-align: left">Статус доступности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Edge</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Desktop</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong></td>
+      <td style="text-align: left">🔴 Не доступно</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-гены-и-механизмы-резистентности">🎯 Гены и механизмы резистентности</h2>
+
+<p><em>Pseudomonas aeruginosa</em> — один из самых сложных для терапии патогенов: её резистентность формируется сразу по нескольким независимым путям. Пайплайн анализирует весь спектр детерминант:</p>
+
+<h3 id="карбапенемазы-и-β-лактамазы">Карбапенемазы и β-лактамазы</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген / Детерминанта</th>
+      <th style="text-align: left">Механизм</th>
+      <th style="text-align: left">Класс антибиотиков</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>NDM-1, NDM-2</strong></td>
+      <td style="text-align: left">Металло-β-лактамаза класса B (МБЛ)</td>
+      <td style="text-align: left">Карбапенемы, большинство β-лактамов</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>VIM-1, VIM-2</strong></td>
+      <td style="text-align: left">МБЛ класса B — наиболее частая у PA</td>
+      <td style="text-align: left">Карбапенемы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>IMP-типы</strong></td>
+      <td style="text-align: left">МБЛ класса B</td>
+      <td style="text-align: left">Карбапенемы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>KPC-2, KPC-3</strong></td>
+      <td style="text-align: left">Серин-карбапенемаза класса A</td>
+      <td style="text-align: left">Карбапенемы, все β-лактамы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>AmpC</strong> (хромосомная, дерепрессированная)</td>
+      <td style="text-align: left">Цефалоспориназа класса C</td>
+      <td style="text-align: left">Цефалоспорины I–III, азтреонам</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OXA-10, OXA-14</strong></td>
+      <td style="text-align: left">Оксациллиназа класса D</td>
+      <td style="text-align: left">Карбапенемы (умеренная), пенициллины</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="насосы-эффлюкса-главный-механизм-млу-у-pa">Насосы эффлюкса (главный механизм МЛУ у PA)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Насос</th>
+      <th style="text-align: left">Регулятор</th>
+      <th style="text-align: left">Класс антибиотиков</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>MexAB-OprM</strong></td>
+      <td style="text-align: left">MexR (нарушение)</td>
+      <td style="text-align: left">β-лактамы, фторхинолоны, тетрациклины</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>MexCD-OprJ</strong></td>
+      <td style="text-align: left">NfxB (нарушение)</td>
+      <td style="text-align: left">Фторхинолоны, цефепим</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>MexEF-OprN</strong></td>
+      <td style="text-align: left">MexT (активация)</td>
+      <td style="text-align: left">Фторхинолоны, карбапенемы, хлорамфеникол</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>MexXY-OprM</strong></td>
+      <td style="text-align: left">MexZ (нарушение)</td>
+      <td style="text-align: left">Аминогликозиды, фторхинолоны</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="потеря-порина-oprd-и-мутации-в-мишенях">Потеря порина OprD и мутации в мишенях</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген / Изменение</th>
+      <th style="text-align: left">Механизм</th>
+      <th style="text-align: left">Класс антибиотиков</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>oprD</strong> (мутация / делеция)</td>
+      <td style="text-align: left">Потеря специфического порина</td>
+      <td style="text-align: left">Карбапенемы (Имипенем » Меропенем)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>gyrA</strong> Thr83Ile, Asp87Gly/Asn</td>
+      <td style="text-align: left">Модификация ДНК-гиразы</td>
+      <td style="text-align: left">Фторхинолоны (Ципрофлоксацин)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>parC</strong> Ser87Trp</td>
+      <td style="text-align: left">Модификация топоизомеразы IV</td>
+      <td style="text-align: left">Фторхинолоны</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>armA, rmtB, rmtC</strong></td>
+      <td style="text-align: left">Метилирование 16S рРНК</td>
+      <td style="text-align: left">Аминогликозиды (высокий уровень)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>aac(6’)-II, aph(3’)-IIb</strong></td>
+      <td style="text-align: left">Ферментативная инактивация</td>
+      <td style="text-align: left">Аминогликозиды</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>fosA</strong> (хромосомная)</td>
+      <td style="text-align: left">Инактивация фосфомицина</td>
+      <td style="text-align: left">Фосфомицин</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="профиль-антибиотиков-в-клиническом-отчёте">Профиль антибиотиков в клиническом отчёте</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Антибиотик</th>
+      <th style="text-align: left">Класс</th>
+      <th style="text-align: left">Клиническое значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Пиперациллин/тазобактам</strong></td>
+      <td style="text-align: left">β-лактам + ингибитор</td>
+      <td style="text-align: left">Первая линия при чувствительных штаммах</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Цефтазидим</strong></td>
+      <td style="text-align: left">Цефалоспорин III (антипсевдомонадный)</td>
+      <td style="text-align: left">Первая линия; чувствителен при отсутствии АmpC</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Цефепим</strong></td>
+      <td style="text-align: left">Цефалоспорин IV</td>
+      <td style="text-align: left">Активен против дерепрессированных AmpC</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Цефтолозан/тазобактам</strong></td>
+      <td style="text-align: left">Новый цефалоспорин + ингибитор</td>
+      <td style="text-align: left">Активен против МЛУ-штаммов с AmpC</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Меропенем / Имипенем</strong></td>
+      <td style="text-align: left">Карбапенем</td>
+      <td style="text-align: left">Первая линия при ТЛУ; CRPA — глобальная угроза</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Цефидерокол</strong></td>
+      <td style="text-align: left">Сидерофорный цефалоспорин</td>
+      <td style="text-align: left">Новейший препарат против CRPA и ПДРУ-штаммов</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Ципрофлоксацин</strong></td>
+      <td style="text-align: left">Фторхинолон</td>
+      <td style="text-align: left">Часто резистентны; контроль по gyrA/parC</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Амикацин / Тобрамицин</strong></td>
+      <td style="text-align: left">Аминогликозид</td>
+      <td style="text-align: left">Ингаляционно при муковисцидозе; armA = резистентность</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Колистин / Полимиксин B</strong></td>
+      <td style="text-align: left">Полимиксин</td>
+      <td style="text-align: left">Последний резерв при ПДРУ</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Азтреонам/авибактам</strong></td>
+      <td style="text-align: left">Монобактам + ингибитор</td>
+      <td style="text-align: left">Активен против МБЛ-продуцентов</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-версии-и-ml-модели">⚙️ Версии и ML-модели</h2>
+
+<h3 id="основной-инструмент">Основной инструмент</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Компонент</th>
+      <th style="text-align: left">Текущая версия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq PA Pipeline</strong></td>
+      <td style="text-align: left">🟡 В разработке</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="планируемые-модули-анализа">Планируемые модули анализа</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Модуль</th>
+      <th style="text-align: left">Версия</th>
+      <th style="text-align: left">Описание</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>PA-Carbapenemase-Detector</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0</code></td>
+      <td style="text-align: left">Детекция NDM, VIM, IMP, KPC, OXA — все классы МБЛ и серин-карбапенемаз</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>PA-Efflux-Profiler</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0</code></td>
+      <td style="text-align: left">Анализ мутаций в регуляторах насосов MexR, NfxB, MexT, MexZ</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>PA-AMR-Profiler</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0</code></td>
+      <td style="text-align: left">Полный AMR-профиль по 8 классам антибиотиков</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>PA-MLST</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0</code></td>
+      <td style="text-align: left">Молекулярное типирование (схема PubMLST/Pseudomonas) для надзора за вспышками</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>PA-Biofilm-Predictor</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0</code></td>
+      <td style="text-align: left">Детекция генов биоплёнки (<em>pelB</em>, <em>pslA</em>, <em>algD</em>, <em>mucA</em>) — критично при муковисцидозе</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-под-капотом-зависимости-и-окружение-pipeline-stack">🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)</h2>
+
+<p>Пайплайн управляется с помощью фреймворка Snakemake и разделён на изолированные Conda-окружения для максимальной воспроизводимости.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Этап пайплайна</th>
+      <th style="text-align: left">Используемые библиотеки и инструменты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>1. Контроль качества (QC)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Python 3.10</code>, <code class="language-plaintext highlighter-rouge">NanoFilt</code>, <code class="language-plaintext highlighter-rouge">porechop_abi</code>, <code class="language-plaintext highlighter-rouge">pigz</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>2. Выравнивание (Mapping)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2</code>, <code class="language-plaintext highlighter-rouge">samtools</code> (Референс: PAO1 / AE004091)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>3. Поиск мутаций (Variant Calling)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">clair3 ≥1.0.4</code>, <code class="language-plaintext highlighter-rouge">bcftools</code>, <code class="language-plaintext highlighter-rouge">htslib</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4. Детекция генов резистентности</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">AMRFinderPlus</code>, <code class="language-plaintext highlighter-rouge">ResFinder</code>, кастомная БД МБЛ и насосов эффлюкса</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>5. MLST-типирование</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">mlst</code> (схема PubMLST/Pseudomonas aeruginosa)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>6. Аннотация генов вирулентности</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">VFDB</code> (базы данных факторов вирулентности)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>7. Отчётность</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Python</code>, <code class="language-plaintext highlighter-rouge">pandas</code>, <code class="language-plaintext highlighter-rouge">jinja2</code>, <code class="language-plaintext highlighter-rouge">snpEff</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-глобальный-контекст-почему-это-важно">🌍 Глобальный контекст: почему это важно</h2>
+
+<ul>
+  <li><strong>ВОЗ, 2024 — Приоритет 1: Критический.</strong> CRPA (карбапенем-резистентная <em>P. aeruginosa</em>) вместе с CRAB входит в абсолютный топ угроз глобальному здоровью.</li>
+  <li><strong>Летальность</strong>: инфекции CRPA в ОРИТ сопровождаются летальностью <strong>30–50%</strong>; при бактериемии — до <strong>60%</strong>.</li>
+  <li><strong>Муковисцидоз</strong>: <em>P. aeruginosa</em> хронически инфицирует <strong>~80% взрослых пациентов</strong> с муковисцидозом. Переход в мукоидный фенотип делает бактерию недостижимой для стандартной терапии — AMR-мониторинг каждого штамма <strong>жизненно необходим</strong>.</li>
+  <li><strong>Ожоговые центры</strong>: <em>P. aeruginosa</em> — ведущий возбудитель инфекций у ожоговых больных; CRPA-вспышки опустошают отделения.</li>
+  <li><strong>Накопление устойчивости «на лету»</strong>: <em>P. aeruginosa</em> способна <strong>в ходе лечения одного пациента</strong> приобретать новые механизмы резистентности — повторный AMR-анализ в динамике критически важен.</li>
+  <li><strong>Россия</strong>: по данным СКАТ, доля CRPA в российских стационарах превышает <strong>30%</strong> в среднем и достигает <strong>50–60%</strong> в крупных ОРИТ.</li>
+  <li><strong>Биоплёнка</strong>: в биоплёнке <em>P. aeruginosa</em> <strong>в 1000 раз</strong> устойчивее к антибиотикам — молекулярная детекция генов биоплёнки (<em>pelB</em>, <em>algD</em>) предсказывает терапевтический провал.</li>
+</ul>
+
+<p>Быстрое молекулярное типирование штамма у постели пациента позволяет врачу немедленно переключиться на активный препарат (Цефтолозан/тазобактам, Цефидерокол) и <strong>не тратить критические часы</strong> на «пробные» схемы неэффективной терапии.</p>
+
+<hr />
+
+<h2 id="-примеры-отчётов">📋 Примеры отчётов</h2>
+
+<p>Ознакомьтесь с тем, как выглядят итоговые результаты работы пайплайна:</p>
+<ul>
+  <li>📄 <strong>Пример HTML-отчёта для врача-инфекциониста / пульмонолога</strong> (в разработке)</li>
+  <li>💻 <strong>Пример детализированного QC-отчёта для биоинформатика</strong> (в разработке)</li>
+</ul>
+
+<hr />
+
+<h2 id="-связанные-onsiteseq-исследования">🔬 Связанные OnSiteSeq-исследования</h2>
+
+<p>Углубитесь в контекст проблемы, изучив ключевые источники.</p>
+
+<p><strong>Ключевые источники и базы данных:</strong></p>
+<ul>
+  <li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — Bacterial Priority Pathogens List 2024</a></li>
+  <li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI)</a></li>
+  <li>📄 <a href="https://pubmlst.org/organisms/pseudomonas-aeruginosa">PubMLST — Pseudomonas aeruginosa typing</a></li>
+  <li>📄 <a href="https://www.eucast.org/clinical_breakpoints/">EUCAST — Breakpoints для P. aeruginosa</a></li>
+  <li>📄 <a href="http://www.mgc.ac.cn/VFs/">VFDB — Virulence Factor Database</a></li>
+  <li>📄 <a href="https://www.cff.org/managing-cf/treatments-and-therapies/infection-management/pseudomonas-aeruginosa">Cystic Fibrosis Foundation — PA в муковисцидозе</a></li>
+</ul>
+
+</div>
+<script src="/assets/js/i18n.js"></script>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2026&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>

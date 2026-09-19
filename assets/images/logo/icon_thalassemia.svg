@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="thal_rbc" cx="42%" cy="36%" r="70%">
+      <stop offset="0%" stop-color="#ef9a9a"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </radialGradient>
+    <radialGradient id="thal_center" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ffcdd2"/>
+      <stop offset="100%" stop-color="#e57373"/>
+    </radialGradient>
+    <radialGradient id="thal_hl" cx="30%" cy="24%" r="55%">
+      <stop offset="0%" stop-color="#ffebee" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#b71c1c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Erythrocyte (biconcave disc, 3/4 view) === -->
+  <ellipse cx="50" cy="52" rx="38" ry="30" fill="url(#thal_rbc)"/>
+  <ellipse cx="50" cy="52" rx="38" ry="30" fill="url(#thal_hl)"/>
+  <ellipse cx="50" cy="52" rx="38" ry="30" fill="none" stroke="#7f0000" stroke-width="1.8"/>
+
+  <!-- Central pallor (biconcave depression) -->
+  <ellipse cx="50" cy="52" rx="19" ry="13.5" fill="url(#thal_center)" stroke="#a52714" stroke-width="1.2" stroke-opacity="0.8"/>
+
+  <!-- === DNA double helix across the erythrocyte === -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M24 52 C32 40, 44 40, 50 52 C56 64, 68 64, 76 52" stroke="#263238" stroke-width="2.4"/>
+    <path d="M24 52 C32 64, 44 64, 50 52 C56 40, 68 40, 76 52" stroke="#546e7a" stroke-width="2.4"/>
+  </g>
+  <!-- Base pairs -->
+  <g stroke="#90a4ae" stroke-width="1.4" stroke-linecap="round">
+    <line x1="32" y1="46.5" x2="32" y2="57.5"/>
+    <line x1="41" y1="45.5" x2="41" y2="58.5"/>
+    <line x1="50" y1="49" x2="50" y2="55"/>
+    <line x1="59" y1="58.5" x2="59" y2="45.5"/>
+    <line x1="68" y1="57.5" x2="68" y2="46.5"/>
+  </g>
+
+  <!-- === Deletion marker (missing segment, alpha-thalassemia motif) === -->
+  <g stroke="#ffab00" stroke-width="2" stroke-linecap="round">
+    <line x1="44" y1="30" x2="56" y2="42"/>
+    <line x1="56" y1="30" x2="44" y2="42"/>
+  </g>
+  <circle cx="50" cy="36" r="8.5" fill="none" stroke="#ffab00" stroke-width="1.6" stroke-dasharray="2.6 2.2"/>
+</svg>

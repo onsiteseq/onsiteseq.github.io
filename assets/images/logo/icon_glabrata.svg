@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="cgl_cell" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#fff8e1"/>
+      <stop offset="100%" stop-color="#ffb74d"/>
+    </radialGradient>
+    <radialGradient id="cgl_mut" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#ffcdd2"/>
+      <stop offset="100%" stop-color="#c62828"/>
+    </radialGradient>
+    <linearGradient id="cgl_arrow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8e24aa"/>
+      <stop offset="100%" stop-color="#d81b60"/>
+    </linearGradient>
+    <radialGradient id="cgl_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="cgl_head" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#d81b60"/>
+    </marker>
+  </defs>
+
+  <!-- === Mutation target: concentric dashed rings (evolution of resistance) === -->
+  <g fill="none" stroke="#8e24aa" stroke-opacity="0.4">
+    <circle cx="50" cy="52" r="42" stroke-width="1.3" stroke-dasharray="5 4"/>
+    <circle cx="50" cy="52" r="32" stroke-width="1.3" stroke-dasharray="4 3.5"/>
+    <circle cx="50" cy="52" r="22" stroke-width="1.3" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- === Mutational spiral with arrowhead: from sensitive center to resistant edge === -->
+  <path d="M50 52 C50 45 59 45 59 52 C59 61 46 63 43 54 C39 43 51 31 64 35 C79 40 83 58 74 69"
+        fill="none" stroke="url(#cgl_arrow)" stroke-width="2.4" stroke-linecap="round" marker-end="url(#cgl_head)"/>
+  <circle cx="50" cy="52" r="2.6" fill="#8e24aa"/>
+
+  <!-- === Small oval yeast cells, budding; NO hyphae/pseudohyphae (glabrata) === -->
+  <!-- sensitive cells (cream) -->
+  <g stroke="#e65100" stroke-width="1.4">
+    <g transform="rotate(-20 26 25)">
+      <ellipse cx="26" cy="25" rx="9" ry="7.2" fill="url(#cgl_cell)"/>
+      <circle cx="33.5" cy="19.5" r="3.6" fill="url(#cgl_cell)"/>
+    </g>
+    <g transform="rotate(15 71 28)">
+      <ellipse cx="71" cy="28" rx="7.8" ry="6.3" fill="url(#cgl_cell)"/>
+      <circle cx="78.5" cy="33" r="3" fill="url(#cgl_cell)"/>
+    </g>
+    <g transform="rotate(30 21 66)">
+      <ellipse cx="21" cy="66" rx="6.8" ry="5.4" fill="url(#cgl_cell)"/>
+      <circle cx="15" cy="70.5" r="2.7" fill="url(#cgl_cell)"/>
+    </g>
+  </g>
+  <!-- resistant mutant cells (red) — at the spiral arrow tip -->
+  <g stroke="#b71c1c" stroke-width="1.4">
+    <g transform="rotate(-12 78 73)">
+      <ellipse cx="78" cy="73" rx="9.2" ry="7.4" fill="url(#cgl_mut)"/>
+      <circle cx="86.5" cy="67.5" r="3.6" fill="url(#cgl_mut)"/>
+    </g>
+    <g transform="rotate(24 57 87)">
+      <ellipse cx="57" cy="87" rx="6.2" ry="5" fill="url(#cgl_mut)"/>
+      <circle cx="62.5" cy="82.5" r="2.5" fill="url(#cgl_mut)"/>
+    </g>
+  </g>
+
+  <!-- glossy highlights -->
+  <g fill="url(#cgl_hl)">
+    <ellipse cx="23.5" cy="22.5" rx="4" ry="2.2" transform="rotate(-20 23.5 22.5)"/>
+    <ellipse cx="68.5" cy="25.5" rx="3.4" ry="1.9" transform="rotate(15 68.5 25.5)"/>
+    <ellipse cx="75.5" cy="70.5" rx="4" ry="2.2" transform="rotate(-12 75.5 70.5)"/>
+  </g>
+</svg>

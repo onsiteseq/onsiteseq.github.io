@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      ML-модели OnSiteSeq — ВИЧ-1
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="ML-модели OnSiteSeq — ВИЧ-1" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<meta property="og:description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<link rel="canonical" href="https://onsiteseq.io/ml/hiv/" />
+<meta property="og:url" content="https://onsiteseq.io/ml/hiv/" />
+<meta property="og:site_name" content="OnSiteSeq" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/ml/hiv/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/ml/hiv/" />
+<meta property="twitter:title" content="ML-модели OnSiteSeq — ВИЧ-1" />
+<meta name="twitter:site" content="@gorbenkoteh" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"url":"https://onsiteseq.io/ml/hiv/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.","@type":"WebPage","headline":"ML-модели OnSiteSeq — ВИЧ-1","@context":"https://schema.org"}</script>
+<script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.io/feed.xml" title="OnSiteSeq" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header class="site-header">
+  <nav class="site-nav" style="display:flex; align-items:center; gap:1.2em;">
+    <a href="/" style="display:flex; align-items:center; flex-shrink:0; text-decoration:none;">
+      <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
+    </a>
+    <ul class="horizontal-list">
+      <li><a href="/">Главная</a>&nbsp;&nbsp;</li>
+      <li><a href="/aboutonsiteseq">О платформе</a>&nbsp;&nbsp;</li>
+      <li><a href="/contact/">Контакты</a>&nbsp;&nbsp;</li>
+      <li><a href="https://cloud.onsiteseq.io" target="_blank" rel="noopener">Вход в Облако</a>&nbsp;&nbsp;</li>
+    </ul>
+    <button id="lang-toggle" title="Switch language / Переключить язык"
+      style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+      🌐 EN
+    </button>
+  </nav>
+  <div class="dashed"></div>
+</header>
+
+<div id="i18n-content">
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <h1>Модели машинного обучения: OnSiteSeq HIV</h1>
+  <p style="font-size: 1.2em; color: #555;">Глубокое обучение для высокоточного геномного надзора и предсказания резистентности ВИЧ-1</p>
+</div>
+
+<hr />
+
+<h2 id="-инновационный-подход-к-геному-вич-1">🧠 Инновационный подход к геному ВИЧ-1</h2>
+
+<p>Стандартные зарубежные алгоритмы (в том числе разработанные в США) часто обучаются на базах данных, не отражающих специфику Российской Федерации. Эпидемия ВИЧ-1 в России носит выраженный монофилетический характер.</p>
+
+<p>Наши проприетарные нейросетевые модели разработаны с учетом отечественной эпидемиологии и используют передовые архитектуры машинного обучения для обеспечения беспрецедентной точности диагностики.</p>
+
+<hr />
+
+<h2 id="-hiv-1-m-env-rus-версия-10">🧬 HIV-1-M-Env-Rus (Версия 1.0)</h2>
+
+<p>Специализированная нейросетевая модель для классификации генетических вариантов ВИЧ-1. Она решает критическую задачу выявления доминирующих и рекомбинантных форм вируса, циркулирующих на территории РФ.</p>
+
+<ul>
+  <li><strong>Целевой регион:</strong> Анализ нуклеотидных последовательностей гена <strong>Env</strong>.</li>
+  <li><strong>Специфика РФ:</strong> Модель оптимизирована для сверхточной детекции субтипа <strong>A6</strong> (на который приходится более 80% случаев в России), а также сложных циркулирующих рекомбинантных форм, таких как <strong>CRF63_02A6</strong>.</li>
+  <li><strong>Архитектура:</strong> Глубокое обучение на базе PyTorch с интеграцией в автоматизированный пайплайн подготовки данных (Snakemake).</li>
+  <li><strong>Результат:</strong> Расчет процентной вероятности принадлежности изолята к конкретному субтипу.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-hiv-1-resist-rus-версия-10">🛡️ HIV-1-Resist-Rus (Версия 1.0)</h2>
+
+<p>Флагманская модель для прогнозирования устойчивости вируса к основным классам антиретровирусной терапии (АРВТ).</p>
+
+<ul>
+  <li><strong>Целевые гены:</strong> Анализ ключевых участков генома, ответственных за выживаемость вируса — <strong>PR</strong> (протеаза), <strong>RT</strong> (обратная транскриптаза) и <strong>IN</strong> (интеграза).</li>
+  <li><strong>Архитектура ID-CNN + Self-Attention:</strong> Использование одномерных сверточных сетей в связке с механизмом «внимания» позволяет модели эффективно распознавать <strong>эпистаз</strong> — сложную взаимосвязь, при которой одна мутация может усиливать или подавлять эффект другой мутации.</li>
+  <li><strong>Интеграция с базами данных:</strong> Модель калибруется с использованием актуальных мировых (Stanford HIVDB) и российских баз данных резистентности.</li>
+</ul>
+
+<hr />
+
+<h2 id="-hiv-1-resist-rus-версия-30">🚀 HIV-1-Resist-Rus (Версия 3.0)</h2>
+
+<p><strong>Принципиальное обновление, переводящее систему из статуса исследовательского прототипа в клинически применимый инструмент.</strong> Репозиторий: <a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>
+
+<h3 id="что-изменилось-в-v3">Что изменилось в v3</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Компонент</th>
+      <th style="text-align: left">v1 / v2</th>
+      <th style="text-align: left"><strong>v3</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Препараты</td>
+      <td style="text-align: left">1 (DTG) / 14</td>
+      <td style="text-align: left"><strong>14 (все классы АРТ)</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Обучающий датасет</td>
+      <td style="text-align: left">Stanford interim CSVs + синтетика</td>
+      <td style="text-align: left"><strong>37 641 последовательность LANL</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Разметка</td>
+      <td style="text-align: left">Fold-change ≥ 3.5</td>
+      <td style="text-align: left"><strong>Stanford Sierra API (эталон)</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Распределение классов</td>
+      <td style="text-align: left">60–92 % резистентных (синтетика)</td>
+      <td style="text-align: left"><strong>0.8–10.8 % (реальное)</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Валидация</td>
+      <td style="text-align: left">Внутренняя (val split)</td>
+      <td style="text-align: left"><strong>356 пациентов ЦНИИ Эпидемиологии Роспотребнадзора</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Среднее AUC (внешн.)</td>
+      <td style="text-align: left">~0.727</td>
+      <td style="text-align: left"><strong>0.990</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="архитектура-hybridresistancecnn">Архитектура HybridResistanceCNN</h3>
+
+<p>Модель объединяет три ветки, работающие параллельно:</p>
+
+<ul>
+  <li><strong>Embedding + CNN ×3</strong> — локальные паттерны в аминокислотной последовательности (RT: 240 позиций / PR: 99 / IN: 288)</li>
+  <li><strong>Self-Attention</strong> — долгодистанционный эпистаз между удалёнными позициями</li>
+  <li><strong>MutationMLP</strong> — двухслойный перцептрон на ключевых позициях (K65R, M184V, K103N, G140S и др.)</li>
+</ul>
+
+<p>Три ветки объединяются через Fusion-слой → Dropout → Linear → P(резистентный) ∈ [0, 1].</p>
+
+<p><strong>Ключевые инженерные решения:</strong> Focal Loss (α=0.75, γ=2.0) для борьбы с дисбалансом классов (≤1% резистентных), WeightedRandomSampler, OneCycleLR (80 эпох), калибровка порогов по Юдену.</p>
+
+<h3 id="результаты-внешней-валидации-v3">Результаты внешней валидации v3</h3>
+
+<p>Валидация на <strong>356 деидентифицированных пациентах ЦНИИ Эпидемиологии Роспотребнадзора</strong> (когорта EpidRuSeq). Эталон — заключения Stanford HivDB по каждому препарату.</p>
+
+<blockquote>
+  <p><strong>Среднее AUC = 0.990</strong> — соответствует уровню точности Stanford HIV Drug Resistance Database при работе в полностью офлайн-режиме без передачи данных на зарубежные серверы.</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Препарат</th>
+      <th style="text-align: center">Класс</th>
+      <th style="text-align: center">AUC</th>
+      <th style="text-align: center">F1</th>
+      <th style="text-align: center">Чувствительность</th>
+      <th style="text-align: center">Специфичность</th>
+      <th style="text-align: center">ΔAUC vs v2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>DRV</strong></td>
+      <td style="text-align: center">ИП</td>
+      <td style="text-align: center"><strong>1.000</strong></td>
+      <td style="text-align: center"><strong>1.000</strong></td>
+      <td style="text-align: center"><strong>1.000</strong></td>
+      <td style="text-align: center"><strong>1.000</strong></td>
+      <td style="text-align: center">+0.017</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>DTG</strong></td>
+      <td style="text-align: center">ИНТИ</td>
+      <td style="text-align: center"><strong>1.000</strong></td>
+      <td style="text-align: center">0.800</td>
+      <td style="text-align: center"><strong>1.000</strong></td>
+      <td style="text-align: center">0.994</td>
+      <td style="text-align: center">+0.272</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3TC</td>
+      <td style="text-align: center">НИОТ</td>
+      <td style="text-align: center">0.999</td>
+      <td style="text-align: center">0.964</td>
+      <td style="text-align: center">0.982</td>
+      <td style="text-align: center">0.990</td>
+      <td style="text-align: center">+0.019</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RAL</td>
+      <td style="text-align: center">ИНТИ</td>
+      <td style="text-align: center">0.999</td>
+      <td style="text-align: center">0.898</td>
+      <td style="text-align: center">0.957</td>
+      <td style="text-align: center">0.988</td>
+      <td style="text-align: center">+0.670</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EVG</td>
+      <td style="text-align: center">ИНТИ</td>
+      <td style="text-align: center">0.999</td>
+      <td style="text-align: center">0.898</td>
+      <td style="text-align: center">0.957</td>
+      <td style="text-align: center">0.988</td>
+      <td style="text-align: center">+0.178</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ABC</td>
+      <td style="text-align: center">НИОТ</td>
+      <td style="text-align: center">0.997</td>
+      <td style="text-align: center">0.957</td>
+      <td style="text-align: center">0.965</td>
+      <td style="text-align: center">0.990</td>
+      <td style="text-align: center">+0.549</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ATV/r</td>
+      <td style="text-align: center">ИП</td>
+      <td style="text-align: center">0.997</td>
+      <td style="text-align: center">0.811</td>
+      <td style="text-align: center">0.938</td>
+      <td style="text-align: center">0.982</td>
+      <td style="text-align: center">+0.141</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">LPV/r</td>
+      <td style="text-align: center">ИП</td>
+      <td style="text-align: center">0.997</td>
+      <td style="text-align: center">0.762</td>
+      <td style="text-align: center">0.889</td>
+      <td style="text-align: center">0.988</td>
+      <td style="text-align: center">+0.210</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">BIC</td>
+      <td style="text-align: center">ИНТИ</td>
+      <td style="text-align: center">0.996</td>
+      <td style="text-align: center">0.500</td>
+      <td style="text-align: center">0.750</td>
+      <td style="text-align: center">0.986</td>
+      <td style="text-align: center">+0.319</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TDF</td>
+      <td style="text-align: center">НИОТ</td>
+      <td style="text-align: center">0.989</td>
+      <td style="text-align: center">0.809</td>
+      <td style="text-align: center">0.826</td>
+      <td style="text-align: center">0.985</td>
+      <td style="text-align: center">+0.222</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">AZT</td>
+      <td style="text-align: center">НИОТ</td>
+      <td style="text-align: center">0.987</td>
+      <td style="text-align: center">0.933</td>
+      <td style="text-align: center">0.913</td>
+      <td style="text-align: center">0.997</td>
+      <td style="text-align: center">+0.161</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ETR</td>
+      <td style="text-align: center">ННИОТ</td>
+      <td style="text-align: center">0.981</td>
+      <td style="text-align: center">0.889</td>
+      <td style="text-align: center">0.941</td>
+      <td style="text-align: center">0.970</td>
+      <td style="text-align: center">+0.171</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EFV</td>
+      <td style="text-align: center">ННИОТ</td>
+      <td style="text-align: center">0.972</td>
+      <td style="text-align: center">0.879</td>
+      <td style="text-align: center">0.954</td>
+      <td style="text-align: center">0.952</td>
+      <td style="text-align: center">+0.070</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">NVP</td>
+      <td style="text-align: center">ННИОТ</td>
+      <td style="text-align: center">0.949</td>
+      <td style="text-align: center">0.857</td>
+      <td style="text-align: center">0.882</td>
+      <td style="text-align: center">0.958</td>
+      <td style="text-align: center">+0.041</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Среднее</strong></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"><strong>0.990</strong></td>
+      <td style="text-align: center"><strong>0.854</strong></td>
+      <td style="text-align: center"><strong>0.925</strong></td>
+      <td style="text-align: center"><strong>0.984</strong></td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>12 из 14 препаратов преодолевают клинический порог AUC ≥ 0.90 и чувствительность ≥ 0.85.</em></p>
+
+<hr />
+
+<h2 id="️-технологии-и-biomlops">⚙️ Технологии и BioMLOps</h2>
+
+<p>Мы придерживаемся строгих инженерных стандартов управления жизненным циклом машинного обучения в биомедицине (<strong>BioMLOps</strong>), что критически важно для сертификации и воспроизводимости результатов.</p>
+
+<ul>
+  <li><strong>Управление данными (DVC):</strong> Версионирование обучающих датасетов, весов моделей и пайплайнов извлечения признаков. Это гарантирует 100% прослеживаемость экспериментов.</li>
+  <li><strong>Непрерывное обучение:</strong> Разработан автоматизированный пайплайн дообучения при обновлении внешних баз данных (Stanford HIVDB) с системой ранней детекции деградации качества модели (Model Degradation) на отложенной выборке (Hold-out Set).</li>
+  <li><strong>Технологический стек:</strong> <code class="language-plaintext highlighter-rouge">PyTorch (&gt;=2.0)</code>, <code class="language-plaintext highlighter-rouge">Snakemake</code>, <code class="language-plaintext highlighter-rouge">DVC</code>, <code class="language-plaintext highlighter-rouge">BioPython</code>.</li>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p>💡 <strong>Научная валидация</strong> &gt; Эффективность наших моделей и методологии BioMLOps получила признание академического сообщества. Результаты исследований успешно представлены на ведущих конференциях:</p>
+  <ul>
+    <li>Классификация субтипов (HIV-1-M-Env-Rus) — <strong><a href="/conferences/mnsk-2026/">МНСК-2026</a></strong></li>
+    <li>Предикция резистентности и BioMLOps (HIV-1-Resist-Rus) — <strong><a href="/conferences/msit-2026/">МСИТ-2026</a></strong></li>
+  </ul>
+</blockquote>
+
+</div>
+<script src="/assets/js/i18n.js"></script>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2026&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>

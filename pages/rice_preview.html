@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>OnSiteSeq Rice</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  :root{--bg:#0f1117;--surface:#1a1d27;--border:#2e3248;--accent:#4ade80;--accent2:#22d3ee;--text:#e2e8f0;--muted:#94a3b8;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-width:900px;margin:0 auto;padding:40px 24px;line-height:1.7;}
+  h1{font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem;}
+  h2{font-size:1.3rem;font-weight:600;color:var(--accent2);margin:2rem 0 0.8rem;border-bottom:1px solid var(--border);padding-bottom:0.4rem;}
+  h3{font-size:1.1rem;font-weight:600;color:var(--text);margin:1.5rem 0 0.5rem;}
+  p{color:var(--text);margin:0.5rem 0;}
+  li{color:var(--text);margin:0.3rem 0;list-style:disc;margin-left:1.5rem;}
+  code{background:#222535;color:var(--accent2);padding:2px 6px;border-radius:4px;font-size:0.88em;}
+  strong{color:var(--accent);}
+  em{color:var(--muted);font-style:italic;}
+  hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9em;}
+  th{background:#222535;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);font-size:0.8em;text-transform:uppercase;letter-spacing:0.05em;}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);}
+  tr:hover td{background:rgba(255,255,255,0.02);}
+  blockquote{border-left:3px solid var(--accent2);margin:1rem 0;padding:0.5rem 1rem;background:rgba(34,211,238,0.05);border-radius:0 8px 8px 0;}
+  .header{background:linear-gradient(135deg,#1a1d27,#0f172a);border:1px solid var(--border);border-radius:12px;padding:32px;margin-bottom:2rem;text-align:center;}
+  .status-badge{display:inline-block;padding:3px 12px;border-radius:999px;font-size:0.8em;font-weight:600;background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);}
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="font-size:3rem;margin-bottom:1rem;">🌾</div>
+  <h1>OnSiteSeq Rice</h1>
+  <p style="color:var(--muted);margin-top:0.5rem;">Экспресс-диагностика <em>Pyricularia oryzae</em> у кромки рисового поля</p>
+  <div style="margin-top:1rem;"><span class="status-badge">🟡 В разработке</span></div>
+</div>
+
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+<p>  <h1>Экспресс-диагностика <em>Pyricularia oryzae</em> у кромки рисового поля</h1></p>
+<p>  <p style="font-size: 1.2em; color: #555;">Расовый состав изолята и профиль фунгицидной резистентности — менее чем за 4 часа</p></p>
+</div>
+
+<hr>
+
+<h2>🌾 Описание пейплайна</h2>
+
+<strong>Пирикуляриоз</strong> (<em>Pyricularia oryzae</em> Cav., syn. <em>Magnaporthe oryzae</em>) — наиболее экономически опасная болезнь риса в мире: ежегодные потери достигают <strong>10–30%</strong> мирового урожая (в годы эпифитотий — до 60–70% локально), а уничтоженное зерно могло бы прокормить <strong>60–70 млн человек в год</strong>. В Краснодарском крае (основной рисосеющий регион РФ) потери составляют 5–25% в норме и свыше 60% при эпифитотиях.
+
+<strong>Ключевая проблема:</strong> агроном не может определить расовый состав полевого изолята и его устойчивость к применяемым фунгицидам без дорогостоящего лабораторного анализа, занимающего дни и недели.
+
+<strong>OnSiteSeq Rice</strong> решает эту проблему: от образца инфицированного листа до агрономического заключения — прямо у рисового поля, без лаборатории.
+
+<li><strong>📥 На входе:</strong> Сырые данные нанопорового секвенирования (<code>FASTQ.gz</code>) после Dorado basecalling.</li>
+<li><strong>📤 На выходе:</strong> HTML-отчёт с идентификацией патогена, расовым профилем (AVR-гены) и таблицей фунгицидной чувствительности.</li>
+
+<hr>
+
+<h2>🔑 Ключевые возможности</h2>
+
+<p>| Возможность | Описание |</p>
+<p>| :--- | :--- |</p>
+<p>| <strong>Идентификация патогена</strong> | Подтверждение <em>P. oryzae</em> vs другие грибки (<em>Alternaria</em>, <em>Fusarium</em>, <em>Helminthosporium</em>) |</p>
+<p>| <strong>Расовый состав</strong> | Профиль авирулентных генов (AVR-Pita, AVR-Co39) → какие сорта уязвимы |</p>
+<p>| <strong>Фунгицидная резистентность</strong> | QoI-стробилурины (cyt b: G143A, F129L), DMI-азолы (CYP51: Y136F, G443S), трикарбоксимиды (Bos1: I365S, Q369P) |</p>
+<p>| <strong>Скорость</strong> | < 4 часов от листа до отчёта |</p>
+<p>| <strong>Метод</strong> | Мультиплексное ампликонное секвенирование (~7.4 Кб целевых локусов) |</p>
+<p>| <strong>Печать</strong> | Агрономический отчёт на встроенном термопринтере |</p>
+
+<hr>
+
+<h2>📊 Доступность продукта</h2>
+
+<p>| Платформа | Статус доступности |</p>
+<p>| :--- | :--- |</p>
+<p>| <strong>OnSiteSeq Cockpit Edge</strong> | 🟡 <strong>В разработке</strong> |</p>
+<p>| <strong>OnSiteSeq Cockpit Desktop</strong> | 🟡 <strong>В разработке</strong> |</p>
+<p>| <strong>OnSiteSeq Cockpit Cloud</strong> | 🔴 Не доступно |</p>
+
+<hr>
+
+<h2>🎯 Маркеры фунгицидной резистентности</h2>
+
+<h3>Стробилурины (QoI-фунгициды) — ген <em>cyt b</em></h3>
+
+<p>| Мутация | Эффект | Препараты | Значение |</p>
+<p>| :--- | :--- | :--- | :--- |</p>
+<p>| <strong>G143A</strong> | Высокий | Азоксистробин, Трифлоксистробин | Полная резистентность к QoI |</p>
+<p>| <strong>F129L</strong> | Умеренный | Азоксистробин | Снижение чувствительности |</p>
+<p>| <strong>G137R</strong> | Умеренный | QoI-класс | Снижение чувствительности |</p>
+
+<h3>Азолы (DMI-фунгициды) — ген <em>CYP51</em></h3>
+
+<p>| Мутация | Препараты | Значение |</p>
+<p>| :--- | :--- | :--- |</p>
+<p>| <strong>Y136F</strong> | Тебуконазол, Эпоксиконазол | Снижение чувствительности |</p>
+<p>| <strong>G443S</strong> | DMI-класс | Снижение чувствительности |</p>
+<p>| <strong>G461S, R464K</strong> | DMI-класс | Умеренная резистентность |</p>
+
+<h3>Трикарбоксимиды — ген <em>Bos1</em></h3>
+
+<p>| Мутация | Препараты | Значение |</p>
+<p>| :--- | :--- | :--- |</p>
+<p>| <strong>I365S / I365N</strong> | Ипродион | Высокая резистентность |</p>
+<p>| <strong>Q369P</strong> | Ипродион | Умеренная резистентность |</p>
+
+<hr>
+
+<h2>🔬 Расовый состав — авирулентные гены (AVR)</h2>
+
+<p>Профилирование AVR-генов позволяет определить, какие сорта риса (несущие соответствующие R-гены устойчивости) уязвимы к данному полевому изоляту. Это критично при принятии решений о сортовом составе поля.</p>
+
+<p>| Ген | R-ген риса | Значение присутствия AVR | Значение отсутствия AVR |</p>
+<p>| :--- | :--- | :--- | :--- |</p>
+<p>| <strong>AVR-Pita</strong> | Pi-ta | Сорта с Pi-ta <strong>устойчивы</strong> | Сорта с Pi-ta <strong>восприимчивы</strong> |</p>
+<p>| <strong>AVR-Co39</strong> | Pi-CO39 | Сорта с Pi-CO39 <strong>устойчивы</strong> | Сорта с Pi-CO39 <strong>восприимчивы</strong> |</p>
+
+<p>> <strong>Примечание:</strong> <em>P. oryzae</em> способен быстро утрачивать AVR-гены под селективным давлением — именно поэтому необходим регулярный молекулярный мониторинг расового состава полевых популяций.</p>
+
+<hr>
+
+<h2>⚙️ Технический подход: мультиплексное ампликонное секвенирование</h2>
+
+<p>Ключевое отличие от пайплайнов OnSiteSeq HIV и OnSiteSeq TUB: <strong>анализируется не полный геном</strong> (~40 Мб), а только <strong>5–6 целевых ампликонов</strong> (~7.4 Кб суммарно). Это позволяет:</p>
+
+<li>Использовать проточную ячейку <strong>Flongle</strong> малой ёмкости (1–5 Гб данных достаточно)</li>
+<li>Обеспечить глубину покрытия <strong>>1000×</strong> на каждый ген-мишень</li>
+<li>Надёжно определять как гомозиготные, так и низкочастотные мутации</li>
+
+<p>Амплификация выполняется на встроенном термоциклере <strong>YourPCR</strong> (МФТИ) — одном из аппаратных компонентов ПАК OnSiteSeq Edge — с помощью мультиплексного праймерного микса к генам <em>cyt b</em>, <em>CYP51</em>, <em>Bos1</em>, <em>AVR-Pita</em>, <em>AVR-Co39</em>.</p>
+
+<hr>
+
+<h2>🛠 Под капотом: Pipeline Stack</h2>
+
+<p>Пайплайн управляется Snakemake и разделён на изолированные Conda-окружения.</p>
+
+<p>| Этап пайплайна | Инструменты |</p>
+<p>| :--- | :--- |</p>
+<p>| <strong>1. Контроль качества (QC)</strong> | <code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code> |</p>
+<p>| <strong>2. Выравнивание на ампликоны</strong> | <code>minimap2 >=2.26</code> (map-ont), <code>samtools >=1.17</code> |</p>
+<p>| <strong>3. Нейросетевой variant calling</strong> | <code>Clair3 >=1.0.8</code> (ONNX Runtime, ARM64-совместим) |</p>
+<p>| <strong>4. Аннотация мутаций</strong> | <code>snpEff 5.1</code> + кастомная БД <em>P. oryzae</em> 70-15 |</p>
+<p>| <strong>5. Интерпретация и отчёт</strong> | <code>Python 3.10</code>, <code>pandas</code>, <code>pyyaml</code>, <code>jinja2</code> |</p>
+
+<strong>Референсный изолят:</strong> <em>P. oryzae</em> 70-15 (NCBI GCF_000002495.2)
+
+<hr>
+
+<h2>📋 Версии</h2>
+
+<p>| Компонент | Версия |</p>
+<p>| :--- | :--- |</p>
+<p>| <strong>OnSiteSeq Rice Pipeline</strong> | <code>1.0</code> (в разработке) |</p>
+<p>| <strong>Rice-Resist-Detector</strong> | <code>1.0</code> — детерминированная интерпретация по маркерам |</p>
+<p>| <strong>Rice-Race-Profiler</strong> | <code>1.0</code> — AVR-профилирование по глубине покрытия ампликонов |</p>
+
+<p>> <strong>Дорожная карта v2.0:</strong> ML-классификатор расовых групп по SNP-профилю (по образцу TB-Lineage-Detector); обучение на публичных геномах <em>P. oryzae</em> из NCBI SRA и данных ФНЦ риса.</p>
+
+<hr>
+
+<h2>📚 Публикации и Конференции</h2>
+
+<em> <strong>ФНЦ риса 2026</strong> — «OnSiteSeq Rice: применение ПАК нанопорового секвенирования для экспресс-определения расового состава и профиля фунгицидной резистентности </em>Pyricularia oryzae* в полевых условиях»
+
+<hr>
+
+<h2>🔬 Связанные пейплайны OnSiteSeq</h2>
+
+<li>[OnSiteSeq TUB — Туберкулёз](/tuberculosis/)</li>
+<li>[OnSiteSeq HIV — ВИЧ-1](/hiv/)</li>
+<em> [OnSiteSeq Malaria — </em>Plasmodium falciparum*](/plasmodium/)
+
+<div style="margin-top:3rem;padding:1rem;background:#1a1d27;border:1px solid #2e3248;border-radius:8px;font-size:0.8em;color:#94a3b8;text-align:center;">
+  OnSiteSeq Rice | onsiteseq_rice v1.0 | onsiteseq.io
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="gbs_cell" cx="36%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#e3f2fd"/>
+      <stop offset="100%" stop-color="#1e88e5"/>
+    </radialGradient>
+    <radialGradient id="gbs_teal" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#e0f7fa"/>
+      <stop offset="100%" stop-color="#00838f"/>
+    </radialGradient>
+    <radialGradient id="gbs_soft" cx="38%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#80deea"/>
+    </radialGradient>
+    <radialGradient id="gbs_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Main chain of paired cocci (short streptococcal chain) === -->
+  <g stroke="#0d47a1" stroke-width="1.7" fill="url(#gbs_cell)">
+    <!-- diplococcus pair 1 -->
+    <circle cx="30" cy="34" r="13"/>
+    <circle cx="47" cy="45" r="13"/>
+    <!-- pair 2 -->
+    <circle cx="61" cy="59" r="12"/>
+    <circle cx="76" cy="72" r="11.5"/>
+  </g>
+  <!-- division septa: flattened contact zones between paired cocci -->
+  <g stroke="#0d47a1" stroke-width="1.2" stroke-opacity="0.5" fill="none">
+    <path d="M39.5 34.5 Q44 39.5 42 45.5"/>
+    <path d="M54.5 52.5 Q59 58 56.5 63.5"/>
+    <path d="M68 65 Q73 70.5 70.5 76"/>
+  </g>
+  <!-- glossy highlights on chain cells -->
+  <ellipse cx="26" cy="29" rx="5.5" ry="3" fill="url(#gbs_hl)"/>
+  <ellipse cx="43" cy="40" rx="5.5" ry="3" fill="url(#gbs_hl)"/>
+  <ellipse cx="57" cy="54.5" rx="5" ry="2.6" fill="url(#gbs_hl)"/>
+  <ellipse cx="72.5" cy="67.5" rx="4.5" ry="2.4" fill="url(#gbs_hl)"/>
+
+  <!-- === Secondary short chain (teal, offset) === -->
+  <g stroke="#006064" stroke-width="1.5" fill="url(#gbs_teal)">
+    <circle cx="80" cy="22" r="8.5"/>
+    <circle cx="90" cy="33" r="8"/>
+  </g>
+  <path d="M83 29.5 Q87 33 85.5 37.5" stroke="#006064" stroke-width="1" stroke-opacity="0.5" fill="none"/>
+  <ellipse cx="77.5" cy="19" rx="3.5" ry="1.9" fill="url(#gbs_hl)"/>
+  <ellipse cx="87.5" cy="30" rx="3.2" ry="1.8" fill="url(#gbs_hl)"/>
+
+  <!-- === Free diplococci === -->
+  <g stroke="#006064" stroke-width="1.3" fill="url(#gbs_soft)">
+    <circle cx="15" cy="62" r="6.5"/>
+    <circle cx="23" cy="69" r="6"/>
+    <circle cx="18" cy="17" r="5.5"/>
+  </g>
+  <path d="M18.5 67 Q21 70.5 19.5 74" stroke="#006064" stroke-width="0.9" stroke-opacity="0.5" fill="none"/>
+  <g fill="#ffffff" fill-opacity="0.85">
+    <circle cx="13" cy="60" r="1.6"/>
+    <circle cx="21.2" cy="67.2" r="1.4"/>
+    <circle cx="16.4" cy="15.4" r="1.3"/>
+    <circle cx="44" cy="42.5" r="1.8"/>
+  </g>
+
+  <!-- === Soft ambient dots (gentle neonatal hint) === -->
+  <g fill="#b3e5fc" fill-opacity="0.75" stroke="#0288d1" stroke-width="0.7">
+    <circle cx="52" cy="14" r="3"/>
+    <circle cx="38" cy="80" r="3.4"/>
+    <circle cx="62" cy="88" r="2.4"/>
+  </g>
+</svg>
