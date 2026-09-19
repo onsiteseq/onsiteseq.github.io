@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="ps_oo" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#d7ccc8"/>
+      <stop offset="100%" stop-color="#5d4037"/>
+    </radialGradient>
+    <radialGradient id="ps_oo_hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#efebe9" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#5d4037" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ps_sp" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#c5e1a5"/>
+      <stop offset="100%" stop-color="#558b2f"/>
+    </radialGradient>
+    <radialGradient id="ps_sp_hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#f1f8e9" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#558b2f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ps_root" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8d6e63"/>
+      <stop offset="100%" stop-color="#4e342e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- === Soybean root === -->
+  <path d="M50 100 Q50 80 50 55" stroke="url(#ps_root)" stroke-width="5"
+        stroke-linecap="round" fill="none"/>
+  <path d="M50 84 Q40 78 33 70" stroke="#6d4c41" stroke-width="3"
+        stroke-linecap="round" fill="none"/>
+  <path d="M50 90 Q60 84 67 76" stroke="#6d4c41" stroke-width="3"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Oospore inside root tissue (thick double wall) === -->
+  <circle cx="50" cy="66" r="15" fill="none" stroke="#3e2723" stroke-width="2" opacity="0.8"/>
+  <circle cx="50" cy="66" r="12.5" fill="url(#ps_oo)"/>
+  <circle cx="50" cy="66" r="12.5" fill="url(#ps_oo_hl)"/>
+  <!-- Ooplast -->
+  <ellipse cx="47" cy="63" rx="5" ry="4" fill="#3e2723" opacity="0.35"/>
+
+  <!-- === Sporangiophore emerging from root === -->
+  <path d="M50 55 Q52 45 58 38" stroke="#558b2f" stroke-width="2.5"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Lemon-shaped sporangium === -->
+  <ellipse cx="64" cy="28" rx="9" ry="12" fill="url(#ps_sp)"
+           transform="rotate(15 64 28)"/>
+  <ellipse cx="64" cy="28" rx="9" ry="12" fill="url(#ps_sp_hl)"
+           transform="rotate(15 64 28)"/>
+  <ellipse cx="64" cy="28" rx="9" ry="12" fill="none" stroke="#33691e" stroke-width="1.4"
+           opacity="0.7" transform="rotate(15 64 28)"/>
+  <ellipse cx="67" cy="17" rx="3" ry="2.5" fill="#1b5e20" opacity="0.7"/>
+
+  <!-- === Free zoospores === -->
+  <circle cx="28" cy="30" r="2.5" fill="#9ccc65" opacity="0.6"/>
+  <circle cx="22" cy="38" r="2" fill="#aed581" opacity="0.5"/>
+  <circle cx="34" cy="24" r="2" fill="#aed581" opacity="0.5"/>
+</svg>

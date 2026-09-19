@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cau_cell" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe0b2"/>
+      <stop offset="100%" stop-color="#e65100"/>
+    </linearGradient>
+    <radialGradient id="cau_bud" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fff8e1"/>
+      <stop offset="100%" stop-color="#ff9800"/>
+    </radialGradient>
+    <radialGradient id="cau_globe" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#b3e5fc"/>
+      <stop offset="100%" stop-color="#01579b"/>
+    </radialGradient>
+    <radialGradient id="cau_hot" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffccbc"/>
+      <stop offset="100%" stop-color="#c62828"/>
+    </radialGradient>
+    <radialGradient id="cau_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#e65100" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Globe with outbreak hotspots (simultaneous global emergence) === -->
+  <g>
+    <circle cx="31" cy="31" r="21" fill="url(#cau_globe)" stroke="#014f86" stroke-width="1.6"/>
+    <!-- meridians and parallels -->
+    <g stroke="#b3e5fc" stroke-width="0.9" stroke-opacity="0.65" fill="none">
+      <ellipse cx="31" cy="31" rx="9" ry="21"/>
+      <ellipse cx="31" cy="31" rx="17" ry="21"/>
+      <path d="M10.5 31 H51.5"/>
+      <path d="M13.5 21.5 H48.5"/>
+      <path d="M13.5 40.5 H48.5"/>
+    </g>
+    <!-- outbreak hotspots on different continents -->
+    <g stroke="#8e0000" stroke-width="1">
+      <circle cx="22" cy="20" r="3.6" fill="url(#cau_hot)"/>
+      <circle cx="41" cy="26" r="3.2" fill="url(#cau_hot)"/>
+      <circle cx="26" cy="42" r="3" fill="url(#cau_hot)"/>
+      <circle cx="42" cy="41" r="2.5" fill="url(#cau_hot)"/>
+    </g>
+    <!-- hotspot shines -->
+    <g fill="#ffffff" fill-opacity="0.8">
+      <circle cx="20.8" cy="18.8" r="1"/>
+      <circle cx="39.9" cy="24.9" r="0.9"/>
+      <circle cx="24.9" cy="40.9" r="0.85"/>
+    </g>
+  </g>
+
+  <!-- === Budding yeast cell (Candida auris) === -->
+  <g>
+    <!-- mother cell -->
+    <ellipse cx="62" cy="63" rx="21" ry="17" transform="rotate(-18 62 63)" fill="url(#cau_cell)" stroke="#bf360c" stroke-width="1.8"/>
+    <!-- bud (daughter cell) -->
+    <ellipse cx="78" cy="45" rx="10" ry="8.5" transform="rotate(-18 78 45)" fill="url(#cau_bud)" stroke="#bf360c" stroke-width="1.5"/>
+    <!-- nucleus in mother cell -->
+    <ellipse cx="58" cy="64" rx="6.5" ry="5.5" fill="#ffcc80" stroke="#e65100" stroke-width="1.1"/>
+    <!-- glossy highlight -->
+    <ellipse cx="54" cy="54" rx="9" ry="4.5" transform="rotate(-18 54 54)" fill="url(#cau_hl)"/>
+    <!-- bud scar ring at the neck -->
+    <path d="M71.5 52 Q74 49 76.5 50.5" stroke="#bf360c" stroke-width="1.2" fill="none" stroke-opacity="0.7"/>
+  </g>
+</svg>

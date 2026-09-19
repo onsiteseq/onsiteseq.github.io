@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="s1" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffe082"/>
+      <stop offset="100%" stop-color="#e65100"/>
+    </radialGradient>
+    <radialGradient id="s2" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffca28"/>
+      <stop offset="100%" stop-color="#bf360c"/>
+    </radialGradient>
+    <radialGradient id="s3" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffd54f"/>
+      <stop offset="100%" stop-color="#e64a19"/>
+    </radialGradient>
+    <radialGradient id="hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#fff8e1" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#e65100" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Staphylococcal cluster (grape-like, irregular) === -->
+
+  <!-- Back row (smaller/darker to suggest depth) -->
+  <circle cx="44" cy="32" r="12" fill="url(#s2)" opacity="0.75"/>
+  <circle cx="44" cy="32" r="12" fill="url(#hl)" opacity="0.75"/>
+  <circle cx="44" cy="32" r="12" fill="none" stroke="#bf360c" stroke-width="1.2" opacity="0.5"/>
+
+  <circle cx="68" cy="34" r="11" fill="url(#s2)" opacity="0.75"/>
+  <circle cx="68" cy="34" r="11" fill="url(#hl)" opacity="0.75"/>
+  <circle cx="68" cy="34" r="11" fill="none" stroke="#bf360c" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Middle row -->
+  <circle cx="30" cy="52" r="13" fill="url(#s1)"/>
+  <circle cx="30" cy="52" r="13" fill="url(#hl)"/>
+  <circle cx="30" cy="52" r="13" fill="none" stroke="#e65100" stroke-width="1.4" opacity="0.6"/>
+
+  <circle cx="56" cy="50" r="14" fill="url(#s3)"/>
+  <circle cx="56" cy="50" r="14" fill="url(#hl)"/>
+  <circle cx="56" cy="50" r="14" fill="none" stroke="#e65100" stroke-width="1.4" opacity="0.6"/>
+
+  <circle cx="78" cy="55" r="12" fill="url(#s1)"/>
+  <circle cx="78" cy="55" r="12" fill="url(#hl)"/>
+  <circle cx="78" cy="55" r="12" fill="none" stroke="#e65100" stroke-width="1.4" opacity="0.6"/>
+
+  <!-- Front row -->
+  <circle cx="40" cy="72" r="13" fill="url(#s3)"/>
+  <circle cx="40" cy="72" r="13" fill="url(#hl)"/>
+  <circle cx="40" cy="72" r="13" fill="none" stroke="#e65100" stroke-width="1.4" opacity="0.6"/>
+
+  <circle cx="65" cy="74" r="12" fill="url(#s1)"/>
+  <circle cx="65" cy="74" r="12" fill="url(#hl)"/>
+  <circle cx="65" cy="74" r="12" fill="none" stroke="#e65100" stroke-width="1.4" opacity="0.6"/>
+
+  <!-- === Nucleoid dots inside each coccus === -->
+  <circle cx="44" cy="31" r="4" fill="#bf360c" opacity="0.22"/>
+  <circle cx="68" cy="33" r="3.5" fill="#bf360c" opacity="0.22"/>
+  <circle cx="30" cy="51" r="4.5" fill="#bf360c" opacity="0.22"/>
+  <circle cx="56" cy="49" r="5" fill="#bf360c" opacity="0.22"/>
+  <circle cx="78" cy="54" r="4" fill="#bf360c" opacity="0.22"/>
+  <circle cx="40" cy="71" r="4.5" fill="#bf360c" opacity="0.22"/>
+  <circle cx="65" cy="73" r="4" fill="#bf360c" opacity="0.22"/>
+
+  <!-- === Surface protein dots (protein A, fibronectin-binding proteins) === -->
+  <circle cx="20" cy="48" r="1.8" fill="#e65100" opacity="0.6"/>
+  <circle cx="22" cy="57" r="1.5" fill="#e65100" opacity="0.6"/>
+  <circle cx="43" cy="84" r="1.8" fill="#e65100" opacity="0.6"/>
+  <circle cx="54" cy="36" r="1.5" fill="#e65100" opacity="0.5"/>
+  <circle cx="85" cy="48" r="1.8" fill="#e65100" opacity="0.6"/>
+  <circle cx="87" cy="60" r="1.5" fill="#e65100" opacity="0.5"/>
+  <circle cx="72" cy="84" r="1.8" fill="#e65100" opacity="0.6"/>
+</svg>

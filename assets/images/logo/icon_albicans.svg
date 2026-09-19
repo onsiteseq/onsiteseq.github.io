@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="cal_cell" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#fff9e6"/>
+      <stop offset="100%" stop-color="#fb8c00"/>
+    </radialGradient>
+    <linearGradient id="cal_hypha" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe0b2"/>
+      <stop offset="100%" stop-color="#e65100"/>
+    </linearGradient>
+    <radialGradient id="cal_bud" cx="38%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fffde7"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </radialGradient>
+    <radialGradient id="cal_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cal_matrix" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#b2dfdb"/>
+      <stop offset="100%" stop-color="#00897b"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Mother yeast cell with budding blastoconidium === -->
+  <ellipse cx="36" cy="46" rx="21" ry="17" fill="url(#cal_cell)" stroke="#b34700" stroke-width="1.8" transform="rotate(-18 36 46)"/>
+  <!-- bud (blastoconidium) with narrow neck -->
+  <ellipse cx="57" cy="29" rx="10" ry="8.5" fill="url(#cal_bud)" stroke="#b34700" stroke-width="1.5" transform="rotate(-18 57 29)"/>
+  <!-- glossy highlights -->
+  <ellipse cx="28" cy="39" rx="9" ry="5" fill="url(#cal_hl)" transform="rotate(-18 28 39)"/>
+  <ellipse cx="54" cy="26" rx="3.5" ry="2" fill="url(#cal_hl)" transform="rotate(-18 54 26)"/>
+
+  <!-- === Pseudohypha: chain of elongated cells with constrictions === -->
+  <g stroke="#b34700" stroke-width="1.6" fill="url(#cal_hypha)">
+    <ellipse cx="52" cy="68" rx="12" ry="7.5" transform="rotate(28 52 68)"/>
+    <ellipse cx="70" cy="79" rx="11" ry="7" transform="rotate(32 70 79)"/>
+    <ellipse cx="86" cy="88" rx="9" ry="6" transform="rotate(38 86 88)"/>
+  </g>
+  <!-- septal constrictions between hyphal cells -->
+  <g stroke="#b34700" stroke-width="1.1" stroke-opacity="0.55" fill="none">
+    <path d="M61 70.5 Q62.5 74 60.5 77"/>
+    <path d="M78 81 Q79.5 84.5 77.5 87.5"/>
+  </g>
+
+  <!-- === Free blastoconidia === -->
+  <circle cx="18" cy="20" r="6.5" fill="url(#cal_bud)" stroke="#b34700" stroke-width="1.3"/>
+  <circle cx="82" cy="18" r="5" fill="url(#cal_bud)" stroke="#b34700" stroke-width="1.3"/>
+  <circle cx="14" cy="72" r="4.5" fill="url(#cal_bud)" stroke="#b34700" stroke-width="1.3"/>
+  <!-- shines on free cells -->
+  <g fill="#ffffff" fill-opacity="0.85">
+    <circle cx="16" cy="18" r="1.6"/>
+    <circle cx="80.5" cy="16.5" r="1.3"/>
+    <circle cx="12.5" cy="70.5" r="1.2"/>
+  </g>
+
+  <!-- === Biofilm matrix dots === -->
+  <g fill="url(#cal_matrix)" stroke="#00695c" stroke-width="0.9">
+    <circle cx="92" cy="42" r="3.5"/>
+    <circle cx="86" cy="52" r="2.5"/>
+    <circle cx="95" cy="58" r="2"/>
+  </g>
+</svg>

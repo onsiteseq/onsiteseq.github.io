@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      OnSiteSeq Flu — Мониторинг штаммов и антигенного сдвига вируса гриппа
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OnSiteSeq Flu — Мониторинг штаммов и антигенного сдвига вируса гриппа" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<meta property="og:description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<link rel="canonical" href="https://onsiteseq.io/influenza/" />
+<meta property="og:url" content="https://onsiteseq.io/influenza/" />
+<meta property="og:site_name" content="OnSiteSeq" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/influenza/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/influenza/" />
+<meta property="twitter:title" content="OnSiteSeq Flu — Мониторинг штаммов и антигенного сдвига вируса гриппа" />
+<meta name="twitter:site" content="@gorbenkoteh" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"url":"https://onsiteseq.io/influenza/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.","@type":"WebPage","headline":"OnSiteSeq Flu — Мониторинг штаммов и антигенного сдвига вируса гриппа","@context":"https://schema.org"}</script>
+<script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.io/feed.xml" title="OnSiteSeq" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header class="site-header">
+  <nav class="site-nav" style="display:flex; align-items:center; gap:1.2em;">
+    <a href="/" style="display:flex; align-items:center; flex-shrink:0; text-decoration:none;">
+      <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
+    </a>
+    <ul class="horizontal-list">
+      <li><a href="/">Главная</a>&nbsp;&nbsp;</li>
+      <li><a href="/aboutonsiteseq">О платформе</a>&nbsp;&nbsp;</li>
+      <li><a href="/contact/">Контакты</a>&nbsp;&nbsp;</li>
+      <li><a href="https://cloud.onsiteseq.io" target="_blank" rel="noopener">Вход в Облако</a>&nbsp;&nbsp;</li>
+    </ul>
+    <button id="lang-toggle" title="Switch language / Переключить язык"
+      style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+      🌐 EN
+    </button>
+  </nav>
+  <div class="dashed"></div>
+</header>
+
+<div id="i18n-content">
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <img src="/assets/images/logo/icon_influenza.png" alt="Вирус гриппа" style="max-height: 120px; margin-bottom: 1rem;" />
+  <h1>Мониторинг штаммов и антигенного сдвига вируса гриппа</h1>
+  <p style="font-size: 1.2em; color: #555;">Субтипирование, отслеживание реассортации сегментов и устойчивости к противовирусным препаратам</p>
+</div>
+
+<hr />
+
+<h2 id="-описание-пейплайна">🧬 Описание пейплайна</h2>
+
+<p><strong>Вирус гриппа (Influenza)</strong> характеризуется высокой частотой точечных мутаций (антигенный дрейф) и способностью обмениваться целыми сегментами генома при коинфекции — <strong>реассортацией</strong>, следствием которой становится антигенный сдвиг и появление новых пандемических штаммов. Поэтому недостаточно определить субтип — нужно понимать происхождение каждого из 8 сегментов.</p>
+
+<p>Пайплайн выполняет полногеномный анализ вируса гриппа: субтипирование HA/NA, реконструкцию всех сегментов, детекцию реассортантов и профиль устойчивости к противовирусным препаратам. Для отслеживания происхождения сегментов используется <strong>локусное графовое выравнивание (OnSiteSeq-PanG)</strong>: граф кодирует историю известных сегментов и наглядно показывает, из каких «исторических кусков» собран вирус пациента. Субтипирование и сборка сегментов выполняются зрелыми стандартными инструментами (IRMA, CDC).</p>
+
+<ul>
+  <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> после High Accuracy basecalling (Dorado SUP, R10.4.1). Материал: мазок из носо-/ротоглотки, вирусная культура. Оптимально: WGS всех 8 сегментов (мультиплекс-ПЦР).</li>
+  <li><strong>📤 На выходе:</strong> HTML-отчёт с субтипом (H1N1pdm09, H3N2, Victoria/Yamagata), кладой Nextclade, информацией о реассортантных сегментах и профилем устойчивости.</li>
+</ul>
+
+<hr />
+
+<h2 id="-класс-по-балтимору-v--ssrna-одноцепочечная-рнк-отрицательной-полярности">🧭 Класс по Балтимору: V — (−)ssRNA, одноцепочечная РНК отрицательной полярности</h2>
+
+<p>У вирусов класса V геном — одноцепочечная РНК отрицательной полярности: такая цепь не может быть напрямую транслирована рибосомами клетки, поэтому первым делом вирус синтезирует комплементарную (+)цепь, с которой идёт трансляция белков. Необходимый фермент — РНК-зависимую РНК-полимеразу (RdRP) — вирус несёт с собой в составе вириона: в клетке её взять неоткуда. У гриппа геном разделён на <strong>8 отдельных сегментов</strong> (−)ssRNA, и именно сегментированность делает возможной <strong>реассортацию</strong> — обмен целыми сегментами при одновременном заражении клетки двумя штаммами, механизм антигенного сдвига и рождения пандемических вариантов. Поэтому пейплайн анализирует происхождение каждого сегмента по отдельности (OnSiteSeq-PanG), а не только усреднённый субтип вируса.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Класс</th>
+      <th style="text-align: left">Геном</th>
+      <th style="text-align: left">Стратегия репликации</th>
+      <th style="text-align: left">Примеры</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">I</td>
+      <td style="text-align: left">dsDNA</td>
+      <td style="text-align: left">ДНК → мРНК (как у клетки)</td>
+      <td style="text-align: left">Герпесвирусы, аденовирусы, оспа, АЧС</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">II</td>
+      <td style="text-align: left">ssDNA (+)</td>
+      <td style="text-align: left">Через промежуточную dsDNA</td>
+      <td style="text-align: left">Парвовирусы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">III</td>
+      <td style="text-align: left">dsRNA</td>
+      <td style="text-align: left">РдРП транскрибирует с dsRNA</td>
+      <td style="text-align: left">Ротавирусы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">IV</td>
+      <td style="text-align: left">(+)ssRNA</td>
+      <td style="text-align: left">Геном = мРНК, сразу трансляция</td>
+      <td style="text-align: left">SARS-CoV-2, гепатит C</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>V</strong></td>
+      <td style="text-align: left"><strong>(−)ssRNA</strong></td>
+      <td style="text-align: left"><strong>Сначала синтез (+)цепи (РдРП)</strong></td>
+      <td style="text-align: left"><strong>Грипп, SFTS, бешенство</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">VI</td>
+      <td style="text-align: left">(+)ssRNA-RT</td>
+      <td style="text-align: left">Обратная транскриптаза: РНК → ДНК</td>
+      <td style="text-align: left">ВИЧ, ретровирусы</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">VII</td>
+      <td style="text-align: left">dsDNA-RT</td>
+      <td style="text-align: left">Реверт-транскрипция через РНК-интермедиат</td>
+      <td style="text-align: left">Гепатит B</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-доступность-продукта">📊 Доступность продукта</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Платформа</th>
+      <th style="text-align: left">Статус доступности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Edge</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Desktop</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong></td>
+      <td style="text-align: left">🔴 Не доступно</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-ключевые-маркеры-и-устойчивость">🎯 Ключевые маркеры и устойчивость</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Маркер</th>
+      <th style="text-align: left">Значение</th>
+      <th style="text-align: left">Класс препаратов</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Гемагглютинин (HA)</strong></td>
+      <td style="text-align: left">Определение H-антигена (H1, H3, H5…). Основная мишень вакцин; сопоставление с вакцинными штаммами сезона</td>
+      <td style="text-align: left">—</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Нейраминидаза (NA)</strong></td>
+      <td style="text-align: left">Определение N-антигена (N1, N2). Мутации H275Y, E119V, R292K</td>
+      <td style="text-align: left"><strong>Осельтамивир, Занамивир</strong> (ингибиторы нейраминидазы)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Полимераза (PA)</strong></td>
+      <td style="text-align: left">Мутации I38T/F/M</td>
+      <td style="text-align: left"><strong>Балоксавир</strong> (ингибитор PA-эндонуклеазы)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Белок M2</strong></td>
+      <td style="text-align: left">Мутация S31N (резистентны &gt;99% H3N2 и pH1N1)</td>
+      <td style="text-align: left"><strong>Амантадин, Римантадин</strong> — только справочно</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-связь-с-вакцинологией-и-эпиднадзором">💉 Связь с вакцинологией и эпиднадзором</h2>
+
+<p>Данные субтипирования и антигенного анализа напрямую используются системой <strong>WHO GISRS</strong> (&gt;150 национальных центров) при выборе состава сезонной вакцины. Локальный мониторинг циркулирующих штаммов — вклад в глобальную систему и раннее предупреждение о несовпадении вакцинного и эпидемического штаммов. Отдельный контур — <strong>мониторинг высокопатогенного птичьего гриппа (H5N1, H5N8)</strong>: детекция реассортантов с сегментами птичьего происхождения у человека — сигнал эпидемиологической тревоги.</p>
+
+<p>Для метагеномной дифференциальной диагностики гриппа с другими ОРВИ (RSV, риновирус, SARS-CoV-2) см. пейплайн <a href="/flu/">OnSiteSeq ОРВИ</a>.</p>
+
+<hr />
+
+<h2 id="️-версии-и-ml-модели">⚙️ Версии и ML-модели</h2>
+
+<h3 id="основной-инструмент">Основной инструмент</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Компонент</th>
+      <th style="text-align: left">Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Flu-Track Pipeline</strong></td>
+      <td style="text-align: left">🟡 В разработке</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="планируемые-ml-модели">Планируемые ML-модели</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Модель</th>
+      <th style="text-align: left">Целевая задача</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Flu-Subtyper</strong></td>
+      <td style="text-align: left">Субтипирование HA/NA из WGS (H1N1pdm09/H3N2, B Victoria/Yamagata)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Flu-Reassort-Detector</strong></td>
+      <td style="text-align: left">Детекция реассортантных сегментов (графовое выравнивание PanG)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Flu-Res-Detector</strong></td>
+      <td style="text-align: left">Предсказание устойчивости к осельтамивиру и балоксавиру</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-под-капотом-зависимости-и-окружение-pipeline-stack">🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)</h2>
+
+<p>Пайплайн управляется фреймворком Snakemake в изолированных Conda-окружениях.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Этап пайплайна</th>
+      <th style="text-align: left">Ключевые библиотеки и инструменты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>1. Контроль качества (QC)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">porechop_abi</code>, <code class="language-plaintext highlighter-rouge">NanoFilt</code>, <code class="language-plaintext highlighter-rouge">pigz</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>2. Сборка и субтипирование</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">IRMA</code> (Iterative Refinement Meta-Assembler, CDC)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>3. Выравнивание (Mapping)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2</code> на сегментные референсы; <strong>OnSiteSeq-PanG</strong> для анализа происхождения сегментов</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4. Поиск мутаций (Variant Calling)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">clair3</code>, <code class="language-plaintext highlighter-rouge">medaka</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>5. Кладная классификация</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Nextclade</code> (клады Influenza A/B, оценка антигенного соответствия)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>6. Аннотация резистентности</strong></td>
+      <td style="text-align: left">Кастомная база мутаций NA/PA/M2 + <code class="language-plaintext highlighter-rouge">snpEff</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>7. ML-инференс</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PyTorch</code>, <code class="language-plaintext highlighter-rouge">pandas</code>, <code class="language-plaintext highlighter-rouge">scikit-learn</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-глобальный-контекст-почему-это-важно">🌍 Глобальный контекст: почему это важно</h2>
+
+<ul>
+  <li><strong>WHO GISRS</strong> — ежегодно определяет состав вакцин по данным о циркулирующих штаммах; геномный надзор — основа этой системы.</li>
+  <li><strong>H5N1</strong> — расширение круга хозяев высокопатогенного птичьего гриппа (птицы → млекопитающие → единичные случаи у человека) делает мониторинг реассортантов приоритетом эпиднадзора.</li>
+  <li><strong>Устойчивость к осельтамивиру</strong> — мутация H275Y уже приводила к глобальному закреплению резистентного H1N1 (сезон 2008–2009); постоянный мониторинг обязателен.</li>
+</ul>
+
+<hr />
+
+<h2 id="-источники">🔬 Источники</h2>
+
+<ul>
+  <li>📄 <a href="https://www.who.int/initiatives/global-influenza-surveillance-and-response-system">WHO — Global Influenza Surveillance and Response System (GISRS)</a></li>
+  <li>📄 <a href="https://wonder.cdc.gov/amd/flu/irma/">CDC IRMA — Iterative Refinement Meta-Assembler</a></li>
+  <li>📄 <a href="https://nextstrain.org/flu">Nextstrain / Nextclade — Influenza clades</a></li>
+  <li>📄 <a href="https://gisaid.org/">GISAID — глобальная база геномов гриппа</a></li>
+</ul>
+
+</div>
+<script src="/assets/js/i18n.js"></script>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2026&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="bc_con" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#eceff1"/>
+      <stop offset="100%" stop-color="#78909c"/>
+    </radialGradient>
+    <radialGradient id="bc_hl" cx="30%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#78909c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bc_stem" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#90a4ae"/>
+      <stop offset="100%" stop-color="#455a64"/>
+    </linearGradient>
+  </defs>
+
+  <!-- === Conidiophore stem === -->
+  <path d="M50 96 Q50 74 50 56" stroke="url(#bc_stem)" stroke-width="3.5"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Branches === -->
+  <path d="M50 64 Q38 54 28 42" stroke="#78909c" stroke-width="2.6"
+        stroke-linecap="round" fill="none"/>
+  <path d="M50 64 Q62 54 72 42" stroke="#78909c" stroke-width="2.6"
+        stroke-linecap="round" fill="none"/>
+  <path d="M50 56 Q50 46 50 36" stroke="#78909c" stroke-width="2.4"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- === Grape-like conidia clusters === -->
+  <!-- Left cluster -->
+  <circle cx="22" cy="36" r="4.2" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="30" cy="32" r="4.2" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="26" cy="26" r="4.2" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="18" cy="28" r="4" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="34" cy="26" r="4" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="26" cy="18" r="3.8" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+
+  <!-- Right cluster -->
+  <circle cx="78" cy="36" r="4.2" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="70" cy="32" r="4.2" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="74" cy="26" r="4.2" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="82" cy="28" r="4" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="66" cy="26" r="4" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="74" cy="18" r="3.8" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+
+  <!-- Centre cluster -->
+  <circle cx="50" cy="28" r="4.2" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="44" cy="22" r="4" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="56" cy="22" r="4" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+  <circle cx="50" cy="15" r="3.8" fill="url(#bc_con)" stroke="#546e7a" stroke-width="1"/>
+
+  <!-- Highlights -->
+  <circle cx="26" cy="26" r="4.2" fill="url(#bc_hl)"/>
+  <circle cx="74" cy="26" r="4.2" fill="url(#bc_hl)"/>
+  <circle cx="50" cy="28" r="4.2" fill="url(#bc_hl)"/>
+
+  <!-- === Detached conidia === -->
+  <circle cx="38" cy="86" r="3" fill="url(#bc_con)" opacity="0.6"/>
+  <circle cx="62" cy="86" r="3" fill="url(#bc_con)" opacity="0.6"/>
+  <circle cx="50" cy="90" r="2.5" fill="url(#bc_con)" opacity="0.5"/>
+</svg>

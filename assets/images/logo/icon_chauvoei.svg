@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cch_rod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e57373"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </linearGradient>
+    <radialGradient id="cch_spore" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fffde7"/>
+      <stop offset="100%" stop-color="#f9a825"/>
+    </radialGradient>
+    <radialGradient id="cch_bubble" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#e1f5fe"/>
+      <stop offset="100%" stop-color="#4fc3f7"/>
+    </radialGradient>
+    <radialGradient id="cch_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ffebee" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#b71c1c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cch_bull" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#90a4ae"/>
+      <stop offset="100%" stop-color="#37474f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- === Clostridium rod with terminal spore ("drumstick") === -->
+  <g transform="rotate(-32 42 62)">
+    <!-- cell body -->
+    <rect x="12" y="54" width="48" height="15" rx="7.5" fill="url(#cch_rod)" stroke="#7f0000" stroke-width="1.6"/>
+    <!-- terminal spore swelling (drumstick head) -->
+    <ellipse cx="60" cy="61.5" rx="10" ry="9.5" fill="url(#cch_rod)" stroke="#7f0000" stroke-width="1.6"/>
+    <ellipse cx="60" cy="61.5" rx="6" ry="5.5" fill="url(#cch_spore)" stroke="#f57f17" stroke-width="1.2"/>
+    <!-- glossy highlight on cell body -->
+    <rect x="16" y="56.5" width="30" height="4.5" rx="2.2" fill="url(#cch_hl)"/>
+    <!-- segmentation hints -->
+    <g stroke="#7f0000" stroke-width="1" stroke-opacity="0.45" fill="none">
+      <path d="M28 55.5 V67.5"/>
+      <path d="M41 55.5 V67.5"/>
+    </g>
+  </g>
+
+  <!-- === Bull head silhouette (veterinary: cattle / blackleg) === -->
+  <g>
+    <!-- horns -->
+    <g fill="none" stroke="#eceff1" stroke-width="4.5" stroke-linecap="round">
+      <path d="M61 19 C55 13 49 13 44 17"/>
+      <path d="M83 19 C89 13 94 13 98 17"/>
+    </g>
+    <!-- ears -->
+    <ellipse cx="58" cy="24" rx="5" ry="2.8" fill="url(#cch_bull)" stroke="#102027" stroke-width="1.2" transform="rotate(-20 58 24)"/>
+    <ellipse cx="86" cy="24" rx="5" ry="2.8" fill="url(#cch_bull)" stroke="#102027" stroke-width="1.2" transform="rotate(20 86 24)"/>
+    <!-- head -->
+    <path d="M61 18 Q72 12 83 18 Q87 26 82 34 Q78 42 72 43 Q66 42 62 34 Q57 26 61 18 Z"
+          fill="url(#cch_bull)" stroke="#102027" stroke-width="1.6"/>
+    <!-- head gloss -->
+    <ellipse cx="66" cy="19" rx="5" ry="2.5" fill="#ffffff" fill-opacity="0.18" transform="rotate(-15 66 19)"/>
+    <!-- eyes -->
+    <circle cx="67" cy="26" r="1.7" fill="#eceff1"/>
+    <circle cx="77" cy="26" r="1.7" fill="#eceff1"/>
+    <!-- muzzle -->
+    <ellipse cx="72" cy="37" rx="7" ry="4.2" fill="#546e7a" stroke="#102027" stroke-width="1"/>
+    <circle cx="69.3" cy="37.5" r="1.1" fill="#102027"/>
+    <circle cx="74.7" cy="37.5" r="1.1" fill="#102027"/>
+  </g>
+
+  <!-- === Gas bubbles in muscle (crepitation) === -->
+  <g stroke="#0288d1" stroke-width="1.2">
+    <circle cx="22" cy="18" r="6.5" fill="url(#cch_bubble)"/>
+    <circle cx="38" cy="10" r="4" fill="url(#cch_bubble)"/>
+    <circle cx="10" cy="34" r="3.5" fill="url(#cch_bubble)"/>
+    <circle cx="86" cy="76" r="6" fill="url(#cch_bubble)"/>
+    <circle cx="68" cy="88" r="3.2" fill="url(#cch_bubble)"/>
+    <circle cx="94" cy="60" r="3" fill="url(#cch_bubble)"/>
+  </g>
+  <!-- bubble shines -->
+  <g fill="#ffffff" fill-opacity="0.85">
+    <circle cx="19.8" cy="15.8" r="1.7"/>
+    <circle cx="36.5" cy="8.7" r="1.1"/>
+    <circle cx="84" cy="74" r="1.5"/>
+    <circle cx="92.8" cy="58.8" r="0.9"/>
+  </g>
+</svg>

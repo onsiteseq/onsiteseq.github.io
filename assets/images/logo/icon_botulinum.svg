@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cbt_rod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a5d6a7"/>
+      <stop offset="100%" stop-color="#1b5e20"/>
+    </linearGradient>
+    <radialGradient id="cbt_spore" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fffde7"/>
+      <stop offset="100%" stop-color="#f9a825"/>
+    </radialGradient>
+    <radialGradient id="cbt_vesicle" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#e1f5fe"/>
+      <stop offset="100%" stop-color="#4fc3f7"/>
+    </radialGradient>
+    <linearGradient id="cbt_bolt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd54f"/>
+      <stop offset="100%" stop-color="#e65100"/>
+    </linearGradient>
+    <radialGradient id="cbt_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#e8f5e9" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1b5e20" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Clostridium rod with subterminal spore ("tennis racket") === -->
+  <g transform="rotate(-32 38 34)">
+    <!-- cell body -->
+    <rect x="10" y="26" width="52" height="15" rx="7.5" fill="url(#cbt_rod)" stroke="#0d3311" stroke-width="1.6"/>
+    <!-- subterminal spore swelling -->
+    <ellipse cx="56" cy="33.5" rx="10.5" ry="10" fill="url(#cbt_rod)" stroke="#0d3311" stroke-width="1.6"/>
+    <ellipse cx="56" cy="33.5" rx="6.2" ry="5.8" fill="url(#cbt_spore)" stroke="#f57f17" stroke-width="1.2"/>
+    <!-- glossy highlight on cell body -->
+    <rect x="14" y="28.5" width="30" height="4.5" rx="2.2" fill="url(#cbt_hl)"/>
+    <!-- segmentation hints -->
+    <g stroke="#0d3311" stroke-width="1" stroke-opacity="0.45" fill="none">
+      <path d="M27 27.5 V39.5"/>
+      <path d="M40 27.5 V39.5"/>
+    </g>
+  </g>
+
+  <!-- === Neuromuscular synapse (lower right) === -->
+  <!-- presynaptic terminal -->
+  <path d="M58 62 Q74 54 92 60 L92 70 Q74 64 60 70 Z" fill="#b3e5fc" stroke="#0288d1" stroke-width="1.4"/>
+  <!-- synaptic cleft -->
+  <rect x="58" y="73" width="34" height="4" rx="2" fill="#eceff1" stroke="#90a4ae" stroke-width="0.8"/>
+  <!-- postsynaptic membrane (muscle) -->
+  <path d="M58 80 Q75 86 92 80 L92 88 Q75 94 58 88 Z" fill="#d7ccc8" stroke="#6d4c41" stroke-width="1.4"/>
+  <!-- acetylcholine vesicles trapped inside terminal (release blocked by BoNT) -->
+  <g stroke="#0288d1" stroke-width="1">
+    <circle cx="68" cy="63" r="3" fill="url(#cbt_vesicle)"/>
+    <circle cx="78" cy="61.5" r="2.5" fill="url(#cbt_vesicle)"/>
+    <circle cx="86" cy="63.5" r="2.2" fill="url(#cbt_vesicle)"/>
+  </g>
+
+  <!-- === Lightning bolt of blockade: BoNT cuts SNARE, no ACh release === -->
+  <path d="M50 46 L42 62 L49 60 L43 74 L58 54 L51 56 L57 46 Z" fill="url(#cbt_bolt)" stroke="#bf360c" stroke-width="1.2" stroke-linejoin="round"/>
+  <!-- prohibition slash across the synapse gap -->
+  <line x1="62" y1="56" x2="88" y2="90" stroke="#c62828" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/>
+</svg>

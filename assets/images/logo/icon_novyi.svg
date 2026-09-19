@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cny_rod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#80cbc4"/>
+      <stop offset="100%" stop-color="#00695c"/>
+    </linearGradient>
+    <radialGradient id="cny_spore" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fffde7"/>
+      <stop offset="100%" stop-color="#f9a825"/>
+    </radialGradient>
+    <radialGradient id="cny_tumor" cx="40%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#f8bbd0"/>
+      <stop offset="100%" stop-color="#c2185b"/>
+    </radialGradient>
+    <radialGradient id="cny_core" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#4a148c"/>
+      <stop offset="100%" stop-color="#1a0533"/>
+    </radialGradient>
+    <radialGradient id="cny_hl" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#e0f2f1" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00695c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- === Tumor cell (solid tumor mass) === -->
+  <path d="M50 20 C63 20 78 29 80 45 C82 61 70 77 53 79 C36 81 21 69 20 52 C19 36 34 21 50 20 Z"
+        fill="url(#cny_tumor)" stroke="#880e4f" stroke-width="1.8"/>
+  <!-- hypoxic (anoxic) core where spores germinate -->
+  <ellipse cx="46" cy="53" rx="15" ry="13" fill="url(#cny_core)" stroke="#38006b" stroke-width="1.4"/>
+
+  <!-- dormant spores inside the hypoxic core -->
+  <g stroke="#f57f17" stroke-width="1">
+    <ellipse cx="38" cy="58" rx="3.4" ry="2.8" fill="url(#cny_spore)"/>
+    <ellipse cx="44" cy="63" rx="2.8" ry="2.3" fill="url(#cny_spore)"/>
+  </g>
+
+  <!-- === Germinated Clostridium rod with terminal spore, bursting out === -->
+  <g transform="rotate(-35 45 53)">
+    <!-- cell body -->
+    <rect x="26" y="46" width="58" height="14" rx="7" fill="url(#cny_rod)" stroke="#004d40" stroke-width="1.6"/>
+    <!-- terminal spore swelling (drumstick head) -->
+    <ellipse cx="80" cy="53" rx="10" ry="9.5" fill="url(#cny_rod)" stroke="#004d40" stroke-width="1.6"/>
+    <ellipse cx="80" cy="53" rx="6" ry="5.5" fill="url(#cny_spore)" stroke="#f57f17" stroke-width="1.2"/>
+    <!-- glossy highlight on cell body -->
+    <rect x="30" y="48.5" width="32" height="4.5" rx="2.2" fill="url(#cny_hl)"/>
+    <!-- segmentation hints -->
+    <g stroke="#004d40" stroke-width="1" stroke-opacity="0.45" fill="none">
+      <path d="M42 47.5 V58.5"/>
+      <path d="M55 47.5 V58.5"/>
+    </g>
+  </g>
+
+  <!-- === Ruptured tumor membrane at the exit point === -->
+  <g stroke="#880e4f" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <path d="M74 22 L70 30"/>
+    <path d="M84 28 L77 33"/>
+    <path d="M88 40 L80 41"/>
+  </g>
+  <!-- debris fragments flying outward -->
+  <g stroke="#880e4f" stroke-width="1.2">
+    <path d="M86 16 L91 21 L85 24 Z" fill="url(#cny_tumor)"/>
+    <circle cx="93" cy="33" r="2.6" fill="url(#cny_tumor)"/>
+    <path d="M78 8 L83 12 L78 15 Z" fill="url(#cny_tumor)"/>
+  </g>
+  <!-- crack lines across the membrane -->
+  <g stroke="#880e4f" stroke-width="1.1" stroke-opacity="0.7" fill="none" stroke-linecap="round">
+    <path d="M66 33 L60 40"/>
+    <path d="M25 44 L31 46"/>
+    <path d="M30 66 L36 62"/>
+  </g>
+</svg>

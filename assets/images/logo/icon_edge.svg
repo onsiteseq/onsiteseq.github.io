@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- чемоданчик-прибор -->
+  <rect x="8" y="22" width="48" height="34" rx="4" fill="#1e3a5f" stroke="#4a9eda" stroke-width="2.5"/>
+  <!-- ручка -->
+  <path d="M22 22v-6a10 10 0 0 1 20 0v6" stroke="#4a9eda" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- экран -->
+  <rect x="16" y="30" width="22" height="14" rx="2" fill="#4a9eda" opacity="0.3" stroke="#4a9eda" stroke-width="1.5"/>
+  <!-- кнопки -->
+  <circle cx="46" cy="35" r="3" fill="#4a9eda"/>
+  <circle cx="46" cy="46" r="3" fill="#7ec8f0"/>
+  <!-- замок -->
+  <rect x="28" y="20" width="8" height="4" rx="1" fill="#4a9eda"/>
+</svg>

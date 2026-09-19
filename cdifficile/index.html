@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      OnSiteSeq CDI — Определение лекарственной устойчивости и токсигенности Clostridioides difficile
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OnSiteSeq CDI — Определение лекарственной устойчивости и токсигенности Clostridioides difficile" />
+<meta name="author" content="Roman Gorbenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<meta property="og:description" content="Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика." />
+<link rel="canonical" href="https://onsiteseq.io/cdifficile/" />
+<meta property="og:url" content="https://onsiteseq.io/cdifficile/" />
+<meta property="og:site_name" content="OnSiteSeq" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/cdifficile/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://soopr.xyz/images/card?url=https://onsiteseq.io/cdifficile/" />
+<meta property="twitter:title" content="OnSiteSeq CDI — Определение лекарственной устойчивости и токсигенности Clostridioides difficile" />
+<meta name="twitter:site" content="@gorbenkoteh" />
+<meta name="twitter:creator" content="@Roman Gorbenko" />
+<script type="application/ld+json">
+{"url":"https://onsiteseq.io/cdifficile/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.","@type":"WebPage","headline":"OnSiteSeq CDI — Определение лекарственной устойчивости и токсигенности Clostridioides difficile","@context":"https://schema.org"}</script>
+<script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://onsiteseq.io/feed.xml" title="OnSiteSeq" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<script type="text/javascript">
+function updateLogo() {
+  const logo = document.getElementById('theme-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    logo.src = '/assets/images/logo/logo_main_dark.gif';
+  } else {
+    logo.src = '/assets/images/logo/logo_main_white.gif';
+  }
+}
+
+// Обновляем логотип при загрузке страницы
+window.addEventListener('load', function() {
+  updateLogo();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateLogo();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script> 
+
+<script type="text/javascript">
+function updateCardImages() {
+  const hivLogos = document.querySelectorAll('.hiv-logo');
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  hivLogos.forEach(function(logo) {
+    if (currentTheme === 'dark') {
+      logo.src = '/assets/images/logo/hiv_dark.png';
+    } else {
+      logo.src = '/assets/images/logo/hiv_white.png';
+    }
+  });
+}
+
+// Обновляем изображения при загрузке страницы
+window.addEventListener('load', function() {
+  updateCardImages();
+  
+  // Слушаем изменения темы
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateCardImages();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+});
+</script>
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header class="site-header">
+  <nav class="site-nav" style="display:flex; align-items:center; gap:1.2em;">
+    <a href="/" style="display:flex; align-items:center; flex-shrink:0; text-decoration:none;">
+      <img id="theme-logo" src="/assets/images/logo/logo_main_white.gif" alt="OnSiteSeq Logo" height="60" style="height:60px; width:auto; display:block;">
+    </a>
+    <ul class="horizontal-list">
+      <li><a href="/">Главная</a>&nbsp;&nbsp;</li>
+      <li><a href="/aboutonsiteseq">О платформе</a>&nbsp;&nbsp;</li>
+      <li><a href="/contact/">Контакты</a>&nbsp;&nbsp;</li>
+      <li><a href="https://cloud.onsiteseq.io" target="_blank" rel="noopener">Вход в Облако</a>&nbsp;&nbsp;</li>
+    </ul>
+    <button id="lang-toggle" title="Switch language / Переключить язык"
+      style="background:none;border:1px solid currentColor;border-radius:5px;cursor:pointer;font-size:0.78em;font-weight:700;letter-spacing:0.04em;padding:3px 9px;color:inherit;opacity:0.75;margin-left:0.3em;vertical-align:middle;white-space:nowrap;">
+      🌐 EN
+    </button>
+  </nav>
+  <div class="dashed"></div>
+</header>
+
+<div id="i18n-content">
+<div class="product-header" style="text-align: center; margin-bottom: 2rem;">
+  <h1>Определение лекарственной устойчивости и токсигенности Clostridioides difficile</h1>
+  <p style="font-size: 1.2em; color: #555;">Геномный надзор за возбудителем антибиотик-ассоциированного колита — ургентного патогена CDC/ВОЗ</p>
+</div>
+
+<hr />
+
+<h2 id="-описание-пейплайна">🧬 Описание пейплайна</h2>
+
+<p><em>Clostridioides difficile</em> (C. diff) — грамположительная анаэробная спорообразующая палочка, ведущий возбудитель <strong>антибиотик-ассоциированной диареи и псевдомембранозного колита</strong>. CDC классифицирует CDI как <strong>ургентную угрозу</strong> («urgent threat»): в США ежегодно регистрируется &gt;500 000 случаев и ~30 000 летальных исходов. Ключевая проблема — рост резистентности к метронидазолу и вспышки, вызванные гипервирулентными риботипами (прежде всего <strong>RT027/NAP1</strong>), устойчивыми к фторхинолонам.</p>
+
+<p>Наш пайплайн обеспечивает полный цикл анализа нанопоровых данных: от выявления токсин-продуцирующих штаммов до профиля устойчивости ко всем клинически значимым антибиотикам — прямо в больничной лаборатории без передачи данных за рубеж.</p>
+
+<ul>
+  <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> после High Accuracy basecalling (Dorado SUP, химия R10.4.1). Поддерживается полногеномное секвенирование (WGS) и ампликонное секвенирование ключевых генов резистентности.</li>
+  <li><strong>📤 На выходе:</strong> HTML-отчёт для клинициста с токсинотипом, риботипом (in silico) и профилем чувствительности; технический QC-отчёт для биоинформатика.</li>
+</ul>
+
+<hr />
+
+<h2 id="-доступность-продукта">📊 Доступность продукта</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Платформа</th>
+      <th style="text-align: left">Статус доступности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Edge</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Desktop</strong></td>
+      <td style="text-align: left">🟡 <strong>В разработке</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong></td>
+      <td style="text-align: left">🔴 Не доступно</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-токсины-и-факторы-вирулентности">☣️ Токсины и факторы вирулентности</h2>
+
+<p>Первым делом пайплайн определяет токсигенный потенциал штамма — главный клинический вопрос при CDI:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Белок</th>
+      <th style="text-align: left">Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>tcdA</strong></td>
+      <td style="text-align: left">Токсин A (энтеротоксин)</td>
+      <td style="text-align: left">Маркер патогенности (PaLoc)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>tcdB</strong></td>
+      <td style="text-align: left">Токсин B (цитотоксин)</td>
+      <td style="text-align: left">Главный фактор вирулентности CDI</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>tcdC</strong></td>
+      <td style="text-align: left">Репрессор PaLoc</td>
+      <td style="text-align: left">Делеция 18 п.н. → гиперпродукция токсинов (RT027)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>cdtA</strong></td>
+      <td style="text-align: left">Бинарный токсин, компонент A</td>
+      <td style="text-align: left">Маркер гипервирулентных риботипов (RT027, RT078, RT244)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>cdtB</strong></td>
+      <td style="text-align: left">Бинарный токсин, компонент B</td>
+      <td style="text-align: left">То же</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-гены-и-мутации-резистентности">🎯 Гены и мутации резистентности</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ген</th>
+      <th style="text-align: left">Ключевые мутации</th>
+      <th style="text-align: left">Класс антибиотиков</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>gyrA</strong></td>
+      <td style="text-align: left">Thr82Ile</td>
+      <td style="text-align: left">Ципрофлоксацин, фторхинолоны — главный драйвер эпидемий RT027</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>gyrB</strong></td>
+      <td style="text-align: left">Asp426Asn, Lys447Glu</td>
+      <td style="text-align: left">Фторхинолоны</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>rpoB</strong></td>
+      <td style="text-align: left">Val1143Gly, Arg505Lys и др.</td>
+      <td style="text-align: left">Фидаксомицин, Рифаксимин</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>tetM / tetW</strong></td>
+      <td style="text-align: left">Наличие гена</td>
+      <td style="text-align: left">Тетрациклин</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>ermB</strong></td>
+      <td style="text-align: left">Наличие гена</td>
+      <td style="text-align: left">Эритромицин, Клиндамицин (MLSB-феноменотип)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>nimB</strong></td>
+      <td style="text-align: left">Наличие гена</td>
+      <td style="text-align: left">Метронидазол (нитроимидазол-резистентность)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>vanB</strong></td>
+      <td style="text-align: left">Кластер vanHBXB</td>
+      <td style="text-align: left">Ванкомицин (редко, эпидемиологический маркер)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="профиль-антибиотиков-в-отчёте">Профиль антибиотиков в отчёте</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Антибиотик</th>
+      <th style="text-align: left">Класс</th>
+      <th style="text-align: left">Клиническое значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Ванкомицин</strong></td>
+      <td style="text-align: left">Гликопептид</td>
+      <td style="text-align: left">Первая линия (тяжёлая CDI)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Фидаксомицин</strong></td>
+      <td style="text-align: left">Макроциклический антибиотик</td>
+      <td style="text-align: left">Предпочтителен при рецидивах</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Метронидазол</strong></td>
+      <td style="text-align: left">Нитроимидазол</td>
+      <td style="text-align: left">Исторически первая линия, рост резистентности</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Рифаксимин</strong></td>
+      <td style="text-align: left">Ансамицин</td>
+      <td style="text-align: left">Follow-on терапия при рецидивах</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Ципрофлоксацин</strong></td>
+      <td style="text-align: left">Фторхинолон</td>
+      <td style="text-align: left">Эпидемиологический маркер (RT027)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Тетрациклин</strong></td>
+      <td style="text-align: left">Тетрациклин</td>
+      <td style="text-align: left">Эпидемиологический маркер</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-in-silico-риботипирование">🧫 In silico риботипирование</h2>
+
+<p>PCR-риботипирование — золотой стандарт эпидемиологического надзора за CDI. Пайплайн выполняет его <strong>in silico</strong> по WGS-данным:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Риботип</th>
+      <th style="text-align: left">Особенности</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>RT027 (NAP1/BI)</strong></td>
+      <td style="text-align: left">Гипервирулентный; tcdC Δ18 п.н.; bинарный токсин; устойчив к фторхинолонам</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>RT078</strong></td>
+      <td style="text-align: left">Гипервирулентный; бинарный токсин; зооноз (свиньи)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>RT014 / RT020</strong></td>
+      <td style="text-align: left">Наиболее распространены в Европе</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>RT001 / RT002</strong></td>
+      <td style="text-align: left">Исторически доминировали в РФ</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>RT244</strong></td>
+      <td style="text-align: left">Эмерджентный гипервирулентный риботип (Австралия)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-версии-и-ml-модели">⚙️ Версии и ML-модели</h2>
+
+<h3 id="основной-инструмент">Основной инструмент</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Компонент</th>
+      <th style="text-align: left">Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq CDI Pipeline</strong></td>
+      <td style="text-align: left">🟡 В разработке</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="планируемые-ml-модели">Планируемые ML-модели</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Модель</th>
+      <th style="text-align: left">Целевая задача</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>CDI-Tox-Classifier</strong></td>
+      <td style="text-align: left">Классификация токсинотипа по WGS (tcdA/B/C/cdtAB)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>CDI-Res-Detector</strong></td>
+      <td style="text-align: left">Предсказание резистентности по 6 классам АБ</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>CDI-Ribotyper</strong></td>
+      <td style="text-align: left">In silico риботипирование (≥30 риботипов)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Обучение планируется на открытых геномах из <strong>NCBI Pathogen Database</strong> (&gt;5 000 геномов C. difficile) и данных европейского консорциума <strong>ESCMID CDI Study Group</strong>.</p>
+
+<hr />
+
+<h2 id="-под-капотом-зависимости-и-окружение-pipeline-stack">🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Этап пайплайна</th>
+      <th style="text-align: left">Ключевые библиотеки и инструменты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>1. Контроль качества (QC)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">porechop_abi</code>, <code class="language-plaintext highlighter-rouge">NanoFilt</code>, <code class="language-plaintext highlighter-rouge">pigz</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>2. Выравнивание (Mapping)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2 2.26</code>, <code class="language-plaintext highlighter-rouge">samtools &gt;=1.17</code> (Референс: C. diff 630 / R20291)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>3. Поиск мутаций (Variant Calling)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">clair3 &gt;=1.0.4</code>, <code class="language-plaintext highlighter-rouge">medaka</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4. Детекция токсинов и генов AMR</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">AMRFinderPlus</code>, <code class="language-plaintext highlighter-rouge">abricate</code> (базы CARD, VFDB, Resfinder)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>5. In silico риботипирование</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">mlst</code> (схема C. difficile, PubMLST), кастомный риботипер</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>6. ML-инференс</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PyTorch</code>, <code class="language-plaintext highlighter-rouge">pandas</code>, <code class="language-plaintext highlighter-rouge">scikit-learn</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-глобальный-контекст-почему-это-важно">🌍 Глобальный контекст: почему это важно</h2>
+
+<ul>
+  <li><strong>CDC, 2019</strong> — C. difficile занесён в категорию <strong>«Urgent Threat»</strong> — наивысший уровень угрозы.</li>
+  <li><strong>ВОЗ AMR Action Plan</strong> — CDI назван одной из приоритетных нозокомиальных инфекций.</li>
+  <li><strong>Россия</strong> — данные о распространённости риботипов ограничены; доминируют RT001, RT002, RT014, но RT027 фиксируется в крупных стационарах.</li>
+  <li><strong>Ключевая проблема диагностики</strong> — текущий стандарт (ИФА на токсины + культура) занимает 2–5 дней. Геномный анализ на месте даёт результат <strong>в тот же день</strong> и одновременно закрывает вопрос об устойчивости к антибиотикам.</li>
+  <li><strong>Другие клостридии</strong> — см. наш пейплайн для <a href="/perfringens/">Clostridium perfringens</a>: газовая гангрена, где счёт идёт на часы, токсинотипирование (cpa/cpb/etx/cpe/netB) и срочный AMR-профиль.</li>
+</ul>
+
+<hr />
+
+<h2 id="-связанные-источники">🔬 Связанные источники</h2>
+
+<ul>
+  <li>📄 <a href="https://www.cdc.gov/cdiff/">CDC: Clostridioides difficile (C. diff)</a></li>
+  <li>📄 <a href="https://www.escmid.org/">ESCMID CDI Clinical Practice Guidelines</a></li>
+  <li>📄 <a href="https://pubmlst.org/organisms/clostridioides-difficile">PubMLST Clostridioides difficile MLST Database</a></li>
+  <li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI)</a></li>
+</ul>
+
+</div>
+<script src="/assets/js/i18n.js"></script>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">
+          &copy;&nbsp;2026&nbsp;Роман Горбенко, МФТИ-стартап "OnSiteSeq - Секвенирование на месте (у кровати / у стола / в поле)"
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>
