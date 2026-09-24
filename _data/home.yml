@@ -353,3 +353,8 @@ footer_entries:
     url: gxp
     image: /assets/images/gxp/gxp_logo.png
     description: "GxP - при проектировании проекта мы ориентировались на \"лучшие практики\"."
+
+  - title: OnSiteSeq на конференции «Биотехнологии для пищевой промышленности будущего» (БППБ-2026, ИМБ РАН)
+    url: conferences/bppb-2026
+    image: /assets/images/conf/bppb2026_main.jpg
+    description: "Постерная сессия: полевая экспресс-диагностика пирикуляриоза риса."

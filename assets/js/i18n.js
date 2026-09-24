@@ -4018,6 +4018,81 @@
     '<li><strong>CI/CD for multi-platform builds</strong> — arm64 and x86 in one pipeline</li>' +
     '<li><strong>Open repository</strong> — code available to the community at <a href="https://gitverse.ru/onsiteseq">gitverse.ru/onsiteseq</a></li></ul>';
 
+  /* ── BPPB-2026 CONFERENCE ── */
+  EN['/conferences/bppb-2026/'] =
+    '<div class="product-header" style="text-align: center; margin-bottom: 2rem;">' +
+    '<h1>II All-Russian Scientific and Practical Conference "Biotechnologies for the Food Industry of the Future: A Platform for Science and Industry"</h1>' +
+    '<p style="font-size: 1.2em; color: #555;">OnSiteSeq poster on rapid field diagnostics of rice blast</p></div><hr>' +
+    '<h2>🎤 About the Conference</h2>' +
+    '<p>On 18 September 2026, the <strong>Engelhardt Institute of Molecular Biology of the Russian Academy of Sciences</strong> (Moscow), with the participation of MIPT, hosted the II All-Russian Scientific and Practical Conference <strong>"Biotechnologies for the Food Industry of the Future: A Platform for Science and Industry" (BPPB-2026)</strong>. The conference brought together teams from Moscow, Saint Petersburg, Voronezh, Barnaul, Koltsovo and Minsk — from academic institutes to industrial laboratories.</p>' +
+    '<p>The <strong>OnSiteSeq</strong> team presented a poster:</p>' +
+    '<ul><li><strong>Poster:</strong> "OnSiteSeq hardware-software complex for rapid diagnostics of rice blast and fungicide resistance of <em>Pyricularia oryzae</em> in field conditions"</li>' +
+    '<li><strong>Author:</strong> Gorbenko R.A. (MIPT)</li>' +
+    '<li><strong>Topic:</strong> moving our nanopore diagnostics platform from the clinic to the field — detection of the rice blast pathogen and fungicide resistance markers directly in the field, without a central laboratory. Details — on the pipeline page: <a href="/magnaporthe/">Rice Blast (Magnaporthe oryzae)</a></li></ul>' +
+    '<div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">' +
+    '<div style="flex: 1; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_main.jpg" alt="Roman Gorbenko at the OnSiteSeq poster at BPPB-2026" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Roman Gorbenko at the poster "OnSiteSeq hardware-software complex for rapid diagnostics of rice blast and fungicide resistance of Pyricularia oryzae in field conditions" (Gorbenko R.A., MIPT)</p></div>' +
+    '<div style="flex: 1; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_photo.jpg" alt="OnSiteSeq poster at the BPPB-2026 poster session" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">The same OnSiteSeq poster, second shot: the author presents the work in the poster session foyer</p></div></div><hr>' +
+    '<h2>📋 Poster Session</h2>' +
+    '<p>The poster session was hosted in the bright marble foyer of the Engelhardt Institute of Molecular Biology RAS: stands on mobile racks lined up in rows beneath the historic chandeliers. The topics of the works ranged from recombinant chymosin and multienzyme preparations to oleaginous yeasts, bacterial nanocellulose and rapid field genomics. Against this background, the OnSiteSeq poster on field diagnostics of rice blast fitted naturally into the "science for industry" agenda: fungicide resistance of phytopathogens follows the same AMR logic as the project\'s clinical pipelines — just on the agronomist\'s side.</p>' +
+    '<p>Photos of colleagues\' posters — with captions describing their content:</p>' +
+    '<div class="gallery" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_01.jpg" alt="Engelhardt Institute of Molecular Biology RAS building" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">The building that hosted the conference: the main facade of the Engelhardt Institute of Molecular Biology RAS</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_16.jpg" alt="IMB RAS plaque" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">The plaque on the facade: "Federal State Budgetary Scientific Institution Engelhardt Institute of Molecular Biology of the Russian Academy of Sciences" — the conference venue</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_02.jpg" alt="At the entrance to the IMB RAS" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Roman Gorbenko with the rolled-up OnSiteSeq poster at the entrance to the IMB RAS</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_15.jpg" alt="OnSiteSeq poster on the stand" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">The OnSiteSeq poster (Gorbenko R.A., MIPT) on the poster session stand, wide shot next to the neighbouring works</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_03.jpg" alt="Poster on multienzyme biosensors" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Next-generation multienzyme biosensors based on nature-like carriers: from single-analyte detection to combined diagnostics and biocatalytic detoxification" (Kraevskaya A.G.; Plekhanov Russian University of Economics, Sechenov University)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_04.jpg" alt="Poster on bacteriophage lysin" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Expression and characterisation of the virion-associated lysin gp12 of the Curtobacterium bacteriophage AYKA" (Yakimov A.Yu. et al.; IBCh RAS, MSU, ROSBIOTECH, Pirogov RNRMU)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_05.jpg" alt="Poster on takin prochymosin" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Comparison of AOX1- and GAP-mediated expression of takin prochymosin in the yeast Pichia pastoris" (Saventseva E.A., Shcherbakov D.N.; Altai State University, SRC VB \'Vector\')</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_06.jpg" alt="Poster on buttermilk processing" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Processing of buttermilk as a non-traditional raw material source of bioactive peptides" (Stanislavskaya E.B. et al.; Voronezh State University of Engineering Technologies)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_07.jpg" alt="Poster on Debaryomyces hansenii desaturases" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Functional identification of paralogous desaturases of Debaryomyces hansenii" (Melnikova S.A., Polyakova A.N., Karpov D.S.; IMB RAS, MIPT)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_08.jpg" alt="Poster on oat kvass" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Effect of the Bacillus subtilis Ch-13 multienzyme preparation on the quality and antioxidant potential of oat kvass" (Burnysheva T.O. et al.; SPbGTI (TU))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_09.jpg" alt="Poster on oleaginous yeasts" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Isolation of oleaginous yeasts from the milk of farm animals" (Bogdanova A.S. et al.; IMB RAS, Gamaleya NRCEM, HSE University)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_10.jpg" alt="Poster on collagen peptides" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Bioactive collagen peptides from poultry by-products for functional foods in musculoskeletal disorders" (Kodesnikova T.L., Polishchuk E.K.; ROSBIOTECH, Gorbatov Federal Research Center for Food Systems RAS)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_11.jpg" alt="Poster on nanocellulose" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Isolation and characterisation of acetic acid bacteria cultures — producers of nanocellulose" (Bareyko A.A. et al.; Institute of Microbiology of the National Academy of Sciences of Belarus, Minsk)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_12.jpg" alt="Poster on chymosin production scaling" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Principles of successful scaling of food enzyme production under laboratory conditions on the example of a chymosin-producing strain" (Trofimov A.V. et al.; Federal Research Centre of Biotechnology RAS, Mendeleev University of Chemical Technology, MIPT)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_13.jpg" alt="Poster on chymosin purification" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Pilot technology for the purification of food enzymes to obtain a quality product on the example of chymosin" (Borovikova A.O. et al.; Federal Research Centre of Biotechnology RAS)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_14.jpg" alt="Poster on oleaginous yeast strains" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Poster "Search and identification of oleaginous yeast strains on the surfaces of fruits and vegetables" (Nandysheva A.A. et al.; IMB RAS / \'Cloning Facility\')</p></div></div><hr>' +
+    '<h2>💡 Why We Were There</h2>' +
+    '<p>BPPB-2026 is a food industry conference, and our rice poster was there for good reason. First, fungicide resistance of <em>Pyricularia oryzae</em> is the same molecular AMR problem that we solve for clinical pathogens: markers, mutations, rapid answers. Second, food safety starts in the field: a fungicide-resistant pathogen means harvest losses and excessive chemical treatment. Third, it is precisely at venues like this that "science → industry" connections are born: for OnSiteSeq this is a path to partnerships in the agricultural sector.</p><hr>' +
+    '<blockquote>💡 <strong>Open Source initiative:</strong> the project source code is open on <a href="https://gitverse.ru/onsiteseq/">GitVerse</a>.</blockquote>' +
+    '<p><strong>Related pages:</strong> <a href="/magnaporthe/">Rice Blast (Magnaporthe oryzae)</a> · <a href="/#i18n-sec-farmer">Farmer\'s Assistants</a> · <a href="/conferences/msit-2026/">Other conferences: MSIT-2026</a></p>';
+
   /* ════════════════════════════════════════════════════
      CHINESE CONTENT MAP  (keyed by window.location.pathname)
      Fallback: pages without ZH entry show EN, then RU.
@@ -8295,6 +8370,81 @@
     '<li>📄 <a href="https://www.pnas.org/">Ravel 等——育龄女性阴道微生物组 (PNAS,CST I–V)</a></li>' +
     '<li>📄 <a href="https://www.science.org/journal/stm">DiGiulio 等——妊娠期人类微生物组的时空变化 (Science Translational Medicine)</a></li></ul>';
 
+  /* ── BPPB-2026 会议 ── */
+  ZH['/conferences/bppb-2026/'] =
+    '<div class="product-header" style="text-align: center; margin-bottom: 2rem;">' +
+    '<h1>第二届全俄科学与实践会议“面向未来食品工业的生物技术:科学与产业平台”</h1>' +
+    '<p style="font-size: 1.2em; color: #555;">OnSiteSeq 关于稻瘟病田间快速诊断的海报</p></div><hr>' +
+    '<h2>🎤 关于会议</h2>' +
+    '<p>2026 年 9 月 18 日,第二届全俄科学与实践会议<strong>“面向未来食品工业的生物技术:科学与产业平台”(БППБ-2026)</strong>在<strong>俄罗斯科学院恩格尔哈特分子生物学研究所</strong>(莫斯科)举行,莫斯科物理技术学院 (МФТИ) 参与协办。会议汇聚了来自莫斯科、圣彼得堡、沃罗涅日、巴尔瑙尔、科尔佐沃和明斯克的团队——从学术研究所到工业实验室。</p>' +
+    '<p><strong>OnSiteSeq</strong> 团队展示了海报:</p>' +
+    '<ul><li><strong>海报:</strong>“OnSiteSeq 软硬件一体化系统:稻瘟病快速诊断与稻瘟病菌 <em>Pyricularia oryzae</em> 杀菌剂抗性的田间检测”</li>' +
+    '<li><strong>作者:</strong>Gorbenko R.A.(莫斯科物理技术学院 МФТИ)</li>' +
+    '<li><strong>主题:</strong>将我们的纳米孔诊断平台从临床转移到田间——直接在田间检测稻瘟病(稻热病)病原体与杀菌剂抗性标志物,无需中心实验室。详见流程页面:<a href="/magnaporthe/">稻瘟病 (Magnaporthe oryzae)</a></li></ul>' +
+    '<div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">' +
+    '<div style="flex: 1; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_main.jpg" alt="Roman Gorbenko 在 БППБ-2026 的 OnSiteSeq 海报旁" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Roman Gorbenko 在海报“OnSiteSeq 软硬件一体化系统:稻瘟病快速诊断与稻瘟病菌 Pyricularia oryzae 杀菌剂抗性的田间检测”旁(Gorbenko R.A.,МФТИ)</p></div>' +
+    '<div style="flex: 1; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_photo.jpg" alt="海报专场上的 OnSiteSeq 海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">同一张 OnSiteSeq 海报,第二个镜头:作者在海报专场大厅介绍工作</p></div></div><hr>' +
+    '<h2>📋 海报专场</h2>' +
+    '<p>海报专场设在俄罗斯科学院分子生物学研究所明亮的大理石大厅:移动展架上的展板在历史悠久的吊灯下排成一排。研究主题从重组凝乳酶、多酶制剂到产油酵母、细菌纳米纤维素与田间快速基因组学。在此背景下,OnSiteSeq 关于稻瘟病田间诊断的海报自然融入了“科学服务产业”的议程:植物病原体的杀菌剂抗性与该项目临床流程中的 AMR 遵循同一逻辑,只是站在农学家一侧。</p>' +
+    '<p>以下为同行海报照片,附内容说明:</p>' +
+    '<div class="gallery" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_01.jpg" alt="俄罗斯科学院分子生物学研究所大楼" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">会议举办地:俄罗斯科学院恩格尔哈特分子生物学研究所主楼正面</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_16.jpg" alt="ИМБ РАН 牌匾" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">楼前牌匾:“联邦国家预算科学机构——俄罗斯科学院恩格尔哈特分子生物学研究所”——会议举办地点</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_02.jpg" alt="在 ИМБ РАН 入口" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">Roman Gorbenko 带着卷起的 OnSiteSeq 海报在俄罗斯科学院分子生物学研究所 (ИМБ РАН) 入口</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_15.jpg" alt="展台上的 OnSiteSeq 海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报专场展台上的 OnSiteSeq 海报(Gorbenko R.A.,МФТИ),与相邻展板的全景合影</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_03.jpg" alt="多酶生物传感器海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“基于仿生载体的新一代多酶生物传感器:从单分析物检测到联合诊断与生物催化解毒”(Kraevskaya A.G.;普列汉诺夫俄罗斯经济大学 (РЭУ),谢切诺夫第一莫斯科国立医科大学 (ПМГМУ))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_04.jpg" alt="噬菌体溶素海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“Curtobacterium AYKA 噬菌体病毒粒子相关溶素 gp12 的表达与研究”(Yakimov A.Yu. 等;俄罗斯科学院生物有机化学研究所 (ИБХ РАН),莫斯科国立大学 (МГУ),俄罗斯生物技术大学 (РОСБИОТЕХ),皮罗戈夫俄罗斯国立研究医科大学 (РНИМУ))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_05.jpg" alt="羚牛凝乳酶原海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“Pichia pastoris 酵母中 AOX1 与 GAP 介导的羚牛凝乳酶原表达比较”(Saventseva E.A.,Shcherbakov D.N.;阿尔泰国立大学,国家病毒学与生物技术研究中心“Vector”)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_06.jpg" alt="酪乳加工海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“作为生物活性肽非传统原料来源的酪乳加工”(Stanislavskaya E.B. 等;沃罗涅日国立工程技术大学)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_07.jpg" alt="Debaryomyces hansenii 去饱和酶海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“Debaryomyces hansenii 旁系同源去饱和酶的功能鉴定”(Melnikova S.A.,Polyakova A.N.,Karpov D.S.;俄罗斯科学院分子生物学研究所 (ИМБ РАН),莫斯科物理技术学院 (МФТИ))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_08.jpg" alt="燕麦格瓦斯海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“Bacillus subtilis Ч-13 多酶制剂对燕麦格瓦斯品质与抗氧化潜力的影响”(Burnysheva T.O. 等;圣彼得堡国立工艺学院(技术大学) (СПбГТИ (ТУ)))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_09.jpg" alt="产油酵母海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“从农牧动物乳中分离产油酵母”(Bogdanova A.S. 等;俄罗斯科学院分子生物学研究所 (ИМБ РАН),加马列亚国家流行病学与微生物学研究中心 (НИЦЭМ),高等经济大学 (НИУ ВШЭ))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_10.jpg" alt="胶原肽海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“用于肌肉骨骼疾病功能性食品的禽类副产物生物活性胶原肽”(Kodesnikova T.L.,Polishchuk E.K.;俄罗斯生物技术大学 (РОСБИОТЕХ),俄罗斯科学院戈尔巴托夫食品系统联邦研究中心 (ФНЦ пищевых систем))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_11.jpg" alt="纳米纤维素海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“产纳米纤维素醋酸菌培养物的分离与鉴定”(Bareyko A.A. 等;白俄罗斯国家科学院微生物学研究所,明斯克)</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_12.jpg" alt="凝乳酶规模化海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“以凝乳酶生产菌株为例的实验室条件下食品酶规模化生产成功原则”(Trofimov A.V. 等;俄罗斯科学院生物技术联邦研究中心 (ФИЦ Биотехнологии РАН),门捷列夫化工大学 (РХТУ),莫斯科物理技术学院 (МФТИ))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_13.jpg" alt="凝乳酶纯化海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“以凝乳酶为例获得优质产品的食品酶纯化中试技术”(Borovikova A.O. 等;俄罗斯科学院生物技术联邦研究中心 (ФИЦ Биотехнологии РАН))</p></div>' +
+    '<div style="flex: 1 1 300px; min-width: 300px;">' +
+    '<img src="/assets/images/conf/bppb2026_14.jpg" alt="产油酵母菌株海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
+    '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">海报“水果和蔬菜表面产油酵母菌株的筛选与鉴定”(Nandysheva A.A. 等;俄罗斯科学院分子生物学研究所 (ИМБ РАН) / “Cloning Facility”)</p></div></div><hr>' +
+    '<h2>💡 我们为何参会</h2>' +
+    '<p>БППБ-2026 是一场食品工业会议,我们的水稻海报出现在那里并非偶然。首先,<em>Pyricularia oryzae</em> 的杀菌剂抗性与我们为临床病原体解决的 AMR 分子问题完全相同:标志物、突变、快速应答。其次,食品安全始于田间:耐杀菌剂的病原体意味着产量损失与过量施药。第三,正是在这样的平台上,“科学→产业”的纽带得以形成:对 OnSiteSeq 而言,这是通往农业领域合作的路径。</p><hr>' +
+    '<blockquote>💡 <strong>Open Source 倡议:</strong>项目源代码已在 <a href="https://gitverse.ru/onsiteseq/">GitVerse</a> 上开源。</blockquote>' +
+    '<p><strong>相关页面:</strong><a href="/magnaporthe/">稻瘟病 (Magnaporthe oryzae)</a> · <a href="/#i18n-sec-farmer">农民助手</a> · <a href="/conferences/msit-2026/">其他会议:MSIT-2026</a></p>';
+
   /* ════════════════════════════════════════════════════
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
@@ -8387,7 +8537,8 @@
       'mfti':     'Want to know about other startups and discoveries at MIPT?',
       'ruwiki':   'Why do we consider it important to develop this encyclopaedia?',
       'sber':     'Want to learn how GitVerse provides code storage and CI/CD for this project?',
-      'gxp':      'Want to learn about the industry standards we follow?'
+      'gxp':      'Want to learn about the industry standards we follow?',
+      'conferences/bppb-2026': 'OnSiteSeq at the conference "Biotechnologies for the Food Industry of the Future" (BPPB-2026, Engelhardt Institute of Molecular Biology RAS)'
     },
     footerDesc: {
       'normativ': '',
@@ -8395,7 +8546,8 @@
       'mfti':     'The project was born at MIPT.',
       'ruwiki':   'Website content = article for RuWiki.',
       'sber':     'Repository and CI/CD on GitVerse.',
-      'gxp':      'GxP — we followed "best practices" in project design.'
+      'gxp':      'GxP — we followed "best practices" in project design.',
+      'conferences/bppb-2026': 'Poster session: field rapid diagnostics of rice blast.'
     }
   };
 
