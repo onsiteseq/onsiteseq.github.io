@@ -3922,6 +3922,23 @@
     '<p><strong><a href="https://habr.com/ru/companies/mipt/articles/855038/">Neuromorphic Computer Creation Advances: Russian Scientists Created a Flexible Artificial Synapse</a></strong><br>Breakthrough in neuromorphic computing — flexible synapse based on new materials.</p>' +
     '<p><strong><a href="https://habr.com/ru/companies/mipt/articles/855084/">5G Radio Module Node Created at MIPT Successfully Passed Tests</a></strong><br>Domestic 5G radio module completed full testing cycle and confirmed compliance with standards.</p>';
 
+  /* ── RNIMU ── */
+  EN['/rnimu'] =
+    '<h1>RNIMU — Forge of Medical Innovation</h1>' +
+    '<div style="text-align:center;margin-bottom:2rem"><img src="/assets/images/rnimu/rnimu.png" alt="Pirogov Russian National Research Medical University" style="max-width:320px;width:100%;border-radius:8px;"></div>' +
+    '<h2>🎓 The Project Continues at RNIMU</h2>' +
+    '<p><strong>OnSiteSeq</strong> is a medtech startup launched at the Moscow Institute of Physics and Technology (see the <a href="/mfti">MIPT — Forge of Innovation</a> page); it is now being developed at the country\'s leading medical university: the project\'s founder <strong>Roman Gorbenko</strong> has continued his research in the PhD programme at the Pirogov Russian National Research Medical University (RNIMU, Pirogov University) of the Ministry of Health of the Russian Federation.</p>' +
+    '<p>RNIMU is the only medical university in Russia holding national research university status: 15 institutes, 148 departments, its own clinics, and one of the three Russian genome research centres established under the "Science and Universities" national project. For OnSiteSeq, the key competencies converge here: <strong>molecular diagnostics</strong> (the genomic laboratories of the Institute of Translational Medicine; the first whole exome sequencing kit registered in Russia), <strong>infectious diseases</strong> (a school of clinical microbiology and work on antimicrobial resistance), and <strong>personalised medicine</strong> (gene therapy, cell technologies, and the status of a manufacturer of individualised biotechnological medicines).</p>' +
+    '<p>At Pirogov University, the hardware-software complex for genomic surveillance of infectious diseases — built on nanopore sequencing, containerised pipelines and ML models — gains world-class clinical and translational expertise.</p><hr>' +
+    '<h2>🔬 Other RNIMU Developments and Discoveries</h2>' +
+    '<p>Pirogov University actively pursues developments at the forefront of biomedicine. Some recent achievements:</p>' +
+    '<p><strong><a href="https://pharmmedprom.ru/news/poyavilsya-pervyj-rossijskij-nabor-dlya-rasshifrovki-vseh-genov-cheloveka/">Russia Creates First Kit for Decoding All Human Genes</a></strong><br>The Genomics Laboratory of the RNIMU Institute of Translational Medicine has developed and registered GLxS — the country\'s first diagnostic whole exome sequencing kit approved for clinical use. The method makes it possible to detect about 85% of mutations associated with hereditary diseases.</p>' +
+    '<p><strong><a href="https://www.kommersant.ru/doc/6745629">Russian Scientists Create Drug for Ankylosing Spondylitis</a></strong><br>Seniprutug is the world\'s first drug acting on the initial link of immune disorders in ankylosing spondylitis. It was developed by researchers at Pirogov RNIMU and the Shemyakin–Ovchinnikov Institute of Bioorganic Chemistry of the Russian Academy of Sciences jointly with BIOCAD; the strategy of targeted elimination of autoreactive T-lymphocytes was published in Nature Medicine.</p>' +
+    '<p><strong><a href="https://ria.ru/20250519/parkinson-2017742126.html">Pirogov University Synthesises a Medicine for Parkinson\'s Disease</a></strong><br>A unique class of compounds for the treatment of Parkinson\'s disease has been created at the RNIMU Institute of Pharmacy and Medicinal Chemistry — a potential foundation for a domestic drug against neurodegeneration.</p>' +
+    '<p><strong><a href="https://companies.rbc.ru/news/FWy8doIvjQ/uchenyie-rnimu-sozdali-novyij-biosensor-dlya-detektsii-peroksida-vodoroda/">RNIMU Scientists Create New Biosensor for Hydrogen Peroxide Detection</a></strong><br>A breakthrough in redox biology: jointly with the Federal Centre for Brain and Neurotechnologies of the FMBA of Russia, the Institute of Bioorganic Chemistry RAS and the Faculty of Physics of Lomonosov Moscow State University, a biosensor has been created for measuring hydrogen peroxide — a key molecule of oxidative stress in neurodegenerative and oncological processes.</p>' +
+    '<p><strong><a href="https://companies.rbc.ru/news/1giL5t5M44/pirogovskij-universitet-poluchil-novyij-status/">Pirogov University Receives New Status</a></strong><br>RNIMU has been included in the government list of medical organisations entitled to manufacture and use biotechnological medicines created individually for a specific patient — the legal foundation for gene and cell therapy "here and now".</p>' +
+    '<p><strong><a href="https://companies.rbc.ru/news/8voeywQib0/pirogovskij-universitet-predstavil-razrabotku-dlya-reabilitatsii/">"SMART BANDAGE": Pirogov University Development for Postoperative Rehabilitation</a></strong><br>An autonomous wearable device with strain sensors and a Bluetooth module, presented at SPIEF-2026, controls the pressure of a bandage on the anterior abdominal wall during preoperative preparation and patient recovery in abdominal surgery.</p>';
+
   /* ── CITATION ── */
   EN['/citation'] =
     '<h2>Citing OnSiteSeq</h2>' +
@@ -6492,6 +6509,23 @@
     '<p><strong><a href="https://habr.com/ru/companies/mipt/articles/855038/">类脑计算机研发取得进展:俄罗斯科学家研制出柔性人工突触</a></strong><br>类脑计算领域的突破 — 基于新材料的柔性突触。</p>' +
     '<p><strong><a href="https://habr.com/ru/companies/mipt/articles/855084/">MIPT 研制的 5G 射频模块组件成功通过测试</a></strong><br>国产 5G 射频模块完成完整测试周期,确认符合标准。</p>';
 
+  /* ── RNIMU 皮罗戈夫医科大学 ── */
+  ZH['/rnimu'] =
+    '<h1>俄罗斯国立皮罗戈夫研究型医科大学 (RNIMU) — 医学创新的摇篮</h1>' +
+    '<div style="text-align:center;margin-bottom:2rem"><img src="/assets/images/rnimu/rnimu.png" alt="俄罗斯国立皮罗戈夫研究型医科大学" style="max-width:320px;width:100%;border-radius:8px;"></div>' +
+    '<h2>🎓 项目在 RNIMU 继续推进</h2>' +
+    '<p><strong>OnSiteSeq</strong> 是诞生于莫斯科物理技术学院的医疗科技 (medtech) 初创项目(参见 <a href="/mfti">MIPT — 创新的摇篮</a> 页面),如今正依托俄罗斯顶尖医科大学发展:项目创始人 <strong>Roman Gorbenko</strong>(罗曼·戈尔边科)已在俄罗斯国立皮罗戈夫研究型医科大学 (RNIMU,皮罗戈夫大学) 的博士研究生院继续开展研究,该校隶属于俄罗斯联邦卫生部。</p>' +
+    '<p>RNIMU 是俄罗斯唯一一所具有国家研究型大学地位的医科大学:拥有 15 个研究所、148 个教研室、自有附属医院,以及俄罗斯在"科学与大学"国家项目框架内建立的三个基因组研究中心之一。对 OnSiteSeq 而言,这里汇聚了关键能力:<strong>分子诊断</strong>(转化医学研究所的基因组学实验室;俄罗斯首个注册的全外显子组测序试剂盒)、<strong>传染病</strong>(临床微生物学学派与抗生素耐药性研究)和<strong>个性化医疗</strong>(基因治疗、细胞技术,以及个体化生物技术药物生产商资质)。</p>' +
+    '<p>这套基于纳米孔测序、容器化流程和机器学习模型的传染病基因组监测软硬件一体化系统,在皮罗戈夫大学获得了世界级的临床与转化医学专业支持。</p><hr>' +
+    '<h2>🔬 RNIMU 的其他研发成果与发现</h2>' +
+    '<p>皮罗戈夫大学在生物医学前沿积极开展研发。近期部分成果:</p>' +
+    '<p><strong><a href="https://pharmmedprom.ru/news/poyavilsya-pervyj-rossijskij-nabor-dlya-rasshifrovki-vseh-genov-cheloveka/">俄罗斯研制出首个解读人类全部基因的试剂盒</a></strong><br>RNIMU 转化医学研究所基因组学实验室研发并注册了 GLxS — 俄罗斯首个获准临床应用的全外显子组测序诊断试剂盒。该方法可检测约 85% 与遗传性疾病相关的突变。</p>' +
+    '<p><strong><a href="https://www.kommersant.ru/doc/6745629">俄罗斯科学家研发出治疗强直性脊柱炎的药物</a></strong><br>森尼普鲁单抗 (seniprutug) 是全球首个作用于强直性脊柱炎免疫紊乱初始环节的药物。该药由俄罗斯国立皮罗戈夫研究型医科大学与俄罗斯科学院谢米亚金—奥夫钦尼科夫生物有机化学研究所的科学家联合 BIOCAD 公司共同研发;定向清除自身反应性 T 淋巴细胞的策略已发表于《Nature Medicine》。</p>' +
+    '<p><strong><a href="https://ria.ru/20250519/parkinson-2017742126.html">皮罗戈夫大学合成出治疗帕金森病的药物</a></strong><br>RNIMU 药学与药物化学研究所成功创制了一类用于治疗帕金森病的独特化合物 — 有望成为国产抗神经退行性变药物的基础。</p>' +
+    '<p><strong><a href="https://companies.rbc.ru/news/FWy8doIvjQ/uchenyie-rnimu-sozdali-novyij-biosensor-dlya-detektsii-peroksida-vodoroda/">RNIMU 科学家研制出用于检测过氧化氢的新型生物传感器</a></strong><br>氧化还原生物学领域的突破:该大学与俄罗斯联邦医学生物署 (FMBA) 联邦脑与神经技术中心、俄罗斯科学院生物有机化学研究所及莫斯科国立大学物理系合作,研制出用于测量过氧化氢的生物传感器 — 过氧化氢是神经退行性与肿瘤过程中氧化应激的关键分子。</p>' +
+    '<p><strong><a href="https://companies.rbc.ru/news/1giL5t5M44/pirogovskij-universitet-poluchil-novyij-status/">皮罗戈夫大学获得新资质</a></strong><br>RNIMU 已被列入政府批准的医疗机构名单,获准生产和使用为特定患者个体化定制的生物技术药物 — 这为"此时此地"的基因与细胞治疗奠定了法律基础。</p>' +
+    '<p><strong><a href="https://companies.rbc.ru/news/8voeywQib0/pirogovskij-universitet-predstavil-razrabotku-dlya-reabilitatsii/">"智能绷带" (SMART-BANDAGE):皮罗戈夫大学用于术后康复的研发成果</a></strong><br>这款在 2026 年圣彼得堡国际经济论坛 (SPIEF) 上亮相的自主可穿戴设备配备应变传感器和蓝牙模块,可在腹部外科患者的术前准备与术后恢复过程中监测绷带对腹前壁的压力。</p>';
+
   /* ── CITATION 引用本研究 ── */
   ZH['/citation'] =
     '<h2>引用 OnSiteSeq</h2>' +
@@ -8535,6 +8569,7 @@
       'normativ': 'Want to learn about legislation supporting innovation and personalised medicine?',
       'citation': 'Want to cite this research?',
       'mfti':     'Want to know about other startups and discoveries at MIPT?',
+      'rnimu':    'Want to know about other startups and discoveries at Pirogov RNIMU recently?',
       'ruwiki':   'Why do we consider it important to develop this encyclopaedia?',
       'sber':     'Want to learn how GitVerse provides code storage and CI/CD for this project?',
       'gxp':      'Want to learn about the industry standards we follow?',
@@ -8544,6 +8579,7 @@
       'normativ': '',
       'citation': 'Articles and preprints.',
       'mfti':     'The project was born at MIPT.',
+      'rnimu':    'The project continues at Pirogov RNIMU PhD programme.',
       'ruwiki':   'Website content = article for RuWiki.',
       'sber':     'Repository and CI/CD on GitVerse.',
       'gxp':      'GxP — we followed "best practices" in project design.',

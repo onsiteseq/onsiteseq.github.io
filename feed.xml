@@ -1,5 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.io/" rel="alternate" type="text/html" /><updated>2026-10-11T18:09:44+02:00</updated><id>https://onsiteseq.io/feed.xml</id><title type="html">OnSiteSeq</title><subtitle>Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.
-</subtitle><author><name>Roman Gorbenko</name></author><entry><title type="html">О комплексе</title><link href="https://onsiteseq.io/aboutonsiteseq" rel="alternate" type="text/html" title="О комплексе" /><published>2026-02-08T00:00:00+01:00</published><updated>2026-02-08T00:00:00+01:00</updated><id>https://onsiteseq.io/aboutonsiteseq</id><content type="html" xml:base="https://onsiteseq.io/aboutonsiteseq">&lt;h2 id=&quot;onsiteseq-edge&quot;&gt;OnSiteSeq Edge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.io/" rel="alternate" type="text/html" /><updated>2026-10-11T18:29:49+02:00</updated><id>https://onsiteseq.io/feed.xml</id><title type="html">OnSiteSeq</title><subtitle>Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр).Чтобы это момент наступил как можно скорее мы разрабатываем программно-аппаратный комплекс OnSiteSeq объединяющий в себе инновации нано порового секвенирования искусственного интеллекта и GPU-вычислений.Также мы верим, что в дальнейшим секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться еще во множестве других сфер. Есть идеи в каких? OnSiteSeq - это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.
+</subtitle><author><name>Roman Gorbenko</name></author><entry><title type="html">РНИМУ — кузница медицинских инноваций</title><link href="https://onsiteseq.io/rnimu/" rel="alternate" type="text/html" title="РНИМУ — кузница медицинских инноваций" /><published>2026-10-11T00:00:00+02:00</published><updated>2026-10-11T00:00:00+02:00</updated><id>https://onsiteseq.io/rnimu</id><content type="html" xml:base="https://onsiteseq.io/rnimu/">&lt;div style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
+  &lt;img src=&quot;/assets/images/rnimu/rnimu.png&quot; alt=&quot;Российский национальный исследовательский медицинский университет имени Н. И. Пирогова&quot; style=&quot;max-width: 320px; width: 100%; border-radius: 8px;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;-проект-продолжается-в-стенах-рниму&quot;&gt;🎓 Проект продолжается в стенах РНИМУ&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;OnSiteSeq&lt;/strong&gt; — медтех-стартап, начатый в Московском физико-техническом институте (см. страницу &lt;a href=&quot;/mfti&quot;&gt;МФТИ — кузница инноваций&lt;/a&gt;), — теперь развивается на базе ведущего медицинского университета страны: основатель проекта &lt;strong&gt;Роман Горбенко&lt;/strong&gt; продолжил исследования в аспирантуре Российского национального исследовательского медицинского университета имени Н. И. Пирогова (РНИМУ, Пироговский Университет) Минздрава России.&lt;/p&gt;
+
+&lt;p&gt;РНИМУ — единственный медицинский вуз России со статусом национального исследовательского университета: 15 институтов, 148 кафедр, собственные клиники и один из трёх российских центров геномных исследований, созданных в рамках нацпроекта «Наука и университеты». Для OnSiteSeq здесь совпали ключевые компетенции: &lt;strong&gt;молекулярная диагностика&lt;/strong&gt; (геномные лаборатории Института трансляционной медицины, первый в России зарегистрированный набор полноэкзомного секвенирования), &lt;strong&gt;инфекционные болезни&lt;/strong&gt; (школа клинической микробиологии и работа с антибиотикорезистентностью) и &lt;strong&gt;персонализированная медицина&lt;/strong&gt; (генотерапия, клеточные технологии, статус производителя индивидуальных биотехнологических препаратов).&lt;/p&gt;
+
+&lt;p&gt;Программно-аппаратный комплекс для геномного надзора за инфекционными заболеваниями на основе нанопорового секвенирования, контейнеризованных пайплайнов и ML-моделей получает в стенах Пироговского Университета клиническую и трансляционную экспертизу мирового уровня.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;-другие-разработки-и-открытия-рниму&quot;&gt;🔬 Другие разработки и открытия РНИМУ&lt;/h2&gt;
+
+&lt;p&gt;Пироговский Университет активно ведёт разработки на переднем крае биомедицины. Некоторые из последних достижений:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://pharmmedprom.ru/news/poyavilsya-pervyj-rossijskij-nabor-dlya-rasshifrovki-vseh-genov-cheloveka/&quot;&gt;В России создали первый набор для расшифровки всех генов человека&lt;/a&gt;&lt;/strong&gt;
+Лаборатория геномики Института трансляционной медицины РНИМУ разработала и зарегистрировала GLxS — первый в стране диагностический набор для полноэкзомного секвенирования, разрешённый к клиническому применению. Метод позволяет выявить около 85% мутаций, связанных с наследственными заболеваниями.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.kommersant.ru/doc/6745629&quot;&gt;Российские учёные создали препарат от болезни Бехтерева&lt;/a&gt;&lt;/strong&gt;
+Сенипрутуг — первый в мире препарат, воздействующий на начальное звено иммунных нарушений при анкилозирующем спондилоартрите. Разработан учёными РНИМУ им. Н. И. Пирогова и ИБХ РАН совместно с компанией BIOCAD; стратегия прицельного уничтожения аутореактивных Т-лимфоцитов опубликована в Nature Medicine.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://ria.ru/20250519/parkinson-2017742126.html&quot;&gt;В Пироговском университете синтезировали лекарство от болезни Паркинсона&lt;/a&gt;&lt;/strong&gt;
+В Институте фармации и медицинской химии РНИМУ создан уникальный класс соединений для лечения болезни Паркинсона — потенциальная основа отечественного препарата против нейродегенерации.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://companies.rbc.ru/news/FWy8doIvjQ/uchenyie-rnimu-sozdali-novyij-biosensor-dlya-detektsii-peroksida-vodoroda/&quot;&gt;Учёные РНИМУ создали новый биосенсор для детекции пероксида водорода&lt;/a&gt;&lt;/strong&gt;
+Прорыв в редокс-биологии: совместно с Федеральным центром мозга и нейротехнологий ФМБА России, ИБХ РАН и физфаком МГУ создан биосенсор для измерения пероксида водорода — ключевой молекулы окислительного стресса при нейродегенеративных и онкологических процессах.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://companies.rbc.ru/news/1giL5t5M44/pirogovskij-universitet-poluchil-novyij-status/&quot;&gt;Пироговский Университет получил новый статус&lt;/a&gt;&lt;/strong&gt;
+РНИМУ включён в правительственный перечень медицинских организаций, имеющих право изготавливать и применять биотехнологические лекарственные препараты, созданные персонально под конкретного пациента, — правовая основа генной и клеточной терапии «здесь и сейчас».&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://companies.rbc.ru/news/8voeywQib0/pirogovskij-universitet-predstavil-razrabotku-dlya-reabilitatsii/&quot;&gt;«СМАРТ-БАНДАЖ»: разработка Пироговского Университета для реабилитации после операций&lt;/a&gt;&lt;/strong&gt;
+Представленное на ПМЭФ-2026 автономное носимое устройство с тензодатчиками и Bluetooth-модулем контролирует давление бандажа на переднюю брюшную стенку при предоперационной подготовке и восстановлении пациентов в абдоминальной хирургии.&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html"></summary></entry><entry><title type="html">О комплексе</title><link href="https://onsiteseq.io/aboutonsiteseq" rel="alternate" type="text/html" title="О комплексе" /><published>2026-02-08T00:00:00+01:00</published><updated>2026-02-08T00:00:00+01:00</updated><id>https://onsiteseq.io/aboutonsiteseq</id><content type="html" xml:base="https://onsiteseq.io/aboutonsiteseq">&lt;h2 id=&quot;onsiteseq-edge&quot;&gt;OnSiteSeq Edge&lt;/h2&gt;
 
 &lt;p&gt;Автономный программно-аппаратный комплекс (ПАК). От FASTQ до клинического заключения прямо у кровати пациента, стола врача. Может использоваться на выезде, в регионах крайнего севера и т.д.&lt;/p&gt;
 
@@ -727,343 +761,4 @@ CI: Lint → Tests
   &lt;li&gt;📄 &lt;a href=&quot;https://card.mcmaster.ca/&quot;&gt;CARD — Comprehensive Antibiotic Resistance Database&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;📄 &lt;a href=&quot;https://pubmlst.org/&quot;&gt;PubMLST — Многолокусное сиквенс-типирование бактерий&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;📄 &lt;a href=&quot;https://www.antibiotic.ru/skat/&quot;&gt;СКАТ — Стратегия контроля антимикробной терапии в России&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента</summary></entry><entry><title type="html">OnSiteSeq ОРВИ — Метагеномная идентификация вирусных возбудителей острых респираторных инфекций</title><link href="https://onsiteseq.io/flu/" rel="alternate" type="text/html" title="OnSiteSeq ОРВИ — Метагеномная идентификация вирусных возбудителей острых респираторных инфекций" /><published>2025-01-08T00:00:00+01:00</published><updated>2025-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/flu</id><content type="html" xml:base="https://onsiteseq.io/flu/">&lt;div class=&quot;product-header&quot; style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
-  &lt;img src=&quot;/assets/images/logo/icon_flu.svg&quot; alt=&quot;Вирусные возбудители ОРВИ&quot; style=&quot;max-height: 120px; margin-bottom: 1rem;&quot; /&gt;
-  &lt;h1&gt;Метагеномная идентификация вирусных возбудителей ОРВИ&lt;/h1&gt;
-  &lt;p style=&quot;font-size: 1.2em; color: #555;&quot;&gt;Дифференциальная диагностика гриппа A/B, RSV, риновируса, коронавирусов и других респираторных вирусов — у кровати пациента&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-описание-пейплайна&quot;&gt;🧬 Описание пейплайна&lt;/h2&gt;
-
-&lt;p&gt;Острые респираторные вирусные инфекции (ОРВИ) вызываются десятками различных вирусов с клинически неразличимой картиной. Быстрое точное определение возбудителя критично для трёх клинических задач: &lt;strong&gt;назначение антивирусной терапии&lt;/strong&gt; (осельтамивир при гриппе, нирматрелвир при COVID-19), &lt;strong&gt;инфекционный контроль&lt;/strong&gt; (изоляция RSV-пациентов в педиатрии) и &lt;strong&gt;эпидемиологический надзор&lt;/strong&gt; (мониторинг циркулирующих штаммов гриппа).&lt;/p&gt;
-
-&lt;p&gt;Наш пайплайн использует &lt;strong&gt;метагеномное нанопоровое секвенирование&lt;/strong&gt; (mNGS): образец (мазок из носоглотки, БАЛ) секвенируется без предварительного знания о возбудителе — все вирусы выявляются одновременно. Для выявленного гриппа A/B дополнительно определяется субтип и профиль резистентности к противовирусным препаратам.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;📥 На входе:&lt;/strong&gt; Сырые данные в формате &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FASTQ&lt;/code&gt; после High Accuracy basecalling (Dorado SUP, химия R10.4.1). Материал: мазок из носоглотки / назофарингеальный аспират / БАЛ.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;📤 На выходе:&lt;/strong&gt; HTML-отчёт для клинициста с идентифицированными патогенами, относительной представленностью и (для гриппа) профилем резистентности к противовирусным препаратам.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-классы-балтимора-как-карта-орви&quot;&gt;🧭 Классы Балтимора как карта ОРВИ&lt;/h2&gt;
-
-&lt;p&gt;Классификация Балтимора делит вирусы на семь классов по типу генома и стратегии синтеза мРНК. Респираторные вирусы разбросаны сразу по нескольким классам — и метагеномный скрининг видит их всех &lt;strong&gt;одновременно и одним методом&lt;/strong&gt;, потому что работает с нуклеиновой кислотой напрямую: секвенатору безразлично, какую стратегию репликации использует вирус. Именно это отличает mNGS от ПЦР-панелей, где каждый класс генома требует своей амплификационной схемы.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Класс Балтимора&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Геном&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Возбудители в панели ОРВИ&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;I&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;dsDNA&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Аденовирус (серотипы B, C, E)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;II&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ssDNA (+)&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Бокавирус (HBoV)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;IV&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;(+)ssRNA&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Риновирусы A/B/C; коронавирусы (SARS-CoV-2, сезонные HCoV)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;(−)ssRNA&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Грипп A/B, RSV, вирус парагриппа, метапневмовирус&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Обратите внимание: одна и та же клиническая картина — «обычная простуда» — вызывается вирусами с принципиально разной молекулярной биологией, от одноцепочечной ДНК бокавируса до сегментированной (−)ssRNA гриппа. Для диагностики эта разница нивелируется: на этапе подготовки библиотеки РНК переводится в cDNA, и дальше все классы анализируются единым пайплайном.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-доступность-продукта&quot;&gt;📊 Доступность продукта&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Платформа&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Статус доступности&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;OnSiteSeq Cockpit Edge&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;🟡 &lt;strong&gt;В разработке&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;OnSiteSeq Cockpit Desktop&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;🟡 &lt;strong&gt;В разработке&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;OnSiteSeq Cockpit Cloud&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;🔴 Не доступно&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-определяемые-патогены&quot;&gt;🦠 Определяемые патогены&lt;/h2&gt;
-
-&lt;p&gt;Пайплайн верифицирует присутствие следующих вирусов по метагеномным данным:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Патоген&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Клиническое значение&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Грипп A (H1N1pdm09, H3N2)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ведущий сезонный патоген; антивирусная терапия — осельтамивир, балоксавир&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Грипп B (Victoria / Yamagata)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Второй по значимости; субтипирование важно для тактики терапии&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;RSV A / RSV B&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ведущая причина бронхиолита у детей; профилактика у младенцев — нирсевимаб; изоляция в педиатрии&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Риновирус A / B / C&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Наиболее частый возбудитель ОРВИ; специфической терапии нет&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Коронавирус SARS-CoV-2&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;COVID-19; при выявлении — автоматическое расширение до &lt;a href=&quot;/sarscov2/&quot;&gt;полного SARS-CoV-2 пайплайна&lt;/a&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Сезонные коронавирусы (HCoV-OC43, HCoV-229E, HCoV-NL63, HCoV-HKU1)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Дифференциальная диагностика COVID-19&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Аденовирус (серотипы B, C, E)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Вспышки в коллективах; серьёзное течение у иммунокомпрометированных&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Вирус парагриппа (PIV 1–4)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ларинготрахеит («ложный круп») у детей&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Метапневмовирус (hMPV A/B)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Клинически схож с RSV; важен в педиатрии и у пожилых&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Бокавирус (HBoV)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Сопутствующий патоген; частое ко-инфицирование&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-субтипирование-гриппа-и-резистентность&quot;&gt;🎯 Субтипирование гриппа и резистентность&lt;/h2&gt;
-
-&lt;p&gt;Для выявленного &lt;strong&gt;гриппа A/B&lt;/strong&gt; пайплайн дополнительно выполняет субтипирование и анализ генов резистентности:&lt;/p&gt;
-
-&lt;h3 id=&quot;гены-резистентности-к-противовирусным-препаратам&quot;&gt;Гены резистентности к противовирусным препаратам&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Ген&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Ключевые мутации&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Препарат&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;NA&lt;/strong&gt; (нейраминидаза)&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;H275Y (N1), E119V (N2), R292K&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Осельтамивир (Тамифлю), Занамивир&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;PA&lt;/strong&gt; (полимераза)&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;I38T / I38F / I38M&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Балоксавир (Ксофлюза)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;M2&lt;/strong&gt; (ионный канал)&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;S31N, V27A, A30T&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Амантадин / Ремантадин (резистентны &amp;gt;99% H3N2 и pH1N1)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;профиль-противовирусных-препаратов-в-отчёте-грипп&quot;&gt;Профиль противовирусных препаратов в отчёте (грипп)&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Препарат&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Класс&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Значение&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Осельтамивир&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ингибитор нейраминидазы&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Первая линия при гриппе A/B&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Занамивир&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ингибитор нейраминидазы&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Альтернатива при устойчивости к осельтамивиру&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Балоксавир&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ингибитор PA-эндонуклеазы&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Однократный приём; мониторинг I38T важен&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Амантадин&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ингибитор M2-канала&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Резистентность носит массовый характер (только справочно)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-оптимизация-под-кассету-flongle&quot;&gt;🧪 Оптимизация под кассету Flongle&lt;/h2&gt;
-
-&lt;p&gt;Адаптер Flongle даёт порядка &lt;strong&gt;1 Гб с рана&lt;/strong&gt; — на порядок меньше полноценной ячейки R9.4.1/R10.4.1. Для вирусной метагеномики этого обычно достаточно (геномы вирусов малы), но протокол нужно подстроить:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Обратная транскрипция&lt;/strong&gt; — все целевые патогены панели РНК-вирусы; библиотека готовится через этап ОТ (например, Ligation Sequencing Kit с cDNA), что добавляет 1–2 часа к протоколу.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Adaptive sampling (Read Until)&lt;/strong&gt; — отбраковка хозяйских ридов «на лету» повышает долю вирусных ридов в 3–10 раз; при типичной вирусной нагрузке (Ct &amp;lt; 30) этого хватает для полных геномов гриппа (~13,5 т.п.н.) или RSV (~15 т.п.н.).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Деплеция хозяина&lt;/strong&gt; — сапониновая обработка образца до экстракции убирает 90–99% человеческого материала.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Порог чувствительности&lt;/strong&gt; — надёжная детекция и субтипирование требуют доли вируса ≥ 0,1% ридов (примерно Ct ≤ 30–32); отрицательный результат не исключает инфекцию с низким титром.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Мультиплексирование&lt;/strong&gt; — 2–4 образца со штрихкодами на одну Flongle снижают стоимость образца до нескольких тысяч рублей.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;По мере роста выхода кассет и точности химии ONT те же пейплайны без изменений перейдут на более глубокое покрытие — пороги чувствительности заданы конфигурацией запуска, а не зашиты в код.&lt;/em&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;️-версии-и-ml-модели&quot;&gt;⚙️ Версии и ML-модели&lt;/h2&gt;
-
-&lt;h3 id=&quot;основной-инструмент&quot;&gt;Основной инструмент&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Компонент&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Статус&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;OnSiteSeq ОРВИ Pipeline&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;🟡 В разработке&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;планируемые-ml-модели&quot;&gt;Планируемые ML-модели&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Модель&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Целевая задача&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;RespiVirus-Classifier&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Метагеномная классификация вирусных патогенов (CNN на k-мерах)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Flu-Subtyper&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Субтипирование гриппа A (H1N1/H3N2) и B (Victoria/Yamagata) по WGS&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Flu-Res-Detector&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Предсказание резистентности к осельтамивиру и балоксавиру&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Обучение на геномах из &lt;strong&gt;NCBI Influenza Database&lt;/strong&gt; (&amp;gt;1 000 000 последовательностей), &lt;strong&gt;GISAID EpiFlu&lt;/strong&gt; и открытых метагеномных датасетах ОРВИ.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-под-капотом-зависимости-и-окружение-pipeline-stack&quot;&gt;🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Этап пайплайна&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Ключевые библиотеки и инструменты&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;1. Контроль качества (QC)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;porechop_abi&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NanoFilt&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pigz&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;2. Деплеция хозяйских ридов&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimap2&lt;/code&gt; (ref: GRCh38) → исключение человеческих ридов&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;3. Метагеномная классификация&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Kraken2&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bracken&lt;/code&gt; (RefSeq viral DB + кастомные геномы)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;4. Целевое выравнивание&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimap2&lt;/code&gt; на референсы выявленных патогенов&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;5. Субтипирование гриппа&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IRMA&lt;/code&gt; (Iterative Refinement Meta-Assembler, CDC)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;6. Аннотация резистентности&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Кастомная база мутаций NA/PA/M2 + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;snpEff&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;7. ML-инференс&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PyTorch&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pandas&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scikit-learn&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-глобальный-контекст&quot;&gt;🌍 Глобальный контекст&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;ВОЗ&lt;/strong&gt; — глобальный надзор за гриппом (GISRS) включает &amp;gt;150 национальных центров; данные о циркулирующих штаммах определяют состав вакцины ежегодно.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Россия&lt;/strong&gt; — ЦНИИ Эпидемиологии Роспотребнадзора ведёт еженедельный мониторинг ОРВИ; в пик сезона до 30–40% визитов к врачу — ОРВИ.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Проблема «слепой» антибиотикотерапии&lt;/strong&gt; — при ОРВИ антибиотики назначаются в ~40–60% случаев в РФ, несмотря на вирусную этиологию. Точная идентификация возбудителя у кровати пациента позволяет избежать избыточного назначения антибиотиков.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;RSV-сезон&lt;/strong&gt; — ежегодные вспышки перегружают педиатрические стационары; нирсевимаб (Beyfortus) вводится младенцам профилактически до сезона, а быстрое подтверждение RSV у кровати пациента определяет тактику изоляции и койко-размещения в педиатрическом стационаре.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;-связанные-источники&quot;&gt;🔬 Связанные источники&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;📄 &lt;a href=&quot;https://www.who.int/initiatives/global-influenza-surveillance-and-response-system&quot;&gt;ВОЗ — Глобальная система надзора за гриппом и ответных мер (GISRS)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;📄 &lt;a href=&quot;https://www.ncbi.nlm.nih.gov/genomes/FLU/&quot;&gt;NCBI Influenza Virus Database&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;📄 &lt;a href=&quot;https://wonder.cdc.gov/amd/flu/irma/&quot;&gt;CDC IRMA — Iterative Refinement Meta-Assembler&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;📄 &lt;a href=&quot;https://www.gisaid.org/&quot;&gt;GISAID EpiFlu — глобальная база геномов гриппа&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Метагеномная идентификация вирусных возбудителей ОРВИ Дифференциальная диагностика гриппа A/B, RSV, риновируса, коронавирусов и других респираторных вирусов — у кровати пациента</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента</summary></entry></feed>
