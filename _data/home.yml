@@ -339,6 +339,11 @@ footer_entries:
     image: /assets/images/mfti/mfti.webp
     description: "Проект родился в стенах МФТИ."
 
+  - title: Хотите узнать какие еще стартапы и открытия появились в РНИМУ недавно?
+    url: rnimu
+    image: /assets/images/rnimu/rnimu.png
+    description: "Проект продолжается в аспирантуре РНИМУ им. Н.И. Пирогова."
+
   - title: Хотите узнать почему мы считаем важным развивать данную энциклопедию?
     url: ruwiki
     image: /assets/images/ruwiki/ruwiki.jpg
