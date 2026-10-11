@@ -8687,6 +8687,23 @@
     });
   }
 
+  /* Site footer (credits) translations */
+  var CREDITS_EN = '&copy;&nbsp;2026&nbsp;Roman Gorbenko, OnSiteSeq<br>' +
+    'AI medtech platform for managing containerized bioinformatics pipelines.<br>' +
+    'Edge platform. Workstation. Cloud computing.<br>' +
+    'Certificate of state registration of computer software No.&nbsp;2026680748.<br>' +
+    'The project was started at <a href="/mfti">MIPT</a> and is continued within the PhD programme at <a href="https://rsmu.ru" target="_blank" rel="noopener">Pirogov RNIMU</a>.<br>' +
+    'Licensing and validation in progress. Current status — RUO. For research use only. Not for use in diagnostic procedures.<br>' +
+    'The project is a participant of the <a href="https://sociocenter.info/1000stratups" target="_blank" rel="noopener">Top-1000 University Startups</a>.';
+
+  var CREDITS_ZH = '&copy;&nbsp;2026&nbsp;罗曼·戈尔边科 (Roman Gorbenko), OnSiteSeq<br>' +
+    '用于管理容器化生物信息学分析流程的 AI 医疗科技平台。<br>' +
+    'Edge 平台 · 工作站 · 云计算。<br>' +
+    '计算机软件国家登记证书 №&nbsp;2026680748。<br>' +
+    '项目始于<a href="/mfti">莫斯科物理技术学院</a>,在<a href="https://rsmu.ru" target="_blank" rel="noopener">俄罗斯国立皮罗戈夫研究型医科大学</a>博士研究生院继续推进。<br>' +
+    '许可与注册验证进行中。当前状态 — RUO。仅供科学研究使用,不可用于诊断。<br>' +
+    '项目入选<a href="https://sociocenter.info/1000stratups" target="_blank" rel="noopener">"千所大学生创业计划"百强</a>。';
+
   function applyHomeLang(lang) {
     var H = lang === 'zh'
       ? { tagline: ZH_HOME.tagline, dzenText: ZH_HOME.dzenText,
@@ -8745,6 +8762,10 @@
 
     /* Nav links (all pages) */
     applyNavLang(lang);
+
+    /* Site footer credits (all pages) */
+    var credits = document.getElementById('i18n-credits');
+    if (credits) credits.innerHTML = lang === 'zh' ? CREDITS_ZH : CREDITS_EN;
 
     /* Content page — zh falls back to EN when no ZH entry */
     var wrap = document.getElementById('i18n-content');
