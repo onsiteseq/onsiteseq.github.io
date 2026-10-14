@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.io/" rel="alternate" type="text/html" /><updated>2026-10-14T23:43:09+02:00</updated><id>https://onsiteseq.io/feed.xml</id><title type="html">OnSiteSeq</title><subtitle>Мы верим, что в скором времени методы секвенирования у кровати пациента, у стола врача станут такими же рутинными практиками инструментальной диагностики, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр). Чтобы этот момент наступил как можно скорее, мы разрабатываем программно-аппаратный комплекс OnSiteSeq, объединяющий в себе инновации нанопорового секвенирования, искусственного интеллекта и GPU-вычислений. Также мы верим, что в дальнейшем секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться ещё во множестве других сфер. Есть идеи, в каких? OnSiteSeq — это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.io/" rel="alternate" type="text/html" /><updated>2026-10-15T00:01:57+02:00</updated><id>https://onsiteseq.io/feed.xml</id><title type="html">OnSiteSeq</title><subtitle>Мы верим, что в скором времени методы секвенирования на месте взятия образца станут такими же рутинными инструментальными методами, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр). Чтобы этот момент наступил как можно скорее, мы разрабатываем программно-аппаратный комплекс OnSiteSeq, объединяющий в себе инновации нанопорового секвенирования, искусственного интеллекта и GPU-вычислений. Сегодня OnSiteSeq — исследовательская платформа (RUO): продукт не является медицинским изделием и не предназначен для диагностики. Также мы верим, что в дальнейшем секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться ещё во множестве других сфер. Есть идеи, в каких? OnSiteSeq — это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.
 </subtitle><author><name>Roman Gorbenko</name></author><entry><title type="html">РНИМУ — кузница медицинских инноваций</title><link href="https://onsiteseq.io/rnimu/" rel="alternate" type="text/html" title="РНИМУ — кузница медицинских инноваций" /><published>2026-10-11T00:00:00+02:00</published><updated>2026-10-11T00:00:00+02:00</updated><id>https://onsiteseq.io/rnimu</id><content type="html" xml:base="https://onsiteseq.io/rnimu/">&lt;div style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
   &lt;img src=&quot;/assets/images/rnimu/rnimu.png&quot; alt=&quot;Российский национальный исследовательский медицинский университет имени Н. И. Пирогова&quot; style=&quot;max-width: 320px; width: 100%; border-radius: 8px;&quot; /&gt;
 &lt;/div&gt;
@@ -35,9 +35,9 @@
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://companies.rbc.ru/news/8voeywQib0/pirogovskij-universitet-predstavil-razrabotku-dlya-reabilitatsii/&quot;&gt;«СМАРТ-БАНДАЖ»: разработка Пироговского Университета для реабилитации после операций&lt;/a&gt;&lt;/strong&gt;
 Представленное на ПМЭФ-2026 автономное носимое устройство с тензодатчиками и Bluetooth-модулем контролирует давление бандажа на переднюю брюшную стенку при предоперационной подготовке и восстановлении пациентов в абдоминальной хирургии.&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html"></summary></entry><entry><title type="html">О комплексе</title><link href="https://onsiteseq.io/aboutonsiteseq" rel="alternate" type="text/html" title="О комплексе" /><published>2026-02-08T00:00:00+01:00</published><updated>2026-02-08T00:00:00+01:00</updated><id>https://onsiteseq.io/aboutonsiteseq</id><content type="html" xml:base="https://onsiteseq.io/aboutonsiteseq">&lt;h2 id=&quot;onsiteseq-edge&quot;&gt;OnSiteSeq Edge&lt;/h2&gt;
 
-&lt;p&gt;Автономный программно-аппаратный комплекс (ПАК). От FASTQ до клинического заключения прямо у кровати пациента, стола врача. Может использоваться на выезде, в регионах крайнего севера и т.д.&lt;/p&gt;
+&lt;p&gt;Автономный программно-аппаратный комплекс (ПАК). От FASTQ до исследовательского отчёта прямо на месте отбора образцов, без отправки данных в центральную лабораторию. Может использоваться на выезде, в регионах крайнего севера и т.д.&lt;/p&gt;
 
-&lt;p&gt;Встроенные инструменты пробоподготовки. Данные получаются со встроенного секвенатора Нанопорус, обрабатываются GPU-модулем Nvidia Jetson AGX. Возможность напечатать клинический и биоинформатический отчёт на встроенном термопринтере.&lt;/p&gt;
+&lt;p&gt;Встроенные инструменты пробоподготовки. Данные получаются со встроенного секвенатора Нанопорус, обрабатываются GPU-модулем Nvidia Jetson AGX. Возможность напечатать исследовательский (RUO) и биоинформатический отчёт на встроенном термопринтере.&lt;/p&gt;
 
 &lt;p&gt;Система управления биоинформатическими контейнерами OnSiteSeq Cockpit адаптирована под работу на сенсорном экране. Биоинформатические инструменты распространяются через OnSiteSeq Harbor в виде arm64 Docker-контейнеров. Используемые биоинформатические инструменты адаптированы под архитектуру arm64 и GPGPU-вычисления. Открытая архитектура. Постоянно обновляющийся маркетплейс arm64-контейнеров.&lt;/p&gt;
 
@@ -47,7 +47,7 @@
 
 &lt;h2 id=&quot;onsiteseq-desktop&quot;&gt;OnSiteSeq Desktop&lt;/h2&gt;
 
-&lt;p&gt;Вариант системы управления биоинформатическими контейнерами OnSiteSeq Cockpit, адаптированный для работы на рабочем компьютере врача или исследователя. Может работать в паре с OnSiteSeq Edge или использовать данные, полученные на другом оборудовании. Биоинформатические инструменты распространяются через OnSiteSeq Harbor в виде x86 Docker-контейнеров. Постоянно обновляющийся маркетплейс x86-контейнеров.&lt;/p&gt;
+&lt;p&gt;Вариант системы управления биоинформатическими контейнерами OnSiteSeq Cockpit, адаптированный для работы на рабочем компьютере исследователя или лаборатории. Может работать в паре с OnSiteSeq Edge или использовать данные, полученные на другом оборудовании. Биоинформатические инструменты распространяются через OnSiteSeq Harbor в виде x86 Docker-контейнеров. Постоянно обновляющийся маркетплейс x86-контейнеров.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/desktop/&quot;&gt;Больше информации — OnSiteSeq Desktop →&lt;/a&gt;&lt;/p&gt;
 
@@ -67,7 +67,7 @@
 
 &lt;p&gt;&lt;em&gt;Программный комплекс управления биоинформатическими пайплайнами «OnSiteSeq Cockpit»&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/law/svidetelstvo_cockpit.png&quot; alt=&quot;Свидетельство о регистрации OnSiteSeq Cockpit&quot; style=&quot;max-width:100%; max-height:400px; margin-top:1rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);&quot; /&gt;&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">OnSiteSeq Edge</summary></entry><entry><title type="html">GxP: Надлежащие практики обеспечения качества</title><link href="https://onsiteseq.io/gxp" rel="alternate" type="text/html" title="GxP: Надлежащие практики обеспечения качества" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/gxp</id><content type="html" xml:base="https://onsiteseq.io/gxp">&lt;p&gt;При разработке OnSiteSeq мы строго следуем международным стандартам GxP для обеспечения качества и целостности данных на всех этапах — от сбора образца до выдачи клинического заключения.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/law/svidetelstvo_cockpit.png&quot; alt=&quot;Свидетельство о регистрации OnSiteSeq Cockpit&quot; style=&quot;max-width:100%; max-height:400px; margin-top:1rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);&quot; /&gt;&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">OnSiteSeq Edge</summary></entry><entry><title type="html">GxP: Надлежащие практики обеспечения качества</title><link href="https://onsiteseq.io/gxp" rel="alternate" type="text/html" title="GxP: Надлежащие практики обеспечения качества" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/gxp</id><content type="html" xml:base="https://onsiteseq.io/gxp">&lt;p&gt;При разработке OnSiteSeq мы ориентируемся на международные практики GxP для обеспечения качества и целостности данных на всех этапах — от сбора образца до выдачи исследовательского отчёта. Текущий статус продукта — RUO (только для научных исследований, не для диагностики).&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -87,7 +87,7 @@
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;GMP&lt;/strong&gt;&lt;/td&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;Good Manufacturing Practice&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Производство медицинских изделий&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Производство лекарственных средств&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;GLP&lt;/strong&gt;&lt;/td&gt;
@@ -126,10 +126,10 @@
 
 &lt;h3 id=&quot;l--legible-читаемость&quot;&gt;L — Legible (Читаемость)&lt;/h3&gt;
 
-&lt;p&gt;&lt;em&gt;Понятны ли данные врачу и аудитору спустя годы?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Понятны ли данные специалисту и аудитору спустя годы?&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Двойная отчётность.&lt;/strong&gt; Результаты разделены на &lt;strong&gt;Клинический отчёт&lt;/strong&gt; для врача-клинициста и &lt;strong&gt;Биоинформатический QC-отчёт&lt;/strong&gt; для специалиста.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Двойная отчётность.&lt;/strong&gt; Результаты разделены на &lt;strong&gt;отчёт с интерпретацией&lt;/strong&gt; (исследовательский, RUO) и &lt;strong&gt;биоинформатический QC-отчёт&lt;/strong&gt; для специалиста.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Физические и цифровые копии.&lt;/strong&gt; Встроенный термопринтер обеспечивает мгновенную читаемость на месте. Цифровые PDF-копии сохраняются на SSD с понятной номенклатурой файлов (метка времени + ID образца).&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -163,7 +163,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Метрики QC.&lt;/strong&gt; Биоинформатический отчёт содержит важнейшие метрики: процент покрытия генома (например, 99.23%), среднюю глубину (Depth) и слепые зоны.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Уверенность ИИ.&lt;/strong&gt; В клинический отчёт выводится уверенность нейросети в процентах (например, 99.98% для субтипа B или Hazard Score для &lt;em&gt;M. tuberculosis&lt;/em&gt;), чтобы врач мог оценить надёжность предсказания.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Уверенность ИИ.&lt;/strong&gt; В отчёт с интерпретацией выводится уверенность нейросети в процентах (например, 99.98% для субтипа B или Hazard Score для &lt;em&gt;M. tuberculosis&lt;/em&gt;), чтобы исследователь мог оценить надёжность предсказания.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -218,7 +218,7 @@
       &lt;td style=&quot;text-align: left&quot;&gt;Обращение лекарственных средств&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">При разработке OnSiteSeq мы строго следуем международным стандартам GxP для обеспечения качества и целостности данных на всех этапах — от сбора образца до выдачи клинического заключения.</summary></entry><entry><title type="html">МФТИ — кузница инноваций</title><link href="https://onsiteseq.io/mfti" rel="alternate" type="text/html" title="МФТИ — кузница инноваций" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/mfti</id><content type="html" xml:base="https://onsiteseq.io/mfti">&lt;div style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
+&lt;/table&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">При разработке OnSiteSeq мы ориентируемся на международные практики GxP для обеспечения качества и целостности данных на всех этапах — от сбора образца до выдачи исследовательского отчёта. Текущий статус продукта — RUO (только для научных исследований, не для диагностики).</summary></entry><entry><title type="html">МФТИ — кузница инноваций</title><link href="https://onsiteseq.io/mfti" rel="alternate" type="text/html" title="МФТИ — кузница инноваций" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/mfti</id><content type="html" xml:base="https://onsiteseq.io/mfti">&lt;div style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
   &lt;img src=&quot;/assets/images/mfti/mfti.png&quot; alt=&quot;Московский физико-технический институт&quot; style=&quot;max-width: 100%; border-radius: 8px;&quot; /&gt;
 &lt;/div&gt;
 
@@ -230,13 +230,13 @@
 
 &lt;h2 id=&quot;-пресс-релиз-onsiteseq&quot;&gt;📰 Пресс-релиз OnSiteSeq&lt;/h2&gt;
 
-&lt;h3 id=&quot;в-мфти-разработали-отечественные-ml-модели-для-диагностики-лекарственной-устойчивости-и-субтипа-вич-1&quot;&gt;В МФТИ разработали отечественные ML-модели для диагностики лекарственной устойчивости и субтипа ВИЧ-1&lt;/h3&gt;
+&lt;h3 id=&quot;в-мфти-разработали-отечественные-ml-модели-для-определения-лекарственной-устойчивости-и-субтипа-вич-1&quot;&gt;В МФТИ разработали отечественные ML-модели для определения лекарственной устойчивости и субтипа ВИЧ-1&lt;/h3&gt;
 
-&lt;p&gt;Студент-исследователь &lt;strong&gt;Роман Горбенко&lt;/strong&gt; (&lt;a href=&quot;https://habr.com/ru/users/romangorbenko/articles/&quot;&gt;профиль на Хабр&lt;/a&gt;) и его научный руководитель &lt;strong&gt;Никита Радченко&lt;/strong&gt; разработали отечественные ML-модели для диагностики лекарственной устойчивости и субтипа ВИЧ-1.&lt;/p&gt;
+&lt;p&gt;Студент-исследователь &lt;strong&gt;Роман Горбенко&lt;/strong&gt; (&lt;a href=&quot;https://habr.com/ru/users/romangorbenko/articles/&quot;&gt;профиль на Хабр&lt;/a&gt;) и его научный руководитель &lt;strong&gt;Никита Радченко&lt;/strong&gt; разработали отечественные ML-модели для определения лекарственной устойчивости и субтипа ВИЧ-1.&lt;/p&gt;
 
 &lt;p&gt;Ключевое достижение — функциональный отечественный аналог двух зарубежных платформ: американской &lt;strong&gt;Stanford HIV Drug Resistance Database (HIVDB)&lt;/strong&gt; и европейского веб-сервиса &lt;strong&gt;COMET&lt;/strong&gt; (Luxembourg Institute of Health), которые до недавнего времени безальтернативно использовались российскими исследователями.&lt;/p&gt;
 
-&lt;p&gt;Внешняя валидация на датасете, предоставленном &lt;strong&gt;ЦНИИ Эпидемиологии Роспотребнадзора&lt;/strong&gt;, показала среднее &lt;strong&gt;AUC = 0.990&lt;/strong&gt; — клинически значимый уровень точности для диагностического применения. Разработанные ML-модели протестированы в составе биоинформатических конвейеров полного цикла — от «сырых» геномных прочтений до клинически значимых отчётов — и запущены на специально разработанном программно-аппаратном комплексе &lt;strong&gt;&lt;a href=&quot;https://onsiteseq.io/edge/&quot;&gt;OnSiteSeq Edge&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Внешняя валидация на датасете, предоставленном &lt;strong&gt;ЦНИИ Эпидемиологии Роспотребнадзора&lt;/strong&gt;, показала среднее &lt;strong&gt;AUC = 0.990&lt;/strong&gt; — высокий уровень точности на ретроспективных данных (для клинического применения требуются клинические испытания и регистрация медицинского изделия). Разработанные ML-модели протестированы в составе биоинформатических конвейеров полного цикла — от «сырых» геномных прочтений до интерпретируемых исследовательских отчётов — и запущены на специально разработанном программно-аппаратном комплексе &lt;strong&gt;&lt;a href=&quot;https://onsiteseq.io/edge/&quot;&gt;OnSiteSeq Edge&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -370,8 +370,8 @@ CI: Lint → Tests
   &lt;li&gt;Прямое секвенирование из мокроты&lt;/li&gt;
   &lt;li&gt;Анализ генов резистентности (katG, rpoB, embB, rpsL)&lt;/li&gt;
   &lt;li&gt;Машинное обучение для интерпретации результатов&lt;/li&gt;
-  &lt;li&gt;Автоматическая генерация отчета для врача&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Определение резистентности к противотуберкулезным препаратам OnSiteSeq обеспечивает быстрое определение резистентности Mycobacterium tuberculosis к противотуберкулезным препаратам. Основные возможности: Определение резистентности к изониазиду, рифампицину, этамбутолу, стрептомицину Выявление МЛУ-ТБ (множественная лекарственная устойчивость) ШЛУ-ТБ (широкая лекарственная устойчивость) Результат за 3-6 часов вместо недель Преимущества: Раннее выявление резистентных штаммов Оптимизация схемы лечения Снижение риска передачи резистентных форм Экономия времени и ресурсов Технология: Прямое секвенирование из мокроты Анализ генов резистентности (katG, rpoB, embB, rpsL) Машинное обучение для интерпретации результатов Автоматическая генерация отчета для врача</summary></entry><entry><title type="html">Хотите процитировать данную разработку?</title><link href="https://onsiteseq.io/citation" rel="alternate" type="text/html" title="Хотите процитировать данную разработку?" /><published>2025-01-08T00:00:00+01:00</published><updated>2025-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/citation</id><content type="html" xml:base="https://onsiteseq.io/citation">&lt;h2 id=&quot;цитирование-проекта-onsiteseq&quot;&gt;Цитирование проекта OnSiteSeq&lt;/h2&gt;
+  &lt;li&gt;Автоматическая генерация исследовательского отчёта (RUO)&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Определение резистентности к противотуберкулезным препаратам OnSiteSeq обеспечивает быстрое определение резистентности Mycobacterium tuberculosis к противотуберкулезным препаратам. Основные возможности: Определение резистентности к изониазиду, рифампицину, этамбутолу, стрептомицину Выявление МЛУ-ТБ (множественная лекарственная устойчивость) ШЛУ-ТБ (широкая лекарственная устойчивость) Результат за 3-6 часов вместо недель Преимущества: Раннее выявление резистентных штаммов Оптимизация схемы лечения Снижение риска передачи резистентных форм Экономия времени и ресурсов Технология: Прямое секвенирование из мокроты Анализ генов резистентности (katG, rpoB, embB, rpsL) Машинное обучение для интерпретации результатов Автоматическая генерация исследовательского отчёта (RUO)</summary></entry><entry><title type="html">Хотите процитировать данную разработку?</title><link href="https://onsiteseq.io/citation" rel="alternate" type="text/html" title="Хотите процитировать данную разработку?" /><published>2025-01-08T00:00:00+01:00</published><updated>2025-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/citation</id><content type="html" xml:base="https://onsiteseq.io/citation">&lt;h2 id=&quot;цитирование-проекта-onsiteseq&quot;&gt;Цитирование проекта OnSiteSeq&lt;/h2&gt;
 
 &lt;h3 id=&quot;-статья-в-индексе-ринц--термин-biomlops-введён-в-научный-оборот&quot;&gt;📕 Статья в индексе РИНЦ — термин BioMLOps введён в научный оборот&lt;/h3&gt;
 
@@ -404,7 +404,7 @@ CI: Lint → Tests
 &lt;p&gt;🔗 &lt;a href=&quot;https://habr.com/ru/companies/mipt_digital/articles/1058460/&quot;&gt;https://habr.com/ru/companies/mipt_digital/articles/1058460/&lt;/a&gt;&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Цитирование проекта OnSiteSeq 📕 Статья в индексе РИНЦ — термин BioMLOps введён в научный оборот Горбенко Р. А. «Методология управления жизненным циклом машинно-обучаемых моделей в биомедицинских приложениях: исследование на данных о резистентности ВИЧ‑1» // Молодёжь и современные информационные технологии: сборник трудов XXIII Международной научно-практической конференции студентов, аспирантов и молодых учёных (Томск, 18–20 февраля 2026 г.). — Томск: Национальный исследовательский Томский политехнический университет, 2026. — С. 370–375. ✅ Работа входит в индекс РИНЦ (eLIBRARY ID: 91848892, EDN: WETXLG). В этой статье в науку вводится термин BioMLOps — адаптация методологий MLOps для задач вычислительной биологии. Подход обеспечивает управляемый жизненный цикл моделей: от выбора архитектуры (CNN + Self-Attention) до непрерывного мониторинга метрик на эталонных данных, автоматическое версионирование экспериментов с регрессионным тестированием и пайплайн дообучения при обновлении внешних баз (Stanford HIVDB) с автоматической детекцией деградации качества модели. Эффективность показана на системе HIV‑1‑Resist‑Rus; код и веса моделей открыты на GitVerse. 🔗 https://www.elibrary.ru/item.asp?id=91848892 Метод HIV-1-M-Env-Rus опубликован в материалах 64‑й Международной научной студенческой конференции (МНСК‑2026), НГУ, 2026, с. 155. 🔗 https://www.nsu.ru/n/issc/collection/ Горбенко Р. А. «Определение резистентности и классификация субтипов ВИЧ‑1 на ПАК OnSiteSeq» // 68‑я Всероссийская научная конференция МФТИ (секция «Биологическая и медицинская физика»), 2026. 🔗 https://conf.mipt.ru/page/conference-materials Статья на Хабре: «Как мы разработали ML-модели для определения лекарственной устойчивости и субтипа ВИЧ-1» 🔗 https://habr.com/ru/companies/mipt_digital/articles/1058460/</summary></entry><entry><title type="html">OnSiteSeq ОРЗ — Метагеномная идентификация бактериальных возбудителей острых респираторных заболеваний и их AMR</title><link href="https://onsiteseq.io/cold/" rel="alternate" type="text/html" title="OnSiteSeq ОРЗ — Метагеномная идентификация бактериальных возбудителей острых респираторных заболеваний и их AMR" /><published>2025-01-08T00:00:00+01:00</published><updated>2025-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/cold</id><content type="html" xml:base="https://onsiteseq.io/cold/">&lt;div class=&quot;product-header&quot; style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
   &lt;img src=&quot;/assets/images/logo/icon_cold.svg&quot; alt=&quot;Бактериальные возбудители ОРЗ&quot; style=&quot;max-height: 120px; margin-bottom: 1rem;&quot; /&gt;
   &lt;h1&gt;Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам&lt;/h1&gt;
-  &lt;p style=&quot;font-size: 1.2em; color: #555;&quot;&gt;Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента&lt;/p&gt;
+  &lt;p style=&quot;font-size: 1.2em; color: #555;&quot;&gt;Исследовательская метагеномная идентификация бактериальных возбудителей пневмонии и ОРЗ с профилем AMR (RUO)&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;hr /&gt;
@@ -417,7 +417,7 @@ CI: Lint → Tests
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;📥 На входе:&lt;/strong&gt; Сырые данные в формате &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FASTQ&lt;/code&gt; после High Accuracy basecalling (Dorado SUP, химия R10.4.1). Материал: мокрота, назофарингеальный аспират, БАЛ, плевральная жидкость.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;📤 На выходе:&lt;/strong&gt; HTML-отчёт для клинициста — идентифицированные патогены, количественная представленность, профиль генов AMR и рекомендованные антибиотики; QC-отчёт для биоинформатика.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;📤 На выходе:&lt;/strong&gt; Исследовательский HTML-отчёт (RUO) — идентифицированные патогены, количественная представленность, профиль генов AMR; QC-отчёт для биоинформатика.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -747,7 +747,7 @@ CI: Lint → Tests
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;ВОЗ AMR Action Plan&lt;/strong&gt; — устойчивые &lt;em&gt;K. pneumoniae&lt;/em&gt;, &lt;em&gt;P. aeruginosa&lt;/em&gt;, &lt;em&gt;A. baumannii&lt;/em&gt; включены в список «критических» приоритетных патогенов (наивысший уровень угрозы).&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Россия&lt;/strong&gt; — по данным СКАТ (Стратегия контроля антимикробной терапии), доля ESBL-продуцирующих &lt;em&gt;K. pneumoniae&lt;/em&gt; в ОРИТ превышает 70%.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Проблема эмпирической терапии&lt;/strong&gt; — в условиях неизвестного возбудителя врач вынужден назначать антибиотики широкого спектра, что ускоряет формирование AMR. Метагеномная диагностика у кровати пациента позволяет перейти к &lt;strong&gt;целенаправленной деэскалационной терапии&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Проблема эмпирической терапии&lt;/strong&gt; — в условиях неизвестного возбудителя врач вынужден назначать антибиотики широкого спектра, что ускоряет формирование AMR. В перспективе — после клинической валидации и регистрации — быстрая метагеномная идентификация возбудителя могла бы помочь перейти к &lt;strong&gt;целенаправленной терапии&lt;/strong&gt;; сейчас пайплайн только для исследовательских целей (RUO).&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;MRSA-пневмония&lt;/strong&gt; — летальность при ИВЛ-ассоциированной MRSA-пневмонии достигает 40–60%; своевременное определение mecA критично.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -761,4 +761,4 @@ CI: Lint → Tests
   &lt;li&gt;📄 &lt;a href=&quot;https://card.mcmaster.ca/&quot;&gt;CARD — Comprehensive Antibiotic Resistance Database&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;📄 &lt;a href=&quot;https://pubmlst.org/&quot;&gt;PubMLST — Многолокусное сиквенс-типирование бактерий&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;📄 &lt;a href=&quot;https://www.antibiotic.ru/skat/&quot;&gt;СКАТ — Стратегия контроля антимикробной терапии в России&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам Дифференциальная диагностика пневмонии и ОРЗ бактериальной этиологии с профилем AMR — у кровати пациента</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">Метагеномная идентификация бактериальных возбудителей ОРЗ и их устойчивости к антибиотикам Исследовательская метагеномная идентификация бактериальных возбудителей пневмонии и ОРЗ с профилем AMR (RUO)</summary></entry></feed>

@@ -15,8 +15,8 @@
 <meta property="og:title" content="OnSiteSeq SARS-CoV-2 — Определение варианта и устойчивости к противовирусным препаратам" />
 <meta name="author" content="Roman Gorbenko" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии" />
-<meta property="og:description" content="Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии" />
+<meta name="description" content="Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и исследований резистентности к противовирусным препаратам (RUO)" />
+<meta property="og:description" content="Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и исследований резистентности к противовирусным препаратам (RUO)" />
 <link rel="canonical" href="https://onsiteseq.io/sarscov2/" />
 <meta property="og:url" content="https://onsiteseq.io/sarscov2/" />
 <meta property="og:site_name" content="OnSiteSeq" />
@@ -29,7 +29,7 @@
 <meta name="twitter:site" content="@gorbenkoteh" />
 <meta name="twitter:creator" content="@Roman Gorbenko" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.io/sarscov2/"},"url":"https://onsiteseq.io/sarscov2/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии","@type":"BlogPosting","headline":"OnSiteSeq SARS-CoV-2 — Определение варианта и устойчивости к противовирусным препаратам","dateModified":"2025-01-08T00:00:00+01:00","datePublished":"2025-01-08T00:00:00+01:00","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://onsiteseq.io/sarscov2/"},"url":"https://onsiteseq.io/sarscov2/","author":{"@type":"Person","name":"Roman Gorbenko"},"description":"Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2 Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и исследований резистентности к противовирусным препаратам (RUO)","@type":"BlogPosting","headline":"OnSiteSeq SARS-CoV-2 — Определение варианта и устойчивости к противовирусным препаратам","dateModified":"2025-01-08T00:00:00+01:00","datePublished":"2025-01-08T00:00:00+01:00","@context":"https://schema.org"}</script>
 <script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"  ></script>
 <!-- End Jekyll SEO tag -->
 
@@ -171,11 +171,15 @@ window.addEventListener('load', function() {
   <div class="dashed"></div>
 </header>
 
+<div class="ruo-notice" id="i18n-ruo" role="note" style="margin:0 0 1.5rem;padding:0.6em 1em;border-left:4px solid #e0a100;background:rgba(224,161,0,0.12);border-radius:6px;font-size:0.9em;line-height:1.45;">
+  ⚠️ <strong>RUO — только для научных исследований.</strong> Не является медицинским изделием; не предназначено для диагностики, профилактики или выбора лечения.
+</div>
+
 <div id="i18n-content">
 <div class="product-header" style="text-align: center; margin-bottom: 2rem;">
   <img src="/assets/images/logo/icon_sarscov2.svg" alt="SARS-CoV-2" style="max-height: 120px; margin-bottom: 1rem;" />
   <h1>Определение варианта и устойчивости к противовирусным препаратам SARS-CoV-2</h1>
-  <p style="font-size: 1.2em; color: #555;">Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и персонализированного выбора терапии</p>
+  <p style="font-size: 1.2em; color: #555;">Нанопоровое полногеномное секвенирование для геномного надзора за коронавирусом и исследований резистентности к противовирусным препаратам (RUO)</p>
 </div>
 
 <hr />
@@ -188,7 +192,7 @@ window.addEventListener('load', function() {
 
 <ul>
   <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> после basecalling (Dorado, химия R10.4.1). Ампликонное секвенирование по схемам праймеров ARTIC V4.1 / V5.3.</li>
-  <li><strong>📤 На выходе:</strong> HTML-отчёт для клинициста (вариант, мутации S-белка, профиль устойчивости к препаратам) и QC-отчёт для биоинформатика.</li>
+  <li><strong>📤 На выходе:</strong> Исследовательский HTML-отчёт (RUO) (вариант, мутации S-белка, профиль устойчивости к препаратам) и QC-отчёт для биоинформатика.</li>
 </ul>
 
 <hr />
@@ -494,7 +498,7 @@ window.addEventListener('load', function() {
   <li><strong>Китай</strong> — первый геном вируса был опубликован китайскими учёными в январе 2020 года (Шанхай, Fudan University) и сделал возможной разработку первых ПЦР-тестов и вакцин. В период политики «нулевой терпимости» массовое тестирование и геномный надзор стали в Китае инструментом государственного масштаба — опыт, показавший всему миру ценность быстрой геномной диагностики.</li>
   <li><strong>Нирматрелвир-резистентность</strong> — мутация E166V зафиксирована в клинических случаях; в условиях массового применения Paxlovid мониторинг резистентности становится критическим.</li>
   <li><strong>Россия</strong> — Фавипиравир используется широко; отечественный геномный надзор (GISAID-совместимые данные из РФ) требует локальной инфраструктуры анализа.</li>
-  <li><strong>Преимущество нанопора</strong> — полный геном SARS-CoV-2 (~30 кб) секвенируется за <strong>4–6 часов</strong> от образца до результата, что позволяет принять клиническое решение в тот же день.</li>
+  <li><strong>Преимущество нанопора</strong> — полный геном SARS-CoV-2 (~30 кб) секвенируется за <strong>4–6 часов</strong> от образца до результата, что позволяет получить результат в тот же день.</li>
 </ul>
 
 <hr />
