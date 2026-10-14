@@ -11,12 +11,12 @@ navbar_entries:
 component_entries:
   - title: OnSiteSeq Edge
     url: edge
-    desc: Автономный программно-аппаратный комплекс. Секвенирование у кровати пациента, в регионах крайнего севера и на выезде. Архитектура arm64, GPU Nvidia Jetson AGX.
+    desc: Автономный программно-аппаратный комплекс. Секвенирование на месте отбора образцов, в регионах крайнего севера и на выезде. Статус — RUO. Архитектура arm64, GPU Nvidia Jetson AGX.
     image: /assets/images/logo/icon_edge.svg
 
   - title: OnSiteSeq Desktop
     url: desktop
-    desc: Система управления пайплайнами Cockpit для рабочего компьютера врача или исследователя. Работает автономно или в паре с Edge. Архитектура x86.
+    desc: Система управления пайплайнами Cockpit для рабочего компьютера исследователя или лаборатории. Работает автономно или в паре с Edge. Архитектура x86.
     image: /assets/images/logo/icon_desktop.svg
 
   - title: OnSiteSeq Cloud
@@ -64,7 +64,7 @@ old_project_entries:
 
   - title: Микоплазмоз (M. genitalium)
     url: mycoplasma
-    desc: Диагностика резистентности Mycoplasma genitalium к макролидам и фторхинолонам перед терапией — быстро развивающаяся МЛУ, часто пропускаемый возбудитель ИППП
+    desc: Генетические маркеры резистентности Mycoplasma genitalium к макролидам и фторхинолонам — быстро развивающаяся МЛУ, часто пропускаемый возбудитель ИППП
     image: /assets/images/logo/icon_mycoplasma.svg
 
   - title: Гепатит B (HBV)
@@ -79,12 +79,12 @@ old_project_entries:
 
   - title: СТЛТ (SFTS, Dabie bandavirus)
     url: sfts
-    desc: Point-of-care mNGS вируса тяжёлой лихорадки с тромбоцитопенией — сегментный анализ L/M/S и дифференциация геморрагических лихорадок в эндемичных районах
+    desc: mNGS на месте отбора проб для вируса тяжёлой лихорадки с тромбоцитопенией — сегментный анализ L/M/S и дифференциация геморрагических лихорадок в эндемичных районах
     image: /assets/images/logo/icon_sfts.svg
 
   - title: Талассемия (HBA/HBB)
     url: thalassemia
-    desc: "Один тест вместо gap-PCR + MLPA + Sanger: делеции α-кластера, мутации HBB и фазирование cis/trans на длинных прочтениях — скрининг пар и пренатальная диагностика"
+    desc: "Один тест вместо gap-PCR + MLPA + Sanger: делеции α-кластера, мутации HBB и фазирование cis/trans на длинных прочтениях — исследовательский анализ для задач скрининга носительства (RUO)"
     image: /assets/images/logo/icon_thalassemia.svg
 
   - title: Коронавирус SARS-COV-2
@@ -129,7 +129,7 @@ old_project_entries:
 
   - title: Helicobacter pylori
     url: helicobacter
-    desc: Профиль устойчивости и вирулентности (cagA/vacA) H. pylori из биоптата за день — для подбора индивидуальной эрадикационной терапии
+    desc: Профиль устойчивости и вирулентности (cagA/vacA) H. pylori из биоптата за день — для исследований резистентности к эрадикационным схемам (RUO)
     image: /assets/images/logo/icon_helicobacter.png
 
 clostridia_entries:
@@ -217,7 +217,7 @@ cocci_entries:
 
   - title: Стрептококк группы B (S. agalactiae)
     url: agalactiae
-    desc: Скрининг беременных в родзале за часы вместо 18–48 ч культуры — серотипы, клон CC17 и маркеры резистентности при аллергии на пенициллин
+    desc: Исследовательский анализ GBS за часы вместо 18–48 ч культуры (RUO) — серотипы, клон CC17 и маркеры резистентности при аллергии на пенициллин
     image: /assets/images/logo/icon_agalactiae.svg
 
   - title: Гонорея (N. gonorrhoeae)
@@ -227,12 +227,12 @@ cocci_entries:
 
   - title: Менингококк (N. meningitidis)
     url: meningitidis
-    desc: Серогруппирование и определение резистентности Neisseria meningitidis у постели пациента — молниеносный менингит, где каждый час критичен
+    desc: Серогруппирование и определение резистентности Neisseria meningitidis на месте отбора проб — молниеносный менингит, где каждый час критичен
     image: /assets/images/logo/icon_meningitidis.svg
 
   - title: Ванкомицин-резистентный энтерококк (E. faecium)
     url: faecium
-    desc: "vanA/vanB с резолюцией плазмидного контекста Tn1546 на длинных прочтениях — трассировка вспышек ОРИТ и генотип вместо фенотипа для выбора терапии"
+    desc: "vanA/vanB с резолюцией плазмидного контекста Tn1546 на длинных прочтениях — трассировка вспышек ОРИТ и генотипические маркеры резистентности"
     image: /assets/images/logo/icon_faecium.svg
 
 herpes_entries:
@@ -362,4 +362,4 @@ footer_entries:
   - title: OnSiteSeq на конференции «Биотехнологии для пищевой промышленности будущего» (БППБ-2026, ИМБ РАН)
     url: conferences/bppb-2026
     image: /assets/images/conf/bppb2026_main.jpg
-    description: "Постерная сессия: полевая экспресс-диагностика пирикуляриоза риса."
+    description: "Постерная сессия: полевая экспресс-детекция пирикуляриоза риса."

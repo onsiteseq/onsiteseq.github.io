@@ -44,7 +44,7 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p>Our algorithm delivers a complete sequencing data processing cycle for identifying drug resistance mutations and accurately determining the HIV-1 subtype.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado ML base-caller converts nanopore electrical signals to nucleotide data; POD5/FAST5 → FASTQ).</li>' +
-    '<li><strong>📤 Output:</strong> Detailed HTML report for the clinician and an extended report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report and an extended report for the bioinformatician.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: VI — (+)ssRNA-RT (retroviruses)</h2>' +
     '<p>Class VI unites the retroviruses: their genome is positive-sense single-stranded RNA, yet it does not serve directly as mRNA — first the viral <strong>reverse transcriptase</strong> (RT, <em>pol</em> gene) copies the RNA into DNA, and <strong>integrase</strong> inserts this DNA copy into the host genome, forming a <strong>provirus</strong>. HIV-1 is the canonical member of the class: the provirus becomes a permanent part of the cell and a lifelong source of new virions — which is exactly why modern therapy cannot eliminate the infection. Reverse transcriptase lacks proofreading (3\'→5\' exonuclease) activity, so copying errors accumulate orders of magnitude faster than with cellular DNA polymerases — hence the quasispecies diversity of HIV in every patient and the rapid selection of resistant variants under drug pressure. That is why HIV drug resistance means mutations in the <em>pol</em> gene (reverse transcriptase, protease, integrase) — the very ones our pipeline reads against Stanford HIVdb rules.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -118,7 +118,7 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p>Our algorithm provides a complete nanopore sequencing data processing cycle for detecting drug resistance mutations and accurately determining the genetic lineage of the tuberculosis pathogen.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data. Optimised for nanopore reads (R10.4.1 chemistry, High Accuracy basecalling).</li>' +
-    '<li><strong>📤 Output:</strong> Detailed clinical HTML report with sensitivity profile for 13 key anti-tuberculosis drugs (RIF, INH, EMB, PZA, BDQ, LZD, etc.) and a QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with sensitivity profile for 13 key anti-tuberculosis drugs (RIF, INH, EMB, PZA, BDQ, LZD, etc.) and a QC report for the bioinformatician.</li></ul><hr>' +
     av('ok', 'ok', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
     '<p>Mutation annotation follows the <strong>WHO catalogue of mutations</strong> in the M. tuberculosis complex (2021; 2023 update) — the international standard for genotypic MTB drug resistance interpretation.</p>' +
@@ -184,7 +184,7 @@
       ['<strong>Target device</strong>', 'Nvidia Jetson AGX'],
       ['<strong>Containers</strong>', 'arm64 Docker images']
     ]) +
-    '<h3>Desktop</h3><p>Version for the physician\'s or researcher\'s workstation. Runs standalone or paired with OnSiteSeq Edge.</p>' +
+    '<h3>Desktop</h3><p>Version for the researcher\'s or laboratory workstation. Runs standalone or paired with OnSiteSeq Edge.</p>' +
     tbl(['Parameter', 'Value'], [
       ['<strong>Architecture</strong>', 'x86'],
       ['<strong>Target device</strong>', 'Workstation'],
@@ -211,7 +211,7 @@
     '<p><img src="/assets/images/cockpit/cockpit_view.jpg" alt="OnSiteSeq Cockpit pipeline catalogue"></p><hr>' +
     '<h3>Launching an Analysis</h3><p>Select pipeline, run name, and input <code>.fastq.gz</code> sample. Files are detected automatically from the data folder.</p>' +
     '<p><img src="/assets/images/cockpit/cockpit_run2.jpg" alt="Pipeline run form"></p><hr>' +
-    '<h3>Results: Clinical and QC Reports</h3><p>After completion, Cockpit displays Snakemake step progress and a list of ready reports: clinical (for the physician) and QC report (for the bioinformatician).</p>' +
+    '<h3>Results: Clinical and QC Reports</h3><p>After completion, Cockpit displays Snakemake step progress and a list of ready reports: interpretation report (RUO) and QC report (for the bioinformatician).</p>' +
     '<p><img src="/assets/images/cockpit/cockpit_run6.jpg" alt="Run results with reports"></p><hr>' +
     '<h2>🔗 Related Components</h2>' +
     '<ul><li><a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> — Docker image registry</li>' +
@@ -223,9 +223,9 @@
   EN['/edge/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<h1>OnSiteSeq Edge</h1>' +
-    '<p style="font-size:1.2em;color:#555">Autonomous hardware-software complex for point-of-care sequencing</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Autonomous hardware-software complex for on-site sequencing — research use only (RUO)</p></div><hr>' +
     '<h2>📋 Description</h2>' +
-    '<p>OnSiteSeq Edge is an autonomous hardware-software complex (HSC) for point-of-care sequencing. From FASTQ to clinical conclusion right at the patient\'s bedside or physician\'s desk. Can be used in the field, in remote arctic regions, and anywhere without permanent access to laboratory equipment or server infrastructure.</p><hr>' +
+    '<p>OnSiteSeq Edge is an autonomous hardware-software complex (HSC) for on-site sequencing. From FASTQ to a research report right where samples are collected, without sending data to a central laboratory. Can be used in the field, in remote arctic regions, and anywhere without permanent access to laboratory equipment or server infrastructure.</p><hr>' +
     '<h2>🔧 Key Specifications</h2>' +
     tbl(['Parameter', 'Value'], [
       ['<strong>Architecture</strong>', 'arm64'],
@@ -269,7 +269,7 @@
     '<h1>OnSiteSeq Desktop</h1>' +
     '<p style="font-size:1.2em;color:#555">Bioinformatics pipeline management system for the workstation</p></div><hr>' +
     '<h2>📋 Description</h2>' +
-    '<p>OnSiteSeq Desktop is the workstation variant of the OnSiteSeq Cockpit bioinformatics pipeline management system, adapted for the physician\'s or researcher\'s computer. Can work paired with OnSiteSeq Edge or use data from other equipment.</p><hr>' +
+    '<p>OnSiteSeq Desktop is the workstation variant of the OnSiteSeq Cockpit bioinformatics pipeline management system, adapted for the researcher\'s or laboratory computer. Can work paired with OnSiteSeq Edge or use data from other equipment.</p><hr>' +
     '<h2>🔧 Key Specifications</h2>' +
     tbl(['Parameter', 'Value'], [
       ['<strong>Architecture</strong>', 'x86'],
@@ -331,7 +331,7 @@
     '<p style="font-size:1.2em;color:#555">Deep learning for high-precision HIV-1 genomic surveillance and resistance prediction</p></div><hr>' +
     '<h2>🧠 Innovative Approach to the HIV-1 Genome</h2>' +
     '<p>Standard foreign algorithms (including those developed in the US) are often trained on databases that do not reflect the epidemiological specifics of the Russian Federation. The HIV-1 epidemic in Russia has a pronounced monophyletic character.</p>' +
-    '<p>Our proprietary neural network models are developed with the domestic epidemiology in mind and use advanced ML architectures to deliver unprecedented diagnostic accuracy.</p><hr>' +
+    '<p>Our proprietary neural network models are developed with the domestic epidemiology in mind and use advanced ML architectures to deliver high prediction accuracy (on retrospective validation; RUO).</p><hr>' +
     '<h2>🧬 HIV-1-M-Env-Rus (Version 1.0)</h2>' +
     '<p>Specialised neural network model for classifying genetic variants of HIV-1. Solves the critical task of detecting dominant and recombinant forms of the virus circulating in the Russian Federation.</p>' +
     '<ul><li><strong>Target region:</strong> Nucleotide sequence analysis of the <strong>Env</strong> gene.</li>' +
@@ -344,7 +344,7 @@
     '<li><strong>ID-CNN + Self-Attention architecture:</strong> 1D convolutional networks combined with attention mechanism enable the model to detect <strong>epistasis</strong> — complex interactions where one mutation can amplify or suppress the effect of another.</li>' +
     '<li><strong>Database integration:</strong> Model calibrated using current global (Stanford HIVDB) and Russian resistance databases.</li></ul><hr>' +
     '<h2>🚀 HIV-1-Resist-Rus (Version 3.0)</h2>' +
-    '<p><strong>A major update transitioning the system from research prototype to clinically applicable tool.</strong> Repository: <a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
+    '<p><strong>A major update transitioning the system to a substantially more accurate model; the system status is research use only (RUO) — clinical use requires clinical trials and registration.</strong> Repository: <a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
     '<h3>What changed in v3</h3>' +
     tbl(['Component', 'v1 / v2', '<strong>v3</strong>'], [
       ['Drugs', '1 (DTG) / 14', '<strong>14 (all ART classes)</strong>'],
@@ -395,7 +395,7 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_hpv.svg" alt="Human Papillomavirus" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Human Papillomavirus Genotyping and Molecular Triage for Cervical Cancer</h1>' +
-    '<p style="font-size:1.2em;color:#555">Our first oncology pipeline — from the root cause (HPV) to the key element of prevention: point-of-care screening</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Our first oncology pipeline — from the root cause (HPV) to the key element of prevention — research on on-site screening (RUO)</p></div><hr>' +
     '<h2>🧬 Why HPV Is the Entry Point into Oncology</h2>' +
     '<p>Human papillomavirus (HPV) is the <strong>necessary cause</strong> of virtually 100% of cervical cancer cases, as well as a significant share of anal, oropharyngeal, vulvar, vaginal and penile cancers. This is a rare case in oncology where a cancer has a single established infectious driver — meaning it can be <strong>prevented</strong> by detecting the virus and assessing risk long before a tumour appears.</p>' +
     '<p>The WHO has set the goal of <strong>eliminating cervical cancer</strong> through the <strong>90–70–90</strong> strategy:</p>' +
@@ -404,7 +404,7 @@
     '<li><strong>90%</strong> of women with identified disease receive treatment.</li></ul>' +
     '<p>The second pillar — the "high-performance HPV test" — is the niche where sequencing delivers what classic qPCR screening cannot. This is where OnSiteSeq kicks the door into oncology.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: cervical swab or self-collected vaginal sample.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — HPV genotype(s), integration status, methylation triage with risk category (low / moderate / high CIN2+ risk); QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — HPV genotype(s), integration status, methylation triage with risk category (low / moderate / high CIN2+ risk); QC report for the bioinformatician.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: I — dsDNA</h2>' +
     '<p>Class I comprises double-stranded DNA viruses: their genome is transcribed into mRNA by cellular RNA polymerase II, following the same logic as the host cell\'s own genes. HPV carries a small circular dsDNA genome (~8 kb) that is usually maintained in epithelial cells as an <strong>episome</strong> — an autonomous circular molecule in the nucleus, without integration into chromosomes. The clinical turning point comes with <strong>integration</strong>: the circular viral DNA breaks (most often near the <em>E2</em> gene) and inserts into the host genome — losing E2 control releases the brake on the <em>E6/E7</em> oncogenes and launches carcinogenesis. It is precisely this episome → integration transition that our pipeline detects from chimeric "virus–human" reads (see the "What the Pipeline Determines" section below), while the dsDNA nature of the genome allows native DNA to be read directly by the nanopore — including direct methylation calling without bisulfite conversion.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -477,9 +477,9 @@
     '<p style="font-size:1.2em;color:#555">Genomic surveillance of gonococci — a WHO priority AMR pathogen</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Neisseria gonorrhoeae</em> (gonococcus) is the causative agent of gonorrhoea, the second most prevalent bacterial sexually transmitted infection. WHO has included it in the <strong>Priority AMR Pathogen list</strong> (high-priority category): strains resistant to ceftriaxone — the last reliable antibiotic — have been detected worldwide, including in Russia.</p>' +
-    '<p>Our pipeline delivers a complete nanopore data analysis cycle to detect resistance mutations directly at the bedside or in the laboratory, without transmitting data to foreign servers.</p>' +
+    '<p>Our pipeline delivers a complete nanopore data analysis cycle to detect resistance mutations on site or in the laboratory, without transmitting data to foreign servers.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (R10.4.1 chemistry, Dorado SUP). Optimal: amplicon sequencing of <em>penA</em>, <em>gyrA</em>, <em>parC</em>, <em>mtrR</em>, <em>23S rRNA</em> genes <strong>or</strong> whole-genome sequencing (WGS).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for clinician with susceptibility profile for 6 antibiotic classes, and QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with susceptibility profile for 6 antibiotic classes, and QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
     '<p>The pipeline analyses nine key genetic determinants of gonococcal resistance. Ceftriaxone resistance is <strong>cumulative</strong>: mosaic <em>penA</em> + <em>mtrR</em> + <em>penB</em> + <em>ponA</em> each add to MIC elevation, so the full profile matters, not a single gene:</p>' +
@@ -532,7 +532,7 @@
     '<p><em>Helicobacter pylori</em> is a Gram-negative bacterium colonizing the gastric mucosa — the leading cause of chronic gastritis and peptic ulcer disease, and a risk factor for gastric cancer (IARC Group 1 carcinogen). Eradication success depends directly on strain susceptibility — above all to clarithromycin and levofloxacin.</p>' +
     '<p>From nanopore sequencing data our pipeline determines the complete resistance profile and key virulence factors (<em>cagA</em>, <em>vacA</em>) directly from biopsy material, without culture — <em>H. pylori</em> is fastidious and slow-growing, so classical bacteriology takes 7–14 days.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (R10.4.1 chemistry, Dorado SUP). Material: antrum or gastric body biopsy. Optimal: amplicon sequencing of <em>23S rRNA</em> and <em>gyrA</em> loci <strong>or</strong> whole-genome sequencing (WGS) of culture/enriched sample.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the clinician with susceptibility profile for eradication regimens and virulence factor status; QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with susceptibility profile for eradication regimens and virulence factor status; QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
     tbl(['Gene / Locus', 'Key Mutations', 'Antibiotic Class'], [
@@ -554,7 +554,7 @@
       ['<strong>Rifabutin</strong>', 'Third-line therapy', 'Reserve after multiple eradication failures']
     ]) + '<hr>' +
     '<h2>🧫 Virulence Factors</h2>' +
-    '<p>Beyond resistance, the report includes key virulence factor status — prognostically valuable information for the physician:</p>' +
+    '<p>Beyond resistance, the report includes key virulence factor status — information relevant to pathogenesis research:</p>' +
     tbl(['Factor', 'Variants', 'Clinical Significance'], [
       ['<strong>cagA</strong> (cagPAI island)', 'Present / absent', 'cagA+ strains — increased risk of peptic ulcer and gastric cancer'],
       ['<strong>vacA</strong>', 's1/s2, m1/m2 alleles', 's1/m1 — the most toxigenic variant, associated with severe disease']
@@ -595,7 +595,7 @@
     '<p><strong>Influenza virus</strong> combines a high point-mutation rate (antigenic drift) with the ability to swap whole genome segments during co-infection — <strong>reassortment</strong>, whose consequence is antigenic shift and the emergence of new pandemic strains. Subtyping alone is not enough: the origin of each of the 8 segments matters.</p>' +
     '<p>The pipeline performs whole-genome influenza analysis: HA/NA subtyping, reconstruction of all segments, reassortant detection and antiviral resistance profiling. Segment ancestry is tracked with <strong>locus-level graph alignment (OnSiteSeq-PanG)</strong>: the graph encodes the history of known segments and shows which "historical pieces" the patient\'s virus is assembled from. Subtyping and segment assembly use mature standard tools (IRMA, CDC).</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: naso-/oropharyngeal swab, virus culture. Optimal: WGS of all 8 segments (multiplex PCR).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report with subtype (H1N1pdm09, H3N2, Victoria/Yamagata), Nextclade assignment, reassortant segment information and resistance profile.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with subtype (H1N1pdm09, H3N2, Victoria/Yamagata), Nextclade assignment, reassortant segment information and resistance profile.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: V — (−)ssRNA, negative-sense single-stranded RNA</h2>' +
     '<p>In Class V viruses the genome is negative-sense single-stranded RNA: such a strand cannot be translated directly by cellular ribosomes, so the virus first synthesises a complementary (+)strand from which proteins are then translated. The required enzyme — RNA-dependent RNA polymerase (RdRp) — is carried inside the virion: the cell has none to offer. The influenza genome is divided into <strong>8 separate (−)ssRNA segments</strong>, and it is precisely this segmentation that enables <strong>reassortment</strong> — the exchange of whole segments when two strains co-infect a single cell, the mechanism of antigenic shift and the birth of pandemic variants. That is why the pipeline analyses the origin of each segment separately (OnSiteSeq-PanG), rather than reporting only the averaged virus subtype.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -655,7 +655,7 @@
     '<p><em>Plasmodium falciparum</em> causes the most severe form of malaria. The major threat of recent years is the spread of partial <strong>artemisinin</strong> resistance (first-line therapy) from Southeast Asia into Africa. For Russia malaria is an imported infection: the pipeline\'s task here is <strong>verification of imported cases</strong>, species identification and resistance assessment of the imported strain within hours instead of reference laboratories.</p>' +
     '<p>The pipeline analyses WHO-validated resistance markers (<em>kelch13</em>, <em>pfcrt</em>, <em>pfmdr1</em>, <em>dhfr</em>, <em>dhps</em>, <em>plasmepsin2/3</em> amplification) and deletions of the diagnostic genes <em>hrp2/hrp3</em>. For hypervariable loci, <strong>locus-level graph alignment (OnSiteSeq-PanG)</strong> reduces reference bias; conserved markers are analysed with standard alignment.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: whole blood (with parasite DNA enrichment or amplicon enrichment of target loci).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report with Plasmodium species, susceptibility profile, <em>hrp2/hrp3</em> status and detected mutations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with Plasmodium species, susceptibility profile, <em>hrp2/hrp3</em> status and detected mutations.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
     tbl(['Gene', 'Key Mutations', 'Drug Class / Significance'], [
@@ -702,12 +702,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_asfv.svg" alt="African swine fever virus (ASFV)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>African Swine Fever — ASFV</h1>' +
-    '<p style="font-size:1.2em;color:#555">Point-of-care detection at the farm gate: genotyping, low-virulence deletion variants, differentiation from classical swine fever</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">On-site detection at the farm gate (RUO): genotyping, low-virulence deletion variants, differentiation from classical swine fever</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><strong>African swine fever virus (ASFV)</strong> is a large enveloped DNA virus of the <em>Asfarviridae</em> family (genome 170–190 kb) causing acute haemorrhagic fever in domestic pigs with lethality up to <strong>100%</strong>. It does not infect humans, but economically it is the most devastating veterinary pathogen of the decade: the 2018–2019 epizootic in China wiped out roughly 40% of the world\'s largest pig herd. With no widely available vaccine, protection rests entirely on early detection and farm biosecurity.</p>' +
     '<p>Our pipeline performs nanopore sequencing right on the farm or in a veterinary laboratory: confirmation of ASFV DNA, genotyping by the <em>p72</em> gene (<em>B646L</em>) and — critical for the current epizootic situation — <strong>detection of low-virulence deletion variants</strong> (Δ<em>CD2v</em>, Δ<em>MGF360/505</em>) that spread across China in 2020–2021 and mimic chronic infections, defeating routine monitoring approaches.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: EDTA blood, spleen, lymph nodes, tonsils; equipment swabs, feed, drinking water.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the veterinarian — ASFV DNA detection, <em>p72</em> genotype, <em>CD2v</em>/<em>MGF</em>/<em>I177L</em> deletion status, differentiation from classical swine fever (CSF).</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — ASFV DNA detection, <em>p72</em> genotype, <em>CD2v</em>/<em>MGF</em>/<em>I177L</em> deletion status, differentiation from classical swine fever (CSF).</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: I — dsDNA, double-stranded DNA</h2>' +
     '<p>Class I comprises double-stranded DNA viruses: transcription follows the cellular path familiar to the cell — DNA → mRNA. ASFV is one of the giants of this class: its <strong>170–190 kb</strong> genome encodes 150–200 of its own proteins, including its own DNA polymerase, repair enzymes and RNA polymerase. Unlike most DNA viruses, ASFV replicates <strong>in the cytoplasm</strong> of the infected cell — the virus builds "viral factories" there that barely depend on the host nuclear machinery. A large DNA genome with its own replication apparatus tolerates deletions of entire gene blocks: this is exactly how <strong>low-virulence deletion variants</strong> arise (Δ<em>CD2v</em>, Δ<em>MGF360/505</em>), whose detection is a key task of the pipeline.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -743,12 +743,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_phytophthora_infestans.svg" alt="Phytophthora infestans" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Late Blight — Phytophthora infestans</h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnosis of potato and tomato late blight with a fungicide resistance profile — within hours, right in the field</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of potato and tomato late blight with a fungicide resistance profile — within hours, right in the field</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Phytophthora infestans</em> is an oomycete (not a true fungus), the causal agent of late blight — the most destructive disease of potato and tomato worldwide. The pathogen exists as two mating types (A1 and A2); their co-occurrence in a population enables the formation of persistent oospores and accelerates the evolution of resistance. In rainy seasons, late blight affects up to 50% of potato plantings in Russia.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of infected tissue directly at the field site. Within a few hours, the agronomist receives confirmation of the pathogen species and — critically for crop protection — a <strong>fungicide resistance profile</strong>: resistance to metalaxyl/mefenoxam is widespread among <em>P. infestans</em> populations in Russia, and spraying an ineffective product is equivalent to losing the crop.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: potato leaf/tuber homogenate, tomato leaves and fruits.</li>' +
-    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> A research-use-only (RUO) HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -773,12 +773,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_phytophthora_sojae.svg" alt="Phytophthora sojae" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Soybean Root and Stem Rot — <em>Phytophthora sojae</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of soybean Phytophthora rot with pathotype determination and a fungicide resistance profile</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of soybean Phytophthora rot with pathotype determination and a fungicide resistance profile</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Phytophthora sojae</em> is an oomycete, the causal agent of soybean root and stem rot. Pathogen populations exhibit a pronounced <strong>race structure</strong>: pathotypes differ in their ability to overcome soybean <em>Rps</em> resistance genes, so the race composition directly determines which varieties will be infected. Oospores persist in the soil for years, making infested fields a long-term source of infection.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of root tissue and soil wash. Within a few hours, the agronomist receives confirmation of the pathogen species, an estimate of its abundance in the sample, and a <strong>fungicide resistance profile</strong> — for selecting effective seed treatment and seedling protection.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: homogenate of soybean roots and lower stem, soil wash.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — detected pathogen, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -802,12 +802,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_fusarium_oxysporum.svg" alt="Fusarium oxysporum" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Fusarium Wilt — <em>Fusarium oxysporum</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of the soil-borne <em>Fusarium oxysporum</em> complex with forma specialis determination and a fungicide resistance profile</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of the soil-borne <em>Fusarium oxysporum</em> complex with forma specialis determination and a fungicide resistance profile</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Fusarium oxysporum</em> is a soil-borne fungus existing as numerous specialized forms (<strong>formae speciales</strong>), each attacking its own crop: <em>f. sp. lycopersici</em> — tomato, <em>f. sp. cucumerinum</em> — cucumber, <em>f. sp. cubense</em> (tropical race TR4) — banana. Thick-walled <strong>chlamydospores</strong> persist in soil for years, and chemical protection is largely ineffective against vascular wilt — which is why early diagnosis of soil and planting material contamination is decisive.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of stem vascular tissue, roots, and soil wash. The metagenomic approach not only confirms the presence of <em>F. oxysporum</em> but also distinguishes it from closely related species in the complex, and yields a <strong>fungicide resistance profile</strong> for seed treatment and spraying.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: homogenate of stem and root vascular tissue (tomato, cucumber, cereals), soil wash.</li>' +
-    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> A research-use-only (RUO) HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -831,12 +831,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_fusarium_graminearum.svg" alt="Fusarium graminearum" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Fusarium Head Blight (FHB) — <em>Fusarium graminearum</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of Fusarium head blight in wheat and barley with mycotoxin risk assessment and a fungicide resistance profile</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of Fusarium head blight in wheat and barley with mycotoxin risk assessment and a fungicide resistance profile</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Fusarium graminearum</em> is the causal agent of Fusarium head blight (FHB) in wheat and barley. The threat is twofold: beyond direct yield losses, the fungus <strong>produces mycotoxins</strong> — deoxynivalenol (DON, vomitoxin) and zearalenone, synthesized by the <em>TRI</em> gene cluster. Contaminated grain becomes unfit for food and feed purposes, so diagnostics matters not only for plant protection but also for toxicological control of grain lots.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of kernels and spike tissue. Within a few hours, the agronomist receives confirmation of the pathogen species, an assessment of lot contamination, and a <strong>fungicide resistance profile</strong> — triazoles remain the backbone of head protection, and monitoring their efficacy is critical for planning treatments during flowering.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: homogenate of wheat/barley kernels and spikes.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the agronomist — identified pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — identified pathogen, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -859,12 +859,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_alternaria_solani.svg" alt="Alternaria solani" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Early Blight — Alternaria solani</h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of early blight in potato and tomato with monitoring of rapidly evolving fungicide resistance</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of early blight in potato and tomato with monitoring of rapidly evolving fungicide resistance</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Alternaria solani</em> is the causal agent of early blight (alternariosis) of potato and tomato. The pathogen infects leaves, stems and tubers, forming characteristic concentric lesions, and reduces yields of solanaceous crops every year. <em>A. solani</em> is a <strong>classic example of rapid evolution of fungicide resistance</strong>: resistance to strobilurins (QoI) spread through populations within just a few years after this class of products was introduced in the 2000s.</p>' +
     '<p>Our pipeline performs <strong>nanopore metagenomic sequencing</strong> (mNGS) of affected leaf tissue and tubers. Within a few hours the agronomist receives confirmation of the pathogen species and a <strong>fungicide resistance profile</strong> — which is especially important for early blight, where applying strobilurins against a resistant population is useless and only accelerates the selection of resistant genotypes.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: potato leaf/tuber homogenate, tomato leaves and fruits.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the agronomist — identified pathogen, quantitative abundance, fungicide resistance profile and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — identified pathogen, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -889,12 +889,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_botrytis_cinerea.svg" alt="Botrytis cinerea" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Gray Mold — Botrytis cinerea</h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnosis of gray mold in grape, strawberry, and vegetables with a comprehensive multidrug-resistance profile</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of gray mold in grape, strawberry, and vegetables with a comprehensive multidrug-resistance profile</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Botrytis cinerea</em> is the causal agent of gray mold, affecting <strong>more than 200 plant species</strong> and the main pathogen of grape and strawberry both in the field and during storage. FRAC classifies <em>B. cinerea</em> as a <strong>highest-risk resistance pathogen</strong>: multidrug resistance — simultaneous resistance to several fungicide classes — is the norm rather than the exception in field populations.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of infected berries and plant tissue. Within a few hours, the agronomist receives confirmation of the pathogen species and a detailed <strong>fungicide resistance profile</strong> covering both target-gene mutations and activation of efflux systems (BcMrr1) that drive multidrug resistance. Without such a profile, choosing a working gray mold protection program turns into trial-and-error spraying.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw data in <code>FASTQ</code> format after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Sample material: homogenate of grape/strawberry berries, infected vegetable tissue.</li>' +
-    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> A research-use-only (RUO) HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -920,12 +920,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_pythium.svg" alt="Pythium spp." style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Root Rots and Damping-Off — Pythium spp.</h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic differential diagnosis of seedling root rots — <em>Pythium</em> versus <em>Rhizoctonia</em> and <em>Fusarium</em></p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic differentiation of seedling root rots — <em>Pythium</em> versus <em>Rhizoctonia</em> and <em>Fusarium</em></p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Pythium spp.</em> are oomycetes (not true fungi) — the causal agents of root rots and damping-off of seedlings and young plants, the main cause of losses in greenhouse and nursery production. Like all oomycetes, <em>Pythium</em> is <strong>insensitive to azoles and most "antifungal" fungicides</strong>: only oomycete-specific compounds work — mefenoxam/metalaxyl, ethaboxam, propamocarb, cyazofamid. A wrong diagnosis means treating with a product that is guaranteed to be ineffective.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of seedling roots and substrate. With the similar symptoms of root rots, substrate metagenomics is the only way to reliably distinguish <em>Pythium</em> from <em>Rhizoctonia</em> and <em>Fusarium</em> in a single assay, without multi-day culturing. Along with species identification, the agronomist receives a <strong>fungicide resistance profile</strong>.</p>' +
     '<ul><li><strong>📥 Input:</strong> raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: seedling and young-plant root homogenate, substrate, soil wash.</li>' +
-    '<li><strong>📤 Output:</strong> an HTML report for the agronomist — detected pathogens, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> A research-use-only (RUO) HTML report for the agronomist — detected pathogens, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -949,12 +949,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_plasmopara_viticola.svg" alt="Plasmopara viticola" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Grapevine Downy Mildew — <em>Plasmopara viticola</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of grapevine downy mildew with monitoring of resistance to QoI and CAA fungicides</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of grapevine downy mildew with monitoring of resistance to QoI and CAA fungicides</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Plasmopara viticola</em> is an oomycete, an obligate biotroph, and the causal agent of grapevine downy mildew — the principal disease of viticulture in temperate climates. The pathogen was introduced into Europe from North America in 1878; the fight against downy mildew led to the invention of Bordeaux mixture, the first fungicide in history. As an obligate parasite, <em>P. viticola</em> cannot be cultured on artificial media, which makes molecular diagnostics the primary tool for its study and monitoring.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of leaves with oil-spot lesions. Within a few hours, the agronomist receives confirmation of the pathogen and a <strong>fungicide resistance profile</strong>: resistance to strobilurins (QoI) is widespread in European populations, and resistance to CAA fungicides has been emerging since 2007 — without molecular monitoring, a vineyard protection program quickly loses its effectiveness.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Sample material: homogenate of a grapevine leaf with oil-spot lesions.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — detected pathogen, quantitative abundance, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -978,12 +978,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_peronospora.svg" alt="Peronospora spp." style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Downy Mildew — Peronospora spp.</h1>' +
-    '<p style="font-size:1.2em;color:#555">Metagenomic diagnostics of onion and sunflower downy mildew with race and fungicide-resistance monitoring</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Metagenomic detection of onion and sunflower downy mildew with race and fungicide-resistance monitoring</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Peronospora spp.</em> are oomycetes — obligate plant parasites and the causal agents of downy mildew. This group includes <em>P. destructor</em> (onion downy mildew) and <em>Plasmopara halstedii</em> (sunflower downy mildew), a related oomycete from the same family Peronosporaceae. Pathogen populations have a pronounced <strong>race structure</strong>: the composition of circulating races determines which hybrids and varieties will be resistant and which will succumb. Sunflower downy mildew is an important quarantine-significant pathogen in Russia.</p>' +
     '<p>Our pipeline performs <strong>metagenomic nanopore sequencing</strong> (mNGS) of infected leaf tissue. Within a few hours, the agronomist receives confirmation of the pathogen, an estimate of the population\'s race composition, and a <strong>fungicide-resistance profile</strong> — data needed both for protecting the current crop and for breeding resistant hybrids.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Sample material: sunflower/onion leaf homogenate.</li>' +
-    '<li><strong>📤 Output:</strong> An HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide-resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> A research-use-only (RUO) HTML report for the agronomist — detected pathogen, quantitative abundance, fungicide-resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Fungicide Resistance Markers</h2>' +
     tbl(['Gene', 'Mutations', 'Fungicide (class)'], [
@@ -1011,7 +1011,7 @@
     '<p><strong>Hepatitis B virus (HBV)</strong> is a hepadnavirus with a partially double-stranded DNA genome (~3.2 kb). Chronic hepatitis B is the leading cause of cirrhosis and hepatocellular carcinoma (HCC) worldwide: WHO estimates ~254 million people live with HBV, and roughly a third of the global burden is in China. Modern nucleos(t)ide analogues (entecavir, tenofovir) have a high resistance barrier, but millions of patients in Asia received lamivudine and adefovir for years — and carry accumulated resistance mutations.</p>' +
     '<p>From nanopore sequencing data our pipeline determines the <strong>virus genotype (A–J)</strong>, the <strong>reverse transcriptase (polymerase) resistance profile</strong>, preC/BCP mutations driving HBeAg-negative disease, and HBsAg escape mutations — a complete genomic passport of the virus for therapy selection and adjustment.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood plasma/serum. Optimal: amplicon sequencing of <em>pol</em> and preS/S <strong>or</strong> target enrichment with whole-genome coverage.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — HBV genotype, nucleos(t)ide analogue susceptibility profile, preC/BCP and HBsAg-escape status, therapy interpretation.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — HBV genotype, nucleos(t)ide analogue susceptibility profile, preC/BCP and HBsAg-escape status, therapy interpretation.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: VII — dsDNA-RT (pararetroviruses)</h2>' +
     '<p>Class VII — the pararetroviruses: their genome is DNA, but it replicates via reverse transcription — the mirror image of Class VI retroviruses. HBV virions package a partially double-stranded circular DNA (rcDNA, ~3.2 kb), which in the hepatocyte nucleus is repaired into covalently closed circular DNA (<strong>cccDNA</strong>) — cccDNA is the very reservoir of chronicity that modern nucleos(t)ide analogues cannot eliminate. From cccDNA the pregenomic RNA (<strong>pgRNA</strong>) is transcribed, which the viral polymerase (<em>pol</em> gene) reverse-transcribes back into DNA during the assembly of new particles. That is why HBV resistance mutations are mutations in the rt domain of the <em>pol</em> gene: the classic YMDD substitution <strong>rtM204V</strong> alters the catalytic motif of the reverse transcriptase and abolishes lamivudine sensitivity (see the mutation table below).</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -1070,13 +1070,13 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_meningitidis.svg" alt="Neisseria meningitidis" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Serogrouping and Drug Resistance of Neisseria meningitidis</h1>' +
-    '<p style="font-size:1.2em;color:#555">Point-of-care diagnostics at the patient\'s bedside when meningococcal infection is suspected — the fulminant form, where every hour counts</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">On-site research analysis for meningococcal infection (RUO) — the fulminant form, where every hour counts</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Neisseria meningitidis</em> (meningococcus) is the causative agent of meningococcal disease: from nasopharyngeal carriage to fulminant meningococcemia, in which only a few hours may pass from the first symptoms to death. <strong>Every hour of delay in diagnosis and therapy increases mortality.</strong> Standard diagnostics — CSF or blood culture — take 1–3 days and are often negative because antibiotic therapy has already been started.</p>' +
     '<p>The meningococcal genotype determines all further case management: the <strong>serogroup</strong> (A, B, C, W, Y, X) defines the vaccination strategy for contacts, while the <strong>resistance profile</strong> guides the choice of chemoprophylaxis for the outbreak (ciprofloxacin-resistant strains are increasingly reported).</p>' +
-    '<p>Our pipeline provides the complete nanopore data analysis cycle <strong>at the patient\'s bedside</strong>: serogroup determination, drug resistance profile and clonal assignment of the strain — on the same day, without transferring data to external servers.</p>' +
+    '<p>Our pipeline provides the complete nanopore data analysis cycle <strong>on site</strong>: serogroup determination, drug resistance profile and clonal assignment of the strain — on the same day, without transferring data to external servers.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: CSF, blood, throat swab; optimal — amplicon sequencing of capsular loci and resistance genes or WGS.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the clinician — serogroup, susceptibility profile, chemoprophylaxis recommendation for contacts; QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — serogroup, susceptibility profile; QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Serogroups and Resistance Markers</h2>' +
     '<h3>Capsular loci (serogrouping)</h3>' +
@@ -1140,13 +1140,13 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_mycoplasma.svg" alt="Mycoplasma genitalium" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Drug Resistance Determination of Mycoplasma genitalium</h1>' +
-    '<p style="font-size:1.2em;color:#555">Macrolide and fluoroquinolone resistance testing before prescribing therapy — rapidly emerging multidrug resistance of a frequently missed STI pathogen</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Genetic markers of macrolide and fluoroquinolone resistance (RUO) — rapidly emerging multidrug resistance of a frequently missed STI pathogen</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Mycoplasma genitalium</em> is the smallest self-replicating bacterium and an underestimated sexually transmitted pathogen: it causes non-gonococcal urethritis in men, cervicitis and pelvic inflammatory disease in women. The bacterium <strong>has no cell wall</strong>, so it is intrinsically resistant to all β-lactams, and standard culture is virtually impossible — in routine STI diagnostics the pathogen is <strong>frequently missed</strong>.</p>' +
     '<p>The main problem is the speed of resistance growth. Resistance to <strong>azithromycin</strong> already exceeds 50% in a number of countries, yet azithromycin continues to be prescribed "blind" in empirical urethritis regimens. Resistance to <strong>moxifloxacin</strong> — the reserve drug — is spreading in the wake of macrolides. International guidelines (BASHH, Australian STI guidelines) require <strong>resistance testing before therapy</strong> (resistance-guided therapy): a drug can be prescribed only knowing the genotype of the specific strain.</p>' +
-    '<p>Our pipeline analyses nanopore data from amplicon sequencing of key resistance loci (<em>23S rRNA</em>, <em>gyrA</em>, <em>parC</em>) or metagenomic sequencing of a clinical sample and outputs a ready-made therapy regimen.</p>' +
+    '<p>Our pipeline analyses nanopore data from amplicon sequencing of key resistance loci (<em>23S rRNA</em>, <em>gyrA</em>, <em>parC</em>) or metagenomic sequencing of a sample and determines genetic resistance markers (RUO; not for therapy selection).</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Optimal: amplicon sequencing of <em>23S rRNA</em>, <em>gyrA</em>, <em>parC</em> loci <strong>or</strong> microbiome sequencing of a swab.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the clinician — macrolide and fluoroquinolone susceptibility profile with a recommended therapy regimen, and a QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — macrolide and fluoroquinolone susceptibility profile, and a QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
     '<p>The pipeline analyses the key genetic determinants of <em>M. genitalium</em> resistance:</p>' +
@@ -1200,9 +1200,9 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Treponema pallidum</em> is the causative agent of syphilis, one of the most socially significant sexually transmitted infections. Syphilis incidence is rising worldwide, including in Russia.</p>' +
     '<p>A unique medical phenomenon: since the 1940s <em>T. pallidum</em> has <strong>not developed resistance to penicillin</strong> — it remains the gold standard of treatment. However, about <strong>10% of patients</strong> are allergic to penicillin. Such patients were previously prescribed <strong>macrolides (azithromycin)</strong> — a convenient oral alternative. But due to point mutations in the <strong>23S rRNA</strong> gene (A2058G, A2059G) the treponeme has become <strong>completely non-susceptible</strong> to azithromycin: in several regions (the USA, China, European countries) <strong>80% to 100%</strong> of circulating strains carry these mutations.</p>' +
-    '<p>Our pipeline provides the complete nanopore data analysis cycle for <strong>rapid confirmation of macrolide resistance</strong> in a specific strain and <strong>accurate genotyping</strong> of the pathogen — right at the patient\'s bedside or in the laboratory, without transferring data to external servers.</p>' +
+    '<p>Our pipeline provides the complete nanopore data analysis cycle for <strong>rapid confirmation of macrolide resistance</strong> in a specific strain and <strong>accurate genotyping</strong> of the pathogen — on site or in the laboratory, without transferring data to external servers.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ).</li>' +
-    '<li><strong>📤 Output:</strong> Detailed HTML report for the clinician and an extended report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report and an extended report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
     '<p>The pipeline analyses the key genetic determinants of <em>Treponema pallidum</em> resistance:</p>' +
@@ -1240,7 +1240,7 @@
     '<li><strong>Macrolides are virtually written off</strong> from recommendations: A2058G/A2059G mutations in 23S rRNA make azithromycin completely ineffective. Without genetic confirmation, prescribing azithromycin to an allergic patient will lead to treatment failure and progression of the infection to a more severe stage.</li>' +
     '<li><strong>WHO</strong> — syphilis remains a global health problem, especially in the context of congenital syphilis and HIV co-infection.</li>' +
     '<li><strong>Russia</strong> — despite declining incidence, syphilis remains one of the key STIs requiring genomic surveillance.</li></ul>' +
-    '<p>Our pipeline makes it possible to determine <strong>in hours, not days</strong> whether an alternative macrolide can be prescribed to a patient with penicillin allergy, or whether another treatment regimen is required.</p><hr>' +
+    '<p>Our pipeline makes it possible to determine <strong>in hours, not days</strong> the genetic macrolide-resistance markers of the strain — data relevant to research on alternative regimens in penicillin allergy (RUO).</p><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.cdc.gov/syphilis/treatment/index.html">CDC — Syphilis Treatment and Care</a></li>' +
     '<li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/sexually-transmitted-infections-(stis)">WHO — Sexually Transmitted Infections (STIs)</a></li>' +
@@ -1257,7 +1257,7 @@
     '<p>The main danger of <em>A. baumannii</em> is its phenomenal ability to <strong>accumulate multidrug resistance (MDR) mechanisms</strong>: horizontal gene transfer, carbapenemase production (OXA-23, OXA-40, NDM), active efflux pumps (AdeABC) and modification of porin proteins. The result is the emergence of <strong>CRAB</strong> (Carbapenem-Resistant <em>A. baumannii</em>) and <strong>PDRAB</strong> (Pandrug-Resistant) strains resistant to literally all classes of antibiotics.</p>' +
     '<p>The current standard of AMR diagnostics — culture plus disk diffusion — takes 3–5 days. This is critically long in the ICU, where <strong>every hour of delay in appropriate therapy</strong> increases mortality. Our pipeline cuts the time to a complete AMR profile to <strong>a single working day</strong>, right in the hospital.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ). Both amplicon sequencing of key genes and whole-genome sequencing (WGS) are supported.</li>' +
-    '<li><strong>📤 Output:</strong> Clinical HTML report with a complete AMR profile for the infectious disease physician and a technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with a complete AMR profile and a technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mechanisms</h2>' +
     '<p><em>Acinetobacter baumannii</em> is one of the most genetically plastic pathogens. The pipeline analyses the full spectrum of key resistance determinants:</p>' +
@@ -1280,7 +1280,7 @@
       ['<strong>tet(A), tet(B)</strong>', 'Efflux pump', 'Tetracyclines'],
       ['<strong>mcr-1</strong>', 'Lipid A modification', 'Colistin ("last-resort" drug)']
     ]) +
-    '<h3>Antibiotic profile in the clinical report</h3>' +
+    '<h3>Antibiotic profile in the report</h3>' +
     tbl(['Antibiotic', 'Class', 'Clinical significance'], [
       ['<strong>Meropenem / Imipenem</strong>', 'Carbapenem', 'First line in severe infections; CRAB is a global threat'],
       ['<strong>Colistin / Polymyxin B</strong>', 'Polymyxin', '"Last-resort" drug; nephrotoxic; mcr genes are a threat'],
@@ -1317,7 +1317,7 @@
     '<li><strong>Resistance to disinfectants</strong>: the bacterium survives on dry surfaces for up to <strong>25 days</strong>, driving rapid spread within hospitals.</li>' +
     '<li><strong>Russia</strong>: CRAB circulates widely in Russian ICUs; the share of carbapenem-resistant isolates in some regions exceeds <strong>60%</strong>.</li>' +
     '<li><strong>New drugs</strong>: Cefiderocol (2019) and Sulbactam-Durlobactam (2023) are the only new options for PDRAB; appropriate therapy cannot be selected without an AMR profile.</li></ul>' +
-    '<p>Rapid molecular AMR diagnostics at the bedside allows immediate <strong>de-escalation</strong> (switching from broad- to narrow-spectrum drugs) or <strong>escalation</strong> of therapy in CRAB/PDRAB — directly affecting ICU survival.</p><hr>' +
+    '<p>In the future — after clinical validation and registration — rapid molecular AMR assessment could help with timely <strong>de-escalation</strong> (switching from broad- to narrow-spectrum drugs) or <strong>escalation</strong> of therapy in CRAB/PDRAB. Currently the pipeline is research use only (RUO).</p><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — Bacterial Priority Pathogens List 2024</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI) — resistance gene database</a></li>' +
@@ -1336,7 +1336,7 @@
     '<p><em>P. aeruginosa</em> is unique in its adaptive capabilities. It has <strong>one of the largest bacterial genomes</strong> (~6.3 Mb), encoding a rich arsenal of resistance and virulence mechanisms. The bacterium can <strong>simultaneously</strong> engage multiple resistance mechanisms: porin loss (OprD), hyperexpression of efflux pumps (MexAB-OprM and others), β-lactamase production (AmpC, MBLs), and mutations in antibiotic target genes.</p>' +
     '<p>A particular problem is the role of <em>P. aeruginosa</em> in <strong>chronic infections in cystic fibrosis</strong>: the bacterium forms a biofilm and switches to a mucoid phenotype, becoming unreachable for antibiotics and the immune system. For these patients, monitoring the AMR profile of each strain is a matter of survival.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ). Both whole-genome (WGS) and amplicon sequencing are supported.</li>' +
-    '<li><strong>📤 Output:</strong> Clinical HTML report with an AMR profile for the infectious disease physician / pulmonologist and a technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with an AMR profile and a technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Mechanisms</h2>' +
     '<p><em>Pseudomonas aeruginosa</em> is one of the most difficult pathogens to treat: its resistance develops along several independent pathways at once. The pipeline analyses the full spectrum of determinants:</p>' +
@@ -1365,7 +1365,7 @@
       ['<strong>aac(6\')-II, aph(3\')-IIb</strong>', 'Enzymatic inactivation', 'Aminoglycosides'],
       ['<strong>fosA</strong> (chromosomal)', 'Fosfomycin inactivation', 'Fosfomycin']
     ]) +
-    '<h3>Antibiotic profile in the clinical report</h3>' +
+    '<h3>Antibiotic profile in the report</h3>' +
     tbl(['Antibiotic', 'Class', 'Clinical significance'], [
       ['<strong>Piperacillin/tazobactam</strong>', 'β-lactam + inhibitor', 'First line for susceptible strains'],
       ['<strong>Ceftazidime</strong>', 'Cephalosporin III (antipseudomonal)', 'First line; susceptible in the absence of AmpC'],
@@ -1408,7 +1408,7 @@
     '<li><strong>Resistance accumulation "on the fly"</strong>: <em>P. aeruginosa</em> can acquire new resistance mechanisms <strong>during the treatment of a single patient</strong> — repeat AMR analysis over time is critically important.</li>' +
     '<li><strong>Russia</strong>: the share of CRPA in Russian hospitals exceeds <strong>30%</strong> on average and reaches <strong>50–60%</strong> in large ICUs.</li>' +
     '<li><strong>Biofilm</strong>: within a biofilm <em>P. aeruginosa</em> is <strong>1000 times</strong> more resistant to antibiotics — molecular detection of biofilm genes (<em>pelB</em>, <em>algD</em>) predicts therapeutic failure.</li></ul>' +
-    '<p>Rapid molecular typing of the strain at the bedside allows the physician to switch immediately to an active drug (ceftolozane/tazobactam, cefiderocol) and <strong>not waste critical hours</strong> on "trial" regimens of ineffective therapy.</p><hr>' +
+    '<p>In the future — after clinical validation and registration — rapid molecular typing of the strain could help switch to an active drug (ceftolozane/tazobactam, cefiderocol) instead of "trial" regimens. Currently the pipeline is research use only (RUO).</p><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — Bacterial Priority Pathogens List 2024</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI)</a></li>' +
@@ -1422,14 +1422,14 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/chlamydia.png" alt="Chlamydia trachomatis" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Resistance Determination and Genotyping of Chlamydia trachomatis</h1>' +
-    '<p style="font-size:1.2em;color:#555">Molecular diagnostics of the most common bacterial STI — from serovar determination to the detection of macrolide and fluoroquinolone resistance mutations</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Research molecular analysis of the most common bacterial STI — from serovar determination to the detection of macrolide and fluoroquinolone resistance mutations</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Chlamydia trachomatis</em> is an obligate intracellular parasite causing chlamydia: the <strong>most common bacterial sexually transmitted infection</strong> in the world. According to the WHO, more than <strong>127 million new cases</strong> are registered annually. In Russia, chlamydia ranks first among STIs.</p>' +
     '<p>The unique biology of the pathogen creates serious diagnostic and therapeutic problems: chlamydia exists in <strong>two forms</strong> — the infectious elementary body (EB) and the intracellular reticulate body (RB). This makes the bacterium <strong>inaccessible to most antibiotics</strong> that disrupt cell wall synthesis (β-lactams are completely ineffective).</p>' +
     '<p>For a long time the drug of choice remained <strong>azithromycin</strong> (single dose). However, due to uncontrolled use, growing <strong>macrolide resistance</strong> via 23S rRNA gene mutations is being recorded, as well as resistance to <strong>fluoroquinolones</strong> (<em>gyrA</em>, <em>parC</em> genes). Incorrectly chosen therapy leads to chronic infection, infertility and the risk of ectopic pregnancy.</p>' +
     '<p>Our pipeline provides the complete nanopore data analysis cycle for <strong>serovar/genotype determination</strong> of the pathogen and <strong>detection of resistance mutations</strong> — right at the point of care, without transferring data to external servers.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado base-caller converts POD5/FAST5 to FASTQ).</li>' +
-    '<li><strong>📤 Output:</strong> Detailed HTML report for the clinician with the serovar and antibiotic susceptibility profile, and an extended QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with the serovar and antibiotic susceptibility profile, and an extended QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Serovar Typing and Clinical Nosologies</h2>' +
     '<p><em>Chlamydia trachomatis</em> comprises <strong>19 serovars (A–L)</strong>, each associated with a specific clinical picture:</p>' +
@@ -1480,7 +1480,7 @@
     '<li><strong>Complications</strong>: chronic salpingitis → tubal obstruction → <strong>infertility</strong> (in 10–15% of untreated women); LGV serovars cause severe destructive lymphadenopathies.</li>' +
     '<li><strong>Co-infection</strong>: chlamydia increases the risk of HIV acquisition during sexual contact <strong>3–5-fold</strong>, making its diagnosis critically important in conjunction with other STIs.</li>' +
     '<li><strong>Russia</strong> — chlamydia remains the most frequently registered STI; real incidence exceeds official figures 5–10-fold due to the asymptomatic course.</li></ul>' +
-    '<p>The current standard is PCR diagnostics (presence/absence without resistance information). Our pipeline adds a <strong>critically important level</strong>: <strong>which serovar</strong> and <strong>whether it is susceptible to azithromycin</strong>, allowing the right therapy to be prescribed immediately without the risk of treatment failure.</p><hr>' +
+    '<p>The current standard is PCR diagnostics (presence/absence without resistance information). Our pipeline adds a <strong>critically important level</strong>: <strong>which serovar</strong> and <strong>whether it is susceptible to azithromycin</strong> — data relevant to resistance research; RUO results are not used for therapy selection.</p><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/chlamydia">WHO — Chlamydia Fact Sheet</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm">CDC — Chlamydia Treatment Guidelines</a></li>' +
@@ -1496,8 +1496,8 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Candida albicans</em> is the leading agent of invasive candidiasis in humans: <strong>candidaemia in intensive care units</strong> (one of the main causes of bloodstream infections in hospitals), mucosal and cutaneous candidiasis, and <strong>biofilms on catheters and implants</strong> — azole tolerance within a biofilm is many times higher than in planktonic cells. The hallmark of the species is <strong>yeast ↔ hypha dimorphism</strong>: morphology switching is a key factor of virulence, tissue invasion and biofilm formation.</p>' +
     '<p>The key molecular feature that shapes the pipeline architecture: <em>C. albicans</em> is a <strong>diploid</strong> organism without a full sexual cycle, and in it resistance often develops not through point mutations but through <strong>aneuploidies and structural rearrangements</strong> — the classic example is <strong>isochromosome 5L</strong>, which carries both <em>ERG11</em> (the fluconazole target) and the regulator <em>TAC1</em>. Short reads resolve such rearrangements poorly; nanopore sequencing sees structural variants, copy number changes (CNV) and allows <strong>allele phasing</strong> in a diploid genome. Our pipeline combines <strong>SNV + CNV + aneuploidies in a single run</strong>.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: pure isolate or blood culture. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the near-bedside scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — species identification (ITS), AMR profile (azoles, echinocandins), CNV/aneuploidies (including isochromosome 5L), biofilm markers; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: pure isolate or blood culture. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the on-site scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification (ITS), AMR profile (azoles, echinocandins), CNV/aneuploidies (including isochromosome 5L), biofilm markers; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Resistance, Structural Variants</h2>' +
     '<h3>Species identification</h3>' +
@@ -1563,7 +1563,7 @@
     '<li><strong>Misidentification</strong> — phenotypic systems confuse it with <em>C. haemulonii</em> and other yeasts; reliable identification is only <strong>molecular</strong> (ITS/D1–D2) or MALDI-TOF with updated databases.</li></ul>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>molecular species identification</strong>, <strong>clade determination (I–VI)</strong> from a SNP panel/whole genome, the <strong>AMR profile</strong> (ERG11, FKS1) and <strong>outbreak tracking</strong>: SNP analysis of isolate relatedness answers the infection control question "who infected whom" and documents nosocomial transmission.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: isolate or screening swabs (axilla/groin). Optimal: rapid library preparation and a <strong>Flongle</strong> run for the hospital scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> Report for the hospital infection control service — species identification, clade, AMR profile, SNP clustering of outbreak isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) report for the hospital infection control service — species identification, clade, AMR profile, SNP clustering of outbreak isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Clades, Resistance</h2>' +
     '<h3>Molecular identification and differential diagnosis</h3>' +
@@ -1631,8 +1631,8 @@
     '<p><em>Candida glabrata</em> (modern name — <em>Nakaseomyces glabratus</em>) is the <strong>second most frequent cause of candidaemia</strong> in adults in developed countries and the headliner of the new "Candidiasis Universe" section. Unlike <em>C. albicans</em>, this pathogen is <strong>haploid</strong> and <strong>forms neither true hyphae nor pseudohyphae</strong> — only small budding yeast cells. Persistence in the host is provided by adhesins of the <strong>EPA family</strong>, and its main clinical weapon is a striking ability to evolve resistance right in the course of therapy.</p>' +
     '<p>The core of the problem is <strong>resistance evolving "in front of the eyes of the physician"</strong>. <em>C. glabrata</em> is intrinsically <strong>less susceptible to fluconazole</strong> (SDD category — susceptible, dose-dependent), and under therapeutic pressure rapidly acquires full resistance: <strong>gain-of-function PDR1 mutations</strong> lead to overexpression of the <strong>CDR1/CDR2</strong> efflux pumps (azole resistance), while <strong>FKS1 and FKS2 hot-spot mutations</strong> (e.g. S629P in FKS1, S663P in FKS2) confer resistance to echinocandins. The classic scenario: an ICU patient on micafungin, a few weeks later — <strong>breakthrough candidaemia with a resistant strain</strong>. A separate feature of the species is <strong>MSH2</strong> mutations (mismatch repair system) producing a <strong>mutator (hypermutable) phenotype</strong> that accelerates this whole evolution. Isolates resistant <strong>to both azoles and echinocandins simultaneously</strong> have been described — in such cases practically only amphotericin B remains among the treatment options.</p>' +
     '<p>From nanopore sequencing data of <strong>serial isolates from a single patient</strong> (before and during therapy) our pipeline builds the profile of key resistance genes, performs ITS species identification and <strong>compares the serial isolates with each other</strong> — tracking microevolution within the patient. Long reads give complete coverage of the target genes and <strong>CNV</strong> control (copy number of pumps and targets).</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: culture of serial isolates from blood and other sterile sites. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the ICU bedside scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the clinician — species identification, PDR1/FKS1/FKS2/MSH2 profile, mutation dynamics across serial isolates and a <strong>therapy adjustment recommendation</strong>; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: culture of serial isolates from blood and other sterile sites. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the on-site scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, PDR1/FKS1/FKS2/MSH2 profile, mutation dynamics across serial isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Resistance, Identification, Microevolution</h2>' +
     '<h3>Resistance marker genes</h3>' +
@@ -1697,8 +1697,8 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Candida parapsilosis</em> is a yeast-like fungus and a classic agent of <strong>outbreaks in neonatal intensive care units (NICUs)</strong>. The key mechanism is transmission via the <strong>hands of medical staff</strong> and <strong>invasive devices</strong>: the fungus has a pronounced tropism for biofilms on polymers, so central venous catheters and parenteral nutrition systems become the gateway of <strong>catheter-associated candidaemia</strong>. Historically <em>C. parapsilosis</em> was considered less virulent than <em>C. albicans</em>, but its outbreak potential, persistence in the ward and growing resistance have made it one of the main infection control problems in neonatology.</p>' +
     '<p>From nanopore sequencing data of outbreak isolates our pipeline performs <strong>species identification</strong> (ITS, with differentiation from <em>C. orthopsilosis</em> and <em>C. metapsilosis</em> — a complex of related species with different epidemiology), the <strong>AMR profile</strong> (ERG11 Y132F, TAC1, FKS1) and <strong>SNP-based outbreak tracking</strong> — a genomic answer for infection control: is it a single clone, and where is its source — staff hands or equipment.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: isolates from blood, swabs from staff hands and surfaces, catheter biofilm. Optimal: a <strong>Flongle</strong> run right in the ward for the point-of-care scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for infection control and the clinician — species identification, AMR profile with a therapy recommendation (<strong>echinocandins in case of ERG11 Y132F</strong>), SNP clustering of outbreak isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: isolates from blood, swabs from staff hands and surfaces, catheter biofilm. Optimal: a <strong>Flongle</strong> run on site for the rapid scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, AMR profile (azole-resistance marker <strong>ERG11 Y132F</strong>), SNP clustering of outbreak isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Resistance, Outbreak</h2>' +
     '<h3>Species identification: a species complex</h3>' +
@@ -1710,7 +1710,7 @@
     '<h3>Resistance genes: the core is fluconazole</h3>' +
     '<p>The main emerging problem is <strong>fluconazole resistance via the ERG11 Y132F mutation</strong> (the same mutation as in <em>C. tropicalis</em>). Outbreaks of fluconazole-resistant <em>C. parapsilosis</em> with Y132F have been described in different countries — Europe, Asia, Latin America; resistant clones spread within hospitals and change empirical regimens.</p>' +
     tbl(['Marker', 'Mechanism', 'Clinical Significance'], [
-      ['<strong>ERG11 Y132F</strong>', 'Substitution in the azole target (lanosterol 14α-demethylase)', '<strong>The key mutation</strong>: fluconazole resistance; with Y132F the report recommends echinocandins'],
+      ['<strong>ERG11 Y132F</strong>', 'Substitution in the azole target (lanosterol 14α-demethylase)', '<strong>The key mutation</strong>: fluconazole resistance; Y132F is a key azole-resistance marker'],
       ['<strong>TAC1</strong> (polymorphisms)', 'Overexpression of CDR efflux pumps', 'Enhancement of azole resistance, phenotype modifier'],
       ['<strong>FKS1</strong>', 'Echinocandin target (β-1,3-glucan synthase)', 'Control of echinocandin resistance — the drugs of choice in case of Y132F']
     ]) +
@@ -1758,7 +1758,7 @@
     '<p><em>Candida krusei</em> (<em>Pichia kudriavzevii</em>) is a species with <strong>intrinsic fluconazole resistance</strong>: this antifungal must not be prescribed empirically, even without waiting for the susceptibility test. Under the selective pressure of <strong>echinocandins</strong> the species acquires <strong>FKS1</strong> mutations, narrowing an already narrow arsenal. A historical fact: the species is named after the Russian microbiologist <strong>V. I. Kudryavtsev</strong>, a researcher of yeast taxonomy.</p>' +
     '<p>From nanopore sequencing data of an isolate our pipeline performs <strong>ITS species identification</strong> (krusei vs tropicalis differentiation is critical: the species have different starting therapy), determines the <strong>AMR profile</strong> (ERG11 Y132F/A395T, TAC1, FKS1) and <strong>tracks the spread of resistant clones</strong> by SNP distances.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: pure isolate culture (blood culture, sterile sites). Optimal: rapid library preparation and a <strong>Flongle</strong> run for the "isolate → report within a shift" scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the clinician/microbiologist — species identification, AMR profile explicitly stating that for <em>C. krusei</em> <strong>fluconazole is excluded</strong>, a starting therapy recommendation; SNP clustering for the epidemiologist; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, AMR profile explicitly stating that for <em>C. krusei</em> <strong>fluconazole is excluded</strong>; SNP clustering for the epidemiologist; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Resistance, Clones</h2>' +
     '<h3>Species identification</h3>' +
@@ -1822,7 +1822,7 @@
     '<p><strong>Core #3 — zoonotic outbreaks and One Health.</strong> <em>M. pachydermatis</em> is the only <strong>lipid-independent</strong> species of the genus, a permanent inhabitant of canine skin and ears. NICU outbreaks have been documented in which staff <strong>brought the fungus on their hands from household pets</strong>, infecting preterm infants through catheters. <strong>SNP tracing</strong> of genomic data links clinical isolates to the source (the pet of a specific staff member) — this changes infection-control measures from "sterilise everything" to targeted elimination of the source. The One Health loop is closed by resistance: dogs with Malassezia otitis and dermatitis are massively treated with <strong>azoles in veterinary medicine</strong>, and azole-resistant <em>M. pachydermatis</em> strains have already been described — a potential reservoir of resistance next door to the preterm unit. A related topic is catheter-associated outbreaks of <em>Candida parapsilosis</em> in the same NICUs: see the <a href="/parapsilosis/">Candida parapsilosis page</a>.</p>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (full-length ITS + D1/D2 LSU), <strong>SNP typing</strong> for outbreak tracing and <strong>detection of azole resistance</strong> via ERG11 and efflux mechanisms.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood, catheter tip, skin scraping, canine external ear discharge (veterinary sample). Skin samples are <strong>low biomass</strong>, so the amplicon approach (ITS/D1D2) is optimal, together with a rapid <strong>Flongle</strong> run (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the NICU microbiologist/epidemiologist — species identification, ERG11/efflux profile, SNP clustering of outbreak isolates with an indication of the probable source; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, ERG11/efflux profile, SNP clustering of outbreak isolates with an indication of the probable source; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Resistance, Tracing</h2>' +
     '<h3>Species identification</h3>' +
@@ -1883,7 +1883,7 @@
     '<p>A separate problem is <em>C. gattii</em>: historically a "tropical" species, it infects <strong>immunocompetent</strong> people (the famous Vancouver Island and Pacific Northwest outbreak, with the range expanding together with the climate), causes a more severe course with neuro-obstructions and responds worse to fluconazole. The signature of the genus is the <strong>enormous polysaccharide capsule</strong>: the main virulence factor and at the same time an obstacle to classical PCR DNA extraction (but not to nanopore library preparation).</p>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (<em>neoformans</em> vs <em>gattii</em> — prognostically these are different diseases), determines <strong>molecular types</strong> VNI–VNIV (<em>neoformans</em>) and VGI–VGIV (<em>gattii</em>) and builds an <strong>azole resistance profile</strong> — including <strong>aneuploidies and CNVs</strong> that short reads cannot see.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: pure isolate, CSF. Optimal — <strong>ITS / D1–D2</strong> amplicons on <strong>Flongle</strong> for rapid species identification (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — species, molecular type, fluconazole susceptibility profile (ERG11, AFR1, chromosome 1 disomy), virulence markers; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species, molecular type, fluconazole susceptibility profile (ERG11, AFR1, chromosome 1 disomy), virulence markers; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Typing, Resistance</h2>' +
     '<h3>Species identification and molecular types</h3>' +
@@ -1930,7 +1930,7 @@
     '<li><strong>CrAg is not enough</strong> — the antigen test answers "yes/no" but does not distinguish species and molecular types and is silent on resistance; molecular diagnostics turns screening into prognosis.</li>' +
     '<li><strong>C. gattii is redrawing the map</strong> — infection of immunocompetent hosts with a severe course and a poorer response to fluconazole is expanding its range together with the climate; species differentiation is becoming necessary outside the tropics as well, including a growing number of non-HIV cases in China.</li>' +
     '<li><strong>Heteroresistance is invisible to short reads</strong> — chromosome 1 disomy with ERG11+AFR1 is an aneuploid mechanism reliably seen only by long reads with CNV analysis; the same logic as in <a href="/albicans/">Candida albicans</a>.</li>' +
-    '<li><strong>The capsule is no obstacle</strong> — the polysaccharide capsule complicates PCR extraction but not nanopore library preparation; ITS/D1–D2 amplicons on Flongle deliver species identification in a point-of-care scenario.</li></ul><hr>' +
+    '<li><strong>The capsule is no obstacle</strong> — the polysaccharide capsule complicates PCR extraction but not nanopore library preparation; ITS/D1–D2 amplicons on Flongle deliver species identification in an on-site scenario.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240060241">WHO — Fungal priority pathogens list (2022)</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — C. neoformans and C. gattii Infection</a></li>' +
@@ -1946,8 +1946,8 @@
     '<p><em>Streptococcus pneumoniae</em> (pneumococcus) is a Gram-positive <strong>lancet-shaped diplococcus</strong> with <strong>α-haemolysis</strong> on blood agar and a prominent polysaccharide capsule. It is the leading cause of <strong>community-acquired pneumonia</strong>, bacterial <strong>meningitis</strong> and <strong>acute otitis media in children</strong>, as well as sinusitis and bacteraemia in the elderly. Airborne transmission and nasopharyngeal carriage (up to 20–40% of healthy children) make the pneumococcus a permanent resident of the population — and a permanent source of invasive infections.</p>' +
     '<p>The key genomic theme of the pneumococcus is <strong>penicillin resistance through mosaic pbp2x, pbp2b and pbp1a genes</strong>. The pneumococcus is naturally competent: it takes up DNA from commensal streptococci of the mitis group (<em>S. mitis</em>, <em>S. oralis</em>) and integrates their fragments into its own penicillin-binding protein genes. The resulting <strong>mosaic PBPs</strong> have reduced affinity for β-lactams, with MIC rising stepwise as foreign blocks accumulate. Phenotypic testing cannot predict such a mosaic — whereas <strong>sequencing sees it directly</strong>, block by block.</p>' +
     '<p>The second theme is <strong>serotyping from the capsular cps locus</strong>: <strong>more than 90 serotypes</strong> are known, and the capsule is precisely the target of conjugate vaccines. After the introduction of PCV13 the population structure shifted: <strong>non-vaccine serotypes (19A, 22F, 33F, 8 and others)</strong> are on the rise — a classic vaccine escape that requires continuous genomic surveillance. WGS serotyping (the SeroBA approach) is more accurate than the Quellung reaction and requires no panel of antisera.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: sputum, CSF, blood, nasopharyngeal swab. The mosaic pbp genes of <strong>2–3 kb</strong> and the capsular locus of <strong>~10–20 kb</strong> fit entirely within long nanopore reads — an ideal scenario for a <strong>MinION with Flongle</strong> in point-of-care format (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — species identification, capsular serotype, susceptibility profile (β-lactams, macrolides, fluoroquinolones) with interpretation of mosaic pbp; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: sputum, CSF, blood, nasopharyngeal swab. The mosaic pbp genes of <strong>2–3 kb</strong> and the capsular locus of <strong>~10–20 kb</strong> fit entirely within long nanopore reads — an ideal scenario for a <strong>MinION with Flongle</strong> in on-site format (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, capsular serotype, susceptibility profile (β-lactams, macrolides, fluoroquinolones) with interpretation of mosaic pbp; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Resistance, Serotype</h2>' +
     '<h3>Species identification</h3>' +
@@ -2012,8 +2012,8 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Streptococcus pyogenes</em> (group A β-haemolytic streptococcus, <strong>GAS</strong>) is a Gram-positive coccus forming chains (hence "strepto-") and one of the most strictly human-adapted pathogens: it colonises and infects humans only. The spectrum of disease is unusually wide: from <strong>streptococcal pharyngitis, scarlet fever and erysipelas</strong> to <strong>invasive forms</strong> — necrotising fasciitis and streptococcal toxic shock syndrome (STSS) with a case fatality of <strong>30–70%</strong>. A separate cluster is the <strong>non-suppurative sequelae</strong>: rheumatic fever and post-streptococcal glomerulonephritis, which define the long-term burden on cardiology and nephrology.</p>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>emm typing</strong> (from the 5\'-end of the <em>emm</em> gene encoding the M protein) — the gold standard of GAS epidemiology with <strong>250+ known types</strong>; determines the <strong>superantigen toxin profile</strong> (speA, speC, ssa) and <strong>macrolide resistance genes</strong> (ermB, mefA). Sequencing replaces Sanger in emm typing and simultaneously answers virulence and susceptibility — from a single run.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: throat swab, wound discharge, aspirate from the lesion, blood. The genome is small (~1.9 Mb): an amplicon emm assay on <strong>Flongle</strong> is optimal for the point-of-care scenario (Edge); whole genome — for invasive forms.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — emm type, toxin profile (STSS risk), macrolide resistance markers with an empirical therapy recommendation; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: throat swab, wound discharge, aspirate from the lesion, blood. The genome is small (~1.9 Mb): an amplicon emm assay on <strong>Flongle</strong> is optimal for the on-site scenario (Edge); whole genome — for invasive forms.</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — emm type, toxin profile (STSS risk), macrolide resistance markers; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: emm Typing, Toxins, Resistance</h2>' +
     '<h3>emm typing and epidemiology</h3>' +
@@ -2078,8 +2078,8 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Streptococcus agalactiae</em> is a Gram-positive group B coccus (GBS) that harmlessly colonises the gastrointestinal and urogenital tract of <strong>10–30% of pregnant women</strong>, yet remains the <strong>leading cause of neonatal sepsis and meningitis</strong>. Two clinical forms are distinguished: <strong>early-onset disease (up to 7 days of life)</strong> — vertical transmission during delivery from a colonised mother, and <strong>late-onset (up to 3 months)</strong> — with a predominance of meningitis. Without intrapartum prophylaxis up to half of infected newborns fall ill; with prophylaxis the risk drops dozens-fold. The standard is screening of pregnant women at <strong>35–37 weeks</strong> by swab culture: if colonisation is detected, intrapartum prophylaxis with <strong>penicillin</strong> is prescribed. The problem is that culture takes <strong>18–48 hours</strong> and offers nothing to a woman admitted in labour without screening — that is exactly where a rapid molecular answer is needed.</p>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (cfb — CAMP factor), <strong>capsular serotyping</strong> (Ia, Ib, II–IX from cps genes), detection of the <strong>hypervirulent clone CC17 (ST-17)</strong> — the main culprit of neonatal invasive forms, and determination of <strong>resistance markers</strong> — critical for pregnant women with penicillin allergy. The small genome (~<strong>2.2 Mb</strong>) is ideal for a rapid run on <strong>Flongle</strong> right in the delivery unit.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: vaginal-rectal swab, neonatal CSF/blood. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the point-of-care scenario in the labour ward (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the obstetrician/neonatologist — GBS species identification, capsular serotype, clonal affiliation (CC17), susceptibility profile with a recommendation in case of penicillin allergy; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: vaginal-rectal swab, neonatal CSF/blood. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the on-site scenario in the labour ward (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — GBS species identification, capsular serotype, clonal affiliation (CC17), susceptibility profile; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, Serotypes, Resistance</h2>' +
     '<h3>Species identification and virulence</h3>' +
@@ -2128,7 +2128,7 @@
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>Neonatal burden</strong> — GBS remains the leading cause of neonatal sepsis and meningitis: hundreds of thousands of invasive infections annually by WHO estimates, including early-onset (vertical transmission during delivery) and late-onset forms with a high share of neurological sequelae.</li>' +
-    '<li><strong>The blind spot of screening</strong> — culture takes 18–48 hours, and a woman admitted in labour without screening receives prophylaxis "blindly" based on risk factors; point-of-care sequencing on an Edge unit in the delivery unit gives an answer in hours — before active labour begins.</li>' +
+    '<li><strong>The blind spot of screening</strong> — culture takes 18–48 hours, and a woman admitted in labour without screening receives prophylaxis "blindly" based on risk factors; on-site sequencing could potentially give an answer in hours — a research direction (RUO), not a diagnostic service.</li>' +
     '<li><strong>Growing resistance in allergy</strong> — penicillin holds its ground, but resistance to clindamycin and erythromycin (ermB, mefA/E, lsaB, lnuB) is rising worldwide; in penicillin allergy the genomic marker profile directly determines the drug choice.</li>' +
     '<li><strong>The vaccine era</strong> — hexavalent conjugate vaccines against GBS are in clinical trials; serotype surveillance (the share of serotype III, the CC17 clone) will become the basis for assessing their effectiveness.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
@@ -2146,7 +2146,7 @@
     '<p><em>Enterococcus faecium</em> is a Gram-positive coccus (pairs and short chains) and an <strong>ESKAPE pathogen</strong>, one of the main agents of hospital-acquired infections in the ICU: <strong>bacteraemia, urinary tract infections, intra-abdominal infections</strong>. It becomes especially severe in immunosuppressed patients — in <strong>haemato-oncology and transplantology</strong> vancomycin-resistant (VRE) bacteraemia carries high mortality, and the therapeutic arsenal is running out: the hospital clone <strong>CC17</strong> is already resistant to ampicillin (<em>pbp5</em>) and high-level aminoglycosides (<em>aac(6\')-aph(2\'\')</em>), and resistance to the reserve drugs — <strong>linezolid and daptomycin</strong> — is rising (<em>cfr</em>, <em>optrA</em>).</p>' +
     '<p>The key to therapy and epidemiology is the <strong>vanA/vanB clusters</strong> on plasmids and transposons (Tn1546): <strong>vanA</strong> confers high-level resistance to both vancomycin and teicoplanin, while <strong>vanB</strong> confers variable resistance under which teicoplanin may remain active. Therefore <strong>the genotype matters more than the phenotype</strong> for regimen selection. From nanopore sequencing data our pipeline determines the van genotype, the AMR profile, clonal affiliation and — during outbreaks — WGS tracing of transmission (cgMLST / core-genome SNP), turning rectal screening into a manageable infection-control tool.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: rectal swabs (carriage screening), blood culture, urine, intra-abdominal discharge. Optimal: screening sequencing of the vanA/vanB amplicon on <strong>Flongle</strong> for an answer in hours (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the intensivist/epidemiologist — species identification (<em>ddl</em>), van genotype with interpretation for therapy, AMR profile and, in an outbreak, cluster analysis of isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification (<em>ddl</em>), van genotype with interpretation for therapy, AMR profile and, in an outbreak, cluster analysis of isolates; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Identification, van Clusters, Resistance</h2>' +
     '<h3>Species identification</h3>' +
@@ -2208,8 +2208,8 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Haemophilus influenzae</em> (Pfeiffer\'s bacillus) is a small Gram-negative <strong>pleomorphic coccobacillus</strong>, a commensal of the nasopharynx and a causative agent of otitis, sinusitis, <strong>COPD exacerbations</strong> (the second most frequent bacterial pathogen after the pneumococcus) and pneumonia; in unvaccinated children — epiglottitis and meningitis (historically the capsular type b, Hib). Culture-based diagnostics is slow and demanding: the bacterium is fastidious, grows only on <strong>chocolate agar</strong> and requires growth factors <strong>X (haemin) and V (NAD)</strong>. Genomics bypasses this problem: the answer does not depend on whether the culture grows.</p>' +
     '<p>From nanopore sequencing data our pipeline determines the <strong>AMR profile with mandatory analysis of ftsI mutations</strong> (the key point — below), the <strong>serotype (a–f or non-typeable NTHi)</strong> from the capsular locus and <strong>species identification</strong> with differentiation from the non-pathogenic look-alike <em>H. haemolyticus</em>. The genome is small (<strong>~1.8 Mb</strong>), and the key targets — the ftsI + blaTEM amplicon and the capsular locus — deliver an answer <strong>within hours</strong> in a hospital or an outpatient clinic on an Edge unit with Flongle.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: sputum, nasopharyngeal swab, middle-ear exudate, CSF, blood. Optimal — rapid library preparation and a run on <strong>Flongle</strong> for the point-of-care scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the paediatrician/pulmonologist — species identification, serotype, AMR profile (including BLNAR status) with an empirical regimen recommendation; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: sputum, nasopharyngeal swab, middle-ear exudate, CSF, blood. Optimal — rapid library preparation and a run on <strong>Flongle</strong> for the on-site scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, serotype, AMR profile (including BLNAR status); technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Resistance, Serotype, Identification</h2>' +
     '<h3>Core: mechanisms of β-lactam resistance</h3>' +
@@ -2283,7 +2283,7 @@
     '<p>Cytomegalovirus (CMV, HHV-5) is a β-herpesvirus with a <strong>seroprevalence of 60–90% in the adult population</strong>. In an immunocompetent host it lies dormant in monocytes; after <strong>solid-organ or bone marrow transplantation</strong> it becomes the leading viral pathogen: CMV viraemia, pneumonitis, colitis, retinitis, oesophagitis. Beyond direct organ damage, CMV carries <strong>indirect effects</strong>: it increases the risk of graft rejection and opens the door to fungal and bacterial superinfections — which is exactly why the virus is managed prophylactically (valganciclovir, letermovir) and the viral load is monitored.</p>' +
     '<p>The classic clinical trap is <strong>refractory CMV</strong>: the load does not fall on ganciclovir/valganciclovir for weeks. There are only two causes — insufficient immunity or a <strong>resistant virus</strong> — and the solutions are opposite. A reference laboratory (Sanger) answers within <strong>weeks</strong>; our pipeline, from nanopore sequencing data, genotypes the resistance genes <strong>in hours</strong>, on site, in the transplant centre. Deep sequencing catches <strong>minor resistant subpopulations (5–20%)</strong> that Sanger fundamentally cannot see — yet it is precisely they that are selected under therapy and lead to failure of the treatment line.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma/whole blood of a post-transplant patient (viraemia confirmed by PCR). Optimal — a run on <strong>Flongle/MinION</strong> right in the transplant centre laboratory (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the transplant physician — resistance genotype across UL97/UL54/UL56/UL51/UL89 with subpopulation fractions, drug-level interpretation (ganciclovir / foscarnet / cidofovir / letermovir / maribavir), viral load estimation from the same data; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — resistance genotype across UL97/UL54/UL56/UL51/UL89 with subpopulation fractions, drug-level interpretation (ganciclovir / foscarnet / cidofovir / letermovir / maribavir), viral load estimation from the same data; technical QC report for the bioinformatician.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: I — double-stranded DNA (dsDNA)</h2>' +
     '<p>CMV belongs to <strong>Class I of the Baltimore classification</strong> — double-stranded DNA viruses. Their expression strategy is the most "cellular": the dsDNA genome is transcribed by DNA-dependent RNA polymerase (host and viral) into mRNA, which is immediately translated into protein — the classic <strong>DNA → mRNA → protein</strong> scheme, with no reverse transcription and no RNA intermediates. The CMV genome — <strong>~235 kb</strong>, the largest among human herpesviruses — is riddled with repeats (inverted b\'/c\' repeats flanking the unique UL and US segments), and in monocytes the virus goes latent, persisting as episomal dsDNA. For the pipeline this means two things: dsDNA is a <strong>stable target</strong> that requires no reverse-transcription step and is read directly by the nanopore, including native methylation; and long ONT reads <strong>span the repeats end to end</strong>, where short reads of a dsDNA genome collapse and fail to phase.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -2357,7 +2357,7 @@
     '<p>CSF PCR is the gold standard of diagnostics, but it has blind spots: in the <strong>first 24–72 hours</strong> of illness PCR can be false-negative, atypical and vaccine-associated cases escape it, and above all — <strong>PCR does not answer the question of resistance</strong>. In immunosuppressed patients (organ and HSCT transplantation, HIV) acyclovir resistance reaches <strong>4–14%</strong>: the phenotypic test requires viral culture and takes <strong>weeks</strong>, whereas the genotype across <strong>UL23</strong> (thymidine kinase, ~95% of resistance cases) and <strong>UL30</strong> (DNA polymerase) delivers the answer in hours and immediately points to a change of therapy (foscarnet, cidofovir).</p>' +
     '<p>From nanopore sequencing data our pipeline combines three tasks in a single run: <strong>CSF mNGS</strong> (detection of HSV together with the differential panel — VZV, enteroviruses, HHV-6, bacterial meningitis), <strong>resistance genotyping</strong> across UL23/UL30 and <strong>whole-genome assembly</strong> for strain epidemiology.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: CSF (priority), vesicular fluid, mucosal swabs, blood in neonatal infection. Optimal — a run on <strong>Flongle</strong> for the emergency scenario (Edge) in intensive care.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the neurologist/infectious disease physician — species and type of virus (HSV-1/HSV-2 by US6), resistance genotype with interpretation of UL23/UL30 mutations and a therapy-change recommendation, differential panel by mNGS; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species and type of virus (HSV-1/HSV-2 by US6), resistance genotype with interpretation of UL23/UL30 mutations, differential panel by mNGS; technical QC report for the bioinformatician.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: I — double-stranded DNA (dsDNA)</h2>' +
     '<p>HSV-1 and HSV-2 belong to <strong>Class I of the Baltimore classification</strong> — double-stranded DNA viruses. Their expression strategy is the most "cellular": the dsDNA genome is transcribed by DNA-dependent RNA polymerase (host and viral) into mRNA, which is immediately translated into protein — the classic <strong>DNA → mRNA → protein</strong> scheme, with no reverse transcription and no RNA intermediates. The HSV genome is <strong>~152 kb</strong> of dsDNA with a characteristic architecture: the unique UL and US segments are surrounded by <strong>terminal and internal inverted repeats</strong> (TRL/IRL/IRS/TRS), and in ganglion neurons the virus establishes lifelong latency. For the pipeline this means two things: dsDNA is a <strong>stable target</strong> that requires no reverse-transcription step and is read directly by the nanopore, including native methylation; and long ONT reads <strong>resolve the inverted repeats in full</strong>, allowing the genome to be assembled into a single contig and indels in the homopolymer tracts of UL23 to be mapped precisely.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -2440,7 +2440,7 @@
     '<li><strong>Infectious mononucleosis</strong> — the classic manifestation of primary infection;</li>' +
     '<li><strong>Multiple sclerosis</strong> — EBV infection is recognised as the leading risk factor (an almost necessary condition according to large cohorts).</li></ul>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma (cell-free EBV DNA), tumour/lymph node biopsy, nasopharyngeal lavage, whole blood (PTLD monitoring).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report — viral load, strain type (EBV-1/EBV-2), LMP1 variants, clonality assessment by terminal repeats, methylation profile and latency programme; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — viral load, strain type (EBV-1/EBV-2), LMP1 variants, clonality assessment by terminal repeats, methylation profile and latency programme; technical QC report for the bioinformatician.</li></ul><hr>' +
     '<h2>🎯 What the Pipeline Determines: Three Levels of Analysis</h2>' +
     '<p>As on our <a href="/hpv/">HPV page</a>, nanopore sequencing in a single run solves tasks for which qPCR and short reads require three different tests — or do not solve them at all.</p>' +
     tbl(['Level', 'Task', 'Clinical Significance'], [
@@ -2528,7 +2528,7 @@
     '<p>But HHV-6 has a unique trap that no other herpesvirus possesses: <strong>iciHHV-6</strong> (inherited chromosomally integrated HHV-6). About <strong>~1% of people</strong> carry the complete HHV-6 genome <strong>chromosomally integrated into the germline</strong> — the virus embedded itself into the telomeric regions of an ancestor\'s chromosomes and is now inherited like an ordinary gene. In such a patient, blood PCR (especially of whole blood) shows <strong>enormous "viral loads" — millions of copies/ml</strong> — but this is not an active infection, it is <strong>their own genome</strong>: every cell carries one copy of the virus. The outcome: false diagnoses of "refractory viraemia", months of unnecessary <strong>ganciclovir/foscarnet</strong> with their myelotoxicity and nephrotoxicity — up to withdrawal of life-sustaining immunosuppression.</p>' +
     '<p>Our pipeline settles the question with <strong>long nanopore reads</strong>: they capture <strong>"virus–chromosome" chimeric reads</strong> and junctions with telomeric repeats <strong>(TTAGGG)n</strong> — direct proof of germline integration, while the coverage ratio (<strong>~1 viral copy per cell</strong> in iciHHV-6 versus growth during replication) distinguishes integration from active reactivation.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: whole blood, plasma, CSF (when encephalitis is suspected).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the transplant physician/neurologist — species (HHV-6A/6B), <strong>integration status (iciHHV-6 yes/no)</strong>, copy-number estimate, interpretation of the "viral load"; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species (HHV-6A/6B), <strong>integration status (iciHHV-6 yes/no)</strong>, copy-number estimate, interpretation of the "viral load"; technical QC report for the bioinformatician.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: I — double-stranded DNA (dsDNA)</h2>' +
     '<p>HHV-6A and HHV-6B belong to <strong>Class I of the Baltimore classification</strong> — double-stranded DNA viruses. Their expression strategy is the most "cellular": the dsDNA genome is transcribed by DNA-dependent RNA polymerase (host and viral) into mRNA, which is immediately translated into protein — the classic <strong>DNA → mRNA → protein</strong> scheme, with no reverse transcription and no RNA intermediates. The HHV-6 genome is <strong>~160 kb</strong> of dsDNA with telomere-like repeats at its ends, and it is these repeats that enable an ability unique among herpesviruses — <strong>integration into the telomeres of host chromosomes</strong> (iciHHV-6): viral dsDNA embeds into chromosomal dsDNA and is inherited through the germline. For the pipeline this means two things: dsDNA is a <strong>stable target</strong> that requires no reverse-transcription step and is read directly by the nanopore, including native methylation; and long ONT reads <strong>capture the chimeric virus–chromosome junctions in full</strong>, distinguishing integration from replication where qPCR is fundamentally powerless.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -2609,7 +2609,7 @@
     '<li><strong>MetaHIT (EU, 2008–2012)</strong> — built a catalogue of <strong>3.3 million microbial genes</strong>, described <strong>enterotypes</strong> (stable community configurations dominated by <em>Bacteroides</em>, <em>Prevotella</em> or <em>Ruminococcus</em>) and linked <strong>low microbiome gene richness to obesity, systemic inflammation and inflammatory bowel disease (IBD)</strong>.</li></ul>' +
     '<p>The common conclusion of both projects: <strong>the diagnostic value of metagenomics lies in functions and strains, not in a list of genera</strong>. Our pipeline is built exactly this way: full-length 16S and shotgun metagenomics on long nanopore reads deliver species/strain-level resolution, functional annotation and the resistome in a single run.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: stool, rectal swabs, mucosal biopsies. For the <strong>Edge scenario (Flongle)</strong>, 16S/ITS amplicons and targeted panels are optimal; deep gut shotgun sequencing is a Desktop/Cloud task (MinION and above).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — species-level taxonomic profile, diversity metrics (Shannon index, gene richness), dysbiosis markers, recovery dynamics after FMT, resistome (AMR genes); technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species-level taxonomic profile, diversity metrics (Shannon index, gene richness), dysbiosis markers, recovery dynamics after FMT, resistome (AMR genes); technical QC report for the bioinformatician.</li></ul><hr>' +
     '<h2>📊 Product Availability</h2>' +
     tbl(['Platform', 'Availability Status'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>In development</strong> — 16S/ITS amplicons and targeted panels on Flongle'],
@@ -2658,7 +2658,7 @@
       ['<strong>3. Diversity metrics</strong>', 'α- and β-diversity, Shannon index, gene richness, F/B ratio'],
       ['<strong>4. Resistome</strong>', '<code>CARD</code>, <code>ResFinder</code> — detection of vanA, blaNDM, mcr and hundreds of other AMR genes'],
       ['<strong>5. MAG assembly (shotgun)</strong>', '<code>metaFlye</code>, <code>medaka</code> — assembly and polishing of metagenome-assembled genomes'],
-      ['<strong>6. Reporting</strong>', 'HTML report for the physician + QC report for the bioinformatician']
+      ['<strong>6. Reporting</strong>', 'RUO HTML report + QC report for the bioinformatician']
     ]) + '<hr>' +
     '<h2>🌍 Global Context: Why It Matters</h2>' +
     '<ul><li><strong>CDI — an in-hospital epidemic</strong> — <em>C. difficile</em> remains the leading cause of nosocomial diarrhoea; post-antibiotic recurrence reaches 30–60%. FMT with ~90% efficacy has become the standard, and metagenomic monitoring of donor consortium engraftment is its necessary scientific companion.</li>' +
@@ -2680,7 +2680,7 @@
     '<p>The vaginal microbiome — one of the five key body sites of the <strong>Human Microbiome Project</strong> — is unique among human biomes for its <strong>low diversity</strong>: unlike the gut, health here is defined not by species richness but by the <strong>dominance of lactobacilli</strong>. Vaginal communities are described by five types — <strong>Community State Types (CST I–V)</strong>: <strong>CST I</strong> (dominated by <em>Lactobacillus crispatus</em>) is a protective state with low pH and a stable barrier; <strong>CST IV</strong> (diverse anaerobes — <em>Gardnerella</em>, <em>Prevotella</em>, <em>Atopobium</em>) is dysbiosis, clinically corresponding to bacterial vaginosis. Prognostically it is critical to distinguish both "favourable" and "transitional" states: <em>L. iners</em> is not a protector but a bridge to dysbiosis.</p>' +
     '<p>From nanopore <strong>full-length 16S rRNA gene</strong> sequencing data our pipeline determines the CST, the species composition of lactobacilli and key anaerobes, and risk markers of preterm birth and recurrent bacterial vaginosis — from a self-collected sample, within hours.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: a <strong>self-collected</strong> vaginal swab (low biomass is not an obstacle). Optimal: rapid library preparation and a <strong>Flongle</strong> run for the outpatient screening scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the obstetrician-gynaecologist — CST classification, species-level lactobacillus profile, dysbiosis markers and risk assessment; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — CST classification, species-level lactobacillus profile, dysbiosis markers and risk assessment; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: CST, Lactobacilli, Anaerobes</h2>' +
     '<h3>Clinical Core #1 — Preterm Birth</h3>' +
@@ -2743,7 +2743,7 @@
     '<p>Virulence is determined by a large <strong>pLVPK-type plasmid</strong> (~200 kb): its markers are the capsule regulators <strong>rmpA/rmpA2</strong>, the aerobactin locus (<strong>iucA/iutA</strong> — the most specific hvKP marker), salmochelin <strong>iroB</strong> and the metabolic marker <strong>peg-344</strong>. The plasmid is rich in repeats and IS elements, so short reads cannot assemble it — this is the main advantage of nanopore sequencing: long reads deliver the complete structure of virulence and resistance plasmids, a hybrid/T2T assembly and, simultaneously, MLST, capsular type (wzi, Kaptive) and the resistome.</p>' +
     '<p>Our pipeline answers the central question of infection control: <strong>convergence of hypervirulence and carbapenem resistance</strong>. Outbreaks of ST11 CR-hvKP (blaKPC-2) with high mortality in Chinese hospitals have shown that tracking such convergent strains is a priority task.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: culture, ascitic/puncture fluid, blood. Optimal: whole-genome sequencing of the isolate or targeted/metagenomic enrichment.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician and epidemiologist — hvKP/cKP verdict, capsular serotype and wzi allele, ST (MLST), pLVPK virulence marker profile, resistome and convergent-risk assessment.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — hvKP/cKP verdict, capsular serotype and wzi allele, ST (MLST), pLVPK virulence marker profile, resistome and convergent-risk assessment.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Virulence Markers and Typing</h2>' +
     '<h3>Virulence plasmid (pLVPK type)</h3>' +
@@ -2793,9 +2793,9 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><strong>Dabie bandavirus</strong> (formerly SFTS virus, SFTSV) is a segmented enveloped virus of the <em>Phenuiviridae</em> family (order <em>Bunyavirales</em>), the causative agent of severe fever with thrombocytopenia syndrome. The genome consists of three negative-sense and ambisense single-stranded RNA segments: <strong>L</strong> (~6.3 kb, RNA-dependent RNA polymerase RdRp), <strong>M</strong> (~3.3 kb, glycoproteins Gn/Gc — the main target of neutralising antibodies) and <strong>S</strong> (~1.7 kb, nucleoprotein N and the non-structural protein NSs — an interferon-response antagonist, encoded in ambisense orientation). The virus is transmitted mainly by the tick <em>Haemaphysalis longicornis</em>; foci are located in eastern and central China (Henan, Shandong, Anhui, Hubei, Jiangsu provinces), as well as Japan and South Korea.</p>' +
     '<p>The clinical picture is fever, thrombocytopenia, leukopenia, gastrointestinal symptoms, haemorrhages and multi-organ failure; case fatality reaches 10–30% in different case series. Human-to-human transmission through contact with the blood and secretions of patients has been described (including among medical staff and family members). There is no specific therapy and no licensed vaccine; ribavirin is ineffective, favipiravir was studied in Japan.</p>' +
-    '<p>In the acute phase viraemia is high, and the virus is confidently detected by direct sequencing: it is clinical metagenomic sequencing (mNGS), widely deployed in China, that most often yields the diagnosis of SFTS in cases of unclear fever. Our pipeline implements <strong>point-of-care nanopore mNGS in a district hospital of an endemic region</strong>: long reads cover entire segments almost completely, making it possible not only to identify the virus but also to perform L/M/S segment analysis, phylogenetics and tracking of segment reassortment between lineages, and to differentiate SFTS from other haemorrhagic fevers and rickettsioses. A MinION with a Flongle adapter gives fast time-to-answer and field deployment in a county hospital setting.</p>' +
+    '<p>In the acute phase viraemia is high, and the virus is confidently detected by direct sequencing: it is clinical metagenomic sequencing (mNGS), widely deployed in China, that most often yields the diagnosis of SFTS in cases of unclear fever. Our pipeline (RUO) implements <strong>on-site nanopore mNGS for research in endemic regions</strong>: long reads cover entire segments almost completely, making it possible not only to identify the virus but also to perform L/M/S segment analysis, phylogenetics and tracking of segment reassortment between lineages, and to differentiate SFTS from other haemorrhagic fevers and rickettsioses. A MinION with a Flongle adapter gives fast time-to-answer and field deployment in a county hospital setting.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: plasma/serum or whole blood in the acute phase. Optimal: metagenomic sequencing with ribosomal RNA/host background depletion <strong>or</strong> targeted enrichment of the L/M/S segments.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — identification of Dabie bandavirus, coverage and consensuses of the L/M/S segments, genetic lineage and signs of reassortment, and a differential panel of other fever pathogens.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — identification of Dabie bandavirus, coverage and consensuses of the L/M/S segments, genetic lineage and signs of reassortment, and a differential panel of other fever pathogens.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: V — (−)ssRNA, negative-sense single-stranded RNA</h2>' +
     '<p>Like influenza, SFTSV belongs to Class V: its genome is negative-sense single-stranded RNA, which cannot be translated directly, so the virus brings its own RdRp into the cell to synthesise (+)strand mRNAs. The genome is divided into <strong>three segments</strong>: <strong>L</strong> encodes the RdRp itself, <strong>M</strong> the envelope glycoproteins Gn/Gc, and <strong>S</strong> the nucleocapsid protein N. A textbook subtlety: the S segment of bunyaviruses uses an <strong>ambisense</strong> strategy — the N protein is encoded on the viral (−)strand, while the non-structural protein NSs is encoded in the opposite (+)orientation, meaning that translating both proteins requires RNAs of both polarities. Segmentation, as in influenza, opens the door to reassortment — the exchange of L/M/S segments between lineages, which the pipeline tracks via discordant segment phylogenies.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -2845,8 +2845,8 @@
     '<ul><li><strong>WHO priority</strong> — SFTS is on the WHO R&D Blueprint priority list: diseases with epidemic potential for which no effective countermeasures exist (no specific therapy and no licensed vaccine).</li>' +
     '<li><strong>Endemic foci</strong> — thousands of SFTS cases are registered annually in China; the disease circulates steadily in the eastern and central provinces, as well as in Japan and South Korea, where fatal outbreaks have occurred.</li>' +
     '<li><strong>Vector range expansion</strong> — <em>Haemaphysalis longicornis</em> is capable of parthenogenesis alongside sexual reproduction, which accelerates its spread; the tick has already been introduced into the USA and Australia. The virus itself has not yet become established outside East Asia, but the expanding vector range demands diagnostic readiness.</li>' +
-    '<li><strong>Nosocomial risk</strong> — human-to-human transmission through contact with the blood and secretions of patients has been described (cases among medical staff and families), so rapid point-of-care diagnostics directly affects anti-epidemic measures.</li>' +
-    '<li><strong>mNGS as a standard</strong> — clinical metagenomic sequencing is widely deployed in China, and it is mNGS that most often detects SFTSV in unclear fever; the nanopore platform makes this approach accessible at the district-hospital level in endemic regions.</li></ul><hr>' +
+    '<li><strong>Nosocomial risk</strong> — human-to-human transmission through contact with the blood and secretions of patients has been described (cases among medical staff and families), so the speed of molecular confirmation matters for anti-epidemic measures.</li>' +
+    '<li><strong>mNGS as a standard</strong> — clinical metagenomic sequencing is widely deployed in China, and it is mNGS that most often detects SFTSV in unclear fever; the nanopore platform makes this approach accessible for research directly in endemic regions.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/teams/blueprint">WHO — R&D Blueprint for Action to Prevent Epidemics</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1936904/">NCBI Taxonomy — Dabie bandavirus</a></li>' +
@@ -2857,14 +2857,14 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_magnaporthe.svg" alt="Magnaporthe oryzae" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Rice Blast — Magnaporthe oryzae</h1>' +
-    '<p style="font-size:1.2em;color:#555">Field diagnostics of rice blast with Avr-effector and fungicide-sensitivity profiles — in hours, right on the rice field</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Field detection of rice blast with Avr-effector and fungicide-sensitivity profiles — in hours, right on the rice field</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Magnaporthe oryzae</em> (syn. <em>Pyricularia oryzae</em>) is an ascomycete, the causative agent of rice blast — the most devastating rice disease in the world. Annual yield losses from blast are estimated at 10–30% — enough grain to feed tens of millions of people. China, the largest rice producer in the world, regards rice blast as threat No. 1 for rice cultivation.</p>' +
     '<p>The species includes several pathotypes: the rice pathotype (<em>Oryza</em>) and the <em>Triticum</em> pathotype — the causative agent of "wheat blast", which emerged in South America and was introduced into Bangladesh (2016) and Africa. Differentiation of pathotypes is critical for quarantine control.</p>' +
     '<p>The pathogen population evolves very fast: resistant rice varieties (with <strong>Pi</strong> genes) are "broken" within a few years. This is why constant monitoring of races and the effector repertoire right in the field is needed. Avirulence genes (<strong>Avr</strong> effectors: <em>Avr-Pita</em>, <em>Avr-Pik</em>, <em>Avr-Piz-t</em>, <em>Avr-Pii</em> and others) determine which Pi genes still work against the local race. Effector genes often lie in subtelomeric regions among repeats and transposons — short reads resolve them poorly, whereas <strong>ONT long reads deliver complete assembly and phasing</strong> of these loci.</p>' +
-    '<p>Our pipeline performs <strong>metagenomic and targeted nanopore sequencing</strong> of affected rice leaves and nodes directly in the field (Flongle chips). Within a few hours the agronomist receives species and pathotype identification, the <strong>Avr-effector profile</strong> (a recommendation for choosing a resistant variety), the <strong>fungicide-sensitivity profile</strong> (a recommendation for the fungicide programme) and data for monitoring the migration of pathogen lineages.</p>' +
+    '<p>Our pipeline performs <strong>metagenomic and targeted nanopore sequencing</strong> of affected rice leaves and nodes directly in the field (Flongle chips). Within a few hours the agronomist receives species and pathotype identification, the <strong>Avr-effector profile</strong> (data for resistant-variety selection), the <strong>fungicide-sensitivity profile</strong> (data for fungicide-programme planning) and data for monitoring the migration of pathogen lineages.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: affected rice leaves and nodes, tissue homogenate.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the agronomist — species and pathotype of the causative agent, Avr-effector profile, fungicide sensitivity and crop-protection recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species and pathotype of the causative agent, Avr-effector profile, fungicide sensitivity.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🧩 Pipeline Architecture</h2>' +
     '<ol><li><strong>Species and pathotype identification</strong> — classification of reads against reference databases; differentiation of the rice pathotype (<em>Oryza</em>) and the wheat pathotype (<em>Triticum</em>, wheat blast).</li>' +
@@ -2904,14 +2904,14 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_hlb.svg" alt="Citrus Huanglongbing (HLB)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Citrus Huanglongbing — <i>Candidatus</i> Liberibacter asiaticus</h1>' +
-    '<p style="font-size:1.2em;color:#555">Field molecular diagnostics of citrus greening with strain typing and prophage profiling — in hours, right in the regional agricultural laboratory</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Field molecular detection of citrus greening with strain typing and prophage profiling — in hours, right in the regional agricultural laboratory</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Candidatus</em> Liberibacter asiaticus (CLas) is a Gram-negative α-proteobacterium, an obligate parasite of citrus phloem and the causative agent of huanglongbing (HLB, citrus greening) — the most devastating disease of world citriculture. The key biological feature of CLas: the pathogen <strong>cannot be cultured on artificial media</strong>, so neither classical microbiology nor rapid microscopic tests work — diagnostics and surveillance are possible <strong>only by molecular methods</strong>.</p>' +
     '<p>The disease is spread by a vector — the Asian citrus psyllid <em>Diaphorina citri</em> (for the African pathogen species — the African psyllid <em>Trioza erytreae</em>). Characteristic symptoms: <strong>asymmetric blotchy mottling of the leaves</strong> (blotchy mottle), asymmetric underdeveloped fruits that remain green at the peduncle (hence "greening", citrus greening), bitter fruits and premature fruit drop. The tree declines and dies within a few years. <strong>No cure exists</strong> — the only working strategy is early detection → removal of infected trees → psyllid control. That is why the speed and accessibility of diagnostics decide everything.</p>' +
     '<p>The CLas genome is compact (~1.2 Mb) with a reduced GC content. Its most important feature is the <strong>prophages</strong> (SC1, SC2, types 1/2/3): their composition is used as an epidemiological marker for strain tracking. Strain typing is based on SNP clusters and MLVA loci. Prophage regions and repeat-rich regions assemble poorly from short reads, whereas <strong>ONT long reads deliver complete prophage regions and reliable phylogenetics</strong>. A practical challenge is the low and unevenly distributed bacterial titre in the phloem, so the pipeline relies on targeted enrichment or metagenomic sequencing with host-material depletion. Samples: petioles and midribs of mottled leaves, as well as psyllids.</p>' +
     '<p>Our pipeline performs <strong>targeted and metagenomic nanopore sequencing</strong> of samples right in the regional agricultural laboratory (Flongle chips). Within a few hours the agronomist receives CLas detection, <strong>species differentiation</strong> of CLas / CLaf (African) / CLam (American) — of direct quarantine significance, <strong>SNP-cluster/lineage determination</strong> and a <strong>prophage profile</strong> (SC1/SC2) for surveillance.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: petioles and midribs of mottled leaves, tissue homogenate, psyllids.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the agronomist and the phytosanitary service — CLas detection, pathogen species (CLas/CLaf/CLam), SNP lineage, prophage profile and recommendations on quarantine measures.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — CLas detection, pathogen species (CLas/CLaf/CLam), SNP lineage, prophage profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🧩 Pipeline Architecture</h2>' +
     '<ol><li><strong>Pathogen identification</strong> — minimap2 alignment of reads against a reference panel of CLas / CLaf / CLam; species differentiation, quarantine-relevant identification.</li>' +
@@ -2949,7 +2949,7 @@
   EN['/thalassemia/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_thalassemia.svg" alt="Thalassemia — inherited haemoglobinopathies" style="max-height:120px;margin-bottom:1rem">' +
-    '<h1>Diagnosis of Thalassemias and Inherited Haemoglobinopathies</h1>' +
+    '<h1>Molecular Analysis of Thalassemias and Inherited Haemoglobinopathies</h1>' +
     '<p style="font-size:1.2em;color:#555">HBA cluster deletions, HBB mutations and their phasing — one long-read assay instead of the gap-PCR + MLPA + Sanger combination</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><strong>Thalassemias</strong> are inherited disorders of haemoglobin globin-chain synthesis: <strong>α-thalassemia</strong> (the <em>HBA1/HBA2</em> gene cluster on chromosome 16) and <strong>β-thalassemia</strong> (the <em>HBB</em> gene on chromosome 11). Severe forms — Hb H disease, Hb Bart\'s hydrops fetalis (the --/-- state of the α genes) and β-thalassemia major with lifelong transfusion dependence and iron overload — form one of the most significant burdens of inherited disease in the world.</p>' +
@@ -2957,7 +2957,7 @@
     '<p><strong>Oxford Nanopore long reads</strong> solve the task in a single assay — LR-PCR amplicons across the <em>HBA/HBB</em> loci or targeted enrichment / adaptive sampling allow: (1) direct detection of large deletions and determination of their exact breakpoints, (2) resolution of <em>HBA1/HBA2</em> homology, (3) phasing of mutations (cis/trans), (4) simultaneous detection of <em>HBB</em> point variants. Published studies show complete agreement of the ONT approach with the gap-PCR/MLPA/Sanger combination — while replacing 3–4 separate tests with one.</p>' +
     '<p>Our pipeline delivers a unified genomic passport: α-deletions and non-deletional variants, <em>HBB</em> mutations, haplotype phasing and a ready-made interpretation for genetic counselling.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: genomic DNA from blood (including chorionic villi / amniocentesis for prenatal diagnosis). Optimal: long-read amplicons (LR-PCR) of the <em>HBA</em> and <em>HBB</em> loci <strong>or</strong> targeted enrichment / adaptive sampling.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the physician — genotype at the α and β loci (deletions, point variants, phasing), interpretation of carrier status and risks for the couple, and a conclusion for prenatal / preimplantation (PGT-M) diagnosis.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — genotype at the α and β loci (deletions, point variants, phasing), interpretation of carrier status and risks for the couple, and research data for prenatal / preimplantation (PGT-M) genetics.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Detectable Variants and Clinical Markers</h2>' +
     '<h3>α-thalassemia: deletions and non-deletional variants of the HBA cluster</h3>' +
@@ -3019,7 +3019,7 @@
     '<p><em>Clostridioides difficile</em> (C. diff) is a Gram-positive spore-forming anaerobe and the leading cause of antibiotic-associated diarrhoea and pseudomembranous colitis. The key clinical question: <strong>toxigenic strain or non-toxigenic</strong> (does it carry <em>tcdA/tcdB</em> genes)?</p>' +
     '<p>Our pipeline simultaneously determines: toxin gene profile (tcdA/B/C + cdtA/B for hypervirulent strains), antibiotic resistance profile, and PCR ribotype for epidemiological classification.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: stool culture or direct WGS from enriched culture.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for clinician — toxigenicity status, full AMR profile, ribotype; QC report for bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — toxigenicity status, full AMR profile, ribotype; QC report for bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Toxin Genes and Resistance Determinants</h2>' +
     '<h3>Toxin genes — key virulence factors</h3>' +
@@ -3073,8 +3073,8 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Clostridium perfringens</em> is a Gram-positive anaerobic spore-forming rod (the name <em>perfringens</em> — "bursting through" tissues) and the causative agent of <strong>~95% of gas gangrene cases</strong> (clostridial myonecrosis). It is a fulminant infection: symptoms develop <strong>1–6 hours</strong> after trauma, necrosis spreads through muscle at up to <strong>~15 cm/hour</strong>, untreated lethality is <strong>67–100%</strong>, and most deaths occur within the <strong>first 24 hours</strong>. With such a course there is no time for culture-based diagnostics (days) or for "trial" antibiotic therapy — the result is needed the same day, in the emergency department of a trauma centre.</p>' +
     '<p>From nanopore sequencing data our pipeline determines the <strong>toxinotype (A–G)</strong> from the toxin gene profile, <strong>species identification</strong> with differentiation from <em>C. septicum</em> (the agent of spontaneous gangrene with even higher lethality) and other clostridia, and the <strong>AMR profile</strong> — a genomic answer for the surgeon and intensivist in hours, not days.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: wound discharge, aspirate from the lesion, stool. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the point-of-care scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the surgeon/intensivist — species identification, toxinotype, susceptibility profile with an empirical regimen recommendation; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: wound discharge, aspirate from the lesion, stool. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the on-site scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, toxinotype, susceptibility profile; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Toxins, Identification, Resistance</h2>' +
     '<h3>Toxin genes and toxinotypes</h3>' +
@@ -3131,7 +3131,7 @@
       ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
-    '<ul><li><strong>Every hour counts</strong> — gas gangrene in trauma and wounds remains a fulminant infection: spread ~15 cm/hour, untreated lethality 67–100%, most deaths within the first 24 hours. Point-of-care sequencing on an Edge unit in the trauma centre emergency department cuts the time to a genomic answer from days to hours.</li>' +
+    '<ul><li><strong>Every hour counts</strong> — gas gangrene in trauma and wounds remains a fulminant infection: spread ~15 cm/hour, untreated lethality 67–100%, most deaths within the first 24 hours. On-site sequencing (Edge) could potentially cut the time to a genomic answer from days to hours — a research direction (RUO).</li>' +
     '<li><strong>Food poisoning</strong> — <em>C. perfringens</em> is one of the most common causes of bacterial foodborne infection: CDC estimates about one million cases per year in the USA alone. Rapid typing of cpe-positive strains is essential for outbreak investigation in catering.</li>' +
     '<li><strong>MDR trend</strong> — multidrug resistance is increasingly described in isolates of animal origin (tet, ermB, floR) and is spilling into the clinic; the empirical "penicillin + clindamycin" regimen is no longer guaranteed.</li>' +
     '<li><strong>Veterinary context</strong> — NetB-associated necrotic enteritis of poultry (type G) and ruminant enterotoxaemias (types B and D) cause significant economic damage to poultry and livestock farming; the same toxinotyping pipeline is applicable in veterinary diagnostics.</li></ul><hr>' +
@@ -3150,7 +3150,7 @@
     '<p><em>Clostridium botulinum</em> is an anaerobic spore-forming rod producing <strong>botulinum neurotoxin (BoNT) — the most toxic substance known to science</strong>: the lethal dose for humans is estimated at ~1–2 ng/kg. BoNT is a protease that cleaves proteins of the <strong>SNARE complex</strong> of the nerve terminal and blocks acetylcholine release at the neuromuscular junction. Clinically this manifests as a <strong>descending symmetric flaccid paralysis</strong>: diplopia and ptosis → dysphagia and dysarthria → paralysis of the respiratory muscles and respiratory failure. The antidote — heptavalent botulinum antitoxin (BAT) — binds only circulating toxin and is effective <strong>only when given early</strong>: neurons with already internalised toxin recover over weeks. The speed of laboratory confirmation therefore directly determines the outcome.</p>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>direct detection of the bont gene</strong>, <strong>serotyping (A–G)</strong> from the toxin target specificity, <strong>toxin cluster analysis</strong> (the <em>ntnh</em> and <em>ha</em> genes — the "progenitor toxin complex") and <strong>cluster localisation</strong> — chromosome, plasmid or prophage. Long ONT reads give a fundamental advantage here: they resolve the cluster architecture and the epidemiology of its horizontal transfer.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: remnants of the suspect food product, vomit, stool, serum, wound material. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the field/laboratory express-diagnostics scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the treating physician, epidemiologist and food-safety authority — bont detection, serotype, cluster structure (ha/ntnh), localisation (chromosome/plasmid/phage), carrier identification; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — bont detection, serotype, cluster structure (ha/ntnh), localisation (chromosome/plasmid/phage), carrier identification; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Toxin, Serotypes, Cluster, Localisation</h2>' +
     '<h3>The bont gene and serotypes</h3>' +
@@ -3211,7 +3211,7 @@
       ['<strong>5. ML inference</strong>', '<code>PyTorch</code>, <code>pandas</code>, <code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
-    '<ul><li><strong>Antitoxin works only in the first hours</strong> — BAT neutralises only circulating toxin, so every hour of delay in laboratory confirmation worsens the prognosis. Point-of-care ONT sequencing cuts the time from sample to genomic answer from days to hours.</li>' +
+    '<ul><li><strong>Antitoxin works only in the first hours</strong> — BAT neutralises only circulating toxin, so every hour of delay in laboratory confirmation worsens the prognosis. On-site ONT sequencing could potentially cut the time from sample to genomic answer from days to hours (research direction, RUO).</li>' +
     '<li><strong>Home preserves — a persistent risk in Russia and Eastern Europe</strong> — dried and smoked fish (type E), mushrooms and vegetable preserves remain classic sources of foodborne botulism; hermetic packaging without oxygen creates ideal conditions for spores. Rapid typing matters for outbreak tracing by food-safety authorities.</li>' +
     '<li><strong>Infant botulism and honey</strong> — the most frequent form of botulism in a number of countries; honey is not recommended for children under one year. Confirming the toxigenic strain in the infant\'s stool speeds up diagnosis with a non-specific picture (hypotonia, weak cry, constipation).</li>' +
     '<li><strong>Wound botulism in people who inject drugs</strong> — a persistent source of outbreaks in Europe and North America requiring rapid detection from wound material.</li>' +
@@ -3234,8 +3234,8 @@
     '<p><em><strong>Paeniclostridium sordellii</strong></em> (formerly <em>Clostridium sordellii</em>) is the agent of <strong>toxic shock after childbirth and uterine medical interventions</strong> (including medical abortion). The clinical portrait is specific and differs from sepsis: <strong>shock without fever</strong>, refractory hypotension, marked <strong>haemoconcentration</strong> (haematocrit up to 60–70%), <strong>leukaemoid reaction</strong> (leukocytes 40–80 thousand), cavitary effusions. Death occurs within <strong>2–6 days</strong>; lethality of the TSS form in published series is <strong>70–100%</strong>. The cause is the lethal toxin <strong>TcsL</strong> from the family of large clostridial glucosylating toxins (a relative of TcdB of <em>C. difficile</em>): it glucosylates small GTPases (Rac, Ras subfamily) → collapse of the endothelial cytoskeleton → <strong>total capillary leak</strong>. Additional arsenal: the haemorrhagic toxin <strong>TcsH</strong> and neuraminidase <strong>NanS</strong> (a promising target for inhibitors).</p>' +
     '<p><em><strong>Clostridium septicum</strong></em> is the agent of <strong>atraumatic (spontaneous) gas gangrene</strong> and an important clinical marker: <em>C. septicum</em> bacteraemia often points to <strong>occult colon cancer or neutropenia</strong> (the bacterium penetrates through a defect of the intestinal wall and seeds muscle). Its alpha-toxin (gene <strong>csa</strong>) is <strong>pore-forming</strong>, related to aerolysin, and NOT a phospholipase C as in <em>C. perfringens</em>. Lethality of spontaneous gangrene is higher than that of traumatic gangrene.</p>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>direct detection of the toxin genes tcsL/tcsH</strong> (<em>P. sordellii</em>) and <strong>csa</strong> (<em>C. septicum</em>) together with <strong>species identification</strong> (16S rRNA and species-specific markers) and differentiation from <em>C. perfringens</em> and other clostridia — a genomic answer for the intensivist, obstetrician and surgeon in hours, not days.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood, lesion tissue, uterine aspirate. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the point-of-care scenario (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the intensivist/obstetrician/surgeon — species identification, toxin gene profile, clostridial differential series; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: blood, lesion tissue, uterine aspirate. Optimal: rapid library preparation and a <strong>Flongle</strong> run for the on-site scenario (Edge).</li>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, toxin gene profile, clostridial differential series; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Toxins, Identification, Differentiation</h2>' +
     '<h3>Toxin genes</h3>' +
@@ -3356,13 +3356,13 @@
   EN['/chauvoei/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_chauvoei.svg" alt="Clostridium chauvoei — spore-forming rod and bull silhouette" style="max-height:120px;margin-bottom:1rem">' +
-    '<h1>Differential Diagnosis of Blackleg (Emphysematous Carbuncle) in Cattle</h1>' +
+    '<h1>Molecular Differentiation of Blackleg (Emphysematous Carbuncle) in Cattle</h1>' +
     '<p style="font-size:1.2em;color:#555">A veterinary card of the "Clostridia Universe" section: sudden cattle death — blackleg or anthrax? A molecular answer on site, before the carcass is opened</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>Clostridium chauvoei</em> is a Gram-positive anaerobic spore-forming rod, the agent of <strong>blackleg (emphysematous carbuncle)</strong> — a fulminant necrotising infection of cattle. The outdated name of the disease — "symptomatic anthrax" — <strong>must not mislead: blackleg has nothing to do with true anthrax (<em>Bacillus anthracis</em>)</strong>, yet the clinical picture of sudden death requires ruling anthrax out first. Spores persist in soil for years; mainly <strong>young cattle aged 6 months to 2 years</strong> are affected — typically well-fed young bulls on pasture. Spores penetrate the muscles (including via microtraumas), where under anaerobic conditions they germinate and cause <strong>crepitant myositis</strong>: gas in the muscles, lameness, high fever, swelling and crackling of the affected area. The disease is lightning-fast — <strong>the animal is often found already dead</strong>, without warning signs.</p>' +
     '<p>From nanopore sequencing data our pipeline performs <strong>species identification</strong> (16S rRNA + species-specific markers) with differentiation from the closest relative <em>C. septicum</em> (with which <em>C. chauvoei</em> is easily confused; see our page <a href="/sordellii/">P. sordellii and C. septicum</a>), <strong>detection of the main virulence factor cctA</strong> and — the key task for the veterinary service — <strong>molecular exclusion of anthrax</strong> (<em>B. anthracis</em>: pagA/cap markers). In sudden cattle death the carcass must not be opened until anthrax is excluded: a rapid on-site answer decides whether to declare quarantine. Additionally the pipeline builds a <strong>molecular-epidemiological picture of the outbreak</strong> (outbreak map).</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1 chemistry). Material: muscle tissue from the affected area, exudate, impression smear. Optimal: rapid library preparation and a <strong>Flongle</strong> run in a regional veterinary laboratory (Edge).</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for the veterinarian and veterinary surveillance — species identification, cctA detection, the <em>B. anthracis</em> exclusion result, epidemiological typing of the outbreak; technical QC report for the bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — species identification, cctA detection, the <em>B. anthracis</em> exclusion result, epidemiological typing of the outbreak; technical QC report for the bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Markers: Virulence, Identification, Anthrax Exclusion</h2>' +
     '<h3>Virulence factors</h3>' +
@@ -3428,12 +3428,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_sarscov2.svg" alt="SARS-CoV-2" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>SARS-CoV-2 Variant and Antiviral Drug Resistance Determination</h1>' +
-    '<p style="font-size:1.2em;color:#555">Nanopore whole-genome sequencing for coronavirus genomic surveillance and personalised treatment selection</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Nanopore whole-genome sequencing for coronavirus genomic surveillance and antiviral-resistance research (RUO)</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p><em>SARS-CoV-2</em> is an RNA virus of the <em>Coronaviridae</em> family, causative agent of COVID-19. Since 2020 the virus has continuously evolved: successive variants (Alpha → Delta → Omicron and sub-variants) show increasing immune escape and altered antiviral drug susceptibility. <strong>Clinically significant resistance to nirmatrelvir (Paxlovid)</strong> has been documented — mutations in the <em>nsp5</em> gene (3CL protease).</p>' +
     '<p>Our pipeline performs whole-genome sequencing using the <strong>ARTIC</strong> protocol (amplicon, nanopore) and automatically delivers: genomic variant/lineage, spike protein mutation profile, and susceptibility assessment for four antiviral drugs.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after basecalling (Dorado, R10.4.1 chemistry). Amplicon sequencing with ARTIC V4.1 / V5.3 primer schemes.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for clinician (variant, S-protein mutations, drug resistance profile) and QC report for bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report (variant, S-protein mutations, drug resistance profile) and QC report for bioinformatician.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: IV — (+)ssRNA</h2>' +
     '<p>Class IV comprises positive-sense single-stranded RNA viruses: the genome is itself an mRNA and is translated by ribosomes into the replicase polyprotein immediately upon entering the cell. In SARS-CoV-2 this is one of the largest known RNA genomes (~30 kb): the replicase complex assembles an RNA-dependent RNA polymerase (<strong>RdRp, nsp12</strong>) that synthesises new genomic RNAs and a set of <strong>subgenomic RNAs</strong> — from which the structural proteins (S, M, N, E) are translated. A unique feature of coronaviruses is the proofreading 3\'→5\' exonuclease <strong>nsp14 (ExoN)</strong>: it corrects RdRp errors, so coronaviruses mutate more slowly than other RNA viruses (though faster than DNA viruses). All clinical genomics of COVID-19 works with the products of this strategy: variant mutations accumulate in the subgenomically encoded S protein, and the resistance targets — <em>nsp5</em> (protease) and <em>nsp12</em> (RdRp) — are the very enzymes of that replicase complex, which our pipeline annotates.</p>' +
     tbl(['Class', 'Genome', 'Replication Strategy', 'Examples'], [
@@ -3488,7 +3488,7 @@
     '<ul><li><strong>WHO</strong> — SARS-CoV-2 genomic epidemiological surveillance is recognised as a mandatory element of pandemic preparedness.</li>' +
     '<li><strong>China</strong> — the first viral genome was published by Chinese scientists in January 2020 (Shanghai, Fudan University), enabling the first PCR tests and vaccines. During the "zero-COVID" era, mass testing and genomic surveillance became a state-scale tool in China — an experience that showed the world the value of rapid genomic diagnostics.</li>' +
     '<li><strong>Nirmatrelvir resistance</strong> — E166V mutation documented in clinical cases; with widespread Paxlovid use, resistance monitoring becomes critical.</li>' +
-    '<li><strong>Nanopore advantage</strong> — the complete SARS-CoV-2 genome (~30 kb) is sequenced in <strong>4–6 hours</strong> from sample to result, enabling same-day clinical decision-making.</li></ul><hr>' +
+    '<li><strong>Nanopore advantage</strong> — the complete SARS-CoV-2 genome (~30 kb) is sequenced in <strong>4–6 hours</strong> from sample to result, delivering same-day results.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://artic.network/ncov-2019">ARTIC Network — SARS-CoV-2 nanopore sequencing protocols</a></li>' +
     '<li>📄 <a href="https://clades.nextstrain.org/">Nextclade — SARS-CoV-2 variant classification</a></li>' +
@@ -3499,12 +3499,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_flu.svg" alt="OnSiteSeq ARVI panel" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Metagenomic Identification of Viral Respiratory Pathogens</h1>' +
-    '<p style="font-size:1.2em;color:#555">Differential diagnosis of influenza A/B, RSV, rhinovirus, coronaviruses and other respiratory viruses — at the bedside</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Research metagenomic identification of influenza A/B, RSV, rhinovirus, coronaviruses and other respiratory viruses (RUO)</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p>Acute respiratory viral infections (ARVI) are caused by dozens of different viruses with clinically indistinguishable presentations. Rapid accurate pathogen identification is critical for three clinical tasks: <strong>antiviral therapy prescription</strong> (oseltamivir for influenza, nirmatrelvir for COVID-19), <strong>infection control</strong> (RSV patient isolation in paediatrics), and <strong>epidemiological surveillance</strong> (monitoring circulating influenza strains).</p>' +
     '<p>Our pipeline uses <strong>metagenomic nanopore sequencing (mNGS)</strong>: the sample (nasopharyngeal swab, BAL) is sequenced without prior knowledge of the pathogen — all viruses are detected simultaneously. For detected influenza A/B, subtype and antiviral resistance profile are additionally determined.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: nasopharyngeal swab / nasopharyngeal aspirate / BAL.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for clinician with identified pathogens, relative abundance, and (for influenza) antiviral resistance profile.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with identified pathogens, relative abundance, and (for influenza) antiviral resistance profile.</li></ul><hr>' +
     '<h2>🧭 Baltimore Classes as a Map of ARI</h2>' +
     '<p>The Baltimore classification divides viruses into seven classes by genome type and mRNA synthesis strategy. Respiratory viruses are scattered across several classes at once — and metagenomic screening sees them all <strong>simultaneously, with a single method</strong>, because it works with nucleic acid directly: the sequencer does not care which replication strategy a virus uses. This is exactly what distinguishes mNGS from PCR panels, where each genome class requires its own amplification scheme.</p>' +
     tbl(['Baltimore Class', 'Genome', 'Pathogens in the ARI Panel'], [
@@ -3561,8 +3561,8 @@
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>WHO</strong> — Global Influenza Surveillance and Response System (GISRS) includes >150 national centres; data on circulating strains determine annual vaccine composition.</li>' +
-    '<li><strong>"Blind" antibiotic therapy problem</strong> — antibiotics are prescribed in ~40–60% of ARVI cases in Russia despite viral aetiology. Accurate bedside pathogen identification prevents unnecessary antibiotic use.</li>' +
-    '<li><strong>RSV season</strong> — annual outbreaks overload paediatric hospitals; nirsevimab (Beyfortus) is given prophylactically to infants before the season, while fast bedside RSV confirmation drives isolation and cohorting on paediatric wards.</li></ul><hr>' +
+    '<li><strong>"Blind" antibiotic therapy problem</strong> — antibiotics are prescribed in ~40–60% of ARVI cases in Russia despite viral aetiology. In the future (after clinical validation), rapid pathogen identification may help reduce unnecessary antibiotic use.</li>' +
+    '<li><strong>RSV season</strong> — annual outbreaks overload paediatric hospitals; nirsevimab (Beyfortus) is given prophylactically to infants before the season, while fast RSV confirmation matters for isolation and cohorting on paediatric wards.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/initiatives/global-influenza-surveillance-and-response-system">WHO — Global Influenza Surveillance and Response System (GISRS)</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/genomes/FLU/">NCBI Influenza Virus Database</a></li>' +
@@ -3573,11 +3573,11 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_cold.svg" alt="OnSiteSeq ARI panel" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>Metagenomic Identification of Bacterial Respiratory Pathogens and Their AMR</h1>' +
-    '<p style="font-size:1.2em;color:#555">Differential diagnosis of community-acquired pneumonia and bacterial ARI — at the bedside</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Research metagenomic identification of bacterial pathogens of pneumonia and ARI with AMR profile (RUO)</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p>Bacterial respiratory infections require accurate identification of the causative agent and its antibiotic susceptibility profile for rational empirical therapy. Our pipeline uses metagenomic nanopore sequencing to simultaneously identify the pathogen and determine its AMR profile.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling. Material: sputum, nasopharyngeal swab, BAL, blood culture.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for clinician with identified pathogens and antibiotic susceptibility profile.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report with identified pathogens and antibiotic susceptibility profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🦠 Detectable Pathogens</h2>' +
     tbl(['Pathogen', 'Clinical Significance'], [
@@ -3625,7 +3625,7 @@
     ]) + '<hr>' +
     '<h2>🌍 Global Context</h2>' +
     '<ul><li><strong>WHO AMR action plan</strong> — community-acquired pneumonia is one of the leading causes of AMR-related mortality globally.</li>' +
-    '<li><strong>Russia</strong> — empirical antibiotic therapy for ARI is often prescribed without pathogen identification; point-of-care mNGS can target therapy and reduce excessive antibiotic use.</li></ul><hr>' +
+    '<li><strong>Russia</strong> — empirical antibiotic therapy for ARI is often prescribed without pathogen identification; in the future (after clinical validation and registration), rapid mNGS could help target therapy; currently the pipeline is research use only (RUO).</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
     '<ul><li>📄 <a href="https://card.mcmaster.ca/">CARD — Comprehensive Antibiotic Resistance Database</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/">NCBI AMRFinderPlus</a></li>' +
@@ -3641,7 +3641,7 @@
     '<p><em>Staphylococcus aureus</em> — a Gram-positive coccus forming characteristic grape-like clusters. Leading causative agent of a broad spectrum of infections: from skin and soft tissue (furuncles, abscesses) to life-threatening — <strong>bacteraemia, infective endocarditis, osteomyelitis, VAP</strong>. WHO has listed MRSA as a priority AMR pathogen (high priority category).</p>' +
     '<p>The key clinical question for any S. aureus: <strong>MRSA or MSSA</strong>. The answer determines the entire treatment strategy. Our pipeline provides a complete genomic answer: mecA/mecC status, full AMR profile across all antibiotic classes, virulence factors (PVL, TSST-1, biofilm), and molecular strain type.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data after High Accuracy basecalling (Dorado SUP, R10.4.1). Material: blood, pus, sputum, biopsy, wound swab.</li>' +
-    '<li><strong>📤 Output:</strong> HTML report for clinician — MRSA/MSSA status, full AMR profile, key virulence factors, SCCmec type; QC report for bioinformatician.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report — MRSA/MSSA status, full AMR profile, key virulence factors, SCCmec type; QC report for bioinformatician.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🎯 Resistance Genes and Clinical Phenotypes</h2>' +
     '<h3>Beta-lactams — key question: MRSA or MSSA</h3>' +
@@ -3738,7 +3738,7 @@
     '<h2>🧬 Pipeline Description</h2>' +
     '<p>Plant diseases caused by oomycetes (Phytophthora), fungi (Fusarium, Botrytis, Alternaria) and bacteria (Pseudomonas, Pectobacterium) cause enormous economic losses in agriculture. Our pipeline provides rapid identification of plant pathogens and their fungicide resistance profile directly in the field — from sample collection to result in hours.</p>' +
     '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data from ITS amplicon sequencing (ITS1/ITS2) or whole-metagenome. Material: infected leaf, root, fruit tissue.</li>' +
-    '<li><strong>📤 Output:</strong> Report for agronomist with identified pathogens, fungicide resistance profile, and treatment recommendations.</li></ul><hr>' +
+    '<li><strong>📤 Output:</strong> RUO report for the agronomist with identified pathogens, fungicide resistance profile.</li></ul><hr>' +
     av('dev', 'dev', 'none') + '<hr>' +
     '<h2>🌿 Detectable Plant Pathogens</h2>' +
     tbl(['Pathogen', 'Disease', 'Economic Significance'], [
@@ -3892,12 +3892,12 @@
   EN['/aboutonsiteseq'] =
     '<h1>About the Complex</h1><hr>' +
     '<h2>OnSiteSeq Edge</h2>' +
-    '<p>Autonomous hardware-software complex (HSC). From FASTQ to clinical conclusion right at the patient\'s bedside or physician\'s desk. Can be used in the field, in remote arctic regions, etc.</p>' +
+    '<p>Autonomous hardware-software complex (HSC). From FASTQ to a research report right where samples are collected, without sending data to a central laboratory. Can be used in the field, in remote arctic regions, etc.</p>' +
     '<p>Built-in sample preparation tools. Data acquired from the built-in Nanoporus sequencer, processed by the Nvidia Jetson AGX GPU module. Ability to print clinical and bioinformatics reports on the built-in thermal printer.</p>' +
     '<p>OnSiteSeq Cockpit bioinformatics container management system is adapted for touchscreen use. Bioinformatics tools distributed via OnSiteSeq Harbor as arm64 Docker containers. Tools adapted for arm64 architecture and GPGPU computing. Open architecture. Continuously updated marketplace of arm64 containers.</p>' +
     '<p><a href="/edge/">More information — OnSiteSeq Edge →</a></p><hr>' +
     '<h2>OnSiteSeq Desktop</h2>' +
-    '<p>OnSiteSeq Cockpit bioinformatics container management system variant adapted for the physician\'s or researcher\'s workstation. Can work paired with OnSiteSeq Edge or use data from other equipment. Bioinformatics tools distributed via OnSiteSeq Harbor as x86 Docker containers. Continuously updated marketplace of x86 containers.</p>' +
+    '<p>OnSiteSeq Cockpit bioinformatics container management system variant adapted for the researcher\'s or laboratory workstation. Can work paired with OnSiteSeq Edge or use data from other equipment. Bioinformatics tools distributed via OnSiteSeq Harbor as x86 Docker containers. Continuously updated marketplace of x86 containers.</p>' +
     '<p><a href="/desktop/">More information — OnSiteSeq Desktop →</a></p><hr>' +
     '<h2>OnSiteSeq Cloud</h2>' +
     '<p>OnSiteSeq Cockpit bioinformatics container management system variant adapted for cloud providers. Can work paired with OnSiteSeq Edge or use data from other equipment. Bioinformatics tools distributed via OnSiteSeq Harbor as x86 Docker containers. Continuously updated marketplace of x86 containers.</p>' +
@@ -3913,7 +3913,7 @@
     '<h3>MIPT Researchers Developed Domestic ML Models for HIV-1 Drug Resistance and Subtype Diagnostics</h3>' +
     '<p>Student-researcher <strong>Roman Gorbenko</strong> (<a href="https://habr.com/ru/users/romangorbenko/articles/">Habr profile</a>) and his scientific supervisor <strong>Nikita Radchenko</strong> developed domestic ML models for HIV-1 drug resistance and subtype diagnostics.</p>' +
     '<p>The key achievement is a functional domestic analogue of two foreign platforms: the American <strong>Stanford HIV Drug Resistance Database (HIVDB)</strong> and the European web service <strong>COMET</strong> (Luxembourg Institute of Health), which had been used without alternative by Russian researchers until recently.</p>' +
-    '<p>External validation on a dataset provided by <strong>CRIFEM Rospotrebnadzor</strong> showed a mean <strong>AUC = 0.990</strong> — a clinically significant level of accuracy for diagnostic applications. The developed ML models were tested within full-cycle bioinformatics pipelines — from raw genomic reads to clinically significant reports — and deployed on the specially developed hardware-software complex <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong>.</p><hr>' +
+    '<p>External validation on a dataset provided by <strong>CRIFEM Rospotrebnadzor</strong> showed a mean <strong>AUC = 0.990</strong> — a high level of accuracy on retrospective data (clinical use requires clinical trials and medical-device registration). The developed ML models were tested within full-cycle bioinformatics pipelines — from raw genomic reads to interpretable research reports — and deployed on the specially developed hardware-software complex <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong>.</p><hr>' +
     '<h2>🔬 Other MIPT Innovations</h2>' +
     '<p>Phystech actively conducts research at the cutting edge of science and technology. Some recent achievements:</p>' +
     '<p><strong><a href="https://mipt.ru/news/v-mfti-uskorili-modelirovanie-vzryva-atomnogo-yadra-">MIPT Accelerated Nuclear Explosion Modelling</a></strong><br>New approach to numerical modelling of nuclear processes with significant computation acceleration.</p>' +
@@ -3971,11 +3971,11 @@
   /* ── GxP ── */
   EN['/gxp'] =
     '<h1>GxP: Good Practice Standards for Quality Assurance</h1>' +
-    '<p>In developing OnSiteSeq, we strictly follow international GxP standards to ensure quality and data integrity at all stages — from sample collection to clinical conclusion.</p><hr>' +
+    '<p>In developing OnSiteSeq, we strictly follow international GxP standards to ensure quality and data integrity at all stages — from sample collection to the research report. The current product status is RUO (research use only, not for diagnostic use).</p><hr>' +
     '<h2>What is GxP</h2>' +
     '<p><strong>GxP</strong> — a general term for the family of "Good X Practice" standards regulating quality in medical and pharmaceutical industries:</p>' +
     tbl(['Standard', 'Full Name', 'Application Area'], [
-      ['<strong>GMP</strong>', 'Good Manufacturing Practice', 'Medical device manufacturing'],
+      ['<strong>GMP</strong>', 'Good Manufacturing Practice', 'Manufacturing of medicinal products'],
       ['<strong>GLP</strong>', 'Good Laboratory Practice', 'Laboratory research'],
       ['<strong>GCP</strong>', 'Good Clinical Practice', 'Clinical trials'],
       ['<strong>GDP</strong>', 'Good Distribution Practice', 'Distribution']
@@ -3986,7 +3986,7 @@
     '<ul><li><strong>Device authorisation.</strong> When using the touchscreen, the healthcare worker authorises before launching, so logs record exactly who initiated the processes.</li>' +
     '<li><strong>Pipeline, tool, and model versioning.</strong> OnSiteSeq bioinformatics reports contain versions of all components: proprietary pipelines, ML models, and dependency tools — strictly in accordance with the attributability principle.</li></ul>' +
     '<h3>L — Legible</h3><p><em>Is the data understandable to a physician and auditor years later?</em></p>' +
-    '<ul><li><strong>Dual reporting.</strong> Results split into <strong>Clinical Report</strong> for the clinician and <strong>Bioinformatics QC Report</strong> for the specialist.</li>' +
+    '<ul><li><strong>Dual reporting.</strong> Results split into an <strong>interpretation report</strong> (research, RUO) and a <strong>bioinformatics QC report</strong> for the specialist.</li>' +
     '<li><strong>Physical and digital copies.</strong> Built-in thermal printer provides instant on-site readability. Digital PDF copies saved on SSD with clear file nomenclature.</li></ul>' +
     '<h3>C — Contemporaneous</h3><p><em>Is data recorded at the moment it is generated?</em></p>' +
     '<ul><li><strong>Timestamps.</strong> All stages — from GPU base-calling to report output — are logged in real time.</li>' +
@@ -3996,7 +3996,7 @@
     '<li><strong>Immutability.</strong> Source reads are never overwritten during genome assembly and analysis.</li></ul>' +
     '<h3>A — Accurate</h3><p><em>Are the data reliable and is there quality control?</em></p>' +
     '<ul><li><strong>QC metrics.</strong> The bioinformatics report contains key metrics: genome coverage percentage, mean depth, and blind zones.</li>' +
-    '<li><strong>AI confidence.</strong> The clinical report displays neural network confidence as a percentage (e.g., 99.98% for subtype B), so the physician can assess prediction reliability.</li></ul>' +
+    '<li><strong>AI confidence.</strong> The interpretation report displays neural network confidence as a percentage (e.g., 99.98% for subtype B), so the researcher can assess prediction reliability.</li></ul>' +
     '<h3>+ (Plus)</h3>' +
     tbl(['Principle', 'Implementation in OnSiteSeq'], [
       ['<strong>Complete</strong>', 'OnSiteSeq Cockpit saves logs of even interrupted or failed runs (status "FAIL" if coverage <80%)'],
@@ -4039,7 +4039,7 @@
   EN['/conferences/bppb-2026/'] =
     '<div class="product-header" style="text-align: center; margin-bottom: 2rem;">' +
     '<h1>II All-Russian Scientific and Practical Conference "Biotechnologies for the Food Industry of the Future: A Platform for Science and Industry"</h1>' +
-    '<p style="font-size: 1.2em; color: #555;">OnSiteSeq poster on rapid field diagnostics of rice blast</p></div><hr>' +
+    '<p style="font-size: 1.2em; color: #555;">OnSiteSeq poster on rapid field detection of rice blast</p></div><hr>' +
     '<h2>🎤 About the Conference</h2>' +
     '<p>On 18 September 2026, the <strong>Engelhardt Institute of Molecular Biology of the Russian Academy of Sciences</strong> (Moscow), with the participation of MIPT, hosted the II All-Russian Scientific and Practical Conference <strong>"Biotechnologies for the Food Industry of the Future: A Platform for Science and Industry" (BPPB-2026)</strong>. The conference brought together teams from Moscow, Saint Petersburg, Voronezh, Barnaul, Koltsovo and Minsk — from academic institutes to industrial laboratories.</p>' +
     '<p>The <strong>OnSiteSeq</strong> team presented a poster:</p>' +
@@ -4054,7 +4054,7 @@
     '<img src="/assets/images/conf/bppb2026_photo.jpg" alt="OnSiteSeq poster at the BPPB-2026 poster session" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
     '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">The same OnSiteSeq poster, second shot: the author presents the work in the poster session foyer</p></div></div><hr>' +
     '<h2>📋 Poster Session</h2>' +
-    '<p>The poster session was hosted in the bright marble foyer of the Engelhardt Institute of Molecular Biology RAS: stands on mobile racks lined up in rows beneath the historic chandeliers. The topics of the works ranged from recombinant chymosin and multienzyme preparations to oleaginous yeasts, bacterial nanocellulose and rapid field genomics. Against this background, the OnSiteSeq poster on field diagnostics of rice blast fitted naturally into the "science for industry" agenda: fungicide resistance of phytopathogens follows the same AMR logic as the project\'s clinical pipelines — just on the agronomist\'s side.</p>' +
+    '<p>The poster session was hosted in the bright marble foyer of the Engelhardt Institute of Molecular Biology RAS: stands on mobile racks lined up in rows beneath the historic chandeliers. The topics of the works ranged from recombinant chymosin and multienzyme preparations to oleaginous yeasts, bacterial nanocellulose and rapid field genomics. Against this background, the OnSiteSeq poster on field detection of rice blast fitted naturally into the "science for industry" agenda: fungicide resistance of phytopathogens follows the same AMR logic as the project\'s clinical pipelines — just on the agronomist\'s side.</p>' +
     '<p>Photos of colleagues\' posters — with captions describing their content:</p>' +
     '<div class="gallery" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">' +
     '<div style="flex: 1 1 300px; min-width: 300px;">' +
@@ -4121,12 +4121,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_asfv.svg" alt="非洲猪瘟病毒 (ASFV)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>非洲猪瘟 — ASFV</h1>' +
-    '<p style="font-size:1.2em;color:#555">猪场门口即时检测:基因分型、低毒力缺失变异株、与经典猪瘟鉴别</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">猪场门口现场检测 (RUO):基因分型、低毒力缺失变异株、与经典猪瘟鉴别</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><strong>非洲猪瘟病毒 (ASFV)</strong> 是非洲猪瘟病毒科 (Asfarviridae) 的大型有囊膜 DNA 病毒(基因组 170–190 kb),引起家猪急性出血热,致死率高达 <strong>100%</strong>。该病毒不感染人,但却是近十年来经济破坏力最强的兽医病原体:2018–2019 年中国的疫情摧毁了全球最大养猪业约 40% 的存栏。由于尚无广泛可用的疫苗,防控完全依赖早期检测与猪场生物安全。</p>' +
     '<p>我们的流程在猪场或兽医实验室现场进行纳米孔测序:确认 ASFV DNA、基于 <em>p72</em> 基因 (<em>B646L</em>) 进行基因分型,并——对当前疫情形势至关重要——<strong>检测低毒力缺失变异株</strong> (Δ<em>CD2v</em>、Δ<em>MGF360/505</em>)。这类变异株 2020–2021 年在中国扩散,表现为慢性感染,令常规监测手段失效。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:EDTA 抗凝血、脾脏、淋巴结、扁桃体;设备拭子、饲料、饮水。</li>' +
-    '<li><strong>📤 输出:</strong> 面向兽医的 HTML 报告 — ASFV DNA 检测结果、<em>p72</em> 基因型、<em>CD2v</em>/<em>MGF</em>/<em>I177L</em> 缺失状态、与经典猪瘟 (CSF) 的鉴别。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — ASFV DNA 检测结果、<em>p72</em> 基因型、<em>CD2v</em>/<em>MGF</em>/<em>I177L</em> 缺失状态、与经典猪瘟 (CSF) 的鉴别。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:I — 双链DNA</h2>' +
     '<p>I 类为双链DNA基因组病毒:转录沿细胞熟悉的路径 DNA → mRNA 进行。ASFV 是该类中的"巨人"之一:170–190 kb 的基因组编码 150–200 种自身蛋白,包括自身的 DNA 聚合酶、修复酶和 RNA 聚合酶。与大多数 DNA 病毒不同,ASFV 在感染细胞的细胞质中复制 —— 病毒在那里构建几乎不依赖宿主细胞核机器的"病毒工厂"。携带自身复制装置的大型 DNA 基因组可以容忍整个基因块的缺失:<strong>低毒力缺失变异株</strong>(Δ<em>CD2v</em>、Δ<em>MGF360/505</em>)正是这样产生的,而检测它们正是流程的关键任务。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -4172,7 +4172,7 @@
     '<p><strong>乙型肝炎病毒 (HBV)</strong> 是一种嗜肝 DNA 病毒,基因组为部分双链 DNA(约 3.2 kb)。慢性乙型肝炎是全球肝硬化和肝细胞癌 (HCC) 的首要病因:据世界卫生组织估计,全球约有 2.54 亿 HBV 感染者,其中约三分之一在中国。现代核苷(酸)类似物(恩替卡韦、替诺福韦)具有较高的耐药屏障,但亚洲有数百万患者曾长期服用拉米夫定和阿德福韦——体内已积累耐药突变。</p>' +
     '<p>我们的流程基于纳米孔测序数据确定<strong>病毒基因型 (A–J)</strong>、<strong>逆转录酶(聚合酶)耐药谱</strong>、导致 HBeAg 阴性病程的 preC/BCP 突变,以及 HBsAg 逃逸突变——为治疗方案的选择与调整提供完整的病毒基因组档案。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血浆/血清。最佳方案:<em>pol</em> 与 preS/S 扩增子测序<strong>或</strong>全基因组覆盖的靶向富集。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — HBV 基因型、核苷(酸)类似物敏感性谱、preC/BCP 与 HBsAg 逃逸状态及治疗解读。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — HBV 基因型、核苷(酸)类似物敏感性谱、preC/BCP 与 HBsAg 逃逸状态。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:VII — 双链DNA-逆转录(副逆转录病毒)</h2>' +
     '<p>VII 类为副逆转录病毒:基因组是 DNA,但复制需经逆转录 —— 与 VI 类逆转录病毒恰好"镜像"相反。HBV 病毒颗粒中包装的是部分双链环状 DNA(rcDNA,约 3.2 kb),进入肝细胞核后被修复为共价闭合环状 DNA(<strong>cccDNA</strong>)—— cccDNA 正是慢性化的储库,现有核苷(酸)类似物无法将其清除。以 cccDNA 为模板转录出前基因组 RNA(<strong>pgRNA</strong>),病毒聚合酶(<em>pol</em> 基因)在装配新颗粒时将其逆转录回 DNA。因此 HBV 的耐药突变就是 <em>pol</em> 基因 rt 结构域的突变:经典的 YMDD 替换 <strong>rtM204V</strong> 改变逆转录酶的催化基序,使拉米夫定失效(见下方突变表)。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -4307,7 +4307,7 @@
     '<p><em>幽门螺杆菌 (Helicobacter pylori)</em> 是一种定植于胃黏膜的革兰阴性细菌 — 慢性胃炎和消化性溃疡的首要病因,也是胃癌的危险因素(IARC 1 类致癌物)。根除成功率直接取决于菌株的敏感性 — 尤其是对克拉霉素和左氧氟沙星的敏感性。</p>' +
     '<p>我们的流程基于纳米孔测序数据,直接从活检样本中确定完整的耐药谱和关键毒力因子(<em>cagA</em>、<em>vacA</em>),无需培养 — 幽门螺杆菌生长缓慢且培养条件苛刻,传统细菌学方法需要 7–14 天。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别(R10.4.1 化学体系,Dorado SUP)后的原始 <code>FASTQ</code> 数据。样本:胃窦或胃体活检组织。最佳方案:<em>23S rRNA</em> 与 <em>gyrA</em> 位点扩增子测序<strong>或</strong>培养物/富集样本的全基因组测序 (WGS)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,包含根除方案的敏感性谱和毒力因子状态;面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告,包含根除方案的敏感性谱和毒力因子状态;面向生物信息分析师的质控报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4334,7 +4334,7 @@
       ['<strong>利福布汀</strong>', '三线治疗', '多次根除失败后的储备用药']
     ]) + '<hr>' +
     '<h2>🧫 毒力因子</h2>' +
-    '<p>除耐药性外,报告还包含关键毒力因子状态 — 对医生具有预后价值的信息:</p>' +
+    '<p>除耐药性外,报告还包含关键毒力因子状态 — 对发病机制研究有价值的信息:</p>' +
     tbl(['因子', '变异型', '临床意义'], [
       ['<strong>cagA</strong>(cagPAI 岛)', '存在 / 缺失', 'cagA+ 菌株 — 消化性溃疡和胃癌风险升高'],
       ['<strong>vacA</strong>', 's1/s2、m1/m2 等位基因', 's1/m1 — 毒性最强的变异型,与重症疾病相关']
@@ -4370,12 +4370,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_sarscov2.svg" alt="SARS-CoV-2" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>SARS-CoV-2 变异株与抗病毒药物耐药性检测</h1>' +
-    '<p style="font-size:1.2em;color:#555">用于冠状病毒基因组监测与个体化治疗选择的纳米孔全基因组测序</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">用于冠状病毒基因组监测与抗病毒耐药研究 (RUO) 的纳米孔全基因组测序</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><em>SARS-CoV-2</em> 是冠状病毒科 (<em>Coronaviridae</em>) 的一种 RNA 病毒,为 COVID-19 的病原体。自 2020 年以来,病毒持续进化:接连出现的变异株(Alpha → Delta → Omicron 及其亚型)表现出不断增强的免疫逃逸能力和不断变化的抗病毒药物敏感性。<strong>已记录到具有临床意义的奈玛特韦 (Paxlovid) 耐药性</strong> — <em>nsp5</em> 基因(3CL 蛋白酶)突变。</p>' +
     '<p>我们的流程采用 <strong>ARTIC</strong> 方案(扩增子法,纳米孔)进行全基因组测序,并自动提供:基因组变异株/谱系、刺突蛋白突变谱,以及四种抗病毒药物的敏感性评估。</p>' +
     '<ul><li><strong>📥 输入:</strong> 碱基识别(Dorado,R10.4.1 化学体系)后的原始 <code>FASTQ</code> 数据。采用 ARTIC V4.1 / V5.3 引物方案的扩增子测序。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告(变异株、S 蛋白突变、耐药谱)和面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告(变异株、S 蛋白突变、耐药谱)和面向生物信息分析师的质控报告。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:IV — 正链ssRNA</h2>' +
     '<p>IV 类为正链单链RNA病毒:基因组本身即是 mRNA,进入细胞后立刻由核糖体翻译为复制酶多聚蛋白。SARS-CoV-2 拥有已知最大的 RNA 基因组之一(约 30 kb):复制酶复合体组装出 RNA 依赖的 RNA 聚合酶(<strong>RdRp,nsp12</strong>),合成新的基因组 RNA 及一组<strong>亚基因组 RNA</strong> —— 结构蛋白(S、M、N、E)即由后者翻译。冠状病毒独有的特征是校正型 3\'→5\' 外切核酸酶 <strong>nsp14(ExoN)</strong>:它纠正 RdRp 的错误,因此冠状病毒的突变速度慢于其他 RNA 病毒(但快于 DNA 病毒)。COVID-19 的临床基因组学全部围绕这一策略的产物展开:变异株突变积累在亚基因组编码的 S 蛋白中,而耐药靶点 —— <em>nsp5</em>(蛋白酶)和 <em>nsp12</em>(RdRp)—— 正是该复制酶复合体的酶,也是我们的流程所注释的对象。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -4435,7 +4435,7 @@
     '<ul><li><strong>WHO</strong> — SARS-CoV-2 基因组流行病学监测被公认为大流行防范的必要组成部分。</li>' +
     '<li><strong>中国</strong> — 首个病毒基因组由中国科学家于 2020 年 1 月发表(上海,复旦大学),使首批 PCR 检测和疫苗成为可能。在"动态清零"时期,大规模检测与基因组监测在中国成为国家规模的工具 — 这一经验向世界展示了快速基因组诊断的价值。</li>' +
     '<li><strong>奈玛特韦耐药</strong> — E166V 突变已在临床病例中记录;随着 Paxlovid 的广泛使用,耐药监测变得至关重要。</li>' +
-    '<li><strong>纳米孔优势</strong> — 完整的 SARS-CoV-2 基因组(约 30 kb)从样本到结果仅需 <strong>4–6 小时</strong>,可实现当天临床决策。</li></ul><hr>' +
+    '<li><strong>纳米孔优势</strong> — 完整的 SARS-CoV-2 基因组(约 30 kb)从样本到结果仅需 <strong>4–6 小时</strong>,可当天获得结果。</li></ul><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://artic.network/ncov-2019">ARTIC Network — SARS-CoV-2 纳米孔测序方案</a></li>' +
     '<li>📄 <a href="https://clades.nextstrain.org/">Nextclade — SARS-CoV-2 变异株分类</a></li>' +
@@ -4452,7 +4452,7 @@
     '<p>毒力由大型 <strong>pLVPK 型质粒</strong>(约 200 kb)决定:其标志物包括荚膜调控因子 <strong>rmpA/rmpA2</strong>、气杆菌素位点(<strong>iucA/iutA</strong> — hvKP 最具特异性的标志物)、沙门菌素 <strong>iroB</strong> 和代谢标志物 <strong>peg-344</strong>。该质粒富含重复序列与插入序列元件,短读长无法完整组装 — 这正是纳米孔测序的核心优势:长读长可解析毒力与耐药质粒的完整结构,实现混合/T2T 组装,并同时获得 MLST、荚膜分型 (wzi、Kaptive) 和耐药组。</p>' +
     '<p>我们的流程回答感染控制的核心问题:<strong>高毒力与碳青霉烯耐药性的汇聚</strong>。中国医院中高致死率的 ST11 CR-hvKP (blaKPC-2) 暴发表明,追踪此类汇聚型菌株是优先任务。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:培养物、腹水/穿刺液、血液。最佳方案:分离株全基因组测序或靶向/宏基因组富集。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生与流行病学专家的 HTML 报告 — hvKP/cKP 判定、荚膜血清型与 wzi 等位基因、ST (MLST)、pLVPK 质粒毒力标志物谱、耐药组及汇聚风险评估。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — hvKP/cKP 判定、荚膜血清型与 wzi 等位基因、ST (MLST)、pLVPK 质粒毒力标志物谱、耐药组及汇聚风险评估。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4502,14 +4502,14 @@
   ZH['/sfts/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_sfts.svg" alt="大别班达病毒 (SFTSV) 及其蜱媒" style="max-height:120px;margin-bottom:1rem">' +
-    '<h1>发热伴血小板减少综合征 (SFTS) 病毒的诊断与节段分析</h1>' +
+    '<h1>发热伴血小板减少综合征 (SFTS) 病毒的检测与节段分析</h1>' +
     '<p style="font-size:1.2em;color:#555">大别班达病毒鉴定、L/M/S 节段完整分析、系统发育与节段重配追踪 — 一次宏基因组分析完成</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><strong>大别班达病毒 (Dabie bandavirus)</strong>(旧称 SFTS 病毒,SFTSV)是白纤病毒科 (<em>Phenuiviridae</em>,布尼亚病毒目 <em>Bunyavirales</em>) 的一种分节段有囊膜病毒,为发热伴血小板减少综合征的病原体。基因组由三条负链/双义单链 RNA 节段组成:<strong>L</strong>(约 6.3 kb,RNA 依赖的 RNA 聚合酶 RdRp)、<strong>M</strong>(约 3.3 kb,糖蛋白 Gn/Gc — 中和抗体的主要靶标)和 <strong>S</strong>(约 1.7 kb,核蛋白 N 和非结构蛋白 NSs — 干扰素应答拮抗剂,以双义方向编码)。病毒主要由长角血蜱 (<em>Haemaphysalis longicornis</em>) 传播;疫源地位于中国东部和中部(河南、山东、安徽、湖北、江苏等省)以及日本和韩国。</p>' +
     '<p>临床表现为发热、血小板减少、白细胞减少、胃肠道症状、出血和多器官功能障碍;不同观察系列的病死率可达 10–30%。已有通过接触患者血液和分泌物发生人际传播的报道(包括医务人员和家庭成员)。目前无特异性治疗和获批疫苗;利巴韦林无效,法匹拉韦曾在日本进行研究。</p>' +
-    '<p>疾病急性期病毒载量高,病毒可通过直接测序可靠检出:在中国广泛应用的临床宏基因组测序 (mNGS) 最常为不明原因发热带来 SFTS 诊断。我们的流程实现了<strong>流行区县级医院的床旁纳米孔 mNGS</strong>:长读长几乎可以完整覆盖整个节段,不仅能鉴定病毒,还能进行 L/M/S 节段分析、系统发育分析及谱系间节段重配追踪,并将 SFTS 与其他出血热和立克次体病相鉴别。配备 Flongle 适配器的 MinION 可快速给出结果,适合在县级医院现场部署。</p>' +
+    '<p>疾病急性期病毒载量高,病毒可通过直接测序可靠检出:在中国广泛应用的临床宏基因组测序 (mNGS) 最常为不明原因发热带来 SFTS 诊断。我们的流程 (RUO) 实现了<strong>面向流行区现场研究的纳米孔 mNGS</strong>:长读长几乎可以完整覆盖整个节段,不仅能鉴定病毒,还能进行 L/M/S 节段分析、系统发育分析及谱系间节段重配追踪,并将 SFTS 与其他出血热和立克次体病相鉴别。配备 Flongle 适配器的 MinION 可快速给出结果,适合在流行区现场开展研究。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:急性期血浆/血清或全血。最佳方案:去除核糖体 RNA/宿主背景的宏基因组测序<strong>或</strong>针对 L/M/S 节段的靶向富集。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 大别班达病毒鉴定、L/M/S 节段覆盖度与一致序列、遗传谱系与重配迹象,以及与其他发热病原体的鉴别。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 大别班达病毒鉴定、L/M/S 节段覆盖度与一致序列、遗传谱系与重配迹象,以及与其他发热病原体的鉴别。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:V — 负链ssRNA(负义单链RNA)</h2>' +
     '<p>与流感病毒一样,SFTSV 属于 V 类:基因组为负链单链RNA,无法直接翻译,因此病毒自带 RdRp 进入细胞,合成(+)链 mRNA。基因组分为<strong>三个节段</strong>:<strong>L</strong> 编码 RdRp 本身,<strong>M</strong> 编码囊膜糖蛋白 Gn/Gc,<strong>S</strong> 编码核衣壳蛋白 N。一个教科书式的细节:布尼亚病毒的 S 节段采用<strong>双义(ambisense)</strong>策略 —— N 蛋白由病毒(−)链编码,而非结构蛋白 NSs 以相反的(+)方向编码,即翻译两种蛋白需要两种极性的 RNA。与流感一样,分节段特性为重配打开了大门 —— 不同谱系之间交换 L/M/S 节段,流程正是通过节段系统发育的不一致性来追踪这一现象。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -4564,8 +4564,8 @@
     '<ul><li><strong>世卫组织优先事项</strong> — SFTS 已列入世卫组织 R&D Blueprint 优先清单:具有流行潜力且缺乏有效应对措施的疾病(尚无特异性治疗和获批疫苗)。</li>' +
     '<li><strong>流行区</strong> — 中国每年报告数千例 SFTS;疾病在东部和中部省份以及日本、韩国持续流行,当地曾发生致死性暴发。</li>' +
     '<li><strong>媒介分布区扩张</strong> — 长角血蜱除有性生殖外还能孤雌生殖,加速其扩散;该蜱已传入美国和澳大利亚。病毒本身尚未在东亚以外立足,但媒介分布区的扩张要求诊断能力做好准备。</li>' +
-    '<li><strong>院内感染风险</strong> — 已有通过接触患者血液和分泌物发生人际传播的报道(医务人员和家庭成员均有病例),因此快速的床旁诊断直接影响防疫措施。</li>' +
-    '<li><strong>mNGS 成为标准</strong> — 中国已广泛应用临床宏基因组测序,mNGS 最常为不明原因发热检出 SFTSV;纳米孔平台使这一方法可在流行区县级医院落地。</li></ul><hr>' +
+    '<li><strong>院内感染风险</strong> — 已有通过接触患者血液和分泌物发生人际传播的报道(医务人员和家庭成员均有病例),因此分子确认的速度对防疫措施至关重要。</li>' +
+    '<li><strong>mNGS 成为标准</strong> — 中国已广泛应用临床宏基因组测序,mNGS 最常为不明原因发热检出 SFTSV;纳米孔平台使这一方法可直接在流行区开展研究。</li></ul><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/teams/blueprint">WHO — 预防流行病 R&D Blueprint</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1936904/">NCBI Taxonomy — 大别班达病毒</a></li>' +
@@ -4576,14 +4576,14 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_magnaporthe.svg" alt="稻瘟病菌 (Magnaporthe oryzae)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>稻瘟病 — Magnaporthe oryzae</h1>' +
-    '<p style="font-size:1.2em;color:#555">稻瘟病田间诊断,含 Avr 效应蛋白谱与杀菌剂敏感性分析 — 数小时内完成,就在稻田边</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">稻瘟病田间检测,含 Avr 效应蛋白谱与杀菌剂敏感性分析 — 数小时内完成,就在稻田边</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><em>Magnaporthe oryzae</em>(异名 <em>Pyricularia oryzae</em>)是一种子囊菌,为稻瘟病 — 全球最具破坏性的水稻病害的病原。稻瘟病每年造成的产量损失估计达 10–30%,这些稻谷本可养活数千万人。中国是全球最大的水稻生产国,将稻瘟病视为水稻生产的头号威胁。</p>' +
     '<p>该种包含多个致病型:水稻致病型 (<em>Oryza</em>) 和 <em>Triticum</em> 致病型 — "小麦瘟病" (wheat blast) 的病原,最早出现于南美洲,后传入孟加拉国 (2016) 和非洲。致病型的鉴别对检疫防控至关重要。</p>' +
     '<p>病原群体进化极快:抗病水稻品种(携带 <strong>Pi</strong> 基因)几年内就会被"突破"。因此需要在田间持续监测生理小种和效应蛋白谱。无毒基因(<strong>Avr</strong> 效应蛋白:<em>Avr-Pita</em>、<em>Avr-Pik</em>、<em>Avr-Piz-t</em>、<em>Avr-Pii</em> 等)决定哪些 Pi 基因对当地小种仍然有效。效应蛋白基因常位于亚端粒区,处于重复序列与转座子之中 — 短读长难以解析,而 <strong>ONT 长读长可实现这些位点的完整组装与定相</strong>。</p>' +
     '<p>我们的流程对感病水稻叶片和节部直接在田间(Flongle 芯片)进行<strong>宏基因组与靶向纳米孔测序</strong>。数小时内,农艺师即可获得病原的种与致病型鉴定、<strong>Avr 效应蛋白谱</strong>(抗病品种选择建议)、<strong>杀菌剂敏感性谱</strong>(杀菌剂方案建议)以及病原谱系迁移监测数据。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:感病水稻叶片与节部、组织匀浆。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 病原的种与致病型、Avr 效应蛋白谱、杀菌剂敏感性与田间防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 病原的种与致病型、Avr 效应蛋白谱、杀菌剂敏感性。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4628,14 +4628,14 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_hlb.svg" alt="柑橘黄龙病 (HLB)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>柑橘黄龙病 — 亚洲韧皮部杆菌 <i>Candidatus</i> Liberibacter asiaticus</h1>' +
-    '<p style="font-size:1.2em;color:#555">柑橘"青果病"的田间分子诊断,含菌株分型与前噬菌体谱分析 — 数小时内完成,就在区域农业实验室</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">柑橘"青果病"的田间分子检测,含菌株分型与前噬菌体谱分析 — 数小时内完成,就在区域农业实验室</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>亚洲韧皮部杆菌(<em>Candidatus</em> Liberibacter asiaticus,CLas)是一种革兰氏阴性 α-变形菌,为柑橘韧皮部的专性寄生菌,也是黄龙病(HLB,柑橘"青果病")的病原 — 全球柑橘种植业最具破坏性的病害。CLas 的关键生物学特性:病原<strong>无法在人工培养基上培养</strong>,因此经典微生物学方法和快速显微检测均无效 — 诊断与流行病学监测<strong>只能依靠分子方法</strong>。</p>' +
     '<p>该病由媒介昆虫传播 — 亚洲柑橘木虱 <em>Diaphorina citri</em>(非洲种病原则由非洲木虱 <em>Trioza erytreae</em> 传播)。典型症状:<strong>叶片不对称的斑驳状黄化</strong>(blotchy mottle)、果实不对称发育不良且在果柄处保持绿色(故称"青果病",citrus greening)、果实味苦、提前落果。病树在数年内衰败死亡。<strong>目前无治疗方法</strong> — 唯一有效的策略是:早期检测 → 清除病树 → 防控木虱。因此,诊断的速度与可及性决定一切。</p>' +
     '<p>CLas 基因组较小(~1.2 Mb),GC 含量偏低。其最重要的特征是<strong>前噬菌体</strong>(SC1、SC2,1/2/3 型):其组成可作为追踪菌株的流行病学标志物。菌株分型基于 SNP 簇和 MLVA 位点。前噬菌体区域和富含重复序列的区域难以用短读长组装,而 <strong>ONT 长读长可获得完整的前噬菌体区域和可靠的系统发育分析</strong>。实际难点在于韧皮部中细菌滴度低且分布不均,因此流程依赖靶向富集或宏基因组测序并去除宿主材料。样本:带斑驳叶片的叶柄与主脉,以及木虱。</p>' +
     '<p>我们的流程在区域农业实验室(Flongle 芯片)直接对样本进行<strong>靶向与宏基因组纳米孔测序</strong>。数小时内,农艺师即可获得 CLas 检测结果、CLas / CLaf(非洲种)/ CLam(美洲种)的<strong>种间鉴别</strong> — 具有直接检疫意义、<strong>SNP 簇/谱系鉴定</strong>以及用于流行病学监测的<strong>前噬菌体谱</strong>(SC1/SC2)。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:带斑驳叶片的叶柄与主脉、组织匀浆、木虱。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师与植检部门的 HTML 报告 — CLas 检测、病原种 (CLas/CLaf/CLam)、SNP 谱系、前噬菌体谱及检疫措施建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师与植检部门的仅供研究使用 (RUO) HTML 报告 — CLas 检测、病原种 (CLas/CLaf/CLam)、SNP 谱系、前噬菌体谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4678,7 +4678,7 @@
   ZH['/thalassemia/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_thalassemia.svg" alt="地中海贫血 — 遗传性血红蛋白病" style="max-height:120px;margin-bottom:1rem">' +
-    '<h1>地中海贫血及遗传性血红蛋白病的诊断</h1>' +
+    '<h1>地中海贫血及遗传性血红蛋白病的分子分析</h1>' +
     '<p style="font-size:1.2em;color:#555">HBA 簇缺失、HBB 突变及其定相 — 一项长读长检测替代 gap-PCR + MLPA + Sanger 组合</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><strong>地中海贫血</strong>是血红蛋白珠蛋白链合成的遗传性疾病:<strong>α-地中海贫血</strong>(16 号染色体上的 <em>HBA1/HBA2</em> 基因簇)和 <strong>β-地中海贫血</strong>(11 号染色体上的 <em>HBB</em> 基因)。重型 — Hb H 病、Hb Bart\'s 胎儿水肿(α 基因 --/-- 状态)以及需要终身输血并伴铁过载的重型 β-地中海贫血 — 构成全球最重要的遗传病负担之一。</p>' +
@@ -4686,7 +4686,7 @@
     '<p><strong>Oxford Nanopore 长读长</strong>用一项检测解决问题 — 针对 <em>HBA/HBB</em> 位点的 LR-PCR 扩增子或靶向富集 / adaptive sampling 可以:(1) 直接检出大片段缺失并确定精确断裂点;(2) 解析 <em>HBA1/HBA2</em> 同源性;(3) 对突变进行定相 (cis/trans);(4) 同时检出 <em>HBB</em> 点变异。已发表研究显示 ONT 方法与 gap-PCR/MLPA/Sanger 组合完全一致 — 用一项检测替代 3–4 项独立检测。</p>' +
     '<p>我们的流程输出统一的基因组档案:α-缺失与非缺失型变异、<em>HBB</em> 突变、单倍型定相以及面向遗传咨询的现成解读。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液基因组 DNA(包括用于产前诊断的绒毛膜绒毛/羊水)。最佳方案:<em>HBA</em> 与 <em>HBB</em> 位点长读长扩增子 (LR-PCR)<strong>或</strong>靶向富集 / adaptive sampling。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — α 与 β 位点基因型(缺失、点变异、定相)、携带状态与夫妇风险解读、产前/植入前 (PGT-M) 诊断结论。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — α 与 β 位点基因型(缺失、点变异、定相)、携带状态与夫妇风险解读、产前/植入前 (PGT-M) 遗传学研究数据。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4753,8 +4753,8 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><strong>产气荚膜梭菌</strong>是一种革兰氏阳性厌氧产孢杆菌(<em>perfringens</em> 意为"穿透"组织),是<strong>约 95% 气性坏疽病例</strong>(梭菌性肌坏死)的病原体。这是一种暴发性感染:创伤后 <strong>1–6 小时</strong>内出现症状,坏死沿肌肉以每小时<strong>约 15 厘米</strong>的速度蔓延,未经治疗的致死率达 <strong>67–100%</strong>,多数死亡发生在<strong>最初 24 小时</strong>内。如此病程下,既没有时间做培养诊断(需数天),也无法"试药"使用抗生素——当天就需要结果,就在创伤中心的急诊室。</p>' +
     '<p>我们的流程基于纳米孔测序数据,根据毒素基因谱确定<strong>毒素分型 (A–G)</strong>,进行<strong>菌种鉴定</strong>并与 <em>C. septicum</em>(致死率更高的自发性坏疽病原体)及其他梭菌鉴别,同时给出 <strong>AMR 耐药谱</strong>——为外科医生和重症医生提供以小时而非天计的基因组学答案。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:伤口分泌物、病灶穿刺液、粪便。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁 (point-of-care) 场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向外科/重症医生的 HTML 报告 — 菌种鉴定、毒素分型、含经验性用药建议的药敏谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:伤口分泌物、病灶穿刺液、粪便。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场分析场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、毒素分型、药敏谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4816,7 +4816,7 @@
       ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🌍 全球背景:为何重要</h2>' +
-    '<ul><li><strong>分秒必争</strong> — 创伤与战伤中的气性坏疽仍是暴发性感染:蔓延速度约 15 厘米/小时,未经治疗致死率 67–100%,多数死亡发生在最初 24 小时内。在创伤中心急诊室用 Edge 设备进行床旁测序,把获得基因组学答案的时间从数天缩短到数小时。</li>' +
+    '<ul><li><strong>分秒必争</strong> — 创伤与战伤中的气性坏疽仍是暴发性感染:蔓延速度约 15 厘米/小时,未经治疗致死率 67–100%,多数死亡发生在最初 24 小时内。现场测序 (Edge) 有望把获得基因组学答案的时间从数天缩短到数小时——这是研究方向 (RUO)。</li>' +
     '<li><strong>食物中毒</strong> — <em>C. perfringens</em> 是最常见的细菌性食物中毒病原之一:据美国 CDC 估计,仅美国每年约有一百万病例。对 cpe 阳性菌株的快速分型对餐饮业暴发调查至关重要。</li>' +
     '<li><strong>MDR 趋势</strong> — 动物源分离株(tet、ermB、floR)中多重耐药的报道越来越多,并正向临床传播;"青霉素 + 克林霉素"的经验性方案不再有保障。</li>' +
     '<li><strong>兽医背景</strong> — NetB 相关禽坏死性肠炎(G 型)和反刍动物肠毒血症(B、D 型)给家禽与畜牧业造成重大经济损失;同一套毒素分型流程同样适用于兽医诊断。</li></ul><hr>' +
@@ -4834,8 +4834,8 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><em>肉毒梭菌</em>(Clostridium botulinum)是一种厌氧产孢杆菌,产生<strong>肉毒神经毒素 (BoNT) — 已知毒性最强的物质</strong>:对人的致死剂量估计约为 1–2 纳克/公斤。BoNT 是一种蛋白酶,可切割神经末梢 <strong>SNARE 复合体</strong>的蛋白,阻断神经肌肉接头处乙酰胆碱的释放。临床上表现为<strong>下行性对称性弛缓性麻痹</strong>:复视与上睑下垂 → 吞咽困难与构音障碍 → 呼吸肌麻痹与呼吸衰竭。解毒剂——七价肉毒抗毒素 (BAT)——只能中和循环中的毒素,<strong>仅在早期给药时有效</strong>:已内化毒素的神经元需数周才能恢复。因此,实验室确诊的速度直接决定预后。</p>' +
     '<p>我们的流程基于纳米孔测序数据,执行 <strong>bont 基因直接检测</strong>、根据毒素作用靶点进行<strong>血清分型 (A–G)</strong>、<strong>毒素基因簇分析</strong>(<em>ntnh</em> 与 <em>ha</em> 基因——“前体毒素复合体”)以及<strong>基因簇定位</strong>——染色体、质粒或前噬菌体。ONT 长读长在此具有根本优势:可解析基因簇结构及其水平转移的流行病学。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:可疑食品残留、呕吐物、粪便、血清、伤口材料。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场/实验室快速诊断场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向主治医生、流行病学家和食品监管机构的 HTML 报告 — bont 检测、血清型、基因簇结构 (ha/ntnh)、定位(染色体/质粒/噬菌体)、携带者鉴定;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:可疑食品残留、呕吐物、粪便、血清、伤口材料。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场/实验室快速检测场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — bont 检测、血清型、基因簇结构 (ha/ntnh)、定位(染色体/质粒/噬菌体)、携带者鉴定;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -4901,7 +4901,7 @@
       ['<strong>5. 机器学习推理</strong>', '<code>PyTorch</code>、<code>pandas</code>、<code>scikit-learn</code>']
     ]) + '<hr>' +
     '<h2>🌍 全球背景:为何重要</h2>' +
-    '<ul><li><strong>抗毒素仅在最初几小时有效</strong> — BAT 只能中和循环中的毒素,实验室确诊每延迟一小时,预后就更差。床旁 ONT 测序把从样本到基因组学答案的时间从数天缩短到数小时。</li>' +
+    '<ul><li><strong>抗毒素仅在最初几小时有效</strong> — BAT 只能中和循环中的毒素,实验室确诊每延迟一小时,预后就更差。现场 ONT 测序有望把从样本到基因组学答案的时间从数天缩短到数小时(研究方向,RUO)。</li>' +
     '<li><strong>家庭罐头——俄罗斯和东欧的持续风险</strong> — 风干与熏制鱼(E 型)、蘑菇和蔬菜罐头仍是食源性肉毒中毒的经典来源;无氧密封包装为孢子创造了理想条件。快速分型对食品监管机构的暴发溯源同样重要。</li>' +
     '<li><strong>婴儿肉毒中毒与蜂蜜</strong> — 在一些国家是最常见的肉毒中毒类型;不建议一岁内婴儿食用蜂蜜。确认婴儿粪便中的产毒菌株,可在非典型表现(肌张力低下、哭声微弱、便秘)时加速诊断。</li>' +
     '<li><strong>注射吸毒者的创伤型肉毒中毒</strong> — 欧洲和北美暴发的持续来源,需要从伤口材料中快速检测。</li>' +
@@ -4924,8 +4924,8 @@
     '<p><em><strong>索氏帕埃尼梭菌</strong></em>(Paeniclostridium sordellii,旧称 <em>Clostridium sordellii</em>)是<strong>分娩及子宫医疗操作(包括药物流产)后中毒性休克</strong>的病原体。其临床特征特异、不同于普通脓毒症:<strong>无发热休克</strong>、难治性低血压、显著<strong>血液浓缩</strong>(血细胞比容升至 60–70%)、<strong>类白血病反应</strong>(白细胞 4–8 万)、浆膜腔积液。死亡发生在 <strong>2–6 天</strong>内,已发表病例系列中 TSS 型病死率达 <strong>70–100%</strong>。病因是致死性毒素 <strong>TcsL</strong>——大梭菌糖基化毒素家族成员(与 <em>C. difficile</em> 的 TcdB 同源):使小 GTP 酶(Rac、Ras 亚家族)糖基化 → 内皮细胞骨架崩塌 → <strong>全面毛细血管渗漏</strong>。其他武器:出血性毒素 <strong>TcsH</strong> 和神经氨酸酶 <strong>NanS</strong>(抑制剂的有前景靶点)。</p>' +
     '<p><em><strong>败血梭菌</strong></em>(Clostridium septicum)是<strong>非创伤性(自发性)气性坏疽</strong>的病原体,也是重要的临床标志物:<em>C. septicum</em> 菌血症常提示<strong>隐匿性结肠癌或中性粒细胞减少</strong>(细菌经肠壁缺损侵入并播种于肌肉)。其 α-毒素(基因 <strong>csa</strong>)为<strong>成孔毒素</strong>,与气溶素同源,而并非 <em>C. perfringens</em> 那样的磷脂酶 C。自发性坏疽的病死率高于创伤性坏疽。</p>' +
     '<p>我们的流程基于纳米孔测序数据,执行<strong>毒素基因 tcsL/tcsH</strong>(<em>P. sordellii</em>)与 <strong>csa</strong>(<em>C. septicum</em>)的<strong>直接检测</strong>,同时进行<strong>菌种鉴定</strong>(16S rRNA 与种特异性标志物)并与 <em>C. perfringens</em> 及其他梭菌鉴别——为重症、产科和外科医生提供以小时而非天计的基因组学答案。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液、病灶组织、子宫抽吸物。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向重症/产科/外科医生的 HTML 报告 — 菌种鉴定、毒素基因谱、梭菌鉴别系列;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液、病灶组织、子宫抽吸物。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场分析场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、毒素基因谱、梭菌鉴别系列;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5056,13 +5056,13 @@
   ZH['/chauvoei/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_chauvoei.svg" alt="气肿疽梭菌 — 产孢杆菌与牛的剪影" style="max-height:120px;margin-bottom:1rem">' +
-    '<h1>牛气肿疽(Emphysematous Carbuncle)鉴别诊断</h1>' +
+    '<h1>牛气肿疽(Emphysematous Carbuncle)分子鉴别</h1>' +
     '<p style="font-size:1.2em;color:#555">“梭菌宇宙”板块的兽医卡片:牛突然死亡——气肿疽还是炭疽?剖检之前,现场给出分子学答案</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><em>气肿疽梭菌</em>(Clostridium chauvoei)是一种革兰氏阳性厌氧产孢杆菌,是<strong>气肿疽(blackleg)</strong>——牛急性坏死性感染——的病原体。该病的旧称“类炭疽”<strong>不应引起误解:气肿疽与真正的炭疽(<em>Bacillus anthracis</em>)毫无关系</strong>,但猝死的临床表现要求首先排除炭疽。孢子可在土壤中存活多年;主要感染 <strong>6 月龄至 2 岁的青年牛</strong>——通常是牧场上膘情良好的小公牛。孢子侵入肌肉(包括经微创伤),在厌氧条件下萌发并引起<strong>捻发音性肌炎</strong>:肌肉产气、跛行、高热、患部肿胀与捻发音。病程闪电般迅速——<strong>动物常在无任何前兆时已被发现死亡</strong>。</p>' +
     '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种鉴定</strong>(16S rRNA + 种特异性标志物),并与最近的近缘种 <em>C. septicum</em> 鉴别(两者极易混淆;参见我们的 <a href="/sordellii/">索氏帕埃尼梭菌与败血梭菌</a> 页面),<strong>检测主要毒力因子 cctA</strong>,以及——对兽医部门最关键的任务——<strong>分子学排除炭疽</strong>(<em>B. anthracis</em>:pagA/cap 标志物)。牛猝死时,排除炭疽之前不得剖检尸体:现场快速给出答案,决定是否宣布隔离。此外,流程还构建<strong>暴发的分子流行病学图景</strong>(疫点地图)。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:患部肌肉组织、渗出液、触片。最佳方案:快速建库,在地区兽医实验室用 <strong>Flongle</strong> 运行 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向兽医与兽医监管部门的 HTML 报告 — 菌种鉴定、cctA 检测、<em>B. anthracis</em> 排除结果、疫点流行病学分型;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、cctA 检测、<em>B. anthracis</em> 排除结果、疫点流行病学分型;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5136,9 +5136,9 @@
     '<p style="font-size:1.2em;color:#555">淋球菌基因组监测 — WHO 重点 AMR 病原体</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><em>淋病奈瑟菌</em>(淋球菌)是淋病的病原体,发病率居细菌性传播感染第二位。WHO 已将其列入<strong>重点 AMR 病原体名单</strong>(高优先级类别):对头孢曲松——最后一种可靠抗生素——耐药的菌株已在世界各地检出,包括俄罗斯。</p>' +
-    '<p>我们的流程提供完整的纳米孔数据分析,在床旁或实验室直接检测耐药突变,无需将数据传输至境外服务器。</p>' +
+    '<p>我们的流程提供完整的纳米孔数据分析,在现场或实验室直接检测耐药突变,无需将数据传输至境外服务器。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别(R10.4.1 化学体系,Dorado SUP)后的原始 <code>FASTQ</code> 数据。最佳方案:<em>penA</em>、<em>gyrA</em>、<em>parC</em>、<em>mtrR</em>、<em>23S rRNA</em> 基因扩增子测序<strong>或</strong>全基因组测序 (WGS)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,涵盖 6 类抗生素的药敏谱,以及面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告,涵盖 6 类抗生素的药敏谱,以及面向生物信息分析师的 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5191,7 +5191,7 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_hpv.svg" alt="人乳头瘤病毒 (HPV)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>人乳头瘤病毒基因分型与宫颈癌分子分流</h1>' +
-    '<p style="font-size:1.2em;color:#555">我们的首个肿瘤学流程 — 从病因 (HPV) 到预防的关键环节:床旁筛查</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">我们的首个肿瘤学流程 — 从病因 (HPV) 到预防的关键环节——现场筛查研究 (RUO)</p></div><hr>' +
     '<h2>🧬 为什么 HPV 是进入肿瘤学的切入点</h2>' +
     '<p>人乳头瘤病毒 (HPV) 是几乎 100% 宫颈癌病例的<strong>必要病因</strong>,也是相当一部分肛门癌、口咽癌、外阴癌、阴道癌和阴茎癌的病因。这是肿瘤学中罕见的情形:一种癌症拥有单一且明确的感染性驱动因素——这意味着可以通过检测病毒并评估风险,在肿瘤出现之前很久就<strong>预防</strong>它。</p>' +
     '<p>WHO 设定了<strong>消除宫颈癌</strong>的目标,采用 <strong>90–70–90</strong> 战略:</p>' +
@@ -5200,7 +5200,7 @@
     '<li><strong>90%</strong> 确诊疾病的女性获得治疗。</li></ul>' +
     '<p>第二支柱——"高性能 HPV 检测"——正是测序能够提供经典 qPCR 筛查所无法企及之处的领域。OnSiteSeq 由此叩开肿瘤学的大门。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:宫颈拭子或自取阴道样本。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — HPV 基因型、整合状态、甲基化分流及风险类别(CIN2+ 风险:低 / 中 / 高);面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — HPV 基因型、整合状态、甲基化分流及风险类别(CIN2+ 风险:低 / 中 / 高);面向生物信息分析师的 QC 报告。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:I — 双链DNA</h2>' +
     '<p>I 类为双链DNA病毒:其基因组由细胞 RNA 聚合酶 II 转录为 mRNA,逻辑与宿主自身基因相同。HPV 携带小型环状双链DNA基因组(约 8 kb),在上皮细胞中通常以<strong>游离体</strong>形式维持 —— 即细胞核内自主的环状分子,不整合入染色体。临床转折点出现在<strong>整合</strong>之时:环状病毒 DNA 断裂(多在 <em>E2</em> 基因附近)并插入宿主基因组 —— 失去 E2 调控会解除对 <em>E6/E7</em> 癌基因的抑制,启动癌变。我们的流程正是通过"病毒–人源"嵌合读长检测这一"游离体 → 整合"转变(见下文"流程检测内容"部分),而基因组的 dsDNA 属性使纳米孔可直接读取天然 DNA —— 包括无需亚硫酸氢盐转化即可直接检测甲基化。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -5279,7 +5279,7 @@
     '<h2>🧬 流程说明</h2>' +
     '<p>我们的算法提供完整的测序数据处理流程,用于识别耐药突变并准确鉴定 HIV-1 亚型。</p>' +
     '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 机器学习碱基识别器将纳米孔电信号转换为核苷酸数据之后;POD5/FAST5 → FASTQ)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的详细 HTML 报告和面向生物信息分析师的扩展报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告和面向生物信息分析师的扩展报告。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:VI — 正链ssRNA-逆转录(逆转录病毒)</h2>' +
     '<p>VI 类涵盖逆转录病毒:其基因组为正链单链RNA,但不能直接充当 mRNA —— 首先由病毒<strong>逆转录酶</strong>(RT,<em>pol</em> 基因)将 RNA 逆转录为 DNA,再由<strong>整合酶</strong>将该 DNA 拷贝插入宿主基因组,形成<strong>前病毒</strong>。HIV-1 是该类的典型代表:前病毒成为细胞的永久组成部分和终生产生新病毒颗粒的源头,这正是现代疗法无法根除感染的原因。逆转录酶缺乏校正(3\'→5\' 外切核酸酶)活性,复制错误积累速度比细胞 DNA 聚合酶快几个数量级 —— 因此每位患者体内的 HIV 都呈准种多样性,耐药变异在药物压力下被迅速选择。正因如此,HIV 的耐药性就是 <em>pol</em> 基因(逆转录酶、蛋白酶、整合酶)中的突变,我们的流程依据 Stanford HIVdb 规则对其进行解读。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -5356,7 +5356,7 @@
     '<p style="font-size:1.2em;color:#555">面向高精度 HIV-1 基因组监测与耐药预测的深度学习</p></div><hr>' +
     '<h2>🧠 HIV-1 基因组的创新方法</h2>' +
     '<p>标准的国外算法(包括美国开发的算法)往往在不反映俄罗斯联邦流行病学特点的数据库上训练。俄罗斯的 HIV-1 流行具有明显的单系起源特征。</p>' +
-    '<p>我们自研的神经网络模型针对本国流行病学特点开发,采用先进的 ML 架构,实现前所未有的诊断准确性。</p><hr>' +
+    '<p>我们自研的神经网络模型针对本国流行病学特点开发,采用先进的 ML 架构,实现较高的预测准确性(基于回顾性验证;RUO)。</p><hr>' +
     '<h2>🧬 HIV-1-M-Env-Rus(版本 1.0)</h2>' +
     '<p>用于 HIV-1 基因变异分类的专用神经网络模型。解决检测在俄罗斯联邦流行的优势型与重组型病毒这一关键任务。</p>' +
     '<ul><li><strong>目标区域:</strong> <strong>Env</strong> 基因的核苷酸序列分析。</li>' +
@@ -5369,7 +5369,7 @@
     '<li><strong>ID-CNN + Self-Attention 架构:</strong> 一维卷积网络结合注意力机制,使模型能够检测<strong>上位效应 (epistasis)</strong> — 一个突变可增强或抑制另一个突变效应的复杂相互作用。</li>' +
     '<li><strong>数据库整合:</strong> 模型使用当前全球 (Stanford HIVDB) 与俄罗斯耐药数据库进行校准。</li></ul><hr>' +
     '<h2>🚀 HIV-1-Resist-Rus(版本 3.0)</h2>' +
-    '<p><strong>重大更新,使系统从研究原型转变为可临床应用的工具。</strong>仓库:<a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
+    '<p><strong>重大更新,显著提升模型质量;系统状态为仅供研究使用 (RUO),临床应用需开展临床试验并完成注册。</strong>仓库:<a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
     '<h3>v3 的变化</h3>' +
     tbl(['组件', 'v1 / v2', '<strong>v3</strong>'], [
       ['药物', '1 (DTG) / 14', '<strong>14(全部 ART 类别)</strong>'],
@@ -5424,7 +5424,7 @@
     '<p><em>艰难梭菌</em>(Clostridioides difficile,C. diff)是一种革兰氏阳性产孢厌氧菌,是抗生素相关性腹泻和假膜性结肠炎的首要病因。关键临床问题:<strong>产毒株还是非产毒株</strong>(是否携带 <em>tcdA/tcdB</em> 基因)?</p>' +
     '<p>我们的流程同时确定:毒素基因谱(tcdA/B/C + 高毒力菌株的 cdtA/B)、抗生素耐药谱,以及用于流行病学分类的 PCR 核糖体分型。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:粪便培养物或富集培养物直接 WGS。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告 — 产毒状态、完整 AMR 谱、核糖体分型;面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 产毒状态、完整 AMR 谱、核糖体分型;面向生物信息分析师的 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5484,7 +5484,7 @@
     '<p><em>金黄色葡萄球菌</em>是一种形成特征性葡萄串状簇的革兰氏阳性球菌。是广谱感染的主要病原体:从皮肤软组织感染(疖、脓肿)到危及生命的<strong>菌血症、感染性心内膜炎、骨髓炎、呼吸机相关性肺炎 (VAP)</strong>。WHO 已将 MRSA 列为重点 AMR 病原体(高优先级类别)。</p>' +
     '<p>任何金黄色葡萄球菌的关键临床问题:<strong>MRSA 还是 MSSA</strong>。答案决定整个治疗策略。我们的流程给出完整的基因组学答案:mecA/mecC 状态、覆盖全部抗生素类别的完整 AMR 谱、毒力因子(PVL、TSST-1、生物膜)以及菌株分子分型。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:血液、脓液、痰、活检组织、伤口拭子。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告 — MRSA/MSSA 状态、完整 AMR 谱、关键毒力因子、SCCmec 型别;面向生物信息分析师的 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — MRSA/MSSA 状态、完整 AMR 谱、关键毒力因子、SCCmec 型别;面向生物信息分析师的 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5615,7 +5615,7 @@
     ]) + '<hr>' +
     '<h2>💉 疫苗学与监测</h2>' +
     '<p>亚型分型与抗原分析数据直接汇入 <strong>WHO GISRS</strong>(>150 个国家中心),用于季节性疫苗株选择。对流行毒株的本地监测既是对全球体系的贡献,也能对疫苗株与流行株不匹配提供早期预警。另一条独立战线是<strong>高致病性禽流感 (H5N1、H5N8) 监测</strong>:在人源样本中检出携带禽源节段的重配株是流行病学预警信号。</p>' +
-    '<p>流感与其他呼吸道病毒(RSV、鼻病毒、SARS-CoV-2)的宏基因组鉴别诊断,请参阅 <a href="/flu/">OnSiteSeq 急性呼吸道病毒感染流程</a>。</p><hr>' +
+    '<p>流感与其他呼吸道病毒(RSV、鼻病毒、SARS-CoV-2)的宏基因组鉴别,请参阅 <a href="/flu/">OnSiteSeq 急性呼吸道病毒感染流程</a>。</p><hr>' +
     '<h2>⚙️ 版本与机器学习模型</h2>' +
     tbl(['组件', '状态'], [['<strong>OnSiteSeq Flu-Track Pipeline</strong>', '🟡 开发中']]) +
     tbl(['模型', '目标任务'], [
@@ -5705,12 +5705,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_flu.svg" alt="OnSiteSeq 急性呼吸道病毒感染 panel" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>病毒性呼吸道病原体的宏基因组鉴定</h1>' +
-    '<p style="font-size:1.2em;color:#555">甲/乙型流感、RSV、鼻病毒、冠状病毒及其他呼吸道病毒的鉴别诊断 — 就在床旁</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">甲/乙型流感、RSV、鼻病毒、冠状病毒及其他呼吸道病毒的研究性宏基因组鉴定 (RUO)</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>急性呼吸道病毒感染 (ARVI) 由数十种临床表现几乎无法区分的病毒引起。快速准确的病原体鉴定对三项临床任务至关重要:<strong>抗病毒治疗处方</strong>(流感用奥司他韦,COVID-19 用奈玛特韦)、<strong>感染控制</strong>(儿科 RSV 患者隔离)和<strong>流行病学监测</strong>(流感流行毒株监测)。</p>' +
     '<p>我们的流程采用<strong>宏基因组纳米孔测序 (mNGS)</strong>:样本(鼻咽拭子、肺泡灌洗液)在事先不知病原体的情况下测序 — 同时检出所有病毒。对检出的甲/乙型流感,还会额外确定亚型与抗病毒耐药谱。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1) 后的原始 <code>FASTQ</code> 数据。样本:鼻咽拭子 / 鼻咽抽吸物 / 肺泡灌洗液 (BAL)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,含检出的病原体、相对丰度,以及(针对流感)抗病毒耐药谱。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告,含检出的病原体、相对丰度,以及(针对流感)抗病毒耐药谱。</li></ul><hr>' +
     '<h2>🧭 作为急性呼吸道感染地图的巴尔的摩分类</h2>' +
     '<p>巴尔的摩分类法按基因组类型和 mRNA 合成策略将病毒分为七个类别。呼吸道病毒同时散布在多个类别中 —— 而宏基因组筛查能用<strong>同一种方法一次性</strong>看到它们全部,因为它直接作用于核酸:测序仪并不关心病毒采用哪种复制策略。这正是 mNGS 与 PCR 组合检测的区别所在 —— 后者每一类基因组都需要各自的扩增方案。</p>' +
     tbl(['巴尔的摩类别', '基因组', '急性呼吸道感染检测组合中的病原体'], [
@@ -5772,8 +5772,8 @@
     ]) + '<hr>' +
     '<h2>🌍 全球背景</h2>' +
     '<ul><li><strong>WHO</strong> — 全球流感监测与应对系统 (GISRS) 包含 150 多个国家中心;流行毒株数据决定每年的疫苗组成。</li>' +
-    '<li><strong>"盲目"抗生素治疗问题</strong> — 在俄罗斯,约 40–60% 的 ARVI 病例被开了抗生素,尽管病因是病毒。床旁准确鉴定病原体可避免不必要的抗生素使用。</li>' +
-    '<li><strong>RSV 流行季</strong> — 每年的暴发使儿科医院不堪重负;尼塞韦单抗 (Beyfortus) 在流行季前为婴儿预防性接种,而床旁快速确诊 RSV 则指导儿科病房的隔离与分组管理。</li></ul><hr>' +
+    '<li><strong>"盲目"抗生素治疗问题</strong> — 在俄罗斯,约 40–60% 的 ARVI 病例被开了抗生素,尽管病因是病毒。未来(经临床验证后),快速鉴定病原体有望减少不必要的抗生素使用。</li>' +
+    '<li><strong>RSV 流行季</strong> — 每年的暴发使儿科医院不堪重负;尼塞韦单抗 (Beyfortus) 在流行季前为婴儿预防性接种,而快速确诊 RSV 对儿科病房的隔离与分组管理很重要。</li></ul><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/initiatives/global-influenza-surveillance-and-response-system">WHO — 全球流感监测与应对系统 (GISRS)</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/genomes/FLU/">NCBI 流感病毒数据库</a></li>' +
@@ -5784,11 +5784,11 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_cold.svg" alt="OnSiteSeq 细菌性急性呼吸道感染 panel" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>细菌性呼吸道病原体及其 AMR 的宏基因组鉴定</h1>' +
-    '<p style="font-size:1.2em;color:#555">社区获得性肺炎与细菌性急性呼吸道感染的鉴别诊断 — 就在床旁</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">肺炎与急性呼吸道感染细菌病原体的研究性宏基因组鉴定及 AMR 谱 (RUO)</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>细菌性呼吸道感染需要准确鉴定病原体及其抗生素敏感性谱,以指导合理的经验性治疗。我们的流程采用宏基因组纳米孔测序,同时鉴定病原体并确定其 AMR 谱。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别后的原始 <code>FASTQ</code> 数据。样本:痰、鼻咽拭子、肺泡灌洗液 (BAL)、血培养。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告,含检出的病原体与抗生素敏感性谱。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告,含检出的病原体与抗生素敏感性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5841,7 +5841,7 @@
     ]) + '<hr>' +
     '<h2>🌍 全球背景</h2>' +
     '<ul><li><strong>WHO AMR 行动计划</strong> — 社区获得性肺炎是全球 AMR 相关死亡的主要原因之一。</li>' +
-    '<li><strong>俄罗斯</strong> — 急性呼吸道感染的经验性抗生素治疗常在未鉴定病原体的情况下开具;床旁 mNGS 可实现靶向治疗并减少抗生素滥用。</li></ul><hr>' +
+    '<li><strong>俄罗斯</strong> — 急性呼吸道感染的经验性抗生素治疗常在未鉴定病原体的情况下开具;未来(经临床验证与注册后),快速 mNGS 有望帮助实现靶向治疗;目前该流程仅供研究使用 (RUO)。</li></ul><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://card.mcmaster.ca/">CARD — 综合抗生素耐药数据库</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/">NCBI AMRFinderPlus</a></li>' +
@@ -5855,7 +5855,7 @@
     '<h2>🧬 流程说明</h2>' +
     '<p>由卵菌(疫霉属 Phytophthora)、真菌(镰刀菌属、灰葡萄孢、链格孢属)和细菌(假单胞菌属、果胶杆菌属)引起的植物病害给农业造成巨大的经济损失。我们的流程可在田间直接快速鉴定植物病原体及其杀菌剂抗性谱 — 从采样到结果仅需数小时。</p>' +
     '<ul><li><strong>📥 输入:</strong> ITS 扩增子测序 (ITS1/ITS2) 或全宏基因组的原始 <code>FASTQ</code> 数据。样本:感病叶片、根系、果实组织。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的报告,含鉴定出的病原体、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告,含鉴定出的病原体、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5912,12 +5912,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_phytophthora_infestans.svg" alt="致病疫霉 (Phytophthora infestans)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>晚疫病 — 致病疫霉 Phytophthora infestans</h1>' +
-    '<p style="font-size:1.2em;color:#555">马铃薯与番茄晚疫病的宏基因组诊断,含杀菌剂抗性谱 — 数小时内完成,就在田间</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">马铃薯与番茄晚疫病的宏基因组检测,含杀菌剂抗性谱 — 数小时内完成,就在田间</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>致病疫霉(<em>Phytophthora infestans</em>)是一种卵菌(并非真正的真菌),为晚疫病的病原 — 全球马铃薯和番茄最具破坏性的病害。病原存在两种交配型 (A1 和 A2);它们在群体中共存时可形成持久存活的卵孢子,并加速抗性进化。在多雨季节,俄罗斯多达 50% 的马铃薯种植区受晚疫病侵害。</p>' +
     '<p>我们的流程在田间直接对感病组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认,以及对作物保护至关重要的<strong>杀菌剂抗性谱</strong>:俄罗斯致病疫霉群体中对甲霜灵/精甲霜灵的抗性普遍存在,喷施无效药剂等同于损失收成。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:马铃薯叶片/块茎匀浆、番茄叶片与果实。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5947,12 +5947,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_phytophthora_sojae.svg" alt="大豆疫霉 (Phytophthora sojae)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>大豆根腐与茎腐病 — <em>Phytophthora sojae</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">大豆疫霉根腐病的宏基因组诊断,含致病型鉴定与杀菌剂抗性谱</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">大豆疫霉根腐病的宏基因组检测,含致病型鉴定与杀菌剂抗性谱</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>大豆疫霉(<em>Phytophthora sojae</em>)是一种卵菌,为大豆根腐与茎腐病的病原。病原群体具有明显的<strong>生理小种结构</strong>:各致病型在克服大豆 <em>Rps</em> 抗病基因的能力上各不相同,因此小种组成直接决定哪些品种会被侵染。卵孢子可在土壤中存活多年,使受侵染田块成为长期的侵染源。</p>' +
     '<p>我们的流程对根组织与土壤洗液进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认、其在样本中的丰度估计以及<strong>杀菌剂抗性谱</strong> — 用于选择有效的种子处理与幼苗保护方案。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:大豆根部与茎基部匀浆、土壤洗液。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -5981,12 +5981,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_fusarium_oxysporum.svg" alt="尖孢镰刀菌 (Fusarium oxysporum)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>镰刀菌枯萎病 — <em>Fusarium oxysporum</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">土传尖孢镰刀菌复合体的宏基因组诊断,含专化型鉴定与杀菌剂抗性谱</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">土传尖孢镰刀菌复合体的宏基因组检测,含专化型鉴定与杀菌剂抗性谱</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>尖孢镰刀菌(<em>Fusarium oxysporum</em>)是一种土传真菌,以众多专化型(<strong>formae speciales</strong>)形式存在,各自侵染特定作物:<em>f. sp. lycopersici</em> — 番茄、<em>f. sp. cucumerinum</em> — 黄瓜、<em>f. sp. cubense</em>(热带小种 TR4)— 香蕉。厚壁<strong>厚垣孢子</strong>可在土壤中存活多年,化学防治对维管束枯萎病基本无效 — 因此土壤和种植材料带菌情况的早期诊断具有决定性意义。</p>' +
     '<p>我们的流程对茎部维管束组织、根系与土壤洗液进行<strong>宏基因组纳米孔测序</strong> (mNGS)。宏基因组方法不仅能确认尖孢镰刀菌的存在,还能将其与复合体中的近缘种区分开,并提供用于种子处理与喷施的<strong>杀菌剂抗性谱</strong>。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:茎部与根部维管束组织匀浆(番茄、黄瓜、谷类)、土壤洗液。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6015,12 +6015,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_fusarium_graminearum.svg" alt="禾谷镰刀菌 (Fusarium graminearum)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>小麦赤霉病 (FHB) — <em>Fusarium graminearum</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">小麦和大麦赤霉病的宏基因组诊断,含霉菌毒素风险评估与杀菌剂抗性谱</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">小麦和大麦赤霉病的宏基因组检测,含霉菌毒素风险评估与杀菌剂抗性谱</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>禾谷镰刀菌(<em>Fusarium graminearum</em>)是小麦和大麦赤霉病 (FHB) 的病原。威胁是双重的:除直接产量损失外,该真菌还<strong>产生霉菌毒素</strong> — 脱氧雪腐镰刀菌烯醇 (DON,呕吐毒素) 和玉米赤霉烯酮,由 <em>TRI</em> 基因簇合成。受污染的谷物不再适合食用和饲用,因此诊断不仅关乎植物保护,也关乎粮批的毒理学控制。</p>' +
     '<p>我们的流程对籽粒和穗部组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认、粮批污染评估以及<strong>杀菌剂抗性谱</strong> — 三唑类仍是穗部保护的骨干药剂,监测其有效性对规划花期施药至关重要。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:小麦/大麦籽粒与穗部匀浆。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 鉴定出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 鉴定出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6048,12 +6048,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_alternaria_solani.svg" alt="茄链格孢 (Alternaria solani)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>早疫病 — 茄链格孢 Alternaria solani</h1>' +
-    '<p style="font-size:1.2em;color:#555">马铃薯和番茄早疫病的宏基因组诊断,监测快速进化的杀菌剂抗性</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">马铃薯和番茄早疫病的宏基因组检测,监测快速进化的杀菌剂抗性</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>茄链格孢(<em>Alternaria solani</em>)是马铃薯和番茄早疫病(链格孢病)的病原。病原侵染叶片、茎和块茎,形成特征性的同心轮纹病斑,每年都降低茄科作物产量。茄链格孢是<strong>杀菌剂抗性快速进化的经典案例</strong>:2000 年代甲氧基丙烯酸酯类 (QoI) 杀菌剂引入后仅数年,抗性就在群体中扩散开来。</p>' +
     '<p>我们的流程对感病叶片组织与块茎进行<strong>纳米孔宏基因组测序</strong> (mNGS)。数小时内农艺师即可获得病原种的确认与<strong>杀菌剂抗性谱</strong> — 这对早疫病尤为重要:对抗性群体喷施甲氧基丙烯酸酯类毫无作用,只会加速抗性基因型的选择。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:马铃薯叶片/块茎匀浆、番茄叶片与果实。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 鉴定出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 鉴定出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6083,12 +6083,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_botrytis_cinerea.svg" alt="灰葡萄孢 (Botrytis cinerea)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>灰霉病 — 灰葡萄孢 Botrytis cinerea</h1>' +
-    '<p style="font-size:1.2em;color:#555">葡萄、草莓和蔬菜灰霉病的宏基因组诊断,含全面的多药抗性谱</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">葡萄、草莓和蔬菜灰霉病的宏基因组检测,含全面的多药抗性谱</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>灰葡萄孢(<em>Botrytis cinerea</em>)是灰霉病的病原,可侵染<strong>200 多种植物</strong>,是葡萄和草莓在田间和储藏期的主要病原。FRAC 将灰葡萄孢列为<strong>最高抗性风险病原</strong>:多药抗性 — 同时对多个杀菌剂类别的抗性 — 在田间群体中已是常态而非例外。</p>' +
     '<p>我们的流程对感病浆果和植物组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原种的确认和详尽的<strong>杀菌剂抗性谱</strong>,涵盖靶标基因突变和驱动多药抗性的外排系统 (BcMrr1) 激活。没有这样的谱,灰霉病防治方案的选择就会变成试错式喷施。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:葡萄/草莓浆果匀浆、感病蔬菜组织。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6119,12 +6119,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_pythium.svg" alt="腐霉属 (Pythium spp.)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>根腐病与猝倒病 — 腐霉属 Pythium spp.</h1>' +
-    '<p style="font-size:1.2em;color:#555">幼苗根腐病的宏基因组鉴别诊断 — 腐霉属与丝核菌属、镰刀菌属的区分</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">幼苗根腐病的宏基因组鉴别 — 腐霉属与丝核菌属、镰刀菌属的区分</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>腐霉属 (<em>Pythium spp.</em>) 为卵菌(并非真正的真菌)— 是幼苗和幼株根腐病与猝倒病的病原,温室和苗圃生产损失的首要原因。与所有卵菌一样,腐霉<strong>对唑类和大多数"抗真菌"杀菌剂不敏感</strong>:只有卵菌特异性药剂有效 — 精甲霜灵/甲霜灵、ethaboxam、霜霉威、氰霜唑。诊断错误就意味着使用注定无效的药剂。</p>' +
     '<p>我们的流程对幼苗根系和栽培基质进行<strong>宏基因组纳米孔测序</strong> (mNGS)。在根腐病症状相似的情况下,基质宏基因组学是在一次检测中可靠区分腐霉属与丝核菌属、镰刀菌属的唯一方法,无需多日培养。除物种鉴定外,农艺师还将获得<strong>杀菌剂抗性谱</strong>。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:幼苗与幼株根系匀浆、栽培基质、土壤洗液。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6153,12 +6153,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_plasmopara_viticola.svg" alt="葡萄生单轴霉 (Plasmopara viticola)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>葡萄霜霉病 — <em>Plasmopara viticola</em></h1>' +
-    '<p style="font-size:1.2em;color:#555">葡萄霜霉病的宏基因组诊断,监测对 QoI 和 CAA 杀菌剂的抗性</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">葡萄霜霉病的宏基因组检测,监测对 QoI 和 CAA 杀菌剂的抗性</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>葡萄生单轴霉(<em>Plasmopara viticola</em>)是一种卵菌、专性活体寄生菌,为葡萄霜霉病的病原 — 温带气候区葡萄栽培的首要病害。该病 1878 年从北美传入欧洲;对霜霉病的斗争催生了波尔多液 — 历史上第一种杀菌剂。作为专性寄生菌,葡萄生单轴霉无法在人工培养基上培养,这使分子诊断成为研究和监测的主要工具。</p>' +
     '<p>我们的流程对带"油斑"病斑的叶片进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原确认和<strong>杀菌剂抗性谱</strong>:欧洲群体中对甲氧基丙烯酸酯类 (QoI) 的抗性普遍存在,对 CAA 杀菌剂的抗性自 2007 年起开始出现 — 没有分子监测,葡萄园保护方案会迅速失效。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:带油斑病斑的葡萄叶片匀浆。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6187,12 +6187,12 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_peronospora.svg" alt="霜霉属 (Peronospora spp.)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>霜霉病 — Peronospora spp.</h1>' +
-    '<p style="font-size:1.2em;color:#555">洋葱和向日葵霜霉病的宏基因组诊断,含生理小种与杀菌剂抗性监测</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">洋葱和向日葵霜霉病的宏基因组检测,含生理小种与杀菌剂抗性监测</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>霜霉属 (<em>Peronospora spp.</em>) 为卵菌 — 专性植物寄生菌,是霜霉病的病原。该组包括 <em>P. destructor</em>(洋葱霜霉病)和 <em>Plasmopara halstedii</em>(向日葵霜霉病,同为霜霉科 Peronosporaceae 的近缘卵菌)。病原群体具有明显的<strong>生理小种结构</strong>:流行小种的组成决定哪些杂交种和品种会抗病、哪些会感病。向日葵霜霉病在俄罗斯是具有检疫意义的重要病原。</p>' +
     '<p>我们的流程对感病叶片组织进行<strong>宏基因组纳米孔测序</strong> (mNGS)。数小时内,农艺师即可获得病原确认、群体小种组成评估和<strong>杀菌剂抗性谱</strong> — 这些数据既是保护当季作物所需,也是选育抗病杂交种所需。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:向日葵/洋葱叶片匀浆。</li>' +
-    '<li><strong>📤 输出:</strong> 面向农艺师的 HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱与防治建议。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向农艺师的仅供研究使用 (RUO) HTML 报告 — 检出的病原、定量丰度、杀菌剂抗性谱。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6321,13 +6321,13 @@
     '<li>📄 <a href="https://www.internationalgenome.org/">1000 Genomes Project(千人基因组计划)</a></li>' +
     '<li>📄 <a href="https://www.hagsc.org/hgdp/">HGDP — 人类基因组多样性计划</a></li></ul>';
 
-  /* ── EDGE 床旁测序一体机 ── */
+  /* ── EDGE 现场测序一体机 ── */
   ZH['/edge/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
-    '<h1>OnSiteSeq Edge(床旁测序一体机)</h1>' +
-    '<p style="font-size:1.2em;color:#555">用于床旁测序的自主软硬件一体化系统</p></div><hr>' +
+    '<h1>OnSiteSeq Edge(现场测序一体机)</h1>' +
+    '<p style="font-size:1.2em;color:#555">用于现场测序的自主软硬件一体化系统 — 仅供研究使用 (RUO)</p></div><hr>' +
     '<h2>📋 产品介绍</h2>' +
-    '<p>OnSiteSeq Edge 是一套用于床旁测序的自主软硬件一体化系统 (HSC)。从 FASTQ 到临床结论,就在患者床旁或医生办公桌上完成。可用于野外、偏远极地地区,以及任何无法长期接入实验室设备或服务器基础设施的场所。</p><hr>' +
+    '<p>OnSiteSeq Edge 是一套用于现场测序的自主软硬件一体化系统 (HSC)。从 FASTQ 到研究报告,就在样本采集现场完成,无需将数据发送到中心实验室。可用于野外、偏远极地地区,以及任何无法长期接入实验室设备或服务器基础设施的场所。</p><hr>' +
     '<h2>🔧 关键技术参数</h2>' +
     tbl(['参数', '数值'], [
       ['<strong>架构</strong>', 'arm64'],
@@ -6421,7 +6421,7 @@
     '<h1>OnSiteSeq Cockpit(流程管理平台)</h1>' +
     '<p style="font-size:1.2em;color:#555">用于管理 Snakemake 生物信息学流程的 Web 应用</p></div><hr>' +
     '<h2>📋 产品介绍</h2>' +
-    '<p>OnSiteSeq Cockpit 是用于管理容器化 Snakemake 生物信息学流程的 Web 应用。在浏览器中启动分析:从 Harbor 目录中选择流程,指定输入的 <code>.fastq.gz</code> 样本,即可获得临床报告与质控 (QC) 报告 — 全程无需命令行。</p><hr>' +
+    '<p>OnSiteSeq Cockpit 是用于管理容器化 Snakemake 生物信息学流程的 Web 应用。在浏览器中启动分析:从 Harbor 目录中选择流程,指定输入的 <code>.fastq.gz</code> 样本,即可获得解读报告 (RUO) 与质控 (QC) 报告 — 全程无需命令行。</p><hr>' +
     '<h2>🖥 部署形态</h2>' +
     '<h3>Edge</h3><p>面向 OnSiteSeq Edge 软硬件一体机的版本。界面适配触摸屏操作。流程以 <strong>arm64</strong> Docker 容器形式通过 <code>harbor.onsiteseq.io</code> 分发。</p>' +
     tbl(['参数', '数值'], [
@@ -6429,7 +6429,7 @@
       ['<strong>目标设备</strong>', 'Nvidia Jetson AGX'],
       ['<strong>容器</strong>', 'arm64 Docker 镜像']
     ]) +
-    '<h3>Desktop</h3><p>面向医生或研究人员工作站的版本。可独立运行,也可与 OnSiteSeq Edge 配套使用。</p>' +
+    '<h3>Desktop</h3><p>面向研究人员或实验室工作站的版本。可独立运行,也可与 OnSiteSeq Edge 配套使用。</p>' +
     tbl(['参数', '数值'], [
       ['<strong>架构</strong>', 'x86'],
       ['<strong>目标设备</strong>', '工作站'],
@@ -6456,7 +6456,7 @@
     '<p><img src="/assets/images/cockpit/cockpit_view.jpg" alt="OnSiteSeq Cockpit 流程目录"></p><hr>' +
     '<h3>启动分析</h3><p>选择流程、运行名称和输入的 <code>.fastq.gz</code> 样本。系统自动从数据文件夹中检测文件。</p>' +
     '<p><img src="/assets/images/cockpit/cockpit_run2.jpg" alt="流程启动表单"></p><hr>' +
-    '<h3>结果:临床报告与 QC 报告</h3><p>运行完成后,Cockpit 会显示 Snakemake 各步骤的进度和已生成的报告列表:临床报告(面向医生)和 QC 报告(面向生物信息学专家)。</p>' +
+    '<h3>结果:解读报告 (RUO) 与 QC 报告</h3><p>运行完成后,Cockpit 会显示 Snakemake 各步骤的进度和已生成的报告列表:解读报告 (RUO) 和 QC 报告(面向生物信息学专家)。</p>' +
     '<p><img src="/assets/images/cockpit/cockpit_run6.jpg" alt="运行结果与报告"></p><hr>' +
     '<h2>🔗 相关组件</h2>' +
     '<ul><li><a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> — Docker 镜像仓库</li>' +
@@ -6478,8 +6478,8 @@
   /* ── ABOUT 关于平台 ── */
   ZH['/aboutonsiteseq'] =
     '<h1>关于平台</h1><hr>' +
-    '<h2>OnSiteSeq Edge(床旁测序一体机)</h2>' +
-    '<p>自主软硬件一体化系统 (HSC)。从 FASTQ 到临床结论,就在患者床旁或医生办公桌上完成。可用于野外、偏远极地地区等场景。</p>' +
+    '<h2>OnSiteSeq Edge(现场测序一体机)</h2>' +
+    '<p>自主软硬件一体化系统 (HSC)。从 FASTQ 到研究报告,就在样本采集现场完成,无需将数据发送到中心实验室。可用于野外、偏远极地地区等场景。</p>' +
     '<p>内置样本制备工具。数据由内置 Nanoporus 测序仪采集,由 Nvidia Jetson AGX GPU 模块处理。可在内置热敏打印机上打印临床与生物信息学报告。</p>' +
     '<p>OnSiteSeq Cockpit 生物信息学容器管理系统已适配触摸屏操作。生物信息学工具通过 OnSiteSeq Harbor 以 arm64 Docker 容器形式分发,所有工具均针对 arm64 架构和 GPGPU 计算进行了适配。开放架构,持续更新的 arm64 容器应用市场。</p>' +
     '<p><a href="/edge/">了解更多 — OnSiteSeq Edge →</a></p><hr>' +
@@ -6500,7 +6500,7 @@
     '<h3>MIPT 研究人员研发出用于 HIV-1 耐药性与亚型诊断的国产机器学习模型</h3>' +
     '<p>研究生 <strong>Roman Gorbenko</strong>(罗曼·戈尔边科,<a href="https://habr.com/ru/users/romangorbenko/articles/">Habr 主页</a>)与其科学导师 <strong>Nikita Radchenko</strong>(尼基塔·拉德琴科)研发了用于 HIV-1 耐药性与亚型诊断的国产机器学习模型。</p>' +
     '<p>核心成果是实现了两个国外平台的国产化替代:美国 <strong>斯坦福 HIV 耐药数据库 (HIVDB)</strong> 和欧洲网络服务 <strong>COMET</strong>(卢森堡健康研究所)。直到不久前,俄罗斯研究人员仍在无可替代地使用这些平台。</p>' +
-    '<p>在 <strong>俄罗斯消费者权益保护局中央流行病学研究所 (CRIFEM Rospotrebnadzor)</strong> 提供的数据集上进行的外部验证显示,平均 <strong>AUC = 0.990</strong> — 达到了诊断应用所需的临床显著准确度。研发的机器学习模型已在全周期生物信息学流程(从原始基因组读段到临床报告)中完成测试,并部署在专门研发的软硬件一体化系统 <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong> 上。</p><hr>' +
+    '<p>在 <strong>俄罗斯消费者权益保护局中央流行病学研究所 (CRIFEM Rospotrebnadzor)</strong> 提供的数据集上进行的外部验证显示,平均 <strong>AUC = 0.990</strong> — 在回顾性数据上达到较高准确度(临床应用需开展临床试验并注册为医疗器械)。研发的机器学习模型已在全周期生物信息学流程(从原始基因组读段到可解读的研究报告)中完成测试,并部署在专门研发的软硬件一体化系统 <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong> 上。</p><hr>' +
     '<h2>🔬 MIPT 的其他创新成果</h2>' +
     '<p>Phystech 在科技前沿积极开展研究。近期部分成果:</p>' +
     '<p><strong><a href="https://mipt.ru/news/v-mfti-uskorili-modelirovanie-vzryva-atomnogo-yadra-">MIPT 加速原子核爆炸模拟</a></strong><br>数值模拟核过程的新方法,显著提升计算速度。</p>' +
@@ -6558,11 +6558,11 @@
   /* ── GxP / GLP / ALCOA+ 标准 ── */
   ZH['/gxp'] =
     '<h1>GxP:质量保障的"良好规范"标准</h1>' +
-    '<p>在 OnSiteSeq 的开发中,我们严格遵循国际 GxP 标准,确保从样本采集到临床结论的所有环节的质量与数据完整性。</p><hr>' +
+    '<p>在 OnSiteSeq 的开发中,我们参照国际 GxP 实践,确保从样本采集到研究报告的所有环节的质量与数据完整性。当前产品状态为 RUO(仅供科研使用,不用于诊断)。</p><hr>' +
     '<h2>什么是 GxP</h2>' +
     '<p><strong>GxP</strong> 是"良好 X 规范"标准族的统称,用于规范医疗与制药行业的质量:</p>' +
     tbl(['标准', '全称', '适用领域'], [
-      ['<strong>GMP</strong>', 'Good Manufacturing Practice(良好生产规范)', '医疗器械生产'],
+      ['<strong>GMP</strong>', 'Good Manufacturing Practice(良好生产规范)', '药品生产'],
       ['<strong>GLP</strong>', 'Good Laboratory Practice(良好实验室规范)', '实验室研究'],
       ['<strong>GCP</strong>', 'Good Clinical Practice(良好临床规范)', '临床试验'],
       ['<strong>GDP</strong>', 'Good Distribution Practice(良好流通规范)', '流通分销']
@@ -6573,7 +6573,7 @@
     '<ul><li><strong>设备授权。</strong>使用触摸屏时,医务人员在启动前须完成授权,日志会准确记录流程的启动者。</li>' +
     '<li><strong>流程、工具与模型版本管理。</strong>OnSiteSeq 生物信息学报告包含所有组件的版本:自研流程、机器学习模型及依赖工具 — 严格遵循可追溯原则。</li></ul>' +
     '<h3>L — Legible(清晰可读)</h3><p><em>多年以后,医生和审计人员还能读懂这些数据吗?</em></p>' +
-    '<ul><li><strong>双报告体系。</strong>结果分为面向临床医生的<strong>临床报告</strong>和面向专业人员的<strong>生物信息学 QC 报告</strong>。</li>' +
+    '<ul><li><strong>双报告体系。</strong>结果分为<strong>解读报告</strong>(研究用途,RUO)和面向专业人员的<strong>生物信息学 QC 报告</strong>。</li>' +
     '<li><strong>纸质与数字副本。</strong>内置热敏打印机保证现场即时可读;数字 PDF 副本以清晰的文件命名规范保存在 SSD 上。</li></ul>' +
     '<h3>C — Contemporaneous(同步记录)</h3><p><em>数据是否在产生的那一刻即被记录?</em></p>' +
     '<ul><li><strong>时间戳。</strong>所有阶段 — 从 GPU 碱基识别到报告输出 — 均实时记录日志。</li>' +
@@ -6583,7 +6583,7 @@
     '<li><strong>不可变性。</strong>原始读段在基因组组装和分析过程中永远不会被覆盖。</li></ul>' +
     '<h3>A — Accurate(准确性)</h3><p><em>数据是否可靠?是否有质量控制?</em></p>' +
     '<ul><li><strong>QC 指标。</strong>生物信息学报告包含关键指标:基因组覆盖度百分比、平均测序深度和盲区。</li>' +
-    '<li><strong>AI 置信度。</strong>临床报告显示神经网络的置信度百分比(例如 B 亚型为 99.98%),医生可据此评估预测的可靠性。</li></ul>' +
+    '<li><strong>AI 置信度。</strong>解读报告显示神经网络的置信度百分比(例如 B 亚型为 99.98%),研究人员可据此评估预测的可靠性。</li></ul>' +
     '<h3>+(Plus,补充原则)</h3>' +
     tbl(['原则', '在 OnSiteSeq 中的实现'], [
       ['<strong>Complete(完整性)</strong>', 'OnSiteSeq Cockpit 保存所有运行日志,包括中断或失败的运行(覆盖度 <80% 时状态标记为 "FAIL")'],
@@ -6627,13 +6627,13 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_meningitidis.svg" alt="脑膜炎奈瑟菌 (Neisseria meningitidis)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>脑膜炎奈瑟菌血清分群与耐药性检测</h1>' +
-    '<p style="font-size:1.2em;color:#555">疑似脑膜炎球菌感染时的床旁即时诊断 — 暴发型病程,分秒必争</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">脑膜炎球菌感染的现场研究分析 (RUO) — 暴发型病程,分秒必争</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><em>脑膜炎奈瑟菌</em>(脑膜炎球菌)是脑膜炎球菌病的病原体:从鼻咽部携带状态到暴发性脑膜炎球菌血症,后者从出现首批症状到死亡可能仅有数小时。<strong>诊断和治疗每延误一小时,死亡率随之升高。</strong>标准诊断方法——脑脊液或血液培养——需要 1–3 天,且由于已开始的抗生素治疗常呈阴性结果。</p>' +
     '<p>脑膜炎球菌的基因型决定后续所有病例管理:<strong>血清群</strong>(A、B、C、W、Y、X)决定接触者的疫苗预防策略,而<strong>耐药谱</strong>决定疫源地化学预防药物的选择(环丙沙星耐药株日益增多)。</p>' +
-    '<p>我们的流程在<strong>患者床旁</strong>完成纳米孔数据的完整分析周期:当日确定血清群、耐药谱和菌株克隆归属,数据不传输至外部服务器。</p>' +
+    '<p>我们的流程在<strong>样本采集现场</strong>完成纳米孔数据的完整分析周期:当日确定血清群、耐药谱和菌株克隆归属,数据不传输至外部服务器。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:脑脊液、血液、咽拭子;最佳方案——荚膜位点与耐药基因扩增子测序或全基因组测序 (WGS)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告——血清群、药敏谱、接触者化学预防建议;以及面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告——血清群、药敏谱;以及面向生物信息分析师的质控报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6702,13 +6702,13 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/icon_mycoplasma.svg" alt="生殖支原体 (Mycoplasma genitalium)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>生殖支原体耐药性检测</h1>' +
-    '<p style="font-size:1.2em;color:#555">治疗前检测对大环内酯类和氟喹诺酮类的耐药性 — 常被漏诊的性传播病原体,多重耐药迅速发展</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">大环内酯类和氟喹诺酮类耐药的遗传标志物 (RUO) — 常被漏诊的性传播病原体,多重耐药迅速发展</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><em>生殖支原体</em>是最小的可自我复制细菌,也是被低估的性传播病原体:导致男性非淋菌性尿道炎、女性宫颈炎和盆腔炎。该菌<strong>没有细胞壁</strong>,因此对所有 β-内酰胺类抗生素天然耐药,常规培养几乎不可能——在常规性病诊断中该病原体<strong>常被漏诊</strong>。</p>' +
     '<p>主要问题在于耐药性的增长速度。部分国家<strong>阿奇霉素</strong>耐药率已超过 50%,而尿道炎经验性治疗方案仍在"盲目"使用阿奇霉素。紧随大环内酯类之后,对储备药物<strong>莫西沙星</strong>的耐药也在蔓延。国际指南(BASHH、澳大利亚性病指南)要求<strong>治疗前进行耐药检测</strong>(耐药指导治疗,resistance-guided therapy):只有掌握具体菌株的基因型才能开药。</p>' +
-    '<p>我们的流程分析关键耐药位点(<em>23S rRNA</em>、<em>gyrA</em>、<em>parC</em>)扩增子测序或临床样本宏基因组测序的纳米孔数据,直接输出治疗方案。</p>' +
+    '<p>我们的流程分析关键耐药位点(<em>23S rRNA</em>、<em>gyrA</em>、<em>parC</em>)扩增子测序或临床样本宏基因组测序的纳米孔数据,确定耐药遗传标志物(RUO;不用于选择治疗方案)。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。最佳方案:<em>23S rRNA</em>、<em>gyrA</em>、<em>parC</em> 位点扩增子测序<strong>或</strong>拭子微生物组测序。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告——大环内酯类和氟喹诺酮类药敏谱及推荐治疗方案;以及面向生物信息分析师的质控报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告——大环内酯类和氟喹诺酮类药敏谱;以及面向生物信息分析师的质控报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6767,9 +6767,9 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><em>梅毒螺旋体</em>是梅毒的病原体,梅毒是最具社会意义的性传播感染之一。梅毒发病率在全球(包括俄罗斯)持续上升。</p>' +
     '<p>一个独特的医学现象:自 1940 年代以来,<em>梅毒螺旋体</em><strong>从未对青霉素产生耐药性</strong>——青霉素至今仍是治疗的金标准。然而约 <strong>10% 的患者</strong>对青霉素过敏。此前这类患者使用<strong>大环内酯类(阿奇霉素)</strong>——一种方便的口服替代方案。但由于 <strong>23S rRNA</strong> 基因的点突变(A2058G、A2059G),梅毒螺旋体已对阿奇霉素<strong>完全不敏感</strong>:在部分地区(美国、中国、欧洲多国),<strong>80–100%</strong> 的流行菌株携带这些突变。</p>' +
-    '<p>我们的流程完成纳米孔数据的完整分析周期,可<strong>快速确认</strong>具体菌株的<strong>大环内酯类耐药性</strong>并<strong>精确确定病原体的基因型</strong>——直接在患者床旁或实验室内完成,数据不传输至外部服务器。</p>' +
+    '<p>我们的流程完成纳米孔数据的完整分析周期,可<strong>快速确认</strong>具体菌株的<strong>大环内酯类耐药性</strong>并<strong>精确确定病原体的基因型</strong>——直接在现场或实验室内完成,数据不传输至外部服务器。</p>' +
     '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的详细 HTML 报告,以及面向生物信息分析师的扩展报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告,以及面向生物信息分析师的扩展报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6829,7 +6829,7 @@
     '<p><em>鲍曼不动杆菌</em>的主要危险在于其<strong>积累多重耐药 (MDR) 机制</strong>的惊人能力:基因水平转移、碳青霉烯酶产生(OXA-23、OXA-40、NDM)、主动外排泵 (AdeABC) 以及孔蛋白的修饰。其结果是出现对几乎所有抗生素类别耐药的 <strong>CRAB</strong>(耐碳青霉烯<em>鲍曼不动杆菌</em>)和 <strong>PDRAB</strong>(泛耐药)菌株。</p>' +
     '<p>现行 AMR 诊断标准——培养法加纸片扩散法——需要 3–5 天。在重症监护室 (ICU) 条件下这过于漫长,<strong>正确治疗每延误一小时</strong>,死亡率都会上升。我们的流程将获得完整 AMR 谱的时间缩短至<strong>一个工作日</strong>,且直接在院内完成。</p>' +
     '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。支持关键基因扩增子测序和全基因组测序 (WGS)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向感染科医生的完整 AMR 谱临床 HTML 报告,以及面向生物信息分析师的技术质控报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的完整 AMR 谱 HTML 报告,以及面向生物信息分析师的技术质控报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6857,7 +6857,7 @@
       ['<strong>tet(A)、tet(B)</strong>', '外排泵', '四环素类'],
       ['<strong>mcr-1</strong>', '脂质 A 修饰', '黏菌素("最后手段"药物)']
     ]) +
-    '<h3>临床报告中的抗生素谱</h3>' +
+    '<h3>报告中的抗生素谱</h3>' +
     tbl(['抗生素', '类别', '临床意义'], [
       ['<strong>美罗培南 / 亚胺培南</strong>', '碳青霉烯类', '重症感染的一线用药;CRAB 是全球性威胁'],
       ['<strong>黏菌素 / 多黏菌素 B</strong>', '多黏菌素类', '"最后手段"药物;具肾毒性;mcr 基因构成威胁'],
@@ -6894,7 +6894,7 @@
     '<li><strong>对消毒剂的耐受性</strong>:该菌可在干燥表面存活长达 <strong>25 天</strong>,导致其在院内迅速传播。</li>' +
     '<li><strong>俄罗斯</strong>:CRAB 在俄罗斯 ICU 中广泛流行;部分地区耐碳青霉烯分离株的比例超过 <strong>60%</strong>。</li>' +
     '<li><strong>新药</strong>:头孢地尔(2019)和舒巴坦-度洛巴坦(2023)是 PDRAB 仅有的新选择;没有 AMR 谱就无法正确选择治疗方案。</li></ul>' +
-    '<p>床旁快速 AMR 分子诊断使医生能够立即<strong>降阶梯</strong>(从广谱转向窄谱药物)或在 CRAB/PDRAB 时<strong>升阶梯</strong>治疗——直接影响 ICU 患者的生存率。</p><hr>' +
+    '<p>未来——经临床验证与注册后——快速分子 AMR 评估有望帮助及时<strong>降阶梯</strong>(从广谱转向窄谱药物)或在 CRAB/PDRAB 时<strong>升阶梯</strong>治疗。目前该流程仅供研究使用 (RUO)。</p><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — 2024 年细菌类重点病原体清单</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI) — 耐药基因数据库</a></li>' +
@@ -6913,7 +6913,7 @@
     '<p><em>铜绿假单胞菌</em>的适应能力独一无二。它拥有<strong>最大的细菌基因组之一</strong>(约 6.3 Mb),编码极其丰富的耐药与毒力机制。该菌能够<strong>同时</strong>动用多种耐药机制:孔蛋白丢失 (OprD)、外排泵高表达(MexAB-OprM 等)、β-内酰胺酶产生(AmpC、金属 β-内酰胺酶)以及抗生素靶基因突变。</p>' +
     '<p>特别严重的问题是<em>铜绿假单胞菌</em>在<strong>囊性纤维化慢性感染</strong>中的作用:细菌形成生物膜并转为黏液型表型,使抗生素和免疫系统无法触及。对这类患者而言,监测每个菌株的 AMR 谱关乎生存。</p>' +
     '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。支持全基因组测序 (WGS) 和扩增子测序。</li>' +
-    '<li><strong>📤 输出:</strong> 面向感染科/呼吸科医生的 AMR 谱临床 HTML 报告,以及面向生物信息分析师的技术质控报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 AMR 谱 HTML 报告,以及面向生物信息分析师的技术质控报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -6947,7 +6947,7 @@
       ['<strong>aac(6\')-II、aph(3\')-IIb</strong>', '酶促灭活', '氨基糖苷类'],
       ['<strong>fosA</strong>(染色体介导)', '磷霉素灭活', '磷霉素']
     ]) +
-    '<h3>临床报告中的抗生素谱</h3>' +
+    '<h3>报告中的抗生素谱</h3>' +
     tbl(['抗生素', '类别', '临床意义'], [
       ['<strong>哌拉西林/他唑巴坦</strong>', 'β-内酰胺类 + 抑制剂', '敏感菌株的一线用药'],
       ['<strong>头孢他啶</strong>', '第三代头孢菌素(抗假单胞菌)', '一线用药;无 AmpC 时敏感'],
@@ -6990,7 +6990,7 @@
     '<li><strong>"治疗过程中"的耐药积累</strong>:<em>铜绿假单胞菌</em>能够在<strong>同一患者的治疗期间</strong>获得新的耐药机制——动态复查 AMR 至关重要。</li>' +
     '<li><strong>俄罗斯</strong>:俄罗斯医院中 CRPA 的比例平均超过 <strong>30%</strong>,大型 ICU 中可达 <strong>50–60%</strong>。</li>' +
     '<li><strong>生物膜</strong>:生物膜内的<em>铜绿假单胞菌</em>对抗生素的耐药性提高 <strong>1000 倍</strong>——生物膜基因(<em>pelB</em>、<em>algD</em>)的分子检测可预测治疗失败。</li></ul>' +
-    '<p>床旁快速分子分型使医生能够立即换用有活性的药物(头孢洛扎/他唑巴坦、头孢地尔),<strong>不浪费关键时间</strong>在无效的"试探性"治疗方案上。</p><hr>' +
+    '<p>未来——经临床验证与注册后——快速分子分型有望帮助及时换用有活性的药物(头孢洛扎/他唑巴坦、头孢地尔),而非"试探性"治疗方案。目前该流程仅供研究使用 (RUO)。</p><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240093461">WHO — 2024 年细菌类重点病原体清单</a></li>' +
     '<li>📄 <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus (NCBI)</a></li>' +
@@ -7004,14 +7004,14 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/chlamydia.png" alt="沙眼衣原体 (Chlamydia trachomatis)" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>沙眼衣原体耐药性检测与基因分型</h1>' +
-    '<p style="font-size:1.2em;color:#555">对全球最常见细菌性传播感染的分子诊断 — 从血清型鉴定到大环内酯类和氟喹诺酮类耐药突变检测</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">对全球最常见细菌性传播感染的研究性分子分析 — 从血清型鉴定到大环内酯类和氟喹诺酮类耐药突变检测</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p><em>沙眼衣原体</em>是专性细胞内寄生菌,是衣原体感染的病原体——<strong>全球最常见的细菌性性传播感染</strong>。据 WHO 数据,每年新增病例超过 <strong>1.27 亿</strong>。在俄罗斯,衣原体感染在性传播感染中居首位。</p>' +
     '<p>病原体独特的生物学特性造成严重的诊断和治疗难题:衣原体以<strong>两种形态</strong>存在——具感染性的原体 (EB) 和细胞内的网状体 (RB)。这使细菌对多数破坏细胞壁合成的抗生素<strong>不可及</strong>(β-内酰胺类完全无效)。</p>' +
     '<p>长期以来首选药物是<strong>阿奇霉素</strong>(单次给药)。然而由于不规范使用,经 23S rRNA 基因突变导致的<strong>大环内酯类耐药</strong>正在增长,同时还出现对<strong>氟喹诺酮类</strong>(<em>gyrA</em>、<em>parC</em> 基因)的耐药。选错治疗方案会导致感染转为慢性、不孕以及异位妊娠风险。</p>' +
     '<p>我们的流程完成纳米孔数据的完整分析周期,用于病原体的<strong>血清型/基因型鉴定</strong>和<strong>耐药突变检测</strong>——直接在医疗现场完成,数据不传输至外部服务器。</p>' +
     '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 碱基识别模型将 POD5/FAST5 转换为 FASTQ 之后)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的详细 HTML 报告(含血清型和药敏谱),以及面向生物信息分析师的扩展质控报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告(含血清型和药敏谱),以及面向生物信息分析师的扩展质控报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7067,7 +7067,7 @@
     '<li><strong>并发症</strong>:慢性输卵管炎 → 输卵管阻塞 → <strong>不孕</strong>(见于 10–15% 未治疗的女性);LGV 血清型可导致严重的破坏性淋巴结病变。</li>' +
     '<li><strong>合并感染</strong>:衣原体感染使性接触中感染 HIV 的风险增加 <strong>3–5 倍</strong>,因此其诊断与其他性传播感染的联合防控至关重要。</li>' +
     '<li><strong>俄罗斯</strong> — 衣原体感染仍是最常报告的性传播感染;由于无症状病程,实际发病率超过官方数据的 5–10 倍。</li></ul>' +
-    '<p>现行标准是 PCR 诊断(仅能确认有无感染,无耐药信息)。我们的流程增加了<strong>至关重要的一环</strong>:<strong>是哪种血清型</strong>、<strong>对阿奇霉素是否敏感</strong>,从而可以立即开出正确的治疗方案,避免治疗失败的风险。</p><hr>' +
+    '<p>现行标准是 PCR 诊断(仅能确认有无感染,无耐药信息)。我们的流程增加了<strong>至关重要的一环</strong>:<strong>是哪种血清型</strong>、<strong>对阿奇霉素是否敏感</strong>——这是耐药研究的重要数据;RUO 结果不用于选择治疗方案。</p><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/news-room/fact-sheets/detail/chlamydia">WHO — 衣原体感染实况报道</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm">CDC — 衣原体感染治疗指南</a></li>' +
@@ -7083,8 +7083,8 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><em>白色念珠菌</em>(Candida albicans)是人类侵袭性念珠菌病的首要病原体:<strong>重症监护室的念珠菌血症</strong>(医院血流感染的主要原因之一)、黏膜与皮肤念珠菌病,以及<strong>导管和植入物上的生物膜</strong>——生物膜内对唑类的耐受性比浮游细胞高出数倍。该物种的标志性特征是<strong>"酵母 ↔ 菌丝"双形态转换</strong>:形态切换是毒力、组织侵袭和生物膜形成的关键因素。</p>' +
     '<p>决定流程架构的核心分子特征:<em>C. albicans</em> 是<strong>二倍体</strong>生物,没有完整的有性生殖周期,其耐药性往往不是通过点突变,而是通过<strong>非整倍体和结构重排</strong>发展而来——经典例子是<strong>5L 等臂染色体</strong>,同时携带 <em>ERG11</em>(氟康唑靶标)和调控因子 <em>TAC1</em>。短读长难以解析这类重排;纳米孔测序能看到结构变异和拷贝数变化 (CNV),并可在二倍体基因组中<strong>定相等位基因</strong>。我们的流程在<strong>单次运行中联合分析 SNV + CNV + 非整倍体</strong>。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:纯培养分离株或血培养。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 菌种鉴定 (ITS)、AMR 谱(唑类、棘白菌素类)、CNV/非整倍体(含 5L 等臂染色体)、生物膜标志物;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:纯培养分离株或血培养。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场分析场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定 (ITS)、AMR 谱(唑类、棘白菌素类)、CNV/非整倍体(含 5L 等臂染色体)、生物膜标志物;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7155,7 +7155,7 @@
     '<li><strong>鉴定错误</strong> — 表型系统会将其与 <em>C. haemulonii</em> 等酵母混淆;可靠鉴定只能靠<strong>分子方法</strong>(ITS/D1–D2)或更新数据库后的 MALDI-TOF。</li></ul>' +
     '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种分子鉴定</strong>、基于 SNP 面板/全基因组的<strong>进化分支判定 (I–VI)</strong>、<strong>AMR 谱</strong>(ERG11、FKS1)以及<strong>暴发追踪</strong>:分离株亲缘关系的 SNP 分析回答感染控制的核心问题"谁传染了谁",并记录院内传播。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:分离株或筛查拭子(腋窝/腹股沟)。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于医院场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医院感染控制部门的报告 — 菌种鉴定、进化分支、AMR 谱、暴发分离株 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 面向医院感染控制部门的仅供研究使用 (RUO) 报告 — 菌种鉴定、进化分支、AMR 谱、暴发分离株 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7228,8 +7228,8 @@
     '<p><em>光滑念珠菌</em>(Candida glabrata,现名 <em>Nakaseomyces glabratus</em>)是发达国家成人<strong>第二常见的念珠菌血症病因</strong>,也是新栏目"念珠菌病宇宙"的主打物种。与白色念珠菌不同,该病原体是<strong>单倍体</strong>,<strong>不形成真菌丝和假菌丝</strong>——只有小型出芽酵母细胞。其在宿主体内的持留依靠 <strong>EPA 家族</strong>黏附素,而主要的临床"武器"是在治疗过程中进化出耐药性的惊人能力。</p>' +
     '<p>问题的核心是<strong>"在医生眼前"产生的耐药性</strong>。光滑念珠菌天然对氟康唑<strong>敏感性降低</strong>(SDD 类别——剂量依赖性敏感),在治疗压力下迅速获得完全耐药:<strong>PDR1 功能获得性突变</strong>导致 <strong>CDR1/CDR2</strong> 外排泵过表达(唑类耐药),<strong>FKS1 和 FKS2 热点突变</strong>(如 FKS1 的 S629P、FKS2 的 S663P)导致棘白菌素类耐药。经典场景:ICU 患者使用米卡芬净,数周后出现<strong>耐药菌株突破性念珠菌血症</strong>。该物种的另一特征是 <strong>MSH2</strong> 突变(错配修复系统),产生<strong>突变子(超突变)表型</strong>,加速整个进化过程。已有<strong>同时对唑类和棘白菌素类耐药</strong>的分离株报道——此时治疗选择几乎只剩两性霉素 B。</p>' +
     '<p>我们的流程基于<strong>同一患者连续分离株</strong>(治疗前和治疗期间)的纳米孔测序数据,构建关键耐药基因谱,进行 ITS 菌种鉴定,并<strong>将连续分离株相互比较</strong>——追踪患者体内的微观进化。长读长提供靶基因的完整覆盖和 <strong>CNV</strong> 控制(泵和靶标的拷贝数)。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液及其他无菌部位连续分离株的培养物。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于 ICU 床旁场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生的 HTML 报告 — 菌种鉴定、PDR1/FKS1/FKS2/MSH2 谱、连续分离株的突变动态及<strong>治疗调整建议</strong>;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液及其他无菌部位连续分离株的培养物。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场分析场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、PDR1/FKS1/FKS2/MSH2 谱、连续分离株的突变动态;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7299,8 +7299,8 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><em>近平滑念珠菌</em>(Candida parapsilosis)是一种类酵母真菌,<strong>新生儿重症监护室 (NICU) 暴发</strong>的经典病原体。关键机制是经<strong>医护人员双手</strong>和<strong>侵入性器械</strong>传播:该真菌对聚合物表面生物膜有明显趋向性,因此中心静脉导管和肠外营养系统成为<strong>导管相关念珠菌血症</strong>的入口。历史上近平滑念珠菌被认为毒力低于白色念珠菌,但其暴发能力、在病房内的持留性以及日益增长的耐药性,使其成为新生儿科感染控制的主要难题之一。</p>' +
     '<p>我们的流程基于暴发分离株的纳米孔测序数据,执行<strong>菌种鉴定</strong>(ITS,并与 <em>C. orthopsilosis</em> 和 <em>C. metapsilosis</em> 鉴别——这是流行病学不同的近缘物种复合体)、<strong>AMR 谱</strong>(ERG11 Y132F、TAC1、FKS1)和<strong>基于 SNP 的暴发追踪</strong>——为感染控制提供基因组学答案:是否为同一克隆,来源在哪里——医护人员的手还是设备。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液分离株、医护人员手和物体表面拭子、导管生物膜。最佳方案:在病房内直接用 <strong>Flongle</strong> 运行,床旁场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向感染控制和临床医生的 HTML 报告 — 菌种鉴定、含治疗建议的 AMR 谱(<strong>ERG11 Y132F 时推荐棘白菌素类</strong>)、暴发分离株 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液分离株、医护人员手和物体表面拭子、导管生物膜。最佳方案:在病房内直接用 <strong>Flongle</strong> 运行,现场分析场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、AMR 谱(唑类耐药标志物 <strong>ERG11 Y132F</strong>)、暴发分离株 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7365,7 +7365,7 @@
     '<p><em>克鲁斯念珠菌</em>(<em>Pichia kudriavzevii</em>)具有<strong>先天氟康唑耐药</strong>:这种抗真菌药甚至不等药敏试验结果就不得经验性使用。在<strong>棘白菌素类</strong>的选择压力下,该物种会产生 <strong>FKS1</strong> 突变,使本已有限的武器库进一步收窄。历史事实:该物种以俄罗斯微生物学家<strong>库德里亚夫采夫 (V. I. Kudryavtsev)</strong> 命名,他是酵母分类学研究者。</p>' +
     '<p>我们的流程基于分离株的纳米孔测序数据,执行 <strong>ITS 菌种鉴定</strong>(克鲁斯与热带的鉴别至关重要:两者的起始治疗不同),确定 <strong>AMR 谱</strong>(ERG11 Y132F/A395T、TAC1、FKS1),并基于 SNP 距离<strong>追踪耐药克隆的传播</strong>。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:分离株纯培养(血培养、无菌部位)。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,"分离株 → 当班出报告"场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向临床医生/微生物学家的 HTML 报告 — 菌种鉴定、AMR 谱(明确指出克鲁斯念珠菌<strong>禁用氟康唑</strong>)、起始治疗建议;面向流行病学家的 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、AMR 谱(明确指出克鲁斯念珠菌<strong>禁用氟康唑</strong>);面向流行病学家的 SNP 聚类;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7434,7 +7434,7 @@
     '<p><strong>核心三:人畜共患暴发与"同一健康" (One Health)。</strong><em>厚皮马拉色菌</em>(M. pachydermatis)是该属唯一<strong>不依赖脂质</strong>的物种,是犬皮肤和耳道的常驻菌。已有文献记载的 NICU 暴发中,工作人员<strong>将真菌从自家宠物经双手带入</strong>,通过导管感染早产儿。基于基因组数据的 <strong>SNP 溯源</strong>将临床分离株与源头(某位员工的宠物)关联起来——这把防疫措施从"全面消毒"变为对源头的精准清除。"同一健康"的闭环由耐药性完成:患马拉色菌性耳炎和皮炎的犬在兽医实践中被大规模使用<strong>唑类药物</strong>治疗,耐唑类 <em>M. pachydermatis</em> 菌株已有报道——这是紧邻早产儿病房的潜在耐药储存库。相关主题还有同一 NICU 中近平滑念珠菌的导管相关暴发:参见<a href="/parapsilosis/">近平滑念珠菌页面</a>。</p>' +
     '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种鉴定</strong>(全长 ITS + D1/D2 LSU)、用于暴发溯源的 <strong>SNP 分型</strong>,以及基于 ERG11 和外排机制的<strong>唑类耐药检测</strong>。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:血液、导管尖端、皮肤刮片、犬外耳道分泌物(兽医样本)。皮肤样本为<strong>低生物量</strong>,因此最佳方案是扩增子方法 (ITS/D1D2) 并在 <strong>Flongle</strong> 上快速运行 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向 NICU 微生物学家/流行病学家的 HTML 报告 — 菌种鉴定、ERG11/外排谱、暴发分离株 SNP 聚类并指明最可能的源头;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、ERG11/外排谱、暴发分离株 SNP 聚类并指明最可能的源头;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7500,7 +7500,7 @@
     '<p>另一个独立的问题是<em>格特隐球菌</em>(C. gattii):这个历史上的"热带"菌种会感染<strong>免疫功能正常</strong>的人群(著名的温哥华岛及太平洋西北地区暴发,分布范围随气候变化不断扩大),病程更重,可伴神经梗阻性并发症,对氟康唑的反应也更差。该属的标志性特征是<strong>巨大的多糖荚膜</strong>:既是主要毒力因子,同时也是经典 PCR DNA 提取的障碍(但对纳米孔文库制备不是)。</p>' +
     '<p>我们的流程基于纳米孔测序数据,执行<strong>菌种鉴定</strong>(<em>neoformans</em> vs <em>gattii</em>——两者在预后上是不同的疾病),确定<strong>分子型</strong> VNI–VNIV(<em>neoformans</em>)和 VGI–VGIV(<em>gattii</em>),并构建<strong>唑类耐药谱</strong>——包括短读长无法看到的<strong>非整倍体与 CNV</strong>。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:纯培养分离株、脑脊液。最佳方案 — 在 <strong>Flongle</strong> 上运行 <strong>ITS / D1–D2</strong> 扩增子,实现快速菌种鉴定 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 菌种、分子型、氟康唑药敏谱(ERG11、AFR1、1 号染色体二体)、毒力标志物;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种、分子型、氟康唑药敏谱(ERG11、AFR1、1 号染色体二体)、毒力标志物;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7552,7 +7552,7 @@
     '<li><strong>仅有 CrAg 不够</strong> — 抗原检测只回答"是/否",不区分菌种和分子型,对耐药保持沉默;分子诊断把筛查变成预后判断。</li>' +
     '<li><strong>格特隐球菌正在改写版图</strong> — 感染免疫功能正常者、病程严重且对氟康唑反应较差的这一菌种,正随气候变化扩大分布;菌种鉴别在热带以外也变得必要,包括中国日益增多的非 HIV 病例。</li>' +
     '<li><strong>异质性耐药对短读长不可见</strong> — 携带 ERG11+AFR1 的 1 号染色体二体是一种非整倍体机制,只有长读长结合 CNV 分析才能可靠看到;逻辑与<a href="/albicans/">白色念珠菌</a>相同。</li>' +
-    '<li><strong>荚膜不是障碍</strong> — 多糖荚膜会妨碍 PCR 提取,但不妨碍纳米孔文库制备;Flongle 上的 ITS/D1–D2 扩增子可在床旁 (point-of-care) 场景下完成菌种鉴定。</li></ul><hr>' +
+    '<li><strong>荚膜不是障碍</strong> — 多糖荚膜会妨碍 PCR 提取,但不妨碍纳米孔文库制备;Flongle 上的 ITS/D1–D2 扩增子可在现场分析场景下完成菌种鉴定。</li></ul><hr>' +
     '<h2>🔬 参考来源</h2>' +
     '<ul><li>📄 <a href="https://www.who.int/publications/i/item/9789240060241">WHO — 真菌重点病原体清单 (2022)</a></li>' +
     '<li>📄 <a href="https://www.cdc.gov/">CDC — 新生隐球菌与格特隐球菌感染</a></li>' +
@@ -7568,8 +7568,8 @@
     '<p><em>肺炎链球菌</em>(Streptococcus pneumoniae,肺炎球菌)是一种革兰氏阳性<strong>柳叶刀状双球菌</strong>,在血琼脂上呈 <strong>α-溶血</strong>,具有明显的多糖荚膜。它是<strong>社区获得性肺炎</strong>、细菌性<strong>脑膜炎</strong>和儿童<strong>急性中耳炎</strong>的首要病因,也可引起老年人鼻窦炎和菌血症。空气飞沫传播和鼻咽部定植(健康儿童携带率高达 20–40%)使肺炎球菌成为人群中的常驻菌——也是侵袭性感染的持续来源。</p>' +
     '<p>肺炎球菌的关键基因组主题是<strong>通过镶嵌型 pbp2x、pbp2b 和 pbp1a 基因产生青霉素耐药</strong>。肺炎球菌具有天然感受态:它摄取 mitis 群共生链球菌(<em>S. mitis</em>、<em>S. oralis</em>)的 DNA,并将其片段整合进自身的青霉素结合蛋白基因。由此产生的<strong>镶嵌型 PBP</strong> 对 β-内酰胺类亲和力降低,MIC 随外源片段的累积呈阶梯式上升。表型检测无法预测这种镶嵌结构——而<strong>测序能直接看到它</strong>,逐块解析。</p>' +
     '<p>第二个主题是<strong>基于荚膜 cps 基因座的血清分型</strong>:已知<strong>超过 90 种血清型</strong>,而荚膜正是结合疫苗的靶点。PCV13 引入后,群体结构发生了偏移:<strong>非疫苗血清型(19A、22F、33F、8 等)</strong>正在上升——这是典型的疫苗逃逸,需要持续的基因组监测。WGS 血清分型(SeroBA 方法)比荚膜肿胀反应 (Quellung) 更准确,且无需抗血清面板。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:痰液、脑脊液、血液、鼻咽拭子。长度 <strong>2–3 kb</strong> 的镶嵌型 pbp 基因和<strong>约 10–20 kb</strong> 的荚膜基因座可完整落入纳米孔长读长——这是 <strong>MinION 配 Flongle</strong> 床旁 (point-of-care) 场景 (Edge) 的理想用例。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — 菌种鉴定、荚膜血清型、药敏谱(β-内酰胺类、大环内酯类、氟喹诺酮类)并附镶嵌型 pbp 解读;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:痰液、脑脊液、血液、鼻咽拭子。长度 <strong>2–3 kb</strong> 的镶嵌型 pbp 基因和<strong>约 10–20 kb</strong> 的荚膜基因座可完整落入纳米孔长读长——这是 <strong>MinION 配 Flongle</strong> 现场分析场景 (Edge) 的理想用例。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、荚膜血清型、药敏谱(β-内酰胺类、大环内酯类、氟喹诺酮类)并附镶嵌型 pbp 解读;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7639,8 +7639,8 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><em>化脓性链球菌</em>(Streptococcus pyogenes,A 组 β-溶血性链球菌,<strong>GAS</strong>)是革兰氏阳性球菌,呈链状排列(故名"链"球菌),也是最具"人类专一性"的病原体之一:仅定植和感染人类。疾病谱异常宽广:从<strong>链球菌性咽炎、猩红热和丹毒</strong>到<strong>侵袭性感染</strong>——坏死性筋膜炎和链球菌中毒性休克综合征 (STSS),病死率 <strong>30–70%</strong>。另有单独的<strong>非化脓性并发症</strong>:风湿热和链球菌感染后肾小球肾炎,决定了心内科和肾内科的长期疾病负担。</p>' +
     '<p>我们的流程基于纳米孔测序数据执行 <strong>emm 分型</strong>(基于编码 M 蛋白的 <em>emm</em> 基因 5\' 端)——GAS 流行病学的金标准,已知 <strong>250 余种型别</strong>;确定<strong>超抗原毒素谱</strong>(speA、speC、ssa)和<strong>大环内酯类耐药基因</strong>(ermB、mefA)。测序在 emm 分型中取代 Sanger 法,并同时给出毒力和药敏答案——一次运行全部完成。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:咽拭子、伤口分泌物、病灶穿刺液、血液。基因组很小(约 1.9 Mb):床旁场景 (Edge) 最优方案是在 <strong>Flongle</strong> 上做 emm 扩增子测序;侵袭性感染则做全基因组。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告 — emm 型别、毒素谱(STSS 风险)、大环内酯类耐药标志物及经验性用药建议;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:咽拭子、伤口分泌物、病灶穿刺液、血液。基因组很小(约 1.9 Mb):现场分析场景 (Edge) 最优方案是在 <strong>Flongle</strong> 上做 emm 扩增子测序;侵袭性感染则做全基因组。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — emm 型别、毒素谱(STSS 风险)、大环内酯类耐药标志物;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7710,8 +7710,8 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><em>无乳链球菌</em>(Streptococcus agalactiae)是革兰氏阳性 B 组球菌 (GBS),可无害地定植于 <strong>10–30% 孕妇</strong>的胃肠道和泌尿生殖道,却同时是<strong>新生儿脓毒症和脑膜炎的首要病因</strong>。临床上分两型:<strong>早发型(出生 7 天内)</strong>——分娩时由定植母亲垂直传播;以及<strong>晚发型(3 个月内)</strong>——以脑膜炎为主。若无分娩期预防,多达半数受感染新生儿发病;采取预防后风险下降数十倍。标准做法是在孕 <strong>35–37 周</strong>行拭子培养筛查:发现定植即给予<strong>青霉素</strong>分娩期预防。问题在于培养需 <strong>18–48 小时</strong>,对未筛查即入院分娩的产妇毫无帮助——这正是需要快速分子诊断的场景。</p>' +
     '<p>我们的流程基于纳米孔测序数据执行<strong>菌种鉴定</strong>(cfb——CAMP 因子)、<strong>荚膜血清分型</strong>(基于 cps 基因的 Ia、Ib、II–IX 型)、检出<strong>高毒力克隆 CC17 (ST-17)</strong>——新生儿侵袭性感染的主要元凶,并测定<strong>耐药标志物</strong>——对青霉素过敏的孕妇至关重要。小基因组(约 <strong>2.2 Mb</strong>)非常适合在产房直接用 <strong>Flongle</strong> 快速运行。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:阴道-直肠拭子、新生儿脑脊液/血液。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于产房床旁场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向产科医生/新生儿科医生的 HTML 报告 — GBS 菌种鉴定、荚膜血清型、克隆归属 (CC17)、药敏谱及青霉素过敏时的用药建议;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:阴道-直肠拭子、新生儿脑脊液/血液。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于现场分析场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — GBS 菌种鉴定、荚膜血清型、克隆归属 (CC17)、药敏谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7765,7 +7765,7 @@
     ]) + '<hr>' +
     '<h2>🌍 全球背景:为何重要</h2>' +
     '<ul><li><strong>新生儿负担</strong> — GBS 仍是新生儿脓毒症和脑膜炎的首要病因:据 WHO 估计每年数十万例侵袭性感染,包括早发型(分娩时垂直传播)和晚发型,神经系统后遗症比例高。</li>' +
-    '<li><strong>筛查盲区</strong> — 培养需 18–48 小时,未筛查即入院分娩的产妇只能按危险因素"盲目"预防;在产房用 Edge 设备做床旁测序,可在数小时内——即活跃产程开始前——给出答案。</li>' +
+    '<li><strong>筛查盲区</strong> — 培养需 18–48 小时,未筛查即入院分娩的产妇只能按危险因素"盲目"预防;现场测序有望在数小时内给出答案——这是研究方向 (RUO),而非诊断服务。</li>' +
     '<li><strong>过敏情况下的耐药上升</strong> — 青霉素地位稳固,但对克林霉素和红霉素的耐药(ermB、mefA/E、lsaB、lnuB)在全球上升;青霉素过敏时,基因组标志物谱直接决定用药选择。</li>' +
     '<li><strong>疫苗时代</strong> — 抗 GBS 六价结合疫苗正处于临床试验阶段;血清型流行病学监测(III 型占比、CC17 克隆)将成为评估其有效性的基础。</li></ul><hr>' +
     '<h2>🔬 参考来源</h2>' +
@@ -7783,7 +7783,7 @@
     '<p><em>屎肠球菌</em>(Enterococcus faecium)是革兰氏阳性球菌(成对及短链状),属 <strong>ESKAPE 病原体</strong>,是 ICU 医院获得性感染的主要病原之一:<strong>菌血症、尿路感染、腹腔感染</strong>。在免疫抑制患者——<strong>血液肿瘤科和器官移植科</strong>——中尤为凶险:万古霉素耐药 (VRE) 菌血症病死率高,而药物武器库正在枯竭:医院克隆 <strong>CC17</strong> 本已耐受氨苄西林(<em>pbp5</em>)和高水平氨基糖苷类(<em>aac(6\')-aph(2\'\')</em>),对后备药物——<strong>利奈唑胺和达托霉素</strong>——的耐药也在上升(<em>cfr</em>、<em>optrA</em>)。</p>' +
     '<p>治疗与流行病学防控的关键在于位于质粒和转座子 (Tn1546) 上的 <strong>vanA/vanB 基因簇</strong>:<strong>vanA</strong> 导致对万古霉素<strong>和</strong>替考拉宁的高水平耐药,<strong>vanB</strong> 则产生可变耐药,此时替考拉宁可能仍保持活性。因此,选方案时<strong>基因型比表型更重要</strong>。我们的流程基于纳米孔测序数据确定 van 基因型、AMR 耐药谱、克隆归属,并在暴发时进行传播链 WGS 追踪 (cgMLST / 核心基因组 SNP),把直肠拭子筛查变成可控的院感防控工具。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:直肠拭子(定植筛查)、血培养、尿液、腹腔分泌物。最佳方案:在 <strong>Flongle</strong> 上做 vanA/vanB 扩增子筛查测序,数小时出结果 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向重症医生/流行病学家的 HTML 报告 — 菌种鉴定(<em>ddl</em>)、van 基因型及治疗解读、AMR 耐药谱,暴发时附分离株聚类分析;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定(<em>ddl</em>)、van 基因型、AMR 耐药谱,暴发时附分离株聚类分析;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7850,8 +7850,8 @@
     '<h2>🧬 流程说明</h2>' +
     '<p><em>流感嗜血杆菌</em>(Haemophilus influenzae,Pfeiffer 杆菌)是一种小型革兰氏阴性<strong>多形性球杆菌</strong>,为鼻咽部共生菌,也是中耳炎、鼻窦炎、<strong>慢阻肺急性加重</strong>(仅次于肺炎球菌的第二常见细菌性病原体)和肺炎的病原;在未接种疫苗的儿童中可引起会厌炎和脑膜炎(历史上为荚膜 b 型,即 Hib)。培养诊断缓慢而苛刻:该菌苛养,仅在<strong>巧克力琼脂</strong>上生长,且需要生长因子 <strong>X(血红素)和 V(NAD)</strong>。基因组学绕开了这一难题:结果不取决于培养是否长出来。</p>' +
     '<p>我们的流程基于纳米孔测序数据,确定<strong>AMR 耐药谱(必做 ftsI 突变分析,要点见下文)</strong>,由荚膜基因座判定<strong>血清型(a–f 或无荚膜的 NTHi)</strong>,并进行<strong>菌种鉴定</strong>——与无致病性的"孪生菌"<em>溶血嗜血杆菌</em>(H. haemolyticus)相鉴别。基因组很小(<strong>约 1.8 Mb</strong>),而关键目标——ftsI + blaTEM 扩增子加荚膜基因座——可在医院或门诊的 Edge 设备上用 Flongle <strong>数小时内</strong>给出答案。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:痰液、鼻咽拭子、中耳渗出液、脑脊液、血液。最佳方案——快速建库并在 <strong>Flongle</strong> 上运行,适用于床旁 (point-of-care) 场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向儿科/呼吸科医生的 HTML 报告 — 菌种鉴定、血清型、AMR 耐药谱(含 BLNAR 状态)并附经验性用药建议;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:痰液、鼻咽拭子、中耳渗出液、脑脊液、血液。最佳方案——快速建库并在 <strong>Flongle</strong> 上运行,适用于现场分析场景 (Edge)。</li>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 菌种鉴定、血清型、AMR 耐药谱(含 BLNAR 状态);面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -7930,7 +7930,7 @@
     '<p>巨细胞病毒 (CMV,HHV-5) 是一种 β-疱疹病毒,<strong>成人血清阳性率为 60–90%</strong>。在免疫功能正常的携带者体内,它潜伏于单核细胞中;而在<strong>实体器官或骨髓移植</strong>后,它成为最主要的病毒性病原体:CMV 病毒血症、肺炎、结肠炎、视网膜炎、食管炎。除直接损伤器官外,CMV 还产生<strong>间接效应</strong>:增加移植物排斥风险,并为真菌和细菌继发感染敞开大门——正因如此,临床对其实施预防性用药(缬更昔洛韦、莱特莫韦)并监测病毒载量。</p>' +
     '<p>经典的临床陷阱是<strong>难治性 CMV</strong>:在更昔洛韦/缬更昔洛韦治疗下病毒载量数周不降。病因只有两个——免疫不足或<strong>耐药病毒</strong>——而两者的处理截然相反。参考实验室 (Sanger) 需要<strong>数周</strong>才能给出答复;我们的流程基于纳米孔测序数据,在移植中心现场<strong>数小时内</strong>完成耐药基因分型。深度测序能捕获 Sanger 原则上无法看到的<strong>低频耐药亚群 (5–20%)</strong>——而正是这些亚群在治疗压力下被筛选出来,导致该线治疗失败。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:移植后患者的血浆/全血(病毒血症经 PCR 证实)。最佳方案——在移植中心实验室直接用 <strong>Flongle/MinION</strong> 运行 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向移植医生的 HTML 报告 — UL97/UL54/UL56/UL51/UL89 耐药基因型及亚群比例,按药物解读(更昔洛韦/膦甲酸/西多福韦/莱特莫韦/马立巴韦),并由同一数据估算病毒载量;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — UL97/UL54/UL56/UL51/UL89 耐药基因型及亚群比例,按药物解读(更昔洛韦/膦甲酸/西多福韦/莱特莫韦/马立巴韦),并由同一数据估算病毒载量;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:I — 双链DNA(dsDNA)</h2>' +
     '<p>CMV 属于<strong>巴尔的摩分类的 I 类</strong> —— 双链DNA基因组病毒。其表达策略最"细胞化":dsDNA 基因组由 DNA 依赖的 RNA 聚合酶(宿主的和病毒的)转录为 mRNA,随即翻译为蛋白 —— 经典的 <strong>DNA → mRNA → 蛋白</strong> 路线,无逆转录和 RNA 中间体。CMV 基因组约 <strong>235 kb</strong>,是人疱疹病毒中最大的,且遍布重复序列(侧翼于独特区段 UL 和 US 的反向重复 b\'/c\');在单核细胞中病毒进入潜伏,以游离体 dsDNA 形式存留。对流程而言这意味着两点:dsDNA 是<strong>稳定的靶标</strong>,无需逆转录步骤,可由纳米孔直接读取,包括天然甲基化;而 ONT 长读长能够<strong>完整跨越重复序列</strong>,在那里 dsDNA 基因组的短读长会坍塌且无法定相。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -8009,7 +8009,7 @@
     '<p>脑脊液 PCR 是诊断金标准,但存在盲区:发病<strong>最初 24–72 小时</strong>内 PCR 可呈假阴性,非典型及疫苗相关病例会漏检,更重要的是——<strong>PCR 无法回答耐药问题</strong>。在免疫抑制患者(器官与造血干细胞移植、HIV)中,阿昔洛韦耐药率可达 <strong>4–14%</strong>:表型药敏试验需要病毒培养,耗时<strong>数周</strong>;而基于 <strong>UL23</strong>(胸苷激酶,约占耐药病例 95%)和 <strong>UL30</strong>(DNA 聚合酶)的基因分型数小时内即可给出答案,并直接提示换药方案(膦甲酸、西多福韦)。</p>' +
     '<p>我们的流程基于纳米孔测序数据,在一次运行中合并三项任务:<strong>脑脊液 mNGS</strong>(在鉴别诊断谱中检测 HSV——VZV、肠道病毒、HHV-6、细菌性脑膜炎)、UL23/UL30 <strong>耐药基因分型</strong>以及用于毒株流行病学研究的<strong>全基因组组装</strong>。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:脑脊液(优先)、疱液、黏膜拭子、新生儿感染时的血液。最佳方案——在重症监护室以 <strong>Flongle</strong> 运行,用于急诊场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向神经科/感染科医生的 HTML 报告 — 病毒种类与型别(按 US6 区分 HSV-1/HSV-2)、耐药基因型(含 UL23/UL30 突变解读与换药建议)、mNGS 鉴别诊断谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 病毒种类与型别(按 US6 区分 HSV-1/HSV-2)、耐药基因型(含 UL23/UL30 突变解读)、mNGS 鉴别诊断谱;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:I — 双链DNA(dsDNA)</h2>' +
     '<p>HSV-1 和 HSV-2 属于<strong>巴尔的摩分类的 I 类</strong> —— 双链DNA基因组病毒。其表达策略最"细胞化":dsDNA 基因组由 DNA 依赖的 RNA 聚合酶(宿主的和病毒的)转录为 mRNA,随即翻译为蛋白 —— 经典的 <strong>DNA → mRNA → 蛋白</strong> 路线,无逆转录和 RNA 中间体。HSV 基因组为约 <strong>152 kb</strong> 的 dsDNA,具有特征性结构:独特区段 UL 和 US 被<strong>末端及内部反向重复序列</strong>(TRL/IRL/IRS/TRS)环绕;在神经节神经元中病毒建立终身潜伏。对流程而言这意味着两点:dsDNA 是<strong>稳定的靶标</strong>,无需逆转录步骤,可由纳米孔直接读取,包括天然甲基化;而 ONT 长读长能够<strong>完整解析反向重复序列</strong>,使基因组得以组装为单条重叠群,并精确绘制 UL23 同聚物区段的插入缺失。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -8190,7 +8190,7 @@
     '<p>但 HHV-6 有一个其他疱疹病毒都不具备的独特陷阱:<strong>iciHHV-6</strong>(遗传性染色体整合 HHV-6)。约 <strong>1% 的人</strong>携带<strong>以生殖系方式整合入染色体</strong>的完整 HHV-6 基因组——病毒在祖先体内嵌入了染色体端粒区,如今像普通基因一样遗传。这类患者的血液 PCR(尤其是全血)会显示<strong>巨大的"病毒载量"——数百万拷贝/毫升</strong>——但这不是活动性感染,而是<strong>他自己的基因组</strong>:每个细胞都带有一份病毒拷贝。后果是:"难治性病毒血症"的误诊,数月不必要的<strong>更昔洛韦/膦甲酸</strong>及其骨髓毒性和肾毒性——甚至被迫停用维持生命的免疫抑制治疗。</p>' +
     '<p>我们的流程用<strong>纳米孔长读长</strong>终结这个问题:长读长可捕获<strong>"病毒-染色体"嵌合读长</strong>以及与端粒重复序列 <strong>(TTAGGG)n</strong> 的连接点——这是生殖系整合的直接证据;而覆盖度比值(iciHHV-6 时<strong>每个细胞约 1 个病毒拷贝</strong>,复制时则升高)可区分整合与活动性再激活。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:全血、血浆、脑脊液(疑似脑炎时)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向移植医生/神经科医生的 HTML 报告 — 型别 (HHV-6A/6B)、<strong>整合状态(iciHHV-6 是/否)</strong>、拷贝数估算、"病毒载量"解读;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告 — 型别 (HHV-6A/6B)、<strong>整合状态(iciHHV-6 是/否)</strong>、拷贝数估算、"病毒载量"解读;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:I — 双链DNA(dsDNA)</h2>' +
     '<p>HHV-6A 和 HHV-6B 属于<strong>巴尔的摩分类的 I 类</strong> —— 双链DNA基因组病毒。其表达策略最"细胞化":dsDNA 基因组由 DNA 依赖的 RNA 聚合酶(宿主的和病毒的)转录为 mRNA,随即翻译为蛋白 —— 经典的 <strong>DNA → mRNA → 蛋白</strong> 路线,无逆转录和 RNA 中间体。HHV-6 基因组为约 <strong>160 kb</strong> 的 dsDNA,两端带有端粒样重复序列,正是它们赋予了疱疹病毒中独一无二的能力 —— <strong>整合入宿主染色体端粒</strong>(iciHHV-6):病毒 dsDNA 嵌入染色体 dsDNA 并沿生殖系遗传。对流程而言这意味着两点:dsDNA 是<strong>稳定的靶标</strong>,无需逆转录步骤,可由纳米孔直接读取,包括天然甲基化;而 ONT 长读长能够<strong>完整捕获"病毒–染色体"嵌合连接</strong>,在 qPCR 根本无能为力之处区分整合与复制。</p>' +
     tbl(['类别', '基因组', '复制策略', '示例'], [
@@ -8276,7 +8276,7 @@
     '<li><strong>MetaHIT(欧盟,2008–2012)</strong>——构建了包含 <strong>330 万微生物基因</strong>的目录,描述了<strong>肠型</strong>(以 <em>Bacteroides</em>、<em>Prevotella</em> 或 <em>Ruminococcus</em> 为优势的稳定群落构型),并将<strong>微生物组基因丰富度低下与肥胖、系统性炎症及炎症性肠病 (IBD)</strong> 联系起来。</li></ul>' +
     '<p>两大项目的共同结论:<strong>宏基因组学的诊断价值在于功能与菌株,而非属级名单</strong>。我们的流程正是按此构建:基于纳米孔长读长的全长 16S 与鸟枪法宏基因组学,一次运行即可获得物种/菌株级分辨率、功能注释与耐药组分析。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:粪便、直肠拭子、黏膜活检。<strong>Edge 场景 (Flongle)</strong> 最适合 16S/ITS 扩增子与靶向 panel;深度肠道鸟枪测序属于 Desktop/Cloud 任务 (MinION 及以上)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向医生的 HTML 报告——物种级分类谱、多样性指标(香农指数、基因丰富度)、菌群失调标志物、FMT 后的恢复动态、耐药组(AMR 基因);面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告——物种级分类谱、多样性指标(香农指数、基因丰富度)、菌群失调标志物、FMT 后的恢复动态、耐药组(AMR 基因);面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>——Flongle 上的 16S/ITS 扩增子与靶向 panel'],
@@ -8325,7 +8325,7 @@
       ['<strong>3. 多样性指标</strong>', 'α- 与 β-多样性、香农指数、基因丰富度、F/B 比值'],
       ['<strong>4. 耐药组</strong>', '<code>CARD</code>、<code>ResFinder</code>——检测 vanA、blaNDM、mcr 及数百种其他 AMR 基因'],
       ['<strong>5. MAG 组装(鸟枪法)</strong>', '<code>metaFlye</code>、<code>medaka</code>——宏基因组组装基因组的组装与抛光'],
-      ['<strong>6. 报告</strong>', '面向医生的 HTML 报告 + 面向生物信息分析师的 QC 报告']
+      ['<strong>6. 报告</strong>', '仅供研究使用 (RUO) 的 HTML 报告 + 面向生物信息分析师的 QC 报告']
     ]) + '<hr>' +
     '<h2>🌍 全球背景:为何重要</h2>' +
     '<ul><li><strong>CDI——院内的流行病</strong>——艰难梭菌仍是医院获得性腹泻的首要病因;抗生素后复发率达 30–60%。有效率约 90% 的 FMT 已成为标准疗法,而供体菌群定植的宏基因组监测是其必不可少的科学配套。</li>' +
@@ -8347,7 +8347,7 @@
     '<p>阴道微生物组是<strong>人类微生物组计划</strong>的五个关键部位之一,在人体各生物群落中以<strong>低多样性</strong>独树一帜:与肠道不同,这里的健康不取决于物种丰富度,而取决于<strong>乳杆菌的优势地位</strong>。阴道群落分为五种类型——<strong>社区状态类型 (CST I–V)</strong>:<strong>CST I</strong>(以卷曲乳杆菌 <em>Lactobacillus crispatus</em> 为优势)是低 pH、屏障稳定的保护性状态;<strong>CST IV</strong>(多种厌氧菌——<em>Gardnerella</em>、<em>Prevotella</em>、<em>Atopobium</em>)是菌群失调,临床上对应细菌性阴道病。在预后上,区分"良好"与"过渡"状态至关重要:惰性乳杆菌 <em>L. iners</em> 并非保护者,而是通往菌群失调的桥梁。</p>' +
     '<p>我们的流程基于纳米孔<strong>全长 16S rRNA 基因</strong>测序数据,确定 CST 分型、乳杆菌与关键厌氧菌的物种组成,以及早产和复发性细菌性阴道病的风险标志物——样本自取,数小时出结果。</p>' +
     '<ul><li><strong>📥 输入:</strong> 高精度碱基识别 (Dorado SUP,R10.4.1 化学体系) 后的原始 <code>FASTQ</code> 数据。样本:<strong>自取</strong>阴道拭子(低生物量不构成障碍)。最佳方案:快速建库并在 <strong>Flongle</strong> 上运行,适用于门诊筛查场景 (Edge)。</li>' +
-    '<li><strong>📤 输出:</strong> 面向妇产科医生的 HTML 报告——CST 分型、乳杆菌物种谱、菌群失调标志物与风险评估;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
+    '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告——CST 分型、乳杆菌物种谱、菌群失调标志物与风险评估;面向生物信息分析师的技术 QC 报告。</li></ul><hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
       ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟡 <strong>开发中</strong>'],
@@ -8423,7 +8423,7 @@
     '<img src="/assets/images/conf/bppb2026_photo.jpg" alt="海报专场上的 OnSiteSeq 海报" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">' +
     '<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">同一张 OnSiteSeq 海报,第二个镜头:作者在海报专场大厅介绍工作</p></div></div><hr>' +
     '<h2>📋 海报专场</h2>' +
-    '<p>海报专场设在俄罗斯科学院分子生物学研究所明亮的大理石大厅:移动展架上的展板在历史悠久的吊灯下排成一排。研究主题从重组凝乳酶、多酶制剂到产油酵母、细菌纳米纤维素与田间快速基因组学。在此背景下,OnSiteSeq 关于稻瘟病田间诊断的海报自然融入了“科学服务产业”的议程:植物病原体的杀菌剂抗性与该项目临床流程中的 AMR 遵循同一逻辑,只是站在农学家一侧。</p>' +
+    '<p>海报专场设在俄罗斯科学院分子生物学研究所明亮的大理石大厅:移动展架上的展板在历史悠久的吊灯下排成一排。研究主题从重组凝乳酶、多酶制剂到产油酵母、细菌纳米纤维素与田间快速基因组学。在此背景下,OnSiteSeq 关于稻瘟病田间检测的海报自然融入了“科学服务产业”的议程:植物病原体的杀菌剂抗性与该项目临床流程中的 AMR 遵循同一逻辑,只是站在农学家一侧。</p>' +
     '<p>以下为同行海报照片,附内容说明:</p>' +
     '<div class="gallery" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">' +
     '<div style="flex: 1 1 300px; min-width: 300px;">' +
@@ -8483,17 +8483,17 @@
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
   var HOME = {
-    tagline: 'AI medtech platform for managing containerised bioinformatics pipelines. Drug resistance, pathogen subtype determination and more. Operates under <a href="/gxp">GxP, GLP, ALCOA+</a> standards.',
+    tagline: 'AI medtech platform for managing containerised bioinformatics pipelines. Research use only (RUO): drug-resistance markers, pathogen subtyping and more. Developed with <a href="/gxp">GxP and ALCOA+</a> practices in mind.',
     dzenText: 'News, videos, project blog on Dzen',
     sections: {
       'Описание компонентов': 'Platform Components',
       'Реализованные пайплайны': 'Implemented Pipelines',
       'Онкология. Пайплайны в работе.': 'Oncology. Pipelines in Development.',
-      'Пайплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
-      'Пайплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
-      'Пайплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': 'Pipelines in Development. Clinical Assistants. Yeast Universe.',
-      'Пайплайны в работе. Помощники врача. Вселенная кокков.': 'Pipelines in Development. Clinical Assistants. Cocci Universe.',
-      'Пайплайны в работе. Помощники врача. Вселенная герпесвирусов.': 'Pipelines in Development. Clinical Assistants. Herpesvirus Universe.',
+      'Пайплайны в работе. Медицинские исследования (RUO).': 'Pipelines in Development. Medical Research (RUO).',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная клостридий.': 'Pipelines in Development. Medical Research (RUO). Clostridia Universe.',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная дрожжевых грибов.': 'Pipelines in Development. Medical Research (RUO). Yeast Universe.',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная кокков.': 'Pipelines in Development. Medical Research (RUO). Cocci Universe.',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная герпесвирусов.': 'Pipelines in Development. Medical Research (RUO). Herpesvirus Universe.',
       'Пайплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
       'Пайплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
     },
@@ -8504,8 +8504,8 @@
       'Главная': 'Home'
     },
     cards: {
-      'edge':         ['OnSiteSeq Edge', 'Autonomous hardware-software complex. Point-of-care sequencing at the bedside, in remote regions. arm64 architecture, Nvidia Jetson AGX GPU.'],
-      'desktop':      ['OnSiteSeq Desktop', 'Cockpit pipeline management system for the physician\'s workstation. Runs standalone or paired with Edge. x86 architecture.'],
+      'edge':         ['OnSiteSeq Edge', 'Autonomous hardware-software complex. On-site sequencing where samples are collected, in remote regions. Research use only (RUO). arm64 architecture, Nvidia Jetson AGX GPU.'],
+      'desktop':      ['OnSiteSeq Desktop', 'Cockpit pipeline management system for the researcher\'s or laboratory workstation. Runs standalone or paired with Edge. x86 architecture.'],
       'cloud':        ['OnSiteSeq Cloud', 'Cockpit version for cloud providers. Available at cloud.onsiteseq.io. x86 architecture.'],
       'hiv':          ['HIV', 'HIV-1 drug resistance and subtype determination'],
       'tuberculosis': ['Tuberculosis', 'Drug resistance and lineage determination of Mycobacterium tuberculosis'],
@@ -8529,10 +8529,10 @@
       'tropicalis':   ['Candida tropicalis & C. krusei', 'Asian azole-resistant tropicalis clones (ERG11 Y132F/A395T) and intrinsic fluconazole resistance of krusei — species identification decides the starting therapy'],
       'malassezia':   ['Malassezia (lipophilic yeasts)', 'NICU fungaemia in infants on lipid emulsions and zoonotic M. pachydermatis outbreaks from dogs — culture is painful (Dixon agar), molecular ID and SNP tracing solve it'],
       'cryptococcus': ['Cryptococcus neoformans / gattii', 'Cryptococcal meningitis — up to 19% of HIV-related mortality: neoformans/gattii species differentiation, VNI–VNIV/VGI–VGIV typing and azole heteroresistance via chromosome 1 disomy'],
-      'meningitidis': ['Meningococcus (N. meningitidis)', 'Point-of-care serogrouping and resistance determination of Neisseria meningitidis — fulminant meningitis where every hour counts'],
+      'meningitidis': ['Meningococcus (N. meningitidis)', 'On-site serogrouping and resistance-marker analysis of Neisseria meningitidis — fulminant meningitis where every hour counts'],
       'hbv':          ['Hepatitis B (HBV)', 'HBV genotyping (A–J), polymerase resistance mutations (YMDD), HBeAg status and liver cancer risk markers — from a single assay'],
       'hvkp':         ['Hypervirulent Klebsiella (hvKP)', 'Virulence markers (rmpA, iucA, peg-344), K1/K2 capsular types and convergence with carbapenem resistance — liver abscess and metastatic infections'],
-      'sfts':         ['SFTS (Dabie bandavirus)', 'Point-of-care mNGS for severe fever with thrombocytopenia syndrome — L/M/S segment analysis and differential diagnosis of haemorrhagic fevers in endemic areas'],
+      'sfts':         ['SFTS (Dabie bandavirus)', 'On-site mNGS for severe fever with thrombocytopenia syndrome — L/M/S segment analysis and differential diagnosis of haemorrhagic fevers in endemic areas'],
       'thalassemia':  ['Thalassemia (HBA/HBB)', 'One assay instead of gap-PCR + MLPA + Sanger: α-cluster deletions, HBB mutations and cis/trans phasing on long reads — carrier couple screening and prenatal diagnosis'],
       'magnaporthe':  ['Rice Blast (Magnaporthe oryzae)', 'The most devastating rice disease — race and Avr-effector monitoring, Triticum pathotype (wheat blast), fungicide sensitivity'],
       'hlb': ['Citrus Huanglongbing (HLB)', 'Citrus greening — unculturable Candidatus Liberibacter asiaticus vectored by psyllids: molecular detection, SNP clusters and prophage profiling, CLas/CLaf/CLam species differentiation'],
@@ -8541,7 +8541,7 @@
       'staphylococcus': ['S. aureus (Staphylococcus)', 'MRSA/VRSA and full AMR profile determination — leading nosocomial pathogen'],
       'pneumoniae':   ['Pneumococcus (S. pneumoniae)', 'Mosaic pbp2x/pbp2b/pbp1a and cps-locus serotyping: vaccine escape (19A, 22F, 33F) and penicillin resistance that phenotype cannot predict'],
       'pyogenes':     ['Group A Streptococcus (S. pyogenes)', 'emm-typing instead of Sanger, superantigens speA/speC/ssa and macrolide resistance (ermB/mefA) — from pharyngitis to necrotising fasciitis'],
-      'agalactiae':   ['Group B Streptococcus (S. agalactiae)', 'Point-of-care screening of pregnant women in the delivery ward in hours instead of an 18–48 h culture — serotypes, CC17 clone and resistance markers in penicillin allergy'],
+      'agalactiae':   ['Group B Streptococcus (S. agalactiae)', 'Research GBS analysis in hours instead of an 18–48 h culture (RUO) — serotypes, CC17 clone and resistance markers in penicillin allergy'],
       'faecium':      ['Vancomycin-Resistant Enterococcus (E. faecium)', 'vanA/vanB with plasmid-context resolution of Tn1546 on long reads — ICU outbreak tracing and genotype over phenotype for therapy choice'],
       'flu':          ['Viral ARTI', 'Metagenomic identification of viral respiratory pathogens — influenza A/B, RSV, rhinovirus, coronaviruses, adenovirus, etc.'],
       'cold':         ['Bacterial ARI', 'Metagenomic identification of bacterial respiratory pathogens and AMR — S. pneumoniae, H. influenzae, K. pneumoniae, etc.'],
@@ -8583,7 +8583,7 @@
       'ruwiki':   'Website content = article for RuWiki.',
       'sber':     'Repository and CI/CD on GitVerse.',
       'gxp':      'GxP — we followed "best practices" in project design.',
-      'conferences/bppb-2026': 'Poster session: field rapid diagnostics of rice blast.'
+      'conferences/bppb-2026': 'Poster session: field rapid detection of rice blast.'
     }
   };
 
@@ -8591,17 +8591,17 @@
      HOME PAGE TRANSLATIONS — CHINESE (partial, falls back to EN)
   ════════════════════════════════════════════════════ */
   var ZH_HOME = {
-    tagline: 'AI 医疗科技平台:管理容器化生物信息学分析流程。药物耐药性检测、病原体亚型鉴定等。遵循 <a href="/gxp">GxP、GLP、ALCOA+</a> 标准。',
+    tagline: 'AI 平台:管理容器化生物信息学分析流程,仅供研究使用 (RUO)。耐药标志物、病原体亚型鉴定等。参照 <a href="/gxp">GxP 与 ALCOA+</a> 实践开发。',
     dzenText: '项目新闻、视频与博客(Dzen)',
     sections: {
       'Описание компонентов': '平台组件',
       'Реализованные пайплайны': '已实现的分析流程',
       'Онкология. Пайплайны в работе.': '肿瘤学 · 开发中的流程',
-      'Пайплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
-      'Пайплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
-      'Пайплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': '开发中的流程 · 医生助手 · 酵母菌宇宙',
-      'Пайплайны в работе. Помощники врача. Вселенная кокков.': '开发中的流程 · 医生助手 · 球菌宇宙',
-      'Пайплайны в работе. Помощники врача. Вселенная герпесвирусов.': '开发中的流程 · 医生助手 · 疱疹病毒宇宙',
+      'Пайплайны в работе. Медицинские исследования (RUO).': '开发中的流程 · 医学研究 (RUO)',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная клостридий.': '开发中的流程 · 医学研究 (RUO) · 梭菌宇宙',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная дрожжевых грибов.': '开发中的流程 · 医学研究 (RUO) · 酵母菌宇宙',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная кокков.': '开发中的流程 · 医学研究 (RUO) · 球菌宇宙',
+      'Пайплайны в работе. Медицинские исследования (RUO). Вселенная герпесвирусов.': '开发中的流程 · 医学研究 (RUO) · 疱疹病毒宇宙',
       'Пайплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
       'Пайплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
     },
@@ -8621,7 +8621,7 @@
       'chauvoei': ['气肿疽 (C. chauvoei)', '牛气肿疽 — 现场与炭疽鉴别、cctA 检测、暴发的分子流行病学'],
       'hbv':  ['乙型肝炎 (HBV)', 'HBV 基因分型 (A–J)、聚合酶耐药突变 (YMDD)、HBeAg 状态与肝癌风险标志物 — 一次检测完成'],
       'hvkp': ['高毒力肺炎克雷伯菌 (hvKP)', '毒力标志物 (rmpA、iucA、peg-344)、K1/K2 荚膜血清型与碳青霉烯耐药性汇聚 — 肝脓肿与转移性感染'],
-      'sfts': ['发热伴血小板减少综合征 (SFTS)', '床旁 mNGS 检测发热伴血小板减少综合征 — L/M/S 节段分析与流行区出血热鉴别诊断'],
+      'sfts': ['发热伴血小板减少综合征 (SFTS)', '现场 mNGS 检测发热伴血小板减少综合征 — L/M/S 节段分析与流行区出血热鉴别诊断'],
       'thalassemia': ['地中海贫血 (HBA/HBB)', '一次检测替代 gap-PCR + MLPA + Sanger:α-簇缺失、HBB 突变与长读长顺/反式定相 — 携带者夫妇筛查与产前诊断'],
       'magnaporthe': ['稻瘟病 (Magnaporthe oryzae)', '最具破坏性的水稻病害 — 生理小种与 Avr 效应蛋白监测、Triticum 致病型(小麦瘟病)、杀菌剂敏感性'],
       'hlb': ['柑橘黄龙病 (HLB)', '柑橘"青果病" — 由木虱传播、无法人工培养的亚洲韧皮部杆菌 (Candidatus Liberibacter asiaticus):分子检测、SNP 簇与前噬菌体谱分析、CLas/CLaf/CLam 种间鉴别'],
@@ -8630,8 +8630,8 @@
       'sarscov2': ['新型冠状病毒 SARS-CoV-2', '变异株(亚型)鉴定与抗病毒药物耐药性检测'],
       'hpv': ['人乳头瘤病毒 (HPV)', '高危型 HPV 基因分型、宿主基因组整合状态与甲基化分流,用于宫颈癌预防 — 从病因到预防的关键环节'],
       'gonorrhoeae': ['淋病 (淋病奈瑟菌)', '淋病奈瑟菌耐药性检测 — WHO 重点 AMR 病原体'],
-      'meningitidis': ['脑膜炎奈瑟菌 (N. meningitidis)', '脑膜炎奈瑟菌床旁血清分群与耐药性检测 — 暴发性脑膜炎,分秒必争'],
-      'mycoplasma': ['生殖支原体 (Mycoplasma genitalium)', '治疗前检测生殖支原体对大环内酯类和氟喹诺酮类的耐药性 — 快速发展的多重耐药,常被漏诊的性传播病原体'],
+      'meningitidis': ['脑膜炎奈瑟菌 (N. meningitidis)', '脑膜炎奈瑟菌现场血清分群与耐药标志物分析 — 暴发性脑膜炎,分秒必争'],
+      'mycoplasma': ['生殖支原体 (Mycoplasma genitalium)', '生殖支原体大环内酯类和氟喹诺酮类耐药的遗传标志物 (RUO) — 快速发展的多重耐药,常被漏诊的性传播病原体'],
       'syphilis': ['梅毒 (梅毒螺旋体)', '梅毒螺旋体大环内酯类耐药性检测与基因分型'],
       'acinetobacter': ['鲍曼不动杆菌 (CRAB)', '完整 AMR 谱与碳青霉烯酶检测 (OXA-23、NDM、VIM) — WHO"危急"级别重点病原体,ICU 的首要威胁'],
       'pseudomonas': ['铜绿假单胞菌 (CRPA)', '完整 AMR 谱、金属 β-内酰胺酶 (VIM、NDM) 与外排泵 (MexAB) 检测 — 适应性大师,ICU 与囊性纤维化的关键病原体'],
@@ -8646,8 +8646,8 @@
       'staphylococcus': ['金黄色葡萄球菌 (S. aureus)', 'MRSA/VRSA 鉴定与完整 AMR 谱分析 — 主要的医院感染病原体'],
       'pneumoniae': ['肺炎链球菌 (S. pneumoniae)', '嵌合型 pbp2x/pbp2b/pbp1a 与 cps 基因座血清分型:表型无法预测的疫苗逃逸 (19A、22F、33F) 与青霉素耐药'],
       'pyogenes': ['A 组链球菌 (S. pyogenes)', 'emm 分型取代 Sanger 测序、超抗原 speA/speC/ssa 与大环内酯类耐药 (ermB/mefA) — 从咽炎到坏死性筋膜炎'],
-      'agalactiae': ['B 组链球菌 (S. agalactiae)', '产房床旁数小时完成孕妇筛查,替代 18–48 小时培养 — 血清型、CC17 克隆与青霉素过敏时的耐药标志物'],
-      'faecium': ['万古霉素耐药肠球菌 (E. faecium)', 'vanA/vanB 检测与长读长解析 Tn1546 质粒背景 — ICU 暴发追踪,以基因型而非表型指导治疗'],
+      'agalactiae': ['B 组链球菌 (S. agalactiae)', 'GBS 研究性分析数小时完成,替代 18–48 小时培养 (RUO) — 血清型、CC17 克隆与青霉素过敏时的耐药标志物'],
+      'faecium': ['万古霉素耐药肠球菌 (E. faecium)', 'vanA/vanB 检测与长读长解析 Tn1546 质粒背景 — ICU 暴发追踪,基因型耐药标志物'],
       'flu': ['病毒性急性呼吸道感染', '病毒性呼吸道病原体的宏基因组鉴定 — 甲/乙型流感、RSV、鼻病毒、冠状病毒、腺病毒等'],
       'cold': ['细菌性急性呼吸道感染', '细菌性呼吸道病原体及 AMR 的宏基因组鉴定 — 肺炎链球菌、流感嗜血杆菌、肺炎克雷伯菌等'],
       'haemophilus': ['流感嗜血杆菌(法伊弗杆菌)', 'ftsI (PBP3) 突变导致的 BLNAR — β-内酰胺酶 PCR 无法发现;a–f/NTHi 血清分型与溶血嗜血杆菌鉴别 — 中耳炎、慢阻肺、会厌炎'],
@@ -8669,8 +8669,8 @@
       'pythium': ['腐霉属 (Pythium spp.)', '根腐病与幼苗猝倒病 — 与镰刀菌/丝核菌鉴别、精甲霜灵抗性'],
       'plasmopara-viticola': ['葡萄霜霉病(葡萄生单轴霉)', '葡萄霜霉病 — 对 QoI、CAA 和苯基酰胺类的抗性'],
       'peronospora': ['霜霉病(霜霉属 Peronospora spp.)', '向日葵和洋葱霜霉病 — 生理小种监测与苯基酰胺类抗性'],
-      'edge': ['OnSiteSeq Edge(床旁测序一体机)', '自主软硬件一体化系统。在患者床旁、偏远地区实现床旁测序。arm64 架构,Nvidia Jetson AGX GPU。'],
-      'desktop': ['OnSiteSeq Desktop(医生工作站)', '面向医生工作站的 Cockpit 流程管理系统。可独立运行,也可与 Edge 配套使用。x86 架构。'],
+      'edge': ['OnSiteSeq Edge(现场测序一体机)', '自主软硬件一体化系统。在样本采集现场和偏远地区测序,仅供研究使用 (RUO)。arm64 架构,Nvidia Jetson AGX GPU。'],
+      'desktop': ['OnSiteSeq Desktop(研究工作站)', '面向研究人员或实验室工作站的 Cockpit 流程管理系统。可独立运行,也可与 Edge 配套使用。x86 架构。'],
       'cloud': ['OnSiteSeq Cloud(云端版)', '面向云服务商的 Cockpit 版本。访问地址:cloud.onsiteseq.io。x86 架构。']
     }
   };
@@ -8757,6 +8757,10 @@
     });
   }
 
+  /* RUO notice (page/post layouts) */
+  var RUO_EN = '⚠️ <strong>RUO — Research Use Only.</strong> Not a medical device; not intended for diagnosis, prevention or treatment decisions.';
+  var RUO_ZH = '⚠️ <strong>RUO — 仅供科研使用。</strong>本产品不是医疗器械,不用于诊断、预防或治疗决策。';
+
   function applyLang(lang) {
     var path = window.location.pathname;
 
@@ -8766,6 +8770,8 @@
     /* Site footer credits (all pages) */
     var credits = document.getElementById('i18n-credits');
     if (credits) credits.innerHTML = lang === 'zh' ? CREDITS_ZH : CREDITS_EN;
+    var ruo = document.getElementById('i18n-ruo');
+    if (ruo) ruo.innerHTML = lang === 'zh' ? RUO_ZH : RUO_EN;
 
     /* Content page — zh falls back to EN when no ZH entry */
     var wrap = document.getElementById('i18n-content');
