@@ -66,3 +66,14 @@ sass:
 plugins:
   - jekyll-feed
   - jekyll-soopr-seo-tag
+
+# Никогда не публиковать секреты и служебные файлы (дополняет стандартный список Jekyll)
+exclude:
+  - gorbenkoteh2
+  - "*.pem"
+  - "*.key"
+  - "*token*"
+  - "id_*"
+  - deploy.sh
+  - deploy_linux.sh
+  - deploy_onsiteseq.bat
