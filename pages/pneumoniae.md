@@ -31,7 +31,7 @@ permalink: /pneumoniae/
 | :--- | :--- |
 | **OnSiteSeq Cockpit Edge** | 🟡 **В разработке (ограниченно)** |
 | **OnSiteSeq Cockpit Desktop** | 🟡 **В разработке** |
-| **OnSiteSeq Cockpit Cloud** | 🔴 Не доступно |
+| **OnSiteSeq Cockpit Cloud** | 🔴 Недоступно |
 
 ---
 

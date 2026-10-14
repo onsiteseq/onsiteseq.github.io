@@ -140,8 +140,8 @@
     tbl(['Component', 'Current Version'], [['<strong>OnSiteSeq Tuberculosis Pipeline</strong>', '<code>1.0</code>']]) +
     '<h3>ML Models</h3>' +
     tbl(['Model', 'Version', 'Description &amp; Changelog'], [
-      ['<strong>TB-Lineage-Detector</strong>', '<code>v2</code>', '<a href="/ml/tb-lineage-detector/">Vector-based lineage classification</a>'],
-      ['<strong>TB-Res-Detector</strong>', '<code>v2</code>', '<a href="/ml/tb-res-detector/">Graph neural network for resistance prediction</a>']
+      ['<strong>TB-Lineage-Detector</strong>', '<code>v2</code>', '<a href="/ml/tub/#tb-lineage-detector">Vector-based lineage classification</a>'],
+      ['<strong>TB-Res-Detector</strong>', '<code>v2</code>', '<a href="/ml/tub/#tb-res-detector">Graph neural network for resistance prediction</a>']
     ]) + '<hr>' +
     '<h2>📚 Publications &amp; Conferences</h2>' +
     '<ul><li><strong>NGS-2026</strong> — <a href="/conferences/ngs-2026/">Conference page</a></li></ul><hr>' +
@@ -318,7 +318,7 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem"><h1>Contacts</h1></div><hr>' +
     '<h2>📬 Get in Touch</h2>' +
     '<ul><li><strong>Telegram:</strong> <a href="https://t.me/gorbenkoteh">t.me/gorbenkoteh</a></li>' +
-    '<li><strong>e-mail:</strong> gorbenko.ra@phystech.edu</li></ul>' +
+    '<li><strong>e-mail:</strong> <a href="mailto:gorbenko.ra@phystech.edu">gorbenko.ra@phystech.edu</a></li></ul>' +
     '<h2>📬 Additional Information</h2>' +
     '<ul><li><strong>Dzen (blog, videos, news):</strong> <a href="https://dzen.ru/intermsofbioinformatics">dzen.ru/intermsofbioinformatics</a></li>' +
     '<li><strong>Cloud version:</strong> <a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a></li>' +
@@ -4267,8 +4267,8 @@
     tbl(['组件', '当前版本'], [['<strong>OnSiteSeq Tuberculosis Pipeline</strong>', '<code>1.0</code>']]) +
     '<h3>机器学习模型</h3>' +
     tbl(['模型', '版本', '说明与更新日志'], [
-      ['<strong>TB-Lineage-Detector</strong>', '<code>v2</code>', '<a href="/ml/tb-lineage-detector/">基于向量的谱系分类</a>'],
-      ['<strong>TB-Res-Detector</strong>', '<code>v2</code>', '<a href="/ml/tb-res-detector/">用于耐药预测的图神经网络</a>']
+      ['<strong>TB-Lineage-Detector</strong>', '<code>v2</code>', '<a href="/ml/tub/#tb-lineage-detector">基于向量的谱系分类</a>'],
+      ['<strong>TB-Res-Detector</strong>', '<code>v2</code>', '<a href="/ml/tub/#tb-res-detector">用于耐药预测的图神经网络</a>']
     ]) + '<hr>' +
     '<h2>📚 论文与会议</h2>' +
     '<ul><li><strong>NGS-2026</strong> — <a href="/conferences/ngs-2026/">会议页面</a></li></ul><hr>' +
@@ -6469,7 +6469,7 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem"><h1>联系我们</h1></div><hr>' +
     '<h2>📬 联系方式</h2>' +
     '<ul><li><strong>Telegram:</strong> <a href="https://t.me/gorbenkoteh">t.me/gorbenkoteh</a></li>' +
-    '<li><strong>电子邮箱:</strong> gorbenko.ra@phystech.edu</li></ul>' +
+    '<li><strong>电子邮箱:</strong> <a href="mailto:gorbenko.ra@phystech.edu">gorbenko.ra@phystech.edu</a></li></ul>' +
     '<h2>📬 更多信息</h2>' +
     '<ul><li><strong>Dzen(博客、视频、新闻):</strong> <a href="https://dzen.ru/intermsofbioinformatics">dzen.ru/intermsofbioinformatics</a></li>' +
     '<li><strong>云端版本:</strong> <a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a></li>' +
@@ -8487,15 +8487,15 @@
     dzenText: 'News, videos, project blog on Dzen',
     sections: {
       'Описание компонентов': 'Platform Components',
-      'Реализованные пейплайны': 'Implemented Pipelines',
-      'Онкология. Пейплайны в работе.': 'Oncology. Pipelines in Development.',
-      'Пейплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
-      'Пейплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
-      'Пейплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': 'Pipelines in Development. Clinical Assistants. Yeast Universe.',
-      'Пейплайны в работе. Помощники врача. Вселенная кокков.': 'Pipelines in Development. Clinical Assistants. Cocci Universe.',
-      'Пейплайны в работе. Помощники врача. Вселенная герпесвирусов.': 'Pipelines in Development. Clinical Assistants. Herpesvirus Universe.',
-      'Пейплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
-      'Пейплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
+      'Реализованные пайплайны': 'Implemented Pipelines',
+      'Онкология. Пайплайны в работе.': 'Oncology. Pipelines in Development.',
+      'Пайплайны в работе. Помощники врача.': 'Pipelines in Development. Clinical Assistants.',
+      'Пайплайны в работе. Помощники врача. Вселенная клостридий.': 'Pipelines in Development. Clinical Assistants. Clostridia Universe.',
+      'Пайплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': 'Pipelines in Development. Clinical Assistants. Yeast Universe.',
+      'Пайплайны в работе. Помощники врача. Вселенная кокков.': 'Pipelines in Development. Clinical Assistants. Cocci Universe.',
+      'Пайплайны в работе. Помощники врача. Вселенная герпесвирусов.': 'Pipelines in Development. Clinical Assistants. Herpesvirus Universe.',
+      'Пайплайны в работе. Помощники фермера.': 'Pipelines in Development. Agriculture Assistants.',
+      'Пайплайны в работе. Помощники криминалиста.': 'Pipelines in Development. Forensic Assistant.'
     },
     navLinks: {
       'О платформе': 'About Platform',
@@ -8595,15 +8595,15 @@
     dzenText: '项目新闻、视频与博客(Dzen)',
     sections: {
       'Описание компонентов': '平台组件',
-      'Реализованные пейплайны': '已实现的分析流程',
-      'Онкология. Пейплайны в работе.': '肿瘤学 · 开发中的流程',
-      'Пейплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
-      'Пейплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
-      'Пейплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': '开发中的流程 · 医生助手 · 酵母菌宇宙',
-      'Пейплайны в работе. Помощники врача. Вселенная кокков.': '开发中的流程 · 医生助手 · 球菌宇宙',
-      'Пейплайны в работе. Помощники врача. Вселенная герпесвирусов.': '开发中的流程 · 医生助手 · 疱疹病毒宇宙',
-      'Пейплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
-      'Пейплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
+      'Реализованные пайплайны': '已实现的分析流程',
+      'Онкология. Пайплайны в работе.': '肿瘤学 · 开发中的流程',
+      'Пайплайны в работе. Помощники врача.': '开发中的流程 · 医生助手',
+      'Пайплайны в работе. Помощники врача. Вселенная клостридий.': '开发中的流程 · 医生助手 · 梭菌宇宙',
+      'Пайплайны в работе. Помощники врача. Вселенная дрожжевых грибов.': '开发中的流程 · 医生助手 · 酵母菌宇宙',
+      'Пайплайны в работе. Помощники врача. Вселенная кокков.': '开发中的流程 · 医生助手 · 球菌宇宙',
+      'Пайплайны в работе. Помощники врача. Вселенная герпесвирусов.': '开发中的流程 · 医生助手 · 疱疹病毒宇宙',
+      'Пайплайны в работе. Помощники фермера.': '开发中的流程 · 农业助手',
+      'Пайплайны в работе. Помощники криминалиста.': '开发中的流程 · 法医助手'
     },
     navLinks: {
       'О платформе': '关于平台',

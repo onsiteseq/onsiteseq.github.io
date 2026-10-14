@@ -12,7 +12,7 @@ permalink: /tuberculosis/
 
 ---
 
-## 🧬 Описание пейплайна
+## 🧬 Описание пайплайна
 
 Наш алгоритм обеспечивает полный цикл обработки данных нанопорового секвенирования для выявления мутаций лекарственной устойчивости и точного определения генетической линии (lineage) возбудителя туберкулеза. 
 
@@ -27,7 +27,7 @@ permalink: /tuberculosis/
 | :--- | :--- |
 | **OnSiteSeq Cockpit Edge** | 🟢 **Доступно** |
 | **OnSiteSeq Cockpit Desktop** | 🟢 **Доступно** |
-| **OnSiteSeq Cockpit Cloud** | 🔴 Не доступно |
+| **OnSiteSeq Cockpit Cloud** | 🔴 Недоступно |
 
 ---
 
@@ -66,8 +66,8 @@ permalink: /tuberculosis/
 
 | Модель | Версия | Описание и история версий |
 | :--- | :--- | :--- |
-| **TB-Lineage-Detector** | `v2` | [Векторная классификация линий МБТ](/ml/tb-lineage-detector/) |
-| **TB-Res-Detector** | `v2` | [Графовая нейросеть для предсказания резистентности](/ml/tb-res-detector/) |
+| **TB-Lineage-Detector** | `v2` | [Векторная классификация линий МБТ](/ml/tub/#tb-lineage-detector) |
+| **TB-Res-Detector** | `v2` | [Графовая нейросеть для предсказания резистентности](/ml/tub/#tb-res-detector) |
 
 ---
 
@@ -92,9 +92,9 @@ permalink: /tuberculosis/
 
 ---
 
-## 🖥 Пример карточки пейплайна в OnSiteSeq Cockpit
+## 🖥 Пример карточки пайплайна в OnSiteSeq Cockpit
 
-![Карточка пейплайна OnSiteSeq TUB в Cockpit](/assets/images/cockpit/cockpit_tub.JPG)
+![Карточка пайплайна OnSiteSeq TUB в Cockpit](/assets/images/cockpit/cockpit_tub.JPG)
 
 ---
 
