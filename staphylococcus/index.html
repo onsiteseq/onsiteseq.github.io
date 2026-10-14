@@ -171,6 +171,10 @@ window.addEventListener('load', function() {
   <div class="dashed"></div>
 </header>
 
+<div class="ruo-notice" id="i18n-ruo" role="note" style="margin:0 0 1.5rem;padding:0.6em 1em;border-left:4px solid #e0a100;background:rgba(224,161,0,0.12);border-radius:6px;font-size:0.9em;line-height:1.45;">
+  ⚠️ <strong>RUO — только для научных исследований.</strong> Не является медицинским изделием; не предназначено для диагностики, профилактики или выбора лечения.
+</div>
+
 <div id="i18n-content">
 <div class="product-header" style="text-align: center; margin-bottom: 2rem;">
   <img src="/assets/images/logo/icon_staphylococcus.svg" alt="Staphylococcus aureus" style="max-height: 120px; margin-bottom: 1rem;" />
@@ -188,7 +192,7 @@ window.addEventListener('load', function() {
 
 <ul>
   <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> после High Accuracy basecalling (Dorado SUP, химия R10.4.1). Материал: кровь, гной, мокрота, биоптат, мазок с раны.</li>
-  <li><strong>📤 На выходе:</strong> HTML-отчёт для клинициста — MRSA/MSSA статус, полный профиль AMR, ключевые факторы вирулентности, SCCmec-тип; QC-отчёт для биоинформатика.</li>
+  <li><strong>📤 На выходе:</strong> Исследовательский HTML-отчёт (RUO) — MRSA/MSSA статус, полный профиль AMR, ключевые факторы вирулентности, SCCmec-тип; QC-отчёт для биоинформатика.</li>
 </ul>
 
 <hr />
@@ -478,13 +482,13 @@ window.addEventListener('load', function() {
 
 <hr />
 
-<h2 id="-клинические-сценарии-применения">🏥 Клинические сценарии применения</h2>
+<h2 id="-сценарии-применения-исследовательские-ruo">🏥 Сценарии применения (исследовательские, RUO)</h2>
 
 <table>
   <thead>
     <tr>
       <th style="text-align: left">Сценарий</th>
-      <th style="text-align: left">Что решает пайплайн</th>
+      <th style="text-align: left">Исследовательская задача пайплайна (RUO)</th>
     </tr>
   </thead>
   <tbody>
