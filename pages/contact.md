@@ -1,4 +1,5 @@
 ---
+ruo_notice: false
 layout: page
 title: Контакты — OnSiteSeq
 permalink: /contact/
