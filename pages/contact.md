@@ -13,13 +13,13 @@ permalink: /contact/
 ## 📬 Связаться с командой
 
 * **Telegram:** [t.me/gorbenkoteh](https://t.me/gorbenkoteh)
-* **e-mail:** [gorbenko.ra@phystech.edu]
+* **e-mail:** [gorbenko.ra@phystech.edu](mailto:gorbenko.ra@phystech.edu)
 
 ## 📬Дополнительная информация 
 
 * **Дзен (блог, видео, новости):** [dzen.ru/intermsofbioinformatics](https://dzen.ru/intermsofbioinformatics)
 * **Облачная версия:** [cloud.onsiteseq.io](https://cloud.onsiteseq.io)
-* **Реестр контейнезированных биоинформатических пейплайнов:** [harbor.onsiteseq.io](https://harbor.onsiteseq.io)
+* **Реестр контейнеризованных биоинформатических пайплайнов:** [harbor.onsiteseq.io](https://harbor.onsiteseq.io)
 
 ---
 

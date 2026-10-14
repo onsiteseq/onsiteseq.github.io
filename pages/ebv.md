@@ -106,7 +106,7 @@ permalink: /ebv/
 | :--- | :--- |
 | **OnSiteSeq Cockpit Edge** | 🟡 **В разработке** |
 | **OnSiteSeq Cockpit Desktop** | 🟡 **В разработке** |
-| **OnSiteSeq Cockpit Cloud** | 🔴 Не доступно |
+| **OnSiteSeq Cockpit Cloud** | 🔴 Недоступно |
 
 ---
 

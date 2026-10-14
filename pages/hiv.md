@@ -12,7 +12,7 @@ permalink: /hiv/
 
 ---
 
-## 🧬 Описание пейплайна
+## 🧬 Описание пайплайна
 
 Наш алгоритм обеспечивает полный цикл обработки данных секвенирования для выявления мутаций лекарственной устойчивости и точного определения субтипа ВИЧ-1.
 
@@ -43,7 +43,7 @@ permalink: /hiv/
 | :--- | :--- |
 | **OnSiteSeq Cockpit Edge** | 🟢 **Доступно** |
 | **OnSiteSeq Cockpit Desktop** | 🟢 **Доступно** |
-| **OnSiteSeq Cockpit Cloud** | 🔴 Не доступно |
+| **OnSiteSeq Cockpit Cloud** | 🔴 Недоступно |
 
 ---
 
@@ -104,9 +104,9 @@ permalink: /hiv/
 
 ---
 
-## 🖥 Пример карточки пейплайна в OnSiteSeq Cockpit
+## 🖥 Пример карточки пайплайна в OnSiteSeq Cockpit
 
-![Карточка пейплайна OnSiteSeq HIV в Cockpit](/assets/images/cockpit/cockpit_hiv.JPG)
+![Карточка пайплайна OnSiteSeq HIV в Cockpit](/assets/images/cockpit/cockpit_hiv.JPG)
 
 ---
 

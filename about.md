@@ -1,8 +1,17 @@
 ---
-layout: post
-title: About
+layout: null
+sitemap: false
 ---
-
-This is an example page!
-
-Actually, it has the same layout of a post...
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>О платформе — OnSiteSeq</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ site.url }}/aboutonsiteseq">
+  <meta http-equiv="refresh" content="0; url=/aboutonsiteseq">
+</head>
+<body>
+  <p>Страница переехала: <a href="/aboutonsiteseq">О платформе OnSiteSeq</a></p>
+</body>
+</html>

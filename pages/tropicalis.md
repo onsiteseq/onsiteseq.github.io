@@ -12,7 +12,7 @@ permalink: /tropicalis/
 
 ---
 
-## 🧬 О пейплайне
+## 🧬 О пайплайне
 
 Раздел «Вселенная кандидозов» открывает дуэт **non-albicans** видов с особыми профилями резистентности — *Candida tropicalis* и *Candida krusei* (телеоморфа *Pichia kudriavzevii*). Оба вида всё чаще становятся причиной кандидемии, и оба ломают стандартную эмпирическую тактику, рассчитанную на *C. albicans*.
 
@@ -33,7 +33,7 @@ permalink: /tropicalis/
 | :--- | :--- |
 | **OnSiteSeq Cockpit Edge** | 🟡 **В разработке** |
 | **OnSiteSeq Cockpit Desktop** | 🟡 **В разработке** |
-| **OnSiteSeq Cockpit Cloud** | 🔴 Не доступно |
+| **OnSiteSeq Cockpit Cloud** | 🔴 Недоступно |
 
 ---
 

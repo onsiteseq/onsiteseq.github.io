@@ -324,7 +324,7 @@ criminal_entries:
     image: /assets/images/logo/icon_identikit.svg
 
 footer_entries:
-  - title: Хотите узнать о законодательстве поддерживающее инновации и персонализированную медицину?
+  - title: Хотите узнать о законодательстве, поддерживающем инновации и персонализированную медицину?
     url: normativ
     image: /assets/images/footer/normativ.webp
     description: ""

@@ -47,7 +47,7 @@ HHV-6A и HHV-6B относятся к **классу I классификаци
 | :--- | :--- |
 | **OnSiteSeq Cockpit Edge** | 🟡 **В разработке** |
 | **OnSiteSeq Cockpit Desktop** | 🟡 **В разработке** |
-| **OnSiteSeq Cockpit Cloud** | 🔴 Не доступно |
+| **OnSiteSeq Cockpit Cloud** | 🔴 Недоступно |
 
 ---
 
