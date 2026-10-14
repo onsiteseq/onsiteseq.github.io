@@ -6,3 +6,5 @@ _site
 gorbenkoteh2
 *.pem
 *.key
+*token*
+id_*

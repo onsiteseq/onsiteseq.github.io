@@ -2,7 +2,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SSH_KEY="$SCRIPT_DIR/gorbenkoteh2"
+SSH_KEY="$HOME/.ssh/gorbenkoteh2"  # ключ хранится вне репозитория, НЕ класть в каталог сайта
 REMOTE_USER="user"
 REMOTE_HOST="91.188.212.199"
 REMOTE_PORT="2222"
@@ -29,7 +29,7 @@ bundle exec jekyll build
 # 3. Деплой через rsync
 echo "==> Syncing to $REMOTE_HOST..."
 rsync -avz --checksum --delete \
-  -e "ssh -i $SSH_KEY -p $REMOTE_PORT -o StrictHostKeyChecking=no" \
+  -e "ssh -i $SSH_KEY -p $REMOTE_PORT -o StrictHostKeyChecking=accept-new" \
   ./_site/ \
   "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH"
 
