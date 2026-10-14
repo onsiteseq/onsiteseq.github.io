@@ -3942,10 +3942,10 @@
   /* ── CITATION ── */
   EN['/citation'] =
     '<h2>Citing OnSiteSeq</h2>' +
-    '<h3>📕 RSCI-indexed paper — the term BioMLOps enters science</h3>' +
+    '<h3>📕 RSCI-indexed paper — the BioMLOps methodology</h3>' +
     '<p><strong>Gorbenko R. A.</strong> "Lifecycle Management Methodology for Machine-Learning Models in Biomedical Applications: A Study on HIV-1 Resistance Data" // Youth and Modern Information Technologies: Proceedings of the XXIII International Scientific and Practical Conference of Students, Postgraduates and Young Scientists (Tomsk, February 18–20, 2026). — Tomsk: Tomsk Polytechnic University, 2026. — P. 370–375.</p>' +
     '<p>✅ <strong>The paper is indexed in RSCI</strong> (eLIBRARY ID: 91848892, EDN: WETXLG).</p>' +
-    '<p>This article <strong>introduces the term BioMLOps</strong> — an adaptation of MLOps methodologies to computational biology: a managed model lifecycle (from CNN + Self-Attention architecture selection to continuous metric monitoring on reference data), automatic experiment versioning with regression testing, and a retraining pipeline triggered by external database updates (Stanford HIVDB) with automatic model degradation detection. The approach is demonstrated on the HIV-1-Resist-Rus system; code and model weights are open on GitVerse.</p>' +
+    '<p>This article <strong>describes the BioMLOps approach</strong> — an adaptation of MLOps methodologies to computational biology: a managed model lifecycle (from CNN + Self-Attention architecture selection to continuous metric monitoring on reference data), automatic experiment versioning with regression testing, and a retraining pipeline triggered by external database updates (Stanford HIVDB) with automatic model degradation detection. The approach is demonstrated on the HIV-1-Resist-Rus system; code and model weights are open on GitVerse.</p>' +
     '<p>🔗 <a href="https://www.elibrary.ru/item.asp?id=91848892&pff=1">https://www.elibrary.ru/item.asp?id=91848892</a></p>' +
     '<hr>' +
     '<img src="/assets/images/publication/mnsk_1.JPG" alt="MNSK-2026 Proceedings Cover" style="max-width:260px; float:right; margin:0 0 1.5rem 2rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);">' +
@@ -6529,10 +6529,10 @@
   /* ── CITATION 引用本研究 ── */
   ZH['/citation'] =
     '<h2>引用 OnSiteSeq</h2>' +
-    '<h3>📕 被 RSCI(俄罗斯科学引文索引) 收录的论文 —— BioMLOps 术语正式进入科学文献</h3>' +
+    '<h3>📕 被 RSCI(俄罗斯科学引文索引) 收录的论文 —— BioMLOps 方法学</h3>' +
     '<p><strong>Gorbenko R. A.</strong>《生物医学应用中机器学习模型生命周期管理方法论:基于 HIV-1 耐药性数据的研究》//《青年与现代信息技术》:第 23 届国际学生、研究生与青年学者科学实践大会论文集(托木斯克,2026 年 2 月 18–20 日)。—— 托木斯克:托木斯克理工大学,2026 年,第 370–375 页。</p>' +
     '<p>✅ <strong>该论文已被 RSCI 收录</strong>(eLIBRARY ID: 91848892,EDN: WETXLG)。</p>' +
-    '<p>本文<strong>首次提出 BioMLOps 术语</strong>——将 MLOps 方法论引入计算生物学:可管理的模型生命周期(从 CNN + Self-Attention 架构选择到基于标准数据的指标持续监控)、带回归测试的实验自动版本化,以及在外部数据库(Stanford HIVDB)更新时触发的再训练流程,可自动检测模型性能退化。该方法已在 HIV-1-Resist-Rus 系统上得到验证;代码与模型权重已在 GitVerse 开源。</p>' +
+    '<p>本文<strong>阐述了 BioMLOps 方法</strong>——将 MLOps 方法论引入计算生物学:可管理的模型生命周期(从 CNN + Self-Attention 架构选择到基于标准数据的指标持续监控)、带回归测试的实验自动版本化,以及在外部数据库(Stanford HIVDB)更新时触发的再训练流程,可自动检测模型性能退化。该方法已在 HIV-1-Resist-Rus 系统上得到验证;代码与模型权重已在 GitVerse 开源。</p>' +
     '<p>🔗 <a href="https://www.elibrary.ru/item.asp?id=91848892&pff=1">https://www.elibrary.ru/item.asp?id=91848892</a></p>' +
     '<hr>' +
     '<img src="/assets/images/publication/mnsk_1.JPG" alt="MNSK-2026 论文集封面" style="max-width:260px; float:right; margin:0 0 1.5rem 2rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);">' +
