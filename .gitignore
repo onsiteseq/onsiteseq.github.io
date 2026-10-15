@@ -8,3 +8,6 @@ gorbenkoteh2
 *.key
 *token*
 id_*
+
+# Ruby-зависимости (bundle install --path vendor/bundle) — восстанавливаются из Gemfile.lock
+vendor/
