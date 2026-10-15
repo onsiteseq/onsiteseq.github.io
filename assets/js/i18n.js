@@ -3968,28 +3968,20 @@
     '<p><strong>Russia:</strong> <a href="http://www.kremlin.ru/acts/bank/50358">Presidential Decree No. 145. On the Strategy for Scientific and Technological Development of the Russian Federation</a></p>' +
     '<p><strong>International community:</strong> <a href="https://news.un.org/en/story/2024/09/1154891">UN Strategy. Invisible killer: What is antimicrobial resistance?</a></p>';
 
-  /* ── GxP ── */
+  /* ── ALCOA+ (/gxp) ── */
   EN['/gxp'] =
-    '<h1>GxP: Good Practice Standards for Quality Assurance</h1>' +
-    '<p>In developing OnSiteSeq, we strictly follow international GxP standards to ensure quality and data integrity at all stages — from sample collection to the research report. The current product status is RUO (research use only, not for diagnostic use).</p><hr>' +
-    '<h2>What is GxP</h2>' +
-    '<p><strong>GxP</strong> — a general term for the family of "Good X Practice" standards regulating quality in medical and pharmaceutical industries:</p>' +
-    tbl(['Standard', 'Full Name', 'Application Area'], [
-      ['<strong>GMP</strong>', 'Good Manufacturing Practice', 'Manufacturing of medicinal products'],
-      ['<strong>GLP</strong>', 'Good Laboratory Practice', 'Laboratory research'],
-      ['<strong>GCP</strong>', 'Good Clinical Practice', 'Clinical trials'],
-      ['<strong>GDP</strong>', 'Good Distribution Practice', 'Distribution']
-    ]) + '<hr>' +
+    '<h1>ALCOA+: Data Integrity Principles</h1>' +
+    '<p>In developing OnSiteSeq, we rely on the <strong>ALCOA+</strong> data integrity principles at all stages — from sample collection to the research report. The current product status is <strong>RUO</strong> (research use only, not for diagnostic use). Work on the remaining regulatory requirements for medical software is in progress (<a href="#regulatory-status">details</a>).</p><hr>' +
     '<h2>ALCOA+ and OnSiteSeq</h2>' +
     '<p><strong>ALCOA+</strong> — a set of data integrity principles adopted in the pharmaceutical and medical industries. It ensures that data is reliable, authentic, and verifiable at any stage of its lifecycle.</p>' +
     '<h3>A — Attributable</h3><p><em>Who performed the analysis and which algorithm produced the result?</em></p>' +
-    '<ul><li><strong>Device authorisation.</strong> When using the touchscreen, the healthcare worker authorises before launching, so logs record exactly who initiated the processes.</li>' +
+    '<ul><li><strong>Device authorisation.</strong> When using the touchscreen, the operator authorises before launching, so logs record exactly who initiated the processes.</li>' +
     '<li><strong>Pipeline, tool, and model versioning.</strong> OnSiteSeq bioinformatics reports contain versions of all components: proprietary pipelines, ML models, and dependency tools — strictly in accordance with the attributability principle.</li></ul>' +
-    '<h3>L — Legible</h3><p><em>Is the data understandable to a physician and auditor years later?</em></p>' +
+    '<h3>L — Legible</h3><p><em>Is the data understandable to a specialist and auditor years later?</em></p>' +
     '<ul><li><strong>Dual reporting.</strong> Results split into an <strong>interpretation report</strong> (research, RUO) and a <strong>bioinformatics QC report</strong> for the specialist.</li>' +
     '<li><strong>Physical and digital copies.</strong> Built-in thermal printer provides instant on-site readability. Digital PDF copies saved on SSD with clear file nomenclature.</li></ul>' +
     '<h3>C — Contemporaneous</h3><p><em>Is data recorded at the moment it is generated?</em></p>' +
-    '<ul><li><strong>Timestamps.</strong> All stages — from GPU base-calling to report output — are logged in real time.</li>' +
+    '<ul><li><strong>Timestamps.</strong> All stages — from base-calling to report output — are logged in real time.</li>' +
     '<li><strong>Time synchronisation.</strong> Since OnSiteSeq Edge can operate autonomously in the field, the internal clock cannot be manually changed by the user. Synchronisation occurs via the Wi-Fi/4G module on network connection.</li></ul>' +
     '<h3>O — Original</h3><p><em>Are primary "raw" data preserved?</em></p>' +
     '<ul><li><strong>Signal storage.</strong> Before the Dorado ML model converts nanopore electrical signals to nucleotides, the system saves primary raw data (POD5/FAST5 formats) to SSD.</li>' +
@@ -4002,12 +3994,13 @@
       ['<strong>Complete</strong>', 'OnSiteSeq Cockpit saves logs of even interrupted or failed runs (status "FAIL" if coverage <80%)'],
       ['<strong>Consistent</strong>', 'Strict workflow: the analysis pipeline cannot start until amplification and sequencing have hardware-completed']
     ]) + '<hr>' +
-    '<h2>Russian and International Standards</h2>' +
-    tbl(['Standard', 'Area'], [
-      ['<strong>ISO 13485</strong>', 'Quality management systems for medical devices'],
-      ['<strong>ISO 14971</strong>', 'Risk management for medical devices'],
-      ['<strong>GOST R 52600</strong>', 'Medical devices'],
-      ['<strong>Federal Law-61</strong>', 'Circulation of medicinal products']
+    '<h2 id="regulatory-status">Regulatory Status</h2>' +
+    '<p>OnSiteSeq is a research-use-only (RUO) product: it is not a medical device and is not intended for diagnostic use. Work on the requirements for medical device software is in progress:</p>' +
+    tbl(['Document', 'Area', 'Status'], [
+      ['<strong>IEC 62304</strong>', 'Medical device software — software life cycle processes', 'In progress'],
+      ['<strong>ISO 13485</strong>', 'Quality management systems for medical devices', 'In progress'],
+      ['<strong>ISO 14971</strong>', 'Risk management for medical devices', 'In progress'],
+      ['<strong>Roszdravnadzor</strong>', 'State registration as a medical device (Russia)', 'In progress']
     ]);
 
   /* ── SBER / GITVERSE ── */
@@ -6555,28 +6548,20 @@
     '<p><strong>俄罗斯:</strong> <a href="http://www.kremlin.ru/acts/bank/50358">第 145 号总统令《俄罗斯联邦科学技术发展战略》</a></p>' +
     '<p><strong>国际社会:</strong> <a href="https://news.un.org/en/story/2024/09/1154891">联合国战略:隐形杀手 — 什么是抗微生物药物耐药性?</a></p>';
 
-  /* ── GxP / GLP / ALCOA+ 标准 ── */
+  /* ── ALCOA+ (/gxp) ── */
   ZH['/gxp'] =
-    '<h1>GxP:质量保障的"良好规范"标准</h1>' +
-    '<p>在 OnSiteSeq 的开发中,我们参照国际 GxP 实践,确保从样本采集到研究报告的所有环节的质量与数据完整性。当前产品状态为 RUO(仅供科研使用,不用于诊断)。</p><hr>' +
-    '<h2>什么是 GxP</h2>' +
-    '<p><strong>GxP</strong> 是"良好 X 规范"标准族的统称,用于规范医疗与制药行业的质量:</p>' +
-    tbl(['标准', '全称', '适用领域'], [
-      ['<strong>GMP</strong>', 'Good Manufacturing Practice(良好生产规范)', '药品生产'],
-      ['<strong>GLP</strong>', 'Good Laboratory Practice(良好实验室规范)', '实验室研究'],
-      ['<strong>GCP</strong>', 'Good Clinical Practice(良好临床规范)', '临床试验'],
-      ['<strong>GDP</strong>', 'Good Distribution Practice(良好流通规范)', '流通分销']
-    ]) + '<hr>' +
+    '<h1>ALCOA+:数据完整性原则</h1>' +
+    '<p>在 OnSiteSeq 的开发中,我们在从样本采集到研究报告的所有环节都遵循 <strong>ALCOA+</strong> 数据完整性原则。当前产品状态为 <strong>RUO</strong>(仅供科研使用,不用于诊断)。针对医疗软件其余监管要求的工作正在进行中(<a href="#regulatory-status">详情</a>)。</p><hr>' +
     '<h2>ALCOA+ 与 OnSiteSeq</h2>' +
     '<p><strong>ALCOA+</strong> 是制药与医疗行业采用的一套数据完整性原则。它确保数据在其生命周期的任何阶段都可靠、真实且可核查。</p>' +
     '<h3>A — Attributable(可追溯至人)</h3><p><em>谁执行了分析?哪个算法产生了结果?</em></p>' +
-    '<ul><li><strong>设备授权。</strong>使用触摸屏时,医务人员在启动前须完成授权,日志会准确记录流程的启动者。</li>' +
+    '<ul><li><strong>设备授权。</strong>使用触摸屏时,操作人员在启动前须完成授权,日志会准确记录流程的启动者。</li>' +
     '<li><strong>流程、工具与模型版本管理。</strong>OnSiteSeq 生物信息学报告包含所有组件的版本:自研流程、机器学习模型及依赖工具 — 严格遵循可追溯原则。</li></ul>' +
-    '<h3>L — Legible(清晰可读)</h3><p><em>多年以后,医生和审计人员还能读懂这些数据吗?</em></p>' +
+    '<h3>L — Legible(清晰可读)</h3><p><em>多年以后,专业人员和审计人员还能读懂这些数据吗?</em></p>' +
     '<ul><li><strong>双报告体系。</strong>结果分为<strong>解读报告</strong>(研究用途,RUO)和面向专业人员的<strong>生物信息学 QC 报告</strong>。</li>' +
     '<li><strong>纸质与数字副本。</strong>内置热敏打印机保证现场即时可读;数字 PDF 副本以清晰的文件命名规范保存在 SSD 上。</li></ul>' +
     '<h3>C — Contemporaneous(同步记录)</h3><p><em>数据是否在产生的那一刻即被记录?</em></p>' +
-    '<ul><li><strong>时间戳。</strong>所有阶段 — 从 GPU 碱基识别到报告输出 — 均实时记录日志。</li>' +
+    '<ul><li><strong>时间戳。</strong>所有阶段 — 从碱基识别到报告输出 — 均实时记录日志。</li>' +
     '<li><strong>时间同步。</strong>由于 OnSiteSeq Edge 可在野外自主运行,内部时钟不允许用户手动更改;联网时通过 Wi-Fi/4G 模块自动同步。</li></ul>' +
     '<h3>O — Original(原始性)</h3><p><em>原始数据是否得到保存?</em></p>' +
     '<ul><li><strong>信号保存。</strong>在 Dorado 机器学习模型将纳米孔电信号转换为核苷酸之前,系统会将原始数据(POD5/FAST5 格式)保存到 SSD。</li>' +
@@ -6589,12 +6574,13 @@
       ['<strong>Complete(完整性)</strong>', 'OnSiteSeq Cockpit 保存所有运行日志,包括中断或失败的运行(覆盖度 <80% 时状态标记为 "FAIL")'],
       ['<strong>Consistent(一致性)</strong>', '严格的工作流:扩增和测序在硬件层面完成之前,分析流程无法启动']
     ]) + '<hr>' +
-    '<h2>俄罗斯与国际标准</h2>' +
-    tbl(['标准', '领域'], [
-      ['<strong>ISO 13485</strong>', '医疗器械质量管理体系'],
-      ['<strong>ISO 14971</strong>', '医疗器械风险管理'],
-      ['<strong>GOST R 52600</strong>', '医疗器械(俄罗斯国家标准)'],
-      ['<strong>第 61 号联邦法</strong>', '药品流通']
+    '<h2 id="regulatory-status">监管状态</h2>' +
+    '<p>OnSiteSeq 是仅供研究使用 (RUO) 的产品:它不是医疗器械,不用于诊断。针对医疗器械软件要求的工作正在进行中:</p>' +
+    tbl(['文件', '领域', '状态'], [
+      ['<strong>IEC 62304</strong>', '医疗器械软件 — 软件生命周期过程', '进行中'],
+      ['<strong>ISO 13485</strong>', '医疗器械质量管理体系', '进行中'],
+      ['<strong>ISO 14971</strong>', '医疗器械风险管理', '进行中'],
+      ['<strong>俄罗斯联邦卫生监督局 (Roszdravnadzor)</strong>', '医疗器械国家注册', '进行中']
     ]);
 
   /* ── SBER / GITVERSE 仓库与 CI/CD ── */
@@ -8483,7 +8469,7 @@
      HOME PAGE TRANSLATIONS
   ════════════════════════════════════════════════════ */
   var HOME = {
-    tagline: 'AI medtech platform for managing containerised bioinformatics pipelines. Research use only (RUO): drug-resistance markers, pathogen subtyping and more. Developed with <a href="/gxp">GxP and ALCOA+</a> practices in mind.',
+    tagline: 'AI medtech platform for managing containerised bioinformatics pipelines. Research use only (RUO): drug-resistance markers, pathogen subtyping and more. Data integrity follows the <a href="/gxp">ALCOA+</a> principles.',
     dzenText: 'News, videos, project blog on Dzen',
     sections: {
       'Описание компонентов': 'Platform Components',
@@ -8572,7 +8558,7 @@
       'rnimu':    'Want to know about other startups and discoveries at Pirogov RNIMU recently?',
       'ruwiki':   'Why do we consider it important to develop this encyclopaedia?',
       'sber':     'Want to learn how GitVerse provides code storage and CI/CD for this project?',
-      'gxp':      'Want to learn about the industry standards we follow?',
+      'gxp':      'Want to know how we ensure data integrity?',
       'conferences/bppb-2026': 'OnSiteSeq at the conference "Biotechnologies for the Food Industry of the Future" (BPPB-2026, Engelhardt Institute of Molecular Biology RAS)'
     },
     footerDesc: {
@@ -8582,7 +8568,7 @@
       'rnimu':    'The project continues at Pirogov RNIMU PhD programme.',
       'ruwiki':   'Website content = article for RuWiki.',
       'sber':     'Repository and CI/CD on GitVerse.',
-      'gxp':      'GxP — we followed "best practices" in project design.',
+      'gxp':      'ALCOA+ principles. Other regulatory work (IEC 62304, ISO 13485, ISO 14971, Roszdravnadzor) is in progress.',
       'conferences/bppb-2026': 'Poster session: field rapid detection of rice blast.'
     }
   };
@@ -8591,7 +8577,7 @@
      HOME PAGE TRANSLATIONS — CHINESE (partial, falls back to EN)
   ════════════════════════════════════════════════════ */
   var ZH_HOME = {
-    tagline: 'AI 平台:管理容器化生物信息学分析流程,仅供研究使用 (RUO)。耐药标志物、病原体亚型鉴定等。参照 <a href="/gxp">GxP 与 ALCOA+</a> 实践开发。',
+    tagline: 'AI 平台:管理容器化生物信息学分析流程,仅供研究使用 (RUO)。耐药标志物、病原体亚型鉴定等。数据完整性遵循 <a href="/gxp">ALCOA+</a> 原则。',
     dzenText: '项目新闻、视频与博客(Dzen)',
     sections: {
       'Описание компонентов': '平台组件',
