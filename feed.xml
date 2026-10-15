@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.io/" rel="alternate" type="text/html" /><updated>2026-10-15T00:15:14+02:00</updated><id>https://onsiteseq.io/feed.xml</id><title type="html">OnSiteSeq</title><subtitle>Мы верим, что в скором времени методы секвенирования на месте взятия образца станут такими же рутинными инструментальными методами, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр). Чтобы этот момент наступил как можно скорее, мы разрабатываем программно-аппаратный комплекс OnSiteSeq, объединяющий в себе инновации нанопорового секвенирования, искусственного интеллекта и GPU-вычислений. Сегодня OnSiteSeq — исследовательская платформа (RUO): продукт не является медицинским изделием и не предназначен для диагностики. Также мы верим, что в дальнейшем секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться ещё во множестве других сфер. Есть идеи, в каких? OnSiteSeq — это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://onsiteseq.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://onsiteseq.io/" rel="alternate" type="text/html" /><updated>2026-10-15T07:23:23+02:00</updated><id>https://onsiteseq.io/feed.xml</id><title type="html">OnSiteSeq</title><subtitle>Мы верим, что в скором времени методы секвенирования на месте взятия образца станут такими же рутинными инструментальными методами, какими сейчас являются измерение температуры (термометр), измерение давления (тонометр), измерение сатурации крови (пульсоксиметр) или измерение уровня сахара (глюкометр). Чтобы этот момент наступил как можно скорее, мы разрабатываем программно-аппаратный комплекс OnSiteSeq, объединяющий в себе инновации нанопорового секвенирования, искусственного интеллекта и GPU-вычислений. Сегодня OnSiteSeq — исследовательская платформа (RUO): продукт не является медицинским изделием и не предназначен для диагностики. Также мы верим, что в дальнейшем секвенирование и анализ данных на месте окажут незаменимую помощь фермерам, криминалистам и будут применяться ещё во множестве других сфер. Есть идеи, в каких? OnSiteSeq — это открытая платформа, работающая по принципу биоинформатического маркетплейса. Добавить своё решение помогут руководство пользователя и руководство разработчика.
 </subtitle><author><name>Roman Gorbenko</name></author><entry><title type="html">РНИМУ — кузница медицинских инноваций</title><link href="https://onsiteseq.io/rnimu/" rel="alternate" type="text/html" title="РНИМУ — кузница медицинских инноваций" /><published>2026-10-11T00:00:00+02:00</published><updated>2026-10-11T00:00:00+02:00</updated><id>https://onsiteseq.io/rnimu</id><content type="html" xml:base="https://onsiteseq.io/rnimu/">&lt;div style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
   &lt;img src=&quot;/assets/images/rnimu/rnimu.png&quot; alt=&quot;Российский национальный исследовательский медицинский университет имени Н. И. Пирогова&quot; style=&quot;max-width: 320px; width: 100%; border-radius: 8px;&quot; /&gt;
 &lt;/div&gt;
@@ -67,45 +67,7 @@
 
 &lt;p&gt;&lt;em&gt;Программный комплекс управления биоинформатическими пайплайнами «OnSiteSeq Cockpit»&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/law/svidetelstvo_cockpit.png&quot; alt=&quot;Свидетельство о регистрации OnSiteSeq Cockpit&quot; style=&quot;max-width:100%; max-height:400px; margin-top:1rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);&quot; /&gt;&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">OnSiteSeq Edge</summary></entry><entry><title type="html">GxP: Надлежащие практики обеспечения качества</title><link href="https://onsiteseq.io/gxp" rel="alternate" type="text/html" title="GxP: Надлежащие практики обеспечения качества" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/gxp</id><content type="html" xml:base="https://onsiteseq.io/gxp">&lt;p&gt;При разработке OnSiteSeq мы ориентируемся на международные практики GxP для обеспечения качества и целостности данных на всех этапах — от сбора образца до выдачи исследовательского отчёта. Текущий статус продукта — RUO (только для научных исследований, не для диагностики).&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;что-такое-gxp&quot;&gt;Что такое GxP&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;GxP&lt;/strong&gt; — общий термин для семейства стандартов “Good X Practice”, регулирующих качество в медицинских и фармацевтических отраслях:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Стандарт&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Расшифровка&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Область применения&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;GMP&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Good Manufacturing Practice&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Производство лекарственных средств&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;GLP&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Good Laboratory Practice&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Лабораторные исследования&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;GCP&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Good Clinical Practice&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Клинические испытания&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;GDP&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Good Distribution Practice&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Дистрибуция&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/law/svidetelstvo_cockpit.png&quot; alt=&quot;Свидетельство о регистрации OnSiteSeq Cockpit&quot; style=&quot;max-width:100%; max-height:400px; margin-top:1rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);&quot; /&gt;&lt;/p&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">OnSiteSeq Edge</summary></entry><entry><title type="html">ALCOA+: принципы целостности данных</title><link href="https://onsiteseq.io/gxp" rel="alternate" type="text/html" title="ALCOA+: принципы целостности данных" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/gxp</id><content type="html" xml:base="https://onsiteseq.io/gxp">&lt;p&gt;При разработке OnSiteSeq мы опираемся на принципы целостности данных &lt;strong&gt;ALCOA+&lt;/strong&gt; — на всех этапах, от сбора образца до выдачи исследовательского отчёта. Текущий статус продукта — &lt;strong&gt;RUO&lt;/strong&gt; (только для научных исследований, не для диагностики). Работа по остальным регуляторным требованиям к медицинскому ПО — в процессе (&lt;a href=&quot;#regulatory-status&quot;&gt;подробнее&lt;/a&gt;).&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -118,7 +80,7 @@
 &lt;p&gt;&lt;em&gt;Кто провёл анализ и какой именно алгоритм выдал результат?&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Авторизация на устройстве.&lt;/strong&gt; При работе через сенсорный экран медицинский работник авторизуется перед запуском, чтобы в логах было зафиксировано, кто именно запустил процессы «Запуск амплификации», «Запуск секвенирования» и генерацию отчёта.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Авторизация на устройстве.&lt;/strong&gt; При работе через сенсорный экран оператор авторизуется перед запуском, чтобы в логах было зафиксировано, кто именно запустил процессы «Запуск амплификации», «Запуск секвенирования» и генерацию отчёта.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Версионирование пайплайнов, инструментов и моделей.&lt;/strong&gt; Биоинформатические отчёты OnSiteSeq содержат версии всех компонентов: собственных пайплайнов (например, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onsiteseq_hiv v1.0.0&lt;/code&gt;), ML-моделей (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HIV-1-M-Env-Rus v1.0.0&lt;/code&gt;) и инструментов в зависимостях — строго в соответствии с принципом атрибутируемости.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -140,7 +102,7 @@
 &lt;p&gt;&lt;em&gt;Фиксируются ли данные в момент их появления?&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Таймстемпы.&lt;/strong&gt; Все этапы — от base-calling на GPU до вывода отчёта — логируются в реальном времени.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Таймстемпы.&lt;/strong&gt; Все этапы — от базколлинга до вывода отчёта — логируются в реальном времени.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Синхронизация времени.&lt;/strong&gt; Поскольку OnSiteSeq Edge может работать автономно «в поле», внутренние часы не могут быть изменены пользователем вручную. Синхронизация точного времени происходит через коммуникационный блок Wi-Fi/4G сразу при появлении в сети.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -191,34 +153,41 @@
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;российские-и-международные-стандарты&quot;&gt;Российские и международные стандарты&lt;/h2&gt;
+&lt;h2 id=&quot;regulatory-status&quot;&gt;Регуляторный статус&lt;/h2&gt;
+
+&lt;p&gt;OnSiteSeq — исследовательский продукт (RUO): он не является медицинским изделием и не предназначен для диагностики. Работа по требованиям к медицинскому программному обеспечению находится в процессе:&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Стандарт&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Документ&lt;/th&gt;
       &lt;th style=&quot;text-align: left&quot;&gt;Область&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Статус&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;IEC 62304&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Процессы жизненного цикла программного обеспечения медицинских изделий&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;В процессе&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;ISO 13485&lt;/strong&gt;&lt;/td&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;Системы менеджмента качества медицинских изделий&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;В процессе&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;ISO 14971&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Управление рисками медицинских изделий&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Менеджмент рисков медицинских изделий&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;В процессе&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;ГОСТ Р 52600&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Медицинские изделия&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;ФЗ-61&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Обращение лекарственных средств&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Росздравнадзор&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Государственная регистрация медицинского изделия&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;В процессе&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">При разработке OnSiteSeq мы ориентируемся на международные практики GxP для обеспечения качества и целостности данных на всех этапах — от сбора образца до выдачи исследовательского отчёта. Текущий статус продукта — RUO (только для научных исследований, не для диагностики).</summary></entry><entry><title type="html">МФТИ — кузница инноваций</title><link href="https://onsiteseq.io/mfti" rel="alternate" type="text/html" title="МФТИ — кузница инноваций" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/mfti</id><content type="html" xml:base="https://onsiteseq.io/mfti">&lt;div style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
+&lt;/table&gt;</content><author><name>Roman Gorbenko</name></author><summary type="html">При разработке OnSiteSeq мы опираемся на принципы целостности данных ALCOA+ — на всех этапах, от сбора образца до выдачи исследовательского отчёта. Текущий статус продукта — RUO (только для научных исследований, не для диагностики). Работа по остальным регуляторным требованиям к медицинскому ПО — в процессе (подробнее).</summary></entry><entry><title type="html">МФТИ — кузница инноваций</title><link href="https://onsiteseq.io/mfti" rel="alternate" type="text/html" title="МФТИ — кузница инноваций" /><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><id>https://onsiteseq.io/mfti</id><content type="html" xml:base="https://onsiteseq.io/mfti">&lt;div style=&quot;text-align: center; margin-bottom: 2rem;&quot;&gt;
   &lt;img src=&quot;/assets/images/mfti/mfti.png&quot; alt=&quot;Московский физико-технический институт&quot; style=&quot;max-width: 100%; border-radius: 8px;&quot; /&gt;
 &lt;/div&gt;
 
