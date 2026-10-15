@@ -354,10 +354,10 @@ footer_entries:
     image: /assets/images/gitverse/GitVerse.svg
     description: "Репозиторий и CI/CD на GitVerse."
 
-  - title: Хотите узнать какие промышленные стандарты мы используем?
+  - title: Хотите узнать, как мы обеспечиваем целостность данных?
     url: gxp
-    image: /assets/images/gxp/gxp_logo.png
-    description: "GxP - при проектировании проекта мы ориентировались на \"лучшие практики\"."
+    image: /assets/images/gxp/alcoa_logo.svg
+    description: "Принципы ALCOA+. Остальная регуляторика (IEC 62304, ISO 13485, ISO 14971, Росздравнадзор) — в процессе."
 
   - title: OnSiteSeq на конференции «Биотехнологии для пищевой промышленности будущего» (БППБ-2026, ИМБ РАН)
     url: conferences/bppb-2026
