@@ -3992,7 +3992,7 @@
     '<h3>+ (Plus)</h3>' +
     tbl(['Principle', 'Implementation in OnSiteSeq'], [
       ['<strong>Complete</strong>', 'OnSiteSeq Cockpit saves logs of even interrupted or failed runs (status "FAIL" if coverage <80%)'],
-      ['<strong>Consistent</strong>', 'Strict workflow: the analysis pipeline cannot start until amplification and sequencing have hardware-completed']
+      ['<strong>Consistent</strong>', '<em>Planned, OnSiteSeq Cockpit Edge only:</em> strict workflow — the analysis pipeline will not be able to start until amplification and sequencing have hardware-completed']
     ]) + '<hr>' +
     '<h2 id="regulatory-status">Regulatory Status</h2>' +
     '<p>OnSiteSeq is a research-use-only (RUO) product: it is not a medical device and is not intended for diagnostic use. Work on the requirements for medical device software is in progress:</p>' +
@@ -6572,7 +6572,7 @@
     '<h3>+(Plus,补充原则)</h3>' +
     tbl(['原则', '在 OnSiteSeq 中的实现'], [
       ['<strong>Complete(完整性)</strong>', 'OnSiteSeq Cockpit 保存所有运行日志,包括中断或失败的运行(覆盖度 <80% 时状态标记为 "FAIL")'],
-      ['<strong>Consistent(一致性)</strong>', '严格的工作流:扩增和测序在硬件层面完成之前,分析流程无法启动']
+      ['<strong>Consistent(一致性)</strong>', '<em>计划中,仅适用于 OnSiteSeq Cockpit Edge:</em>严格的工作流——扩增和测序在硬件层面完成之前,分析流程将无法启动']
     ]) + '<hr>' +
     '<h2 id="regulatory-status">监管状态</h2>' +
     '<p>OnSiteSeq 是仅供研究使用 (RUO) 的产品:它不是医疗器械,不用于诊断。针对医疗器械软件要求的工作正在进行中:</p>' +
