@@ -175,9 +175,9 @@ window.addEventListener('load', function() {
 
 <div id="i18n-content">
 <div class="product-header" style="text-align: center; margin-bottom: 2rem;">
-  <img src="/assets/images/logo/hiv.png" alt="ВИЧ-1" style="max-height: 120px; margin-bottom: 1rem;" />
+  <img src="/assets/images/logo/icon_hiv.svg" alt="ВИЧ-1" style="max-height: 120px; margin-bottom: 1rem;" />
   <h1>Определение лекарственной устойчивости и субтипа ВИЧ-1</h1>
-  <p style="font-size: 1.2em; color: #555;">Профиль резистентности по всем классам АРТ и субтипирование — модели обучены на российских изолятах субтипа A6</p>
+  <p style="font-size: 1.2em; color: #555;">Профиль резистентности по всем классам АРТ и субтипирование — для данных нанопорового (ONT) и капиллярного (Sanger) секвенирования; модели ориентированы на субтипы, циркулирующие в РФ</p>
 </div>
 
 <hr />
@@ -187,7 +187,12 @@ window.addEventListener('load', function() {
 <p>Наш алгоритм обеспечивает полный цикл обработки данных секвенирования для выявления мутаций лекарственной устойчивости и точного определения субтипа ВИЧ-1.</p>
 
 <ul>
-  <li><strong>📥 На входе:</strong> Сырые данные в формате <code class="language-plaintext highlighter-rouge">FASTQ</code> (например, после того как ML-модель Dorado (base-caller) переведет электрические сигналы с нанопоры в данные о нуклеотидах; преобразование POD5/FAST5 в FASTQ).</li>
+  <li><strong>📥 На входе</strong> — два пайплайна под две платформы секвенирования:
+    <ul>
+      <li><strong>ONT (нанопоровое секвенирование)</strong> — сырые данные <code class="language-plaintext highlighter-rouge">FASTQ</code> после базколлинга Dorado (POD5/FAST5 → FASTQ). Пайплайн <strong>OnSiteSeq HIV</strong>, субтип по гену <em>env</em>.</li>
+      <li><strong>Sanger (капиллярное секвенирование)</strong> — хроматограммы <code class="language-plaintext highlighter-rouge">.ab1</code> (прямое и обратное прочтения ампликона <em>pol</em> PR-RT) или готовый консенсус <code class="language-plaintext highlighter-rouge">FASTA</code>. Пайплайн <strong>OnSiteSeq HIV Sanger</strong>, субтип по гену <em>pol</em>.</li>
+    </ul>
+  </li>
   <li><strong>📤 На выходе:</strong> Исследовательский HTML-отчёт (RUO) и расширенный отчёт для биоинформатика.</li>
 </ul>
 
@@ -260,21 +265,25 @@ window.addEventListener('load', function() {
   <thead>
     <tr>
       <th style="text-align: left">Платформа</th>
-      <th style="text-align: left">Статус доступности</th>
+      <th style="text-align: left">ВИЧ-1 (ONT)</th>
+      <th style="text-align: left">ВИЧ-1 Sanger</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="text-align: left"><strong>OnSiteSeq Cockpit Edge</strong></td>
       <td style="text-align: left">🟢 <strong>Доступно</strong></td>
+      <td style="text-align: left">🔴 Недоступно</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>OnSiteSeq Cockpit Desktop</strong></td>
       <td style="text-align: left">🟢 <strong>Доступно</strong></td>
+      <td style="text-align: left">🔴 Недоступно</td>
     </tr>
     <tr>
-      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong></td>
-      <td style="text-align: left">🔴 Недоступно</td>
+      <td style="text-align: left"><strong>OnSiteSeq Cockpit Cloud</strong> (<a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a>)</td>
+      <td style="text-align: left">🟢 <strong>Доступно</strong></td>
+      <td style="text-align: left">🟢 <strong>Доступно</strong></td>
     </tr>
   </tbody>
 </table>
@@ -283,7 +292,7 @@ window.addEventListener('load', function() {
 
 <h2 id="-гены-и-мутации-резистентности">🎯 Гены и мутации резистентности</h2>
 
-<p>Пайплайн анализирует ген <em>pol</em> целиком — все три фермента-мишени антиретровирусной терапии. Интерпретация мутаций выполняется по правилам <strong>Stanford HIVdb</strong> — мирового стандарта генотипической интерпретации ЛУ-ВИЧ.</p>
+<p>ONT-пайплайн анализирует ген <em>pol</em> целиком — все три фермента-мишени антиретровирусной терапии; Sanger-пайплайн — в пределах секвенированных ампликонов (обычно PR+RT; IN — при наличии отдельного ампликона). Интерпретация мутаций выполняется по правилам <strong>Stanford HIVdb</strong> — мирового стандарта генотипической интерпретации ЛУ-ВИЧ.</p>
 
 <table>
   <thead>
@@ -335,14 +344,27 @@ window.addEventListener('load', function() {
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">Компонент</th>
-      <th style="text-align: left">Текущая версия</th>
+      <th style="text-align: left">Пайплайн</th>
+      <th style="text-align: left">Платформа секвенирования</th>
+      <th style="text-align: left">Вход</th>
+      <th style="text-align: left">Версия</th>
+      <th style="text-align: left">ML-модели</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left"><strong>OnSiteSeq HIV Pipeline</strong></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0</code></td>
+      <td style="text-align: left"><strong>OnSiteSeq HIV</strong></td>
+      <td style="text-align: left">ONT (нанопоровое)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">FASTQ</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.2.0</code></td>
+      <td style="text-align: left">HIV-1-M-Env-Rus, HIV-1-Resist-Rus</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OnSiteSeq HIV Sanger</strong></td>
+      <td style="text-align: left">Sanger (капиллярное, ампликоны PR-RT)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">.ab1</code> / <code class="language-plaintext highlighter-rouge">FASTA</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.2.0</code></td>
+      <td style="text-align: left">HIV-1-M-Pol-Rus, HIV-1-Resist-Rus</td>
     </tr>
   </tbody>
 </table>
@@ -354,22 +376,35 @@ window.addEventListener('load', function() {
     <tr>
       <th style="text-align: left">Модель</th>
       <th style="text-align: left">Версия</th>
+      <th style="text-align: left">Задача</th>
       <th style="text-align: left">Описание и история версий</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="text-align: left"><strong>HIV-1-M-Env-Rus</strong></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0</code></td>
-      <td style="text-align: left"><a href="/ml/hiv/">История версий (Changelog)</a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0.0</code></td>
+      <td style="text-align: left">Субтип по гену <em>env</em> (ONT), 12 классов</td>
+      <td style="text-align: left"><a href="/ml/hiv/#env">Описание и метрики</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>HIV-1-M-Pol-Rus</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0.0</code> (переобучена 17.10.2026)</td>
+      <td style="text-align: left">Субтип по гену <em>pol</em> PR+RT (Sanger), 7 классов</td>
+      <td style="text-align: left"><a href="/ml/hiv/#pol">Описание и метрики</a></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>HIV-1-Resist-Rus</strong></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">3</code></td>
-      <td style="text-align: left"><a href="/ml/hiv/">История версий (Changelog)</a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">4.0.0</code></td>
+      <td style="text-align: left">Резистентность к 14 препаратам, 5 уровней HIVDB</td>
+      <td style="text-align: left"><a href="/ml/hiv/#resist">Описание, метрики, история версий</a></td>
     </tr>
   </tbody>
 </table>
+
+<blockquote>
+  <p>На OnSiteSeq Edge (arm64) пока работает HIV-1-Resist-Rus <code class="language-plaintext highlighter-rouge">3.0.0</code>; обновление до <code class="language-plaintext highlighter-rouge">4.0.0</code> — в процессе. У рекомбинантных форм субтип по <em>env</em> (ONT) и по <em>pol</em> (Sanger) может законно различаться — в отчёте всегда указан ген.</p>
+</blockquote>
 
 <hr />
 
@@ -386,8 +421,9 @@ window.addEventListener('load', function() {
 
 <h2 id="-под-капотом-зависимости-и-окружение-pipeline-stack">🛠 Под капотом: Зависимости и Окружение (Pipeline Stack)</h2>
 
-<p>Пайплайн управляется с помощью фреймворка Snakemake и разделен на изолированные Conda-окружения для максимальной воспроизводимости.
-Ключевые библиотеки и инструменты в зависимостях.</p>
+<p>Пайплайны управляются с помощью фреймворка Snakemake и разделены на изолированные Conda-окружения для максимальной воспроизводимости.</p>
+
+<h3 id="onsiteseq-hiv-ont">OnSiteSeq HIV (ONT)</h3>
 
 <table>
   <thead>
@@ -416,11 +452,42 @@ window.addEventListener('load', function() {
   </tbody>
 </table>
 
+<h3 id="onsiteseq-hiv-sanger">OnSiteSeq HIV Sanger</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Этап пайплайна</th>
+      <th style="text-align: left">Используемые библиотеки и инструменты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>1. QC хроматограмм</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">tracy</code> (резерв — <code class="language-plaintext highlighter-rouge">BioPython SeqIO "abi"</code>), тримминг концов по phred</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>2. Сборка прочтений и консенсус</strong></td>
+      <td style="text-align: left">overlap-сборка прямого и обратного прочтений, консенсус с IUPAC-кодами (второй пик ≥ 25%)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>3. Выравнивание и варианты</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">minimap2</code> на HXB2 (K03455.1), замены по координатам HXB2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4. ML Предсказание</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PyTorch</code>, HIV-1-M-Pol-Rus (субтип), HIV-1-Resist-Rus (резистентность)</td>
+    </tr>
+  </tbody>
+</table>
+
 <hr />
 
-<h2 id="-пример-карточки-пайплайна-в-onsiteseq-cockpit">🖥 Пример карточки пайплайна в OnSiteSeq Cockpit</h2>
+<h2 id="-карточки-пайплайнов-в-onsiteseq-cockpit">🖥 Карточки пайплайнов в OnSiteSeq Cockpit</h2>
 
-<p><img src="/assets/images/cockpit/cockpit_hiv.JPG" alt="Карточка пайплайна OnSiteSeq HIV в Cockpit" /></p>
+<p>Карточки ВИЧ-1 (ONT) и ВИЧ-1 Sanger в <a href="https://cloud.onsiteseq.io">OnSiteSeq Cockpit Cloud</a>:</p>
+
+<p><img src="/assets/images/cockpit/cockpit_hiv_cards.png" alt="Карточки пайплайнов ВИЧ-1 (ONT) и ВИЧ-1 Sanger в OnSiteSeq Cockpit Cloud" /></p>
 
 <hr />
 
@@ -437,7 +504,7 @@ window.addEventListener('load', function() {
 <h2 id="-глобальный-контекст-почему-это-важно">🌍 Глобальный контекст: почему это важно</h2>
 
 <ul>
-  <li><strong>Россия</strong> — более 1 млн людей живут с ВИЧ; в стране и Восточной Европе доминирует <strong>субтип A6</strong> (бывш. A-FSU), редкий на Западе. Наши модели <code class="language-plaintext highlighter-rouge">HIV-1-M-Env-Rus</code> и <code class="language-plaintext highlighter-rouge">HIV-1-Resist-Rus</code> обучены именно на российских изолятах — это их ключевое отличие от западных аналогов, заточенных под субтип B.</li>
+  <li><strong>Россия</strong> — более 1 млн людей живут с ВИЧ; в стране и Восточной Европе доминирует <strong>субтип A6</strong> (бывш. A-FSU), редкий на Западе. Наши модели <code class="language-plaintext highlighter-rouge">HIV-1-M-Env-Rus</code>, <code class="language-plaintext highlighter-rouge">HIV-1-M-Pol-Rus</code> и <code class="language-plaintext highlighter-rouge">HIV-1-Resist-Rus</code> ориентированы на субтипы, циркулирующие в РФ, и проверяются на российской когорте EpidRuSeq — это их ключевое отличие от западных аналогов, заточенных под субтип B.</li>
   <li><strong>ВОЗ</strong> — генотипическое тестирование лекарственной устойчивости рекомендовано до старта АРТ: переданная устойчивость к ННИОТ в ряде регионов превышает 10%-й порог.</li>
   <li><strong>INSTI-эра</strong> — переход первой линии на долутегравир делает мониторинг мутаций интегразы приоритетом надзора за ЛУ-ВИЧ.</li>
 </ul>
