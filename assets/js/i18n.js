@@ -40,10 +40,10 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/hiv.png" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>HIV-1 Drug Resistance and Subtype Determination</h1>' +
-    '<p style="font-size:1.2em;color:#555">Resistance profiling across all ART classes and subtyping — models trained on Russian subtype A6 isolates</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">Resistance profiling across all ART classes and subtyping — for nanopore (ONT) and capillary (Sanger) sequencing data; models target the subtypes circulating in Russia</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
     '<p>Our algorithm delivers a complete sequencing data processing cycle for identifying drug resistance mutations and accurately determining the HIV-1 subtype.</p>' +
-    '<ul><li><strong>📥 Input:</strong> Raw <code>FASTQ</code> data (after the Dorado ML base-caller converts nanopore electrical signals to nucleotide data; POD5/FAST5 → FASTQ).</li>' +
+    '<ul><li><strong>📥 Input</strong> — two pipelines for two sequencing platforms:<ul><li><strong>ONT (nanopore sequencing)</strong> — raw <code>FASTQ</code> after Dorado base-calling (POD5/FAST5 → FASTQ). Pipeline <strong>OnSiteSeq HIV</strong>, subtype by the <em>env</em> gene.</li><li><strong>Sanger (capillary sequencing)</strong> — <code>.ab1</code> chromatograms (forward and reverse reads of the <em>pol</em> PR-RT amplicon) or a ready <code>FASTA</code> consensus. Pipeline <strong>OnSiteSeq HIV Sanger</strong>, subtype by the <em>pol</em> gene.</li></ul></li>' +
     '<li><strong>📤 Output:</strong> Research-use-only (RUO) HTML report and an extended report for the bioinformatician.</li></ul><hr>' +
     '<h2>🧭 Baltimore Class: VI — (+)ssRNA-RT (retroviruses)</h2>' +
     '<p>Class VI unites the retroviruses: their genome is positive-sense single-stranded RNA, yet it does not serve directly as mRNA — first the viral <strong>reverse transcriptase</strong> (RT, <em>pol</em> gene) copies the RNA into DNA, and <strong>integrase</strong> inserts this DNA copy into the host genome, forming a <strong>provirus</strong>. HIV-1 is the canonical member of the class: the provirus becomes a permanent part of the cell and a lifelong source of new virions — which is exactly why modern therapy cannot eliminate the infection. Reverse transcriptase lacks proofreading (3\'→5\' exonuclease) activity, so copying errors accumulate orders of magnitude faster than with cellular DNA polymerases — hence the quasispecies diversity of HIV in every patient and the rapid selection of resistant variants under drug pressure. That is why HIV drug resistance means mutations in the <em>pol</em> gene (reverse transcriptase, protease, integrase) — the very ones our pipeline reads against Stanford HIVdb rules.</p>' +
@@ -56,9 +56,14 @@
       ['<strong>VI</strong>', '<strong>(+)ssRNA-RT</strong>', '<strong>Reverse transcriptase: RNA → DNA</strong>', '<strong>HIV, retroviruses</strong>'],
       ['VII', 'dsDNA-RT', 'Reverse transcription via an RNA intermediate', 'Hepatitis B']
     ]) + '<hr>' +
-    av('ok', 'ok', 'none') + '<hr>' +
+    '<h2>📊 Product Availability</h2>' +
+    tbl(['Platform', 'HIV-1 (ONT)', 'HIV-1 Sanger'], [
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟢 <strong>Available</strong>', '🔴 Not available'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟢 <strong>Available</strong>', '🔴 Not available'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong> (<a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a>)', '🟢 <strong>Available</strong>', '🟢 <strong>Available</strong>']
+    ]) + '<hr>' +
     '<h2>🎯 Resistance Genes and Mutations</h2>' +
-    '<p>The pipeline analyses the entire <em>pol</em> gene — all three enzyme targets of antiretroviral therapy. Mutation interpretation follows <strong>Stanford HIVdb</strong> rules — the global standard for genotypic HIV drug resistance interpretation.</p>' +
+    '<p>The ONT pipeline analyses the entire <em>pol</em> gene — all three enzyme targets of antiretroviral therapy; the Sanger pipeline — within the sequenced amplicons (usually PR+RT; IN if a separate amplicon is available). Mutation interpretation follows <strong>Stanford HIVdb</strong> rules — the global standard for genotypic HIV drug resistance interpretation.</p>' +
     tbl(['Drug Class', 'Gene', 'Key Mutations', 'Drugs'], [
       ['<strong>NRTI</strong> (nucleoside RT inhibitors)', 'RT', 'M184V/I, K65R, thymidine analogues (M41L, D67N, T215Y/F, K219Q/E)', 'Tenofovir, Lamivudine, Abacavir'],
       ['<strong>NNRTI</strong> (non-nucleoside RT inhibitors)', 'RT', 'K103N, Y181C, G190A, E138K', 'Efavirenz, Nevirapine, Rilpivirine, Doravirine'],
@@ -69,32 +74,46 @@
     '<h2>⚙️ Versions and ML Models</h2>' +
     '<p>We continuously improve our pipeline and machine learning models.</p>' +
     '<h3>Core Tool</h3>' +
-    tbl(['Component', 'Current Version'], [['<strong>OnSiteSeq HIV Pipeline</strong>', '<code>1.0</code>']]) +
+    tbl(['Pipeline', 'Sequencing platform', 'Input', 'Version', 'ML models'], [
+      ['<strong>OnSiteSeq HIV</strong>', 'ONT (nanopore)', '<code>FASTQ</code>', '<code>1.2.0</code>', 'HIV-1-M-Env-Rus, HIV-1-Resist-Rus'],
+      ['<strong>OnSiteSeq HIV Sanger</strong>', 'Sanger (capillary, PR-RT amplicons)', '<code>.ab1</code> / <code>FASTA</code>', '<code>1.2.0</code>', 'HIV-1-M-Pol-Rus, HIV-1-Resist-Rus']
+    ]) +
     '<h3>ML Models</h3>' +
-    tbl(['Model', 'Version', 'Description &amp; Changelog'], [
-      ['<strong>HIV-1-M-Env-Rus</strong>', '<code>1.0</code>', '<a href="/ml/hiv/">Changelog</a>'],
-      ['<strong>HIV-1-Resist-Rus</strong>', '<code>3</code>', '<a href="/ml/hiv/">Changelog</a>']
-    ]) + '<hr>' +
+    tbl(['Model', 'Version', 'Task', 'Description &amp; Changelog'], [
+      ['<strong>HIV-1-M-Env-Rus</strong>', '<code>1.0.0</code>', 'Subtype by the <em>env</em> gene (ONT), 12 classes', '<a href="/ml/hiv/#env">Description and metrics</a>'],
+      ['<strong>HIV-1-M-Pol-Rus</strong>', '<code>1.0.0</code> (retrained 17.10.2026)', 'Subtype by the <em>pol</em> PR+RT gene (Sanger), 7 classes', '<a href="/ml/hiv/#pol">Description and metrics</a>'],
+      ['<strong>HIV-1-Resist-Rus</strong>', '<code>4.0.0</code>', 'Resistance to 14 drugs, 5 HIVDB levels', '<a href="/ml/hiv/#resist">Description, metrics, version history</a>']
+    ]) +
+    '<blockquote>OnSiteSeq Edge (arm64) still runs HIV-1-Resist-Rus <code>3.0.0</code>; the update to <code>4.0.0</code> is in progress. For recombinant forms the subtype by <em>env</em> (ONT) and by <em>pol</em> (Sanger) may legitimately differ — the report always states the gene.</blockquote><hr>' +
     '<h2>📚 Publications &amp; Conferences</h2>' +
     '<p>Our tool was validated and presented at the following scientific venues:</p>' +
     '<ul><li><strong>MNSK-2026</strong> — <a href="/conferences/mnsk-2026/">Conference page</a></li>' +
     '<li><strong>MFTI-2026</strong> — <a href="/conferences/mfti-2026/">Conference page</a></li>' +
     '<li><strong>MSIT-2026</strong> — <a href="/conferences/msit-2026/">Conference page</a></li></ul><hr>' +
     '<h2>🛠 Under the Hood: Pipeline Stack</h2>' +
-    '<p>Managed via Snakemake with isolated Conda environments for maximum reproducibility.</p>' +
+    '<p>The pipelines are managed via Snakemake with isolated Conda environments for maximum reproducibility.</p>' +
+    '<h3>OnSiteSeq HIV (ONT)</h3>' +
     tbl(['Pipeline Stage', 'Libraries and Tools'], [
       ['<strong>1. Quality Control (QC)</strong>', '<code>Python 3.10</code>, <code>porechop_abi</code>, <code>NanoFilt</code>, <code>pigz</code>'],
       ['<strong>2. Alignment</strong>', '<code>minimap2</code>, <code>samtools</code>'],
       ['<strong>3. Consensus Assembly</strong>', '<code>medaka 1.11.*</code>, <code>bcftools</code>, <code>htslib</code>'],
       ['<strong>4. ML Prediction</strong>', '<code>PyTorch ≥2.0</code>, <code>BioPython</code>, <code>pandas</code>, <code>scikit-learn</code>']
+    ]) +
+    '<h3>OnSiteSeq HIV Sanger</h3>' +
+    tbl(['Pipeline Stage', 'Libraries and Tools'], [
+      ['<strong>1. Chromatogram QC</strong>', '<code>tracy</code> (fallback — <code>BioPython SeqIO "abi"</code>), phred end trimming'],
+      ['<strong>2. Read assembly and consensus</strong>', 'overlap assembly of forward and reverse reads, consensus with IUPAC codes (second peak ≥ 25%)'],
+      ['<strong>3. Alignment and variants</strong>', '<code>minimap2</code> to HXB2 (K03455.1), substitutions in HXB2 coordinates'],
+      ['<strong>4. ML Prediction</strong>', '<code>PyTorch</code>, HIV-1-M-Pol-Rus (subtype), HIV-1-Resist-Rus (resistance)']
     ]) + '<hr>' +
-    '<h2>🖥 Sample Pipeline Card in OnSiteSeq Cockpit</h2>' +
-    '<p><img src="/assets/images/cockpit/cockpit_hiv.JPG" alt="OnSiteSeq HIV pipeline card in Cockpit"></p><hr>' +
+    '<h2>🖥 Pipeline Cards in OnSiteSeq Cockpit</h2>' +
+    '<p>HIV-1 (ONT) and HIV-1 Sanger cards in <a href="https://cloud.onsiteseq.io">OnSiteSeq Cockpit Cloud</a>:</p>' +
+    '<p><img src="/assets/images/cockpit/cockpit_hiv_cards.png" alt="HIV-1 (ONT) and HIV-1 Sanger pipeline cards in OnSiteSeq Cockpit Cloud"></p><hr>' +
     '<h2>📋 Sample Reports</h2>' +
-    '<ul><li>📄 <strong><a href="/reports/hiv/">Sample HTML Report for Clinician</a></strong></li>' +
+    '<ul><li>📄 <strong><a href="/reports/hiv/">Sample research HTML report (RUO)</a></strong></li>' +
     '<li>💻 <strong><a href="/reports/hiv/">Detailed Bioinformatics Report</a></strong></li></ul><hr>' +
     '<h2>🌍 Global Context</h2>' +
-    '<ul><li><strong>Russia</strong> — over 1 million people live with HIV; <strong>subtype A6</strong> (formerly A-FSU) dominates in Russia and Eastern Europe but is rare in the West. Our <code>HIV-1-M-Env-Rus</code> and <code>HIV-1-Resist-Rus</code> models are trained specifically on Russian isolates — the key difference from Western counterparts tuned to subtype B.</li>' +
+    '<ul><li><strong>Russia</strong> — over 1 million people live with HIV; <strong>subtype A6</strong> (formerly A-FSU) dominates in Russia and Eastern Europe but is rare in the West. Our <code>HIV-1-M-Env-Rus</code>, <code>HIV-1-M-Pol-Rus</code> and <code>HIV-1-Resist-Rus</code> models target the subtypes circulating in Russia and are tested on the Russian EpidRuSeq cohort — the key difference from Western counterparts tuned to subtype B.</li>' +
     '<li><strong>WHO</strong> — genotypic drug resistance testing is recommended before ART initiation: transmitted NNRTI resistance exceeds the 10% threshold in several regions.</li>' +
     '<li><strong>INSTI era</strong> — the shift of first-line therapy to dolutegravir makes integrase mutation surveillance an HIV-DR priority.</li></ul><hr>' +
     '<h2>🔬 Sources</h2>' +
@@ -310,7 +329,7 @@
     '<h2>📦 Pipelines</h2>' +
     '<p>Bioinformatics tools distributed via <a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> as x86 Docker containers.</p>' +
     '<ul><li><a href="/tuberculosis/">OnSiteSeq TUB — Tuberculosis</a></li>' +
-    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1</a></li></ul>' +
+    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1 (ONT)</a></li><li><a href="/hiv/">OnSiteSeq HIV Sanger — HIV-1, capillary sequencing</a></li></ul>' +
     '<p>More solutions will be added.</p>';
 
   /* ── CONTACT ── */
@@ -326,69 +345,43 @@
 
   /* ── ML / HIV ── */
   EN['/ml/hiv/'] =
-    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
-    '<h1>Machine Learning Models: OnSiteSeq HIV</h1>' +
-    '<p style="font-size:1.2em;color:#555">Deep learning for high-precision HIV-1 genomic surveillance and resistance prediction</p></div><hr>' +
-    '<h2>🧠 Innovative Approach to the HIV-1 Genome</h2>' +
-    '<p>Standard foreign algorithms (including those developed in the US) are often trained on databases that do not reflect the epidemiological specifics of the Russian Federation. The HIV-1 epidemic in Russia has a pronounced monophyletic character.</p>' +
-    '<p>Our proprietary neural network models are developed with the domestic epidemiology in mind and use advanced ML architectures to deliver high prediction accuracy (on retrospective validation; RUO).</p><hr>' +
-    '<h2>🧬 HIV-1-M-Env-Rus (Version 1.0)</h2>' +
-    '<p>Specialised neural network model for classifying genetic variants of HIV-1. Solves the critical task of detecting dominant and recombinant forms of the virus circulating in the Russian Federation.</p>' +
-    '<ul><li><strong>Target region:</strong> Nucleotide sequence analysis of the <strong>Env</strong> gene.</li>' +
-    '<li><strong>Russia-specific:</strong> Optimised for ultra-precise detection of subtype <strong>A6</strong> (>80% of cases in Russia) and complex circulating recombinant forms such as <strong>CRF63_02A6</strong>.</li>' +
-    '<li><strong>Architecture:</strong> Deep learning on PyTorch with integration into an automated Snakemake data preparation pipeline.</li>' +
-    '<li><strong>Output:</strong> Percentage probability of isolate belonging to a specific subtype.</li></ul><hr>' +
-    '<h2>🛡️ HIV-1-Resist-Rus (Version 1.0)</h2>' +
-    '<p>Flagship model for predicting viral resistance to the major classes of antiretroviral therapy (ART).</p>' +
-    '<ul><li><strong>Target genes:</strong> Key genome regions responsible for viral survival — <strong>PR</strong> (protease), <strong>RT</strong> (reverse transcriptase), <strong>IN</strong> (integrase).</li>' +
-    '<li><strong>ID-CNN + Self-Attention architecture:</strong> 1D convolutional networks combined with attention mechanism enable the model to detect <strong>epistasis</strong> — complex interactions where one mutation can amplify or suppress the effect of another.</li>' +
-    '<li><strong>Database integration:</strong> Model calibrated using current global (Stanford HIVDB) and Russian resistance databases.</li></ul><hr>' +
-    '<h2>🚀 HIV-1-Resist-Rus (Version 3.0)</h2>' +
-    '<p><strong>A major update transitioning the system to a substantially more accurate model; the system status is research use only (RUO) — clinical use requires clinical trials and registration.</strong> Repository: <a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
-    '<h3>What changed in v3</h3>' +
-    tbl(['Component', 'v1 / v2', '<strong>v3</strong>'], [
-      ['Drugs', '1 (DTG) / 14', '<strong>14 (all ART classes)</strong>'],
-      ['Training dataset', 'Stanford interim CSVs + synthetic', '<strong>37,641 LANL sequences</strong>'],
-      ['Labelling', 'Fold-change ≥3.5', '<strong>Stanford Sierra API (gold standard)</strong>'],
-      ['Class distribution', '60–92% resistant (synthetic)', '<strong>0.8–10.8% (real-world)</strong>'],
-      ['Validation', 'Internal (val split)', '<strong>356 patients — CRIFEM Rospotrebnadzor</strong>'],
-      ['Mean AUC (external)', '~0.727', '<strong>0.990</strong>']
-    ]) +
-    '<h3>HybridResistanceCNN Architecture</h3>' +
-    '<p>Three parallel branches:</p>' +
-    '<ul><li><strong>Embedding + CNN ×3</strong> — local patterns in amino acid sequence (RT: 240 positions / PR: 99 / IN: 288)</li>' +
-    '<li><strong>Self-Attention</strong> — long-range epistasis between distant positions</li>' +
-    '<li><strong>MutationMLP</strong> — two-layer perceptron on key positions (K65R, M184V, K103N, G140S, etc.)</li></ul>' +
-    '<p>Three branches merged via Fusion layer → Dropout → Linear → P(resistant) ∈ [0, 1].</p>' +
-    '<p><strong>Key engineering decisions:</strong> Focal Loss (α=0.75, γ=2.0) for class imbalance (≤1% resistant), WeightedRandomSampler, OneCycleLR (80 epochs), threshold calibration via Youden index.</p>' +
-    '<h3>External Validation Results — v3</h3>' +
-    '<p>Validated on <strong>356 de-identified patients from CRIFEM Rospotrebnadzor</strong> (EpidRuSeq cohort). Gold standard: Stanford HivDB conclusions per drug.</p>' +
-    '<blockquote><strong>Mean AUC = 0.990</strong> — matches Stanford HIV Drug Resistance Database accuracy in fully offline mode, with no data transmission to foreign servers.</blockquote>' +
-    tbl(['Drug', 'Class', 'AUC', 'F1', 'Sensitivity', 'Specificity', 'ΔAUC vs v2'], [
-      ['<strong>DRV</strong>', 'PI', '<strong>1.000</strong>', '<strong>1.000</strong>', '<strong>1.000</strong>', '<strong>1.000</strong>', '+0.017'],
-      ['<strong>DTG</strong>', 'INSTI', '<strong>1.000</strong>', '0.800', '<strong>1.000</strong>', '0.994', '+0.272'],
-      ['3TC', 'NRTI', '0.999', '0.964', '0.982', '0.990', '+0.019'],
-      ['RAL', 'INSTI', '0.999', '0.898', '0.957', '0.988', '+0.670'],
-      ['EVG', 'INSTI', '0.999', '0.898', '0.957', '0.988', '+0.178'],
-      ['ABC', 'NRTI', '0.997', '0.957', '0.965', '0.990', '+0.549'],
-      ['ATV/r', 'PI', '0.997', '0.811', '0.938', '0.982', '+0.141'],
-      ['LPV/r', 'PI', '0.997', '0.762', '0.889', '0.988', '+0.210'],
-      ['BIC', 'INSTI', '0.996', '0.500', '0.750', '0.986', '+0.319'],
-      ['TDF', 'NRTI', '0.989', '0.809', '0.826', '0.985', '+0.222'],
-      ['AZT', 'NRTI', '0.987', '0.933', '0.913', '0.997', '+0.161'],
-      ['ETR', 'NNRTI', '0.981', '0.889', '0.941', '0.970', '+0.171'],
-      ['EFV', 'NNRTI', '0.972', '0.879', '0.954', '0.952', '+0.070'],
-      ['NVP', 'NNRTI', '0.949', '0.857', '0.882', '0.958', '+0.041'],
-      ['<strong>Mean</strong>', '', '<strong>0.990</strong>', '<strong>0.854</strong>', '<strong>0.925</strong>', '<strong>0.984</strong>', '']
-    ]) +
-    '<p><em>12 of 14 drugs exceed the clinical threshold AUC ≥ 0.90 and sensitivity ≥ 0.85.</em></p><hr>' +
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem"><h1>Machine Learning Models: OnSiteSeq HIV</h1><p style="font-size:1.2em;color:#555">Deep learning for HIV-1 subtyping and drug resistance prediction — for ONT and Sanger data</p></div><hr>' +
+    '<h2>🧠 Approach</h2>' +
+    '<p>Standard foreign algorithms are often trained on databases that do not reflect the specifics of the Russian Federation: subtype <strong>A6</strong>, rare in the West, dominates in Russia, and the epidemic is markedly monophyletic.</p>' +
+    '<p>Our neural network models target the subtypes circulating in Russia and are tested on the independent Russian cohort <strong>EpidRuSeq</strong> (Central Research Institute of Epidemiology of Rospotrebnadzor). Model code and weights are open on <a href="https://gitverse.ru/onsiteseq">GitVerse</a>. Status: research use only (RUO).</p><hr>' +
+    '<h2>📋 Model Overview</h2>' +
+    '<table><thead><tr><th style="text-align:left">Model</th><th style="text-align:left">Version</th><th style="text-align:left">Task</th><th style="text-align:left">Input</th><th style="text-align:left">Pipeline</th></tr></thead><tbody><tr><td><a href="#env"><strong>HIV-1-M-Env-Rus</strong></a></td><td><code>1.0.0</code> (fixes 11.10.2026)</td><td>Subtype, 12 classes</td><td><em>env</em> gene, full-length (≥ 2000 nt)</td><td>OnSiteSeq HIV (ONT)</td></tr><tr><td><a href="#pol"><strong>HIV-1-M-Pol-Rus</strong></a></td><td><code>1.0.0</code> (retrained 17.10.2026)</td><td>Subtype, 7 classes</td><td><em>pol</em> PR+RT (HXB2 2253–3869)</td><td>OnSiteSeq HIV Sanger</td></tr><tr><td><a href="#resist"><strong>HIV-1-Resist-Rus</strong></a></td><td><code>4.0.0</code> (13.10.2026)</td><td>Resistance to 14 drugs, 5 HIVDB levels</td><td>PR / RT / IN proteins</td><td>both pipelines</td></tr></tbody></table>' +
+    '<blockquote><strong>The subtype depends on the genome region.</strong> For recombinant forms (including CRF63_02A6) the subtype by <em>env</em> and by <em>pol</em> may legitimately differ. Reports always state which gene the subtype was determined from.</blockquote><hr>' +
+    '<h2 id="env">🧬 HIV-1-M-Env-Rus — subtype by the env gene</h2>' +
+    '<p>HIV-1 subtype classifier on the <em>env</em> nucleotide sequence for nanopore data (<strong>OnSiteSeq HIV</strong> pipeline). Repository: <a href="https://gitverse.ru/onsiteseq/HIV-1-M-Env-Rus">gitverse.ru/onsiteseq/HIV-1-M-Env-Rus</a></p>' +
+    '<ul><li><strong>12 classes:</strong> CRF02_AG, A2, D, F2, G, H, A6, CRF63_02A6, A1, B, C, F1 — including forms relevant for Russia.</li><li><strong>Architecture:</strong> convolutional autoencoder (CAE) on k-mer frequencies (k = 6, 4096-vector): encoder with 3 Conv1d layers and 2 residual blocks, decoder for the reconstruction loss (MSE), classifier of 3 fully connected layers.</li><li><strong>Synthetic evolution <em>in silico</em>:</strong> recombinations, insertions and deletions to augment rare classes; generation quality is checked by t-SNE on the same 6-mers fed to the model.</li><li><strong>Input control (since 11.10.2026):</strong> length, non-ACGT fraction, 12-mer similarity to a panel of reference <em>env</em>, automatic strand detection, confidence threshold. Statuses: <code>OK</code>, <code>LOW_CONFIDENCE</code>, <code>SHORT</code>, <code>AMBIGUOUS</code>, <code>NOT_HIV1M_ENV</code>. Previously the model confidently "classified" polyA, the reverse strand and the V3 loop — such inputs are now rejected.</li></ul>' +
+    '<p><strong>Fixes of 11.10.2026:</strong></p><ul><li>train / val / test split by clusters of similar sequences (6-mer cosine ≥ 0.90): in LANL subtype B has up to 784 clones per patient, and a random split placed them in both sets;</li><li>final metrics are computed on test, not on val, which is used up for best-epoch selection;</li><li>synthetic recombinants are checked for a valid reading frame (100% valid instead of 39–73% for some classes);</li><li>a single seed — runs are reproducible.</li></ul>' +
+    '<p><strong>Metrics:</strong> the previous metrics of the model were obtained with leakage between sets and have been withdrawn. Recalculation on a clean test split is in progress.</p>' +
+    '<p><strong>Limitations:</strong> unique recombinant forms (URF) and CRFs outside the 12 classes are mapped to the nearest class, and input control does not catch them; a full-length <em>env</em> is required; metrics for small classes (H, A2, CRF63_02A6) are not statistically significant.</p><hr>' +
+    '<h2 id="pol">🧪 HIV-1-M-Pol-Rus — subtype by the pol gene</h2>' +
+    '<p>HIV-1 subtype classifier on the <em>pol</em> PR+RT region — the standard capillary (Sanger) sequencing amplicon. The Env model is not applicable to such input, so a dedicated model was built for the <strong>OnSiteSeq HIV Sanger</strong> pipeline. Repository: <a href="https://gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus">gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus</a></p>' +
+    '<ul><li><strong>7 classes:</strong> A6, A1, B, G, CRF02_AG, CRF63_02A6 and <strong>OTHER</strong> ("none of the six targets": URF and complex forms, recognised CRFs, pure non-Russian subtypes). OTHER is a model answer, not an input-control rejection (<code>Unclassified</code>).</li><li><strong>Architecture:</strong> CAE on k-mer frequencies (k = 6, 4096-vector) — the result does not depend on fragment length.</li><li><strong>Split by patient ID:</strong> train / val / test are assigned by patient once; the share of val/test records from train patients is <strong>0%</strong> (regression test <code>check_leakage.py</code>).</li><li><strong>Input control:</strong> statuses <code>OK</code>, <code>LOW_CONFIDENCE</code>, <code>SHORT</code>, <code>AMBIGUOUS</code>, <code>NOT_HIV1M_POL</code>, <code>EMPTY</code>; the reverse strand is detected automatically.</li></ul>' +
+    '<h3>Metrics (full run of 17.10.2026)</h3>' +
+    '<table><thead><tr><th style="text-align:left">Set</th><th style="text-align:left">n</th><th style="text-align:left">Accuracy</th><th style="text-align:left">Comment</th></tr></thead><tbody><tr><td>Internal holdout (LANL)</td><td>441</td><td>0.887</td><td>F1-macro 0.789; without the OTHER class (6 classes) — 0.997</td></tr><tr><td><strong>EpidRuSeq, COMET labels (primary metric)</strong></td><td>251</td><td><strong>0.992</strong></td><td>recall A6 1.000 (196/196), B 0.974, CRF63_02A6 0.923</td></tr><tr><td>EpidRuSeq, fallback labels</td><td>90</td><td>0.667</td><td>labels from a model of the same family — not an independent reference</td></tr><tr><td>EpidRuSeq, whole test</td><td>343</td><td>0.906</td><td>341 classified + 2 <code>Unclassified</code> by input control</td></tr></tbody></table>' +
+    '<p>The test cohort was decontaminated from records nearly identical to training ones (8 records with 6-mer cosine ≥ 0.999 excluded).</p>' +
+    '<p><strong>Limitations:</strong> only 2 records of subtype G are independently labelled — no validation claim is made. OTHER is not a recombinant detector: on A6-containing mosaics recall is 0.357 (15/42; 95% CI 0.216–0.520). The cost of the OTHER class for target classes is small: A6 recall on COMET stayed at 1.000.</p><hr>' +
+    '<h2 id="resist">🛡️ HIV-1-Resist-Rus — drug resistance</h2>' +
+    '<p>Resistance prediction for <strong>14 drugs</strong> of four ART classes (NRTI, NNRTI, PI, INSTI) from the PR, RT and IN proteins. Used in both pipelines — ONT and Sanger. Repository: <a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
+    '<h3>Version History</h3>' +
+    '<table><thead><tr><th style="text-align:left">Version</th><th style="text-align:left">Date</th><th style="text-align:left">What changed</th></tr></thead><tbody><tr><td>1.0</td><td>02.2026</td><td>Single drug (DTG), CNN vs CNN + Self-Attention comparison, fold-change labelling</td></tr><tr><td>3.0</td><td>06.2026</td><td>14 drugs, LANL training corpus (37,641 sequences) labelled by Stanford Sierra, external validation on 356 patients</td></tr><tr><td>3.1</td><td>12.10.2026</td><td>Genotype deduplication (removed leakage of identical sequences between train and val), full mutation-flag dictionary, Platt calibration, input quality control</td></tr><tr><td>3.2</td><td>12.10.2026</td><td>End-to-end reproducible <code>dvc repro</code>, regression baseline, third-generation models</td></tr><tr><td><strong>4.0</strong></td><td><strong>13.10.2026</strong></td><td><strong>Five-level HIVDB output (CORAL), mutation list in the report, level-reliability gate</strong></td></tr></tbody></table>' +
+    '<h3>HybridResistanceCNN Architecture (v4.0)</h3>' +
+    '<ul><li><strong>Embedding → Conv1D ×2 + MaxPool → Self-Attention</strong> — local patterns and long-range interactions in the amino acid sequence (RT: 240 positions / PR: 99 / IN: 288).</li><li><strong>MutationMLP</strong> — key mutation flags from the Stanford HIVDB dictionary (NRTI 15 / NNRTI 16 / PI 19 / INSTI 15 positions).</li><li><strong>Fusion → CORAL head</strong> — cumulative probabilities P(level ≥ 2…5) on the five-level HIVDB scale, monotonic by construction; P(level ≥ 2) is the former binary output.</li><li><strong>Training:</strong> Focal Loss (α = 0.75, γ = 2.0) against class imbalance, genotype deduplication, Youden-index threshold and Platt calibration for each boundary. Levels with fewer than 30 training examples are marked "*" in the report.</li><li><strong>Input control:</strong> identity to HXB2 ≥ 80%, fraction of ambiguous residues, length, stop codons; statuses <code>OK</code>, <code>LOW_IDENTITY</code>, <code>FRAMESHIFT</code>, <code>SHORT</code>, <code>NOT_FOUND</code>. A gene that fails control is not passed to the model — the report says "not determined".</li><li><strong>Report:</strong> resistance level for each drug and a mutation list; subtype A6 polymorphisms (including L74I) are listed separately and are not counted as resistance mutations.</li></ul>' +
+    '<h3>External Validation of v4.0</h3>' +
+    '<p>De-identified <strong>EpidRuSeq</strong> cohort — 356 Russian patients (Central Research Institute of Epidemiology of Rospotrebnadzor); reference — Stanford HivDB conclusions for each drug.</p>' +
+    '<table><thead><tr><th style="text-align:left">Drug</th><th style="text-align:left">Class</th><th style="text-align:left">AUC</th><th style="text-align:left">F1</th><th style="text-align:left">Sensitivity</th><th style="text-align:left">Specificity</th><th style="text-align:left">QWK</th><th style="text-align:left">N (resist.)</th></tr></thead><tbody><tr><td>ABC</td><td>NRTI</td><td>0.999</td><td>0.941</td><td>0.982</td><td>0.980</td><td>0.903</td><td>356 (57)</td></tr><tr><td>DTG</td><td>INSTI</td><td>0.999</td><td>0.667</td><td>1.000</td><td>0.989</td><td>0.696</td><td>354 (4)</td></tr><tr><td>3TC</td><td>NRTI</td><td>0.999</td><td>0.956</td><td>0.982</td><td>0.987</td><td>0.994</td><td>356 (55)</td></tr><tr><td>DRV/r</td><td>PI</td><td>0.996</td><td>0.600</td><td>1.000</td><td>0.989</td><td>0.687</td><td>353 (3)</td></tr><tr><td>TDF</td><td>NRTI</td><td>0.996</td><td>0.870</td><td>0.870</td><td>0.991</td><td>0.879</td><td>356 (23)</td></tr><tr><td>ATV/r</td><td>PI</td><td>0.993</td><td>0.811</td><td>0.938</td><td>0.982</td><td>0.784</td><td>353 (16)</td></tr><tr><td>AZT</td><td>NRTI</td><td>0.990</td><td>0.875</td><td>0.913</td><td>0.988</td><td>0.944</td><td>356 (23)</td></tr><tr><td>ETR</td><td>NNRTI</td><td>0.989</td><td>0.867</td><td>0.961</td><td>0.957</td><td>0.844</td><td>356 (51)</td></tr><tr><td>LPV/r</td><td>PI</td><td>0.984</td><td>0.640</td><td>0.889</td><td>0.977</td><td>0.554</td><td>353 (9)</td></tr><tr><td>EVG</td><td>INSTI</td><td>0.976</td><td>0.898</td><td>0.957</td><td>0.988</td><td>0.873</td><td>354 (23)</td></tr><tr><td>EFV</td><td>NNRTI</td><td>0.976</td><td>0.899</td><td>0.954</td><td>0.962</td><td>0.962</td><td>356 (65)</td></tr><tr><td>NVP</td><td>NNRTI</td><td>0.967</td><td>0.859</td><td>0.941</td><td>0.941</td><td>0.944</td><td>356 (68)</td></tr><tr><td>RAL</td><td>INSTI</td><td>0.967</td><td>0.917</td><td>0.957</td><td>0.991</td><td>0.829</td><td>354 (23)</td></tr><tr><td>BIC</td><td>INSTI</td><td>0.769</td><td>0.750</td><td>0.750</td><td>0.997</td><td>0.703</td><td>354 (4)</td></tr><tr><td><strong>Mean</strong></td><td></td><td><strong>0.971</strong></td><td><strong>0.825</strong></td><td><strong>0.935</strong></td><td><strong>0.980</strong></td><td><strong>0.828</strong></td><td></td></tr></tbody></table>' +
+    '<p><em>QWK — quadratic weighted Cohen\'s kappa on the five-level HIVDB scale. 13 of 14 drugs meet the target quality threshold AUC ≥ 0.90 and sensitivity ≥ 0.85; BIC does not (AUC 0.769). BIC, DTG and DRV/r have only 3–4 resistant cases in the cohort — their metrics are statistically unstable. DTG and BIC are second-generation integrase inhibitors with a shared target, so their estimates reflect the same small sample rather than two independent measurements.</em></p>' +
+    '<p><strong>QWK by drug class</strong> (pooled 5×5 matrices): NRTI <strong>0.944</strong>, NNRTI <strong>0.933</strong>, INSTI <strong>0.761</strong>, PI <strong>0.726</strong>.</p>' +
+    '<p>Internal validation on a held-out part of the training corpus (mean AUC 0.995) is more optimistic than external and is used only for regression control during retraining.</p>' +
+    '<blockquote>The previously published v3.0 estimate (mean AUC 0.990) was obtained before the leakage of identical sequences between train and val was removed in v3.1; the current estimate is the table above.</blockquote><hr>' +
     '<h2>⚙️ Technologies and BioMLOps</h2>' +
-    '<ul><li><strong>Data Management (DVC):</strong> Versioning of training datasets, model weights, and feature extraction pipelines. Guarantees 100% experiment traceability.</li>' +
-    '<li><strong>Continuous Training:</strong> Automated retraining pipeline triggered by updates to external databases (Stanford HIVDB), with early model degradation detection on hold-out set.</li>' +
-    '<li><strong>Technology Stack:</strong> <code>PyTorch (≥2.0)</code>, <code>Snakemake</code>, <code>DVC</code>, <code>BioPython</code>.</li></ul><hr>' +
-    '<blockquote>💡 <strong>Scientific Validation</strong> — Effectiveness of our models and BioMLOps methodology has been recognised by the academic community. Results presented at leading conferences:<br>' +
-    '• Subtype classification (HIV-1-M-Env-Rus) — <strong><a href="/conferences/mnsk-2026/">MNSK-2026</a></strong><br>' +
-    '• Resistance prediction and BioMLOps (HIV-1-Resist-Rus) — <strong><a href="/conferences/msit-2026/">MSIT-2026</a></strong></blockquote>';
+    '<p>We apply machine-learning model lifecycle practices in biomedicine (<strong>BioMLOps</strong>) for reproducible results.</p>' +
+    '<ul><li><strong>Data management (DVC):</strong> versioning of training datasets, model weights and data-preparation pipelines (HIV-1-Resist-Rus).</li><li><strong>Regression control:</strong> on retraining, internal and external validation metrics are compared with a fixed baseline; a drop beyond the threshold blocks the rollout (CI on GitVerse).</li><li><strong>Reproducibility:</strong> Snakemake pipelines (HIV-1-M-Env-Rus, HIV-1-M-Pol-Rus), a single seed for all random operations.</li><li><strong>Tech stack:</strong> <code>PyTorch (>=2.0)</code>, <code>Snakemake</code>, <code>DVC</code>, <code>BioPython</code>.</li></ul><hr>' +
+    '<blockquote>💡 <strong>Scientific validation.</strong> Research results were presented at conferences:<br>• Subtype classification (HIV-1-M-Env-Rus) — <strong><a href="/conferences/mnsk-2026/">MNSK-2026</a></strong><br>• Resistance prediction and BioMLOps (HIV-1-Resist-Rus) — <strong><a href="/conferences/msit-2026/">MSIT-2026</a></strong><br>Scientific support: D.E. Kireev, <a href="https://ruhiv.ru/about/">Central Research Institute of Epidemiology of Rospotrebnadzor</a>.</blockquote>';
 
   /* ── HPV (ONCOLOGY) ── */
   EN['/hpv/'] =
@@ -3913,7 +3906,7 @@
     '<h3>MIPT Researchers Developed Domestic ML Models for HIV-1 Drug Resistance and Subtype Diagnostics</h3>' +
     '<p>Student-researcher <strong>Roman Gorbenko</strong> (<a href="https://habr.com/ru/users/romangorbenko/articles/">Habr profile</a>) and his scientific supervisor <strong>Nikita Radchenko</strong> developed domestic ML models for HIV-1 drug resistance and subtype diagnostics.</p>' +
     '<p>The key achievement is a functional domestic analogue of two foreign platforms: the American <strong>Stanford HIV Drug Resistance Database (HIVDB)</strong> and the European web service <strong>COMET</strong> (Luxembourg Institute of Health), which had been used without alternative by Russian researchers until recently.</p>' +
-    '<p>External validation on a dataset provided by <strong>CRIFEM Rospotrebnadzor</strong> showed a mean <strong>AUC = 0.990</strong> — a high level of accuracy on retrospective data (clinical use requires clinical trials and medical-device registration). The developed ML models were tested within full-cycle bioinformatics pipelines — from raw genomic reads to interpretable research reports — and deployed on the specially developed hardware-software complex <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong>.</p><hr>' +
+    '<p>External validation on a dataset provided by <strong>CRIFEM Rospotrebnadzor</strong> showed a mean <strong>AUC = 0.990</strong> — a high level of accuracy on retrospective data (clinical use requires clinical trials and medical-device registration). The developed ML models were tested within full-cycle bioinformatics pipelines — from raw genomic reads to interpretable research reports — and deployed on the specially developed hardware-software complex <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong>.</p><p><em>Note (October 2026): after removing data leakage between training and validation sets (v3.1), the current estimate for HIV-1-Resist-Rus v4.0 on the same cohort is mean AUC 0.971. Details: <a href="/ml/hiv/#resist">HIV-1 ML models</a>.</em></p><hr>' +
     '<h2>🔬 Other MIPT Innovations</h2>' +
     '<p>Phystech actively conducts research at the cutting edge of science and technology. Some recent achievements:</p>' +
     '<p><strong><a href="https://mipt.ru/news/v-mfti-uskorili-modelirovanie-vzryva-atomnogo-yadra-">MIPT Accelerated Nuclear Explosion Modelling</a></strong><br>New approach to numerical modelling of nuclear processes with significant computation acceleration.</p>' +
@@ -5268,10 +5261,10 @@
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
     '<img src="/assets/images/logo/hiv.png" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>HIV-1 耐药性与亚型鉴定</h1>' +
-    '<p style="font-size:1.2em;color:#555">覆盖全部 ART 药物类别的耐药谱分析与亚型分型 — 基于俄罗斯 A6 亚型分离株训练的模型</p></div><hr>' +
+    '<p style="font-size:1.2em;color:#555">覆盖全部 ART 药物类别的耐药谱分析与亚型分型 — 适用于纳米孔 (ONT) 与毛细管 (Sanger) 测序数据;模型面向在俄罗斯流行的亚型</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
     '<p>我们的算法提供完整的测序数据处理流程,用于识别耐药突变并准确鉴定 HIV-1 亚型。</p>' +
-    '<ul><li><strong>📥 输入:</strong> 原始 <code>FASTQ</code> 数据(Dorado 机器学习碱基识别器将纳米孔电信号转换为核苷酸数据之后;POD5/FAST5 → FASTQ)。</li>' +
+    '<ul><li><strong>📥 输入</strong> — 两条流程对应两种测序平台:<ul><li><strong>ONT(纳米孔测序)</strong> — Dorado 碱基识别后的原始 <code>FASTQ</code>(POD5/FAST5 → FASTQ)。流程 <strong>OnSiteSeq HIV</strong>,按 <em>env</em> 基因判定亚型。</li><li><strong>Sanger(毛细管测序)</strong> — <code>.ab1</code> 色谱图(<em>pol</em> PR-RT 扩增子的正向与反向读段)或现成的 <code>FASTA</code> 共识序列。流程 <strong>OnSiteSeq HIV Sanger</strong>,按 <em>pol</em> 基因判定亚型。</li></ul></li>' +
     '<li><strong>📤 输出:</strong> 仅供研究使用 (RUO) 的 HTML 报告和面向生物信息分析师的扩展报告。</li></ul><hr>' +
     '<h2>🧭 巴尔的摩分类:VI — 正链ssRNA-逆转录(逆转录病毒)</h2>' +
     '<p>VI 类涵盖逆转录病毒:其基因组为正链单链RNA,但不能直接充当 mRNA —— 首先由病毒<strong>逆转录酶</strong>(RT,<em>pol</em> 基因)将 RNA 逆转录为 DNA,再由<strong>整合酶</strong>将该 DNA 拷贝插入宿主基因组,形成<strong>前病毒</strong>。HIV-1 是该类的典型代表:前病毒成为细胞的永久组成部分和终生产生新病毒颗粒的源头,这正是现代疗法无法根除感染的原因。逆转录酶缺乏校正(3\'→5\' 外切核酸酶)活性,复制错误积累速度比细胞 DNA 聚合酶快几个数量级 —— 因此每位患者体内的 HIV 都呈准种多样性,耐药变异在药物压力下被迅速选择。正因如此,HIV 的耐药性就是 <em>pol</em> 基因(逆转录酶、蛋白酶、整合酶)中的突变,我们的流程依据 Stanford HIVdb 规则对其进行解读。</p>' +
@@ -5286,12 +5279,12 @@
     ]) + '<hr>' +
     '<h2>📊 产品可用性</h2>' +
     tbl(['平台', '可用状态'], [
-      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟢 <strong>可用</strong>'],
-      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟢 <strong>可用</strong>'],
-      ['<strong>OnSiteSeq Cockpit Cloud</strong>', '🔴 不可用']
+      ['<strong>OnSiteSeq Cockpit Edge</strong>', '🟢 <strong>可用</strong>', '🔴 不可用'],
+      ['<strong>OnSiteSeq Cockpit Desktop</strong>', '🟢 <strong>可用</strong>', '🔴 不可用'],
+      ['<strong>OnSiteSeq Cockpit Cloud</strong>(<a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a>)', '🟢 <strong>可用</strong>', '🟢 <strong>可用</strong>']
     ]) + '<hr>' +
     '<h2>🎯 耐药基因与突变</h2>' +
-    '<p>流程分析整个 <em>pol</em> 基因 — 抗逆转录病毒治疗的全部三个酶靶点。突变解读遵循 <strong>Stanford HIVdb</strong> 规则 — HIV 基因型耐药解读的全球标准。</p>' +
+    '<p>ONT 流程分析整个 <em>pol</em> 基因 — 抗逆转录病毒治疗的全部三个酶靶点;Sanger 流程分析已测序的扩增子范围(通常为 PR+RT;若有单独扩增子则包括 IN)。突变解读遵循 <strong>Stanford HIVdb</strong> 规则 — HIV 基因型耐药解读的全球标准。</p>' +
     tbl(['药物类别', '基因', '关键突变', '药物'], [
       ['<strong>NRTI</strong>(核苷类逆转录酶抑制剂)', 'RT', 'M184V/I、K65R、胸腺嘧啶类似物突变(M41L、D67N、T215Y/F、K219Q/E)', '替诺福韦、拉米夫定、阿巴卡韦'],
       ['<strong>NNRTI</strong>(非核苷类逆转录酶抑制剂)', 'RT', 'K103N、Y181C、G190A、E138K', '依非韦伦、奈韦拉平、利匹韦林、多拉韦林'],
@@ -5302,32 +5295,46 @@
     '<h2>⚙️ 版本与机器学习模型</h2>' +
     '<p>我们持续改进分析流程与机器学习模型。</p>' +
     '<h3>核心工具</h3>' +
-    tbl(['组件', '当前版本'], [['<strong>OnSiteSeq HIV Pipeline</strong>', '<code>1.0</code>']]) +
+    tbl(['流程', '测序平台', '输入', '版本', '机器学习模型'], [
+      ['<strong>OnSiteSeq HIV</strong>', 'ONT(纳米孔)', '<code>FASTQ</code>', '<code>1.2.0</code>', 'HIV-1-M-Env-Rus、HIV-1-Resist-Rus'],
+      ['<strong>OnSiteSeq HIV Sanger</strong>', 'Sanger(毛细管,PR-RT 扩增子)', '<code>.ab1</code> / <code>FASTA</code>', '<code>1.2.0</code>', 'HIV-1-M-Pol-Rus、HIV-1-Resist-Rus']
+    ]) +
     '<h3>机器学习模型</h3>' +
-    tbl(['模型', '版本', '说明与更新日志'], [
-      ['<strong>HIV-1-M-Env-Rus</strong>', '<code>1.0</code>', '<a href="/ml/hiv/">更新日志</a>'],
-      ['<strong>HIV-1-Resist-Rus</strong>', '<code>3</code>', '<a href="/ml/hiv/">更新日志</a>']
-    ]) + '<hr>' +
+    tbl(['模型', '版本', '任务', '说明与更新日志'], [
+      ['<strong>HIV-1-M-Env-Rus</strong>', '<code>1.0.0</code>', '按 <em>env</em> 基因判定亚型 (ONT),12 类', '<a href="/ml/hiv/#env">说明与指标</a>'],
+      ['<strong>HIV-1-M-Pol-Rus</strong>', '<code>1.0.0</code>(2026-10-17 重新训练)', '按 <em>pol</em> PR+RT 基因判定亚型 (Sanger),7 类', '<a href="/ml/hiv/#pol">说明与指标</a>'],
+      ['<strong>HIV-1-Resist-Rus</strong>', '<code>4.0.0</code>', '14 种药物耐药,HIVDB 5 级', '<a href="/ml/hiv/#resist">说明、指标与版本历史</a>']
+    ]) +
+    '<blockquote>OnSiteSeq Edge (arm64) 目前仍运行 HIV-1-Resist-Rus <code>3.0.0</code>;升级到 <code>4.0.0</code> 正在进行中。对于重组形式,按 <em>env</em> (ONT) 与按 <em>pol</em> (Sanger) 判定的亚型可能合理地不同 — 报告中始终注明基因。</blockquote><hr>' +
     '<h2>📚 论文与会议</h2>' +
     '<p>我们的工具已在以下学术场所完成验证与展示:</p>' +
     '<ul><li><strong>MNSK-2026</strong> — <a href="/conferences/mnsk-2026/">会议页面</a></li>' +
     '<li><strong>MFTI-2026</strong> — <a href="/conferences/mfti-2026/">会议页面</a></li>' +
     '<li><strong>MSIT-2026</strong> — <a href="/conferences/msit-2026/">会议页面</a></li></ul><hr>' +
     '<h2>🛠 技术架构:流程依赖与环境</h2>' +
-    '<p>由 Snakemake 管理,配合相互隔离的 Conda 环境,确保最大程度可复现。</p>' +
+    '<p>流程由 Snakemake 管理,配合相互隔离的 Conda 环境,确保最大程度可复现。</p>' +
+    '<h3>OnSiteSeq HIV (ONT)</h3>' +
     tbl(['流程阶段', '库与工具'], [
       ['<strong>1. 质量控制 (QC)</strong>', '<code>Python 3.10</code>、<code>porechop_abi</code>、<code>NanoFilt</code>、<code>pigz</code>'],
       ['<strong>2. 比对</strong>', '<code>minimap2</code>、<code>samtools</code>'],
       ['<strong>3. 一致性序列组装</strong>', '<code>medaka 1.11.*</code>、<code>bcftools</code>、<code>htslib</code>'],
       ['<strong>4. 机器学习预测</strong>', '<code>PyTorch ≥2.0</code>、<code>BioPython</code>、<code>pandas</code>、<code>scikit-learn</code>']
+    ]) +
+    '<h3>OnSiteSeq HIV Sanger</h3>' +
+    tbl(['流程步骤', '库与工具'], [
+      ['<strong>1. 色谱图质控</strong>', '<code>tracy</code>(备用 — <code>BioPython SeqIO "abi"</code>),按 phred 修剪末端'],
+      ['<strong>2. 读段拼接与共识</strong>', '正向与反向读段重叠拼接,带 IUPAC 编码的共识(次峰 ≥ 25%)'],
+      ['<strong>3. 比对与变异</strong>', '<code>minimap2</code> 比对到 HXB2 (K03455.1),按 HXB2 坐标给出替换'],
+      ['<strong>4. 机器学习预测</strong>', '<code>PyTorch</code>、HIV-1-M-Pol-Rus(亚型)、HIV-1-Resist-Rus(耐药)']
     ]) + '<hr>' +
-    '<h2>🖥 OnSiteSeq Cockpit 中的流程卡片示例</h2>' +
-    '<p><img src="/assets/images/cockpit/cockpit_hiv.JPG" alt="Cockpit 中的 OnSiteSeq HIV 流程卡片"></p><hr>' +
+    '<h2>🖥 OnSiteSeq Cockpit 中的流程卡片</h2>' +
+    '<p><a href="https://cloud.onsiteseq.io">OnSiteSeq Cockpit Cloud</a> 中的 HIV-1 (ONT) 与 HIV-1 Sanger 卡片:</p>' +
+    '<p><img src="/assets/images/cockpit/cockpit_hiv_cards.png" alt="OnSiteSeq Cockpit Cloud 中的 HIV-1 (ONT) 与 HIV-1 Sanger 流程卡片"></p><hr>' +
     '<h2>📋 报告示例</h2>' +
-    '<ul><li>📄 <strong><a href="/reports/hiv/">临床医生 HTML 报告示例</a></strong></li>' +
+    '<ul><li>📄 <strong><a href="/reports/hiv/">研究用 HTML 报告示例 (RUO)</a></strong></li>' +
     '<li>💻 <strong><a href="/reports/hiv/">详细生物信息学报告</a></strong></li></ul><hr>' +
     '<h2>🌍 全球背景</h2>' +
-    '<ul><li><strong>俄罗斯</strong> — 超过 100 万 HIV 感染者;<strong>A6 亚型</strong>(原 A-FSU)在俄罗斯和东欧占主导地位,在西方却很罕见。我们的 <code>HIV-1-M-Env-Rus</code> 与 <code>HIV-1-Resist-Rus</code> 模型专门基于俄罗斯分离株训练 — 这是与针对 B 亚型调优的西方同类产品的关键区别。</li>' +
+    '<ul><li><strong>俄罗斯</strong> — 超过 100 万 HIV 感染者;<strong>A6 亚型</strong>(原 A-FSU)在俄罗斯和东欧占主导地位,在西方却很罕见。我们的 <code>HIV-1-M-Env-Rus</code>、<code>HIV-1-M-Pol-Rus</code> 与 <code>HIV-1-Resist-Rus</code> 模型面向在俄罗斯流行的亚型,并在俄罗斯 EpidRuSeq 队列上检验 — 这是与针对 B 亚型调优的西方同类产品的关键区别。</li>' +
     '<li><strong>WHO</strong> — 推荐在启动 ART 前进行基因型耐药检测:多个地区的传播性 NNRTI 耐药已超过 10% 阈值。</li>' +
     '<li><strong>INSTI 时代</strong> — 一线治疗转向多替拉韦,使整合酶突变监测成为 HIV 耐药工作的重点。</li></ul><hr>' +
     '<h2>🔬 参考来源</h2>' +
@@ -5344,69 +5351,43 @@
 
   /* ── ML/HIV (HIV 机器学习模型) ── */
   ZH['/ml/hiv/'] =
-    '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
-    '<h1>机器学习模型:OnSiteSeq HIV</h1>' +
-    '<p style="font-size:1.2em;color:#555">面向高精度 HIV-1 基因组监测与耐药预测的深度学习</p></div><hr>' +
-    '<h2>🧠 HIV-1 基因组的创新方法</h2>' +
-    '<p>标准的国外算法(包括美国开发的算法)往往在不反映俄罗斯联邦流行病学特点的数据库上训练。俄罗斯的 HIV-1 流行具有明显的单系起源特征。</p>' +
-    '<p>我们自研的神经网络模型针对本国流行病学特点开发,采用先进的 ML 架构,实现较高的预测准确性(基于回顾性验证;RUO)。</p><hr>' +
-    '<h2>🧬 HIV-1-M-Env-Rus(版本 1.0)</h2>' +
-    '<p>用于 HIV-1 基因变异分类的专用神经网络模型。解决检测在俄罗斯联邦流行的优势型与重组型病毒这一关键任务。</p>' +
-    '<ul><li><strong>目标区域:</strong> <strong>Env</strong> 基因的核苷酸序列分析。</li>' +
-    '<li><strong>俄罗斯特异性:</strong> 针对超精准检测 <strong>A6</strong> 亚型(占俄罗斯病例 >80%)及 <strong>CRF63_02A6</strong> 等复杂流行重组型优化。</li>' +
-    '<li><strong>架构:</strong> 基于 PyTorch 的深度学习,集成于自动化 Snakemake 数据准备流程。</li>' +
-    '<li><strong>输出:</strong> 分离株属于特定亚型的百分比概率。</li></ul><hr>' +
-    '<h2>🛡️ HIV-1-Resist-Rus(版本 1.0)</h2>' +
-    '<p>预测病毒对主要抗逆转录病毒治疗 (ART) 类别耐药性的旗舰模型。</p>' +
-    '<ul><li><strong>目标基因:</strong> 决定病毒存活的关键基因组区域 — <strong>PR</strong>(蛋白酶)、<strong>RT</strong>(逆转录酶)、<strong>IN</strong>(整合酶)。</li>' +
-    '<li><strong>ID-CNN + Self-Attention 架构:</strong> 一维卷积网络结合注意力机制,使模型能够检测<strong>上位效应 (epistasis)</strong> — 一个突变可增强或抑制另一个突变效应的复杂相互作用。</li>' +
-    '<li><strong>数据库整合:</strong> 模型使用当前全球 (Stanford HIVDB) 与俄罗斯耐药数据库进行校准。</li></ul><hr>' +
-    '<h2>🚀 HIV-1-Resist-Rus(版本 3.0)</h2>' +
-    '<p><strong>重大更新,显著提升模型质量;系统状态为仅供研究使用 (RUO),临床应用需开展临床试验并完成注册。</strong>仓库:<a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
-    '<h3>v3 的变化</h3>' +
-    tbl(['组件', 'v1 / v2', '<strong>v3</strong>'], [
-      ['药物', '1 (DTG) / 14', '<strong>14(全部 ART 类别)</strong>'],
-      ['训练数据集', 'Stanford 中间 CSV + 合成数据', '<strong>37,641 条 LANL 序列</strong>'],
-      ['标注', 'Fold-change ≥3.5', '<strong>Stanford Sierra API(金标准)</strong>'],
-      ['类别分布', '60–92% 耐药(合成)', '<strong>0.8–10.8%(真实世界)</strong>'],
-      ['验证', '内部(验证集划分)', '<strong>356 名患者 — CRIFEM(Rospotrebnadzor)</strong>'],
-      ['平均 AUC(外部)', '约 0.727', '<strong>0.990</strong>']
-    ]) +
-    '<h3>HybridResistanceCNN 架构</h3>' +
-    '<p>三条并行分支:</p>' +
-    '<ul><li><strong>Embedding + CNN ×3</strong> — 氨基酸序列局部模式(RT:240 位 / PR:99 / IN:288)</li>' +
-    '<li><strong>Self-Attention</strong> — 相距遥远位点间的长程上位效应</li>' +
-    '<li><strong>MutationMLP</strong> — 作用于关键位点(K65R、M184V、K103N、G140S 等)的双层感知机</li></ul>' +
-    '<p>三条分支经 Fusion 层合并 → Dropout → Linear → P(耐药) ∈ [0, 1]。</p>' +
-    '<p><strong>关键工程决策:</strong> 针对类别不平衡(≤1% 耐药)的 Focal Loss(α=0.75,γ=2.0)、WeightedRandomSampler、OneCycleLR(80 个 epoch)、基于约登指数的阈值校准。</p>' +
-    '<h3>外部验证结果 — v3</h3>' +
-    '<p>在<strong>CRIFEM(Rospotrebnadzor)的 356 名去标识化患者</strong>(EpidRuSeq 队列)上完成验证。金标准:Stanford HivDB 按药物给出的结论。</p>' +
-    '<blockquote><strong>平均 AUC = 0.990</strong> — 在完全离线模式、不向境外服务器传输任何数据的情况下,达到 Stanford HIV 耐药数据库的准确度。</blockquote>' +
-    tbl(['药物', '类别', 'AUC', 'F1', '灵敏度', '特异度', 'ΔAUC vs v2'], [
-      ['<strong>DRV</strong>', 'PI', '<strong>1.000</strong>', '<strong>1.000</strong>', '<strong>1.000</strong>', '<strong>1.000</strong>', '+0.017'],
-      ['<strong>DTG</strong>', 'INSTI', '<strong>1.000</strong>', '0.800', '<strong>1.000</strong>', '0.994', '+0.272'],
-      ['3TC', 'NRTI', '0.999', '0.964', '0.982', '0.990', '+0.019'],
-      ['RAL', 'INSTI', '0.999', '0.898', '0.957', '0.988', '+0.670'],
-      ['EVG', 'INSTI', '0.999', '0.898', '0.957', '0.988', '+0.178'],
-      ['ABC', 'NRTI', '0.997', '0.957', '0.965', '0.990', '+0.549'],
-      ['ATV/r', 'PI', '0.997', '0.811', '0.938', '0.982', '+0.141'],
-      ['LPV/r', 'PI', '0.997', '0.762', '0.889', '0.988', '+0.210'],
-      ['BIC', 'INSTI', '0.996', '0.500', '0.750', '0.986', '+0.319'],
-      ['TDF', 'NRTI', '0.989', '0.809', '0.826', '0.985', '+0.222'],
-      ['AZT', 'NRTI', '0.987', '0.933', '0.913', '0.997', '+0.161'],
-      ['ETR', 'NNRTI', '0.981', '0.889', '0.941', '0.970', '+0.171'],
-      ['EFV', 'NNRTI', '0.972', '0.879', '0.954', '0.952', '+0.070'],
-      ['NVP', 'NNRTI', '0.949', '0.857', '0.882', '0.958', '+0.041'],
-      ['<strong>平均</strong>', '', '<strong>0.990</strong>', '<strong>0.854</strong>', '<strong>0.925</strong>', '<strong>0.984</strong>', '']
-    ]) +
-    '<p><em>14 种药物中有 12 种超过临床阈值 AUC ≥ 0.90 且灵敏度 ≥ 0.85。</em></p><hr>' +
+    '<div class="product-header" style="text-align:center;margin-bottom:2rem"><h1>机器学习模型:OnSiteSeq HIV</h1><p style="font-size:1.2em;color:#555">用于 HIV-1 亚型鉴定与耐药预测的深度学习 — 适用于 ONT 与 Sanger 数据</p></div><hr>' +
+    '<h2>🧠 方法</h2>' +
+    '<p>国外的标准算法通常基于不反映俄罗斯联邦特点的数据库训练:在俄罗斯占主导的是西方少见的 <strong>A6</strong> 亚型,且疫情呈明显的单系特征。</p>' +
+    '<p>我们的神经网络模型面向在俄罗斯流行的亚型,并在独立的俄罗斯队列 <strong>EpidRuSeq</strong>(俄罗斯联邦消费者权益保护和公益监督局中央流行病学研究所)上检验。模型代码与权重在 <a href="https://gitverse.ru/onsiteseq">GitVerse</a> 上开放。状态:仅供研究使用 (RUO)。</p><hr>' +
+    '<h2>📋 模型概览</h2>' +
+    '<table><thead><tr><th style="text-align:left">模型</th><th style="text-align:left">版本</th><th style="text-align:left">任务</th><th style="text-align:left">输入</th><th style="text-align:left">流程</th></tr></thead><tbody><tr><td><a href="#env"><strong>HIV-1-M-Env-Rus</strong></a></td><td><code>1.0.0</code>(2026-10-11 修复)</td><td>亚型,12 类</td><td><em>env</em> 基因,全长(≥ 2000 nt)</td><td>OnSiteSeq HIV (ONT)</td></tr><tr><td><a href="#pol"><strong>HIV-1-M-Pol-Rus</strong></a></td><td><code>1.0.0</code>(2026-10-17 重新训练)</td><td>亚型,7 类</td><td><em>pol</em> PR+RT(HXB2 2253–3869)</td><td>OnSiteSeq HIV Sanger</td></tr><tr><td><a href="#resist"><strong>HIV-1-Resist-Rus</strong></a></td><td><code>4.0.0</code>(2026-10-13)</td><td>14 种药物耐药,HIVDB 5 级</td><td>PR / RT / IN 蛋白</td><td>两条流程</td></tr></tbody></table>' +
+    '<blockquote><strong>亚型取决于基因组区域。</strong>对于重组形式(包括 CRF63_02A6),按 <em>env</em> 与按 <em>pol</em> 判定的亚型可能合理地不同。报告中始终注明亚型是依据哪个基因判定的。</blockquote><hr>' +
+    '<h2 id="env">🧬 HIV-1-M-Env-Rus — 基于 env 基因的亚型</h2>' +
+    '<p>基于 <em>env</em> 核苷酸序列的 HIV-1 亚型分类器,用于纳米孔数据(<strong>OnSiteSeq HIV</strong> 流程)。仓库:<a href="https://gitverse.ru/onsiteseq/HIV-1-M-Env-Rus">gitverse.ru/onsiteseq/HIV-1-M-Env-Rus</a></p>' +
+    '<ul><li><strong>12 类:</strong>CRF02_AG、A2、D、F2、G、H、A6、CRF63_02A6、A1、B、C、F1 — 包括对俄罗斯有意义的形式。</li><li><strong>架构:</strong>基于 k-mer 频率(k = 6,4096 维向量)的卷积自编码器 (CAE):编码器含 3 个 Conv1d 层与 2 个残差块,解码器用于重建损失 (MSE),分类器为 3 层全连接。</li><li><strong>计算机模拟进化:</strong>通过重组、插入与缺失扩充稀有类别;生成质量用与模型输入相同的 6-mer 上的 t-SNE 检查。</li><li><strong>输入控制(自 2026-10-11):</strong>长度、非 ACGT 比例、与参考 <em>env</em> 面板的 12-mer 相似度、自动判断链方向、置信度阈值。状态:<code>OK</code>、<code>LOW_CONFIDENCE</code>、<code>SHORT</code>、<code>AMBIGUOUS</code>、<code>NOT_HIV1M_ENV</code>。此前模型会对 polyA、反向链和 V3 环给出"自信"的分类 — 现在此类输入会被拒绝。</li></ul>' +
+    '<p><strong>2026-10-11 的修复:</strong></p><ul><li>按相似序列簇划分 train / val / test(6-mer 余弦 ≥ 0.90):LANL 中 B 亚型每位患者最多有 784 个克隆,随机划分会把它们分到两个集合;</li><li>最终指标在 test 上计算,而不是用于选择最佳轮次的 val;</li><li>合成重组体需通过阅读框有效性检查(100% 有效,部分类别此前仅 39–73%);</li><li>统一随机种子 — 运行可复现。</li></ul>' +
+    '<p><strong>指标:</strong>模型此前的指标是在数据集之间存在泄漏的情况下得到的,已撤回发布。在干净测试划分上的重新计算正在进行中。</p>' +
+    '<p><strong>局限:</strong>12 类之外的独特重组形式 (URF) 与 CRF 会被归为最接近的类别,且输入控制无法识别;需要全长 <em>env</em>;小类别(H、A2、CRF63_02A6)的指标不具统计显著性。</p><hr>' +
+    '<h2 id="pol">🧪 HIV-1-M-Pol-Rus — 基于 pol 基因的亚型</h2>' +
+    '<p>基于 <em>pol</em> PR+RT 区段的 HIV-1 亚型分类器 — 这正是毛细管 (Sanger) 测序的标准扩增子。Env 模型不适用于此类输入,因此为 <strong>OnSiteSeq HIV Sanger</strong> 流程建立了专用模型。仓库:<a href="https://gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus">gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus</a></p>' +
+    '<ul><li><strong>7 类:</strong>A6、A1、B、G、CRF02_AG、CRF63_02A6 以及 <strong>OTHER</strong>("不属于六个目标类":URF 与复合形式、公认 CRF、非俄罗斯纯亚型)。OTHER 是模型的回答,而非输入控制的拒绝 (<code>Unclassified</code>)。</li><li><strong>架构:</strong>基于 k-mer 频率(k = 6,4096 维向量)的 CAE — 结果不依赖片段长度。</li><li><strong>按患者 ID 划分:</strong>train / val / test 按患者一次性分配;val/test 中来自 train 患者的记录比例为 <strong>0%</strong>(回归测试 <code>check_leakage.py</code>)。</li><li><strong>输入控制:</strong>状态 <code>OK</code>、<code>LOW_CONFIDENCE</code>、<code>SHORT</code>、<code>AMBIGUOUS</code>、<code>NOT_HIV1M_POL</code>、<code>EMPTY</code>;自动识别反向链。</li></ul>' +
+    '<h3>指标(2026-10-17 完整运行)</h3>' +
+    '<table><thead><tr><th style="text-align:left">数据集</th><th style="text-align:left">n</th><th style="text-align:left">准确率</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td>内部 holdout (LANL)</td><td>441</td><td>0.887</td><td>F1-macro 0.789;去掉 OTHER 类(6 类)时为 0.997</td></tr><tr><td><strong>EpidRuSeq,COMET 标注(主要指标)</strong></td><td>251</td><td><strong>0.992</strong></td><td>召回率 A6 1.000 (196/196)、B 0.974、CRF63_02A6 0.923</td></tr><tr><td>EpidRuSeq,fallback 标注</td><td>90</td><td>0.667</td><td>标签来自同族模型 — 不是独立参照</td></tr><tr><td>EpidRuSeq,全部测试</td><td>343</td><td>0.906</td><td>341 条已分类 + 2 条因输入控制为 <code>Unclassified</code></td></tr></tbody></table>' +
+    '<p>测试队列已去除与训练记录几乎相同的条目(排除 8 条 6-mer 余弦 ≥ 0.999 的记录)。</p>' +
+    '<p><strong>局限:</strong>G 亚型仅有 2 条独立标注记录 — 不作验证声明。OTHER 不是重组体检测器:在含 A6 的嵌合体上召回率为 0.357(15/42;95% 置信区间 0.216–0.520)。OTHER 类对目标类别的代价很小:COMET 上 A6 召回率仍为 1.000。</p><hr>' +
+    '<h2 id="resist">🛡️ HIV-1-Resist-Rus — 耐药性</h2>' +
+    '<p>基于 PR、RT 与 IN 蛋白预测四类 ART 共 <strong>14 种药物</strong>(NRTI、NNRTI、PI、INSTI)的耐药性。用于 ONT 与 Sanger 两条流程。仓库:<a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>' +
+    '<h3>版本历史</h3>' +
+    '<table><thead><tr><th style="text-align:left">版本</th><th style="text-align:left">日期</th><th style="text-align:left">变化</th></tr></thead><tbody><tr><td>1.0</td><td>2026-02</td><td>单一药物 (DTG),CNN 与 CNN + Self-Attention 对比,按倍数变化 (fold-change) 标注</td></tr><tr><td>3.0</td><td>2026-06</td><td>14 种药物,LANL 训练语料(37 641 条序列)经 Stanford Sierra 标注,在 356 名患者上外部验证</td></tr><tr><td>3.1</td><td>2026-10-12</td><td>按基因型去重(消除 train 与 val 之间相同序列的泄漏)、完整突变标志词典、Platt 校准、输入质量控制</td></tr><tr><td>3.2</td><td>2026-10-12</td><td>端到端可复现 <code>dvc repro</code>、回归基线、第三代模型</td></tr><tr><td><strong>4.0</strong></td><td><strong>2026-10-13</strong></td><td><strong>HIVDB 五级输出 (CORAL)、报告中的突变列表、级别可靠性门控</strong></td></tr></tbody></table>' +
+    '<h3>HybridResistanceCNN 架构 (v4.0)</h3>' +
+    '<ul><li><strong>Embedding → Conv1D ×2 + MaxPool → Self-Attention</strong> — 氨基酸序列中的局部模式与远程相互作用(RT:240 个位置 / PR:99 / IN:288)。</li><li><strong>MutationMLP</strong> — 基于 Stanford HIVDB 词典的关键突变标志(NRTI 15 / NNRTI 16 / PI 19 / INSTI 15 个位置)。</li><li><strong>Fusion → CORAL 头</strong> — HIVDB 五级量表上的累积概率 P(级别 ≥ 2…5),按构造单调;P(级别 ≥ 2) 即原二分类输出。</li><li><strong>训练:</strong>Focal Loss(α = 0.75,γ = 2.0)应对类别不平衡,按基因型去重,按约登指数选阈值并对每个边界做 Platt 校准。训练样本少于 30 的级别在报告中标注"*"。</li><li><strong>输入控制:</strong>与 HXB2 的一致性 ≥ 80%、模糊残基比例、长度、终止密码子;状态 <code>OK</code>、<code>LOW_IDENTITY</code>、<code>FRAMESHIFT</code>、<code>SHORT</code>、<code>NOT_FOUND</code>。未通过控制的基因不送入模型 — 报告中明确写"未确定"。</li><li><strong>报告:</strong>每种药物的耐药级别与突变列表;A6 亚型多态性(包括 L74I)单独列出,不计入耐药突变。</li></ul>' +
+    '<h3>v4.0 外部验证</h3>' +
+    '<p>去标识化的 <strong>EpidRuSeq</strong> 队列 — 356 名俄罗斯患者(俄罗斯联邦消费者权益保护和公益监督局中央流行病学研究所);参照为各药物的 Stanford HivDB 结论。</p>' +
+    '<table><thead><tr><th style="text-align:left">药物</th><th style="text-align:left">类别</th><th style="text-align:left">AUC</th><th style="text-align:left">F1</th><th style="text-align:left">灵敏度</th><th style="text-align:left">特异度</th><th style="text-align:left">QWK</th><th style="text-align:left">N(耐药)</th></tr></thead><tbody><tr><td>ABC</td><td>NRTI</td><td>0.999</td><td>0.941</td><td>0.982</td><td>0.980</td><td>0.903</td><td>356 (57)</td></tr><tr><td>DTG</td><td>INSTI</td><td>0.999</td><td>0.667</td><td>1.000</td><td>0.989</td><td>0.696</td><td>354 (4)</td></tr><tr><td>3TC</td><td>NRTI</td><td>0.999</td><td>0.956</td><td>0.982</td><td>0.987</td><td>0.994</td><td>356 (55)</td></tr><tr><td>DRV/r</td><td>PI</td><td>0.996</td><td>0.600</td><td>1.000</td><td>0.989</td><td>0.687</td><td>353 (3)</td></tr><tr><td>TDF</td><td>NRTI</td><td>0.996</td><td>0.870</td><td>0.870</td><td>0.991</td><td>0.879</td><td>356 (23)</td></tr><tr><td>ATV/r</td><td>PI</td><td>0.993</td><td>0.811</td><td>0.938</td><td>0.982</td><td>0.784</td><td>353 (16)</td></tr><tr><td>AZT</td><td>NRTI</td><td>0.990</td><td>0.875</td><td>0.913</td><td>0.988</td><td>0.944</td><td>356 (23)</td></tr><tr><td>ETR</td><td>NNRTI</td><td>0.989</td><td>0.867</td><td>0.961</td><td>0.957</td><td>0.844</td><td>356 (51)</td></tr><tr><td>LPV/r</td><td>PI</td><td>0.984</td><td>0.640</td><td>0.889</td><td>0.977</td><td>0.554</td><td>353 (9)</td></tr><tr><td>EVG</td><td>INSTI</td><td>0.976</td><td>0.898</td><td>0.957</td><td>0.988</td><td>0.873</td><td>354 (23)</td></tr><tr><td>EFV</td><td>NNRTI</td><td>0.976</td><td>0.899</td><td>0.954</td><td>0.962</td><td>0.962</td><td>356 (65)</td></tr><tr><td>NVP</td><td>NNRTI</td><td>0.967</td><td>0.859</td><td>0.941</td><td>0.941</td><td>0.944</td><td>356 (68)</td></tr><tr><td>RAL</td><td>INSTI</td><td>0.967</td><td>0.917</td><td>0.957</td><td>0.991</td><td>0.829</td><td>354 (23)</td></tr><tr><td>BIC</td><td>INSTI</td><td>0.769</td><td>0.750</td><td>0.750</td><td>0.997</td><td>0.703</td><td>354 (4)</td></tr><tr><td><strong>平均</strong></td><td></td><td><strong>0.971</strong></td><td><strong>0.825</strong></td><td><strong>0.935</strong></td><td><strong>0.980</strong></td><td><strong>0.828</strong></td><td></td></tr></tbody></table>' +
+    '<p><em>QWK — HIVDB 五级量表上的二次加权 Cohen kappa。14 种药物中 13 种达到目标质量阈值 AUC ≥ 0.90 且灵敏度 ≥ 0.85;BIC 未达到(AUC 0.769)。BIC、DTG 与 DRV/r 在队列中仅有 3–4 例耐药 — 其指标统计上不稳定。DTG 与 BIC 是靶点相同的第二代整合酶抑制剂,因此其估计反映的是同一个小样本,而非两次独立测量。</em></p>' +
+    '<p><strong>按药物类别的 QWK</strong>(合并 5×5 矩阵):NRTI <strong>0.944</strong>、NNRTI <strong>0.933</strong>、INSTI <strong>0.761</strong>、PI <strong>0.726</strong>。</p>' +
+    '<p>在训练语料留出部分上的内部验证(平均 AUC 0.995)比外部验证更乐观,仅用于重新训练时的回归控制。</p>' +
+    '<blockquote>此前发布的 v3.0 估计(平均 AUC 0.990)是在 v3.1 消除 train 与 val 之间相同序列泄漏之前得到的;当前估计以上表为准。</blockquote><hr>' +
     '<h2>⚙️ 技术与 BioMLOps</h2>' +
-    '<ul><li><strong>数据管理 (DVC):</strong> 训练数据集、模型权重与特征提取流程的版本管理。保证实验 100% 可追溯。</li>' +
-    '<li><strong>持续训练:</strong> 由外部数据库(Stanford HIVDB)更新触发的自动化再训练流程,并在留出集上早期发现模型退化。</li>' +
-    '<li><strong>技术栈:</strong> <code>PyTorch (≥2.0)</code>、<code>Snakemake</code>、<code>DVC</code>、<code>BioPython</code>。</li></ul><hr>' +
-    '<blockquote>💡 <strong>科学验证</strong> — 我们模型与 BioMLOps 方法学的有效性已获得学术界认可。成果已在主要会议上展示:<br>' +
-    '• 亚型分类 (HIV-1-M-Env-Rus) — <strong><a href="/conferences/mnsk-2026/">MNSK-2026</a></strong><br>' +
-    '• 耐药预测与 BioMLOps (HIV-1-Resist-Rus) — <strong><a href="/conferences/msit-2026/">MSIT-2026</a></strong></blockquote>';
+    '<p>我们在生物医学中应用机器学习模型生命周期管理实践 (<strong>BioMLOps</strong>),以保证结果可复现。</p>' +
+    '<ul><li><strong>数据管理 (DVC):</strong>训练数据集、模型权重与数据准备流程的版本管理 (HIV-1-Resist-Rus)。</li><li><strong>回归控制:</strong>重新训练时将内部与外部验证指标与固定基线比较;下降超过阈值则阻止发布(GitVerse 上的 CI)。</li><li><strong>可复现性:</strong>Snakemake 流程(HIV-1-M-Env-Rus、HIV-1-M-Pol-Rus),所有随机操作使用统一种子。</li><li><strong>技术栈:</strong><code>PyTorch (>=2.0)</code>、<code>Snakemake</code>、<code>DVC</code>、<code>BioPython</code>。</li></ul><hr>' +
+    '<blockquote>💡 <strong>科学验证。</strong>研究成果已在会议上展示:<br>• 亚型分类 (HIV-1-M-Env-Rus) — <strong><a href="/conferences/mnsk-2026/">MNSK-2026</a></strong><br>• 耐药预测与 BioMLOps (HIV-1-Resist-Rus) — <strong><a href="/conferences/msit-2026/">MSIT-2026</a></strong><br>科学支持:D.E. Kireev,<a href="https://ruhiv.ru/about/">俄罗斯联邦消费者权益保护和公益监督局中央流行病学研究所</a>。</blockquote>';
 
   /* ── CDIFFICILE (艰难梭菌) ── */
   ZH['/cdifficile/'] =
@@ -6405,7 +6386,7 @@
     '<h2>📦 分析流程</h2>' +
     '<p>生物信息学工具通过 <a href="https://harbor.onsiteseq.io">OnSiteSeq Harbor</a> 以 x86 Docker 容器形式分发。</p>' +
     '<ul><li><a href="/tuberculosis/">OnSiteSeq TUB — 结核病</a></li>' +
-    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1</a></li></ul>' +
+    '<li><a href="/hiv/">OnSiteSeq HIV — HIV-1 (ONT)</a></li><li><a href="/hiv/">OnSiteSeq HIV Sanger — HIV-1,毛细管测序</a></li></ul>' +
     '<p>更多解决方案将持续加入。</p>';
 
   /* ── COCKPIT 流程管理平台 ── */
@@ -6493,7 +6474,7 @@
     '<h3>MIPT 研究人员研发出用于 HIV-1 耐药性与亚型诊断的国产机器学习模型</h3>' +
     '<p>研究生 <strong>Roman Gorbenko</strong>(罗曼·戈尔边科,<a href="https://habr.com/ru/users/romangorbenko/articles/">Habr 主页</a>)与其科学导师 <strong>Nikita Radchenko</strong>(尼基塔·拉德琴科)研发了用于 HIV-1 耐药性与亚型诊断的国产机器学习模型。</p>' +
     '<p>核心成果是实现了两个国外平台的国产化替代:美国 <strong>斯坦福 HIV 耐药数据库 (HIVDB)</strong> 和欧洲网络服务 <strong>COMET</strong>(卢森堡健康研究所)。直到不久前,俄罗斯研究人员仍在无可替代地使用这些平台。</p>' +
-    '<p>在 <strong>俄罗斯消费者权益保护局中央流行病学研究所 (CRIFEM Rospotrebnadzor)</strong> 提供的数据集上进行的外部验证显示,平均 <strong>AUC = 0.990</strong> — 在回顾性数据上达到较高准确度(临床应用需开展临床试验并注册为医疗器械)。研发的机器学习模型已在全周期生物信息学流程(从原始基因组读段到可解读的研究报告)中完成测试,并部署在专门研发的软硬件一体化系统 <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong> 上。</p><hr>' +
+    '<p>在 <strong>俄罗斯消费者权益保护局中央流行病学研究所 (CRIFEM Rospotrebnadzor)</strong> 提供的数据集上进行的外部验证显示,平均 <strong>AUC = 0.990</strong> — 在回顾性数据上达到较高准确度(临床应用需开展临床试验并注册为医疗器械)。研发的机器学习模型已在全周期生物信息学流程(从原始基因组读段到可解读的研究报告)中完成测试,并部署在专门研发的软硬件一体化系统 <strong><a href="https://onsiteseq.io/edge/">OnSiteSeq Edge</a></strong> 上。</p><p><em>注(2026 年 10 月):在 v3.1 消除训练集与验证集之间的数据泄漏后,HIV-1-Resist-Rus v4.0 在同一队列上的当前估计为平均 AUC 0.971。详见:<a href="/ml/hiv/#resist">HIV-1 机器学习模型</a>。</em></p><hr>' +
     '<h2>🔬 MIPT 的其他创新成果</h2>' +
     '<p>Phystech 在科技前沿积极开展研究。近期部分成果:</p>' +
     '<p><strong><a href="https://mipt.ru/news/v-mfti-uskorili-modelirovanie-vzryva-atomnogo-yadra-">MIPT 加速原子核爆炸模拟</a></strong><br>数值模拟核过程的新方法,显著提升计算速度。</p>' +

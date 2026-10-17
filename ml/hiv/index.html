@@ -176,113 +176,200 @@ window.addEventListener('load', function() {
 <div id="i18n-content">
 <div class="product-header" style="text-align: center; margin-bottom: 2rem;">
   <h1>Модели машинного обучения: OnSiteSeq HIV</h1>
-  <p style="font-size: 1.2em; color: #555;">Глубокое обучение для высокоточного геномного надзора и предсказания резистентности ВИЧ-1</p>
+  <p style="font-size: 1.2em; color: #555;">Глубокое обучение для субтипирования ВИЧ-1 и предсказания лекарственной устойчивости — для данных ONT и Sanger</p>
 </div>
 
 <hr />
 
-<h2 id="-инновационный-подход-к-геному-вич-1">🧠 Инновационный подход к геному ВИЧ-1</h2>
+<h2 id="-подход">🧠 Подход</h2>
 
-<p>Стандартные зарубежные алгоритмы (в том числе разработанные в США) часто обучаются на базах данных, не отражающих специфику Российской Федерации. Эпидемия ВИЧ-1 в России носит выраженный монофилетический характер.</p>
+<p>Стандартные зарубежные алгоритмы часто обучаются на базах данных, не отражающих специфику Российской Федерации: в России доминирует субтип <strong>A6</strong>, редкий на Западе, а эпидемия носит выраженный монофилетический характер.</p>
 
-<p>Наши проприетарные нейросетевые модели разработаны с учетом отечественной эпидемиологии и используют передовые архитектуры машинного обучения для обеспечения высокой точности предсказания (на ретроспективной валидации; RUO).</p>
-
-<hr />
-
-<h2 id="-hiv-1-m-env-rus-версия-10">🧬 HIV-1-M-Env-Rus (Версия 1.0)</h2>
-
-<p>Специализированная нейросетевая модель для классификации генетических вариантов ВИЧ-1. Она решает критическую задачу выявления доминирующих и рекомбинантных форм вируса, циркулирующих на территории РФ.</p>
-
-<ul>
-  <li><strong>Целевой регион:</strong> Анализ нуклеотидных последовательностей гена <strong>Env</strong>.</li>
-  <li><strong>Специфика РФ:</strong> Модель оптимизирована для сверхточной детекции субтипа <strong>A6</strong> (на который приходится более 80% случаев в России), а также сложных циркулирующих рекомбинантных форм, таких как <strong>CRF63_02A6</strong>.</li>
-  <li><strong>Архитектура:</strong> Глубокое обучение на базе PyTorch с интеграцией в автоматизированный пайплайн подготовки данных (Snakemake).</li>
-  <li><strong>Результат:</strong> Расчет процентной вероятности принадлежности изолята к конкретному субтипу.</li>
-</ul>
+<p>Наши нейросетевые модели ориентированы на субтипы, циркулирующие в РФ, и проверяются на независимой российской когорте <strong>EpidRuSeq</strong> (ФБУН ЦНИИ Эпидемиологии Роспотребнадзора). Код и веса моделей открыты на <a href="https://gitverse.ru/onsiteseq">GitVerse</a>. Статус — исследовательский (RUO).</p>
 
 <hr />
 
-<h2 id="️-hiv-1-resist-rus-версия-10">🛡️ HIV-1-Resist-Rus (Версия 1.0)</h2>
-
-<p>Флагманская модель для прогнозирования устойчивости вируса к основным классам антиретровирусной терапии (АРВТ).</p>
-
-<ul>
-  <li><strong>Целевые гены:</strong> Анализ ключевых участков генома, ответственных за выживаемость вируса — <strong>PR</strong> (протеаза), <strong>RT</strong> (обратная транскриптаза) и <strong>IN</strong> (интеграза).</li>
-  <li><strong>Архитектура ID-CNN + Self-Attention:</strong> Использование одномерных сверточных сетей в связке с механизмом «внимания» позволяет модели эффективно распознавать <strong>эпистаз</strong> — сложную взаимосвязь, при которой одна мутация может усиливать или подавлять эффект другой мутации.</li>
-  <li><strong>Интеграция с базами данных:</strong> Модель калибруется с использованием актуальных мировых (Stanford HIVDB) и российских баз данных резистентности.</li>
-</ul>
-
-<hr />
-
-<h2 id="-hiv-1-resist-rus-версия-30">🚀 HIV-1-Resist-Rus (Версия 3.0)</h2>
-
-<p><strong>Принципиальное обновление, значительно повышающее качество модели; статус системы — исследовательский (RUO), клиническое применение требует клинических испытаний и регистрации.</strong> Репозиторий: <a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>
-
-<h3 id="что-изменилось-в-v3">Что изменилось в v3</h3>
+<h2 id="-сводка-моделей">📋 Сводка моделей</h2>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">Компонент</th>
-      <th style="text-align: left">v1 / v2</th>
-      <th style="text-align: left"><strong>v3</strong></th>
+      <th style="text-align: left">Модель</th>
+      <th style="text-align: left">Версия</th>
+      <th style="text-align: left">Задача</th>
+      <th style="text-align: left">Вход</th>
+      <th style="text-align: left">Пайплайн</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">Препараты</td>
-      <td style="text-align: left">1 (DTG) / 14</td>
-      <td style="text-align: left"><strong>14 (все классы АРТ)</strong></td>
+      <td style="text-align: left"><a href="#env"><strong>HIV-1-M-Env-Rus</strong></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0.0</code> (исправления 11.10.2026)</td>
+      <td style="text-align: left">Субтип, 12 классов</td>
+      <td style="text-align: left">ген <em>env</em>, полноразмерный (≥ 2000 нт)</td>
+      <td style="text-align: left">OnSiteSeq HIV (ONT)</td>
     </tr>
     <tr>
-      <td style="text-align: left">Обучающий датасет</td>
-      <td style="text-align: left">Stanford interim CSVs + синтетика</td>
-      <td style="text-align: left"><strong>37 641 последовательность LANL</strong></td>
+      <td style="text-align: left"><a href="#pol"><strong>HIV-1-M-Pol-Rus</strong></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0.0</code> (переобучена 17.10.2026)</td>
+      <td style="text-align: left">Субтип, 7 классов</td>
+      <td style="text-align: left"><em>pol</em> PR+RT (HXB2 2253–3869)</td>
+      <td style="text-align: left">OnSiteSeq HIV Sanger</td>
     </tr>
     <tr>
-      <td style="text-align: left">Разметка</td>
-      <td style="text-align: left">Fold-change ≥ 3.5</td>
-      <td style="text-align: left"><strong>Stanford Sierra API (эталон)</strong></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Распределение классов</td>
-      <td style="text-align: left">60–92 % резистентных (синтетика)</td>
-      <td style="text-align: left"><strong>0.8–10.8 % (реальное)</strong></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Валидация</td>
-      <td style="text-align: left">Внутренняя (val split)</td>
-      <td style="text-align: left"><strong>356 пациентов ЦНИИ Эпидемиологии Роспотребнадзора</strong></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Среднее AUC (внешн.)</td>
-      <td style="text-align: left">~0.727</td>
-      <td style="text-align: left"><strong>0.990</strong></td>
+      <td style="text-align: left"><a href="#resist"><strong>HIV-1-Resist-Rus</strong></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">4.0.0</code> (13.10.2026)</td>
+      <td style="text-align: left">Резистентность к 14 препаратам, 5 уровней HIVDB</td>
+      <td style="text-align: left">белки PR / RT / IN</td>
+      <td style="text-align: left">оба пайплайна</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="архитектура-hybridresistancecnn">Архитектура HybridResistanceCNN</h3>
+<blockquote>
+  <p><strong>Субтип зависит от участка генома.</strong> У рекомбинантных форм (в т.ч. CRF63_02A6) субтип по <em>env</em> и по <em>pol</em> может законно различаться. В отчётах всегда указано, по какому гену определён субтип.</p>
+</blockquote>
 
-<p>Модель объединяет три ветки, работающие параллельно:</p>
+<hr />
+
+<h2 id="env">🧬 HIV-1-M-Env-Rus — субтип по гену env</h2>
+
+<p>Классификатор субтипов ВИЧ-1 по нуклеотидной последовательности гена <em>env</em> для нанопоровых данных (пайплайн <strong>OnSiteSeq HIV</strong>). Репозиторий: <a href="https://gitverse.ru/onsiteseq/HIV-1-M-Env-Rus">gitverse.ru/onsiteseq/HIV-1-M-Env-Rus</a></p>
 
 <ul>
-  <li><strong>Embedding + CNN ×3</strong> — локальные паттерны в аминокислотной последовательности (RT: 240 позиций / PR: 99 / IN: 288)</li>
-  <li><strong>Self-Attention</strong> — долгодистанционный эпистаз между удалёнными позициями</li>
-  <li><strong>MutationMLP</strong> — двухслойный перцептрон на ключевых позициях (K65R, M184V, K103N, G140S и др.)</li>
+  <li><strong>12 классов:</strong> CRF02_AG, A2, D, F2, G, H, A6, CRF63_02A6, A1, B, C, F1 — включая формы, значимые для РФ.</li>
+  <li><strong>Архитектура:</strong> свёрточный автоэнкодер (CAE) на частотах k-меров (k = 6, вектор 4096): энкодер из 3 слоёв Conv1d и 2 резидуальных блоков, декодер для функции потерь реконструкции (MSE), классификатор из 3 полносвязных слоёв.</li>
+  <li><strong>Синтетическая эволюция <em>in silico</em>:</strong> рекомбинации, вставки и делеции для расширения редких классов; качество генерации контролируется t-SNE на тех же 6-мерах, что подаются в модель.</li>
+  <li><strong>Контроль входа (с 11.10.2026):</strong> длина, доля не-ACGT, сходство с панелью эталонных <em>env</em> по 12-мерам, автоопределение цепи, порог уверенности. Статусы: <code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">LOW_CONFIDENCE</code>, <code class="language-plaintext highlighter-rouge">SHORT</code>, <code class="language-plaintext highlighter-rouge">AMBIGUOUS</code>, <code class="language-plaintext highlighter-rouge">NOT_HIV1M_ENV</code>. Раньше модель уверенно «классифицировала» polyA, обратную цепь и V3-петлю — теперь такие входы отбраковываются.</li>
 </ul>
 
-<p>Три ветки объединяются через Fusion-слой → Dropout → Linear → P(резистентный) ∈ [0, 1].</p>
+<p><strong>Исправления 11.10.2026:</strong></p>
+<ul>
+  <li>разбиение train / val / test по кластерам близких последовательностей (косинус 6-меров ≥ 0.90): в LANL у субтипа B до 784 клонов на пациента, и случайное разбиение раскладывало их по обеим выборкам;</li>
+  <li>итоговые метрики считаются на test, а не на val, которая расходуется на выбор лучшей эпохи;</li>
+  <li>синтетические рекомбинанты проверяются на валидность рамки считывания (100% валидны вместо 39–73% у части классов);</li>
+  <li>единый seed — прогоны воспроизводимы.</li>
+</ul>
 
-<p><strong>Ключевые инженерные решения:</strong> Focal Loss (α=0.75, γ=2.0) для борьбы с дисбалансом классов (≤1% резистентных), WeightedRandomSampler, OneCycleLR (80 эпох), калибровка порогов по Юдену.</p>
+<p><strong>Метрики:</strong> прежние метрики модели получены с утечкой между выборками и сняты с публикации. Пересчёт на чистом тестовом разбиении — в работе.</p>
 
-<h3 id="результаты-внешней-валидации-v3">Результаты внешней валидации v3</h3>
+<p><strong>Ограничения:</strong> уникальные рекомбинантные формы (URF) и CRF вне 12 классов модель сводит к ближайшему классу, и контроль входа их не ловит; нужен полноразмерный <em>env</em>; метрики малых классов (H, A2, CRF63_02A6) статистически не значимы.</p>
 
-<p>Валидация на <strong>356 деидентифицированных пациентах ЦНИИ Эпидемиологии Роспотребнадзора</strong> (когорта EpidRuSeq). Эталон — заключения Stanford HivDB по каждому препарату.</p>
+<hr />
 
-<blockquote>
-  <p><strong>Среднее AUC = 0.990</strong> — соответствует уровню точности Stanford HIV Drug Resistance Database при работе в полностью офлайн-режиме без передачи данных на зарубежные серверы.</p>
-</blockquote>
+<h2 id="pol">🧪 HIV-1-M-Pol-Rus — субтип по гену pol</h2>
+
+<p>Классификатор субтипов ВИЧ-1 по участку <em>pol</em> PR+RT — стандартному ампликону капиллярного (Sanger) секвенирования. Модель Env к такому входу неприменима, поэтому для пайплайна <strong>OnSiteSeq HIV Sanger</strong> создана отдельная модель. Репозиторий: <a href="https://gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus">gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus</a></p>
+
+<ul>
+  <li><strong>7 классов:</strong> A6, A1, B, G, CRF02_AG, CRF63_02A6 и <strong>OTHER</strong> («не из шести целевых»: URF и составные формы, признанные CRF, чистые не-РФ субтипы). OTHER — ответ модели, а не отказ контроля входа (<code class="language-plaintext highlighter-rouge">Unclassified</code>).</li>
+  <li><strong>Архитектура:</strong> CAE на частотах k-меров (k = 6, вектор 4096) — результат не зависит от длины фрагмента.</li>
+  <li><strong>Разбиение по ID пациента:</strong> train / val / test назначаются по пациентам один раз; доля записей val/test от пациентов из train — <strong>0%</strong> (регрессионный тест <code class="language-plaintext highlighter-rouge">check_leakage.py</code>).</li>
+  <li><strong>Контроль входа:</strong> статусы <code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">LOW_CONFIDENCE</code>, <code class="language-plaintext highlighter-rouge">SHORT</code>, <code class="language-plaintext highlighter-rouge">AMBIGUOUS</code>, <code class="language-plaintext highlighter-rouge">NOT_HIV1M_POL</code>, <code class="language-plaintext highlighter-rouge">EMPTY</code>; обратная цепь определяется автоматически.</li>
+</ul>
+
+<h3 id="метрики-полный-прогон-17102026">Метрики (полный прогон 17.10.2026)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Набор</th>
+      <th style="text-align: center">n</th>
+      <th style="text-align: center">Accuracy</th>
+      <th style="text-align: left">Комментарий</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Внутренний holdout (LANL)</td>
+      <td style="text-align: center">441</td>
+      <td style="text-align: center">0.887</td>
+      <td style="text-align: left">F1-macro 0.789; без класса OTHER (6 классов) — 0.997</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>EpidRuSeq, разметка COMET (основная метрика)</strong></td>
+      <td style="text-align: center">251</td>
+      <td style="text-align: center"><strong>0.992</strong></td>
+      <td style="text-align: left">recall A6 1.000 (196/196), B 0.974, CRF63_02A6 0.923</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EpidRuSeq, разметка fallback</td>
+      <td style="text-align: center">90</td>
+      <td style="text-align: center">0.667</td>
+      <td style="text-align: left">метки моделью того же семейства — не независимый эталон</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EpidRuSeq, весь тест</td>
+      <td style="text-align: center">343</td>
+      <td style="text-align: center">0.906</td>
+      <td style="text-align: left">341 классифицировано + 2 <code class="language-plaintext highlighter-rouge">Unclassified</code> по контролю входа</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Тестовая когорта очищена от записей, почти совпадающих с обучающими (исключено 8 записей с косинусом 6-меров ≥ 0.999).</p>
+
+<p><strong>Ограничения:</strong> по субтипу G независимо размечены лишь 2 записи — заявки о валидации нет. OTHER — не детектор рекомбинантов: на A6-содержащих мозаиках recall 0.357 (15/42; 95% ДИ 0.216–0.520). Цена класса OTHER для целевых классов мала: recall A6 на COMET остался 1.000.</p>
+
+<hr />
+
+<h2 id="resist">🛡️ HIV-1-Resist-Rus — лекарственная устойчивость</h2>
+
+<p>Предсказание резистентности к <strong>14 препаратам</strong> четырёх классов АРТ (НИОТ, ННИОТ, ИП, ИНСТИ) по белкам PR, RT и IN. Используется в обоих пайплайнах — ONT и Sanger. Репозиторий: <a href="https://gitverse.ru/onsiteseq/HIV-1-Resist-Rus">gitverse.ru/onsiteseq/HIV-1-Resist-Rus</a></p>
+
+<h3 id="история-версий">История версий</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Версия</th>
+      <th style="text-align: left">Дата</th>
+      <th style="text-align: left">Что изменилось</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">1.0</td>
+      <td style="text-align: left">02.2026</td>
+      <td style="text-align: left">Один препарат (DTG), сравнение CNN и CNN + Self-Attention, разметка по fold-change</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3.0</td>
+      <td style="text-align: left">06.2026</td>
+      <td style="text-align: left">14 препаратов, обучающий корпус LANL (37 641 последовательность) с разметкой Stanford Sierra, внешняя валидация на 356 пациентах</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3.1</td>
+      <td style="text-align: left">12.10.2026</td>
+      <td style="text-align: left">Дедупликация по генотипу (устранена утечка одинаковых последовательностей между train и val), полный словарь мутационных флагов, калибровка Платта, контроль качества входа</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3.2</td>
+      <td style="text-align: left">12.10.2026</td>
+      <td style="text-align: left">Сквозной воспроизводимый <code class="language-plaintext highlighter-rouge">dvc repro</code>, регрессионный baseline, модели третьего поколения</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>4.0</strong></td>
+      <td style="text-align: left"><strong>13.10.2026</strong></td>
+      <td style="text-align: left"><strong>Пятиуровневый выход HIVDB (CORAL), список мутаций в отчёте, гейт надёжности уровней</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="архитектура-hybridresistancecnn-v40">Архитектура HybridResistanceCNN (v4.0)</h3>
+
+<ul>
+  <li><strong>Embedding → Conv1D ×2 + MaxPool → Self-Attention</strong> — локальные паттерны и дальние взаимодействия в аминокислотной последовательности (RT: 240 позиций / PR: 99 / IN: 288).</li>
+  <li><strong>MutationMLP</strong> — флаги ключевых мутаций по словарю Stanford HIVDB (НИОТ 15 / ННИОТ 16 / ИП 19 / ИНСТИ 15 позиций).</li>
+  <li><strong>Fusion → CORAL-голова</strong> — кумулятивные вероятности P(уровень ≥ 2…5) по пятиуровневой шкале HIVDB, монотонные по построению; P(уровень ≥ 2) — прежний бинарный выход.</li>
+  <li><strong>Обучение:</strong> Focal Loss (α = 0.75, γ = 2.0) против дисбаланса классов, дедупликация по генотипу, порог по индексу Юдена и калибровка Платта на каждую границу. Уровни, для которых меньше 30 обучающих примеров, помечаются в отчёте «*».</li>
+  <li><strong>Контроль входа:</strong> идентичность к HXB2 ≥ 80%, доля неоднозначных остатков, длина, стоп-кодоны; статусы <code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">LOW_IDENTITY</code>, <code class="language-plaintext highlighter-rouge">FRAMESHIFT</code>, <code class="language-plaintext highlighter-rouge">SHORT</code>, <code class="language-plaintext highlighter-rouge">NOT_FOUND</code>. Не прошедший контроль ген в модель не передаётся — в отчёте явное «не определено».</li>
+  <li><strong>Отчёт:</strong> уровень резистентности по каждому препарату и список мутаций; полиморфизмы субтипа A6 (включая L74I) выводятся отдельно и в мутации резистентности не входят.</li>
+</ul>
+
+<h3 id="внешняя-валидация-v40">Внешняя валидация v4.0</h3>
+
+<p>Деидентифицированная когорта <strong>EpidRuSeq</strong> — 356 российских пациентов (ФБУН ЦНИИ Эпидемиологии Роспотребнадзора); эталон — заключения Stanford HivDB по каждому препарату.</p>
 
 <table>
   <thead>
@@ -293,170 +380,197 @@ window.addEventListener('load', function() {
       <th style="text-align: center">F1</th>
       <th style="text-align: center">Чувствительность</th>
       <th style="text-align: center">Специфичность</th>
-      <th style="text-align: center">ΔAUC vs v2</th>
+      <th style="text-align: center">QWK</th>
+      <th style="text-align: center">N (резист.)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left"><strong>DRV</strong></td>
-      <td style="text-align: center">ИП</td>
-      <td style="text-align: center"><strong>1.000</strong></td>
-      <td style="text-align: center"><strong>1.000</strong></td>
-      <td style="text-align: center"><strong>1.000</strong></td>
-      <td style="text-align: center"><strong>1.000</strong></td>
-      <td style="text-align: center">+0.017</td>
+      <td style="text-align: left">ABC</td>
+      <td style="text-align: center">НИОТ</td>
+      <td style="text-align: center">0.999</td>
+      <td style="text-align: center">0.941</td>
+      <td style="text-align: center">0.982</td>
+      <td style="text-align: center">0.980</td>
+      <td style="text-align: center">0.903</td>
+      <td style="text-align: center">356 (57)</td>
     </tr>
     <tr>
-      <td style="text-align: left"><strong>DTG</strong></td>
-      <td style="text-align: center">ИНТИ</td>
-      <td style="text-align: center"><strong>1.000</strong></td>
-      <td style="text-align: center">0.800</td>
-      <td style="text-align: center"><strong>1.000</strong></td>
-      <td style="text-align: center">0.994</td>
-      <td style="text-align: center">+0.272</td>
+      <td style="text-align: left">DTG</td>
+      <td style="text-align: center">ИНСТИ</td>
+      <td style="text-align: center">0.999</td>
+      <td style="text-align: center">0.667</td>
+      <td style="text-align: center">1.000</td>
+      <td style="text-align: center">0.989</td>
+      <td style="text-align: center">0.696</td>
+      <td style="text-align: center">354 (4)</td>
     </tr>
     <tr>
       <td style="text-align: left">3TC</td>
       <td style="text-align: center">НИОТ</td>
       <td style="text-align: center">0.999</td>
-      <td style="text-align: center">0.964</td>
+      <td style="text-align: center">0.956</td>
       <td style="text-align: center">0.982</td>
-      <td style="text-align: center">0.990</td>
-      <td style="text-align: center">+0.019</td>
+      <td style="text-align: center">0.987</td>
+      <td style="text-align: center">0.994</td>
+      <td style="text-align: center">356 (55)</td>
     </tr>
     <tr>
-      <td style="text-align: left">RAL</td>
-      <td style="text-align: center">ИНТИ</td>
-      <td style="text-align: center">0.999</td>
-      <td style="text-align: center">0.898</td>
-      <td style="text-align: center">0.957</td>
-      <td style="text-align: center">0.988</td>
-      <td style="text-align: center">+0.670</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">EVG</td>
-      <td style="text-align: center">ИНТИ</td>
-      <td style="text-align: center">0.999</td>
-      <td style="text-align: center">0.898</td>
-      <td style="text-align: center">0.957</td>
-      <td style="text-align: center">0.988</td>
-      <td style="text-align: center">+0.178</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ABC</td>
-      <td style="text-align: center">НИОТ</td>
-      <td style="text-align: center">0.997</td>
-      <td style="text-align: center">0.957</td>
-      <td style="text-align: center">0.965</td>
-      <td style="text-align: center">0.990</td>
-      <td style="text-align: center">+0.549</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ATV/r</td>
+      <td style="text-align: left">DRV/r</td>
       <td style="text-align: center">ИП</td>
-      <td style="text-align: center">0.997</td>
-      <td style="text-align: center">0.811</td>
-      <td style="text-align: center">0.938</td>
-      <td style="text-align: center">0.982</td>
-      <td style="text-align: center">+0.141</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">LPV/r</td>
-      <td style="text-align: center">ИП</td>
-      <td style="text-align: center">0.997</td>
-      <td style="text-align: center">0.762</td>
-      <td style="text-align: center">0.889</td>
-      <td style="text-align: center">0.988</td>
-      <td style="text-align: center">+0.210</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">BIC</td>
-      <td style="text-align: center">ИНТИ</td>
       <td style="text-align: center">0.996</td>
-      <td style="text-align: center">0.500</td>
-      <td style="text-align: center">0.750</td>
-      <td style="text-align: center">0.986</td>
-      <td style="text-align: center">+0.319</td>
+      <td style="text-align: center">0.600</td>
+      <td style="text-align: center">1.000</td>
+      <td style="text-align: center">0.989</td>
+      <td style="text-align: center">0.687</td>
+      <td style="text-align: center">353 (3)</td>
     </tr>
     <tr>
       <td style="text-align: left">TDF</td>
       <td style="text-align: center">НИОТ</td>
-      <td style="text-align: center">0.989</td>
-      <td style="text-align: center">0.809</td>
-      <td style="text-align: center">0.826</td>
-      <td style="text-align: center">0.985</td>
-      <td style="text-align: center">+0.222</td>
+      <td style="text-align: center">0.996</td>
+      <td style="text-align: center">0.870</td>
+      <td style="text-align: center">0.870</td>
+      <td style="text-align: center">0.991</td>
+      <td style="text-align: center">0.879</td>
+      <td style="text-align: center">356 (23)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ATV/r</td>
+      <td style="text-align: center">ИП</td>
+      <td style="text-align: center">0.993</td>
+      <td style="text-align: center">0.811</td>
+      <td style="text-align: center">0.938</td>
+      <td style="text-align: center">0.982</td>
+      <td style="text-align: center">0.784</td>
+      <td style="text-align: center">353 (16)</td>
     </tr>
     <tr>
       <td style="text-align: left">AZT</td>
       <td style="text-align: center">НИОТ</td>
-      <td style="text-align: center">0.987</td>
-      <td style="text-align: center">0.933</td>
+      <td style="text-align: center">0.990</td>
+      <td style="text-align: center">0.875</td>
       <td style="text-align: center">0.913</td>
-      <td style="text-align: center">0.997</td>
-      <td style="text-align: center">+0.161</td>
+      <td style="text-align: center">0.988</td>
+      <td style="text-align: center">0.944</td>
+      <td style="text-align: center">356 (23)</td>
     </tr>
     <tr>
       <td style="text-align: left">ETR</td>
       <td style="text-align: center">ННИОТ</td>
-      <td style="text-align: center">0.981</td>
+      <td style="text-align: center">0.989</td>
+      <td style="text-align: center">0.867</td>
+      <td style="text-align: center">0.961</td>
+      <td style="text-align: center">0.957</td>
+      <td style="text-align: center">0.844</td>
+      <td style="text-align: center">356 (51)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">LPV/r</td>
+      <td style="text-align: center">ИП</td>
+      <td style="text-align: center">0.984</td>
+      <td style="text-align: center">0.640</td>
       <td style="text-align: center">0.889</td>
-      <td style="text-align: center">0.941</td>
-      <td style="text-align: center">0.970</td>
-      <td style="text-align: center">+0.171</td>
+      <td style="text-align: center">0.977</td>
+      <td style="text-align: center">0.554</td>
+      <td style="text-align: center">353 (9)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EVG</td>
+      <td style="text-align: center">ИНСТИ</td>
+      <td style="text-align: center">0.976</td>
+      <td style="text-align: center">0.898</td>
+      <td style="text-align: center">0.957</td>
+      <td style="text-align: center">0.988</td>
+      <td style="text-align: center">0.873</td>
+      <td style="text-align: center">354 (23)</td>
     </tr>
     <tr>
       <td style="text-align: left">EFV</td>
       <td style="text-align: center">ННИОТ</td>
-      <td style="text-align: center">0.972</td>
-      <td style="text-align: center">0.879</td>
+      <td style="text-align: center">0.976</td>
+      <td style="text-align: center">0.899</td>
       <td style="text-align: center">0.954</td>
-      <td style="text-align: center">0.952</td>
-      <td style="text-align: center">+0.070</td>
+      <td style="text-align: center">0.962</td>
+      <td style="text-align: center">0.962</td>
+      <td style="text-align: center">356 (65)</td>
     </tr>
     <tr>
       <td style="text-align: left">NVP</td>
       <td style="text-align: center">ННИОТ</td>
-      <td style="text-align: center">0.949</td>
-      <td style="text-align: center">0.857</td>
-      <td style="text-align: center">0.882</td>
-      <td style="text-align: center">0.958</td>
-      <td style="text-align: center">+0.041</td>
+      <td style="text-align: center">0.967</td>
+      <td style="text-align: center">0.859</td>
+      <td style="text-align: center">0.941</td>
+      <td style="text-align: center">0.941</td>
+      <td style="text-align: center">0.944</td>
+      <td style="text-align: center">356 (68)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RAL</td>
+      <td style="text-align: center">ИНСТИ</td>
+      <td style="text-align: center">0.967</td>
+      <td style="text-align: center">0.917</td>
+      <td style="text-align: center">0.957</td>
+      <td style="text-align: center">0.991</td>
+      <td style="text-align: center">0.829</td>
+      <td style="text-align: center">354 (23)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">BIC</td>
+      <td style="text-align: center">ИНСТИ</td>
+      <td style="text-align: center">0.769</td>
+      <td style="text-align: center">0.750</td>
+      <td style="text-align: center">0.750</td>
+      <td style="text-align: center">0.997</td>
+      <td style="text-align: center">0.703</td>
+      <td style="text-align: center">354 (4)</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>Среднее</strong></td>
       <td style="text-align: center"> </td>
-      <td style="text-align: center"><strong>0.990</strong></td>
-      <td style="text-align: center"><strong>0.854</strong></td>
-      <td style="text-align: center"><strong>0.925</strong></td>
-      <td style="text-align: center"><strong>0.984</strong></td>
+      <td style="text-align: center"><strong>0.971</strong></td>
+      <td style="text-align: center"><strong>0.825</strong></td>
+      <td style="text-align: center"><strong>0.935</strong></td>
+      <td style="text-align: center"><strong>0.980</strong></td>
+      <td style="text-align: center"><strong>0.828</strong></td>
       <td style="text-align: center"> </td>
     </tr>
   </tbody>
 </table>
 
-<p><em>12 из 14 препаратов преодолевают целевой порог качества AUC ≥ 0.90 и чувствительность ≥ 0.85.</em></p>
+<p><em>QWK — квадратично взвешенная каппа Коэна по пятиуровневой шкале HIVDB. 13 из 14 препаратов проходят целевой порог качества AUC ≥ 0.90 и чувствительность ≥ 0.85; не проходит BIC (AUC 0.769). У BIC, DTG и DRV/r в когорте всего 3–4 резистентных случая — их метрики статистически неустойчивы. DTG и BIC — ингибиторы интегразы второго поколения с общей мишенью, поэтому их оценки отражают одну и ту же малую выборку, а не два независимых измерения.</em></p>
+
+<p><strong>QWK по классам препаратов</strong> (объединённые матрицы 5×5): НИОТ <strong>0.944</strong>, ННИОТ <strong>0.933</strong>, ИНСТИ <strong>0.761</strong>, ИП <strong>0.726</strong>.</p>
+
+<p>Внутренняя валидация на отложенной части обучающего корпуса (среднее AUC 0.995) оптимистичнее внешней и используется только для регрессионного контроля при переобучении.</p>
+
+<blockquote>
+  <p>Прежняя публикуемая оценка v3.0 (среднее AUC 0.990) получена до устранения утечки одинаковых последовательностей между train и val в v3.1; актуальная оценка — таблица выше.</p>
+</blockquote>
 
 <hr />
 
 <h2 id="️-технологии-и-biomlops">⚙️ Технологии и BioMLOps</h2>
 
-<p>Мы придерживаемся строгих инженерных стандартов управления жизненным циклом машинного обучения в биомедицине (<strong>BioMLOps</strong>), что критически важно для сертификации и воспроизводимости результатов.</p>
+<p>Мы применяем практики управления жизненным циклом моделей машинного обучения в биомедицине (<strong>BioMLOps</strong>) — для воспроизводимости результатов.</p>
 
 <ul>
-  <li><strong>Управление данными (DVC):</strong> Версионирование обучающих датасетов, весов моделей и пайплайнов извлечения признаков. Это гарантирует 100% прослеживаемость экспериментов.</li>
-  <li><strong>Непрерывное обучение:</strong> Разработан автоматизированный пайплайн дообучения при обновлении внешних баз данных (Stanford HIVDB) с системой ранней детекции деградации качества модели (Model Degradation) на отложенной выборке (Hold-out Set).</li>
+  <li><strong>Управление данными (DVC):</strong> версионирование обучающих датасетов, весов моделей и пайплайнов подготовки данных (HIV-1-Resist-Rus).</li>
+  <li><strong>Регрессионный контроль:</strong> при переобучении метрики внутренней и внешней валидации сравниваются с зафиксированным baseline; падение сильнее порога останавливает выкатку (CI на GitVerse).</li>
+  <li><strong>Воспроизводимость:</strong> пайплайны Snakemake (HIV-1-M-Env-Rus, HIV-1-M-Pol-Rus), единый seed для всех случайных операций.</li>
   <li><strong>Технологический стек:</strong> <code class="language-plaintext highlighter-rouge">PyTorch (&gt;=2.0)</code>, <code class="language-plaintext highlighter-rouge">Snakemake</code>, <code class="language-plaintext highlighter-rouge">DVC</code>, <code class="language-plaintext highlighter-rouge">BioPython</code>.</li>
 </ul>
 
 <hr />
 
 <blockquote>
-  <p>💡 <strong>Научная валидация</strong> &gt; Эффективность наших моделей и методологии BioMLOps получила признание академического сообщества. Результаты исследований успешно представлены на ведущих конференциях:</p>
+  <p>💡 <strong>Научная валидация.</strong> Результаты исследований представлены на конференциях:</p>
   <ul>
     <li>Классификация субтипов (HIV-1-M-Env-Rus) — <strong><a href="/conferences/mnsk-2026/">МНСК-2026</a></strong></li>
     <li>Предикция резистентности и BioMLOps (HIV-1-Resist-Rus) — <strong><a href="/conferences/msit-2026/">МСИТ-2026</a></strong></li>
   </ul>
+
+  <p>Научная поддержка: Д.Е. Киреев, <a href="https://ruhiv.ru/about/">ФБУН ЦНИИ Эпидемиологии Роспотребнадзора</a>.</p>
 </blockquote>
 
 </div>
