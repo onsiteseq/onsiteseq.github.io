@@ -38,7 +38,7 @@
   /* ── HIV ── */
   EN['/hiv/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
-    '<img src="/assets/images/logo/hiv.png" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
+    '<img src="/assets/images/logo/icon_hiv.svg" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>HIV-1 Drug Resistance and Subtype Determination</h1>' +
     '<p style="font-size:1.2em;color:#555">Resistance profiling across all ART classes and subtyping — for nanopore (ONT) and capillary (Sanger) sequencing data; models target the subtypes circulating in Russia</p></div><hr>' +
     '<h2>🧬 Pipeline Description</h2>' +
@@ -5259,7 +5259,7 @@
   /* ── HIV (艾滋病病毒) ── */
   ZH['/hiv/'] =
     '<div class="product-header" style="text-align:center;margin-bottom:2rem">' +
-    '<img src="/assets/images/logo/hiv.png" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
+    '<img src="/assets/images/logo/icon_hiv.svg" alt="HIV-1" style="max-height:120px;margin-bottom:1rem">' +
     '<h1>HIV-1 耐药性与亚型鉴定</h1>' +
     '<p style="font-size:1.2em;color:#555">覆盖全部 ART 药物类别的耐药谱分析与亚型分型 — 适用于纳米孔 (ONT) 与毛细管 (Sanger) 测序数据;模型面向在俄罗斯流行的亚型</p></div><hr>' +
     '<h2>🧬 流程说明</h2>' +
