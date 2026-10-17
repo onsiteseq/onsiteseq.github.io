@@ -32,38 +32,4 @@ window.addEventListener('load', function() {
     attributeFilter: ['data-theme']
   });
 });
-</script> 
-
-<script type="text/javascript">
-function updateCardImages() {
-  const hivLogos = document.querySelectorAll('.hiv-logo');
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  
-  hivLogos.forEach(function(logo) {
-    if (currentTheme === 'dark') {
-      logo.src = '/assets/images/logo/hiv_dark.png';
-    } else {
-      logo.src = '/assets/images/logo/hiv_white.png';
-    }
-  });
-}
-
-// Обновляем изображения при загрузке страницы
-window.addEventListener('load', function() {
-  updateCardImages();
-  
-  // Слушаем изменения темы
-  const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-        updateCardImages();
-      }
-    });
-  });
-  
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme']
-  });
-});
 </script>
