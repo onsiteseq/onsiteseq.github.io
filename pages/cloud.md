@@ -47,6 +47,7 @@ OnSiteSeq Cloud — вариант системы управления биои�
 Биоинформатические инструменты распространяются через [OnSiteSeq Harbor](https://harbor.onsiteseq.io) в виде x86 Docker-контейнеров.
 
 * [OnSiteSeq TUB — Туберкулёз](/tuberculosis/)
-* [OnSiteSeq HIV — ВИЧ-1](/hiv/)
+* [OnSiteSeq HIV — ВИЧ-1 (ONT)](/hiv/)
+* [OnSiteSeq HIV Sanger — ВИЧ-1, капиллярное секвенирование](/hiv/)
 
 Список будет пополняться новыми решениями.
