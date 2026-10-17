@@ -28,7 +28,7 @@ project_entries:
   - title: ВИЧ
     url: hiv
     desc: Определение лекарственной устойчивости и субтипа ВИЧ-1
-    image: /assets/images/logo/hiv_white.png
+    image: /assets/images/logo/icon_hiv.svg
 
   - title: Туберкулёз
     url: tuberculosis

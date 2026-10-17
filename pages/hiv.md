@@ -5,7 +5,7 @@ permalink: /hiv/
 ---
 
 <div class="product-header" style="text-align: center; margin-bottom: 2rem;">
-  <img src="/assets/images/logo/hiv.png" alt="ВИЧ-1" style="max-height: 120px; margin-bottom: 1rem;">
+  <img src="/assets/images/logo/icon_hiv.svg" alt="ВИЧ-1" style="max-height: 120px; margin-bottom: 1rem;">
   <h1>Определение лекарственной устойчивости и субтипа ВИЧ-1</h1>
   <p style="font-size: 1.2em; color: #555;">Профиль резистентности по всем классам АРТ и субтипирование — модели обучены на российских изолятах субтипа A6</p>
 </div>
