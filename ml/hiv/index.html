@@ -170,8 +170,8 @@ window.addEventListener('load', function() {
   <tbody>
     <tr>
       <td style="text-align: left"><a href="#env"><strong>HIV-1-M-Env-Rus</strong></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0.0</code> (исправления 11.10.2026)</td>
-      <td style="text-align: left">Субтип, 12 классов</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.1.0</code> (18.10.2026)</td>
+      <td style="text-align: left">Субтип, 13 классов (12 + OTHER)</td>
       <td style="text-align: left">ген <em>env</em>, полноразмерный (≥ 2000 нт)</td>
       <td style="text-align: left">OnSiteSeq HIV (ONT)</td>
     </tr>
@@ -203,23 +203,63 @@ window.addEventListener('load', function() {
 <p>Классификатор субтипов ВИЧ-1 по нуклеотидной последовательности гена <em>env</em> для нанопоровых данных (пайплайн <strong>OnSiteSeq HIV</strong>). Репозиторий: <a href="https://gitverse.ru/onsiteseq/HIV-1-M-Env-Rus">gitverse.ru/onsiteseq/HIV-1-M-Env-Rus</a></p>
 
 <ul>
-  <li><strong>12 классов:</strong> CRF02_AG, A2, D, F2, G, H, A6, CRF63_02A6, A1, B, C, F1 — включая формы, значимые для РФ.</li>
-  <li><strong>Архитектура:</strong> свёрточный автоэнкодер (CAE) на частотах k-меров (k = 6, вектор 4096): энкодер из 3 слоёв Conv1d и 2 резидуальных блоков, декодер для функции потерь реконструкции (MSE), классификатор из 3 полносвязных слоёв.</li>
-  <li><strong>Синтетическая эволюция <em>in silico</em>:</strong> рекомбинации, вставки и делеции для расширения редких классов; качество генерации контролируется t-SNE на тех же 6-мерах, что подаются в модель.</li>
-  <li><strong>Контроль входа (с 11.10.2026):</strong> длина, доля не-ACGT, сходство с панелью эталонных <em>env</em> по 12-мерам, автоопределение цепи, порог уверенности. Статусы: <code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">LOW_CONFIDENCE</code>, <code class="language-plaintext highlighter-rouge">SHORT</code>, <code class="language-plaintext highlighter-rouge">AMBIGUOUS</code>, <code class="language-plaintext highlighter-rouge">NOT_HIV1M_ENV</code>. Раньше модель уверенно «классифицировала» polyA, обратную цепь и V3-петлю — теперь такие входы отбраковываются.</li>
+  <li><strong>Версии:</strong> <code class="language-plaintext highlighter-rouge">1.1.0</code> (18.10.2026) — 13 классов (12 + OTHER), разбиение по пациентам, частоты k-меров; <code class="language-plaintext highlighter-rouge">1.0.0</code> (11.10.2026) — 12 классов.</li>
+  <li><strong>13 классов:</strong> 12 субтипов и CRF (CRF02_AG, A2, D, F2, G, H, A6, CRF63_02A6, A1, B, C, F1) и <strong>OTHER</strong> — URF и CRF вне этого списка. OTHER — ответ модели, а не отказ контроля входа (<code class="language-plaintext highlighter-rouge">Unclassified</code>).</li>
+  <li><strong>Архитектура:</strong> свёрточный автоэнкодер (CAE) на частотах k-меров (k = 6, вектор 4096): энкодер из 3 слоёв Conv1d и 2 резидуальных блоков, декодер для функции потерь реконструкции (MSE), классификатор из 3 полносвязных слоёв. С версии 1.1.0 счётчики k-меров нормализованы до частот: длина последовательности больше не является признаком.</li>
+  <li><strong>Разбиение по ID пациента:</strong> train / val / test назначаются по пациентам LANL один раз для всех классов; пациентов val и test в train — <strong>0%</strong> (0 из 659 и 0 из 751, регрессионный тест <code class="language-plaintext highlighter-rouge">check_leakage.py</code>). A6-содержащие мозаики целиком отнесены в test.</li>
+  <li><strong>Синтетическая эволюция <em>in silico</em>:</strong> рекомбинации, вставки и делеции для расширения редких классов; синтетика проходит ту же проверку рамки считывания, что и реальные данные; качество генерации контролируется t-SNE на тех же 6-мерах, что подаются в модель.</li>
+  <li><strong>Контроль входа:</strong> длина, доля не-ACGT, сходство с панелью эталонных <em>env</em> по 12-мерам, автоопределение цепи, порог уверенности. Статусы: <code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">LOW_CONFIDENCE</code>, <code class="language-plaintext highlighter-rouge">SHORT</code>, <code class="language-plaintext highlighter-rouge">AMBIGUOUS</code>, <code class="language-plaintext highlighter-rouge">NOT_HIV1M_ENV</code>, <code class="language-plaintext highlighter-rouge">EMPTY</code>.</li>
 </ul>
 
-<p><strong>Исправления 11.10.2026:</strong></p>
+<h3 id="метрики-полный-прогон-18102026">Метрики (полный прогон 18.10.2026)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Набор</th>
+      <th style="text-align: center">n</th>
+      <th style="text-align: center">Accuracy</th>
+      <th style="text-align: left">Комментарий</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Внутренний holdout (LANL)</td>
+      <td style="text-align: center">842</td>
+      <td style="text-align: center">0.862</td>
+      <td style="text-align: left">F1-macro 0.868; recall A6 1.000 (36/36), B 0.995, C 0.980, OTHER 0.508</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>EpidRuSeq, разметка COMET (основная метрика)</strong></td>
+      <td style="text-align: center">256</td>
+      <td style="text-align: center"><strong>0.996</strong></td>
+      <td style="text-align: left">recall A6 1.000 (195/195), B 0.978, CRF63_02A6 1.000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EpidRuSeq, разметка fallback</td>
+      <td style="text-align: center">84</td>
+      <td style="text-align: center">0.786</td>
+      <td style="text-align: left">метки моделью того же семейства — не независимый эталон</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EpidRuSeq, весь тест</td>
+      <td style="text-align: center">340</td>
+      <td style="text-align: center">0.944</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Тестовая когорта проверена на записи, почти совпадающие с обучающими (косинус 6-меров ≥ 0.999): пересечений нет. Гейты выпуска — accuracy на COMET ≥ 0.95 и потеря recall A6 не более 2 п.п. — пройдены. Прежние метрики (99.64%, F1 = 1.00) были получены с утечкой между выборками и сняты с публикации.</p>
+
+<p><strong>Ограничения:</strong></p>
 <ul>
-  <li>разбиение train / val / test по кластерам близких последовательностей (косинус 6-меров ≥ 0.90): в LANL у субтипа B до 784 клонов на пациента, и случайное разбиение раскладывало их по обеим выборкам;</li>
-  <li>итоговые метрики считаются на test, а не на val, которая расходуется на выбор лучшей эпохи;</li>
-  <li>синтетические рекомбинанты проверяются на валидность рамки считывания (100% валидны вместо 39–73% у части классов);</li>
-  <li>единый seed — прогоны воспроизводимы.</li>
+  <li>OTHER — не детектор рекомбинантов: recall OTHER на holdout 0.508, на A6-содержащих мозаиках — 0.085 (6/71). По составу <em>env</em> такие мозаики близки к A6 и в основном так и классифицируются; для разбора рекомбинантов нужен филогенетический или оконный анализ.</li>
+  <li>Цена класса OTHER для целевых классов мала: в OTHER ушли 0 из 36 A6 и 1 из 200 B; у A1 — 11 из 88 (12.5%).</li>
+  <li>Нужен полноразмерный <em>env</em> (≥ 2000 нт): V3-петля и короткие фрагменты отклоняются статусом <code class="language-plaintext highlighter-rouge">SHORT</code>.</li>
+  <li>Метрики малых классов (A2, F2, H, CRF63_02A6, G, F1 — единицы и десятки реальных последовательностей) статистически не значимы.</li>
+  <li>На OnSiteSeq Edge (arm64) пока работает версия <code class="language-plaintext highlighter-rouge">1.0.0</code>.</li>
 </ul>
-
-<p><strong>Метрики:</strong> прежние метрики модели получены с утечкой между выборками и сняты с публикации. Пересчёт на чистом тестовом разбиении — в работе.</p>
-
-<p><strong>Ограничения:</strong> уникальные рекомбинантные формы (URF) и CRF вне 12 классов модель сводит к ближайшему классу, и контроль входа их не ловит; нужен полноразмерный <em>env</em>; метрики малых классов (H, A2, CRF63_02A6) статистически не значимы.</p>
 
 <hr />
 
