@@ -177,7 +177,7 @@ window.addEventListener('load', function() {
     </tr>
     <tr>
       <td style="text-align: left"><a href="#pol"><strong>HIV-1-M-Pol-Rus</strong></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.0.0</code> (переобучена 17.10.2026)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">1.1.0</code> (17.10.2026)</td>
       <td style="text-align: left">Субтип, 7 классов</td>
       <td style="text-align: left"><em>pol</em> PR+RT (HXB2 2253–3869)</td>
       <td style="text-align: left">OnSiteSeq HIV Sanger</td>
@@ -228,6 +228,7 @@ window.addEventListener('load', function() {
 <p>Классификатор субтипов ВИЧ-1 по участку <em>pol</em> PR+RT — стандартному ампликону капиллярного (Sanger) секвенирования. Модель Env к такому входу неприменима, поэтому для пайплайна <strong>OnSiteSeq HIV Sanger</strong> создана отдельная модель. Репозиторий: <a href="https://gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus">gitverse.ru/onsiteseq/HIV-1-M-Pol-Rus</a></p>
 
 <ul>
+  <li><strong>Версии:</strong> <code class="language-plaintext highlighter-rouge">1.1.0</code> (17.10.2026) — 7 классов, разбиение по пациентам; <code class="language-plaintext highlighter-rouge">1.0.0</code> (11.10.2026) — 6 классов.</li>
   <li><strong>7 классов:</strong> A6, A1, B, G, CRF02_AG, CRF63_02A6 и <strong>OTHER</strong> («не из шести целевых»: URF и составные формы, признанные CRF, чистые не-РФ субтипы). OTHER — ответ модели, а не отказ контроля входа (<code class="language-plaintext highlighter-rouge">Unclassified</code>).</li>
   <li><strong>Архитектура:</strong> CAE на частотах k-меров (k = 6, вектор 4096) — результат не зависит от длины фрагмента.</li>
   <li><strong>Разбиение по ID пациента:</strong> train / val / test назначаются по пациентам один раз; доля записей val/test от пациентов из train — <strong>0%</strong> (регрессионный тест <code class="language-plaintext highlighter-rouge">check_leakage.py</code>).</li>
