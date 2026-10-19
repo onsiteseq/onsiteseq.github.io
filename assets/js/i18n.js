@@ -341,7 +341,7 @@
     '<h2>📬 Additional Information</h2>' +
     '<ul><li><strong>Dzen (blog, videos, news):</strong> <a href="https://dzen.ru/intermsofbioinformatics">dzen.ru/intermsofbioinformatics</a></li>' +
     '<li><strong>Cloud version:</strong> <a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a></li>' +
-    '<li><strong>Containerised pipeline registry:</strong> <a href="https://harbor.onsiteseq.io">harbor.onsiteseq.io</a></li></ul><hr>';
+    '<li><strong>Pipeline capsule registry (OnSiteSeq Caps ID):</strong> <a href="https://caps.onsiteseq.io">caps.onsiteseq.io</a></li></ul><hr>';
 
   /* ── ML / HIV ── */
   EN['/ml/hiv/'] =
@@ -6449,7 +6449,7 @@
     '<h2>📬 更多信息</h2>' +
     '<ul><li><strong>Dzen(博客、视频、新闻):</strong> <a href="https://dzen.ru/intermsofbioinformatics">dzen.ru/intermsofbioinformatics</a></li>' +
     '<li><strong>云端版本:</strong> <a href="https://cloud.onsiteseq.io">cloud.onsiteseq.io</a></li>' +
-    '<li><strong>容器化流程仓库:</strong> <a href="https://harbor.onsiteseq.io">harbor.onsiteseq.io</a></li></ul><hr>';
+    '<li><strong>胶囊式流程注册中心(OnSiteSeq Caps ID):</strong> <a href="https://caps.onsiteseq.io">caps.onsiteseq.io</a></li></ul><hr>';
 
   /* ── ABOUT 关于平台 ── */
   ZH['/aboutonsiteseq'] =
