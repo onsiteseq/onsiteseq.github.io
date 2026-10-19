@@ -20,7 +20,7 @@ permalink: /contact/
 
 * **Дзен (блог, видео, новости):** [dzen.ru/intermsofbioinformatics](https://dzen.ru/intermsofbioinformatics)
 * **Облачная версия:** [cloud.onsiteseq.io](https://cloud.onsiteseq.io)
-* **Реестр контейнеризованных биоинформатических пайплайнов:** [harbor.onsiteseq.io](https://harbor.onsiteseq.io)
+* **Реестр пайплайнов-капсул (OnSiteSeq Caps ID):** [caps.onsiteseq.io](https://caps.onsiteseq.io)
 
 ---
 
