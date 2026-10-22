@@ -3951,8 +3951,7 @@
     '<hr>' +
     '<h3>🏛 Philosophy of Engineering — the terra nullius of future medicine</h3>' +
     '<p><strong>Gorbenko R. A.</strong> "Autonomous AI Diagnostic Systems as a terra nullius of Near-Future Medicine" // Light and Shadows of Digital Reality: Living Intelligence and Its Avatars: Abstracts of the IV All-Russian Conference with International Participation (Perm, Perm State University, March 26–27, 2026). — Perm: Perm State National Research University, 2026. — P. 162–166.</p>' +
-    '<p>The paper was presented in the section <strong>"Philosophy of Engineering Activity: terra nullius of Engineers and Humanitarians"</strong>. It reflects philosophically on the experience of building the OnSiteSeq product line: an autonomous AI diagnostic system is not merely a tool but a <strong>subject of vital decision-making</strong>, which creates a "moral crumple zone" (M. Elish) and raises the question of responsibility distribution for errors — between the foundation model developer, the medtech integrator, and the physician. A technological answer to the personnel crisis and "medical deserts" of remote regions poses philosophical questions that medicine has yet to answer.</p>' +
-    '<p>📥 <strong><a href="/assets/pdf/conf/Gorbenko_RA_svet_teni_2026.pdf">Download the abstract (PDF)</a></strong></p>';
+    '<p>The paper was presented in the section <strong>"Philosophy of Engineering Activity: terra nullius of Engineers and Humanitarians"</strong>. It reflects philosophically on the experience of building the OnSiteSeq product line: an autonomous AI diagnostic system is not merely a tool but a <strong>subject of vital decision-making</strong>, which creates a "moral crumple zone" (M. Elish) and raises the question of responsibility distribution for errors — between the foundation model developer, the medtech integrator, and the physician. A technological answer to the personnel crisis and "medical deserts" of remote regions poses philosophical questions that medicine has yet to answer.</p>';
 
   /* ── RUWIKI ── */
   EN['/ruwiki'] =
@@ -6525,8 +6524,7 @@
     '<hr>' +
     '<h3>🏛 工程哲学 —— 未来医学的 terra nullius</h3>' +
     '<p><strong>Gorbenko R. A.</strong>《自主人工智能诊断系统:未来医学的 terra nullius(无主之地)》//《数字现实的光与影:活的智能及其化身》:第四届全俄国际学术会议论文摘要集(彼尔姆,彼尔姆国立大学,2026 年 3 月 26–27 日)。—— 彼尔姆:彼尔姆国立研究大学,2026 年,第 162–166 页。</p>' +
-    '<p>该论文发表于<strong>"工程活动哲学:工程师与人文学者的 terra nullius"</strong>分会。文章对 OnSiteSeq 产品线的开发经验进行了哲学反思:自主人工智能诊断系统不仅仅是一种工具,更是<strong>作出关乎生命决策的主体</strong>,由此产生了"道德缓冲区"(moral crumple zone,M. Elish)以及错误责任如何在基础模型开发者、医疗科技集成商与医生之间分配的问题。针对偏远地区人才危机与"医疗荒漠"的技术答案,提出了医学尚无现成答案的哲学问题。</p>' +
-    '<p>📥 <strong><a href="/assets/pdf/conf/Gorbenko_RA_svet_teni_2026.pdf">下载论文摘要 (PDF)</a></strong></p>';
+    '<p>该论文发表于<strong>"工程活动哲学:工程师与人文学者的 terra nullius"</strong>分会。文章对 OnSiteSeq 产品线的开发经验进行了哲学反思:自主人工智能诊断系统不仅仅是一种工具,更是<strong>作出关乎生命决策的主体</strong>,由此产生了"道德缓冲区"(moral crumple zone,M. Elish)以及错误责任如何在基础模型开发者、医疗科技集成商与医生之间分配的问题。针对偏远地区人才危机与"医疗荒漠"的技术答案,提出了医学尚无现成答案的哲学问题。</p>';
 
   /* ── RUWIKI ── */
   ZH['/ruwiki'] =
