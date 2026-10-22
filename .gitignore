@@ -6,8 +6,16 @@ _site
 gorbenkoteh2
 *.pem
 *.key
+*.ppk
+*.p12
+*.pfx
 *token*
+*secret*
+*credential*
 id_*
+.ssh/
+.env
+.env.*
 
 # Ruby-зависимости (bundle install --path vendor/bundle) — восстанавливаются из Gemfile.lock
 vendor/
