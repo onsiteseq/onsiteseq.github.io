@@ -8,6 +8,9 @@ navbar_entries:
   - title: Вход в Облако
     url: https://cloud.onsiteseq.io
 
+  - title: Реестр капсул
+    url: https://caps.onsiteseq.io/
+
 component_entries:
   - title: OnSiteSeq Edge
     url: edge
