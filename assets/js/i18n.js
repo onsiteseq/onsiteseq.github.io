@@ -3951,7 +3951,14 @@
     '<hr>' +
     '<h3>🏛 Philosophy of Engineering — the terra nullius of future medicine</h3>' +
     '<p><strong>Gorbenko R. A.</strong> "Autonomous AI Diagnostic Systems as a terra nullius of Near-Future Medicine" // Light and Shadows of Digital Reality: Living Intelligence and Its Avatars: Abstracts of the IV All-Russian Conference with International Participation (Perm, Perm State University, March 26–27, 2026). — Perm: Perm State National Research University, 2026. — P. 162–166.</p>' +
-    '<p>The paper was presented in the section <strong>"Philosophy of Engineering Activity: terra nullius of Engineers and Humanitarians"</strong>. It reflects philosophically on the experience of building the OnSiteSeq product line: an autonomous AI diagnostic system is not merely a tool but a <strong>subject of vital decision-making</strong>, which creates a "moral crumple zone" (M. Elish) and raises the question of responsibility distribution for errors — between the foundation model developer, the medtech integrator, and the physician. A technological answer to the personnel crisis and "medical deserts" of remote regions poses philosophical questions that medicine has yet to answer.</p>';
+    '<p>The paper was presented in the section <strong>"Philosophy of Engineering Activity: terra nullius of Engineers and Humanitarians"</strong>. It reflects philosophically on the experience of building the OnSiteSeq product line: an autonomous AI diagnostic system is not merely a tool but a <strong>subject of vital decision-making</strong>, which creates a "moral crumple zone" (M. Elish) and raises the question of responsibility distribution for errors — between the foundation model developer, the medtech integrator, and the physician. A technological answer to the personnel crisis and "medical deserts" of remote regions poses philosophical questions that medicine has yet to answer.</p>' +
+    '<hr>' +
+    '<h3>🌾 Agrobiology branch — rice blast diagnostics in the field</h3>' +
+    '<img src="/assets/images/publication/bppb_2026.png" alt="BPPB — Biotechnologies for the Food Industry of the Future" style="max-width:260px; float:right; margin:0 0 1.5rem 2rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);">' +
+    '<p><strong>Gorbenko R. A.</strong> "The OnSiteSeq Hardware-Software Complex for Rapid Field Diagnostics of Rice Blast and Fungicide Resistance of <em>Pyricularia oryzae</em>" // Biotechnologies for the Food Industry of the Future: A Platform for Science and Industry. Proceedings of the II All-Russian Scientific and Practical Conference (Moscow, September 17–18, 2026). — St. Petersburg: Naukoemkie Tekhnologii, 2026. — P. 94. ISBN 978-5-00271-196-3.</p>' +
+    '<p>✅ <strong>The proceedings have been submitted to RSCI</strong> in accordance with the established procedure.</p>' +
+    '<details><summary><strong>Abs — abstract</strong></summary><p>The OnSiteSeq hardware-software complex for field rapid diagnostics of rice blast is presented. The <code>onsiteseq_rice</code> pipeline runs on the Edge platform (Nvidia Jetson AGX) and analyses five loci responsible for pathogen identification and fungicide resistance markers. On the demonstration isolate, coverage of up to 944× was achieved; the final report is generated in less than 4 hours — without sending data to a central laboratory.</p></details>' +
+    '<p>🔗 <a href="https://bppbconf.ru/archive">https://bppbconf.ru/archive</a> · 📸 <a href="/conferences/bppb-2026/">Conference page with poster session photos</a></p>';
 
   /* ── RUWIKI ── */
   EN['/ruwiki'] =
@@ -6524,7 +6531,14 @@
     '<hr>' +
     '<h3>🏛 工程哲学 —— 未来医学的 terra nullius</h3>' +
     '<p><strong>Gorbenko R. A.</strong>《自主人工智能诊断系统:未来医学的 terra nullius(无主之地)》//《数字现实的光与影:活的智能及其化身》:第四届全俄国际学术会议论文摘要集(彼尔姆,彼尔姆国立大学,2026 年 3 月 26–27 日)。—— 彼尔姆:彼尔姆国立研究大学,2026 年,第 162–166 页。</p>' +
-    '<p>该论文发表于<strong>"工程活动哲学:工程师与人文学者的 terra nullius"</strong>分会。文章对 OnSiteSeq 产品线的开发经验进行了哲学反思:自主人工智能诊断系统不仅仅是一种工具,更是<strong>作出关乎生命决策的主体</strong>,由此产生了"道德缓冲区"(moral crumple zone,M. Elish)以及错误责任如何在基础模型开发者、医疗科技集成商与医生之间分配的问题。针对偏远地区人才危机与"医疗荒漠"的技术答案,提出了医学尚无现成答案的哲学问题。</p>';
+    '<p>该论文发表于<strong>"工程活动哲学:工程师与人文学者的 terra nullius"</strong>分会。文章对 OnSiteSeq 产品线的开发经验进行了哲学反思:自主人工智能诊断系统不仅仅是一种工具,更是<strong>作出关乎生命决策的主体</strong>,由此产生了"道德缓冲区"(moral crumple zone,M. Elish)以及错误责任如何在基础模型开发者、医疗科技集成商与医生之间分配的问题。针对偏远地区人才危机与"医疗荒漠"的技术答案,提出了医学尚无现成答案的哲学问题。</p>' +
+    '<hr>' +
+    '<h3>🌾 农业生物学分支 —— 稻瘟病的田间诊断</h3>' +
+    '<img src="/assets/images/publication/bppb_2026.png" alt="BPPB — 未来食品工业生物技术" style="max-width:260px; float:right; margin:0 0 1.5rem 2rem; border-radius:6px; box-shadow:0 2px 14px rgba(0,0,0,0.18);">' +
+    '<p><strong>Gorbenko R. A.</strong>《OnSiteSeq 软硬件一体化系统用于稻瘟病田间快速诊断与稻瘟病菌 (Pyricularia oryzae) 杀菌剂抗性检测》//《未来食品工业生物技术:科学与产业的平台》:第二届全俄科学实践大会论文集(莫斯科,2026 年 9 月 17–18 日)。—— 圣彼得堡:知识密集型技术出版社,2026 年,第 94 页。ISBN 978-5-00271-196-3。</p>' +
+    '<p>✅ <strong>论文集已按规定程序提交 RSCI(俄罗斯科学引文索引)</strong>。</p>' +
+    '<details><summary><strong>Abs — 摘要</strong></summary><p>本文介绍了用于稻瘟病田间快速诊断的 OnSiteSeq 软硬件一体化系统。<code>onsiteseq_rice</code> 分析流程运行于 Edge 平台 (Nvidia Jetson AGX),分析负责病原体鉴定和杀菌剂抗性标志物的五个基因座。在演示分离株上实现了高达 944× 的覆盖度;最终报告在 4 小时内生成 — 无需将数据发送至中心实验室。</p></details>' +
+    '<p>🔗 <a href="https://bppbconf.ru/archive">https://bppbconf.ru/archive</a> · 📸 <a href="/conferences/bppb-2026/">会议页面(海报环节照片)</a></p>';
 
   /* ── RUWIKI ── */
   ZH['/ruwiki'] =
