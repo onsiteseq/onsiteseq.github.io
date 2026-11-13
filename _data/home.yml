@@ -38,6 +38,11 @@ project_entries:
     desc: Определение лекарственной устойчивости и линий Mycobacterium tuberculosis
     image: /assets/images/logo/tub.png
 
+  - title: Пирикуляриоз риса (Magnaporthe oryzae)
+    url: magnaporthe
+    desc: Экспресс-диагностика пирикуляриоза и фунгицидной резистентности в поле — мультиплексная панель 5 локусов, дообученная под P. oryzae модель Clair3 (капсула CAPS-2026-00016), AVR-профиль расы. Публикация BPPB-2026 (РИНЦ)
+    image: /assets/images/logo/icon_magnaporthe.svg
+
 oncology_entries:
   - title: Вирус папилломы человека (ВПЧ)
     url: hpv
@@ -309,11 +314,6 @@ farmer_entries:
     url: asfv
     desc: Детекция ASFV у ворот фермы за часы — генотип по p72, низковирулентные делеционные варианты (CD2v/MGF), отличие от КЧС
     image: /assets/images/logo/icon_asfv.svg
-
-  - title: Пирикуляриоз риса (Magnaporthe oryzae)
-    url: magnaporthe
-    desc: Самая разрушительная болезнь риса — мониторинг рас и Avr-эффекторов, патотип Triticum (wheat blast), чувствительность к фунгицидам
-    image: /assets/images/logo/icon_magnaporthe.svg
 
   - title: Хуанлунбин цитрусовых (HLB)
     url: hlb
