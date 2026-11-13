@@ -43,7 +43,7 @@ permalink: /rice/
 | :--- | :--- |
 | **OnSiteSeq Cockpit Edge** | 🟢 **Реализовано** (демо-прогон 13/13 шагов на ПАК) |
 | **OnSiteSeq Cockpit Desktop** | 🟡 **В разработке** |
-| **OnSiteSeq Cockpit Cloud** | 🔴 Недоступно |
+| **OnSiteSeq Cockpit Cloud** | 🟢 **Доступно** (капсула [CAPS-2026-00016](https://caps.onsiteseq.io/CAPS-2026-00016), образ x86-64) |
 
 ---
 
